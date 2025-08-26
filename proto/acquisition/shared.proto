@@ -5,7 +5,6 @@ package io.clbs.openhes.models.acquisition;
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/acquisition";
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "common/messages.proto";
@@ -113,14 +112,14 @@ message JobDeviceId {
     string device_id = 2;  // The unique identifier of the device.
 }
 
-// Defines single job-device job-device information.
+// Defines the information for a device job.
 message JobDevice {
-    string job_id                                    = 1;  // The device job identifier within the parent bulk.
-    string device_id                                 = 2;  // The device identifier. If set, all subsequent details are loaded from the device registry.
-    string external_id                               = 3;  // The external identifier of the device.
-    map<string, common.FieldValue> device_attributes = 4;  // The connection attributes for the device. Options depend on the `ApplicationProtocolTemplate` of the given application protocol (see the `app_protocol` property).
+    string job_id                                    = 1;  // The unique job identifier within the parent bulk.
+    string device_id                                 = 2;  // The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
+    string external_id                               = 3;  // The external device identifier.
+    map<string, common.FieldValue> device_attributes = 4;  // The connection attributes for the device. The options depend on the `ApplicationProtocolTemplate` of the given application protocol (see the `app_protocol` property).
     repeated ConnectionInfo connection_info          = 5;  // The device connection parameters.
-    ApplicationProtocol app_protocol                 = 6;  // The application protocol used by the device.
+    ApplicationProtocol app_protocol                 = 6;  // The application protocol used to communicate with the device.
     string timezone                                  = 7;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
 }
 
@@ -175,18 +174,18 @@ enum SerialConfigBaudRate {
 // Defines the available serial port data bit types.
 enum SerialConfigDataBits {
     DATA_BITS_UNSPECIFIED = 0;  // Unspecified data bits.
-    DATA_BITS_5           = 1;  // 5 data bits
-    DATA_BITS_6           = 2;  // 6 data bits
-    DATA_BITS_7           = 3;  // 7 data bits
-    DATA_BITS_8           = 4;  // 8 data bits
+    DATA_BITS_5           = 1;  // 5 data bits.
+    DATA_BITS_6           = 2;  // 6 data bits.
+    DATA_BITS_7           = 3;  // 7 data bits.
+    DATA_BITS_8           = 4;  // 8 data bits.
 }
 
 // Defines the available serial port stop bit types.
 enum SerialConfigStopBits {
     STOP_BITS_UNSPECIFIED = 0;  // Unspecified stop bits.
-    STOP_BITS_1           = 1;  // 1 stop bit
-    STOP_BITS_1_5         = 2;  // 1.5 stop bits
-    STOP_BITS_2           = 3;  // 2 stop bits
+    STOP_BITS_1           = 1;  // 1 stop bit.
+    STOP_BITS_1_5         = 2;  // 1.5 stop bits.
+    STOP_BITS_2           = 3;  // 2 stop bits.
 }
 
 // Defines the parameters for serial port configuration.
@@ -253,7 +252,7 @@ message ConnectionTypeSerialRfc2217 {
 enum CommunicationType {
     COMMUNICATION_TYPE_UNSPECIFIED        = 0;   // Unspecified communication type.
     COMMUNICATION_TYPE_TCPIP              = 1;   // The communication is established via direct TCP/IP.
-    COMMUNICATION_TYPE_MODEM_POOL         = 2;   // The communication is established via phone line (modem).
+    COMMUNICATION_TYPE_MODEM_POOL         = 2;   // The communication is established via a phone line (modem).
     COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 3;   // The communication is established via a direct serial line.
     COMMUNICATION_TYPE_SERIAL_LINE_MOXA   = 4;   // The communication is established via a controlled  serial line (Moxa).
     COMMUNICATION_TYPE_LISTENING          = 99;  // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
@@ -485,7 +484,7 @@ message ConnectionTypeControlledSerial {
 enum ActionType {
     ACTION_TYPE_UNSPECIFIED = 0;  // Unspecified action type.
 
-    ACTION_TYPE_GET_REGISTER           = 1;  // Get a register value, for example an instantaneous values. The action covers a specific register.
+    ACTION_TYPE_GET_REGISTER           = 1;  // Get a register value, for example an instantaneous value. The action covers a specific register.
     ACTION_TYPE_GET_PERIODICAL_PROFILE = 2;  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
     ACTION_TYPE_GET_IRREGULAR_PROFILE  = 3;  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
     ACTION_TYPE_GET_EVENTS             = 4;  // Get an event log. The action covers a specific event log.
@@ -748,11 +747,11 @@ message JobEventData {
 // Defines the device specification.
 message DeviceSpec {
     // @gqltype: UUID
-    string dct_id                                                             = 1;  // The identifier of the device configuration template.
+    string dct_id                                                             = 1;  // The unique identifier of the device configuration template.
     string external_id                                                        = 2;  // The external identifier of the device.
     repeated DeviceCommunicationUnit communication_unit_link                  = 3;  // The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
     string timezone                                                           = 4;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
-    repeated DefaultDeviceCommunicationUnitAttributes default_link_attributes = 5;  // The default communication unit link attributes used when the device is created without a communication unit link. Typically usable for floating devices that are connected via data concentrators and related driver assigns the communication unit dynamically. The list must not contain same application protocol more than once.
+    repeated DefaultDeviceCommunicationUnitAttributes default_link_attributes = 5;  // The default communication unit link attributes used when the device is created without a communication unit link. Typically applicable for floating devices that are connected via data concentrators where the related driver dynamically assigns the communication unit. The list must not contain same application protocol more than once.
 }
 
 // Defines the current status of a device.
@@ -768,10 +767,10 @@ message DeviceCommunicationUnit {
     map<string, common.FieldValue> attributes = 3;  // The application protocol related device attributes, represented as a list of attribute definitions.
 }
 
-// Defines the default attributes for mapping between a device and its communication unit for a specific application protocol.
+// Defines the default attributes for mapping a device to its communication unit for a specific application protocol.
 message DefaultDeviceCommunicationUnitAttributes {
-    ApplicationProtocol app_protocol          = 1;  // The application protocol.
-    map<string, common.FieldValue> attributes = 2;  // The application protocol related device attributes, represented as a list of attribute definitions.
+    ApplicationProtocol app_protocol          = 1;  // The application protocol used.
+    map<string, common.FieldValue> attributes = 2;  // The protocol-specific device attributes, represented as a list of attribute definitions.
 }
 
 // Defines the job specification.

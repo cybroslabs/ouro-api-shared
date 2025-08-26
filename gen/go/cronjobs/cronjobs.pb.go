@@ -10,7 +10,6 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/durationpb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
@@ -24,12 +23,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Defines the cron job types that can be scheduled.
 type CronJobTypeEnum int32
 
 const (
 	CronJobTypeEnum_CRON_JOB_TYPE_UNSPECIFIED      CronJobTypeEnum = 0 // Unspecified cron job type.
-	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 1 // Cron job to start an acquistion bulk.
-	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 2 // Cron job to start a proxy bulk.
+	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 1 // The cron job that starts an acquistion bulk.
+	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 2 // The cron job that starts a proxy bulk.
 )
 
 // Enum value maps for CronJobTypeEnum.
@@ -68,6 +68,7 @@ func (x CronJobTypeEnum) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the specification for creating a new cron job.
 type CreateCronJobRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *CronJobSpec           `protobuf:"bytes,1,opt,name=spec"`
@@ -161,6 +162,7 @@ func (b0 CreateCronJobRequest_builder) Build() *CreateCronJobRequest {
 	return m0
 }
 
+// Defines the cron job specification.
 type CronJob struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *CronJobSpec           `protobuf:"bytes,1,opt,name=spec"`
@@ -279,6 +281,7 @@ func (b0 CronJob_builder) Build() *CronJob {
 	return m0
 }
 
+// Defines the cron job specification.
 type CronJobSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Type        CronJobTypeEnum        `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.cronjobs.CronJobTypeEnum"`
@@ -477,6 +480,7 @@ func (b0 CronJobSpec_builder) Build() *CronJobSpec {
 	return m0
 }
 
+// Defines the current status of a cron job.
 type CronJobStatus struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_LastRunAt   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=last_run_at,json=lastRunAt"`
@@ -605,6 +609,7 @@ func (b0 CronJobStatus_builder) Build() *CronJobStatus {
 	return m0
 }
 
+// Defines a list cron jobs.
 type ListOfCronJob struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*CronJob            `protobuf:"bytes,1,rep,name=items"`
@@ -700,7 +705,7 @@ var File_cronjobs_cronjobs_proto protoreflect.FileDescriptor
 
 const file_cronjobs_cronjobs_proto_rawDesc = "" +
 	"\n" +
-	"\x17cronjobs/cronjobs.proto\x12\x1fio.clbs.openhes.models.cronjobs\x1a\x15common/metadata.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xa3\x01\n" +
+	"\x17cronjobs/cronjobs.proto\x12\x1fio.clbs.openhes.models.cronjobs\x1a\x15common/metadata.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xa3\x01\n" +
 	"\x14CreateCronJobRequest\x12@\n" +
 	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.cronjobs.CronJobSpecR\x04spec\x12I\n" +
 	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xde\x01\n" +

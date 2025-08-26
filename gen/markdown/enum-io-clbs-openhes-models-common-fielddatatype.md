@@ -1,6 +1,6 @@
 # Enum: io.clbs.openhes.models.common.FieldDataType
 
-Enum representing the field data type.
+Defines the data type of the field.
 
 ## Options
 

@@ -462,7 +462,7 @@
       "TYPE",
       "UNSPECIFIED"
     ],
-    "tags2": "Unspecified cron job type Cron job start acquistion bulk Cron job start proxy bulk"
+    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
@@ -475,7 +475,7 @@
     "tags1": [
       "CreateCronJobRequest"
     ],
-    "tags2": "The metadata fields"
+    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
@@ -489,7 +489,7 @@
     "tags1": [
       "CronJob"
     ],
-    "tags2": "The metadata fields"
+    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
@@ -505,7 +505,7 @@
     "tags1": [
       "CronJobSpec"
     ],
-    "tags2": "The type the cron job CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition for every hour The timezone related the cron job America New York Europe Prague CET GMT Etc GMT Whether the cron job suspended not default false not suspended The payload sent when the cron job runs"
+    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
@@ -519,7 +519,7 @@
     "tags1": [
       "CronJobStatus"
     ],
-    "tags2": "The timestamp the last run The timestamp the next run The error message the cron job schedule invalid"
+    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
@@ -532,667 +532,7 @@
     "tags1": [
       "ListOfCronJob"
     ],
-    "tags2": "The list cron jobs The total number items"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
-    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
-    "tags0": [
-      "RELAY_STATE_CONNECT",
-      "RELAY_STATE_DISCONNECT",
-      "RELAY_STATE_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
-    ],
-    "tags1": [
-      "CONNECT",
-      "DISCONNECT",
-      "RELAY",
-      "RelayState",
-      "STATE",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Enumeration for Relay State Unspecified relay state Relay state ignored action Relay connects Relay disconnects"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
-    "tags0": [
-      "dayId",
-      "switching",
-      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
-    ],
-    "tags1": [
-      "DayProfile"
-    ],
-    "tags2": "DayProfile represents the profile for single day containing multiple Switching times Unique identifier for the day profile List switching events each with specific time and relay states"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
-    "tags0": [
-      "state",
-      "relayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
-    ],
-    "tags1": [
-      "RelayStateRecord"
-    ],
-    "tags2": "RelayStateRecord represents the state relay specific time contains the relay and its state CONNECT DISCONNECT The relay must unique within the list relays Relay State the relay CONNECT DISCONNECT"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
-    "tags0": [
-      "id",
-      "name",
-      "weekId",
-      "startDay",
-      "startYear",
-      "startMonth",
-      "io.clbs.openhes.models.acquisition.timeofuse.Season"
-    ],
-    "tags1": [
-      "Season"
-    ],
-    "tags2": "Season represents season which spans across specific start date and references week Unique identifier for the season Name the season Start year the season Start month the season Start day the season Reference Week that this season associated with"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
-    "tags0": [
-      "day",
-      "year",
-      "month",
-      "dayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
-    ],
-    "tags1": [
-      "SpecialDay"
-    ],
-    "tags2": "SpecialDay represents specific days such holidays exceptions Year the special day Month the special day Day the special day Unique identifier for the special day"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
-    "tags0": [
-      "hour",
-      "minute",
-      "tariff",
-      "relays",
-      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
-    ],
-    "tags1": [
-      "Switching"
-    ],
-    "tags2": "Switching data includes tariffs and relay states for specific times Hour the switching event Minute the switching event Tariff Map relay relay state The list must not contain duplicit relay IDs"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
-    "tags0": [
-      "weeks",
-      "seasons",
-      "expiesAt",
-      "hdoGroupId",
-      "activateAt",
-      "dayProfiles",
-      "specialDays",
-      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
-    ],
-    "tags1": [
-      "TimeOfUseTableSpec"
-    ],
-    "tags2": "TimeOfUse represents the main Time Use TOU table containing all relevant definitions Expiration date the TOU table HDO High Demand Option Group Activation date the TOU table List seasons defined the TOU List weeks defined the TOU List day profiles each day having list switching events List special days holidays exceptions"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
-    "tags0": [
-      "weekId",
-      "dayIds",
-      "weekName",
-      "io.clbs.openhes.models.acquisition.timeofuse.Week"
-    ],
-    "tags1": [
-      "Week"
-    ],
-    "tags2": "Week represents week the year containing list Day IDs and Week Name Unique identifier for the week Name the week List day IDs that belong this week"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
-    "tags0": [
-      "SECRET_DATA_PLAIN",
-      "SECRET_DATA_AES256CBC",
-      "SECRET_DATA_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
-    ],
-    "tags1": [
-      "AES256CBC",
-      "DATA",
-      "PLAIN",
-      "SECRET",
-      "SecretDataDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "DLMS crypto mode Unspecified decryption method Plain data decryption needed AES CBC encryption method"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
-    "tags0": [
-      "SECRET_SESSION_PLAIN",
-      "SECRET_SESSION_UNSPECIFIED",
-      "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
-    ],
-    "tags1": [
-      "GF1P",
-      "OAEPM",
-      "PLAIN",
-      "RSA",
-      "SECRET",
-      "SESSION",
-      "SecretSessionKeyDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "session key decryption method used when the session key not set not used Plain session key session key decryption needed RSA OAEP MGF1P decryption method used for session keys"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
-    "tags0": [
-      "data",
-      "keyId",
-      "createdAt",
-      "updatedAt",
-      "accessLevel",
-      "io.clbs.openhes.models.crypto.CryptoSecret"
-    ],
-    "tags1": [
-      "CryptoSecret"
-    ],
-    "tags2": "Access level for the secret admin user etc Unique identifier for the secret key Timestamp when the secret was created Timestamp when the secret was last updated The secret data"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
-    "tags0": [
-      "secrets",
-      "io.clbs.openhes.models.crypto.CryptoSecrets"
-    ],
-    "tags1": [
-      "CryptoSecrets"
-    ],
-    "tags2": "List secrets"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
-    "tags0": [
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "GetCryptoSecretRequest"
-    ],
-    "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
-    "tags0": [
-      "data",
-      "keyId",
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "sessionKey",
-      "accessLevel",
-      "dataDecryptionIv",
-      "decryptionSecretId",
-      "dataDecryptionMethod",
-      "sessionKeyDecryptionMethod",
-      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "SetCryptoSecretRequest"
-    ],
-    "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve Access level for the secret admin user etc Unique identifier for the secret key Identifier for the key used decrypt the either the session key the data directly Method used decrypt the session key May unset the session key unset and used The session key usually encrypted used decrypt the data Method used decrypt the secret data May unset the data not encrypted and vice versa Initialization vector for the decryption method applicable The secret data"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
-    "title": "Enum: io.clbs.openhes.models.common.FieldDataType",
-    "tags0": [
-      "TEXT",
-      "DOUBLE",
-      "BINARY",
-      "INTEGER",
-      "BOOLEAN",
-      "DURATION",
-      "TIMESTAMP",
-      "DATA_TYPE_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.common.FieldDataType"
-    ],
-    "tags1": [
-      "DATA",
-      "FieldDataType",
-      "TYPE",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Enum representing the field data type Unspecified data type The text data type The integer data type The double data type The binary data type The boolean data type The timestamp data type represented google protobuf Timestamp The duration data type represented google protobuf Duration"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-common-fielddisplayformat.md",
-    "title": "Enum: io.clbs.openhes.models.common.FieldDisplayFormat",
-    "tags0": [
-      "MONEY",
-      "COMBO",
-      "PASSWORD",
-      "DATE_ONLY",
-      "TIMEOFDAY",
-      "MULTILINE",
-      "UTC_DATETIME",
-      "UTC_DATE_ONLY",
-      "DISPLAY_FORMAT_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.common.FieldDisplayFormat"
-    ],
-    "tags1": [
-      "DATE",
-      "DATETIME",
-      "DISPLAY",
-      "FORMAT",
-      "FieldDisplayFormat",
-      "ONLY",
-      "UNSPECIFIED",
-      "UTC"
-    ],
-    "tags2": "Enum representing the field display format The default display format The GUI shows text int double date time duration the default format The date only display format local date time Data type must TIMESTAMP string The date time display format with UTC timezone Data type must TIMESTAMP string The date display format with UTC timezone Data type must TIMESTAMP string The time day display format Data type must INTEGER milliseconds The money display format The unit must set the currency code ISO standard USD EUR Data type must DOUBLE INTEGER The password display format Data type must TEXT The GUI must always display six starts not reveal the actual password length The multiline string display format Data type must TEXT The combo box display style format Data type must TEXT The GUI must display the value combo box with the list options"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-common-filteroperator.md",
-    "title": "Enum: io.clbs.openhes.models.common.FilterOperator",
-    "tags0": [
-      "IN",
-      "EQUAL",
-      "NOT_IN",
-      "BETWEEN",
-      "IS_NULL",
-      "CONTAINS",
-      "NOT_EQUAL",
-      "LESS_THAN",
-      "ENDS_WITH",
-      "STARTS_WITH",
-      "IS_NOT_NULL",
-      "GREATER_THAN",
-      "NOT_CONTAINS",
-      "LESS_THAN_OR_EQUAL",
-      "GREATER_THAN_OR_EQUAL",
-      "FILTER_OPERATOR_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.common.FilterOperator"
-    ],
-    "tags1": [
-      "CONTAINS",
-      "ENDS",
-      "EQUAL",
-      "FILTER",
-      "FilterOperator",
-      "GREATER",
-      "IN",
-      "IS",
-      "LESS",
-      "NOT",
-      "NULL",
-      "OPERATOR",
-      "OR",
-      "STARTS",
-      "THAN",
-      "UNSPECIFIED",
-      "WITH"
-    ],
-    "tags2": "The filter operator Unspecified filter operator Single operand operator for text integer number boolean date fields Single operand operator for text integer number boolean date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for integer number date fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Single operand operator for text fields Multiple operand operator for text integer number boolean fields Multiple operand operator for text integer number boolean fields Two operand operator for integer number date fields operand operator For both null and empty string operand operator For both null and empty string"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-common-objecttype.md",
-    "title": "Enum: io.clbs.openhes.models.common.ObjectType",
-    "tags0": [
-      "BULK",
-      "DEVICE",
-      "DRIVER",
-      "BULK_JOB",
-      "CRON_JOB",
-      "VARIABLE",
-      "MODEM_POOL",
-      "DEVICE_GROUP",
-      "DEVICE_DATA_INFO",
-      "COMMUNICATION_BUS",
-      "TIME_OF_USE_TABLE",
-      "COMMUNICATION_UNIT",
-      "OBJECT_TYPE_UNSPECIFIED",
-      "COMMUNICATION_UNIT_LOG_RECORD",
-      "DEVICE_CONFIGURATION_REGISTER",
-      "DEVICE_CONFIGURATION_TEMPLATE",
-      "DEVICE_COMMUNICATION_UNIT_CHANGE",
-      "Enum: io.clbs.openhes.models.common.ObjectType"
-    ],
-    "tags1": [
-      "BULK",
-      "BUS",
-      "CHANGE",
-      "COMMUNICATION",
-      "CONFIGURATION",
-      "CRON",
-      "DATA",
-      "DEVICE",
-      "GROUP",
-      "INFO",
-      "JOB",
-      "LOG",
-      "MODEM",
-      "OBJECT",
-      "OF",
-      "ObjectType",
-      "POOL",
-      "RECORD",
-      "REGISTER",
-      "TABLE",
-      "TEMPLATE",
-      "TIME",
-      "TYPE",
-      "UNIT",
-      "UNSPECIFIED",
-      "USE"
-    ],
-    "tags2": "Enum representing the object type The bulk The bulk job The communication bus The communication unit The communication unit log record The cron job The device The device communication unit change The register The device template The device data info The device group The driver The modem pool Unspecified object type The time use table The variable"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-createfielddescriptorrequest.md",
-    "title": "Model: io.clbs.openhes.models.common.CreateFieldDescriptorRequest",
-    "tags0": [
-      "spec",
-      "io.clbs.openhes.models.common.CreateFieldDescriptorRequest"
-    ],
-    "tags1": [
-      "CreateFieldDescriptorRequest"
-    ],
-    "tags2": "The field descriptor created"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-fielddescriptor.md",
-    "title": "Model: io.clbs.openhes.models.common.FieldDescriptor",
-    "tags0": [
-      "gid",
-      "path",
-      "unit",
-      "label",
-      "jsPath",
-      "format",
-      "fieldId",
-      "groupId",
-      "tooltip",
-      "visible",
-      "secured",
-      "dataType",
-      "required",
-      "editable",
-      "sortable",
-      "precision",
-      "objectType",
-      "multiValue",
-      "validation",
-      "filterable",
-      "defaultValue",
-      "isUserDefined",
-      "io.clbs.openhes.models.common.FieldDescriptor"
-    ],
-    "tags1": [
-      "FieldDescriptor"
-    ],
-    "tags2": "The field descriptor Whether the field descriptor user defined custom fields added users Defines the resource type for which the field descriptor defined BULK DEVICE etc The system wide unique identifier the field descriptor Unique identifier for the field descriptor The path the field the TypeScript representation The path the field the gRPC JSON simplified representation Label displayed for the field Group section identifier for the field Data type the field text double Display format 30m Unit display kWh USD Decimal precision for double numbers Tooltip hint text Whether the field mandatory Whether the field editable Whether the field visible Whether the field can have multiple values Whether the field shall handled security fields password certificate input area Validation rules for the field The default value the attribute does not support multi value fields Whether the field can used for sorting default true Whether the field can used for filtering default true"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-fielddescriptoroptions.md",
-    "title": "Model: io.clbs.openhes.models.common.FieldDescriptorOptions",
-    "tags0": [
-      "options",
-      "complete",
-      "io.clbs.openhes.models.common.FieldDescriptorOptions"
-    ],
-    "tags1": [
-      "FieldDescriptorOptions"
-    ],
-    "tags2": "The field descriptor options set false the options were filtered out"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-fielddescriptorselector.md",
-    "title": "Model: io.clbs.openhes.models.common.FieldDescriptorSelector",
-    "tags0": [
-      "gid",
-      "objectType",
-      "io.clbs.openhes.models.common.FieldDescriptorSelector"
-    ],
-    "tags1": [
-      "FieldDescriptorSelector"
-    ],
-    "tags2": "The system wide field descriptor selector Defines the resource type for which the field descriptor defined BULK DEVICE etc The system wide unique identifier the field descriptor"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-fieldvalidation.md",
-    "title": "Model: io.clbs.openhes.models.common.FieldValidation",
-    "tags0": [
-      "re",
-      "options",
-      "minLength",
-      "maxLength",
-      "minNumber",
-      "maxNumber",
-      "minInteger",
-      "maxInteger",
-      "optionsSource",
-      "io.clbs.openhes.models.common.FieldValidation"
-    ],
-    "tags1": [
-      "FieldValidation"
-    ],
-    "tags2": "Validation rules for the field Regular expression describing input format not set then any value given type can used can used for string int double fields only The minimum length used for string fields only The maximum length used for string fields only The minimum value used for integer fields only The maximum value used for integer fields only The minimum value used for number fields only The maximum value used for number fields only The list allowed values set key value pairs The key here represents the field value set and the value here represents the label displayed The options source set then the options shall dynamically fetched from the server"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-fieldvalue.md",
-    "title": "Model: io.clbs.openhes.models.common.FieldValue",
-    "tags0": [
-      "boolValue",
-      "dateValue",
-      "stringValue",
-      "doubleValue",
-      "binaryValue",
-      "integerValue",
-      "durationValue",
-      "io.clbs.openhes.models.common.FieldValue"
-    ],
-    "tags1": [
-      "FieldValue"
-    ],
-    "tags2": "Represents string typed value Represents bit integer typed value Represents bit double typed value Represents binary typed value Represents boolean typed value Represents date typed value Represents duration typed value"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-fieldvalues.md",
-    "title": "Model: io.clbs.openhes.models.common.FieldValues",
-    "tags0": [
-      "attributes",
-      "io.clbs.openhes.models.common.FieldValues"
-    ],
-    "tags1": [
-      "FieldValues"
-    ],
-    "tags2": "The field values"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-formattedmessage.md",
-    "title": "Model: io.clbs.openhes.models.common.FormattedMessage",
-    "tags0": [
-      "args",
-      "params",
-      "message",
-      "io.clbs.openhes.models.common.FormattedMessage"
-    ],
-    "tags1": [
-      "FormattedMessage"
-    ],
-    "tags2": "The formatted message structure The message format string The format arguments set then the message used format string The additional named parameters must single level map must not contain nested objects arrays"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listfielddescriptoroptionsrequest.md",
-    "title": "Model: io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest",
-    "tags0": [
-      "optionsSource",
-      "filterContains",
-      "io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest"
-    ],
-    "tags1": [
-      "ListFieldDescriptorOptionsRequest"
-    ],
-    "tags2": "The options source Must set the options source field the FieldDescriptor The filter apply the options set only options containing this string will returned"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listoffielddescriptor.md",
-    "title": "Model: io.clbs.openhes.models.common.ListOfFieldDescriptor",
-    "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.common.ListOfFieldDescriptor"
-    ],
-    "tags1": [
-      "ListOfFieldDescriptor"
-    ],
-    "tags2": "The list field descriptors The total number items"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listofid.md",
-    "title": "Model: io.clbs.openhes.models.common.ListOfId",
-    "tags0": [
-      "id",
-      "io.clbs.openhes.models.common.ListOfId"
-    ],
-    "tags1": [
-      "ListOfId"
-    ],
-    "tags2": "The list UUID items"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listofstring.md",
-    "title": "Model: io.clbs.openhes.models.common.ListOfString",
-    "tags0": [
-      "items",
-      "io.clbs.openhes.models.common.ListOfString"
-    ],
-    "tags1": [
-      "ListOfString"
-    ],
-    "tags2": "The list common string items"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listselector.md",
-    "title": "Model: io.clbs.openhes.models.common.ListSelector",
-    "tags0": [
-      "offset",
-      "sortBy",
-      "fields",
-      "pageSize",
-      "filterBy",
-      "io.clbs.openhes.models.common.ListSelector"
-    ],
-    "tags1": [
-      "ListSelector"
-    ],
-    "tags2": "The listing selector The number items per page The offset the first item return zero based The sorting criteria The filtering criteria FIXME This needs designed properly The list additional fields returned"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listselectorfilterby.md",
-    "title": "Model: io.clbs.openhes.models.common.ListSelectorFilterBy",
-    "tags0": [
-      "path",
-      "text",
-      "date",
-      "number",
-      "integer",
-      "boolean",
-      "operator",
-      "dataType",
-      "io.clbs.openhes.models.common.ListSelectorFilterBy"
-    ],
-    "tags1": [
-      "ListSelectorFilterBy"
-    ],
-    "tags2": "The filtering criteria Depending the operator the text integer number boolean date field should used value must set for operators NULL NOT NULL Exactly One value must set for single operand operators EQUAL NOT EQUAL GREATER THAN GREATER THAN EQUAL LESS THAN LESS THAN EQUAL CONTAINS NOT CONTAINS STARTS WITH ENDS WITH Exactly Two values must set for two operand operators BETWEEN Zero more values can set for generic operators NOT Field type determines the data type and only related field should used Other fields shall not set and will ignored the system The path path from the FieldDescriptor The filter operator The data type the field The text typed value used for filtering The integer typed value used for filtering The number typed value used for filtering The boolean typed value used for filtering The date typed value used for filtering"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listselectorsortby.md",
-    "title": "Model: io.clbs.openhes.models.common.ListSelectorSortBy",
-    "tags0": [
-      "path",
-      "desc",
-      "io.clbs.openhes.models.common.ListSelectorSortBy"
-    ],
-    "tags1": [
-      "ListSelectorSortBy"
-    ],
-    "tags2": "The sorting criteria The path path from the FieldDescriptor Set true sort descending order"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-metadatafields.md",
-    "title": "Model: io.clbs.openhes.models.common.MetadataFields",
-    "tags0": [
-      "id",
-      "name",
-      "fields",
-      "generation",
-      "managedFields",
-      "io.clbs.openhes.models.common.MetadataFields"
-    ],
-    "tags1": [
-      "MetadataFields"
-    ],
-    "tags2": "The metadata fields managed user and system The UUID the resource serves the unique identifier the resource immutable and typically auto generated during Create operations The generation the resource The additional fields managed user The additional fields managed system The name the resource mutable and typically set user Must set"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-setfieldsspec.md",
-    "title": "Model: io.clbs.openhes.models.common.SetFieldsSpec",
-    "tags0": [
-      "fields",
-      "objectId",
-      "objectType",
-      "io.clbs.openhes.models.common.SetFieldsSpec"
-    ],
-    "tags1": [
-      "SetFieldsSpec"
-    ],
-    "tags2": "The fields set for the resource The type the managed fields update defines the resource type for which the fields are set The UUID the resource serves the unique identifier the resource immutable and typically auto generated during Create operations"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-updatemetadata.md",
-    "title": "Model: io.clbs.openhes.models.common.UpdateMetadata",
-    "tags0": [
-      "metadata",
-      "io.clbs.openhes.models.common.UpdateMetadata"
-    ],
-    "tags1": [
-      "UpdateMetadata"
-    ],
-    "tags2": "The metadata fields the resource"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-updateobjectfieldsrequest.md",
-    "title": "Model: io.clbs.openhes.models.common.UpdateObjectFieldsRequest",
-    "tags0": [
-      "spec",
-      "io.clbs.openhes.models.common.UpdateObjectFieldsRequest"
-    ],
-    "tags1": [
-      "UpdateObjectFieldsRequest"
-    ],
-    "tags2": "The specification the fields set for the resource"
+    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
   },
   {
     "filename": "enum-io-clbs-openhes-models-messaging-messagingdeliverypolicy.md",
@@ -1442,7 +782,7 @@
       "UNSPECIFIED",
       "UPDATE"
     ],
-    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Unspecified action type Get register value for example instantaneous values The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
+    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Unspecified action type Get register value for example instantaneous value The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-applicationprotocol.md",
@@ -2408,7 +1748,7 @@
     "tags1": [
       "DefaultDeviceCommunicationUnitAttributes"
     ],
-    "tags2": "Defines the default attributes for mapping between device and its communication unit for specific application protocol The application protocol The application protocol related device attributes represented list attribute definitions"
+    "tags2": "Defines the default attributes for mapping device its communication unit for specific application protocol The application protocol used The protocol specific device attributes represented list attribute definitions"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-device.md",
@@ -2685,7 +2025,7 @@
     "tags1": [
       "DeviceSpec"
     ],
-    "tags2": "Defines the device specification The identifier the device configuration template The external identifier the device The ordered list communication units with additional info linked the device The first entry the primary communication unit with the highest priority The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT The default communication unit link attributes used when the device created without communication unit link Typically usable for floating devices that are connected via data concentrators and related driver assigns the communication unit dynamically The list must not contain same application protocol more than once"
+    "tags2": "Defines the device specification The unique identifier the device configuration template The external identifier the device The ordered list communication units with additional info linked the device The first entry the primary communication unit with the highest priority The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT The default communication unit link attributes used when the device created without communication unit link Typically applicable for floating devices that are connected via data concentrators where the related driver dynamically assigns the communication unit The list must not contain same application protocol more than once"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicestatus.md",
@@ -2967,7 +2307,7 @@
     "tags1": [
       "JobDevice"
     ],
-    "tags2": "Defines single job device job device information The device job identifier within the parent bulk The device identifier set all subsequent details are loaded from the device registry The external identifier the device The connection attributes for the device Options depend the ApplicationProtocolTemplate the given application protocol see the app protocol property The device connection parameters The application protocol used the device The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
+    "tags2": "Defines the information for device job The unique job identifier within the parent bulk The unique device identifier set all subsequent details are loaded automatically from the device registry The external device identifier The connection attributes for the device The options depend the ApplicationProtocolTemplate the given application protocol see the app protocol property The device connection parameters The application protocol used communicate with the device The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdeviceid.md",
@@ -3632,6 +2972,542 @@
     "tags2": "The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable true the device data returned for this variable will exclude values from timestamp Default false include values from timestamp"
   },
   {
+    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
+    "tags0": [
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
+    ],
+    "tags1": [
+      "AES256CBC",
+      "DATA",
+      "PLAIN",
+      "SECRET",
+      "SecretDataDecryptionMethod",
+      "UNSPECIFIED"
+    ],
+    "tags2": "DLMS crypto mode Unspecified decryption method Plain data decryption needed AES CBC encryption method"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
+    "tags0": [
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
+    ],
+    "tags1": [
+      "GF1P",
+      "OAEPM",
+      "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
+    ],
+    "tags2": "session key decryption method used when the session key not set not used Plain session key session key decryption needed RSA OAEP MGF1P decryption method used for session keys"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
+    "tags0": [
+      "data",
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
+    ],
+    "tags1": [
+      "CryptoSecret"
+    ],
+    "tags2": "Access level for the secret admin user etc Unique identifier for the secret key Timestamp when the secret was created Timestamp when the secret was last updated The secret data"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
+    "tags0": [
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
+    ],
+    "tags1": [
+      "CryptoSecrets"
+    ],
+    "tags2": "List secrets"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
+    "tags0": [
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "GetCryptoSecretRequest"
+    ],
+    "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
+    "tags0": [
+      "data",
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "SetCryptoSecretRequest"
+    ],
+    "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve Access level for the secret admin user etc Unique identifier for the secret key Identifier for the key used decrypt the either the session key the data directly Method used decrypt the session key May unset the session key unset and used The session key usually encrypted used decrypt the data Method used decrypt the secret data May unset the data not encrypted and vice versa Initialization vector for the decryption method applicable The secret data"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
+    "title": "Enum: io.clbs.openhes.models.common.FieldDataType",
+    "tags0": [
+      "TEXT",
+      "DOUBLE",
+      "BINARY",
+      "INTEGER",
+      "BOOLEAN",
+      "DURATION",
+      "TIMESTAMP",
+      "DATA_TYPE_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.common.FieldDataType"
+    ],
+    "tags1": [
+      "DATA",
+      "FieldDataType",
+      "TYPE",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the data type the field Unspecified data type The text data type The integer data type The double data type The binary data type The boolean data type The timestamp data type represented google protobuf Timestamp The duration data type represented google protobuf Duration"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-common-fielddisplayformat.md",
+    "title": "Enum: io.clbs.openhes.models.common.FieldDisplayFormat",
+    "tags0": [
+      "MONEY",
+      "COMBO",
+      "PASSWORD",
+      "DATE_ONLY",
+      "TIMEOFDAY",
+      "MULTILINE",
+      "UTC_DATETIME",
+      "UTC_DATE_ONLY",
+      "DISPLAY_FORMAT_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.common.FieldDisplayFormat"
+    ],
+    "tags1": [
+      "DATE",
+      "DATETIME",
+      "DISPLAY",
+      "FORMAT",
+      "FieldDisplayFormat",
+      "ONLY",
+      "UNSPECIFIED",
+      "UTC"
+    ],
+    "tags2": "Define the display format determining how alues are presetned the GUI The default display format Text integer double date time duration values are shown their default format Displays only the date portion local date time value Data type must TIMESTAMP string Displays the full date time UTC timezone Data type must TIMESTAMP string Displays the date UTC timezone Data type must TIMESTAMP string Displays time day format for example Data type must INTEGER milliseconds Displays money amounts The unit must set ISO currency code for example USD EUR Data type must DOUBLE INTEGER Displays values hidden passwords Data type must TEXT The GUI always shows six asterisks regardless actual length Displays values multi line text Data type must TEXT Displays values combo box with selectable options Data type must TEXT"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-common-filteroperator.md",
+    "title": "Enum: io.clbs.openhes.models.common.FilterOperator",
+    "tags0": [
+      "IN",
+      "EQUAL",
+      "NOT_IN",
+      "BETWEEN",
+      "IS_NULL",
+      "CONTAINS",
+      "NOT_EQUAL",
+      "LESS_THAN",
+      "ENDS_WITH",
+      "STARTS_WITH",
+      "IS_NOT_NULL",
+      "GREATER_THAN",
+      "NOT_CONTAINS",
+      "LESS_THAN_OR_EQUAL",
+      "GREATER_THAN_OR_EQUAL",
+      "FILTER_OPERATOR_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.common.FilterOperator"
+    ],
+    "tags1": [
+      "CONTAINS",
+      "ENDS",
+      "EQUAL",
+      "FILTER",
+      "FilterOperator",
+      "GREATER",
+      "IN",
+      "IS",
+      "LESS",
+      "NOT",
+      "NULL",
+      "OPERATOR",
+      "OR",
+      "STARTS",
+      "THAN",
+      "UNSPECIFIED",
+      "WITH"
+    ],
+    "tags2": "Defines the operators available for filtering options Unspecified filter operator Single operand operator Matches fields equal the provided value Supported for text integer number boolean date fields Single operand operator Matches fields not equal the provided value Supported for text integer number boolean date fields Single operand operator Matches fields greater than the provided value Supported for integer number date fields Single operand operator Matches fields greater than equal the provided value Supported for integer number date fields Single operand operator Matches fields less than the provided value Supported for integer number date fields Single operand operator Matches fields less than equal the provided value Supported for integer number date fields Single operand operator Matches text fields that contain the provided string Supported for text fields Single operand operator Matches text fields that not contain the provided string Supported for text fields Single operand operator Matches text fields that start with the provided string Supported for text fields Single operand operator Matches text fields that end with the provided substring Supported for text fields Multi operand operator Matches fields whose value within the provided set Supported for text integer number boolean fields Multi operand operator Matches fields whose value not within the provided set Supported for text integer number boolean fields Two operand operator Matches fields with values between the two provided operands inclusive Supported for integer number date fields operand operator Matches fields that are either null empty string operand operator Matches fields that are not null empty string"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-common-objecttype.md",
+    "title": "Enum: io.clbs.openhes.models.common.ObjectType",
+    "tags0": [
+      "BULK",
+      "DEVICE",
+      "DRIVER",
+      "BULK_JOB",
+      "CRON_JOB",
+      "VARIABLE",
+      "MODEM_POOL",
+      "DEVICE_GROUP",
+      "DEVICE_DATA_INFO",
+      "COMMUNICATION_BUS",
+      "TIME_OF_USE_TABLE",
+      "COMMUNICATION_UNIT",
+      "OBJECT_TYPE_UNSPECIFIED",
+      "COMMUNICATION_UNIT_LOG_RECORD",
+      "DEVICE_CONFIGURATION_REGISTER",
+      "DEVICE_CONFIGURATION_TEMPLATE",
+      "DEVICE_COMMUNICATION_UNIT_CHANGE",
+      "Enum: io.clbs.openhes.models.common.ObjectType"
+    ],
+    "tags1": [
+      "BULK",
+      "BUS",
+      "CHANGE",
+      "COMMUNICATION",
+      "CONFIGURATION",
+      "CRON",
+      "DATA",
+      "DEVICE",
+      "GROUP",
+      "INFO",
+      "JOB",
+      "LOG",
+      "MODEM",
+      "OBJECT",
+      "OF",
+      "ObjectType",
+      "POOL",
+      "RECORD",
+      "REGISTER",
+      "TABLE",
+      "TEMPLATE",
+      "TIME",
+      "TYPE",
+      "UNIT",
+      "UNSPECIFIED",
+      "USE"
+    ],
+    "tags2": "Enum representing the object type The bulk The bulk job The communication bus The communication unit The communication unit log record The cron job The device The device communication unit change The register The device template The device data info The device group The driver The modem pool Unspecified object type The time use table The variable"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-createfielddescriptorrequest.md",
+    "title": "Model: io.clbs.openhes.models.common.CreateFieldDescriptorRequest",
+    "tags0": [
+      "spec",
+      "io.clbs.openhes.models.common.CreateFieldDescriptorRequest"
+    ],
+    "tags1": [
+      "CreateFieldDescriptorRequest"
+    ],
+    "tags2": "Defines the specification for creating new field descriptor The specification the field descriptor created"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-fielddescriptor.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldDescriptor",
+    "tags0": [
+      "gid",
+      "path",
+      "unit",
+      "label",
+      "jsPath",
+      "format",
+      "fieldId",
+      "groupId",
+      "tooltip",
+      "visible",
+      "secured",
+      "dataType",
+      "required",
+      "editable",
+      "sortable",
+      "precision",
+      "objectType",
+      "multiValue",
+      "validation",
+      "filterable",
+      "defaultValue",
+      "isUserDefined",
+      "io.clbs.openhes.models.common.FieldDescriptor"
+    ],
+    "tags1": [
+      "FieldDescriptor"
+    ],
+    "tags2": "Defines the field descriptor specification Indicates whether the field descriptor user defined for example custom field added users The resource type for which the field descriptor defined for example BULK DEVICE The unique identifier the field descriptor within the system The unique field descriptor identifier The path the field the TypeScript representation The path the field the gRPC JSON simplified representation The label displayed for the field The group section identifier for the field The data type the field for example text double The display format the field for example 30m The display unit for the field example kWh USD The decimal precision for double values tooltip hint text for tehe field Indicates whether the field mandatory Indicates whether the field editable Indicates whether the field visible Indicates whether the field can contain multiple values Indicates whether the field should handled security fields for example password certificate input area The validation rules for the field The default value the Multi value fields are not supported Indicates whether the field can used for sorting Default true Indicates whether the field can used for filtering Default true"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-fielddescriptoroptions.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldDescriptorOptions",
+    "tags0": [
+      "options",
+      "complete",
+      "io.clbs.openhes.models.common.FieldDescriptorOptions"
+    ],
+    "tags1": [
+      "FieldDescriptorOptions"
+    ],
+    "tags2": "Defines field descriptor options map field descriptor options Indicates whether the list options complete set false the options were filtered out Default true"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-fielddescriptorselector.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldDescriptorSelector",
+    "tags0": [
+      "gid",
+      "objectType",
+      "io.clbs.openhes.models.common.FieldDescriptorSelector"
+    ],
+    "tags1": [
+      "FieldDescriptorSelector"
+    ],
+    "tags2": "Define the system wide field descriptor selector Defines the resource type for which the field descriptor defined for example BULK DEVICE etc The system wide unique identifier the field descriptor"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-fieldvalidation.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldValidation",
+    "tags0": [
+      "re",
+      "options",
+      "minLength",
+      "maxLength",
+      "minNumber",
+      "maxNumber",
+      "minInteger",
+      "maxInteger",
+      "optionsSource",
+      "io.clbs.openhes.models.common.FieldValidation"
+    ],
+    "tags1": [
+      "FieldValidation"
+    ],
+    "tags2": "Defines validation rules applied field regular expression describing the allowed input format not set any value the given type can used Used for string integer double fields The minimum length the field Used for string fields The maximum length the field Used for string fields The minimum value the field Used for integer fields The maximum value the field Used for integer fields The minimum value the field Used for number fields The maximum value the field Used for number fields predefined list allowed values set key value pairs The key represents the actual field value the value represents the label displayed The source from which the allowed options are dynamically fetched from the server set"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-fieldvalue.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldValue",
+    "tags0": [
+      "boolValue",
+      "dateValue",
+      "stringValue",
+      "doubleValue",
+      "binaryValue",
+      "integerValue",
+      "durationValue",
+      "io.clbs.openhes.models.common.FieldValue"
+    ],
+    "tags1": [
+      "FieldValue"
+    ],
+    "tags2": "Defines field value string typed value bit integer typed value bit double typed value binary typed value boolean typed value date typed value duration typed value"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-fieldvalues.md",
+    "title": "Model: io.clbs.openhes.models.common.FieldValues",
+    "tags0": [
+      "attributes",
+      "io.clbs.openhes.models.common.FieldValues"
+    ],
+    "tags1": [
+      "FieldValues"
+    ],
+    "tags2": "Defines field values map field values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-formattedmessage.md",
+    "title": "Model: io.clbs.openhes.models.common.FormattedMessage",
+    "tags0": [
+      "args",
+      "params",
+      "message",
+      "io.clbs.openhes.models.common.FormattedMessage"
+    ],
+    "tags1": [
+      "FormattedMessage"
+    ],
+    "tags2": "The formatted message structure The message format string The format arguments set then the message used format string The additional named parameters must single level map must not contain nested objects arrays"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listfielddescriptoroptionsrequest.md",
+    "title": "Model: io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest",
+    "tags0": [
+      "optionsSource",
+      "filterContains",
+      "io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest"
+    ],
+    "tags1": [
+      "ListFieldDescriptorOptionsRequest"
+    ],
+    "tags2": "Defines list field available field descriptor options The options source Must match the options source field the corresponding FieldDescriptor The filter applied the option values set only options containing this string will returned"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listoffielddescriptor.md",
+    "title": "Model: io.clbs.openhes.models.common.ListOfFieldDescriptor",
+    "tags0": [
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.common.ListOfFieldDescriptor"
+    ],
+    "tags1": [
+      "ListOfFieldDescriptor"
+    ],
+    "tags2": "Defines list filed descriptors The list field descriptors The total number items the list"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listofid.md",
+    "title": "Model: io.clbs.openhes.models.common.ListOfId",
+    "tags0": [
+      "id",
+      "io.clbs.openhes.models.common.ListOfId"
+    ],
+    "tags1": [
+      "ListOfId"
+    ],
+    "tags2": "The list UUID items"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listofstring.md",
+    "title": "Model: io.clbs.openhes.models.common.ListOfString",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.common.ListOfString"
+    ],
+    "tags1": [
+      "ListOfString"
+    ],
+    "tags2": "The list common string items"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listselector.md",
+    "title": "Model: io.clbs.openhes.models.common.ListSelector",
+    "tags0": [
+      "offset",
+      "sortBy",
+      "fields",
+      "pageSize",
+      "filterBy",
+      "io.clbs.openhes.models.common.ListSelector"
+    ],
+    "tags1": [
+      "ListSelector"
+    ],
+    "tags2": "Defines the selection criteria for listing objects including pagination sorting filtering and field selection The number items per page The zero based offset the first item the response The sorting criteria The filtering criteria FIXME This needs designed properly Optional list additional fields include the response"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listselectorfilterby.md",
+    "title": "Model: io.clbs.openhes.models.common.ListSelectorFilterBy",
+    "tags0": [
+      "path",
+      "text",
+      "date",
+      "number",
+      "integer",
+      "boolean",
+      "operator",
+      "dataType",
+      "io.clbs.openhes.models.common.ListSelectorFilterBy"
+    ],
+    "tags1": [
+      "ListSelectorFilterBy"
+    ],
+    "tags2": "Defines the filtering criteria for listing objects Depending the operator specific filed type must provided value required for operators NULL NOT NULL Exactly one value must set for single operand operators EQUAL NOT EQUAL GREATER THAN GREATER THAN EQUAL LESS THAN LESS THAN EQUAL CONTAINS NOT CONTAINS STARTS WITH ENDS WITH Exactly two values must set for two operand operators BETWEEN Zero more values can set for generic operators NOT Only the field corresponding declared data type must set Other fields must not set will ignored the system The field path filter This may JSON path path path from FieldDescriptor The operator that defines the filtering condition The data type the field The values for string based filtering The values for integer based filtering The values for numeric filtering The values for boolean based filtering Values for date based filtering"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-listselectorsortby.md",
+    "title": "Model: io.clbs.openhes.models.common.ListSelectorSortBy",
+    "tags0": [
+      "path",
+      "desc",
+      "io.clbs.openhes.models.common.ListSelectorSortBy"
+    ],
+    "tags1": [
+      "ListSelectorSortBy"
+    ],
+    "tags2": "Defines the sorting criteria for listing objects The field path sort This may JSON path path path from FieldDescriptor The sorting order the results descending true ascending false"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-metadatafields.md",
+    "title": "Model: io.clbs.openhes.models.common.MetadataFields",
+    "tags0": [
+      "id",
+      "name",
+      "fields",
+      "generation",
+      "managedFields",
+      "io.clbs.openhes.models.common.MetadataFields"
+    ],
+    "tags1": [
+      "MetadataFields"
+    ],
+    "tags2": "The metadata fields managed user and system The UUID the resource serves the unique identifier the resource immutable and typically auto generated during Create operations The generation the resource The additional fields managed user The additional fields managed system The name the resource mutable and typically set user Must set"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-setfieldsspec.md",
+    "title": "Model: io.clbs.openhes.models.common.SetFieldsSpec",
+    "tags0": [
+      "fields",
+      "objectId",
+      "objectType",
+      "io.clbs.openhes.models.common.SetFieldsSpec"
+    ],
+    "tags1": [
+      "SetFieldsSpec"
+    ],
+    "tags2": "The fields set for the resource The type the managed fields update defines the resource type for which the fields are set The UUID the resource serves the unique identifier the resource immutable and typically auto generated during Create operations"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-updatemetadata.md",
+    "title": "Model: io.clbs.openhes.models.common.UpdateMetadata",
+    "tags0": [
+      "metadata",
+      "io.clbs.openhes.models.common.UpdateMetadata"
+    ],
+    "tags1": [
+      "UpdateMetadata"
+    ],
+    "tags2": "The metadata fields the resource"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-common-updateobjectfieldsrequest.md",
+    "title": "Model: io.clbs.openhes.models.common.UpdateObjectFieldsRequest",
+    "tags0": [
+      "spec",
+      "io.clbs.openhes.models.common.UpdateObjectFieldsRequest"
+    ],
+    "tags1": [
+      "UpdateObjectFieldsRequest"
+    ],
+    "tags2": "The specification the fields set for the resource"
+  },
+  {
     "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
     "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
     "tags0": [
@@ -3693,5 +3569,129 @@
       "OpenIdConfiguration"
     ],
     "tags2": "The raw JSON configuration the OIDC service"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
+    "tags0": [
+      "RELAY_STATE_CONNECT",
+      "RELAY_STATE_DISCONNECT",
+      "RELAY_STATE_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
+    ],
+    "tags1": [
+      "CONNECT",
+      "DISCONNECT",
+      "RELAY",
+      "RelayState",
+      "STATE",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
+    "tags0": [
+      "dayId",
+      "switching",
+      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
+    ],
+    "tags1": [
+      "DayProfile"
+    ],
+    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
+    "tags0": [
+      "state",
+      "relayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
+    ],
+    "tags1": [
+      "RelayStateRecord"
+    ],
+    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
+    "tags0": [
+      "id",
+      "name",
+      "weekId",
+      "startDay",
+      "startYear",
+      "startMonth",
+      "io.clbs.openhes.models.acquisition.timeofuse.Season"
+    ],
+    "tags1": [
+      "Season"
+    ],
+    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
+    "tags0": [
+      "day",
+      "year",
+      "month",
+      "dayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
+    ],
+    "tags1": [
+      "SpecialDay"
+    ],
+    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
+    "tags0": [
+      "hour",
+      "minute",
+      "tariff",
+      "relays",
+      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
+    ],
+    "tags1": [
+      "Switching"
+    ],
+    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
+    "tags0": [
+      "weeks",
+      "seasons",
+      "expiesAt",
+      "hdoGroupId",
+      "activateAt",
+      "dayProfiles",
+      "specialDays",
+      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
+    ],
+    "tags1": [
+      "TimeOfUseTableSpec"
+    ],
+    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
+    "tags0": [
+      "weekId",
+      "dayIds",
+      "weekName",
+      "io.clbs.openhes.models.acquisition.timeofuse.Week"
+    ],
+    "tags1": [
+      "Week"
+    ],
+    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
   }
 ]

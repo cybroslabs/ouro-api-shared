@@ -22,26 +22,26 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The filter operator.
+// Defines the operators available for filtering options.
 type FilterOperator int32
 
 const (
 	FilterOperator_FILTER_OPERATOR_UNSPECIFIED FilterOperator = 0  // Unspecified filter operator.
-	FilterOperator_EQUAL                       FilterOperator = 1  // Single operand operator for text, integer, number, boolean, date fields.
-	FilterOperator_NOT_EQUAL                   FilterOperator = 2  // Single operand operator for text, integer, number, boolean, date fields.
-	FilterOperator_GREATER_THAN                FilterOperator = 3  // Single operand operator for integer, number, date fields.
-	FilterOperator_GREATER_THAN_OR_EQUAL       FilterOperator = 4  // Single operand operator for integer, number, date fields.
-	FilterOperator_LESS_THAN                   FilterOperator = 5  // Single operand operator for integer, number, date fields.
-	FilterOperator_LESS_THAN_OR_EQUAL          FilterOperator = 6  // Single operand operator for integer, number, date fields.
-	FilterOperator_CONTAINS                    FilterOperator = 7  // Single operand operator for text fields.
-	FilterOperator_NOT_CONTAINS                FilterOperator = 8  // Single operand operator for text fields.
-	FilterOperator_STARTS_WITH                 FilterOperator = 9  // Single operand operator for text fields.
-	FilterOperator_ENDS_WITH                   FilterOperator = 10 // Single operand operator for text fields.
-	FilterOperator_IN                          FilterOperator = 11 // Multiple operand operator for text, integer, number, boolean fields.
-	FilterOperator_NOT_IN                      FilterOperator = 12 // Multiple operand operator for text, integer, number, boolean fields.
-	FilterOperator_BETWEEN                     FilterOperator = 13 // Two operand operator for integer, number, date fields.
-	FilterOperator_IS_NULL                     FilterOperator = 14 // No operand operator. For both null and empty string.
-	FilterOperator_IS_NOT_NULL                 FilterOperator = 15 // No operand operator. For both null and empty string.
+	FilterOperator_EQUAL                       FilterOperator = 1  // Single-operand operator. Matches fields equal to the provided value. Supported for: `text`, `integer`, `number`, `boolean`, `date` fields.
+	FilterOperator_NOT_EQUAL                   FilterOperator = 2  // Single-operand operator. Matches fields not equal to the provided value. Supported for: `text`, `integer`, `number`, `boolean`, `date` fields.
+	FilterOperator_GREATER_THAN                FilterOperator = 3  // Single-operand operator. Matches fields greater than the provided value. Supported for: `integer`, `number`, `date` fields.
+	FilterOperator_GREATER_THAN_OR_EQUAL       FilterOperator = 4  // Single-operand operator. Matches fields greater than or equal to the provided value. Supported for: `integer`, `number`, `date` fields.
+	FilterOperator_LESS_THAN                   FilterOperator = 5  // Single-operand operator. Matches fields less than the provided value. Supported for: `integer`, `number`, `date` fields.
+	FilterOperator_LESS_THAN_OR_EQUAL          FilterOperator = 6  // Single-operand operator. Matches fields less than or equal to the provided value. Supported for: `integer`, `number`, `date` fields.
+	FilterOperator_CONTAINS                    FilterOperator = 7  // Single-operand operator. Matches text fields that contain the provided string. Supported for: `text` fields.
+	FilterOperator_NOT_CONTAINS                FilterOperator = 8  // Single-operand operator. Matches text fields that do not contain the provided string. Supported for: `text` fields.
+	FilterOperator_STARTS_WITH                 FilterOperator = 9  // Single-operand operator. Matches text fields that start with the provided string. Supported for: `text` fields.
+	FilterOperator_ENDS_WITH                   FilterOperator = 10 // Single-operand operator. Matches text fields that end with the provided substring. Supported for: `text` fields.
+	FilterOperator_IN                          FilterOperator = 11 // Multi-operand operator. Matches fields whose value is within the provided set. Supported for: `text`, `integer`, `number`, `boolean` fields.
+	FilterOperator_NOT_IN                      FilterOperator = 12 // Multi-operand operator. Matches fields whose value is not within the provided set. Supported for: `text`, `integer`, `number`, `boolean` fields.
+	FilterOperator_BETWEEN                     FilterOperator = 13 // Two-operand operator. Matches fields with values between the two provided operands (inclusive). Supported for: `integer`, `number`, `date` fields.
+	FilterOperator_IS_NULL                     FilterOperator = 14 // No-operand operator. Matches fields that are either `null` or an empty string.
+	FilterOperator_IS_NOT_NULL                 FilterOperator = 15 // No-operand operator. Matches fields that are not `null` or an empty string.
 )
 
 // Enum value maps for FilterOperator.
@@ -106,7 +106,7 @@ func (x FilterOperator) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Enum representing the field data type.
+// Defines the data type of the field.
 type FieldDataType int32
 
 const (
@@ -166,19 +166,19 @@ func (x FieldDataType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Enum representing the field display format.
+// Define the display format, determining how alues are presetned in the GUI.
 type FieldDisplayFormat int32
 
 const (
-	FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED FieldDisplayFormat = 0 // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
-	FieldDisplayFormat_DATE_ONLY                  FieldDisplayFormat = 1 // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
-	FieldDisplayFormat_UTC_DATETIME               FieldDisplayFormat = 2 // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
-	FieldDisplayFormat_UTC_DATE_ONLY              FieldDisplayFormat = 3 // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
-	FieldDisplayFormat_TIMEOFDAY                  FieldDisplayFormat = 4 // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
-	FieldDisplayFormat_MONEY                      FieldDisplayFormat = 5 // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
-	FieldDisplayFormat_PASSWORD                   FieldDisplayFormat = 6 // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
-	FieldDisplayFormat_MULTILINE                  FieldDisplayFormat = 7 // The multiline-string display format. Data type must be TEXT.
-	FieldDisplayFormat_COMBO                      FieldDisplayFormat = 8 // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
+	FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED FieldDisplayFormat = 0 // The default display format. Text, integer, double, date-time, or duration values are shown in their default format.
+	FieldDisplayFormat_DATE_ONLY                  FieldDisplayFormat = 1 // Displays only the date portion of a local date-time value. Data type must be `TIMESTAMP` or `string`.
+	FieldDisplayFormat_UTC_DATETIME               FieldDisplayFormat = 2 // Displays the full date-time in UTC timezone. Data type must be `TIMESTAMP` or `string`.
+	FieldDisplayFormat_UTC_DATE_ONLY              FieldDisplayFormat = 3 // Displays the date in UTC timezone. Data type must be `TIMESTAMP` or `string`.
+	FieldDisplayFormat_TIMEOFDAY                  FieldDisplayFormat = 4 // Displays time of day in `hh:mm:ss` format (for example, `12:30:00`). Data type must be `INTEGER` in milliseconds.
+	FieldDisplayFormat_MONEY                      FieldDisplayFormat = 5 // Displays money amounts. The unit must be set to an ISO 4217 currency code (for example, USD, EUR). Data type must be `DOUBLE` or `INTEGER`.
+	FieldDisplayFormat_PASSWORD                   FieldDisplayFormat = 6 // Displays values as hidden passwords. Data type must be `TEXT`. The GUI always shows six asterisks (******) regardless of actual length.
+	FieldDisplayFormat_MULTILINE                  FieldDisplayFormat = 7 // Displays values as multi-line text. Data type must be `TEXT`.
+	FieldDisplayFormat_COMBO                      FieldDisplayFormat = 8 // Displays values as a combo-box with selectable options. Data type must be `TEXT`.
 )
 
 // Enum value maps for FieldDisplayFormat.
@@ -229,7 +229,7 @@ func (x FieldDisplayFormat) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// The listing selector.
+// Defines the selection criteria for listing objects, including pagination, sorting, filtering, and field selection.
 type ListSelector struct {
 	state                  protoimpl.MessageState   `protogen:"opaque.v1"`
 	xxx_hidden_PageSize    uint32                   `protobuf:"varint,1,opt,name=page_size,json=pageSize"`
@@ -357,8 +357,8 @@ type ListSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	PageSize *uint32
-	// The offset of the first item to return, zero based.
-	// @values: any non-negative integer
+	// The zero-based offset of the first item in the response.
+	// @values: Any non-negative integer
 	// @example: 15
 	Offset   *uint32
 	SortBy   []*ListSelectorSortBy
@@ -385,7 +385,7 @@ func (b0 ListSelector_builder) Build() *ListSelector {
 	return m0
 }
 
-// The sorting criteria.
+// Defines the sorting criteria for listing objects.
 type ListSelectorSortBy struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Path        *string                `protobuf:"bytes,1,opt,name=path"`
@@ -500,15 +500,15 @@ func (b0 ListSelectorSortBy_builder) Build() *ListSelectorSortBy {
 	return m0
 }
 
-// The filtering criteria.
+// Defines the filtering criteria for listing objects.
 //
-// Depending on the operator, the `text`, `integer`, `number`, `boolean` or `date` field should be used.
-// - **No value** must be set for operators: `IS_NULL`, `IS_NOT_NULL`.
-// - Exactly **One value** must be set for single operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
-// - Exactly **Two values** must be set for two operand operators: `BETWEEN`.
+// Depending on the operator, a specific filed type must be provided.
+// - **No value** is required for operators: `IS_NULL`, `IS_NOT_NULL`.
+// - Exactly **one value** must be set for single-operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
+// - Exactly **two values** must be set for two-operand operators: `BETWEEN`.
 // - **Zero or more** values can be set for generic operators: `IN`, `NOT_IN`.
 //
-// Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
+// Only the field corresponding to th declared data type must be set. Other fields must not be set will be ignored by the system.
 type ListSelectorFilterBy struct {
 	state                  protoimpl.MessageState    `protogen:"opaque.v1"`
 	xxx_hidden_Path        *string                   `protobuf:"bytes,1,opt,name=path"`
@@ -723,6 +723,7 @@ func (b0 ListSelectorFilterBy_builder) Build() *ListSelectorFilterBy {
 	return m0
 }
 
+// Defines the specification for creating a new field descriptor.
 type CreateFieldDescriptorRequest struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec *FieldDescriptor       `protobuf:"bytes,1,opt,name=spec"`
@@ -791,7 +792,7 @@ func (b0 CreateFieldDescriptorRequest_builder) Build() *CreateFieldDescriptorReq
 	return m0
 }
 
-// The system-wide field descriptor selector.
+// Define the system-wide field descriptor selector.
 type FieldDescriptorSelector struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ObjectType  ObjectType             `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
@@ -902,7 +903,7 @@ func (b0 FieldDescriptorSelector_builder) Build() *FieldDescriptorSelector {
 	return m0
 }
 
-// The field descriptor.
+// Defines the field descriptor specification.
 type FieldDescriptor struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_IsUserDefined bool                   `protobuf:"varint,1,opt,name=is_user_defined,json=isUserDefined"`
@@ -1628,7 +1629,7 @@ func (b0 FieldDescriptor_builder) Build() *FieldDescriptor {
 	return m0
 }
 
-// Validation rules for the field.
+// Defines validation rules applied to a field.
 type FieldValidation struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Re            *string                `protobuf:"bytes,1,opt,name=re"`
@@ -1934,6 +1935,7 @@ func (b0 FieldValidation_builder) Build() *FieldValidation {
 	return m0
 }
 
+// Defines a field value.
 type FieldValue struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Kind isFieldValue_Kind      `protobuf_oneof:"kind"`
@@ -2267,31 +2269,31 @@ type isFieldValue_Kind interface {
 }
 
 type fieldValue_StringValue struct {
-	StringValue string `protobuf:"bytes,1,opt,name=string_value,json=stringValue,oneof"` // Represents a string-typed value.
+	StringValue string `protobuf:"bytes,1,opt,name=string_value,json=stringValue,oneof"` // A string-typed value.
 }
 
 type fieldValue_IntegerValue struct {
-	IntegerValue int64 `protobuf:"varint,2,opt,name=integer_value,json=integerValue,oneof"` // Represents a 64-bit integer-typed value.
+	IntegerValue int64 `protobuf:"varint,2,opt,name=integer_value,json=integerValue,oneof"` // A 64-bit integer-typed value.
 }
 
 type fieldValue_DoubleValue struct {
-	DoubleValue float64 `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue,oneof"` // Represents a 64-bit double-typed value.
+	DoubleValue float64 `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue,oneof"` // A 64-bit double-typed value.
 }
 
 type fieldValue_BinaryValue struct {
-	BinaryValue []byte `protobuf:"bytes,4,opt,name=binary_value,json=binaryValue,oneof"` // Represents a binary-typed value.
+	BinaryValue []byte `protobuf:"bytes,4,opt,name=binary_value,json=binaryValue,oneof"` // A binary-typed value.
 }
 
 type fieldValue_BoolValue struct {
-	BoolValue bool `protobuf:"varint,5,opt,name=bool_value,json=boolValue,oneof"` // Represents a boolean-typed value.
+	BoolValue bool `protobuf:"varint,5,opt,name=bool_value,json=boolValue,oneof"` // A boolean-typed value.
 }
 
 type fieldValue_DateValue struct {
-	DateValue *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=date_value,json=dateValue,oneof"` // Represents a date-typed value.
+	DateValue *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=date_value,json=dateValue,oneof"` // A date-typed value.
 }
 
 type fieldValue_DurationValue struct {
-	DurationValue *durationpb.Duration `protobuf:"bytes,7,opt,name=duration_value,json=durationValue,oneof"` // Represents a duration-typed value.
+	DurationValue *durationpb.Duration `protobuf:"bytes,7,opt,name=duration_value,json=durationValue,oneof"` // A a duration-typed value.
 }
 
 func (*fieldValue_StringValue) isFieldValue_Kind() {}
@@ -2308,6 +2310,7 @@ func (*fieldValue_DateValue) isFieldValue_Kind() {}
 
 func (*fieldValue_DurationValue) isFieldValue_Kind() {}
 
+// Defines field values.
 type FieldValues struct {
 	state                 protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Attributes map[string]*FieldValue `protobuf:"bytes,1,rep,name=attributes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -2365,6 +2368,7 @@ func (b0 FieldValues_builder) Build() *FieldValues {
 	return m0
 }
 
+// Defines a list of field values.
 type ListOfFieldValue struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*FieldValue         `protobuf:"bytes,1,rep,name=items"`
@@ -2456,6 +2460,7 @@ func (b0 ListOfFieldValue_builder) Build() *ListOfFieldValue {
 	return m0
 }
 
+// Defines a list of filed descriptors.
 type ListOfFieldDescriptor struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*FieldDescriptor    `protobuf:"bytes,1,rep,name=items"`
@@ -2547,6 +2552,7 @@ func (b0 ListOfFieldDescriptor_builder) Build() *ListOfFieldDescriptor {
 	return m0
 }
 
+// Defines a list of field available field descriptor options.
 type ListFieldDescriptorOptionsRequest struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_OptionsSource  *string                `protobuf:"bytes,1,opt,name=options_source,json=optionsSource"`
@@ -2658,6 +2664,7 @@ func (b0 ListFieldDescriptorOptionsRequest_builder) Build() *ListFieldDescriptor
 	return m0
 }
 
+// Defines field descriptor options.
 type FieldDescriptorOptions struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Options     map[string]string      `protobuf:"bytes,1,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`

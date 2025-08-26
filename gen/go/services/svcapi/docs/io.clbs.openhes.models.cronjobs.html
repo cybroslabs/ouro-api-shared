@@ -149,7 +149,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for creating a new cron job.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -176,7 +176,7 @@
     </a>
         </code>
       </td>
-      <td class="content"></td>
+      <td class="content"><p>The cron job specification.</p></td>
       
     </tr>
     
@@ -216,7 +216,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the cron job specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -243,7 +243,7 @@
     </a>
         </code>
       </td>
-      <td class="content"></td>
+      <td class="content"><p>The specification of the cron job.</p></td>
       
     </tr>
     
@@ -259,7 +259,7 @@
     </a>
         </code>
       </td>
-      <td class="content"></td>
+      <td class="content"><p>The current status of the cron job.</p></td>
       
     </tr>
     
@@ -299,7 +299,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the cron job specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -326,7 +326,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The type of the cron job, e.g., CRON_JOB_TYPE_START_BULK, CRON_JOB_TYPE_START_PROXY_BULK.</p></td>
+      <td class="content"><p>The type of the cron job. For example, <code>CRON_JOB_TYPE_START_BULK</code>, <code>CRON_JOB_TYPE_START_PROXY_BULK</code>.</p></td>
       
     </tr>
     
@@ -341,7 +341,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The cron job definition, e.g., "0 * * * *" for every hour.</p></td>
+      <td class="content"><p>The cron job definition. For example, <code>"0 * * * *"</code> for every hour.</p></td>
       
     </tr>
     
@@ -356,7 +356,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The timezone related to the cron job, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
+      <td class="content"><p>The timezone associated with the cron job. For example, <code>"America/New_York"</code>, <code>"Europe/Prague"</code>, <code>"CET"</code>, <code>"GMT"</code>, <code>"Etc/GMT+2"</code>. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
       
     </tr>
     
@@ -371,7 +371,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Whether the cron job is suspended or not. By default, it is false (i.e., not suspended).</p></td>
+      <td class="content"><p>Indicates whether the cron job is suspended. Default is <code>false</code> (not suspended).</p></td>
       
     </tr>
     
@@ -410,7 +410,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the current status of a cron job.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -436,7 +436,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp of the last run.</p></td>
+      <td class="content"><p>The timestamp of the last run of the cron job.</p></td>
       
     </tr>
     
@@ -451,7 +451,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp of the next run.</p></td>
+      <td class="content"><p>The timestamp of the next run of the cron job.</p></td>
       
     </tr>
     
@@ -490,7 +490,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list cron jobs.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -534,7 +534,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -562,7 +562,7 @@
 </h4>
 
 <div class="block content">
-  <p></p>
+  <p><p>Defines the cron job types that can be scheduled.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -584,13 +584,13 @@
     <tr>
       <td><code>CRON_JOB_TYPE_START_BULK</code></td>
       <td>1</td>
-      <td class="content"><p>Cron job to start an acquistion bulk.</p></td>
+      <td class="content"><p>The cron job that starts an acquistion bulk.</p></td>
     </tr>
     
     <tr>
       <td><code>CRON_JOB_TYPE_START_PROXY_BULK</code></td>
       <td>2</td>
-      <td class="content"><p>Cron job to start a proxy bulk.</p></td>
+      <td class="content"><p>The cron job that starts a proxy bulk.</p></td>
     </tr>
     
   </tbody>

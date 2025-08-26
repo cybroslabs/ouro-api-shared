@@ -17,13 +17,13 @@ export const file_acquisition_timeofuse_timeofuse: GenFile = /*@__PURE__*/
   fileDesc("CiVhY3F1aXNpdGlvbi90aW1lb2Z1c2UvdGltZW9mdXNlLnByb3RvEixpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZSKJAQoJU3dpdGNoaW5nEgwKBGhvdXIYASABKAUSDgoGbWludXRlGAIgASgFEg4KBnRhcmlmZhgDIAEoBRJOCgZyZWxheXMYBCADKAsyPi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5SZWxheVN0YXRlUmVjb3JkIm0KEFJlbGF5U3RhdGVSZWNvcmQSEAoIcmVsYXlfaWQYASABKAUSRwoFc3RhdGUYAiABKA4yOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5SZWxheVN0YXRlImgKCkRheVByb2ZpbGUSDgoGZGF5X2lkGAEgASgJEkoKCXN3aXRjaGluZxgCIAMoCzI3LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24udGltZW9mdXNlLlN3aXRjaGluZyJGCgpTcGVjaWFsRGF5EgwKBHllYXIYASABKAUSDQoFbW9udGgYAiABKAUSCwoDZGF5GAMgASgFEg4KBmRheV9pZBgEIAEoCSI7CgRXZWVrEg8KB3dlZWtfaWQYASABKAkSEQoJd2Vla19uYW1lGAIgASgJEg8KB2RheV9pZHMYAyADKAkibwoGU2Vhc29uEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkSEgoKc3RhcnRfeWVhchgDIAEoBRITCgtzdGFydF9tb250aBgEIAEoBRIRCglzdGFydF9kYXkYBSABKAUSDwoHd2Vla19pZBgGIAEoCSKrAwoSVGltZU9mVXNlVGFibGVTcGVjEi0KCWV4cGllc19hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFAoMaGRvX2dyb3VwX2lkGAQgASgJEiYKC2FjdGl2YXRlX2F0GAUgASgLMhEuZ29vZ2xlLnR5cGUuRGF0ZRJFCgdzZWFzb25zGAYgAygLMjQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuU2Vhc29uEkEKBXdlZWtzGAcgAygLMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuV2VlaxJOCgxkYXlfcHJvZmlsZXMYCCADKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLnRpbWVvZnVzZS5EYXlQcm9maWxlEk4KDHNwZWNpYWxfZGF5cxgJIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24udGltZW9mdXNlLlNwZWNpYWxEYXkqXgoKUmVsYXlTdGF0ZRIbChdSRUxBWV9TVEFURV9VTlNQRUNJRklFRBAAEhcKE1JFTEFZX1NUQVRFX0NPTk5FQ1QQARIaChZSRUxBWV9TVEFURV9ESVNDT05ORUNUEAJCRFpCZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vYWNxdWlzaXRpb24vdGltZW9mdXNlYghlZGl0aW9uc3DoBw", [file_google_protobuf_timestamp, file_google_type_date]);
 
 /**
- * Switching data includes tariffs and relay states for specific times
+ * Defines the switching configuration, including tariffs and relay states for specific times.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.Switching
  */
 export type Switching = Message<"io.clbs.openhes.models.acquisition.timeofuse.Switching"> & {
   /**
-   * Hour of the switching event.
+   * The hour of the switching event.
    * @values: 0–23
    * @example: 7
    *
@@ -32,7 +32,7 @@ export type Switching = Message<"io.clbs.openhes.models.acquisition.timeofuse.Sw
   hour: number;
 
   /**
-   * Minute of the switching event.
+   * The minute of the switching event.
    * @values: 0–59
    * @example: 30
    *
@@ -41,7 +41,7 @@ export type Switching = Message<"io.clbs.openhes.models.acquisition.timeofuse.Sw
   minute: number;
 
   /**
-   * Tariff ID.
+   * The tariff ID.
    * @values: -1 means no tariff; other values are valid tariff IDs
    * @example: 2
    *
@@ -50,7 +50,7 @@ export type Switching = Message<"io.clbs.openhes.models.acquisition.timeofuse.Sw
   tariff: number;
 
   /**
-   * Map of relay ID to relay state. The list must not contain duplicit relay IDs.
+   * A map of relay IDs to their corresponding relay states. Duplicate IDs are not allowed.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord relays = 4;
    */
@@ -58,13 +58,13 @@ export type Switching = Message<"io.clbs.openhes.models.acquisition.timeofuse.Sw
 };
 
 /**
- * Switching data includes tariffs and relay states for specific times
+ * Defines the switching configuration, including tariffs and relay states for specific times.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.Switching
  */
 export type SwitchingJson = {
   /**
-   * Hour of the switching event.
+   * The hour of the switching event.
    * @values: 0–23
    * @example: 7
    *
@@ -73,7 +73,7 @@ export type SwitchingJson = {
   hour?: number;
 
   /**
-   * Minute of the switching event.
+   * The minute of the switching event.
    * @values: 0–59
    * @example: 30
    *
@@ -82,7 +82,7 @@ export type SwitchingJson = {
   minute?: number;
 
   /**
-   * Tariff ID.
+   * The tariff ID.
    * @values: -1 means no tariff; other values are valid tariff IDs
    * @example: 2
    *
@@ -91,7 +91,7 @@ export type SwitchingJson = {
   tariff?: number;
 
   /**
-   * Map of relay ID to relay state. The list must not contain duplicit relay IDs.
+   * A map of relay IDs to their corresponding relay states. Duplicate IDs are not allowed.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord relays = 4;
    */
@@ -106,15 +106,15 @@ export const SwitchingSchema: GenMessage<Switching, {jsonType: SwitchingJson}> =
   messageDesc(file_acquisition_timeofuse_timeofuse, 0);
 
 /**
- * RelayStateRecord represents the state of a relay at a specific time.
- * It contains the relay ID and its state (CONNECT or DISCONNECT).
+ * Defines the state of a relay at a specific time.
+ * Each record contains the relay ID and its associated state (CONNECT or DISCONNECT).
  * The relay ID must be unique within the list of relays.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord
  */
 export type RelayStateRecord = Message<"io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"> & {
   /**
-   * Relay ID
+   * The unique relay identifier.
    * @example: 1
    *
    * @generated from field: int32 relay_id = 1;
@@ -122,7 +122,7 @@ export type RelayStateRecord = Message<"io.clbs.openhes.models.acquisition.timeo
   relayId: number;
 
   /**
-   * State of the relay (CONNECT or DISCONNECT)
+   * The state of the relay (`CONNECT` or `DISCONNECT`).
    * @example: CONNECT
    *
    * @generated from field: io.clbs.openhes.models.acquisition.timeofuse.RelayState state = 2;
@@ -131,15 +131,15 @@ export type RelayStateRecord = Message<"io.clbs.openhes.models.acquisition.timeo
 };
 
 /**
- * RelayStateRecord represents the state of a relay at a specific time.
- * It contains the relay ID and its state (CONNECT or DISCONNECT).
+ * Defines the state of a relay at a specific time.
+ * Each record contains the relay ID and its associated state (CONNECT or DISCONNECT).
  * The relay ID must be unique within the list of relays.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord
  */
 export type RelayStateRecordJson = {
   /**
-   * Relay ID
+   * The unique relay identifier.
    * @example: 1
    *
    * @generated from field: int32 relay_id = 1;
@@ -147,7 +147,7 @@ export type RelayStateRecordJson = {
   relayId?: number;
 
   /**
-   * State of the relay (CONNECT or DISCONNECT)
+   * The state of the relay (`CONNECT` or `DISCONNECT`).
    * @example: CONNECT
    *
    * @generated from field: io.clbs.openhes.models.acquisition.timeofuse.RelayState state = 2;
@@ -163,13 +163,13 @@ export const RelayStateRecordSchema: GenMessage<RelayStateRecord, {jsonType: Rel
   messageDesc(file_acquisition_timeofuse_timeofuse, 1);
 
 /**
- * DayProfile represents the profile for a single day, containing multiple Switching times
+ * Defines a single day profile, containing multiple switching times.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.DayProfile
  */
 export type DayProfile = Message<"io.clbs.openhes.models.acquisition.timeofuse.DayProfile"> & {
   /**
-   * Unique identifier for the day profile
+   * The unique day profile identifier.
    * @example: "weekday-profile"
    *
    * @generated from field: string day_id = 1;
@@ -177,7 +177,7 @@ export type DayProfile = Message<"io.clbs.openhes.models.acquisition.timeofuse.D
   dayId: string;
 
   /**
-   * List of switching events (each with specific time and relay states)
+   * The list of switching events. Each event specifies the time and relay states.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.Switching switching = 2;
    */
@@ -185,13 +185,13 @@ export type DayProfile = Message<"io.clbs.openhes.models.acquisition.timeofuse.D
 };
 
 /**
- * DayProfile represents the profile for a single day, containing multiple Switching times
+ * Defines a single day profile, containing multiple switching times.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.DayProfile
  */
 export type DayProfileJson = {
   /**
-   * Unique identifier for the day profile
+   * The unique day profile identifier.
    * @example: "weekday-profile"
    *
    * @generated from field: string day_id = 1;
@@ -199,7 +199,7 @@ export type DayProfileJson = {
   dayId?: string;
 
   /**
-   * List of switching events (each with specific time and relay states)
+   * The list of switching events. Each event specifies the time and relay states.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.Switching switching = 2;
    */
@@ -214,13 +214,13 @@ export const DayProfileSchema: GenMessage<DayProfile, {jsonType: DayProfileJson}
   messageDesc(file_acquisition_timeofuse_timeofuse, 2);
 
 /**
- * SpecialDay represents specific days such as holidays or exceptions
+ * Defines special days, such as holidays, or other exceptions.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
  */
 export type SpecialDay = Message<"io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"> & {
   /**
-   * Year of the special day
+   * he year of the special day.
    * @values: full year (e.g., 2023)
    * @example: 2023
    *
@@ -229,7 +229,7 @@ export type SpecialDay = Message<"io.clbs.openhes.models.acquisition.timeofuse.S
   year: number;
 
   /**
-   * Month of the special day
+   * The month of the special day.
    * @values: 1–12
    * @example: 12
    *
@@ -238,7 +238,7 @@ export type SpecialDay = Message<"io.clbs.openhes.models.acquisition.timeofuse.S
   month: number;
 
   /**
-   * Day of the special day
+   * The day of the special day.
    * @values: 1–31
    * @example: 25
    *
@@ -247,7 +247,7 @@ export type SpecialDay = Message<"io.clbs.openhes.models.acquisition.timeofuse.S
   day: number;
 
   /**
-   * Unique identifier for the special day
+   * The unique special day identifier.
    * @example: "christmas"
    *
    * @generated from field: string day_id = 4;
@@ -256,13 +256,13 @@ export type SpecialDay = Message<"io.clbs.openhes.models.acquisition.timeofuse.S
 };
 
 /**
- * SpecialDay represents specific days such as holidays or exceptions
+ * Defines special days, such as holidays, or other exceptions.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.SpecialDay
  */
 export type SpecialDayJson = {
   /**
-   * Year of the special day
+   * he year of the special day.
    * @values: full year (e.g., 2023)
    * @example: 2023
    *
@@ -271,7 +271,7 @@ export type SpecialDayJson = {
   year?: number;
 
   /**
-   * Month of the special day
+   * The month of the special day.
    * @values: 1–12
    * @example: 12
    *
@@ -280,7 +280,7 @@ export type SpecialDayJson = {
   month?: number;
 
   /**
-   * Day of the special day
+   * The day of the special day.
    * @values: 1–31
    * @example: 25
    *
@@ -289,7 +289,7 @@ export type SpecialDayJson = {
   day?: number;
 
   /**
-   * Unique identifier for the special day
+   * The unique special day identifier.
    * @example: "christmas"
    *
    * @generated from field: string day_id = 4;
@@ -305,13 +305,13 @@ export const SpecialDaySchema: GenMessage<SpecialDay, {jsonType: SpecialDayJson}
   messageDesc(file_acquisition_timeofuse_timeofuse, 3);
 
 /**
- * Week represents a week of the year, containing a list of Day IDs and Week Name
+ * Defines a week of the year, containing a list of day IDs and week name.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.Week
  */
 export type Week = Message<"io.clbs.openhes.models.acquisition.timeofuse.Week"> & {
   /**
-   * Unique identifier for the week
+   * The unique week identifier.
    * @example: "week-01"
    *
    * @generated from field: string week_id = 1;
@@ -319,7 +319,7 @@ export type Week = Message<"io.clbs.openhes.models.acquisition.timeofuse.Week"> 
   weekId: string;
 
   /**
-   * Name of the week
+   * The name of the week.
    * @example: "Week 1"
    *
    * @generated from field: string week_name = 2;
@@ -327,7 +327,7 @@ export type Week = Message<"io.clbs.openhes.models.acquisition.timeofuse.Week"> 
   weekName: string;
 
   /**
-   * List of day IDs that belong to this week
+   * The list of day IDs assigned to the week.
    * @example: ["monday", "tuesday", "holiday"]
    *
    * @generated from field: repeated string day_ids = 3;
@@ -336,13 +336,13 @@ export type Week = Message<"io.clbs.openhes.models.acquisition.timeofuse.Week"> 
 };
 
 /**
- * Week represents a week of the year, containing a list of Day IDs and Week Name
+ * Defines a week of the year, containing a list of day IDs and week name.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.Week
  */
 export type WeekJson = {
   /**
-   * Unique identifier for the week
+   * The unique week identifier.
    * @example: "week-01"
    *
    * @generated from field: string week_id = 1;
@@ -350,7 +350,7 @@ export type WeekJson = {
   weekId?: string;
 
   /**
-   * Name of the week
+   * The name of the week.
    * @example: "Week 1"
    *
    * @generated from field: string week_name = 2;
@@ -358,7 +358,7 @@ export type WeekJson = {
   weekName?: string;
 
   /**
-   * List of day IDs that belong to this week
+   * The list of day IDs assigned to the week.
    * @example: ["monday", "tuesday", "holiday"]
    *
    * @generated from field: repeated string day_ids = 3;
@@ -374,13 +374,13 @@ export const WeekSchema: GenMessage<Week, {jsonType: WeekJson}> = /*@__PURE__*/
   messageDesc(file_acquisition_timeofuse_timeofuse, 4);
 
 /**
- * Season represents a season which spans across a specific start date and references a week
+ * Defines a season that starts on a specific date and is linked to a week profile.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.Season
  */
 export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Season"> & {
   /**
-   * Unique identifier for the season
+   * The unique season identifier.
    * @example: "season-winter"
    *
    * @generated from field: string id = 1;
@@ -388,7 +388,7 @@ export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Seaso
   id: string;
 
   /**
-   * Name of the season
+   * The name of the season.
    * @example: "Winter"
    *
    * @generated from field: string name = 2;
@@ -396,7 +396,7 @@ export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Seaso
   name: string;
 
   /**
-   * Start year of the season
+   * The start year of the season.
    * @example: 2023
    *
    * @generated from field: int32 start_year = 3;
@@ -404,7 +404,7 @@ export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Seaso
   startYear: number;
 
   /**
-   * Start month of the season
+   * The start month of the season.
    * @values: 1–12
    * @example: 12
    *
@@ -413,7 +413,7 @@ export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Seaso
   startMonth: number;
 
   /**
-   * Start day of the season
+   * The start day of the season.
    * @values: 1–31
    * @example: 1
    *
@@ -422,7 +422,7 @@ export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Seaso
   startDay: number;
 
   /**
-   * Reference to a Week ID that this season is associated with
+   * The reference to a week ID that applies to this season.
    * @example: "week-01"
    *
    * @generated from field: string week_id = 6;
@@ -431,13 +431,13 @@ export type Season = Message<"io.clbs.openhes.models.acquisition.timeofuse.Seaso
 };
 
 /**
- * Season represents a season which spans across a specific start date and references a week
+ * Defines a season that starts on a specific date and is linked to a week profile.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.Season
  */
 export type SeasonJson = {
   /**
-   * Unique identifier for the season
+   * The unique season identifier.
    * @example: "season-winter"
    *
    * @generated from field: string id = 1;
@@ -445,7 +445,7 @@ export type SeasonJson = {
   id?: string;
 
   /**
-   * Name of the season
+   * The name of the season.
    * @example: "Winter"
    *
    * @generated from field: string name = 2;
@@ -453,7 +453,7 @@ export type SeasonJson = {
   name?: string;
 
   /**
-   * Start year of the season
+   * The start year of the season.
    * @example: 2023
    *
    * @generated from field: int32 start_year = 3;
@@ -461,7 +461,7 @@ export type SeasonJson = {
   startYear?: number;
 
   /**
-   * Start month of the season
+   * The start month of the season.
    * @values: 1–12
    * @example: 12
    *
@@ -470,7 +470,7 @@ export type SeasonJson = {
   startMonth?: number;
 
   /**
-   * Start day of the season
+   * The start day of the season.
    * @values: 1–31
    * @example: 1
    *
@@ -479,7 +479,7 @@ export type SeasonJson = {
   startDay?: number;
 
   /**
-   * Reference to a Week ID that this season is associated with
+   * The reference to a week ID that applies to this season.
    * @example: "week-01"
    *
    * @generated from field: string week_id = 6;
@@ -495,13 +495,13 @@ export const SeasonSchema: GenMessage<Season, {jsonType: SeasonJson}> = /*@__PUR
   messageDesc(file_acquisition_timeofuse_timeofuse, 5);
 
 /**
- * TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
+ * Defines the main Time-of-Use (TOU) table that contains all relevant definitions.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
  */
 export type TimeOfUseTableSpec = Message<"io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"> & {
   /**
-   * Expiration date of the TOU table
+   * The expiration date of the TOU table.
    * @example: "2025-01-01T00:00:00Z"
    *
    * @generated from field: google.protobuf.Timestamp expies_at = 3;
@@ -517,7 +517,7 @@ export type TimeOfUseTableSpec = Message<"io.clbs.openhes.models.acquisition.tim
   hdoGroupId: string;
 
   /**
-   * Activation date of the TOU table
+   * The activation date of the TOU table.
    * @example: "2024-06-01"
    *
    * @generated from field: google.type.Date activate_at = 5;
@@ -525,28 +525,28 @@ export type TimeOfUseTableSpec = Message<"io.clbs.openhes.models.acquisition.tim
   activateAt?: Date;
 
   /**
-   * List of seasons defined in the TOU
+   * The list of seasons defined in the TOU table.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.Season seasons = 6;
    */
   seasons: Season[];
 
   /**
-   * List of weeks defined in the TOU
+   * The list of week profiles defined in the TOU table.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.Week weeks = 7;
    */
   weeks: Week[];
 
   /**
-   * List of day profiles (each day having a list of switching events)
+   * The list of day profiles, each defining multiple switching events.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.DayProfile day_profiles = 8;
    */
   dayProfiles: DayProfile[];
 
   /**
-   * List of special days (e.g., holidays, exceptions)
+   * The list of special days, such as holidays or other exceptions.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.SpecialDay special_days = 9;
    */
@@ -554,13 +554,13 @@ export type TimeOfUseTableSpec = Message<"io.clbs.openhes.models.acquisition.tim
 };
 
 /**
- * TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
+ * Defines the main Time-of-Use (TOU) table that contains all relevant definitions.
  *
  * @generated from message io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
  */
 export type TimeOfUseTableSpecJson = {
   /**
-   * Expiration date of the TOU table
+   * The expiration date of the TOU table.
    * @example: "2025-01-01T00:00:00Z"
    *
    * @generated from field: google.protobuf.Timestamp expies_at = 3;
@@ -576,7 +576,7 @@ export type TimeOfUseTableSpecJson = {
   hdoGroupId?: string;
 
   /**
-   * Activation date of the TOU table
+   * The activation date of the TOU table.
    * @example: "2024-06-01"
    *
    * @generated from field: google.type.Date activate_at = 5;
@@ -584,28 +584,28 @@ export type TimeOfUseTableSpecJson = {
   activateAt?: DateJson;
 
   /**
-   * List of seasons defined in the TOU
+   * The list of seasons defined in the TOU table.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.Season seasons = 6;
    */
   seasons?: SeasonJson[];
 
   /**
-   * List of weeks defined in the TOU
+   * The list of week profiles defined in the TOU table.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.Week weeks = 7;
    */
   weeks?: WeekJson[];
 
   /**
-   * List of day profiles (each day having a list of switching events)
+   * The list of day profiles, each defining multiple switching events.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.DayProfile day_profiles = 8;
    */
   dayProfiles?: DayProfileJson[];
 
   /**
-   * List of special days (e.g., holidays, exceptions)
+   * The list of special days, such as holidays or other exceptions.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.timeofuse.SpecialDay special_days = 9;
    */
@@ -620,27 +620,27 @@ export const TimeOfUseTableSpecSchema: GenMessage<TimeOfUseTableSpec, {jsonType:
   messageDesc(file_acquisition_timeofuse_timeofuse, 6);
 
 /**
- * Enumeration for Relay State
+ * Defines the possible relay states.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.timeofuse.RelayState
  */
 export enum RelayState {
   /**
-   * Unspecified relay state. Relay state is ignored (no action)
+   * Unspecified relay state. The relay state is ignored (no action).
    *
    * @generated from enum value: RELAY_STATE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * Relay connects
+   * The relay connects.
    *
    * @generated from enum value: RELAY_STATE_CONNECT = 1;
    */
   CONNECT = 1,
 
   /**
-   * Relay disconnects
+   * The relay disconnects.
    *
    * @generated from enum value: RELAY_STATE_DISCONNECT = 2;
    */
@@ -648,7 +648,7 @@ export enum RelayState {
 }
 
 /**
- * Enumeration for Relay State
+ * Defines the possible relay states.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.timeofuse.RelayState
  */

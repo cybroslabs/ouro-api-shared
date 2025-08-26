@@ -167,7 +167,7 @@
 </h4>
 
 <div class="block content">
-  <p>DayProfile represents the profile for a single day, containing multiple Switching times</p>
+  <p>Defines a single day profile, containing multiple switching times.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -193,7 +193,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the day profile
+      <td class="content"><p>The unique day profile identifier.
 @example: "weekday-profile"</p></td>
       
     </tr>
@@ -212,7 +212,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>List of switching events (each with specific time and relay states)</p></td>
+      <td class="content"><p>The list of switching events. Each event specifies the time and relay states.</p></td>
       
     </tr>
     
@@ -236,8 +236,8 @@
 </h4>
 
 <div class="block content">
-  <p>RelayStateRecord represents the state of a relay at a specific time.
-It contains the relay ID and its state (CONNECT or DISCONNECT).
+  <p>Defines the state of a relay at a specific time.
+Each record contains the relay ID and its associated state (CONNECT or DISCONNECT).
 The relay ID must be unique within the list of relays.</p>
 </div>
 
@@ -264,7 +264,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Relay ID
+      <td class="content"><p>The unique relay identifier.
 @example: 1</p></td>
       
     </tr>
@@ -281,7 +281,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>State of the relay (CONNECT or DISCONNECT)
+      <td class="content"><p>The state of the relay (<code>CONNECT</code> or <code>DISCONNECT</code>).
 @example: CONNECT</p></td>
       
     </tr>
@@ -306,7 +306,7 @@ The relay ID must be unique within the list of relays.</p>
 </h4>
 
 <div class="block content">
-  <p>Season represents a season which spans across a specific start date and references a week</p>
+  <p>Defines a season that starts on a specific date and is linked to a week profile.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -332,7 +332,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the season
+      <td class="content"><p>The unique season identifier.
 @example: "season-winter"</p></td>
       
     </tr>
@@ -348,7 +348,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Name of the season
+      <td class="content"><p>The name of the season.
 @example: "Winter"</p></td>
       
     </tr>
@@ -364,7 +364,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Start year of the season
+      <td class="content"><p>The start year of the season.
 @example: 2023</p></td>
       
     </tr>
@@ -380,7 +380,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Start month of the season
+      <td class="content"><p>The start month of the season.
 @values: 1–12
 @example: 12</p></td>
       
@@ -397,7 +397,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Start day of the season
+      <td class="content"><p>The start day of the season.
 @values: 1–31
 @example: 1</p></td>
       
@@ -414,7 +414,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Reference to a Week ID that this season is associated with
+      <td class="content"><p>The reference to a week ID that applies to this season.
 @example: "week-01"</p></td>
       
     </tr>
@@ -439,7 +439,7 @@ The relay ID must be unique within the list of relays.</p>
 </h4>
 
 <div class="block content">
-  <p>SpecialDay represents specific days such as holidays or exceptions</p>
+  <p>Defines special days, such as holidays, or other exceptions.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -465,7 +465,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Year of the special day
+      <td class="content"><p>he year of the special day.
 @values: full year (e.g., 2023)
 @example: 2023</p></td>
       
@@ -482,7 +482,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Month of the special day
+      <td class="content"><p>The month of the special day.
 @values: 1–12
 @example: 12</p></td>
       
@@ -499,7 +499,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Day of the special day
+      <td class="content"><p>The day of the special day.
 @values: 1–31
 @example: 25</p></td>
       
@@ -516,7 +516,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the special day
+      <td class="content"><p>The unique special day identifier.
 @example: "christmas"</p></td>
       
     </tr>
@@ -541,7 +541,7 @@ The relay ID must be unique within the list of relays.</p>
 </h4>
 
 <div class="block content">
-  <p>Switching data includes tariffs and relay states for specific times</p>
+  <p>Defines the switching configuration, including tariffs and relay states for specific times.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -567,7 +567,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Hour of the switching event.
+      <td class="content"><p>The hour of the switching event.
 @values: 0–23
 @example: 7</p></td>
       
@@ -584,7 +584,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Minute of the switching event.
+      <td class="content"><p>The minute of the switching event.
 @values: 0–59
 @example: 30</p></td>
       
@@ -601,7 +601,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Tariff ID.
+      <td class="content"><p>The tariff ID.
 @values: -1 means no tariff; other values are valid tariff IDs
 @example: 2</p></td>
       
@@ -621,7 +621,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>Map of relay ID to relay state. The list must not contain duplicit relay IDs.</p></td>
+      <td class="content"><p>A map of relay IDs to their corresponding relay states. Duplicate IDs are not allowed.</p></td>
       
     </tr>
     
@@ -645,7 +645,7 @@ The relay ID must be unique within the list of relays.</p>
 </h4>
 
 <div class="block content">
-  <p>TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions</p>
+  <p>Defines the main Time-of-Use (TOU) table that contains all relevant definitions.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -671,7 +671,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>Expiration date of the TOU table
+      <td class="content"><p>The expiration date of the TOU table.
 @example: "2025-01-01T00:00:00Z"</p></td>
       
     </tr>
@@ -704,7 +704,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>Activation date of the TOU table
+      <td class="content"><p>The activation date of the TOU table.
 @example: "2024-06-01"</p></td>
       
     </tr>
@@ -723,7 +723,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>List of seasons defined in the TOU</p></td>
+      <td class="content"><p>The list of seasons defined in the TOU table.</p></td>
       
     </tr>
     
@@ -741,7 +741,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>List of weeks defined in the TOU</p></td>
+      <td class="content"><p>The list of week profiles defined in the TOU table.</p></td>
       
     </tr>
     
@@ -759,7 +759,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>List of day profiles (each day having a list of switching events)</p></td>
+      <td class="content"><p>The list of day profiles, each defining multiple switching events.</p></td>
       
     </tr>
     
@@ -777,7 +777,7 @@ The relay ID must be unique within the list of relays.</p>
     </a>
         </code>
       </td>
-      <td class="content"><p>List of special days (e.g., holidays, exceptions)</p></td>
+      <td class="content"><p>The list of special days, such as holidays or other exceptions.</p></td>
       
     </tr>
     
@@ -801,7 +801,7 @@ The relay ID must be unique within the list of relays.</p>
 </h4>
 
 <div class="block content">
-  <p>Week represents a week of the year, containing a list of Day IDs and Week Name</p>
+  <p>Defines a week of the year, containing a list of day IDs and week name.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -827,7 +827,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the week
+      <td class="content"><p>The unique week identifier.
 @example: "week-01"</p></td>
       
     </tr>
@@ -843,7 +843,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Name of the week
+      <td class="content"><p>The name of the week.
 @example: "Week 1"</p></td>
       
     </tr>
@@ -861,7 +861,7 @@ The relay ID must be unique within the list of relays.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>List of day IDs that belong to this week
+      <td class="content"><p>The list of day IDs assigned to the week.
 @example: ["monday", "tuesday", "holiday"]</p></td>
       
     </tr>
@@ -890,7 +890,7 @@ The relay ID must be unique within the list of relays.</p>
 </h4>
 
 <div class="block content">
-  <p><p>Enumeration for Relay State</p></p>
+  <p><p>Defines the possible relay states.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -906,19 +906,19 @@ The relay ID must be unique within the list of relays.</p>
     <tr>
       <td><code>RELAY_STATE_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Unspecified relay state. Relay state is ignored (no action)</p></td>
+      <td class="content"><p>Unspecified relay state. The relay state is ignored (no action).</p></td>
     </tr>
     
     <tr>
       <td><code>RELAY_STATE_CONNECT</code></td>
       <td>1</td>
-      <td class="content"><p>Relay connects</p></td>
+      <td class="content"><p>The relay connects.</p></td>
     </tr>
     
     <tr>
       <td><code>RELAY_STATE_DISCONNECT</code></td>
       <td>2</td>
-      <td class="content"><p>Relay disconnects</p></td>
+      <td class="content"><p>The relay disconnects.</p></td>
     </tr>
     
   </tbody>

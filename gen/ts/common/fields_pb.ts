@@ -17,7 +17,7 @@ export const file_common_fields: GenFile = /*@__PURE__*/
   fileDesc("ChNjb21tb24vZmllbGRzLnByb3RvEh1pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbiLNAQoMTGlzdFNlbGVjdG9yEhEKCXBhZ2Vfc2l6ZRgBIAEoDRIOCgZvZmZzZXQYAiABKA0SQgoHc29ydF9ieRgDIAMoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvclNvcnRCeRJGCglmaWx0ZXJfYnkYBCADKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5MaXN0U2VsZWN0b3JGaWx0ZXJCeRIOCgZmaWVsZHMYBSADKAkiNwoSTGlzdFNlbGVjdG9yU29ydEJ5EgwKBHBhdGgYASABKAkSEwoEZGVzYxgCIAEoCDoFZmFsc2UikAIKFExpc3RTZWxlY3RvckZpbHRlckJ5EgwKBHBhdGgYASABKAkSPwoIb3BlcmF0b3IYAiABKA4yLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWx0ZXJPcGVyYXRvchI/CglkYXRhX3R5cGUYAyABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEgwKBHRleHQYBCADKAkSDwoHaW50ZWdlchgFIAMoEhIOCgZudW1iZXIYBiADKAESDwoHYm9vbGVhbhgHIAMoCBIoCgRkYXRlGAggAygLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJoChxDcmVhdGVGaWVsZERlc2NyaXB0b3JSZXF1ZXN0EjwKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JKBAgCEANKBAgDEAQiZgoXRmllbGREZXNjcmlwdG9yU2VsZWN0b3ISPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEgsKA2dpZBgCIAEoCSKGBQoPRmllbGREZXNjcmlwdG9yEhcKD2lzX3VzZXJfZGVmaW5lZBgBIAEoCBI+CgtvYmplY3RfdHlwZRgCIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCwoDZ2lkGAMgASgJEhAKCGZpZWxkX2lkGAQgASgJEg8KB2pzX3BhdGgYBSABKAkSDAoEcGF0aBgGIAEoCRINCgVsYWJlbBgHIAEoCRIQCghncm91cF9pZBgIIAEoCRI/CglkYXRhX3R5cGUYCSABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEkEKBmZvcm1hdBgKIAEoDjIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGlzcGxheUZvcm1hdBIMCgR1bml0GAsgASgJEhEKCXByZWNpc2lvbhgMIAEoBRIPCgd0b29sdGlwGA0gASgJEhAKCHJlcXVpcmVkGA4gASgIEhAKCGVkaXRhYmxlGA8gASgIEg8KB3Zpc2libGUYECABKAgSEwoLbXVsdGlfdmFsdWUYESABKAgSDwoHc2VjdXJlZBgSIAEoCBJCCgp2YWxpZGF0aW9uGBMgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWxpZGF0aW9uEkAKDWRlZmF1bHRfdmFsdWUYFCABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlEhAKCHNvcnRhYmxlGBUgASgIEhIKCmZpbHRlcmFibGUYFiABKAgirQIKD0ZpZWxkVmFsaWRhdGlvbhIKCgJyZRgBIAEoCRISCgptaW5fbGVuZ3RoGAIgASgFEhIKCm1heF9sZW5ndGgYAyABKAUSEwoLbWluX2ludGVnZXIYBCABKBISEwoLbWF4X2ludGVnZXIYBSABKBISEgoKbWluX251bWJlchgGIAEoARISCgptYXhfbnVtYmVyGAcgASgBEkwKB29wdGlvbnMYCCADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbGlkYXRpb24uT3B0aW9uc0VudHJ5EhYKDm9wdGlvbnNfc291cmNlGAkgASgJGi4KDE9wdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIvIBCgpGaWVsZFZhbHVlEhYKDHN0cmluZ192YWx1ZRgBIAEoCUgAEhcKDWludGVnZXJfdmFsdWUYAiABKANIABIWCgxkb3VibGVfdmFsdWUYAyABKAFIABIWCgxiaW5hcnlfdmFsdWUYBCABKAxIABIUCgpib29sX3ZhbHVlGAUgASgISAASMAoKZGF0ZV92YWx1ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIABIzCg5kdXJhdGlvbl92YWx1ZRgHIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkgAQgYKBGtpbmQiuwEKC0ZpZWxkVmFsdWVzEk4KCmF0dHJpYnV0ZXMYASADKAsyOi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcy5BdHRyaWJ1dGVzRW50cnkaXAoPQXR0cmlidXRlc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBImEKEExpc3RPZkZpZWxkVmFsdWUSOAoFaXRlbXMYASADKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlEhMKC3RvdGFsX2NvdW50GAIgASgFImsKFUxpc3RPZkZpZWxkRGVzY3JpcHRvchI9CgVpdGVtcxgBIAMoCzIuLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkRGVzY3JpcHRvchITCgt0b3RhbF9jb3VudBgCIAEoBSJUCiFMaXN0RmllbGREZXNjcmlwdG9yT3B0aW9uc1JlcXVlc3QSFgoOb3B0aW9uc19zb3VyY2UYASABKAkSFwoPZmlsdGVyX2NvbnRhaW5zGAIgASgJIrUBChZGaWVsZERlc2NyaXB0b3JPcHRpb25zElMKB29wdGlvbnMYASADKAsyQi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JPcHRpb25zLk9wdGlvbnNFbnRyeRIWCghjb21wbGV0ZRgCIAEoCDoEdHJ1ZRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASqeAgoORmlsdGVyT3BlcmF0b3ISHwobRklMVEVSX09QRVJBVE9SX1VOU1BFQ0lGSUVEEAASCQoFRVFVQUwQARINCglOT1RfRVFVQUwQAhIQCgxHUkVBVEVSX1RIQU4QAxIZChVHUkVBVEVSX1RIQU5fT1JfRVFVQUwQBBINCglMRVNTX1RIQU4QBRIWChJMRVNTX1RIQU5fT1JfRVFVQUwQBhIMCghDT05UQUlOUxAHEhAKDE5PVF9DT05UQUlOUxAIEg8KC1NUQVJUU19XSVRIEAkSDQoJRU5EU19XSVRIEAoSBgoCSU4QCxIKCgZOT1RfSU4QDBILCgdCRVRXRUVOEA0SCwoHSVNfTlVMTBAOEg8KC0lTX05PVF9OVUxMEA8qgwEKDUZpZWxkRGF0YVR5cGUSGQoVREFUQV9UWVBFX1VOU1BFQ0lGSUVEEAASCAoEVEVYVBABEgsKB0lOVEVHRVIQAhIKCgZET1VCTEUQAxIKCgZCSU5BUlkQBBILCgdCT09MRUFOEAUSDQoJVElNRVNUQU1QEAYSDAoIRFVSQVRJT04QByqqAQoSRmllbGREaXNwbGF5Rm9ybWF0Eh4KGkRJU1BMQVlfRk9STUFUX1VOU1BFQ0lGSUVEEAASDQoJREFURV9PTkxZEAESEAoMVVRDX0RBVEVUSU1FEAISEQoNVVRDX0RBVEVfT05MWRADEg0KCVRJTUVPRkRBWRAEEgkKBU1PTkVZEAUSDAoIUEFTU1dPUkQQBhINCglNVUxUSUxJTkUQBxIJCgVDT01CTxAIQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL2NvbW1vbmIIZWRpdGlvbnNw6Ac", [file_google_protobuf_timestamp, file_google_protobuf_duration, file_common_objects]);
 
 /**
- * The listing selector.
+ * Defines the selection criteria for listing objects, including pagination, sorting, filtering, and field selection.
  *
  * @generated from message io.clbs.openhes.models.common.ListSelector
  */
@@ -30,8 +30,8 @@ export type ListSelector = Message<"io.clbs.openhes.models.common.ListSelector">
   pageSize: number;
 
   /**
-   * The offset of the first item to return, zero based.
-   * @values: any non-negative integer
+   * The zero-based offset of the first item in the response.
+   * @values: Any non-negative integer
    * @example: 15
    *
    * @generated from field: uint32 offset = 2;
@@ -55,7 +55,7 @@ export type ListSelector = Message<"io.clbs.openhes.models.common.ListSelector">
   /**
    * FIXME: This needs to be designed properly.
    *
-   * The list of additional fields to be returned.
+   * Optional list of additional fields to include in the response.
    *
    * @generated from field: repeated string fields = 5;
    */
@@ -63,7 +63,7 @@ export type ListSelector = Message<"io.clbs.openhes.models.common.ListSelector">
 };
 
 /**
- * The listing selector.
+ * Defines the selection criteria for listing objects, including pagination, sorting, filtering, and field selection.
  *
  * @generated from message io.clbs.openhes.models.common.ListSelector
  */
@@ -76,8 +76,8 @@ export type ListSelectorJson = {
   pageSize?: number;
 
   /**
-   * The offset of the first item to return, zero based.
-   * @values: any non-negative integer
+   * The zero-based offset of the first item in the response.
+   * @values: Any non-negative integer
    * @example: 15
    *
    * @generated from field: uint32 offset = 2;
@@ -101,7 +101,7 @@ export type ListSelectorJson = {
   /**
    * FIXME: This needs to be designed properly.
    *
-   * The list of additional fields to be returned.
+   * Optional list of additional fields to include in the response.
    *
    * @generated from field: repeated string fields = 5;
    */
@@ -116,20 +116,20 @@ export const ListSelectorSchema: GenMessage<ListSelector, {jsonType: ListSelecto
   messageDesc(file_common_fields, 0);
 
 /**
- * The sorting criteria.
+ * Defines the sorting criteria for listing objects.
  *
  * @generated from message io.clbs.openhes.models.common.ListSelectorSortBy
  */
 export type ListSelectorSortBy = Message<"io.clbs.openhes.models.common.ListSelectorSortBy"> & {
   /**
-   * The js_path or path from the FieldDescriptor.
+   * The field path to sort by. This may be a JSON path (`js_path`) or a path from `FieldDescriptor`.
    *
    * @generated from field: string path = 1;
    */
   path: string;
 
   /**
-   * Set to true to sort in descending order.
+   * The sorting order of the results - descending (`true`) or ascending (`false`).
    *
    * @generated from field: bool desc = 2 [default = false];
    */
@@ -137,20 +137,20 @@ export type ListSelectorSortBy = Message<"io.clbs.openhes.models.common.ListSele
 };
 
 /**
- * The sorting criteria.
+ * Defines the sorting criteria for listing objects.
  *
  * @generated from message io.clbs.openhes.models.common.ListSelectorSortBy
  */
 export type ListSelectorSortByJson = {
   /**
-   * The js_path or path from the FieldDescriptor.
+   * The field path to sort by. This may be a JSON path (`js_path`) or a path from `FieldDescriptor`.
    *
    * @generated from field: string path = 1;
    */
   path?: string;
 
   /**
-   * Set to true to sort in descending order.
+   * The sorting order of the results - descending (`true`) or ascending (`false`).
    *
    * @generated from field: bool desc = 2 [default = false];
    */
@@ -165,28 +165,28 @@ export const ListSelectorSortBySchema: GenMessage<ListSelectorSortBy, {jsonType:
   messageDesc(file_common_fields, 1);
 
 /**
- * The filtering criteria.
+ * Defines the filtering criteria for listing objects.
  *
- * Depending on the operator, the `text`, `integer`, `number`, `boolean` or `date` field should be used.
- * - **No value** must be set for operators: `IS_NULL`, `IS_NOT_NULL`.
- * - Exactly **One value** must be set for single operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
- * - Exactly **Two values** must be set for two operand operators: `BETWEEN`.
+ * Depending on the operator, a specific filed type must be provided.
+ * - **No value** is required for operators: `IS_NULL`, `IS_NOT_NULL`.
+ * - Exactly **one value** must be set for single-operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
+ * - Exactly **two values** must be set for two-operand operators: `BETWEEN`.
  * - **Zero or more** values can be set for generic operators: `IN`, `NOT_IN`.
  *
- * Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
+ * Only the field corresponding to th declared data type must be set. Other fields must not be set will be ignored by the system.
  *
  * @generated from message io.clbs.openhes.models.common.ListSelectorFilterBy
  */
 export type ListSelectorFilterBy = Message<"io.clbs.openhes.models.common.ListSelectorFilterBy"> & {
   /**
-   * The js_path or path from the FieldDescriptor.
+   * The field path to filter by. This may be a JSON path (`js_path`) or a path from `FieldDescriptor`.
    *
    * @generated from field: string path = 1;
    */
   path: string;
 
   /**
-   * The filter operator.
+   * The operator that defines the filtering condition.
    *
    * @generated from field: io.clbs.openhes.models.common.FilterOperator operator = 2;
    */
@@ -200,35 +200,35 @@ export type ListSelectorFilterBy = Message<"io.clbs.openhes.models.common.ListSe
   dataType: FieldDataType;
 
   /**
-   * The text-typed value(s) used for filtering.
+   * The values for string-based filtering.
    *
    * @generated from field: repeated string text = 4;
    */
   text: string[];
 
   /**
-   * The integer-typed value(s) used for filtering.
+   * The values for integer-based filtering.
    *
    * @generated from field: repeated sint64 integer = 5;
    */
   integer: bigint[];
 
   /**
-   * The number-typed value(s) used for filtering.
+   * The values for numeric filtering.
    *
    * @generated from field: repeated double number = 6;
    */
   number: number[];
 
   /**
-   * The boolean-typed value(s) used for filtering.
+   * The values for boolean-based filtering.
    *
    * @generated from field: repeated bool boolean = 7;
    */
   boolean: boolean[];
 
   /**
-   * The date-typed value(s) used for filtering.
+   * Values for date-based filtering.
    *
    * @generated from field: repeated google.protobuf.Timestamp date = 8;
    */
@@ -236,28 +236,28 @@ export type ListSelectorFilterBy = Message<"io.clbs.openhes.models.common.ListSe
 };
 
 /**
- * The filtering criteria.
+ * Defines the filtering criteria for listing objects.
  *
- * Depending on the operator, the `text`, `integer`, `number`, `boolean` or `date` field should be used.
- * - **No value** must be set for operators: `IS_NULL`, `IS_NOT_NULL`.
- * - Exactly **One value** must be set for single operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
- * - Exactly **Two values** must be set for two operand operators: `BETWEEN`.
+ * Depending on the operator, a specific filed type must be provided.
+ * - **No value** is required for operators: `IS_NULL`, `IS_NOT_NULL`.
+ * - Exactly **one value** must be set for single-operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
+ * - Exactly **two values** must be set for two-operand operators: `BETWEEN`.
  * - **Zero or more** values can be set for generic operators: `IN`, `NOT_IN`.
  *
- * Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
+ * Only the field corresponding to th declared data type must be set. Other fields must not be set will be ignored by the system.
  *
  * @generated from message io.clbs.openhes.models.common.ListSelectorFilterBy
  */
 export type ListSelectorFilterByJson = {
   /**
-   * The js_path or path from the FieldDescriptor.
+   * The field path to filter by. This may be a JSON path (`js_path`) or a path from `FieldDescriptor`.
    *
    * @generated from field: string path = 1;
    */
   path?: string;
 
   /**
-   * The filter operator.
+   * The operator that defines the filtering condition.
    *
    * @generated from field: io.clbs.openhes.models.common.FilterOperator operator = 2;
    */
@@ -271,35 +271,35 @@ export type ListSelectorFilterByJson = {
   dataType?: FieldDataTypeJson;
 
   /**
-   * The text-typed value(s) used for filtering.
+   * The values for string-based filtering.
    *
    * @generated from field: repeated string text = 4;
    */
   text?: string[];
 
   /**
-   * The integer-typed value(s) used for filtering.
+   * The values for integer-based filtering.
    *
    * @generated from field: repeated sint64 integer = 5;
    */
   integer?: string[];
 
   /**
-   * The number-typed value(s) used for filtering.
+   * The values for numeric filtering.
    *
    * @generated from field: repeated double number = 6;
    */
   number?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
-   * The boolean-typed value(s) used for filtering.
+   * The values for boolean-based filtering.
    *
    * @generated from field: repeated bool boolean = 7;
    */
   boolean?: boolean[];
 
   /**
-   * The date-typed value(s) used for filtering.
+   * Values for date-based filtering.
    *
    * @generated from field: repeated google.protobuf.Timestamp date = 8;
    */
@@ -314,11 +314,13 @@ export const ListSelectorFilterBySchema: GenMessage<ListSelectorFilterBy, {jsonT
   messageDesc(file_common_fields, 2);
 
 /**
+ * Defines the specification for creating a new field descriptor.
+ *
  * @generated from message io.clbs.openhes.models.common.CreateFieldDescriptorRequest
  */
 export type CreateFieldDescriptorRequest = Message<"io.clbs.openhes.models.common.CreateFieldDescriptorRequest"> & {
   /**
-   * The field descriptor to be created.
+   * The specification of the field descriptor to be created.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDescriptor spec = 1;
    */
@@ -326,11 +328,13 @@ export type CreateFieldDescriptorRequest = Message<"io.clbs.openhes.models.commo
 };
 
 /**
+ * Defines the specification for creating a new field descriptor.
+ *
  * @generated from message io.clbs.openhes.models.common.CreateFieldDescriptorRequest
  */
 export type CreateFieldDescriptorRequestJson = {
   /**
-   * The field descriptor to be created.
+   * The specification of the field descriptor to be created.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDescriptor spec = 1;
    */
@@ -345,13 +349,13 @@ export const CreateFieldDescriptorRequestSchema: GenMessage<CreateFieldDescripto
   messageDesc(file_common_fields, 3);
 
 /**
- * The system-wide field descriptor selector.
+ * Define the system-wide field descriptor selector.
  *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorSelector
  */
 export type FieldDescriptorSelector = Message<"io.clbs.openhes.models.common.FieldDescriptorSelector"> & {
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * Defines the resource type for which the field descriptor is defined, for example, `BULK`, `DEVICE`, etc.
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
@@ -366,13 +370,13 @@ export type FieldDescriptorSelector = Message<"io.clbs.openhes.models.common.Fie
 };
 
 /**
- * The system-wide field descriptor selector.
+ * Define the system-wide field descriptor selector.
  *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorSelector
  */
 export type FieldDescriptorSelectorJson = {
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * Defines the resource type for which the field descriptor is defined, for example, `BULK`, `DEVICE`, etc.
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
@@ -394,160 +398,160 @@ export const FieldDescriptorSelectorSchema: GenMessage<FieldDescriptorSelector, 
   messageDesc(file_common_fields, 4);
 
 /**
- * The field descriptor.
+ * Defines the field descriptor specification.
  *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptor
  */
 export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescriptor"> & {
   /**
-   * Whether the field descriptor is user-defined (e.g., custom fields added by users)
+   * Indicates whether the field descriptor is user-defined (for example, a custom field added by users).
    *
    * @generated from field: bool is_user_defined = 1;
    */
   isUserDefined: boolean;
 
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * The resource type for which the field descriptor is defined (for example, `BULK`, `DEVICE`).
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
    */
   objectType: ObjectType;
 
   /**
-   * The system-wide unique identifier of the field descriptor.
+   * The unique identifier of the field descriptor within the system.
    *
    * @generated from field: string gid = 3;
    */
   gid: string;
 
   /**
-   * Unique identifier for the field descriptor
+   * The unique field descriptor identifier.
    *
    * @generated from field: string field_id = 4;
    */
   fieldId: string;
 
   /**
-   * The path to the field in the TypeScript representation
+   * The path to the field in the TypeScript representation.
    *
    * @generated from field: string js_path = 5;
    */
   jsPath: string;
 
   /**
-   * The path to the field in the gRPC/JSON simplified representation
+   * The path to the field in the gRPC/JSON simplified representation.
    *
    * @generated from field: string path = 6;
    */
   path: string;
 
   /**
-   * Label displayed for the field
+   * The label displayed for the field.
    *
    * @generated from field: string label = 7;
    */
   label: string;
 
   /**
-   * Group (section) identifier for the field
+   * The group (section) identifier for the field.
    *
    * @generated from field: string group_id = 8;
    */
   groupId: string;
 
   /**
-   * Data type of the field (e.g., text, double)
+   * The data type of the field (for example, `text`, `double`).
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 9;
    */
   dataType: FieldDataType;
 
   /**
-   * Display format (e.g., 1h 30m)
+   * The display format of the field (for example, `1h 30m`).
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDisplayFormat format = 10;
    */
   format: FieldDisplayFormat;
 
   /**
-   * Unit to display (e.g., kWh, USD)
+   * The display unit for the field (fr example, `kWh`, `USD`).
    *
    * @generated from field: string unit = 11;
    */
   unit: string;
 
   /**
-   * Decimal precision for double numbers
+   * The decimal precision for double values.
    *
    * @generated from field: int32 precision = 12;
    */
   precision: number;
 
   /**
-   * Tooltip or hint text
+   * A tooltip or hint text for tehe field.
    *
    * @generated from field: string tooltip = 13;
    */
   tooltip: string;
 
   /**
-   * Whether the field is mandatory
+   * Indicates whether the field is mandatory.
    *
    * @generated from field: bool required = 14;
    */
   required: boolean;
 
   /**
-   * Whether the field is editable
+   * Indicates whether the field is editable.
    *
    * @generated from field: bool editable = 15;
    */
   editable: boolean;
 
   /**
-   * Whether the field is visible
+   * Indicates whether the field is visible.
    *
    * @generated from field: bool visible = 16;
    */
   visible: boolean;
 
   /**
-   * Whether the field can have multiple values
+   * Indicates whether the field can contain multiple values.
    *
    * @generated from field: bool multi_value = 17;
    */
   multiValue: boolean;
 
   /**
-   * Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+   * Indicates whether the field should be handled as security fields (for example, password or certificate input area).
    *
    * @generated from field: bool secured = 18;
    */
   secured: boolean;
 
   /**
-   * Validation rules for the field
+   * The validation rules for the field.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 19;
    */
   validation?: FieldValidation;
 
   /**
-   * The default value of the attribute, it does not support multi-value fields
+   * The default value of the . Multi-value fields are not supported.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 20;
    */
   defaultValue?: FieldValue;
 
   /**
-   * Whether the field can be used for sorting, default is true
+   * Indicates whether the field can be used for sorting. Default is `true`.
    *
    * @generated from field: bool sortable = 21;
    */
   sortable: boolean;
 
   /**
-   * Whether the field can be used for filtering, default is true
+   * Indicates whether the field can be used for filtering. Default is `true`.
    *
    * @generated from field: bool filterable = 22;
    */
@@ -555,160 +559,160 @@ export type FieldDescriptor = Message<"io.clbs.openhes.models.common.FieldDescri
 };
 
 /**
- * The field descriptor.
+ * Defines the field descriptor specification.
  *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptor
  */
 export type FieldDescriptorJson = {
   /**
-   * Whether the field descriptor is user-defined (e.g., custom fields added by users)
+   * Indicates whether the field descriptor is user-defined (for example, a custom field added by users).
    *
    * @generated from field: bool is_user_defined = 1;
    */
   isUserDefined?: boolean;
 
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * The resource type for which the field descriptor is defined (for example, `BULK`, `DEVICE`).
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The system-wide unique identifier of the field descriptor.
+   * The unique identifier of the field descriptor within the system.
    *
    * @generated from field: string gid = 3;
    */
   gid?: string;
 
   /**
-   * Unique identifier for the field descriptor
+   * The unique field descriptor identifier.
    *
    * @generated from field: string field_id = 4;
    */
   fieldId?: string;
 
   /**
-   * The path to the field in the TypeScript representation
+   * The path to the field in the TypeScript representation.
    *
    * @generated from field: string js_path = 5;
    */
   jsPath?: string;
 
   /**
-   * The path to the field in the gRPC/JSON simplified representation
+   * The path to the field in the gRPC/JSON simplified representation.
    *
    * @generated from field: string path = 6;
    */
   path?: string;
 
   /**
-   * Label displayed for the field
+   * The label displayed for the field.
    *
    * @generated from field: string label = 7;
    */
   label?: string;
 
   /**
-   * Group (section) identifier for the field
+   * The group (section) identifier for the field.
    *
    * @generated from field: string group_id = 8;
    */
   groupId?: string;
 
   /**
-   * Data type of the field (e.g., text, double)
+   * The data type of the field (for example, `text`, `double`).
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDataType data_type = 9;
    */
   dataType?: FieldDataTypeJson;
 
   /**
-   * Display format (e.g., 1h 30m)
+   * The display format of the field (for example, `1h 30m`).
    *
    * @generated from field: io.clbs.openhes.models.common.FieldDisplayFormat format = 10;
    */
   format?: FieldDisplayFormatJson;
 
   /**
-   * Unit to display (e.g., kWh, USD)
+   * The display unit for the field (fr example, `kWh`, `USD`).
    *
    * @generated from field: string unit = 11;
    */
   unit?: string;
 
   /**
-   * Decimal precision for double numbers
+   * The decimal precision for double values.
    *
    * @generated from field: int32 precision = 12;
    */
   precision?: number;
 
   /**
-   * Tooltip or hint text
+   * A tooltip or hint text for tehe field.
    *
    * @generated from field: string tooltip = 13;
    */
   tooltip?: string;
 
   /**
-   * Whether the field is mandatory
+   * Indicates whether the field is mandatory.
    *
    * @generated from field: bool required = 14;
    */
   required?: boolean;
 
   /**
-   * Whether the field is editable
+   * Indicates whether the field is editable.
    *
    * @generated from field: bool editable = 15;
    */
   editable?: boolean;
 
   /**
-   * Whether the field is visible
+   * Indicates whether the field is visible.
    *
    * @generated from field: bool visible = 16;
    */
   visible?: boolean;
 
   /**
-   * Whether the field can have multiple values
+   * Indicates whether the field can contain multiple values.
    *
    * @generated from field: bool multi_value = 17;
    */
   multiValue?: boolean;
 
   /**
-   * Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
+   * Indicates whether the field should be handled as security fields (for example, password or certificate input area).
    *
    * @generated from field: bool secured = 18;
    */
   secured?: boolean;
 
   /**
-   * Validation rules for the field
+   * The validation rules for the field.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValidation validation = 19;
    */
   validation?: FieldValidationJson;
 
   /**
-   * The default value of the attribute, it does not support multi-value fields
+   * The default value of the . Multi-value fields are not supported.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValue default_value = 20;
    */
   defaultValue?: FieldValueJson;
 
   /**
-   * Whether the field can be used for sorting, default is true
+   * Indicates whether the field can be used for sorting. Default is `true`.
    *
    * @generated from field: bool sortable = 21;
    */
   sortable?: boolean;
 
   /**
-   * Whether the field can be used for filtering, default is true
+   * Indicates whether the field can be used for filtering. Default is `true`.
    *
    * @generated from field: bool filterable = 22;
    */
@@ -723,69 +727,69 @@ export const FieldDescriptorSchema: GenMessage<FieldDescriptor, {jsonType: Field
   messageDesc(file_common_fields, 5);
 
 /**
- * Validation rules for the field.
+ * Defines validation rules applied to a field.
  *
  * @generated from message io.clbs.openhes.models.common.FieldValidation
  */
 export type FieldValidation = Message<"io.clbs.openhes.models.common.FieldValidation"> & {
   /**
-   * Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
+   * A regular expression describing the allowed input format. If not set, any value of the given type can be used. Used for `string`, `integer` or `double` fields.
    *
    * @generated from field: string re = 1;
    */
   re: string;
 
   /**
-   * The minimum length. It's used for string fields only.
+   * The minimum length of the field. Used for `string` fields.
    *
    * @generated from field: int32 min_length = 2;
    */
   minLength: number;
 
   /**
-   * The maximum length. It's used for string fields only.
+   * The maximum length of the field. Used for `string` fields.
    *
    * @generated from field: int32 max_length = 3;
    */
   maxLength: number;
 
   /**
-   * The minimum value. It's used for integer fields only.
+   * The minimum value of the field. Used for `integer` fields..
    *
    * @generated from field: sint64 min_integer = 4;
    */
   minInteger: bigint;
 
   /**
-   * The maximum value. It's used for integer fields only.
+   * The maximum value of the field. Used for `integer` fields.
    *
    * @generated from field: sint64 max_integer = 5;
    */
   maxInteger: bigint;
 
   /**
-   * The minimum value. It's used for number fields only.
+   * The minimum value of the field. Used for `number` fields.
    *
    * @generated from field: double min_number = 6;
    */
   minNumber: number;
 
   /**
-   * The maximum value. It's used for number fields only.
+   * The maximum value of the field. Used for `number` fields.
    *
    * @generated from field: double max_number = 7;
    */
   maxNumber: number;
 
   /**
-   * The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
+   * A predefined list of allowed values to be set (as key-value pairs). The key represents the actual field value; the value represents the label to be displayed.
    *
    * @generated from field: map<string, string> options = 8;
    */
   options: { [key: string]: string };
 
   /**
-   * The options source. If set, then the options shall be dynamically fetched from the server.
+   * The source from which the allowed options are dynamically fetched from the server, if set.
    *
    * @generated from field: string options_source = 9;
    */
@@ -793,69 +797,69 @@ export type FieldValidation = Message<"io.clbs.openhes.models.common.FieldValida
 };
 
 /**
- * Validation rules for the field.
+ * Defines validation rules applied to a field.
  *
  * @generated from message io.clbs.openhes.models.common.FieldValidation
  */
 export type FieldValidationJson = {
   /**
-   * Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
+   * A regular expression describing the allowed input format. If not set, any value of the given type can be used. Used for `string`, `integer` or `double` fields.
    *
    * @generated from field: string re = 1;
    */
   re?: string;
 
   /**
-   * The minimum length. It's used for string fields only.
+   * The minimum length of the field. Used for `string` fields.
    *
    * @generated from field: int32 min_length = 2;
    */
   minLength?: number;
 
   /**
-   * The maximum length. It's used for string fields only.
+   * The maximum length of the field. Used for `string` fields.
    *
    * @generated from field: int32 max_length = 3;
    */
   maxLength?: number;
 
   /**
-   * The minimum value. It's used for integer fields only.
+   * The minimum value of the field. Used for `integer` fields..
    *
    * @generated from field: sint64 min_integer = 4;
    */
   minInteger?: string;
 
   /**
-   * The maximum value. It's used for integer fields only.
+   * The maximum value of the field. Used for `integer` fields.
    *
    * @generated from field: sint64 max_integer = 5;
    */
   maxInteger?: string;
 
   /**
-   * The minimum value. It's used for number fields only.
+   * The minimum value of the field. Used for `number` fields.
    *
    * @generated from field: double min_number = 6;
    */
   minNumber?: number | "NaN" | "Infinity" | "-Infinity";
 
   /**
-   * The maximum value. It's used for number fields only.
+   * The maximum value of the field. Used for `number` fields.
    *
    * @generated from field: double max_number = 7;
    */
   maxNumber?: number | "NaN" | "Infinity" | "-Infinity";
 
   /**
-   * The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
+   * A predefined list of allowed values to be set (as key-value pairs). The key represents the actual field value; the value represents the label to be displayed.
    *
    * @generated from field: map<string, string> options = 8;
    */
   options?: { [key: string]: string };
 
   /**
-   * The options source. If set, then the options shall be dynamically fetched from the server.
+   * The source from which the allowed options are dynamically fetched from the server, if set.
    *
    * @generated from field: string options_source = 9;
    */
@@ -870,6 +874,8 @@ export const FieldValidationSchema: GenMessage<FieldValidation, {jsonType: Field
   messageDesc(file_common_fields, 6);
 
 /**
+ * Defines a field value.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldValue
  */
 export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
@@ -878,7 +884,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
    */
   kind: {
     /**
-     * Represents a string-typed value.
+     * A string-typed value.
      *
      * @generated from field: string string_value = 1;
      */
@@ -886,7 +892,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "stringValue";
   } | {
     /**
-     * Represents a 64-bit integer-typed value.
+     * A 64-bit integer-typed value.
      *
      * @generated from field: int64 integer_value = 2;
      */
@@ -894,7 +900,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "integerValue";
   } | {
     /**
-     * Represents a 64-bit double-typed value.
+     * A 64-bit double-typed value.
      *
      * @generated from field: double double_value = 3;
      */
@@ -902,7 +908,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "doubleValue";
   } | {
     /**
-     * Represents a binary-typed value.
+     * A binary-typed value.
      *
      * @generated from field: bytes binary_value = 4;
      */
@@ -910,7 +916,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "binaryValue";
   } | {
     /**
-     * Represents a boolean-typed value.
+     * A boolean-typed value.
      *
      * @generated from field: bool bool_value = 5;
      */
@@ -918,7 +924,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "boolValue";
   } | {
     /**
-     * Represents a date-typed value.
+     * A date-typed value.
      *
      * @generated from field: google.protobuf.Timestamp date_value = 6;
      */
@@ -926,7 +932,7 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
     case: "dateValue";
   } | {
     /**
-     * Represents a duration-typed value.
+     * A a duration-typed value.
      *
      * @generated from field: google.protobuf.Duration duration_value = 7;
      */
@@ -936,53 +942,55 @@ export type FieldValue = Message<"io.clbs.openhes.models.common.FieldValue"> & {
 };
 
 /**
+ * Defines a field value.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldValue
  */
 export type FieldValueJson = {
   /**
-   * Represents a string-typed value.
+   * A string-typed value.
    *
    * @generated from field: string string_value = 1;
    */
   stringValue?: string;
 
   /**
-   * Represents a 64-bit integer-typed value.
+   * A 64-bit integer-typed value.
    *
    * @generated from field: int64 integer_value = 2;
    */
   integerValue?: string;
 
   /**
-   * Represents a 64-bit double-typed value.
+   * A 64-bit double-typed value.
    *
    * @generated from field: double double_value = 3;
    */
   doubleValue?: number | "NaN" | "Infinity" | "-Infinity";
 
   /**
-   * Represents a binary-typed value.
+   * A binary-typed value.
    *
    * @generated from field: bytes binary_value = 4;
    */
   binaryValue?: string;
 
   /**
-   * Represents a boolean-typed value.
+   * A boolean-typed value.
    *
    * @generated from field: bool bool_value = 5;
    */
   boolValue?: boolean;
 
   /**
-   * Represents a date-typed value.
+   * A date-typed value.
    *
    * @generated from field: google.protobuf.Timestamp date_value = 6;
    */
   dateValue?: TimestampJson;
 
   /**
-   * Represents a duration-typed value.
+   * A a duration-typed value.
    *
    * @generated from field: google.protobuf.Duration duration_value = 7;
    */
@@ -997,11 +1005,13 @@ export const FieldValueSchema: GenMessage<FieldValue, {jsonType: FieldValueJson}
   messageDesc(file_common_fields, 7);
 
 /**
+ * Defines field values.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldValues
  */
 export type FieldValues = Message<"io.clbs.openhes.models.common.FieldValues"> & {
   /**
-   * The field values.
+   * A map of field values.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 1;
    */
@@ -1009,11 +1019,13 @@ export type FieldValues = Message<"io.clbs.openhes.models.common.FieldValues"> &
 };
 
 /**
+ * Defines field values.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldValues
  */
 export type FieldValuesJson = {
   /**
-   * The field values.
+   * A map of field values.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> attributes = 1;
    */
@@ -1028,6 +1040,8 @@ export const FieldValuesSchema: GenMessage<FieldValues, {jsonType: FieldValuesJs
   messageDesc(file_common_fields, 8);
 
 /**
+ * Defines a list of field values.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfFieldValue
  */
 export type ListOfFieldValue = Message<"io.clbs.openhes.models.common.ListOfFieldValue"> & {
@@ -1039,7 +1053,7 @@ export type ListOfFieldValue = Message<"io.clbs.openhes.models.common.ListOfFiel
   items: FieldValue[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1047,6 +1061,8 @@ export type ListOfFieldValue = Message<"io.clbs.openhes.models.common.ListOfFiel
 };
 
 /**
+ * Defines a list of field values.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfFieldValue
  */
 export type ListOfFieldValueJson = {
@@ -1058,7 +1074,7 @@ export type ListOfFieldValueJson = {
   items?: FieldValueJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1073,6 +1089,8 @@ export const ListOfFieldValueSchema: GenMessage<ListOfFieldValue, {jsonType: Lis
   messageDesc(file_common_fields, 9);
 
 /**
+ * Defines a list of filed descriptors.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptor
  */
 export type ListOfFieldDescriptor = Message<"io.clbs.openhes.models.common.ListOfFieldDescriptor"> & {
@@ -1084,7 +1102,7 @@ export type ListOfFieldDescriptor = Message<"io.clbs.openhes.models.common.ListO
   items: FieldDescriptor[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1092,6 +1110,8 @@ export type ListOfFieldDescriptor = Message<"io.clbs.openhes.models.common.ListO
 };
 
 /**
+ * Defines a list of filed descriptors.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptor
  */
 export type ListOfFieldDescriptorJson = {
@@ -1103,7 +1123,7 @@ export type ListOfFieldDescriptorJson = {
   items?: FieldDescriptorJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1118,18 +1138,20 @@ export const ListOfFieldDescriptorSchema: GenMessage<ListOfFieldDescriptor, {jso
   messageDesc(file_common_fields, 10);
 
 /**
+ * Defines a list of field available field descriptor options.
+ *
  * @generated from message io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest
  */
 export type ListFieldDescriptorOptionsRequest = Message<"io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest"> & {
   /**
-   * The options source. Must be set to the options_source field of the FieldDescriptor.
+   * The options source. Must match the options_source field of the corresponding `FieldDescriptor`.
    *
    * @generated from field: string options_source = 1;
    */
   optionsSource: string;
 
   /**
-   * The filter to apply on the options. If set, only options containing this string will be returned.
+   * The filter applied to the option values. If set, only options containing this string will be returned.
    *
    * @generated from field: string filter_contains = 2;
    */
@@ -1137,18 +1159,20 @@ export type ListFieldDescriptorOptionsRequest = Message<"io.clbs.openhes.models.
 };
 
 /**
+ * Defines a list of field available field descriptor options.
+ *
  * @generated from message io.clbs.openhes.models.common.ListFieldDescriptorOptionsRequest
  */
 export type ListFieldDescriptorOptionsRequestJson = {
   /**
-   * The options source. Must be set to the options_source field of the FieldDescriptor.
+   * The options source. Must match the options_source field of the corresponding `FieldDescriptor`.
    *
    * @generated from field: string options_source = 1;
    */
   optionsSource?: string;
 
   /**
-   * The filter to apply on the options. If set, only options containing this string will be returned.
+   * The filter applied to the option values. If set, only options containing this string will be returned.
    *
    * @generated from field: string filter_contains = 2;
    */
@@ -1163,18 +1187,20 @@ export const ListFieldDescriptorOptionsRequestSchema: GenMessage<ListFieldDescri
   messageDesc(file_common_fields, 11);
 
 /**
+ * Defines field descriptor options.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorOptions
  */
 export type FieldDescriptorOptions = Message<"io.clbs.openhes.models.common.FieldDescriptorOptions"> & {
   /**
-   * The field descriptor options.
+   * A map of field descriptor options.
    *
    * @generated from field: map<string, string> options = 1;
    */
   options: { [key: string]: string };
 
   /**
-   * If set to false, the options were filtered out.
+   * Indicates whether the list of options is complete. If set to `false`, the options were filtered out. Default is `true`.
    *
    * @generated from field: bool complete = 2 [default = true];
    */
@@ -1182,18 +1208,20 @@ export type FieldDescriptorOptions = Message<"io.clbs.openhes.models.common.Fiel
 };
 
 /**
+ * Defines field descriptor options.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorOptions
  */
 export type FieldDescriptorOptionsJson = {
   /**
-   * The field descriptor options.
+   * A map of field descriptor options.
    *
    * @generated from field: map<string, string> options = 1;
    */
   options?: { [key: string]: string };
 
   /**
-   * If set to false, the options were filtered out.
+   * Indicates whether the list of options is complete. If set to `false`, the options were filtered out. Default is `true`.
    *
    * @generated from field: bool complete = 2 [default = true];
    */
@@ -1208,7 +1236,7 @@ export const FieldDescriptorOptionsSchema: GenMessage<FieldDescriptorOptions, {j
   messageDesc(file_common_fields, 12);
 
 /**
- * The filter operator.
+ * Defines the operators available for filtering options.
  *
  * @generated from enum io.clbs.openhes.models.common.FilterOperator
  */
@@ -1221,105 +1249,105 @@ export enum FilterOperator {
   FILTER_OPERATOR_UNSPECIFIED = 0,
 
   /**
-   * Single operand operator for text, integer, number, boolean, date fields.
+   * Single-operand operator. Matches fields equal to the provided value. Supported for: `text`, `integer`, `number`, `boolean`, `date` fields.
    *
    * @generated from enum value: EQUAL = 1;
    */
   EQUAL = 1,
 
   /**
-   * Single operand operator for text, integer, number, boolean, date fields.
+   * Single-operand operator. Matches fields not equal to the provided value. Supported for: `text`, `integer`, `number`, `boolean`, `date` fields.
    *
    * @generated from enum value: NOT_EQUAL = 2;
    */
   NOT_EQUAL = 2,
 
   /**
-   * Single operand operator for integer, number, date fields.
+   * Single-operand operator. Matches fields greater than the provided value. Supported for: `integer`, `number`, `date` fields.
    *
    * @generated from enum value: GREATER_THAN = 3;
    */
   GREATER_THAN = 3,
 
   /**
-   * Single operand operator for integer, number, date fields.
+   * Single-operand operator. Matches fields greater than or equal to the provided value. Supported for: `integer`, `number`, `date` fields.
    *
    * @generated from enum value: GREATER_THAN_OR_EQUAL = 4;
    */
   GREATER_THAN_OR_EQUAL = 4,
 
   /**
-   * Single operand operator for integer, number, date fields.
+   * Single-operand operator. Matches fields less than the provided value. Supported for: `integer`, `number`, `date` fields.
    *
    * @generated from enum value: LESS_THAN = 5;
    */
   LESS_THAN = 5,
 
   /**
-   * Single operand operator for integer, number, date fields.
+   * Single-operand operator. Matches fields less than or equal to the provided value. Supported for: `integer`, `number`, `date` fields.
    *
    * @generated from enum value: LESS_THAN_OR_EQUAL = 6;
    */
   LESS_THAN_OR_EQUAL = 6,
 
   /**
-   * Single operand operator for text fields.
+   * Single-operand operator. Matches text fields that contain the provided string. Supported for: `text` fields.
    *
    * @generated from enum value: CONTAINS = 7;
    */
   CONTAINS = 7,
 
   /**
-   * Single operand operator for text fields.
+   * Single-operand operator. Matches text fields that do not contain the provided string. Supported for: `text` fields.
    *
    * @generated from enum value: NOT_CONTAINS = 8;
    */
   NOT_CONTAINS = 8,
 
   /**
-   * Single operand operator for text fields.
+   * Single-operand operator. Matches text fields that start with the provided string. Supported for: `text` fields.
    *
    * @generated from enum value: STARTS_WITH = 9;
    */
   STARTS_WITH = 9,
 
   /**
-   * Single operand operator for text fields.
+   * Single-operand operator. Matches text fields that end with the provided substring. Supported for: `text` fields.
    *
    * @generated from enum value: ENDS_WITH = 10;
    */
   ENDS_WITH = 10,
 
   /**
-   * Multiple operand operator for text, integer, number, boolean fields.
+   * Multi-operand operator. Matches fields whose value is within the provided set. Supported for: `text`, `integer`, `number`, `boolean` fields.
    *
    * @generated from enum value: IN = 11;
    */
   IN = 11,
 
   /**
-   * Multiple operand operator for text, integer, number, boolean fields.
+   * Multi-operand operator. Matches fields whose value is not within the provided set. Supported for: `text`, `integer`, `number`, `boolean` fields.
    *
    * @generated from enum value: NOT_IN = 12;
    */
   NOT_IN = 12,
 
   /**
-   * Two operand operator for integer, number, date fields.
+   * Two-operand operator. Matches fields with values between the two provided operands (inclusive). Supported for: `integer`, `number`, `date` fields.
    *
    * @generated from enum value: BETWEEN = 13;
    */
   BETWEEN = 13,
 
   /**
-   * No operand operator. For both null and empty string.
+   * No-operand operator. Matches fields that are either `null` or an empty string.
    *
    * @generated from enum value: IS_NULL = 14;
    */
   IS_NULL = 14,
 
   /**
-   * No operand operator. For both null and empty string.
+   * No-operand operator. Matches fields that are not `null` or an empty string.
    *
    * @generated from enum value: IS_NOT_NULL = 15;
    */
@@ -1327,7 +1355,7 @@ export enum FilterOperator {
 }
 
 /**
- * The filter operator.
+ * Defines the operators available for filtering options.
  *
  * @generated from enum io.clbs.openhes.models.common.FilterOperator
  */
@@ -1340,7 +1368,7 @@ export const FilterOperatorSchema: GenEnum<FilterOperator, FilterOperatorJson> =
   enumDesc(file_common_fields, 0);
 
 /**
- * Enum representing the field data type.
+ * Defines the data type of the field.
  *
  * @generated from enum io.clbs.openhes.models.common.FieldDataType
  */
@@ -1403,7 +1431,7 @@ export enum FieldDataType {
 }
 
 /**
- * Enum representing the field data type.
+ * Defines the data type of the field.
  *
  * @generated from enum io.clbs.openhes.models.common.FieldDataType
  */
@@ -1416,69 +1444,69 @@ export const FieldDataTypeSchema: GenEnum<FieldDataType, FieldDataTypeJson> = /*
   enumDesc(file_common_fields, 1);
 
 /**
- * Enum representing the field display format.
+ * Define the display format, determining how alues are presetned in the GUI.
  *
  * @generated from enum io.clbs.openhes.models.common.FieldDisplayFormat
  */
 export enum FieldDisplayFormat {
   /**
-   * The default display format. The GUI shows text, int, double, date-time or duration in the default format.
+   * The default display format. Text, integer, double, date-time, or duration values are shown in their default format.
    *
    * @generated from enum value: DISPLAY_FORMAT_UNSPECIFIED = 0;
    */
   DISPLAY_FORMAT_UNSPECIFIED = 0,
 
   /**
-   * The date-only display format of local date-time. Data type must be TIMESTAMP or string.
+   * Displays only the date portion of a local date-time value. Data type must be `TIMESTAMP` or `string`.
    *
    * @generated from enum value: DATE_ONLY = 1;
    */
   DATE_ONLY = 1,
 
   /**
-   * The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
+   * Displays the full date-time in UTC timezone. Data type must be `TIMESTAMP` or `string`.
    *
    * @generated from enum value: UTC_DATETIME = 2;
    */
   UTC_DATETIME = 2,
 
   /**
-   * The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
+   * Displays the date in UTC timezone. Data type must be `TIMESTAMP` or `string`.
    *
    * @generated from enum value: UTC_DATE_ONLY = 3;
    */
   UTC_DATE_ONLY = 3,
 
   /**
-   * The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
+   * Displays time of day in `hh:mm:ss` format (for example, `12:30:00`). Data type must be `INTEGER` in milliseconds.
    *
    * @generated from enum value: TIMEOFDAY = 4;
    */
   TIMEOFDAY = 4,
 
   /**
-   * The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
+   * Displays money amounts. The unit must be set to an ISO 4217 currency code (for example, USD, EUR). Data type must be `DOUBLE` or `INTEGER`.
    *
    * @generated from enum value: MONEY = 5;
    */
   MONEY = 5,
 
   /**
-   * The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
+   * Displays values as hidden passwords. Data type must be `TEXT`. The GUI always shows six asterisks (******) regardless of actual length.
    *
    * @generated from enum value: PASSWORD = 6;
    */
   PASSWORD = 6,
 
   /**
-   * The multiline-string display format. Data type must be TEXT.
+   * Displays values as multi-line text. Data type must be `TEXT`.
    *
    * @generated from enum value: MULTILINE = 7;
    */
   MULTILINE = 7,
 
   /**
-   * The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
+   * Displays values as a combo-box with selectable options. Data type must be `TEXT`.
    *
    * @generated from enum value: COMBO = 8;
    */
@@ -1486,7 +1514,7 @@ export enum FieldDisplayFormat {
 }
 
 /**
- * Enum representing the field display format.
+ * Define the display format, determining how alues are presetned in the GUI.
  *
  * @generated from enum io.clbs.openhes.models.common.FieldDisplayFormat
  */

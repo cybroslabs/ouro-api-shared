@@ -22,13 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Enumeration for Relay State
+// Defines the possible relay states.
 type RelayState int32
 
 const (
-	RelayState_RELAY_STATE_UNSPECIFIED RelayState = 0 // Unspecified relay state. Relay state is ignored (no action)
-	RelayState_RELAY_STATE_CONNECT     RelayState = 1 // Relay connects
-	RelayState_RELAY_STATE_DISCONNECT  RelayState = 2 // Relay disconnects
+	RelayState_RELAY_STATE_UNSPECIFIED RelayState = 0 // Unspecified relay state. The relay state is ignored (no action).
+	RelayState_RELAY_STATE_CONNECT     RelayState = 1 // The relay connects.
+	RelayState_RELAY_STATE_DISCONNECT  RelayState = 2 // The relay disconnects.
 )
 
 // Enum value maps for RelayState.
@@ -67,7 +67,7 @@ func (x RelayState) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Switching data includes tariffs and relay states for specific times
+// Defines the switching configuration, including tariffs and relay states for specific times.
 type Switching struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Hour        int32                  `protobuf:"varint,1,opt,name=hour"`
@@ -193,19 +193,19 @@ func (x *Switching) ClearTariff() {
 type Switching_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Hour of the switching event.
+	// The hour of the switching event.
 	// @values: 0–23
 	// @example: 7
 	Hour *int32
-	// Minute of the switching event.
+	// The minute of the switching event.
 	// @values: 0–59
 	// @example: 30
 	Minute *int32
-	// Tariff ID.
+	// The tariff ID.
 	// @values: -1 means no tariff; other values are valid tariff IDs
 	// @example: 2
 	Tariff *int32
-	// Map of relay ID to relay state. The list must not contain duplicit relay IDs.
+	// A map of relay IDs to their corresponding relay states. Duplicate IDs are not allowed.
 	Relays []*RelayStateRecord
 }
 
@@ -229,8 +229,8 @@ func (b0 Switching_builder) Build() *Switching {
 	return m0
 }
 
-// RelayStateRecord represents the state of a relay at a specific time.
-// It contains the relay ID and its state (CONNECT or DISCONNECT).
+// Defines the state of a relay at a specific time.
+// Each record contains the relay ID and its associated state (CONNECT or DISCONNECT).
 // The relay ID must be unique within the list of relays.
 type RelayStateRecord struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
@@ -320,10 +320,10 @@ func (x *RelayStateRecord) ClearState() {
 type RelayStateRecord_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Relay ID
+	// The unique relay identifier.
 	// @example: 1
 	RelayId *int32
-	// State of the relay (CONNECT or DISCONNECT)
+	// The state of the relay (`CONNECT` or `DISCONNECT`).
 	// @example: CONNECT
 	State *RelayState
 }
@@ -343,7 +343,7 @@ func (b0 RelayStateRecord_builder) Build() *RelayStateRecord {
 	return m0
 }
 
-// DayProfile represents the profile for a single day, containing multiple Switching times
+// Defines a single day profile, containing multiple switching times.
 type DayProfile struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DayId       *string                `protobuf:"bytes,1,opt,name=day_id,json=dayId"`
@@ -422,10 +422,10 @@ func (x *DayProfile) ClearDayId() {
 type DayProfile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Unique identifier for the day profile
+	// The unique day profile identifier.
 	// @example: "weekday-profile"
 	DayId *string
-	// List of switching events (each with specific time and relay states)
+	// The list of switching events. Each event specifies the time and relay states.
 	Switching []*Switching
 }
 
@@ -441,7 +441,7 @@ func (b0 DayProfile_builder) Build() *DayProfile {
 	return m0
 }
 
-// SpecialDay represents specific days such as holidays or exceptions
+// Defines special days, such as holidays, or other exceptions.
 type SpecialDay struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Year        int32                  `protobuf:"varint,1,opt,name=year"`
@@ -581,19 +581,19 @@ func (x *SpecialDay) ClearDayId() {
 type SpecialDay_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Year of the special day
+	// he year of the special day.
 	// @values: full year (e.g., 2023)
 	// @example: 2023
 	Year *int32
-	// Month of the special day
+	// The month of the special day.
 	// @values: 1–12
 	// @example: 12
 	Month *int32
-	// Day of the special day
+	// The day of the special day.
 	// @values: 1–31
 	// @example: 25
 	Day *int32
-	// Unique identifier for the special day
+	// The unique special day identifier.
 	// @example: "christmas"
 	DayId *string
 }
@@ -621,7 +621,7 @@ func (b0 SpecialDay_builder) Build() *SpecialDay {
 	return m0
 }
 
-// Week represents a week of the year, containing a list of Day IDs and Week Name
+// Defines a week of the year, containing a list of day IDs and week name.
 type Week struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_WeekId      *string                `protobuf:"bytes,1,opt,name=week_id,json=weekId"`
@@ -726,13 +726,13 @@ func (x *Week) ClearWeekName() {
 type Week_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Unique identifier for the week
+	// The unique week identifier.
 	// @example: "week-01"
 	WeekId *string
-	// Name of the week
+	// The name of the week.
 	// @example: "Week 1"
 	WeekName *string
-	// List of day IDs that belong to this week
+	// The list of day IDs assigned to the week.
 	// @example: ["monday", "tuesday", "holiday"]
 	DayIds []string
 }
@@ -753,7 +753,7 @@ func (b0 Week_builder) Build() *Week {
 	return m0
 }
 
-// Season represents a season which spans across a specific start date and references a week
+// Defines a season that starts on a specific date and is linked to a week profile.
 type Season struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
@@ -949,24 +949,24 @@ func (x *Season) ClearWeekId() {
 type Season_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Unique identifier for the season
+	// The unique season identifier.
 	// @example: "season-winter"
 	Id *string
-	// Name of the season
+	// The name of the season.
 	// @example: "Winter"
 	Name *string
-	// Start year of the season
+	// The start year of the season.
 	// @example: 2023
 	StartYear *int32
-	// Start month of the season
+	// The start month of the season.
 	// @values: 1–12
 	// @example: 12
 	StartMonth *int32
-	// Start day of the season
+	// The start day of the season.
 	// @values: 1–31
 	// @example: 1
 	StartDay *int32
-	// Reference to a Week ID that this season is associated with
+	// The reference to a week ID that applies to this season.
 	// @example: "week-01"
 	WeekId *string
 }
@@ -1002,7 +1002,7 @@ func (b0 Season_builder) Build() *Season {
 	return m0
 }
 
-// TimeOfUse represents the main Time-of-Use (TOU) table containing all relevant definitions
+// Defines the main Time-of-Use (TOU) table that contains all relevant definitions.
 type TimeOfUseTableSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ExpiesAt    *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expies_at,json=expiesAt"`
@@ -1169,22 +1169,22 @@ func (x *TimeOfUseTableSpec) ClearActivateAt() {
 type TimeOfUseTableSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Expiration date of the TOU table
+	// The expiration date of the TOU table.
 	// @example: "2025-01-01T00:00:00Z"
 	ExpiesAt *timestamppb.Timestamp
 	// HDO (High Demand Option) Group ID
 	// @example: "group-a"
 	HdoGroupId *string
-	// Activation date of the TOU table
+	// The activation date of the TOU table.
 	// @example: "2024-06-01"
 	ActivateAt *date.Date
-	// List of seasons defined in the TOU
+	// The list of seasons defined in the TOU table.
 	Seasons []*Season
-	// List of weeks defined in the TOU
+	// The list of week profiles defined in the TOU table.
 	Weeks []*Week
-	// List of day profiles (each day having a list of switching events)
+	// The list of day profiles, each defining multiple switching events.
 	DayProfiles []*DayProfile
-	// List of special days (e.g., holidays, exceptions)
+	// The list of special days, such as holidays or other exceptions.
 	SpecialDays []*SpecialDay
 }
 

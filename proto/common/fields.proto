@@ -8,67 +8,67 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "common/objects.proto";
 
-// The listing selector.
+// Defines the selection criteria for listing objects, including pagination, sorting, filtering, and field selection.
 message ListSelector {
     uint32 page_size = 1;  // The number of items per page.
-    // The offset of the first item to return, zero based.
-    // @values: any non-negative integer
+    // The zero-based offset of the first item in the response.
+    // @values: Any non-negative integer
     // @example: 15
     uint32 offset                           = 2;
     repeated ListSelectorSortBy sort_by     = 3;  // The sorting criteria.
     repeated ListSelectorFilterBy filter_by = 4;  // The filtering criteria.
 
     // FIXME: This needs to be designed properly.
-    repeated string fields = 5;  // The list of additional fields to be returned.
+    repeated string fields = 5;  // Optional list of additional fields to include in the response.
 }
 
-// The sorting criteria.
+// Defines the sorting criteria for listing objects.
 message ListSelectorSortBy {
-    string path = 1;                    // The js_path or path from the FieldDescriptor.
-    bool desc   = 2 [default = false];  // Set to true to sort in descending order.
+    string path = 1;                    // The field path to sort by. This may be a JSON path (`js_path`) or a path from `FieldDescriptor`.
+    bool desc   = 2 [default = false];  // The sorting order of the results - descending (`true`) or ascending (`false`).
 }
 
-// The filter operator.
+// Defines the operators available for filtering options.
 enum FilterOperator {
     FILTER_OPERATOR_UNSPECIFIED = 0;   // Unspecified filter operator.
-    EQUAL                       = 1;   // Single operand operator for text, integer, number, boolean, date fields.
-    NOT_EQUAL                   = 2;   // Single operand operator for text, integer, number, boolean, date fields.
-    GREATER_THAN                = 3;   // Single operand operator for integer, number, date fields.
-    GREATER_THAN_OR_EQUAL       = 4;   // Single operand operator for integer, number, date fields.
-    LESS_THAN                   = 5;   // Single operand operator for integer, number, date fields.
-    LESS_THAN_OR_EQUAL          = 6;   // Single operand operator for integer, number, date fields.
-    CONTAINS                    = 7;   // Single operand operator for text fields.
-    NOT_CONTAINS                = 8;   // Single operand operator for text fields.
-    STARTS_WITH                 = 9;   // Single operand operator for text fields.
-    ENDS_WITH                   = 10;  // Single operand operator for text fields.
-    IN                          = 11;  // Multiple operand operator for text, integer, number, boolean fields.
-    NOT_IN                      = 12;  // Multiple operand operator for text, integer, number, boolean fields.
-    BETWEEN                     = 13;  // Two operand operator for integer, number, date fields.
-    IS_NULL                     = 14;  // No operand operator. For both null and empty string.
-    IS_NOT_NULL                 = 15;  // No operand operator. For both null and empty string.
+    EQUAL                       = 1;   // Single-operand operator. Matches fields equal to the provided value. Supported for: `text`, `integer`, `number`, `boolean`, `date` fields.
+    NOT_EQUAL                   = 2;   // Single-operand operator. Matches fields not equal to the provided value. Supported for: `text`, `integer`, `number`, `boolean`, `date` fields.
+    GREATER_THAN                = 3;   // Single-operand operator. Matches fields greater than the provided value. Supported for: `integer`, `number`, `date` fields.
+    GREATER_THAN_OR_EQUAL       = 4;   // Single-operand operator. Matches fields greater than or equal to the provided value. Supported for: `integer`, `number`, `date` fields.
+    LESS_THAN                   = 5;   // Single-operand operator. Matches fields less than the provided value. Supported for: `integer`, `number`, `date` fields.
+    LESS_THAN_OR_EQUAL          = 6;   // Single-operand operator. Matches fields less than or equal to the provided value. Supported for: `integer`, `number`, `date` fields.
+    CONTAINS                    = 7;   // Single-operand operator. Matches text fields that contain the provided string. Supported for: `text` fields.
+    NOT_CONTAINS                = 8;   // Single-operand operator. Matches text fields that do not contain the provided string. Supported for: `text` fields.
+    STARTS_WITH                 = 9;   // Single-operand operator. Matches text fields that start with the provided string. Supported for: `text` fields.
+    ENDS_WITH                   = 10;  // Single-operand operator. Matches text fields that end with the provided substring. Supported for: `text` fields.
+    IN                          = 11;  // Multi-operand operator. Matches fields whose value is within the provided set. Supported for: `text`, `integer`, `number`, `boolean` fields.
+    NOT_IN                      = 12;  // Multi-operand operator. Matches fields whose value is not within the provided set. Supported for: `text`, `integer`, `number`, `boolean` fields.
+    BETWEEN                     = 13;  // Two-operand operator. Matches fields with values between the two provided operands (inclusive). Supported for: `integer`, `number`, `date` fields.
+    IS_NULL                     = 14;  // No-operand operator. Matches fields that are either `null` or an empty string.
+    IS_NOT_NULL                 = 15;  // No-operand operator. Matches fields that are not `null` or an empty string.
 }
 
-// The filtering criteria.
+// Defines the filtering criteria for listing objects.
 //
-// Depending on the operator, the `text`, `integer`, `number`, `boolean` or `date` field should be used.
-// - **No value** must be set for operators: `IS_NULL`, `IS_NOT_NULL`.
-// - Exactly **One value** must be set for single operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
-// - Exactly **Two values** must be set for two operand operators: `BETWEEN`.
+// Depending on the operator, a specific filed type must be provided.
+// - **No value** is required for operators: `IS_NULL`, `IS_NOT_NULL`.
+// - Exactly **one value** must be set for single-operand operators: `EQUAL`, `NOT_EQUAL`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN`, `LESS_THAN_OR_EQUAL`, `CONTAINS`, `NOT_CONTAINS`, `STARTS_WITH`, `ENDS_WITH`.
+// - Exactly **two values** must be set for two-operand operators: `BETWEEN`.
 // - **Zero or more** values can be set for generic operators: `IN`, `NOT_IN`.
 //
-// Field type determines the data type and only related field should be used. Other fields shall not be set and will be ignored by the system.
+// Only the field corresponding to th declared data type must be set. Other fields must not be set will be ignored by the system.
 message ListSelectorFilterBy {
-    string path = 1;                              // The js_path or path from the FieldDescriptor.
-    FilterOperator operator = 2;                  // The filter operator.
+    string path = 1;                              // The field path to filter by. This may be a JSON path (`js_path`) or a path from `FieldDescriptor`.
+    FilterOperator operator = 2;                  // The operator that defines the filtering condition.
     FieldDataType data_type                 = 3;  // The data type of the field.
-    repeated string text                    = 4;  // The text-typed value(s) used for filtering.
-    repeated sint64 integer                 = 5;  // The integer-typed value(s) used for filtering.
-    repeated double number                  = 6;  // The number-typed value(s) used for filtering.
-    repeated bool boolean                   = 7;  // The boolean-typed value(s) used for filtering.
-    repeated google.protobuf.Timestamp date = 8;  // The date-typed value(s) used for filtering.
+    repeated string text                    = 4;  // The values for string-based filtering.
+    repeated sint64 integer                 = 5;  // The values for integer-based filtering.
+    repeated double number                  = 6;  // The values for numeric filtering.
+    repeated bool boolean                   = 7;  // The values for boolean-based filtering.
+    repeated google.protobuf.Timestamp date = 8;  // Values for date-based filtering.
 }
 
-// Enum representing the field data type.
+// Defines the data type of the field.
 enum FieldDataType {
     DATA_TYPE_UNSPECIFIED = 0;  // Unspecified data type.
     TEXT                  = 1;  // The text data type.
@@ -80,104 +80,111 @@ enum FieldDataType {
     DURATION              = 7;  // The duration data type, represented by google.protobuf.Duration.
 }
 
-// Enum representing the field display format.
+// Define the display format, determining how alues are presetned in the GUI.
 enum FieldDisplayFormat {
-    DISPLAY_FORMAT_UNSPECIFIED = 0;  // The default display format. The GUI shows text, int, double, date-time or duration in the default format.
-    DATE_ONLY                  = 1;  // The date-only display format of local date-time. Data type must be TIMESTAMP or string.
-    UTC_DATETIME               = 2;  // The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string.
-    UTC_DATE_ONLY              = 3;  // The date display format with in UTC timezone. Data type must be TIMESTAMP or string.
-    TIMEOFDAY                  = 4;  // The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds.
-    MONEY                      = 5;  // The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER.
-    PASSWORD                   = 6;  // The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length.
-    MULTILINE                  = 7;  // The multiline-string display format. Data type must be TEXT.
-    COMBO                      = 8;  // The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options.
+    DISPLAY_FORMAT_UNSPECIFIED = 0;  // The default display format. Text, integer, double, date-time, or duration values are shown in their default format.
+    DATE_ONLY                  = 1;  // Displays only the date portion of a local date-time value. Data type must be `TIMESTAMP` or `string`.
+    UTC_DATETIME               = 2;  // Displays the full date-time in UTC timezone. Data type must be `TIMESTAMP` or `string`.
+    UTC_DATE_ONLY              = 3;  // Displays the date in UTC timezone. Data type must be `TIMESTAMP` or `string`.
+    TIMEOFDAY                  = 4;  // Displays time of day in `hh:mm:ss` format (for example, `12:30:00`). Data type must be `INTEGER` in milliseconds.
+    MONEY                      = 5;  // Displays money amounts. The unit must be set to an ISO 4217 currency code (for example, USD, EUR). Data type must be `DOUBLE` or `INTEGER`.
+    PASSWORD                   = 6;  // Displays values as hidden passwords. Data type must be `TEXT`. The GUI always shows six asterisks (******) regardless of actual length.
+    MULTILINE                  = 7;  // Displays values as multi-line text. Data type must be `TEXT`.
+    COMBO                      = 8;  // Displays values as a combo-box with selectable options. Data type must be `TEXT`.
     // FIXME: To be added in the future.
-    // OBIS_CODE      = 8;  // The OBIS code display format. Data type must be TEXT. The GUI must display the OBIS code in the format: "1-0:1.8.0*255" (e.g., "1-0:1.8.0*255").
-    // OBIS_CODE_LIST = 9;  // The OBIS code list display format, separated by semicolon ';' character. Spaces is not allowed.
+    // OBIS_CODE      = 8;  // Displays the OBIS code. Data type must be `TEXT`. The GUI should display the OBIS code in the format `"1-0:1.8.0*255"`.
+    // OBIS_CODE_LIST = 9;  // Displays the list of OBIS codes. Values are separated by semicolons (';') with no spaces allowed.
 }
 
+// Defines the specification for creating a new field descriptor.
 message CreateFieldDescriptorRequest {
     reserved 2, 3;             // Reserved for status and metadata fields.
-    FieldDescriptor spec = 1;  // The field descriptor to be created.
+    FieldDescriptor spec = 1;  // The specification of the field descriptor to be created.
 }
 
-// The system-wide field descriptor selector.
+// Define the system-wide field descriptor selector.
 message FieldDescriptorSelector {
-    ObjectType object_type = 1;  // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+    ObjectType object_type = 1;  // Defines the resource type for which the field descriptor is defined, for example, `BULK`, `DEVICE`, etc.
     string gid             = 2;  // The system-wide unique identifier of the field descriptor.
 }
 
-// The field descriptor.
+// Defines the field descriptor specification.
 message FieldDescriptor {
-    bool is_user_defined       = 1;   // Whether the field descriptor is user-defined (e.g., custom fields added by users)
-    ObjectType object_type     = 2;   // Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
-    string gid                 = 3;   // The system-wide unique identifier of the field descriptor.
-    string field_id            = 4;   // Unique identifier for the field descriptor
-    string js_path             = 5;   // The path to the field in the TypeScript representation
-    string path                = 6;   // The path to the field in the gRPC/JSON simplified representation
-    string label               = 7;   // Label displayed for the field
-    string group_id            = 8;   // Group (section) identifier for the field
-    FieldDataType data_type    = 9;   // Data type of the field (e.g., text, double)
-    FieldDisplayFormat format  = 10;  // Display format (e.g., 1h 30m)
-    string unit                = 11;  // Unit to display (e.g., kWh, USD)
-    int32 precision            = 12;  // Decimal precision for double numbers
-    string tooltip             = 13;  // Tooltip or hint text
-    bool required              = 14;  // Whether the field is mandatory
-    bool editable              = 15;  // Whether the field is editable
-    bool visible               = 16;  // Whether the field is visible
-    bool multi_value           = 17;  // Whether the field can have multiple values
-    bool secured               = 18;  // Whether the field shall be handled as a security fields (e.g., password, certificate input area, ...)
-    FieldValidation validation = 19;  // Validation rules for the field
-    FieldValue default_value   = 20;  // The default value of the attribute, it does not support multi-value fields
-    bool sortable              = 21;  // Whether the field can be used for sorting, default is true
-    bool filterable            = 22;  // Whether the field can be used for filtering, default is true
+    bool is_user_defined       = 1;   // Indicates whether the field descriptor is user-defined (for example, a custom field added by users).
+    ObjectType object_type     = 2;   // The resource type for which the field descriptor is defined (for example, `BULK`, `DEVICE`).
+    string gid                 = 3;   // The unique identifier of the field descriptor within the system.
+    string field_id            = 4;   // The unique field descriptor identifier.
+    string js_path             = 5;   // The path to the field in the TypeScript representation.
+    string path                = 6;   // The path to the field in the gRPC/JSON simplified representation.
+    string label               = 7;   // The label displayed for the field.
+    string group_id            = 8;   // The group (section) identifier for the field.
+    FieldDataType data_type    = 9;   // The data type of the field (for example, `text`, `double`).
+    FieldDisplayFormat format  = 10;  // The display format of the field (for example, `1h 30m`).
+    string unit                = 11;  // The display unit for the field (fr example, `kWh`, `USD`).
+    int32 precision            = 12;  // The decimal precision for double values.
+    string tooltip             = 13;  // A tooltip or hint text for tehe field.
+    bool required              = 14;  // Indicates whether the field is mandatory.
+    bool editable              = 15;  // Indicates whether the field is editable.
+    bool visible               = 16;  // Indicates whether the field is visible.
+    bool multi_value           = 17;  // Indicates whether the field can contain multiple values.
+    bool secured               = 18;  // Indicates whether the field should be handled as security fields (for example, password or certificate input area).
+    FieldValidation validation = 19;  // The validation rules for the field.
+    FieldValue default_value   = 20;  // The default value of the . Multi-value fields are not supported.
+    bool sortable              = 21;  // Indicates whether the field can be used for sorting. Default is `true`.
+    bool filterable            = 22;  // Indicates whether the field can be used for filtering. Default is `true`.
 }
 
-// Validation rules for the field.
+// Defines validation rules applied to a field.
 message FieldValidation {
-    string re                   = 1;  // Regular expression describing input format. If not set then any value of given type can be used. It can be used for string, int or double fields only.
-    int32 min_length            = 2;  // The minimum length. It's used for string fields only.
-    int32 max_length            = 3;  // The maximum length. It's used for string fields only.
-    sint64 min_integer          = 4;  // The minimum value. It's used for integer fields only.
-    sint64 max_integer          = 5;  // The maximum value. It's used for integer fields only.
-    double min_number           = 6;  // The minimum value. It's used for number fields only.
-    double max_number           = 7;  // The maximum value. It's used for number fields only.
-    map<string, string> options = 8;  // The list of allowed values to be set (key-value pairs). The key here represents the field value to be set and the value here represents the label to be displayed.
-    string options_source       = 9;  // The options source. If set, then the options shall be dynamically fetched from the server.
+    string re                   = 1;  // A regular expression describing the allowed input format. If not set, any value of the given type can be used. Used for `string`, `integer` or `double` fields.
+    int32 min_length            = 2;  // The minimum length of the field. Used for `string` fields.
+    int32 max_length            = 3;  // The maximum length of the field. Used for `string` fields.
+    sint64 min_integer          = 4;  // The minimum value of the field. Used for `integer` fields..
+    sint64 max_integer          = 5;  // The maximum value of the field. Used for `integer` fields.
+    double min_number           = 6;  // The minimum value of the field. Used for `number` fields.
+    double max_number           = 7;  // The maximum value of the field. Used for `number` fields.
+    map<string, string> options = 8;  // A predefined list of allowed values to be set (as key-value pairs). The key represents the actual field value; the value represents the label to be displayed.
+    string options_source       = 9;  // The source from which the allowed options are dynamically fetched from the server, if set.
 }
 
+// Defines a field value.
 message FieldValue {
     oneof kind {
-        string string_value                     = 1;  // Represents a string-typed value.
-        int64 integer_value                     = 2;  // Represents a 64-bit integer-typed value.
-        double double_value                     = 3;  // Represents a 64-bit double-typed value.
-        bytes binary_value                      = 4;  // Represents a binary-typed value.
-        bool bool_value                         = 5;  // Represents a boolean-typed value.
-        google.protobuf.Timestamp date_value    = 6;  // Represents a date-typed value.
-        google.protobuf.Duration duration_value = 7;  // Represents a duration-typed value.
+        string string_value                     = 1;  // A string-typed value.
+        int64 integer_value                     = 2;  // A 64-bit integer-typed value.
+        double double_value                     = 3;  // A 64-bit double-typed value.
+        bytes binary_value                      = 4;  // A binary-typed value.
+        bool bool_value                         = 5;  // A boolean-typed value.
+        google.protobuf.Timestamp date_value    = 6;  // A date-typed value.
+        google.protobuf.Duration duration_value = 7;  // A a duration-typed value.
     }
 }
 
+// Defines field values.
 message FieldValues {
-    map<string, common.FieldValue> attributes = 1;  // The field values.
+    map<string, common.FieldValue> attributes = 1;  // A map of field values.
 }
 
+// Defines a list of field values.
 message ListOfFieldValue {
     repeated FieldValue items = 1;  // The list of field values.
-    int32 total_count         = 2;  // The total number of items.
+    int32 total_count         = 2;  // The total number of items in the list.
 }
 
+// Defines a list of filed descriptors.
 message ListOfFieldDescriptor {
     repeated FieldDescriptor items = 1;  // The list of field descriptors.
-    int32 total_count              = 2;  // The total number of items.
+    int32 total_count              = 2;  // The total number of items in the list.
 }
 
+// Defines a list of field available field descriptor options.
 message ListFieldDescriptorOptionsRequest {
-    string options_source  = 1;  // The options source. Must be set to the options_source field of the FieldDescriptor.
-    string filter_contains = 2;  // The filter to apply on the options. If set, only options containing this string will be returned.
+    string options_source  = 1;  // The options source. Must match the options_source field of the corresponding `FieldDescriptor`.
+    string filter_contains = 2;  // The filter applied to the option values. If set, only options containing this string will be returned.
 }
 
+// Defines field descriptor options.
 message FieldDescriptorOptions {
-    map<string, string> options = 1;                   // The field descriptor options.
-    bool complete               = 2 [default = true];  // If set to false, the options were filtered out.
+    map<string, string> options = 1;                   // A map of field descriptor options.
+    bool complete               = 2 [default = true];  // Indicates whether the list of options is complete. If set to `false`, the options were filtered out. Default is `true`.
 }

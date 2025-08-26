@@ -7,20 +7,24 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { MetadataFields, MetadataFieldsJson } from "../common/metadata_pb";
 import { file_common_metadata } from "../common/metadata_pb";
 import type { StructJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_duration, file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file cronjobs/cronjobs.proto.
  */
 export const file_cronjobs_cronjobs: GenFile = /*@__PURE__*/
-  fileDesc("Chdjcm9uam9icy9jcm9uam9icy5wcm90bxIfaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icyKTAQoUQ3JlYXRlQ3JvbkpvYlJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyLGAQoHQ3JvbkpvYhI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iU3BlYxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2JTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKpAQoLQ3JvbkpvYlNwZWMSPgoEdHlwZRgBIAEoDjIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlR5cGVFbnVtEhAKCHNjaGVkdWxlGAIgASgJEhAKCHRpbWV6b25lGAMgASgJEg8KB3N1c3BlbmQYBCABKAgSJQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QigAEKDUNyb25Kb2JTdGF0dXMSLwoLbGFzdF9ydW5fYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC25leHRfcnVuX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVlcnJvchgDIAEoCSJdCg1MaXN0T2ZDcm9uSm9iEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iEhMKC3RvdGFsX2NvdW50GAIgASgFKnIKD0Nyb25Kb2JUeXBlRW51bRIdChlDUk9OX0pPQl9UWVBFX1VOU1BFQ0lGSUVEEAASHAoYQ1JPTl9KT0JfVFlQRV9TVEFSVF9CVUxLEAESIgoeQ1JPTl9KT0JfVFlQRV9TVEFSVF9QUk9YWV9CVUxLEAJCN1o1Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY3JvbmpvYnNiCGVkaXRpb25zcOgH", [file_common_metadata, file_google_protobuf_timestamp, file_google_protobuf_duration, file_google_protobuf_struct]);
+  fileDesc("Chdjcm9uam9icy9jcm9uam9icy5wcm90bxIfaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icyKTAQoUQ3JlYXRlQ3JvbkpvYlJlcXVlc3QSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyLGAQoHQ3JvbkpvYhI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iU3BlYxI+CgZzdGF0dXMYAiABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyb25qb2JzLkNyb25Kb2JTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKpAQoLQ3JvbkpvYlNwZWMSPgoEdHlwZRgBIAEoDjIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3JvbmpvYnMuQ3JvbkpvYlR5cGVFbnVtEhAKCHNjaGVkdWxlGAIgASgJEhAKCHRpbWV6b25lGAMgASgJEg8KB3N1c3BlbmQYBCABKAgSJQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QigAEKDUNyb25Kb2JTdGF0dXMSLwoLbGFzdF9ydW5fYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC25leHRfcnVuX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVlcnJvchgDIAEoCSJdCg1MaXN0T2ZDcm9uSm9iEjcKBWl0ZW1zGAEgAygLMiguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcm9uam9icy5Dcm9uSm9iEhMKC3RvdGFsX2NvdW50GAIgASgFKnIKD0Nyb25Kb2JUeXBlRW51bRIdChlDUk9OX0pPQl9UWVBFX1VOU1BFQ0lGSUVEEAASHAoYQ1JPTl9KT0JfVFlQRV9TVEFSVF9CVUxLEAESIgoeQ1JPTl9KT0JfVFlQRV9TVEFSVF9QUk9YWV9CVUxLEAJCN1o1Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY3JvbmpvYnNiCGVkaXRpb25zcOgH", [file_common_metadata, file_google_protobuf_timestamp, file_google_protobuf_struct]);
 
 /**
+ * Defines the specification for creating a new cron job.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CreateCronJobRequest
  */
 export type CreateCronJobRequest = Message<"io.clbs.openhes.models.cronjobs.CreateCronJobRequest"> & {
   /**
+   * The cron job specification.
+   *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobSpec spec = 1;
    */
   spec?: CronJobSpec;
@@ -34,10 +38,14 @@ export type CreateCronJobRequest = Message<"io.clbs.openhes.models.cronjobs.Crea
 };
 
 /**
+ * Defines the specification for creating a new cron job.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CreateCronJobRequest
  */
 export type CreateCronJobRequestJson = {
   /**
+   * The cron job specification.
+   *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobSpec spec = 1;
    */
   spec?: CronJobSpecJson;
@@ -58,15 +66,21 @@ export const CreateCronJobRequestSchema: GenMessage<CreateCronJobRequest, {jsonT
   messageDesc(file_cronjobs_cronjobs, 0);
 
 /**
+ * Defines the cron job specification.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJob
  */
 export type CronJob = Message<"io.clbs.openhes.models.cronjobs.CronJob"> & {
   /**
+   * The specification of the cron job.
+   *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobSpec spec = 1;
    */
   spec?: CronJobSpec;
 
   /**
+   * The current status of the cron job.
+   *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobStatus status = 2;
    */
   status?: CronJobStatus;
@@ -80,15 +94,21 @@ export type CronJob = Message<"io.clbs.openhes.models.cronjobs.CronJob"> & {
 };
 
 /**
+ * Defines the cron job specification.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJob
  */
 export type CronJobJson = {
   /**
+   * The specification of the cron job.
+   *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobSpec spec = 1;
    */
   spec?: CronJobSpecJson;
 
   /**
+   * The current status of the cron job.
+   *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobStatus status = 2;
    */
   status?: CronJobStatusJson;
@@ -109,32 +129,34 @@ export const CronJobSchema: GenMessage<CronJob, {jsonType: CronJobJson}> = /*@__
   messageDesc(file_cronjobs_cronjobs, 1);
 
 /**
+ * Defines the cron job specification.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobSpec
  */
 export type CronJobSpec = Message<"io.clbs.openhes.models.cronjobs.CronJobSpec"> & {
   /**
-   * The type of the cron job, e.g., CRON_JOB_TYPE_START_BULK, CRON_JOB_TYPE_START_PROXY_BULK.
+   * The type of the cron job. For example, `CRON_JOB_TYPE_START_BULK`, `CRON_JOB_TYPE_START_PROXY_BULK`.
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobTypeEnum type = 1;
    */
   type: CronJobTypeEnum;
 
   /**
-   * The cron job definition, e.g., "0 * * * *" for every hour.
+   * The cron job definition. For example, `"0 * * * *"` for every hour.
    *
    * @generated from field: string schedule = 2;
    */
   schedule: string;
 
   /**
-   * The timezone related to the cron job, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the cron job. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
    *
    * @generated from field: string timezone = 3;
    */
   timezone: string;
 
   /**
-   * Whether the cron job is suspended or not. By default, it is false (i.e., not suspended).
+   * Indicates whether the cron job is suspended. Default is `false` (not suspended).
    *
    * @generated from field: bool suspend = 4;
    */
@@ -149,32 +171,34 @@ export type CronJobSpec = Message<"io.clbs.openhes.models.cronjobs.CronJobSpec">
 };
 
 /**
+ * Defines the cron job specification.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobSpec
  */
 export type CronJobSpecJson = {
   /**
-   * The type of the cron job, e.g., CRON_JOB_TYPE_START_BULK, CRON_JOB_TYPE_START_PROXY_BULK.
+   * The type of the cron job. For example, `CRON_JOB_TYPE_START_BULK`, `CRON_JOB_TYPE_START_PROXY_BULK`.
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobTypeEnum type = 1;
    */
   type?: CronJobTypeEnumJson;
 
   /**
-   * The cron job definition, e.g., "0 * * * *" for every hour.
+   * The cron job definition. For example, `"0 * * * *"` for every hour.
    *
    * @generated from field: string schedule = 2;
    */
   schedule?: string;
 
   /**
-   * The timezone related to the cron job, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone associated with the cron job. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
    *
    * @generated from field: string timezone = 3;
    */
   timezone?: string;
 
   /**
-   * Whether the cron job is suspended or not. By default, it is false (i.e., not suspended).
+   * Indicates whether the cron job is suspended. Default is `false` (not suspended).
    *
    * @generated from field: bool suspend = 4;
    */
@@ -196,18 +220,20 @@ export const CronJobSpecSchema: GenMessage<CronJobSpec, {jsonType: CronJobSpecJs
   messageDesc(file_cronjobs_cronjobs, 2);
 
 /**
+ * Defines the current status of a cron job.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobStatus
  */
 export type CronJobStatus = Message<"io.clbs.openhes.models.cronjobs.CronJobStatus"> & {
   /**
-   * The timestamp of the last run.
+   * The timestamp of the last run of the cron job.
    *
    * @generated from field: google.protobuf.Timestamp last_run_at = 1;
    */
   lastRunAt?: Timestamp;
 
   /**
-   * The timestamp of the next run.
+   * The timestamp of the next run of the cron job.
    *
    * @generated from field: google.protobuf.Timestamp next_run_at = 2;
    */
@@ -222,18 +248,20 @@ export type CronJobStatus = Message<"io.clbs.openhes.models.cronjobs.CronJobStat
 };
 
 /**
+ * Defines the current status of a cron job.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobStatus
  */
 export type CronJobStatusJson = {
   /**
-   * The timestamp of the last run.
+   * The timestamp of the last run of the cron job.
    *
    * @generated from field: google.protobuf.Timestamp last_run_at = 1;
    */
   lastRunAt?: TimestampJson;
 
   /**
-   * The timestamp of the next run.
+   * The timestamp of the next run of the cron job.
    *
    * @generated from field: google.protobuf.Timestamp next_run_at = 2;
    */
@@ -255,6 +283,8 @@ export const CronJobStatusSchema: GenMessage<CronJobStatus, {jsonType: CronJobSt
   messageDesc(file_cronjobs_cronjobs, 3);
 
 /**
+ * Defines a list cron jobs.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.ListOfCronJob
  */
 export type ListOfCronJob = Message<"io.clbs.openhes.models.cronjobs.ListOfCronJob"> & {
@@ -266,7 +296,7 @@ export type ListOfCronJob = Message<"io.clbs.openhes.models.cronjobs.ListOfCronJ
   items: CronJob[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -274,6 +304,8 @@ export type ListOfCronJob = Message<"io.clbs.openhes.models.cronjobs.ListOfCronJ
 };
 
 /**
+ * Defines a list cron jobs.
+ *
  * @generated from message io.clbs.openhes.models.cronjobs.ListOfCronJob
  */
 export type ListOfCronJobJson = {
@@ -285,7 +317,7 @@ export type ListOfCronJobJson = {
   items?: CronJobJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -300,6 +332,8 @@ export const ListOfCronJobSchema: GenMessage<ListOfCronJob, {jsonType: ListOfCro
   messageDesc(file_cronjobs_cronjobs, 4);
 
 /**
+ * Defines the cron job types that can be scheduled.
+ *
  * @generated from enum io.clbs.openhes.models.cronjobs.CronJobTypeEnum
  */
 export enum CronJobTypeEnum {
@@ -311,14 +345,14 @@ export enum CronJobTypeEnum {
   CRON_JOB_TYPE_UNSPECIFIED = 0,
 
   /**
-   * Cron job to start an acquistion bulk.
+   * The cron job that starts an acquistion bulk.
    *
    * @generated from enum value: CRON_JOB_TYPE_START_BULK = 1;
    */
   CRON_JOB_TYPE_START_BULK = 1,
 
   /**
-   * Cron job to start a proxy bulk.
+   * The cron job that starts a proxy bulk.
    *
    * @generated from enum value: CRON_JOB_TYPE_START_PROXY_BULK = 2;
    */
@@ -326,6 +360,8 @@ export enum CronJobTypeEnum {
 }
 
 /**
+ * Defines the cron job types that can be scheduled.
+ *
  * @generated from enum io.clbs.openhes.models.cronjobs.CronJobTypeEnum
  */
 export type CronJobTypeEnumJson = "CRON_JOB_TYPE_UNSPECIFIED" | "CRON_JOB_TYPE_START_BULK" | "CRON_JOB_TYPE_START_PROXY_BULK";

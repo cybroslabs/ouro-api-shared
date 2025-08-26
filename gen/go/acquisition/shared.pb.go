@@ -13,7 +13,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -280,10 +279,10 @@ type SerialConfigDataBits int32
 
 const (
 	SerialConfigDataBits_DATA_BITS_UNSPECIFIED SerialConfigDataBits = 0 // Unspecified data bits.
-	SerialConfigDataBits_DATA_BITS_5           SerialConfigDataBits = 1 // 5 data bits
-	SerialConfigDataBits_DATA_BITS_6           SerialConfigDataBits = 2 // 6 data bits
-	SerialConfigDataBits_DATA_BITS_7           SerialConfigDataBits = 3 // 7 data bits
-	SerialConfigDataBits_DATA_BITS_8           SerialConfigDataBits = 4 // 8 data bits
+	SerialConfigDataBits_DATA_BITS_5           SerialConfigDataBits = 1 // 5 data bits.
+	SerialConfigDataBits_DATA_BITS_6           SerialConfigDataBits = 2 // 6 data bits.
+	SerialConfigDataBits_DATA_BITS_7           SerialConfigDataBits = 3 // 7 data bits.
+	SerialConfigDataBits_DATA_BITS_8           SerialConfigDataBits = 4 // 8 data bits.
 )
 
 // Enum value maps for SerialConfigDataBits.
@@ -331,9 +330,9 @@ type SerialConfigStopBits int32
 
 const (
 	SerialConfigStopBits_STOP_BITS_UNSPECIFIED SerialConfigStopBits = 0 // Unspecified stop bits.
-	SerialConfigStopBits_STOP_BITS_1           SerialConfigStopBits = 1 // 1 stop bit
-	SerialConfigStopBits_STOP_BITS_1_5         SerialConfigStopBits = 2 // 1.5 stop bits
-	SerialConfigStopBits_STOP_BITS_2           SerialConfigStopBits = 3 // 2 stop bits
+	SerialConfigStopBits_STOP_BITS_1           SerialConfigStopBits = 1 // 1 stop bit.
+	SerialConfigStopBits_STOP_BITS_1_5         SerialConfigStopBits = 2 // 1.5 stop bits.
+	SerialConfigStopBits_STOP_BITS_2           SerialConfigStopBits = 3 // 2 stop bits.
 )
 
 // Enum value maps for SerialConfigStopBits.
@@ -380,7 +379,7 @@ type CommunicationType int32
 const (
 	CommunicationType_COMMUNICATION_TYPE_UNSPECIFIED        CommunicationType = 0  // Unspecified communication type.
 	CommunicationType_COMMUNICATION_TYPE_TCPIP              CommunicationType = 1  // The communication is established via direct TCP/IP.
-	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL         CommunicationType = 2  // The communication is established via phone line (modem).
+	CommunicationType_COMMUNICATION_TYPE_MODEM_POOL         CommunicationType = 2  // The communication is established via a phone line (modem).
 	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_DIRECT CommunicationType = 3  // The communication is established via a direct serial line.
 	CommunicationType_COMMUNICATION_TYPE_SERIAL_LINE_MOXA   CommunicationType = 4  // The communication is established via a controlled  serial line (Moxa).
 	CommunicationType_COMMUNICATION_TYPE_LISTENING          CommunicationType = 99 // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
@@ -559,7 +558,7 @@ type ActionType int32
 
 const (
 	ActionType_ACTION_TYPE_UNSPECIFIED            ActionType = 0  // Unspecified action type.
-	ActionType_ACTION_TYPE_GET_REGISTER           ActionType = 1  // Get a register value, for example an instantaneous values. The action covers a specific register.
+	ActionType_ACTION_TYPE_GET_REGISTER           ActionType = 1  // Get a register value, for example an instantaneous value. The action covers a specific register.
 	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE ActionType = 2  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
 	ActionType_ACTION_TYPE_GET_IRREGULAR_PROFILE  ActionType = 3  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
 	ActionType_ACTION_TYPE_GET_EVENTS             ActionType = 4  // Get an event log. The action covers a specific event log.
@@ -2903,7 +2902,7 @@ func (b0 JobDeviceId_builder) Build() *JobDeviceId {
 	return m0
 }
 
-// Defines single job-device job-device information.
+// Defines the information for a device job.
 type JobDevice struct {
 	state                       protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_JobId            *string                       `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
@@ -11660,7 +11659,7 @@ func (b0 DeviceCommunicationUnit_builder) Build() *DeviceCommunicationUnit {
 	return m0
 }
 
-// Defines the default attributes for mapping between a device and its communication unit for a specific application protocol.
+// Defines the default attributes for mapping a device to its communication unit for a specific application protocol.
 type DefaultDeviceCommunicationUnitAttributes struct {
 	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_AppProtocol ApplicationProtocol           `protobuf:"varint,1,opt,name=app_protocol,json=appProtocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
@@ -13260,7 +13259,7 @@ var File_acquisition_shared_proto protoreflect.FileDescriptor
 
 const file_acquisition_shared_proto_rawDesc = "" +
 	"\n" +
-	"\x18acquisition/shared.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x15common/messages.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a%acquisition/timeofuse/timeofuse.proto\"\xc5\x03\n" +
+	"\x18acquisition/shared.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x15common/messages.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a%acquisition/timeofuse/timeofuse.proto\"\xc5\x03\n" +
 	"\vJobSettings\x12<\n" +
 	"\fmax_duration\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\vmaxDuration\x12K\n" +
 	"\bpriority\x18\x02 \x01(\x0e2/.io.clbs.openhes.models.acquisition.JobPriorityR\bpriority\x12\x1a\n" +

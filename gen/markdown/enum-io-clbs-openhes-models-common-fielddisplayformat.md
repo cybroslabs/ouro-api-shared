@@ -1,17 +1,17 @@
 # Enum: io.clbs.openhes.models.common.FieldDisplayFormat
 
-Enum representing the field display format.
+Define the display format, determining how alues are presetned in the GUI.
 
 ## Options
 
 | Value | Description |
 | --- | --- |
-| DISPLAY_FORMAT_UNSPECIFIED | The default display format. The GUI shows text, int, double, date-time or duration in the default format. |
-| DATE_ONLY | The date-only display format of local date-time. Data type must be TIMESTAMP or string. |
-| UTC_DATETIME | The date-time display format with in UTC timezone. Data type must be TIMESTAMP or string. |
-| UTC_DATE_ONLY | The date display format with in UTC timezone. Data type must be TIMESTAMP or string. |
-| TIMEOFDAY | The time of day display format hh:mm:ss, e.g. 12:30:00. Data type must be INTEGER in milliseconds. |
-| MONEY | The money display format. The unit must be set to the currency code, ISO 4217 standard (e.g. USD, EUR, ...). Data type must be DOUBLE or INTEGER. |
-| PASSWORD | The password display format. Data type must be TEXT. The GUI must always display six starts (******) not to reveal the actual password length. |
-| MULTILINE | The multiline-string display format. Data type must be TEXT. |
-| COMBO | The combo-box display style & format. Data type must be TEXT. The GUI must display the value as a combo-box with the list of options. |
+| DISPLAY_FORMAT_UNSPECIFIED | The default display format. Text, integer, double, date-time, or duration values are shown in their default format. |
+| DATE_ONLY | Displays only the date portion of a local date-time value. Data type must be `TIMESTAMP` or `string`. |
+| UTC_DATETIME | Displays the full date-time in UTC timezone. Data type must be `TIMESTAMP` or `string`. |
+| UTC_DATE_ONLY | Displays the date in UTC timezone. Data type must be `TIMESTAMP` or `string`. |
+| TIMEOFDAY | Displays time of day in `hh:mm:ss` format (for example, `12:30:00`). Data type must be `INTEGER` in milliseconds. |
+| MONEY | Displays money amounts. The unit must be set to an ISO 4217 currency code (for example, USD, EUR). Data type must be `DOUBLE` or `INTEGER`. |
+| PASSWORD | Displays values as hidden passwords. Data type must be `TEXT`. The GUI always shows six asterisks (******) regardless of actual length. |
+| MULTILINE | Displays values as multi-line text. Data type must be `TEXT`. |
+| COMBO | Displays values as a combo-box with selectable options. Data type must be `TEXT`. |

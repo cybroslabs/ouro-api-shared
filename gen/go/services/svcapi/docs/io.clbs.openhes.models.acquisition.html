@@ -5117,7 +5117,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the default attributes for mapping between a device and its communication unit for a specific application protocol.</p>
+  <p>Defines the default attributes for mapping a device to its communication unit for a specific application protocol.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5144,7 +5144,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The application protocol.</p></td>
+      <td class="content"><p>The application protocol used.</p></td>
       
     </tr>
     
@@ -5159,7 +5159,7 @@
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The application protocol related device attributes, represented as a list of attribute definitions.</p></td>
+      <td class="content"><p>The protocol-specific device attributes, represented as a list of attribute definitions.</p></td>
       
     </tr>
     
@@ -6686,7 +6686,7 @@
         </code>
       </td>
       <td class="content"><p>@gqltype: UUID</p>
-<p>The identifier of the device configuration template.</p></td>
+<p>The unique identifier of the device configuration template.</p></td>
       
     </tr>
     
@@ -6752,7 +6752,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The default communication unit link attributes used when the device is created without a communication unit link. Typically usable for floating devices that are connected via data concentrators and related driver assigns the communication unit dynamically. The list must not contain same application protocol more than once.</p></td>
+      <td class="content"><p>The default communication unit link attributes used when the device is created without a communication unit link. Typically applicable for floating devices that are connected via data concentrators where the related driver dynamically assigns the communication unit. The list must not contain same application protocol more than once.</p></td>
       
     </tr>
     
@@ -8731,7 +8731,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  <p>Defines single job-device job-device information.</p>
+  <p>Defines the information for a device job.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -8757,7 +8757,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device job identifier within the parent bulk.</p></td>
+      <td class="content"><p>The unique job identifier within the parent bulk.</p></td>
       
     </tr>
     
@@ -8772,7 +8772,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device identifier. If set, all subsequent details are loaded from the device registry.</p></td>
+      <td class="content"><p>The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.</p></td>
       
     </tr>
     
@@ -8787,7 +8787,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The external identifier of the device.</p></td>
+      <td class="content"><p>The external device identifier.</p></td>
       
     </tr>
     
@@ -8802,7 +8802,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The connection attributes for the device. Options depend on the <code>ApplicationProtocolTemplate</code> of the given application protocol (see the <code>app_protocol</code> property).</p></td>
+      <td class="content"><p>The connection attributes for the device. The options depend on the <code>ApplicationProtocolTemplate</code> of the given application protocol (see the <code>app_protocol</code> property).</p></td>
       
     </tr>
     
@@ -8836,7 +8836,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The application protocol used by the device.</p></td>
+      <td class="content"><p>The application protocol used to communicate with the device.</p></td>
       
     </tr>
     
@@ -12830,7 +12830,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     <tr>
       <td><code>ACTION_TYPE_GET_REGISTER</code></td>
       <td>1</td>
-      <td class="content"><p>Get a register value, for example an instantaneous values. The action covers a specific register.</p></td>
+      <td class="content"><p>Get a register value, for example an instantaneous value. The action covers a specific register.</p></td>
     </tr>
     
     <tr>
@@ -13094,7 +13094,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     <tr>
       <td><code>COMMUNICATION_TYPE_MODEM_POOL</code></td>
       <td>2</td>
-      <td class="content"><p>The communication is established via phone line (modem).</p></td>
+      <td class="content"><p>The communication is established via a phone line (modem).</p></td>
     </tr>
     
     <tr>

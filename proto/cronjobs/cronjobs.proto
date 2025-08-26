@@ -6,41 +6,46 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs";
 
 import "common/metadata.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 
+// Defines the cron job types that can be scheduled.
 enum CronJobTypeEnum {
     CRON_JOB_TYPE_UNSPECIFIED      = 0;  // Unspecified cron job type.
-    CRON_JOB_TYPE_START_BULK       = 1;  // Cron job to start an acquistion bulk.
-    CRON_JOB_TYPE_START_PROXY_BULK = 2;  // Cron job to start a proxy bulk.
+    CRON_JOB_TYPE_START_BULK       = 1;  // The cron job that starts an acquistion bulk.
+    CRON_JOB_TYPE_START_PROXY_BULK = 2;  // The cron job that starts a proxy bulk.
 }
 
+// Defines the specification for creating a new cron job.
 message CreateCronJobRequest {
-    CronJobSpec spec               = 1;
+    CronJobSpec spec               = 1;  // The cron job specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines the cron job specification.
 message CronJob {
-    CronJobSpec spec               = 1;
-    CronJobStatus status           = 2;
+    CronJobSpec spec               = 1;  // The specification of the cron job.
+    CronJobStatus status           = 2;  // The current status of the cron job.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines the cron job specification.
 message CronJobSpec {
-    CronJobTypeEnum type        = 1;  // The type of the cron job, e.g., CRON_JOB_TYPE_START_BULK, CRON_JOB_TYPE_START_PROXY_BULK.
-    string schedule             = 2;  // The cron job definition, e.g., "0 * * * *" for every hour.
-    string timezone             = 3;  // The timezone related to the cron job, e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
-    bool suspend                = 4;  // Whether the cron job is suspended or not. By default, it is false (i.e., not suspended).
+    CronJobTypeEnum type        = 1;  // The type of the cron job. For example, `CRON_JOB_TYPE_START_BULK`, `CRON_JOB_TYPE_START_PROXY_BULK`.
+    string schedule             = 2;  // The cron job definition. For example, `"0 * * * *"` for every hour.
+    string timezone             = 3;  // The timezone associated with the cron job. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+    bool suspend                = 4;  // Indicates whether the cron job is suspended. Default is `false` (not suspended).
     google.protobuf.Struct data = 5;  // The payload to be sent when the cron job runs.
 }
 
+// Defines the current status of a cron job.
 message CronJobStatus {
-    google.protobuf.Timestamp last_run_at = 1;  // The timestamp of the last run.
-    google.protobuf.Timestamp next_run_at = 2;  // The timestamp of the next run.
+    google.protobuf.Timestamp last_run_at = 1;  // The timestamp of the last run of the cron job.
+    google.protobuf.Timestamp next_run_at = 2;  // The timestamp of the next run of the cron job.
     string error                          = 3;  // The error message if the cron job schedule is invalid.
 }
 
+// Defines a list cron jobs.
 message ListOfCronJob {
     repeated CronJob items = 1;  // The list of cron jobs.
-    int32 total_count      = 2;  // The total number of items.
+    int32 total_count      = 2;  // The total number of items in the list.
 }
