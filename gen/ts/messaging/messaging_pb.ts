@@ -2,8 +2,8 @@
 // @generated from file messaging/messaging.proto (package io.clbs.openhes.models.messaging, edition 2023)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { StringValue, StringValueJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import { file_common_fields } from "../common/fields_pb";
@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file messaging/messaging.proto.
  */
 export const file_messaging_messaging: GenFile = /*@__PURE__*/
-  fileDesc("ChltZXNzYWdpbmcvbWVzc2FnaW5nLnByb3RvEiBpby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZyLGAQoXTWVzc2FnaW5nQ29uc3VtZXJDbGllbnQSSQoFc2V0dXAYASABKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb25zdW1lclNldHVwSAASKwoDYWNrGAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSAASKwoDbmFrGAMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSABCBgoEa2luZCJvChdNZXNzYWdpbmdDb25zdW1lclNlcnZlchJMCgdyZWNlaXZlGAEgASgLMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2VIAEIGCgRraW5lIrwBChhNZXNzYWdpbmdQdWJsaXNoZXJDbGllbnQSSgoFc2V0dXAYASABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoZXJTZXR1cEgAEkwKB3B1Ymxpc2gYAiABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoTWVzc2FnZUgAQgYKBGtpbmQiZgoXTWVzc2FnaW5nUHVibGlzaGVyU2V0dXASPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAEQAkoECAIQAyI4ChdNZXNzYWdpbmdQdWJsaXNoTWVzc2FnZRIPCgdzdWJqZWN0GAEgASgJEgwKBGRhdGEYAiABKAwitwEKFk1lc3NhZ2luZ0NvbnN1bWVyU2V0dXASVgoIc2V0dGluZ3MYAiABKAsyRC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb21wb25lbnRDb25zdW1lclNldHRpbmdzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAIiTAoXTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2USEgoKbWVzc2FnZV9pZBgBIAEoCRIPCgdzdWJqZWN0GAIgASgJEgwKBGRhdGEYAyABKAwidAoYTGlzdE9mTWVzc2FnaW5nQ29tcG9uZW50EkMKBWl0ZW1zGAEgAygLMjQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50EhMKC3RvdGFsX2NvdW50GAIgASgFIukBChJNZXNzYWdpbmdDb21wb25lbnQSRgoEc3BlYxgBIAEoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubWVzc2FnaW5nLk1lc3NhZ2luZ0NvbXBvbmVudFNwZWMSSgoGc3RhdHVzGAIgASgLMjouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50U3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMivwEKIk1lc3NhZ2luZ0NvbXBvbmVudENvbnN1bWVyU2V0dGluZ3MSEwoLY29uc3VtZXJfaWQYASABKAkSUgoPZGVsaXZlcnlfcG9saWN5GAIgASgOMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nRGVsaXZlcnlQb2xpY3kSHgoWbWF4X2luX2ZsaWdodF9tZXNzYWdlcxgDIAEoBRIQCghzdWJqZWN0cxgEIAMoCSKCAQoWTWVzc2FnaW5nQ29tcG9uZW50U3BlYxIPCgdlbmFibGVkGAEgASgIElcKCWNvbnN1bWVycxgCIAMoCzJELmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubWVzc2FnaW5nLk1lc3NhZ2luZ0NvbXBvbmVudENvbnN1bWVyU2V0dGluZ3MiGgoYTWVzc2FnaW5nQ29tcG9uZW50U3RhdHVzKnwKF01lc3NhZ2luZ0RlbGl2ZXJ5UG9saWN5EiIKHk1FU1NBR0lOR19ERUxJVkVSWV9VTlNQRUNJRklFRBAAEiEKHU1FU1NBR0lOR19ERUxJVkVSWV9XT1JLX1FVRVVFEAESGgoWTUVTU0FHSU5HX0RFTElWRVJZX0FMTBACQjhaNmdpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL21lc3NhZ2luZ2IIZWRpdGlvbnNw6Ac", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
+  fileDesc("ChltZXNzYWdpbmcvbWVzc2FnaW5nLnByb3RvEiBpby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZyLGAQoXTWVzc2FnaW5nQ29uc3VtZXJDbGllbnQSSQoFc2V0dXAYASABKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb25zdW1lclNldHVwSAASKwoDYWNrGAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSAASKwoDbmFrGAMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSABCBgoEa2luZCJvChdNZXNzYWdpbmdDb25zdW1lclNlcnZlchJMCgdyZWNlaXZlGAEgASgLMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2VIAEIGCgRraW5lIrwBChhNZXNzYWdpbmdQdWJsaXNoZXJDbGllbnQSSgoFc2V0dXAYASABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoZXJTZXR1cEgAEkwKB3B1Ymxpc2gYAiABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoTWVzc2FnZUgAQgYKBGtpbmQiZgoXTWVzc2FnaW5nUHVibGlzaGVyU2V0dXASPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAEQAkoECAIQAyI4ChdNZXNzYWdpbmdQdWJsaXNoTWVzc2FnZRIPCgdzdWJqZWN0GAEgASgJEgwKBGRhdGEYAiABKAwitwEKFk1lc3NhZ2luZ0NvbnN1bWVyU2V0dXASVgoIc2V0dGluZ3MYAiABKAsyRC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb21wb25lbnRDb25zdW1lclNldHRpbmdzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAIiTAoXTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2USEgoKbWVzc2FnZV9pZBgBIAEoCRIPCgdzdWJqZWN0GAIgASgJEgwKBGRhdGEYAyABKAwidAoYTGlzdE9mTWVzc2FnaW5nQ29tcG9uZW50EkMKBWl0ZW1zGAEgAygLMjQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50EhMKC3RvdGFsX2NvdW50GAIgASgFIukBChJNZXNzYWdpbmdDb21wb25lbnQSRgoEc3BlYxgBIAEoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubWVzc2FnaW5nLk1lc3NhZ2luZ0NvbXBvbmVudFNwZWMSSgoGc3RhdHVzGAIgASgLMjouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50U3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiawoiTWVzc2FnaW5nQ29tcG9uZW50Q29uc3VtZXJTZXR0aW5ncxITCgtjb25zdW1lcl9pZBgBIAEoCRIeChZtYXhfaW5fZmxpZ2h0X21lc3NhZ2VzGAIgASgFEhAKCHN1YmplY3RzGAMgAygJIoIBChZNZXNzYWdpbmdDb21wb25lbnRTcGVjEg8KB2VuYWJsZWQYASABKAgSVwoJY29uc3VtZXJzGAIgAygLMkQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50Q29uc3VtZXJTZXR0aW5ncyIaChhNZXNzYWdpbmdDb21wb25lbnRTdGF0dXNCOFo2Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vbWVzc2FnaW5nYghlZGl0aW9uc3DoBw", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
 
 /**
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerClient
@@ -469,23 +469,16 @@ export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models
   consumerId: string;
 
   /**
-   * Delivery policy for the consumer.
-   *
-   * @generated from field: io.clbs.openhes.models.messaging.MessagingDeliveryPolicy delivery_policy = 2;
-   */
-  deliveryPolicy: MessagingDeliveryPolicy;
-
-  /**
    * Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
    *
-   * @generated from field: int32 max_in_flight_messages = 3;
+   * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages: number;
 
   /**
-   * List of subjects the consumer is interested in. It must not be empty. If it's changed then all existing consumers for the same component will be affected!
+   * List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!
    *
-   * @generated from field: repeated string subjects = 4;
+   * @generated from field: repeated string subjects = 3;
    */
   subjects: string[];
 };
@@ -502,23 +495,16 @@ export type MessagingComponentConsumerSettingsJson = {
   consumerId?: string;
 
   /**
-   * Delivery policy for the consumer.
-   *
-   * @generated from field: io.clbs.openhes.models.messaging.MessagingDeliveryPolicy delivery_policy = 2;
-   */
-  deliveryPolicy?: MessagingDeliveryPolicyJson;
-
-  /**
    * Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
    *
-   * @generated from field: int32 max_in_flight_messages = 3;
+   * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages?: number;
 
   /**
-   * List of subjects the consumer is interested in. It must not be empty. If it's changed then all existing consumers for the same component will be affected!
+   * List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!
    *
-   * @generated from field: repeated string subjects = 4;
+   * @generated from field: repeated string subjects = 3;
    */
   subjects?: string[];
 };
@@ -597,41 +583,4 @@ export type MessagingComponentStatusJson = {
  */
 export const MessagingComponentStatusSchema: GenMessage<MessagingComponentStatus, {jsonType: MessagingComponentStatusJson}> = /*@__PURE__*/
   messageDesc(file_messaging_messaging, 11);
-
-/**
- * @generated from enum io.clbs.openhes.models.messaging.MessagingDeliveryPolicy
- */
-export enum MessagingDeliveryPolicy {
-  /**
-   * Unspecified delivery policy.
-   *
-   * @generated from enum value: MESSAGING_DELIVERY_UNSPECIFIED = 0;
-   */
-  MESSAGING_DELIVERY_UNSPECIFIED = 0,
-
-  /**
-   * Deliver the message to single consumer - work queue style.
-   *
-   * @generated from enum value: MESSAGING_DELIVERY_WORK_QUEUE = 1;
-   */
-  MESSAGING_DELIVERY_WORK_QUEUE = 1,
-
-  /**
-   * Deliver the message to all defined consumers.
-   *
-   * @generated from enum value: MESSAGING_DELIVERY_ALL = 2;
-   */
-  MESSAGING_DELIVERY_ALL = 2,
-}
-
-/**
- * @generated from enum io.clbs.openhes.models.messaging.MessagingDeliveryPolicy
- */
-export type MessagingDeliveryPolicyJson = "MESSAGING_DELIVERY_UNSPECIFIED" | "MESSAGING_DELIVERY_WORK_QUEUE" | "MESSAGING_DELIVERY_ALL";
-
-/**
- * Describes the enum io.clbs.openhes.models.messaging.MessagingDeliveryPolicy.
- */
-export const MessagingDeliveryPolicySchema: GenEnum<MessagingDeliveryPolicy, MessagingDeliveryPolicyJson> = /*@__PURE__*/
-  enumDesc(file_messaging_messaging, 0);
 

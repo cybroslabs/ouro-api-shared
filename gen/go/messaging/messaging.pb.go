@@ -22,50 +22,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type MessagingDeliveryPolicy int32
-
-const (
-	MessagingDeliveryPolicy_MESSAGING_DELIVERY_UNSPECIFIED MessagingDeliveryPolicy = 0 // Unspecified delivery policy.
-	MessagingDeliveryPolicy_MESSAGING_DELIVERY_WORK_QUEUE  MessagingDeliveryPolicy = 1 // Deliver the message to single consumer - work queue style.
-	MessagingDeliveryPolicy_MESSAGING_DELIVERY_ALL         MessagingDeliveryPolicy = 2 // Deliver the message to all defined consumers.
-)
-
-// Enum value maps for MessagingDeliveryPolicy.
-var (
-	MessagingDeliveryPolicy_name = map[int32]string{
-		0: "MESSAGING_DELIVERY_UNSPECIFIED",
-		1: "MESSAGING_DELIVERY_WORK_QUEUE",
-		2: "MESSAGING_DELIVERY_ALL",
-	}
-	MessagingDeliveryPolicy_value = map[string]int32{
-		"MESSAGING_DELIVERY_UNSPECIFIED": 0,
-		"MESSAGING_DELIVERY_WORK_QUEUE":  1,
-		"MESSAGING_DELIVERY_ALL":         2,
-	}
-)
-
-func (x MessagingDeliveryPolicy) Enum() *MessagingDeliveryPolicy {
-	p := new(MessagingDeliveryPolicy)
-	*p = x
-	return p
-}
-
-func (x MessagingDeliveryPolicy) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (MessagingDeliveryPolicy) Descriptor() protoreflect.EnumDescriptor {
-	return file_messaging_messaging_proto_enumTypes[0].Descriptor()
-}
-
-func (MessagingDeliveryPolicy) Type() protoreflect.EnumType {
-	return &file_messaging_messaging_proto_enumTypes[0]
-}
-
-func (x MessagingDeliveryPolicy) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
 type MessagingConsumerClient struct {
 	state           protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Kind isMessagingConsumerClient_Kind `protobuf_oneof:"kind"`
@@ -1205,11 +1161,10 @@ func (b0 MessagingComponent_builder) Build() *MessagingComponent {
 }
 
 type MessagingComponentConsumerSettings struct {
-	state                          protoimpl.MessageState  `protogen:"opaque.v1"`
-	xxx_hidden_ConsumerId          *string                 `protobuf:"bytes,1,opt,name=consumer_id,json=consumerId"`
-	xxx_hidden_DeliveryPolicy      MessagingDeliveryPolicy `protobuf:"varint,2,opt,name=delivery_policy,json=deliveryPolicy,enum=io.clbs.openhes.models.messaging.MessagingDeliveryPolicy"`
-	xxx_hidden_MaxInFlightMessages int32                   `protobuf:"varint,3,opt,name=max_in_flight_messages,json=maxInFlightMessages"`
-	xxx_hidden_Subjects            []string                `protobuf:"bytes,4,rep,name=subjects"`
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ConsumerId          *string                `protobuf:"bytes,1,opt,name=consumer_id,json=consumerId"`
+	xxx_hidden_MaxInFlightMessages int32                  `protobuf:"varint,2,opt,name=max_in_flight_messages,json=maxInFlightMessages"`
+	xxx_hidden_Subjects            []string               `protobuf:"bytes,3,rep,name=subjects"`
 	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
 	XXX_presence                   [1]uint32
 	unknownFields                  protoimpl.UnknownFields
@@ -1251,15 +1206,6 @@ func (x *MessagingComponentConsumerSettings) GetConsumerId() string {
 	return ""
 }
 
-func (x *MessagingComponentConsumerSettings) GetDeliveryPolicy() MessagingDeliveryPolicy {
-	if x != nil {
-		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
-			return x.xxx_hidden_DeliveryPolicy
-		}
-	}
-	return MessagingDeliveryPolicy_MESSAGING_DELIVERY_UNSPECIFIED
-}
-
 func (x *MessagingComponentConsumerSettings) GetMaxInFlightMessages() int32 {
 	if x != nil {
 		return x.xxx_hidden_MaxInFlightMessages
@@ -1276,17 +1222,12 @@ func (x *MessagingComponentConsumerSettings) GetSubjects() []string {
 
 func (x *MessagingComponentConsumerSettings) SetConsumerId(v string) {
 	x.xxx_hidden_ConsumerId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
-}
-
-func (x *MessagingComponentConsumerSettings) SetDeliveryPolicy(v MessagingDeliveryPolicy) {
-	x.xxx_hidden_DeliveryPolicy = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *MessagingComponentConsumerSettings) SetMaxInFlightMessages(v int32) {
 	x.xxx_hidden_MaxInFlightMessages = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *MessagingComponentConsumerSettings) SetSubjects(v []string) {
@@ -1300,18 +1241,11 @@ func (x *MessagingComponentConsumerSettings) HasConsumerId() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *MessagingComponentConsumerSettings) HasDeliveryPolicy() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
-}
-
 func (x *MessagingComponentConsumerSettings) HasMaxInFlightMessages() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *MessagingComponentConsumerSettings) ClearConsumerId() {
@@ -1319,13 +1253,8 @@ func (x *MessagingComponentConsumerSettings) ClearConsumerId() {
 	x.xxx_hidden_ConsumerId = nil
 }
 
-func (x *MessagingComponentConsumerSettings) ClearDeliveryPolicy() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_DeliveryPolicy = MessagingDeliveryPolicy_MESSAGING_DELIVERY_UNSPECIFIED
-}
-
 func (x *MessagingComponentConsumerSettings) ClearMaxInFlightMessages() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_MaxInFlightMessages = 0
 }
 
@@ -1333,7 +1262,6 @@ type MessagingComponentConsumerSettings_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	ConsumerId          *string
-	DeliveryPolicy      *MessagingDeliveryPolicy
 	MaxInFlightMessages *int32
 	Subjects            []string
 }
@@ -1343,15 +1271,11 @@ func (b0 MessagingComponentConsumerSettings_builder) Build() *MessagingComponent
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.ConsumerId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_ConsumerId = b.ConsumerId
 	}
-	if b.DeliveryPolicy != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
-		x.xxx_hidden_DeliveryPolicy = *b.DeliveryPolicy
-	}
 	if b.MaxInFlightMessages != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_MaxInFlightMessages = *b.MaxInFlightMessages
 	}
 	x.xxx_hidden_Subjects = b.Subjects
@@ -1529,62 +1453,54 @@ const file_messaging_messaging_proto_rawDesc = "" +
 	"\x12MessagingComponent\x12L\n" +
 	"\x04spec\x18\x01 \x01(\v28.io.clbs.openhes.models.messaging.MessagingComponentSpecR\x04spec\x12R\n" +
 	"\x06status\x18\x02 \x01(\v2:.io.clbs.openhes.models.messaging.MessagingComponentStatusR\x06status\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xfa\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x96\x01\n" +
 	"\"MessagingComponentConsumerSettings\x12\x1f\n" +
 	"\vconsumer_id\x18\x01 \x01(\tR\n" +
-	"consumerId\x12b\n" +
-	"\x0fdelivery_policy\x18\x02 \x01(\x0e29.io.clbs.openhes.models.messaging.MessagingDeliveryPolicyR\x0edeliveryPolicy\x123\n" +
-	"\x16max_in_flight_messages\x18\x03 \x01(\x05R\x13maxInFlightMessages\x12\x1a\n" +
-	"\bsubjects\x18\x04 \x03(\tR\bsubjects\"\x96\x01\n" +
+	"consumerId\x123\n" +
+	"\x16max_in_flight_messages\x18\x02 \x01(\x05R\x13maxInFlightMessages\x12\x1a\n" +
+	"\bsubjects\x18\x03 \x03(\tR\bsubjects\"\x96\x01\n" +
 	"\x16MessagingComponentSpec\x12\x18\n" +
 	"\aenabled\x18\x01 \x01(\bR\aenabled\x12b\n" +
 	"\tconsumers\x18\x02 \x03(\v2D.io.clbs.openhes.models.messaging.MessagingComponentConsumerSettingsR\tconsumers\"\x1a\n" +
-	"\x18MessagingComponentStatus*|\n" +
-	"\x17MessagingDeliveryPolicy\x12\"\n" +
-	"\x1eMESSAGING_DELIVERY_UNSPECIFIED\x10\x00\x12!\n" +
-	"\x1dMESSAGING_DELIVERY_WORK_QUEUE\x10\x01\x12\x1a\n" +
-	"\x16MESSAGING_DELIVERY_ALL\x10\x02B8Z6github.com/cybroslabs/ouro-api-shared/gen/go/messagingb\beditionsp\xe8\a"
+	"\x18MessagingComponentStatusB8Z6github.com/cybroslabs/ouro-api-shared/gen/go/messagingb\beditionsp\xe8\a"
 
-var file_messaging_messaging_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_messaging_messaging_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_messaging_messaging_proto_goTypes = []any{
-	(MessagingDeliveryPolicy)(0),               // 0: io.clbs.openhes.models.messaging.MessagingDeliveryPolicy
-	(*MessagingConsumerClient)(nil),            // 1: io.clbs.openhes.models.messaging.MessagingConsumerClient
-	(*MessagingConsumerServer)(nil),            // 2: io.clbs.openhes.models.messaging.MessagingConsumerServer
-	(*MessagingPublisherClient)(nil),           // 3: io.clbs.openhes.models.messaging.MessagingPublisherClient
-	(*MessagingPublisherSetup)(nil),            // 4: io.clbs.openhes.models.messaging.MessagingPublisherSetup
-	(*MessagingPublishMessage)(nil),            // 5: io.clbs.openhes.models.messaging.MessagingPublishMessage
-	(*MessagingConsumerSetup)(nil),             // 6: io.clbs.openhes.models.messaging.MessagingConsumerSetup
-	(*MessagingReceiveMessage)(nil),            // 7: io.clbs.openhes.models.messaging.MessagingReceiveMessage
-	(*ListOfMessagingComponent)(nil),           // 8: io.clbs.openhes.models.messaging.ListOfMessagingComponent
-	(*MessagingComponent)(nil),                 // 9: io.clbs.openhes.models.messaging.MessagingComponent
-	(*MessagingComponentConsumerSettings)(nil), // 10: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
-	(*MessagingComponentSpec)(nil),             // 11: io.clbs.openhes.models.messaging.MessagingComponentSpec
-	(*MessagingComponentStatus)(nil),           // 12: io.clbs.openhes.models.messaging.MessagingComponentStatus
-	(*wrapperspb.StringValue)(nil),             // 13: google.protobuf.StringValue
-	(*common.MetadataFields)(nil),              // 14: io.clbs.openhes.models.common.MetadataFields
+	(*MessagingConsumerClient)(nil),            // 0: io.clbs.openhes.models.messaging.MessagingConsumerClient
+	(*MessagingConsumerServer)(nil),            // 1: io.clbs.openhes.models.messaging.MessagingConsumerServer
+	(*MessagingPublisherClient)(nil),           // 2: io.clbs.openhes.models.messaging.MessagingPublisherClient
+	(*MessagingPublisherSetup)(nil),            // 3: io.clbs.openhes.models.messaging.MessagingPublisherSetup
+	(*MessagingPublishMessage)(nil),            // 4: io.clbs.openhes.models.messaging.MessagingPublishMessage
+	(*MessagingConsumerSetup)(nil),             // 5: io.clbs.openhes.models.messaging.MessagingConsumerSetup
+	(*MessagingReceiveMessage)(nil),            // 6: io.clbs.openhes.models.messaging.MessagingReceiveMessage
+	(*ListOfMessagingComponent)(nil),           // 7: io.clbs.openhes.models.messaging.ListOfMessagingComponent
+	(*MessagingComponent)(nil),                 // 8: io.clbs.openhes.models.messaging.MessagingComponent
+	(*MessagingComponentConsumerSettings)(nil), // 9: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
+	(*MessagingComponentSpec)(nil),             // 10: io.clbs.openhes.models.messaging.MessagingComponentSpec
+	(*MessagingComponentStatus)(nil),           // 11: io.clbs.openhes.models.messaging.MessagingComponentStatus
+	(*wrapperspb.StringValue)(nil),             // 12: google.protobuf.StringValue
+	(*common.MetadataFields)(nil),              // 13: io.clbs.openhes.models.common.MetadataFields
 }
 var file_messaging_messaging_proto_depIdxs = []int32{
-	6,  // 0: io.clbs.openhes.models.messaging.MessagingConsumerClient.setup:type_name -> io.clbs.openhes.models.messaging.MessagingConsumerSetup
-	13, // 1: io.clbs.openhes.models.messaging.MessagingConsumerClient.ack:type_name -> google.protobuf.StringValue
-	13, // 2: io.clbs.openhes.models.messaging.MessagingConsumerClient.nak:type_name -> google.protobuf.StringValue
-	7,  // 3: io.clbs.openhes.models.messaging.MessagingConsumerServer.receive:type_name -> io.clbs.openhes.models.messaging.MessagingReceiveMessage
-	4,  // 4: io.clbs.openhes.models.messaging.MessagingPublisherClient.setup:type_name -> io.clbs.openhes.models.messaging.MessagingPublisherSetup
-	5,  // 5: io.clbs.openhes.models.messaging.MessagingPublisherClient.publish:type_name -> io.clbs.openhes.models.messaging.MessagingPublishMessage
-	14, // 6: io.clbs.openhes.models.messaging.MessagingPublisherSetup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	10, // 7: io.clbs.openhes.models.messaging.MessagingConsumerSetup.settings:type_name -> io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
-	14, // 8: io.clbs.openhes.models.messaging.MessagingConsumerSetup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	9,  // 9: io.clbs.openhes.models.messaging.ListOfMessagingComponent.items:type_name -> io.clbs.openhes.models.messaging.MessagingComponent
-	11, // 10: io.clbs.openhes.models.messaging.MessagingComponent.spec:type_name -> io.clbs.openhes.models.messaging.MessagingComponentSpec
-	12, // 11: io.clbs.openhes.models.messaging.MessagingComponent.status:type_name -> io.clbs.openhes.models.messaging.MessagingComponentStatus
-	14, // 12: io.clbs.openhes.models.messaging.MessagingComponent.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	0,  // 13: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings.delivery_policy:type_name -> io.clbs.openhes.models.messaging.MessagingDeliveryPolicy
-	10, // 14: io.clbs.openhes.models.messaging.MessagingComponentSpec.consumers:type_name -> io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	5,  // 0: io.clbs.openhes.models.messaging.MessagingConsumerClient.setup:type_name -> io.clbs.openhes.models.messaging.MessagingConsumerSetup
+	12, // 1: io.clbs.openhes.models.messaging.MessagingConsumerClient.ack:type_name -> google.protobuf.StringValue
+	12, // 2: io.clbs.openhes.models.messaging.MessagingConsumerClient.nak:type_name -> google.protobuf.StringValue
+	6,  // 3: io.clbs.openhes.models.messaging.MessagingConsumerServer.receive:type_name -> io.clbs.openhes.models.messaging.MessagingReceiveMessage
+	3,  // 4: io.clbs.openhes.models.messaging.MessagingPublisherClient.setup:type_name -> io.clbs.openhes.models.messaging.MessagingPublisherSetup
+	4,  // 5: io.clbs.openhes.models.messaging.MessagingPublisherClient.publish:type_name -> io.clbs.openhes.models.messaging.MessagingPublishMessage
+	13, // 6: io.clbs.openhes.models.messaging.MessagingPublisherSetup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	9,  // 7: io.clbs.openhes.models.messaging.MessagingConsumerSetup.settings:type_name -> io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
+	13, // 8: io.clbs.openhes.models.messaging.MessagingConsumerSetup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	8,  // 9: io.clbs.openhes.models.messaging.ListOfMessagingComponent.items:type_name -> io.clbs.openhes.models.messaging.MessagingComponent
+	10, // 10: io.clbs.openhes.models.messaging.MessagingComponent.spec:type_name -> io.clbs.openhes.models.messaging.MessagingComponentSpec
+	11, // 11: io.clbs.openhes.models.messaging.MessagingComponent.status:type_name -> io.clbs.openhes.models.messaging.MessagingComponentStatus
+	13, // 12: io.clbs.openhes.models.messaging.MessagingComponent.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	9,  // 13: io.clbs.openhes.models.messaging.MessagingComponentSpec.consumers:type_name -> io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_messaging_messaging_proto_init() }
@@ -1609,14 +1525,13 @@ func file_messaging_messaging_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_messaging_messaging_proto_rawDesc), len(file_messaging_messaging_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_messaging_messaging_proto_goTypes,
 		DependencyIndexes: file_messaging_messaging_proto_depIdxs,
-		EnumInfos:         file_messaging_messaging_proto_enumTypes,
 		MessageInfos:      file_messaging_messaging_proto_msgTypes,
 	}.Build()
 	File_messaging_messaging_proto = out.File

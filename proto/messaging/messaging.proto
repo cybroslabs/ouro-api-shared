@@ -39,12 +39,6 @@ message MessagingPublishMessage {
     bytes data     = 2;  // The message data to be published.
 }
 
-enum MessagingDeliveryPolicy {
-    MESSAGING_DELIVERY_UNSPECIFIED = 0;  // Unspecified delivery policy.
-    MESSAGING_DELIVERY_WORK_QUEUE  = 1;  // Deliver the message to single consumer - work queue style.
-    MESSAGING_DELIVERY_ALL         = 2;  // Deliver the message to all defined consumers.
-}
-
 message MessagingConsumerSetup {
     reserved 1;
     MessagingComponentConsumerSettings settings = 2;  // Settings for the messaging component.
@@ -69,10 +63,9 @@ message MessagingComponent {
 }
 
 message MessagingComponentConsumerSettings {
-    string consumer_id                      = 1;  // Unique UUID identifier for the consumer. It must be unique across all consumers of the same component.
-    MessagingDeliveryPolicy delivery_policy = 2;  // Delivery policy for the consumer.
-    int32 max_in_flight_messages            = 3;  // Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
-    repeated string subjects                = 4;  // List of subjects the consumer is interested in. It must not be empty. If it's changed then all existing consumers for the same component will be affected!
+    string consumer_id           = 1;  // Unique UUID identifier for the consumer. It must be unique across all consumers of the same component.
+    int32 max_in_flight_messages = 2;  // Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
+    repeated string subjects     = 3;  // List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!
 }
 
 message MessagingComponentSpec {

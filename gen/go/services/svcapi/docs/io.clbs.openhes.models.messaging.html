@@ -177,13 +177,6 @@
     
 
     
-      <p>
-        <a href="#enum-io.clbs.openhes.models.messaging.MessagingDeliveryPolicy">
-          <span class="tag" style="min-width: 6em">Enum</span>
-          <code>MessagingDeliveryPolicy</code> 
-        </a>
-      </p>
-    
   </div>
 
   <div class="block">
@@ -396,22 +389,6 @@
     <tr>
       <td>2</td>
       <td>
-        deliveryPolicy
-      </td>
-      <td>
-        <code title="io.clbs.openhes.models.messaging.MessagingDeliveryPolicy">
-          
-          <a href="io.clbs.openhes.models.messaging.html#enum-io.clbs.openhes.models.messaging.MessagingDeliveryPolicy"><span title="io.clbs.openhes.models.messaging.MessagingDeliveryPolicy">io.clbs.openhes.models.messaging.MessagingDeliveryPolicy</span>
-    </a>
-        </code>
-      </td>
-      <td class="content"><p>Delivery policy for the consumer.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
         maxInFlightMessages
       </td>
       <td>
@@ -425,7 +402,7 @@
     </tr>
     
     <tr>
-      <td>4</td>
+      <td>3</td>
       <td>
         subjects
       </td>
@@ -437,7 +414,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>List of subjects the consumer is interested in. It must not be empty. If it's changed then all existing consumers for the same component will be affected!</p></td>
+      <td class="content"><p>List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!</p></td>
       
     </tr>
     
@@ -1072,56 +1049,6 @@
     
 
   
-
-  
-
-    <h3 class="title is-3">
-      Enums
-    </h3>
-
-    
-    <div class="block">
-      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.messaging.MessagingDeliveryPolicy">
-  <a href="#enum-io.clbs.openhes.models.messaging.MessagingDeliveryPolicy" title="io.clbs.openhes.models.messaging.MessagingDeliveryPolicy">enum MessagingDeliveryPolicy</a>
-  
-</h4>
-
-<div class="block content">
-  <p></p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td><code>MESSAGING_DELIVERY_UNSPECIFIED</code></td>
-      <td>0</td>
-      <td class="content"><p>Unspecified delivery policy.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>MESSAGING_DELIVERY_WORK_QUEUE</code></td>
-      <td>1</td>
-      <td class="content"><p>Deliver the message to single consumer - work queue style.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>MESSAGING_DELIVERY_ALL</code></td>
-      <td>2</td>
-      <td class="content"><p>Deliver the message to all defined consumers.</p></td>
-    </tr>
-    
-  </tbody>
-</table> 
-    </div>
-    
 
   
 
