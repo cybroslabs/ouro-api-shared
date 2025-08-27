@@ -199,7 +199,6 @@ message BulkSpec {
     }
     JobSettings settings          = 4;  // The bulk-shared job settings.
     repeated JobActionSet actions = 5;  // The list actions to be executed.
-    string webhook_url            = 6;  // The webhook URL to call when the bulk is completed.
 }
 
 message BulkStatus {
@@ -246,7 +245,6 @@ message ProxyBulkSpec {
     ListOfJobDevice devices    = 3;  // The list of custom devices in the proxy bulk.
     JobSettings settings       = 4;  // The bulk-shared job settings.
     repeated JobAction actions = 5;  // The list actions to be executed.
-    string webhook_url         = 6;  // The webhook URL to call when the proxy bulk is completed.
 }
 
 message ProxyBulk {

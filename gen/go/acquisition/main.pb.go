@@ -3019,7 +3019,6 @@ type BulkSpec struct {
 	xxx_hidden_Device        isBulkSpec_Device      `protobuf_oneof:"device"`
 	xxx_hidden_Settings      *JobSettings           `protobuf:"bytes,4,opt,name=settings"`
 	xxx_hidden_Actions       *[]*JobActionSet       `protobuf:"bytes,5,rep,name=actions"`
-	xxx_hidden_WebhookUrl    *string                `protobuf:"bytes,6,opt,name=webhook_url,json=webhookUrl"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -3095,19 +3094,9 @@ func (x *BulkSpec) GetActions() []*JobActionSet {
 	return nil
 }
 
-func (x *BulkSpec) GetWebhookUrl() string {
-	if x != nil {
-		if x.xxx_hidden_WebhookUrl != nil {
-			return *x.xxx_hidden_WebhookUrl
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *BulkSpec) SetCorrelationId(v string) {
 	x.xxx_hidden_CorrelationId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
 }
 
 func (x *BulkSpec) SetDevices(v *ListOfJobDeviceId) {
@@ -3128,11 +3117,6 @@ func (x *BulkSpec) SetSettings(v *JobSettings) {
 
 func (x *BulkSpec) SetActions(v []*JobActionSet) {
 	x.xxx_hidden_Actions = &v
-}
-
-func (x *BulkSpec) SetWebhookUrl(v string) {
-	x.xxx_hidden_WebhookUrl = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
 }
 
 func (x *BulkSpec) HasCorrelationId() bool {
@@ -3172,13 +3156,6 @@ func (x *BulkSpec) HasSettings() bool {
 	return x.xxx_hidden_Settings != nil
 }
 
-func (x *BulkSpec) HasWebhookUrl() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
-}
-
 func (x *BulkSpec) ClearCorrelationId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_CorrelationId = nil
@@ -3202,11 +3179,6 @@ func (x *BulkSpec) ClearDeviceGroupId() {
 
 func (x *BulkSpec) ClearSettings() {
 	x.xxx_hidden_Settings = nil
-}
-
-func (x *BulkSpec) ClearWebhookUrl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_WebhookUrl = nil
 }
 
 const BulkSpec_Device_not_set_case case_BulkSpec_Device = 0
@@ -3236,9 +3208,8 @@ type BulkSpec_builder struct {
 	Devices       *ListOfJobDeviceId
 	DeviceGroupId *string
 	// -- end of xxx_hidden_Device
-	Settings   *JobSettings
-	Actions    []*JobActionSet
-	WebhookUrl *string
+	Settings *JobSettings
+	Actions  []*JobActionSet
 }
 
 func (b0 BulkSpec_builder) Build() *BulkSpec {
@@ -3246,7 +3217,7 @@ func (b0 BulkSpec_builder) Build() *BulkSpec {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.CorrelationId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
 		x.xxx_hidden_CorrelationId = b.CorrelationId
 	}
 	if b.Devices != nil {
@@ -3257,10 +3228,6 @@ func (b0 BulkSpec_builder) Build() *BulkSpec {
 	}
 	x.xxx_hidden_Settings = b.Settings
 	x.xxx_hidden_Actions = &b.Actions
-	if b.WebhookUrl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
-		x.xxx_hidden_WebhookUrl = b.WebhookUrl
-	}
 	return m0
 }
 
@@ -4012,7 +3979,6 @@ type ProxyBulkSpec struct {
 	xxx_hidden_Devices       *ListOfJobDevice       `protobuf:"bytes,3,opt,name=devices"`
 	xxx_hidden_Settings      *JobSettings           `protobuf:"bytes,4,opt,name=settings"`
 	xxx_hidden_Actions       *[]*JobAction          `protobuf:"bytes,5,rep,name=actions"`
-	xxx_hidden_WebhookUrl    *string                `protobuf:"bytes,6,opt,name=webhook_url,json=webhookUrl"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -4087,24 +4053,14 @@ func (x *ProxyBulkSpec) GetActions() []*JobAction {
 	return nil
 }
 
-func (x *ProxyBulkSpec) GetWebhookUrl() string {
-	if x != nil {
-		if x.xxx_hidden_WebhookUrl != nil {
-			return *x.xxx_hidden_WebhookUrl
-		}
-		return ""
-	}
-	return ""
-}
-
 func (x *ProxyBulkSpec) SetCorrelationId(v string) {
 	x.xxx_hidden_CorrelationId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *ProxyBulkSpec) SetDriverType(v string) {
 	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *ProxyBulkSpec) SetDevices(v *ListOfJobDevice) {
@@ -4117,11 +4073,6 @@ func (x *ProxyBulkSpec) SetSettings(v *JobSettings) {
 
 func (x *ProxyBulkSpec) SetActions(v []*JobAction) {
 	x.xxx_hidden_Actions = &v
-}
-
-func (x *ProxyBulkSpec) SetWebhookUrl(v string) {
-	x.xxx_hidden_WebhookUrl = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
 }
 
 func (x *ProxyBulkSpec) HasCorrelationId() bool {
@@ -4152,13 +4103,6 @@ func (x *ProxyBulkSpec) HasSettings() bool {
 	return x.xxx_hidden_Settings != nil
 }
 
-func (x *ProxyBulkSpec) HasWebhookUrl() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
-}
-
 func (x *ProxyBulkSpec) ClearCorrelationId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_CorrelationId = nil
@@ -4177,11 +4121,6 @@ func (x *ProxyBulkSpec) ClearSettings() {
 	x.xxx_hidden_Settings = nil
 }
 
-func (x *ProxyBulkSpec) ClearWebhookUrl() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
-	x.xxx_hidden_WebhookUrl = nil
-}
-
 type ProxyBulkSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -4191,7 +4130,6 @@ type ProxyBulkSpec_builder struct {
 	Devices       *ListOfJobDevice
 	Settings      *JobSettings
 	Actions       []*JobAction
-	WebhookUrl    *string
 }
 
 func (b0 ProxyBulkSpec_builder) Build() *ProxyBulkSpec {
@@ -4199,20 +4137,16 @@ func (b0 ProxyBulkSpec_builder) Build() *ProxyBulkSpec {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.CorrelationId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
 		x.xxx_hidden_CorrelationId = b.CorrelationId
 	}
 	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
 		x.xxx_hidden_DriverType = b.DriverType
 	}
 	x.xxx_hidden_Devices = b.Devices
 	x.xxx_hidden_Settings = b.Settings
 	x.xxx_hidden_Actions = &b.Actions
-	if b.WebhookUrl != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
-		x.xxx_hidden_WebhookUrl = b.WebhookUrl
-	}
 	return m0
 }
 
@@ -8844,15 +8778,13 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x04Bulk\x12@\n" +
 	"\x04spec\x18\x01 \x01(\v2,.io.clbs.openhes.models.acquisition.BulkSpecR\x04spec\x12F\n" +
 	"\x06status\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.BulkStatusR\x06status\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xf2\x02\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xd1\x02\n" +
 	"\bBulkSpec\x12%\n" +
 	"\x0ecorrelation_id\x18\x01 \x01(\tR\rcorrelationId\x12Q\n" +
 	"\adevices\x18\x02 \x01(\v25.io.clbs.openhes.models.acquisition.ListOfJobDeviceIdH\x00R\adevices\x12(\n" +
 	"\x0fdevice_group_id\x18\x03 \x01(\tH\x00R\rdeviceGroupId\x12K\n" +
 	"\bsettings\x18\x04 \x01(\v2/.io.clbs.openhes.models.acquisition.JobSettingsR\bsettings\x12J\n" +
-	"\aactions\x18\x05 \x03(\v20.io.clbs.openhes.models.acquisition.JobActionSetR\aactions\x12\x1f\n" +
-	"\vwebhook_url\x18\x06 \x01(\tR\n" +
-	"webhookUrlB\b\n" +
+	"\aactions\x18\x05 \x03(\v20.io.clbs.openhes.models.acquisition.JobActionSetR\aactionsB\b\n" +
 	"\x06device\"\xf8\x02\n" +
 	"\n" +
 	"BulkStatus\x12J\n" +
@@ -8882,16 +8814,14 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"totalCount\"\xaa\x01\n" +
 	"\x16CreateProxyBulkRequest\x12E\n" +
 	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecR\x04spec\x12I\n" +
-	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xdd\x02\n" +
+	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xbc\x02\n" +
 	"\rProxyBulkSpec\x12%\n" +
 	"\x0ecorrelation_id\x18\x01 \x01(\tR\rcorrelationId\x12\x1f\n" +
 	"\vdriver_type\x18\x02 \x01(\tR\n" +
 	"driverType\x12M\n" +
 	"\adevices\x18\x03 \x01(\v23.io.clbs.openhes.models.acquisition.ListOfJobDeviceR\adevices\x12K\n" +
 	"\bsettings\x18\x04 \x01(\v2/.io.clbs.openhes.models.acquisition.JobSettingsR\bsettings\x12G\n" +
-	"\aactions\x18\x05 \x03(\v2-.io.clbs.openhes.models.acquisition.JobActionR\aactions\x12\x1f\n" +
-	"\vwebhook_url\x18\x06 \x01(\tR\n" +
-	"webhookUrl\"\xe5\x01\n" +
+	"\aactions\x18\x05 \x03(\v2-.io.clbs.openhes.models.acquisition.JobActionR\aactions\"\xe5\x01\n" +
 	"\tProxyBulk\x12E\n" +
 	"\x04spec\x18\x01 \x01(\v21.io.clbs.openhes.models.acquisition.ProxyBulkSpecR\x04spec\x12F\n" +
 	"\x06status\x18\x02 \x01(\v2..io.clbs.openhes.models.acquisition.BulkStatusR\x06status\x12I\n" +

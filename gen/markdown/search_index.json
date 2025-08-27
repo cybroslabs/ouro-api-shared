@@ -1426,7 +1426,6 @@
       "devices",
       "actions",
       "settings",
-      "webhookUrl",
       "correlationId",
       "deviceGroupId",
       "io.clbs.openhes.models.acquisition.BulkSpec"
@@ -1434,7 +1433,7 @@
     "tags1": [
       "BulkSpec"
     ],
-    "tags2": "The correlation identifier define relation non homogenous group The list devices the bulk The device group identifier The bulk shared job settings The list actions executed The webhook URL call when the bulk completed"
+    "tags2": "The correlation identifier define relation non homogenous group The list devices the bulk The device group identifier The bulk shared job settings The list actions executed"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulkstatus.md",
@@ -2804,14 +2803,13 @@
       "actions",
       "settings",
       "driverType",
-      "webhookUrl",
       "correlationId",
       "io.clbs.openhes.models.acquisition.ProxyBulkSpec"
     ],
     "tags1": [
       "ProxyBulkSpec"
     ],
-    "tags2": "The correlation identifier define relation non homogenous group The device driver type The list custom devices the proxy bulk The bulk shared job settings The list actions executed The webhook URL call when the proxy bulk completed"
+    "tags2": "The correlation identifier define relation non homogenous group The device driver type The list custom devices the proxy bulk The bulk shared job settings The list actions executed"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-registervalue.md",
