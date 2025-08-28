@@ -357,6 +357,11 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 	all_cap_underscores := true
 	no_space := true
 	for k, v := range options {
+		if k == 0 && strings.HasSuffix(v, "_UNSPECIFIED") {
+			// Ignore UNSPECIFIED values.
+			continue
+		}
+
 		tmp[strconv.FormatInt(int64(k), 10)] = v
 		if all_cap_underscores && !reCapUnderscores.MatchString(v) {
 			all_cap_underscores = false
