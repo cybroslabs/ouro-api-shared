@@ -12,6 +12,7 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	cronjobs "github.com/cybroslabs/ouro-api-shared/gen/go/cronjobs"
 	crypto "github.com/cybroslabs/ouro-api-shared/gen/go/crypto"
+	localization "github.com/cybroslabs/ouro-api-shared/gen/go/localization"
 	messaging "github.com/cybroslabs/ouro-api-shared/gen/go/messaging"
 	svcapi "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
@@ -319,6 +320,9 @@ const (
 	// ApiServiceGetOpenIdConfigurationProcedure is the fully-qualified name of the ApiService's
 	// GetOpenIdConfiguration RPC.
 	ApiServiceGetOpenIdConfigurationProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
+	// ApiServiceGetTranslationsProcedure is the fully-qualified name of the ApiService's
+	// GetTranslations RPC.
+	ApiServiceGetTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
 	// ApiServiceGetCryptoSecretProcedure is the fully-qualified name of the ApiService's
 	// GetCryptoSecret RPC.
 	ApiServiceGetCryptoSecretProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCryptoSecret"
@@ -689,6 +693,9 @@ type ApiServiceClient interface {
 	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
+	// @group: System
+	// Retrieves the translation data.
+	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error)
@@ -1320,6 +1327,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
 			connect.WithClientOptions(opts...),
 		),
+		getTranslations: connect.NewClient[localization.GetTranslationsRequest, localization.GetTranslationsResponse](
+			httpClient,
+			baseURL+ApiServiceGetTranslationsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetTranslations")),
+			connect.WithClientOptions(opts...),
+		),
 		getCryptoSecret: connect.NewClient[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets](
 			httpClient,
 			baseURL+ApiServiceGetCryptoSecretProcedure,
@@ -1461,6 +1474,7 @@ type apiServiceClient struct {
 	resumeCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	updateObjectFields                                               *connect.Client[common.UpdateObjectFieldsRequest, emptypb.Empty]
 	getOpenIdConfiguration                                           *connect.Client[emptypb.Empty, system.OpenIdConfiguration]
+	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	getCryptoSecret                                                  *connect.Client[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets]
 	setCryptoSecret                                                  *connect.Client[crypto.SetCryptoSecretRequest, emptypb.Empty]
 	createMessagingConsumer                                          *connect.Client[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]
@@ -1992,6 +2006,11 @@ func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, req *conn
 	return c.getOpenIdConfiguration.CallUnary(ctx, req)
 }
 
+// GetTranslations calls io.clbs.openhes.services.svcapi.ApiService.GetTranslations.
+func (c *apiServiceClient) GetTranslations(ctx context.Context, req *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {
+	return c.getTranslations.CallUnary(ctx, req)
+}
+
 // GetCryptoSecret calls io.clbs.openhes.services.svcapi.ApiService.GetCryptoSecret.
 func (c *apiServiceClient) GetCryptoSecret(ctx context.Context, req *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error) {
 	return c.getCryptoSecret.CallUnary(ctx, req)
@@ -2374,6 +2393,9 @@ type ApiServiceHandler interface {
 	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
+	// @group: System
+	// Retrieves the translation data.
+	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error)
@@ -3001,6 +3023,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetTranslationsHandler := connect.NewUnaryHandler(
+		ApiServiceGetTranslationsProcedure,
+		svc.GetTranslations,
+		connect.WithSchema(apiServiceMethods.ByName("GetTranslations")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetCryptoSecretHandler := connect.NewUnaryHandler(
 		ApiServiceGetCryptoSecretProcedure,
 		svc.GetCryptoSecret,
@@ -3239,6 +3267,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateObjectFieldsHandler.ServeHTTP(w, r)
 		case ApiServiceGetOpenIdConfigurationProcedure:
 			apiServiceGetOpenIdConfigurationHandler.ServeHTTP(w, r)
+		case ApiServiceGetTranslationsProcedure:
+			apiServiceGetTranslationsHandler.ServeHTTP(w, r)
 		case ApiServiceGetCryptoSecretProcedure:
 			apiServiceGetCryptoSecretHandler.ServeHTTP(w, r)
 		case ApiServiceSetCryptoSecretProcedure:
@@ -3658,6 +3688,10 @@ func (UnimplementedApiServiceHandler) UpdateObjectFields(context.Context, *conne
 
 func (UnimplementedApiServiceHandler) GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetTranslations is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetCryptoSecret(context.Context, *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error) {

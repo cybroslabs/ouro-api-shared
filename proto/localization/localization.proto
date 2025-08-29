@@ -1,0 +1,20 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.localization;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/localization";
+
+import "google/protobuf/wrappers.proto";
+import "common/fields.proto";
+import "common/metadata.proto";
+
+// Defines the request message for retrieving translations based on language (and keys).
+message GetTranslationsRequest {
+    string ietf_language_tag = 1;  // The IETF language tag (e.g., "en-US", "fr-FR") for which translations are requested.
+    repeated string keys     = 2;  // List of keys for which translations are requested. If empty, all translations for the specified language will be returned.
+}
+
+// Defines the response message containing the translations.
+message GetTranslationsResponse {
+    map<string, string> translations = 1;  // A map of keys to their corresponding translated strings.
+}

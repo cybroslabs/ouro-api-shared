@@ -385,10 +385,15 @@
     "filename": "service-system-apiservice.md",
     "title": "ApiService - System",
     "tags0": [
+      "GetTranslations",
       "GetOpenIdConfiguration",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
+      "io.clbs.openhes.models.system.OpenIdConfiguration",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
     ],
     "tags1": [
+      "GetTranslationsRequest",
+      "GetTranslationsResponse",
       "OpenIdConfiguration"
     ],
     "tags2": ""
@@ -442,69 +447,6 @@
       "Variable"
     ],
     "tags2": ""
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
-    "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
-    ],
-    "tags1": [
-      "ApplicationConfig"
-    ],
-    "tags2": "Application config specification The default values for the application configuration"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
-    "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
-    ],
-    "tags1": [
-      "ApplicationConfigDescriptor"
-    ],
-    "tags2": "The component configuration descriptors The default values for the application configuration"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
-    ],
-    "tags1": [
-      "ComponentConfig"
-    ],
-    "tags2": "The component name The component configuration values"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "The component name The component configuration descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
-    "tags0": [
-      "content",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
-    ],
-    "tags1": [
-      "OpenIdConfiguration"
-    ],
-    "tags2": "The raw JSON configuration the OIDC service"
   },
   {
     "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
@@ -661,6 +603,31 @@
       "MessagingReceiveMessage"
     ],
     "tags2": "Unique identifier the message Subject the message The message data"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
+    "tags0": [
+      "keys",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest"
+    ],
+    "tags1": [
+      "GetTranslationsRequest"
+    ],
+    "tags2": "Defines the request message for retrieving translations based language and keys The IETF language tag for which translations are requested List keys for which translations are requested empty all translations for the specified language will returned"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "tags0": [
+      "translations",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+    ],
+    "tags1": [
+      "GetTranslationsResponse"
+    ],
+    "tags2": "Defines the response message containing the translations map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
@@ -3114,6 +3081,69 @@
       "SetCryptoSecretRequest"
     ],
     "tags2": "Defines the resource type for which the field descriptor defined BULK DEVICE etc The driver type for which the secret requested METERCONTROL ST402D DLMS The crypto the secret retrieve Access level for the secret admin user etc Unique identifier for the secret key Identifier for the key used decrypt the either the session key the data directly Method used decrypt the session key May unset the session key unset and used The session key usually encrypted used decrypt the data Method used decrypt the secret data May unset the data not encrypted and vice versa Initialization vector for the decryption method applicable The secret data"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Application config specification The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "The component configuration descriptors The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "The component name The component configuration descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
+    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "tags0": [
+      "content",
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": "The raw JSON configuration the OIDC service"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
