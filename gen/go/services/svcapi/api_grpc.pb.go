@@ -128,6 +128,8 @@ const (
 	ApiService_ResumeCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/ResumeCronJob"
 	ApiService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
 	ApiService_GetOpenIdConfiguration_FullMethodName                                           = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
+	ApiService_GetLicenseRequestCode_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetLicenseRequestCode"
+	ApiService_SetLicense_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/SetLicense"
 	ApiService_GetTranslations_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
 	ApiService_GetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetCryptoSecret"
 	ApiService_SetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret"
@@ -491,6 +493,10 @@ type ApiServiceClient interface {
 	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.OpenIdConfiguration, error)
+	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// The method stored a new license key. Used only and only for air-gapped installations.
+	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
 	// Retrieves the translation data.
 	GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error)
@@ -1549,6 +1555,26 @@ func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, in *empty
 	return out, nil
 }
 
+func (c *apiServiceClient) GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_GetLicenseRequestCode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_SetLicense_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(localization.GetTranslationsResponse)
@@ -1979,6 +2005,10 @@ type ApiServiceServer interface {
 	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error)
+	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
+	// The method stored a new license key. Used only and only for air-gapped installations.
+	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error)
@@ -2309,6 +2339,12 @@ func (UnimplementedApiServiceServer) UpdateObjectFields(context.Context, *common
 }
 func (UnimplementedApiServiceServer) GetOpenIdConfiguration(context.Context, *emptypb.Empty) (*system.OpenIdConfiguration, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOpenIdConfiguration not implemented")
+}
+func (UnimplementedApiServiceServer) GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLicenseRequestCode not implemented")
+}
+func (UnimplementedApiServiceServer) SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetLicense not implemented")
 }
 func (UnimplementedApiServiceServer) GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranslations not implemented")
@@ -4131,6 +4167,42 @@ func _ApiService_GetOpenIdConfiguration_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetLicenseRequestCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetLicenseRequestCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetLicenseRequestCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetLicenseRequestCode(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_SetLicense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).SetLicense(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_SetLicense_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).SetLicense(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_GetTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(localization.GetTranslationsRequest)
 	if err := dec(in); err != nil {
@@ -4629,6 +4701,14 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOpenIdConfiguration",
 			Handler:    _ApiService_GetOpenIdConfiguration_Handler,
+		},
+		{
+			MethodName: "GetLicenseRequestCode",
+			Handler:    _ApiService_GetLicenseRequestCode_Handler,
+		},
+		{
+			MethodName: "SetLicense",
+			Handler:    _ApiService_SetLicense_Handler,
 		},
 		{
 			MethodName: "GetTranslations",

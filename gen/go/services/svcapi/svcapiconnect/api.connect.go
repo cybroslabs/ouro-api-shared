@@ -320,6 +320,11 @@ const (
 	// ApiServiceGetOpenIdConfigurationProcedure is the fully-qualified name of the ApiService's
 	// GetOpenIdConfiguration RPC.
 	ApiServiceGetOpenIdConfigurationProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
+	// ApiServiceGetLicenseRequestCodeProcedure is the fully-qualified name of the ApiService's
+	// GetLicenseRequestCode RPC.
+	ApiServiceGetLicenseRequestCodeProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetLicenseRequestCode"
+	// ApiServiceSetLicenseProcedure is the fully-qualified name of the ApiService's SetLicense RPC.
+	ApiServiceSetLicenseProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetLicense"
 	// ApiServiceGetTranslationsProcedure is the fully-qualified name of the ApiService's
 	// GetTranslations RPC.
 	ApiServiceGetTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
@@ -693,6 +698,10 @@ type ApiServiceClient interface {
 	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
+	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
+	// The method stored a new license key. Used only and only for air-gapped installations.
+	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
@@ -1327,6 +1336,18 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
 			connect.WithClientOptions(opts...),
 		),
+		getLicenseRequestCode: connect.NewClient[emptypb.Empty, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceGetLicenseRequestCodeProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetLicenseRequestCode")),
+			connect.WithClientOptions(opts...),
+		),
+		setLicense: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceSetLicenseProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("SetLicense")),
+			connect.WithClientOptions(opts...),
+		),
 		getTranslations: connect.NewClient[localization.GetTranslationsRequest, localization.GetTranslationsResponse](
 			httpClient,
 			baseURL+ApiServiceGetTranslationsProcedure,
@@ -1474,6 +1495,8 @@ type apiServiceClient struct {
 	resumeCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	updateObjectFields                                               *connect.Client[common.UpdateObjectFieldsRequest, emptypb.Empty]
 	getOpenIdConfiguration                                           *connect.Client[emptypb.Empty, system.OpenIdConfiguration]
+	getLicenseRequestCode                                            *connect.Client[emptypb.Empty, wrapperspb.StringValue]
+	setLicense                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	getCryptoSecret                                                  *connect.Client[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets]
 	setCryptoSecret                                                  *connect.Client[crypto.SetCryptoSecretRequest, emptypb.Empty]
@@ -2006,6 +2029,16 @@ func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, req *conn
 	return c.getOpenIdConfiguration.CallUnary(ctx, req)
 }
 
+// GetLicenseRequestCode calls io.clbs.openhes.services.svcapi.ApiService.GetLicenseRequestCode.
+func (c *apiServiceClient) GetLicenseRequestCode(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.getLicenseRequestCode.CallUnary(ctx, req)
+}
+
+// SetLicense calls io.clbs.openhes.services.svcapi.ApiService.SetLicense.
+func (c *apiServiceClient) SetLicense(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.setLicense.CallUnary(ctx, req)
+}
+
 // GetTranslations calls io.clbs.openhes.services.svcapi.ApiService.GetTranslations.
 func (c *apiServiceClient) GetTranslations(ctx context.Context, req *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {
 	return c.getTranslations.CallUnary(ctx, req)
@@ -2393,6 +2426,10 @@ type ApiServiceHandler interface {
 	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
 	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
 	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
+	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
+	// The method stored a new license key. Used only and only for air-gapped installations.
+	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
@@ -3023,6 +3060,18 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetLicenseRequestCodeHandler := connect.NewUnaryHandler(
+		ApiServiceGetLicenseRequestCodeProcedure,
+		svc.GetLicenseRequestCode,
+		connect.WithSchema(apiServiceMethods.ByName("GetLicenseRequestCode")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceSetLicenseHandler := connect.NewUnaryHandler(
+		ApiServiceSetLicenseProcedure,
+		svc.SetLicense,
+		connect.WithSchema(apiServiceMethods.ByName("SetLicense")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetTranslationsHandler := connect.NewUnaryHandler(
 		ApiServiceGetTranslationsProcedure,
 		svc.GetTranslations,
@@ -3267,6 +3316,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateObjectFieldsHandler.ServeHTTP(w, r)
 		case ApiServiceGetOpenIdConfigurationProcedure:
 			apiServiceGetOpenIdConfigurationHandler.ServeHTTP(w, r)
+		case ApiServiceGetLicenseRequestCodeProcedure:
+			apiServiceGetLicenseRequestCodeHandler.ServeHTTP(w, r)
+		case ApiServiceSetLicenseProcedure:
+			apiServiceSetLicenseHandler.ServeHTTP(w, r)
 		case ApiServiceGetTranslationsProcedure:
 			apiServiceGetTranslationsHandler.ServeHTTP(w, r)
 		case ApiServiceGetCryptoSecretProcedure:
@@ -3688,6 +3741,14 @@ func (UnimplementedApiServiceHandler) UpdateObjectFields(context.Context, *conne
 
 func (UnimplementedApiServiceHandler) GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetLicenseRequestCode is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetLicense is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {

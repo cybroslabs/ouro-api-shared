@@ -1,5 +1,15 @@
 [
   {
+    "filename": "service-general-apiservice.md",
+    "title": "ApiService - General",
+    "tags0": [
+      "SetLicense",
+      "GetLicenseRequestCode"
+    ],
+    "tags1": [],
+    "tags2": ""
+  },
+  {
     "filename": "service-bulks-apiservice.md",
     "title": "ApiService - Bulks",
     "tags0": [

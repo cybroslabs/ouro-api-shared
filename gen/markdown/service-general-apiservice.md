@@ -1,10 +1,22 @@
 # ApiService - General
 
-## UpdateMessagingComponent
+## GetLicenseRequestCode
+
+The method returns the license request code if the license is not set. Otherwise it returns empty string.
 
 ```proto
-UpdateMessagingComponent(io.clbs.openhes.models.messaging.MessagingComponent)
+GetLicenseRequestCode() returns (google.protobuf.StringValue)
 ```
 
-- Input: [`io.clbs.openhes.models.messaging.MessagingComponent`](model-io-clbs-openhes-models-messaging-messagingcomponent.md)
+- Output: `google.protobuf.StringValue`
+
+## SetLicense
+
+The method stored a new license key. Used only and only for air-gapped installations.
+
+```proto
+SetLicense(google.protobuf.StringValue)
+```
+
+- Input: `google.protobuf.StringValue`
 
