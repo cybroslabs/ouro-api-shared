@@ -70,6 +70,20 @@ func (lm *licenseManager) Stop() {
 	lm.outterCancel()
 }
 
+func drainChannel(ch chan struct{}) {
+	// Paranoidly drain the channel
+	for {
+		select {
+		case _, ok := <-ch:
+			if !ok {
+				return
+			}
+		default:
+			return
+		}
+	}
+}
+
 func (lm *licenseManager) run(ctx context.Context) {
 	check_period := _periodNoLicense
 	check_failed_count := 0
@@ -80,9 +94,7 @@ func (lm *licenseManager) run(ctx context.Context) {
 			if check_failed_count == 3 {
 				// If we failed to get the license three times in a row, we will revoke current license.
 				lm.license = nil
-				for range lm.event {
-					// Drain the event channel to ensure no stale events are left.
-				}
+				drainChannel(lm.event)
 				if f := lm.onLicenseRevoked; f != nil {
 					f()
 				}
