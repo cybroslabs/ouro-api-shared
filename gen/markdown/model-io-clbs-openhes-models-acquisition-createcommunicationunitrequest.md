@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
 
+Defines a specification for creating a new communication unit.
+
 ## Fields
 
 | Field | Information |

@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.ListOfJobDevice
 
+Defines a list of job devices included in a bulk.
+
 ## Fields
 
 | Field | Information |

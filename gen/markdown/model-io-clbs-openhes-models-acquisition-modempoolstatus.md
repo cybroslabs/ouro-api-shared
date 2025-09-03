@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.ModemPoolStatus
 
+Defines a modem pool status.
+
 ## Fields
 
 | Field | Information |

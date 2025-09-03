@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
 
+Defines a device configuration template model.
+
 ## Fields
 
 | Field | Information |

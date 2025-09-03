@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateVariableRequest
 
+Defines a specification for creating a new variable.
+
 ## Fields
 
 | Field | Information |

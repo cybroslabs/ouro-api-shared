@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest
 
+Defines the specification for creating a new device group.
+
 ## Fields
 
 | Field | Information |

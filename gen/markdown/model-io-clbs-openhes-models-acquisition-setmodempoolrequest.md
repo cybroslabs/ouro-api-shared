@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.SetModemPoolRequest
 
+Defines a specification for creating or updating a modem pool.
+
 ## Fields
 
 | Field | Information |

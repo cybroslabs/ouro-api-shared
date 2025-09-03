@@ -23,6 +23,8 @@ export const file_acquisition_main: GenFile = /*@__PURE__*/
   fileDesc("ChZhY3F1aXNpdGlvbi9tYWluLnByb3RvEiJpby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uIqoBCh5DcmVhdGVDb21tdW5pY2F0aW9uVW5pdFJlcXVlc3QSRwoEc3BlYxgBIAEoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvblVuaXRTcGVjEj8KCG1ldGFkYXRhGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMidAoXTGlzdE9mQ29tbXVuaWNhdGlvblVuaXQSRAoFaXRlbXMYASADKAsyNS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkNvbW11bmljYXRpb25Vbml0EhMKC3RvdGFsX2NvdW50GAIgASgFImYKHUNyZWF0ZUNvbW11bmljYXRpb25CdXNSZXF1ZXN0Ej8KCG1ldGFkYXRhGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAIicgoWTGlzdE9mQ29tbXVuaWNhdGlvbkJ1cxJDCgVpdGVtcxgBIAMoCzI0LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQ29tbXVuaWNhdGlvbkJ1cxITCgt0b3RhbF9jb3VudBgCIAEoBSJtCi5BZGRDb21tdW5pY2F0aW9uVW5pdHNUb0NvbW11bmljYXRpb25CdXNSZXF1ZXN0EhwKFGNvbW11bmljYXRpb25fYnVzX2lkGAEgASgJEh0KFWNvbW11bmljYXRpb25fdW5pdF9pZBgCIAMoCSJyCjNSZW1vdmVDb21tdW5pY2F0aW9uVW5pdHNGcm9tQ29tbXVuaWNhdGlvbkJ1c1JlcXVlc3QSHAoUY29tbXVuaWNhdGlvbl9idXNfaWQYASABKAkSHQoVY29tbXVuaWNhdGlvbl91bml0X2lkGAIgAygJIpQBChNDcmVhdGVEZXZpY2VSZXF1ZXN0EjwKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZVNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJeCgxMaXN0T2ZEZXZpY2USOQoFaXRlbXMYASADKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZRITCgt0b3RhbF9jb3VudBgCIAEoBSLJAQoGRGV2aWNlEjwKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZVNwZWMSQAoGc3RhdHVzGAIgASgLMjAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyI0Ch9TdHJlYW1EZXZpY2VzRHJpdmVyVHlwZXNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAMoCSKtAQogU3RyZWFtRGV2aWNlc0RyaXZlclR5cGVzUmVzcG9uc2USXAoEZGF0YRgBIAMoCzJOLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uU3RyZWFtRGV2aWNlc0RyaXZlclR5cGVzUmVzcG9uc2UuRGF0YUVudHJ5GisKCURhdGFFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIowBCiNMaXN0T2ZEZXZpY2VDb21tdW5pY2F0aW9uVW5pdENoYW5nZRJQCgVpdGVtcxgBIAMoCzJBLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlQ29tbXVuaWNhdGlvblVuaXRDaGFuZ2USEwoLdG90YWxfY291bnQYAiABKAUihAEKHURldmljZUNvbW11bmljYXRpb25Vbml0Q2hhbmdlElcKBnN0YXR1cxgCIAEoCzJHLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlQ29tbXVuaWNhdGlvblVuaXRDaGFuZ2VTdGF0dXNKBAgBEAJKBAgDEAQivAEKI0RldmljZUNvbW11bmljYXRpb25Vbml0Q2hhbmdlU3RhdHVzEi0KCWNoYW5nZV9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASHQoVY29tbXVuaWNhdGlvbl91bml0X2lkGAIgASgJEh8KF2NvbW11bmljYXRpb25fdW5pdF9uYW1lGAMgASgJEhEKCWRldmljZV9pZBgEIAEoCRITCgtkZXZpY2VfbmFtZRgFIAEoCSKfAQoNVW5rbm93bkRldmljZRJHCgZzdGF0dXMYAiABKAsyNy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLlVua25vd25EZXZpY2VTdGF0dXMSPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAEQAiJJChNVbmtub3duRGV2aWNlU3RhdHVzEhMKC2RyaXZlcl90eXBlGAEgASgJEh0KFWNvbW11bmljYXRpb25fdW5pdF9pZBgCIAEoCSKeAQoYQ3JlYXRlRGV2aWNlR3JvdXBSZXF1ZXN0EkEKBHNwZWMYASABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUdyb3VwU3BlYxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzImgKEUxpc3RPZkRldmljZUdyb3VwEj4KBWl0ZW1zGAEgAygLMi8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VHcm91cBITCgt0b3RhbF9jb3VudBgCIAEoBSLzAQoRU3RyZWFtRGV2aWNlR3JvdXASQwoEc3BlYxgBIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXBTcGVjSAASTQoGc3RhdHVzGAIgASgLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5TdHJlYW1EZXZpY2VHcm91cFN0YXR1c0gAEkEKCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNIAEIHCgVwYXJ0cyKXAQoLRGV2aWNlR3JvdXASQQoEc3BlYxgBIAEoCzIzLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXBTcGVjEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEAMiJgoPRGV2aWNlR3JvdXBTcGVjEhMKC2V4dGVybmFsX2lkGAEgASgJIuEBChdTdHJlYW1EZXZpY2VHcm91cFN0YXR1cxJZCgdkZXZpY2VzGAQgAygLMkguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5TdHJlYW1EZXZpY2VHcm91cFN0YXR1cy5EZXZpY2VzRW50cnkaawoMRGV2aWNlc0VudHJ5EgsKA2tleRgBIAEoCRJKCgV2YWx1ZRgCIAEoCzI7LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRGV2aWNlR3JvdXBTdGF0dXNEZXZpY2U6AjgBIi4KF0RldmljZUdyb3VwU3RhdHVzRGV2aWNlEhMKC2RyaXZlcl90eXBlGAEgASgJIpEBCiJTZXREZXZpY2VDb21tdW5pY2F0aW9uVW5pdHNSZXF1ZXN0EhEKCWRldmljZV9pZBgBIAEoCRJYChNjb21tdW5pY2F0aW9uX3VuaXRzGAIgAygLMjsuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb21tdW5pY2F0aW9uVW5pdCKAAQodTGlzdE9mRGV2aWNlQ29tbXVuaWNhdGlvblVuaXQSSgoFaXRlbXMYASADKAsyOy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbW11bmljYXRpb25Vbml0EhMKC3RvdGFsX2NvdW50GAIgASgFIj8KGEFkZERldmljZXNUb0dyb3VwUmVxdWVzdBIQCghncm91cF9pZBgBIAEoCRIRCglkZXZpY2VfaWQYAiADKAkiRAodUmVtb3ZlRGV2aWNlc0Zyb21Hcm91cFJlcXVlc3QSEAoIZ3JvdXBfaWQYASABKAkSEQoJZGV2aWNlX2lkGAIgAygJInAKHUxpc3REZXZpY2VHcm91cERldmljZXNSZXF1ZXN0EhAKCGdyb3VwX2lkGAEgASgJEj0KCHNlbGVjdG9yGAIgASgLMisuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTGlzdFNlbGVjdG9yIpABChFDcmVhdGVCdWxrUmVxdWVzdBI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3BlYxI/CghtZXRhZGF0YRgCIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIloKCkxpc3RPZkJ1bGsSNwoFaXRlbXMYASADKAsyKC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGsSEwoLdG90YWxfY291bnQYAiABKAUiwwEKBEJ1bGsSOgoEc3BlYxgBIAEoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uQnVsa1NwZWMSPgoGc3RhdHVzGAIgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMilwIKCEJ1bGtTcGVjEhYKDmNvcnJlbGF0aW9uX2lkGAEgASgJEkgKB2RldmljZXMYAiABKAsyNS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkxpc3RPZkpvYkRldmljZUlkSAASGQoPZGV2aWNlX2dyb3VwX2lkGAMgASgJSAASQQoIc2V0dGluZ3MYBCABKAsyLy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYlNldHRpbmdzEkEKB2FjdGlvbnMYBSADKAsyMC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYkFjdGlvblNldEIICgZkZXZpY2UipQIKCkJ1bGtTdGF0dXMSQgoGc3RhdHVzGAEgASgOMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3RhdHVzQ29kZRISCgpqb2JzX2NvdW50GAIgASgFEhUKDWpvYnNfZmluaXNoZWQYAyABKAUSFwoPam9ic19zdWNjZXNzZnVsGAQgASgFEi4KCmNyZWF0ZWRfYXQYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnN0YXJ0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2ZpbmlzaGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLIAQoHQnVsa0pvYhI9CgRzcGVjGAEgASgLMi8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrSm9iU3BlYxI9CgZzdGF0dXMYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYlN0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzIkwKC0J1bGtKb2JTcGVjEj0KBmRldmljZRgBIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uSm9iRGV2aWNlImUKE0xpc3RCdWxrSm9ic1JlcXVlc3QSDwoHYnVsa19pZBgBIAEoCRI9CghzZWxlY3RvchgCIAEoCzIrLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RTZWxlY3RvciJgCg1MaXN0T2ZCdWxrSm9iEjoKBWl0ZW1zGAEgAygLMisuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrSm9iEhMKC3RvdGFsX2NvdW50GAIgASgFIpoBChZDcmVhdGVQcm94eUJ1bGtSZXF1ZXN0Ej8KBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLlByb3h5QnVsa1NwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKFAgoNUHJveHlCdWxrU3BlYxIWCg5jb3JyZWxhdGlvbl9pZBgBIAEoCRITCgtkcml2ZXJfdHlwZRgCIAEoCRJECgdkZXZpY2VzGAMgASgLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5MaXN0T2ZKb2JEZXZpY2USQQoIc2V0dGluZ3MYBCABKAsyLy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYlNldHRpbmdzEj4KB2FjdGlvbnMYBSADKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkpvYkFjdGlvbiLNAQoJUHJveHlCdWxrEj8KBHNwZWMYASABKAsyMS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLlByb3h5QnVsa1NwZWMSPgoGc3RhdHVzGAIgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5CdWxrU3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMinQEKE1NldE1vZGVtUG9vbFJlcXVlc3QSPwoEc3BlYxgBIAEoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1Qb29sU3BlYxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSgQIAhADImQKD0xpc3RPZk1vZGVtUG9vbBI8CgVpdGVtcxgBIAMoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1Qb29sEhMKC3RvdGFsX2NvdW50GAIgASgFIg8KDU1vZGVtUG9vbFNwZWMiUAoPTW9kZW1Qb29sU3RhdHVzEj0KBm1vZGVtcxgBIAMoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1JbmZvItIBCglNb2RlbVBvb2wSPwoEc3BlYxgBIAEoCzIxLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uTW9kZW1Qb29sU3BlYxJDCgZzdGF0dXMYAiABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLk1vZGVtUG9vbFN0YXR1cxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzImAKD1NldE1vZGVtUmVxdWVzdBIPCgdwb29sX2lkGAEgASgJEjwKBW1vZGVtGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Nb2RlbUluZm8iVQoJU2V0RHJpdmVyEjwKBHNwZWMYASABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlclNwZWNKBAgCEANKBAgDEAQiXgoMTGlzdE9mRHJpdmVyEjkKBWl0ZW1zGAEgAygLMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXISEwoLdG90YWxfY291bnQYAiABKAUijgEKBkRyaXZlchI8CgRzcGVjGAEgASgLMi4uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5Ecml2ZXJTcGVjEkAKBnN0YXR1cxgCIAEoCzIwLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uRHJpdmVyU3RhdHVzSgQIAxAEIvsBCgpEcml2ZXJTcGVjEg8KB3ZlcnNpb24YASABKAkSFgoObGlzdGVuaW5nX3BvcnQYAiABKA0SEwoLZHJpdmVyX3R5cGUYAyABKAkSGwoTbWF4X2NvbmN1cnJlbnRfam9icxgEIAEoBRIZChFtYXhfY2FzY2FkZV9kZXB0aBgFIAEoDRIZChF0eXBpY2FsX21lbV91c2FnZRgGIAEoBRJGCgl0ZW1wbGF0ZXMYByABKAsyMy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRyaXZlclRlbXBsYXRlcxIUCgxkaXNwbGF5X25hbWUYCCABKAkiOgoMRHJpdmVyU3RhdHVzEhEKCWlzX2xhdGVzdBgBIAEoCBIXCg91cGRhdGVfZmluaXNoZWQYAiABKAgimAEKFUNyZWF0ZVZhcmlhYmxlUmVxdWVzdBI+CgRzcGVjGAEgASgLMjAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5WYXJpYWJsZVNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyJiCg5MaXN0T2ZWYXJpYWJsZRI7CgVpdGVtcxgBIAMoCzIsLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uVmFyaWFibGUSEwoLdG90YWxfY291bnQYAiABKAUikQEKCFZhcmlhYmxlEj4KBHNwZWMYASABKAsyMC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLlZhcmlhYmxlU3BlYxI/CghtZXRhZGF0YRgDIAEoCzItLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzSgQIAhADIn8KDFZhcmlhYmxlU3BlYxITCgtyZWdpc3Rlcl9pZBgBIAMoCRI/CglkYXRhX3R5cGUYAiABKA4yLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERhdGFUeXBlEhkKEWV4Y2x1ZGVfZGF0YV9mcm9tGAMgASgIIkgKHEFkZFJlZ2lzdGVyVG9WYXJpYWJsZVJlcXVlc3QSEwoLdmFyaWFibGVfaWQYASABKAkSEwoLcmVnaXN0ZXJfaWQYAiADKAkiTQohUmVtb3ZlUmVnaXN0ZXJGcm9tVmFyaWFibGVSZXF1ZXN0EhMKC3ZhcmlhYmxlX2lkGAEgASgJEhMKC3JlZ2lzdGVyX2lkGAIgAygJIr4BCihDcmVhdGVEZXZpY2VDb25maWd1cmF0aW9uUmVnaXN0ZXJSZXF1ZXN0ElEKBHNwZWMYASABKAsyQy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbmZpZ3VyYXRpb25SZWdpc3RlclNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKIAQohTGlzdE9mRGV2aWNlQ29uZmlndXJhdGlvblJlZ2lzdGVyEk4KBWl0ZW1zGAEgAygLMj8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb25maWd1cmF0aW9uUmVnaXN0ZXISEwoLdG90YWxfY291bnQYAiABKAUitwEKG0RldmljZUNvbmZpZ3VyYXRpb25SZWdpc3RlchJRCgRzcGVjGAEgASgLMkMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb25maWd1cmF0aW9uUmVnaXN0ZXJTcGVjEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEAMieQoeRGV2aWNlQ29uZmlndXJhdGlvblJlZ2lzdGVyTWFwElcKBWl0ZW1zGAEgAygLMkguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb25maWd1cmF0aW9uUmVnaXN0ZXJNYXBSZWNvcmQihQEKJERldmljZUNvbmZpZ3VyYXRpb25SZWdpc3Rlck1hcFJlY29yZBITCgtyZWdpc3Rlcl9pZBgBIAEoAxIaChJwdWJsaWNfcmVnaXN0ZXJfaWQYAiABKAkSFQoNcmVnaXN0ZXJfbmFtZRgDIAEoCRIVCg12YXJpYWJsZV9uYW1lGAQgAygJIr4BCihDcmVhdGVEZXZpY2VDb25maWd1cmF0aW9uVGVtcGxhdGVSZXF1ZXN0ElEKBHNwZWMYASABKAsyQy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZUNvbmZpZ3VyYXRpb25UZW1wbGF0ZVNwZWMSPwoIbWV0YWRhdGEYAiABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkcyKIAQohTGlzdE9mRGV2aWNlQ29uZmlndXJhdGlvblRlbXBsYXRlEk4KBWl0ZW1zGAEgAygLMj8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb25maWd1cmF0aW9uVGVtcGxhdGUSEwoLdG90YWxfY291bnQYAiABKAUitwEKG0RldmljZUNvbmZpZ3VyYXRpb25UZW1wbGF0ZRJRCgRzcGVjGAEgASgLMkMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VDb25maWd1cmF0aW9uVGVtcGxhdGVTcGVjEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEAMiSwofRGV2aWNlQ29uZmlndXJhdGlvblRlbXBsYXRlU3BlYxITCgtkcml2ZXJfdHlwZRgBIAEoCRITCgtyZWdpc3Rlcl9pZBgCIAMoCSJpCkJBZGREZXZpY2VDb25maWd1cmF0aW9uUmVnaXN0ZXJUb0RldmljZUNvbmZpZ3VyYXRpb25UZW1wbGF0ZVJlcXVlc3QSDgoGZGN0X2lkGAEgASgJEhMKC3JlZ2lzdGVyX2lkGAIgAygJIm4KR1JlbW92ZURldmljZUNvbmZpZ3VyYXRpb25SZWdpc3RlckZyb21EZXZpY2VDb25maWd1cmF0aW9uVGVtcGxhdGVSZXF1ZXN0Eg4KBmRjdF9pZBgBIAEoCRITCgtyZWdpc3Rlcl9pZBgCIAMoCSKzAgoUR2V0RGV2aWNlRGF0YVJlcXVlc3QSLwoLcmFuZ2Vfc3RhcnQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi0KCXJhbmdlX2VuZBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASTwoGc2VyaWVzGAMgAygLMj8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5HZXREZXZpY2VEYXRhU2VyaWVzU2VsZWN0b3ISHQoVZmlsdGVyX2luY2x1ZGVfc3RhdHVzGAQgASgDEh0KFWZpbHRlcl9leGNsdWRlX3N0YXR1cxgFIAEoAxIsCghzbmFwc2hvdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiRQobR2V0RGV2aWNlRGF0YVNlcmllc1NlbGVjdG9yEhEKCWRldmljZV9pZBgBIAEoCRITCgt2YXJpYWJsZV9pZBgCIAEoCSJTCgpEZXZpY2VEYXRhEkUKB2RldmljZXMYASADKAsyNC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkRldmljZURldmljZURhdGEiawoQRGV2aWNlRGV2aWNlRGF0YRIRCglkZXZpY2VfaWQYASABKAkSRAoEZGF0YRgCIAMoCzI2LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuYWNxdWlzaXRpb24uVmFyaWFibGVEZXZpY2VEYXRhIqsBChJWYXJpYWJsZURldmljZURhdGESEwoLdmFyaWFibGVfaWQYASABKAkSLgoKdGltZXN0YW1wcxgCIAMoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDQoFdW5pdHMYAyADKAkSQQoGdmFsdWVzGAQgAygLMjEuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5NZWFzdXJlZFZhbHVlIqYBCg5EZXZpY2VEYXRhSW5mbxJECgRzcGVjGAEgASgLMjYuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VEYXRhSW5mb1NwZWMSSAoGc3RhdHVzGAIgASgLMjguaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VEYXRhSW5mb1N0YXR1c0oECAMQBCI8ChJEZXZpY2VEYXRhSW5mb1NwZWMSEQoJZGV2aWNlX2lkGAEgASgJEhMKC3JlZ2lzdGVyX2lkGAIgASgJInAKFERldmljZURhdGFJbmZvU3RhdHVzEhUKDXJlZ2lzdGVyX25hbWUYASABKAkSDgoGcGVyaW9kGAIgASgFEjEKDWxhc3RfdmFsdWVfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIm4KFExpc3RPZkRldmljZURhdGFJbmZvEkEKBWl0ZW1zGAEgAygLMjIuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi5EZXZpY2VEYXRhSW5mbxITCgt0b3RhbF9jb3VudBgCIAEoBSKLAQoWR2V0RGV2aWNlRXZlbnRzUmVxdWVzdBIvCgtyYW5nZV9zdGFydBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLQoJcmFuZ2VfZW5kGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIRCglkZXZpY2VfaWQYAyABKAkiigEKFUdldERldmljZUJ1bGtzUmVxdWVzdBIvCgtyYW5nZV9zdGFydBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLQoJcmFuZ2VfZW5kGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIRCglkZXZpY2VfaWQYAyABKAkiRgoLRGV2aWNlQnVsa3MSNwoFYnVsa3MYASADKAsyKC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLkJ1bGsirgEKG0NyZWF0ZVRpbWVPZlVzZVRhYmxlUmVxdWVzdBJOCgRzcGVjGAEgASgLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuVGltZU9mVXNlVGFibGVTcGVjEj8KCG1ldGFkYXRhGAIgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMibgoUTGlzdE9mVGltZU9mVXNlVGFibGUSQQoFaXRlbXMYASADKAsyMi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmFjcXVpc2l0aW9uLlRpbWVPZlVzZVRhYmxlEhMKC3RvdGFsX2NvdW50GAIgASgFIqcBCg5UaW1lT2ZVc2VUYWJsZRJOCgRzcGVjGAEgASgLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5hY3F1aXNpdGlvbi50aW1lb2Z1c2UuVGltZU9mVXNlVGFibGVTcGVjEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgCEANCOlo4Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vYWNxdWlzaXRpb25iCGVkaXRpb25zcOgH", [file_google_protobuf_empty, file_google_protobuf_timestamp, file_common_metadata, file_common_fields, file_acquisition_shared, file_acquisition_timeofuse_timeofuse]);
 
 /**
+ * Defines a specification for creating a new communication unit.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
  */
 export type CreateCommunicationUnitRequest = Message<"io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest"> & {
@@ -42,6 +44,8 @@ export type CreateCommunicationUnitRequest = Message<"io.clbs.openhes.models.acq
 };
 
 /**
+ * Defines a specification for creating a new communication unit.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
  */
 export type CreateCommunicationUnitRequestJson = {
@@ -68,18 +72,20 @@ export const CreateCommunicationUnitRequestSchema: GenMessage<CreateCommunicatio
   messageDesc(file_acquisition_main, 0);
 
 /**
+ * Defines a list of communication units.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
  */
 export type ListOfCommunicationUnit = Message<"io.clbs.openhes.models.acquisition.ListOfCommunicationUnit"> & {
   /**
-   * The communication unit specification.
+   * The list of communication unit specifications.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.CommunicationUnit items = 1;
    */
   items: CommunicationUnit[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -87,18 +93,20 @@ export type ListOfCommunicationUnit = Message<"io.clbs.openhes.models.acquisitio
 };
 
 /**
+ * Defines a list of communication units.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
  */
 export type ListOfCommunicationUnitJson = {
   /**
-   * The communication unit specification.
+   * The list of communication unit specifications.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.CommunicationUnit items = 1;
    */
   items?: CommunicationUnitJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -113,6 +121,8 @@ export const ListOfCommunicationUnitSchema: GenMessage<ListOfCommunicationUnit, 
   messageDesc(file_acquisition_main, 1);
 
 /**
+ * Defines a specification for creating a new communication bus.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest
  */
 export type CreateCommunicationBusRequest = Message<"io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest"> & {
@@ -125,6 +135,8 @@ export type CreateCommunicationBusRequest = Message<"io.clbs.openhes.models.acqu
 };
 
 /**
+ * Defines a specification for creating a new communication bus.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest
  */
 export type CreateCommunicationBusRequestJson = {
@@ -144,6 +156,8 @@ export const CreateCommunicationBusRequestSchema: GenMessage<CreateCommunication
   messageDesc(file_acquisition_main, 2);
 
 /**
+ * Defines a list of communication buses.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfCommunicationBus
  */
 export type ListOfCommunicationBus = Message<"io.clbs.openhes.models.acquisition.ListOfCommunicationBus"> & {
@@ -155,7 +169,7 @@ export type ListOfCommunicationBus = Message<"io.clbs.openhes.models.acquisition
   items: CommunicationBus[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -163,6 +177,8 @@ export type ListOfCommunicationBus = Message<"io.clbs.openhes.models.acquisition
 };
 
 /**
+ * Defines a list of communication buses.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfCommunicationBus
  */
 export type ListOfCommunicationBusJson = {
@@ -174,7 +190,7 @@ export type ListOfCommunicationBusJson = {
   items?: CommunicationBusJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -189,18 +205,20 @@ export const ListOfCommunicationBusSchema: GenMessage<ListOfCommunicationBus, {j
   messageDesc(file_acquisition_main, 3);
 
 /**
+ * Defines a specification for adding communication units to a communication bus.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest
  */
 export type AddCommunicationUnitsToCommunicationBusRequest = Message<"io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest"> & {
   /**
-   * The unique identifier of the communication bus.
+   * The unique communication bus identifier.
    *
    * @generated from field: string communication_bus_id = 1;
    */
   communicationBusId: string;
 
   /**
-   * The unique identifier of the communication unit.
+   * A list of communication unit identifiers.
    *
    * @generated from field: repeated string communication_unit_id = 2;
    */
@@ -208,18 +226,20 @@ export type AddCommunicationUnitsToCommunicationBusRequest = Message<"io.clbs.op
 };
 
 /**
+ * Defines a specification for adding communication units to a communication bus.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddCommunicationUnitsToCommunicationBusRequest
  */
 export type AddCommunicationUnitsToCommunicationBusRequestJson = {
   /**
-   * The unique identifier of the communication bus.
+   * The unique communication bus identifier.
    *
    * @generated from field: string communication_bus_id = 1;
    */
   communicationBusId?: string;
 
   /**
-   * The unique identifier of the communication unit.
+   * A list of communication unit identifiers.
    *
    * @generated from field: repeated string communication_unit_id = 2;
    */
@@ -234,18 +254,20 @@ export const AddCommunicationUnitsToCommunicationBusRequestSchema: GenMessage<Ad
   messageDesc(file_acquisition_main, 4);
 
 /**
+ * Defines a specification for removing communication units from a communicaation bus.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest
  */
 export type RemoveCommunicationUnitsFromCommunicationBusRequest = Message<"io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest"> & {
   /**
-   * The unique identifier of the communication bus.
+   * The unique communication bus identifier.
    *
    * @generated from field: string communication_bus_id = 1;
    */
   communicationBusId: string;
 
   /**
-   * The unique identifier of the communication unit.
+   * A list of communication unit identifiers.
    *
    * @generated from field: repeated string communication_unit_id = 2;
    */
@@ -253,18 +275,20 @@ export type RemoveCommunicationUnitsFromCommunicationBusRequest = Message<"io.cl
 };
 
 /**
+ * Defines a specification for removing communication units from a communicaation bus.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest
  */
 export type RemoveCommunicationUnitsFromCommunicationBusRequestJson = {
   /**
-   * The unique identifier of the communication bus.
+   * The unique communication bus identifier.
    *
    * @generated from field: string communication_bus_id = 1;
    */
   communicationBusId?: string;
 
   /**
-   * The unique identifier of the communication unit.
+   * A list of communication unit identifiers.
    *
    * @generated from field: repeated string communication_unit_id = 2;
    */
@@ -279,6 +303,8 @@ export const RemoveCommunicationUnitsFromCommunicationBusRequestSchema: GenMessa
   messageDesc(file_acquisition_main, 5);
 
 /**
+ * Defines a specification for creating a new device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceRequest
  */
 export type CreateDeviceRequest = Message<"io.clbs.openhes.models.acquisition.CreateDeviceRequest"> & {
@@ -298,6 +324,8 @@ export type CreateDeviceRequest = Message<"io.clbs.openhes.models.acquisition.Cr
 };
 
 /**
+ * Defines a specification for creating a new device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceRequest
  */
 export type CreateDeviceRequestJson = {
@@ -324,6 +352,8 @@ export const CreateDeviceRequestSchema: GenMessage<CreateDeviceRequest, {jsonTyp
   messageDesc(file_acquisition_main, 6);
 
 /**
+ * Defines a list of devices.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDevice
  */
 export type ListOfDevice = Message<"io.clbs.openhes.models.acquisition.ListOfDevice"> & {
@@ -343,6 +373,8 @@ export type ListOfDevice = Message<"io.clbs.openhes.models.acquisition.ListOfDev
 };
 
 /**
+ * Defines a list of devices.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDevice
  */
 export type ListOfDeviceJson = {
@@ -369,6 +401,8 @@ export const ListOfDeviceSchema: GenMessage<ListOfDevice, {jsonType: ListOfDevic
   messageDesc(file_acquisition_main, 7);
 
 /**
+ * Defines a device model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Device
  */
 export type Device = Message<"io.clbs.openhes.models.acquisition.Device"> & {
@@ -395,6 +429,8 @@ export type Device = Message<"io.clbs.openhes.models.acquisition.Device"> & {
 };
 
 /**
+ * Defines a device model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Device
  */
 export type DeviceJson = {
@@ -428,6 +464,8 @@ export const DeviceSchema: GenMessage<Device, {jsonType: DeviceJson}> = /*@__PUR
   messageDesc(file_acquisition_main, 8);
 
 /**
+ * Defines a partial representation of driver types for a list of devices.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest
  */
 export type StreamDevicesDriverTypesRequest = Message<"io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest"> & {
@@ -440,6 +478,8 @@ export type StreamDevicesDriverTypesRequest = Message<"io.clbs.openhes.models.ac
 };
 
 /**
+ * Defines a partial representation of driver types for a list of devices.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest
  */
 export type StreamDevicesDriverTypesRequestJson = {
@@ -459,11 +499,13 @@ export const StreamDevicesDriverTypesRequestSchema: GenMessage<StreamDevicesDriv
   messageDesc(file_acquisition_main, 9);
 
 /**
+ * Defines the mapping of devices to their driver types in a response.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse
  */
 export type StreamDevicesDriverTypesResponse = Message<"io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse"> & {
   /**
-   * The map of devices to their driver types. The key is the device identifier, the value is the driver type.
+   * The map of devices to their driver types. The key is the unique device identifier, the value is the driver type.
    *
    * @generated from field: map<string, string> data = 1;
    */
@@ -471,11 +513,13 @@ export type StreamDevicesDriverTypesResponse = Message<"io.clbs.openhes.models.a
 };
 
 /**
+ * Defines the mapping of devices to their driver types in a response.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse
  */
 export type StreamDevicesDriverTypesResponseJson = {
   /**
-   * The map of devices to their driver types. The key is the device identifier, the value is the driver type.
+   * The map of devices to their driver types. The key is the unique device identifier, the value is the driver type.
    *
    * @generated from field: map<string, string> data = 1;
    */
@@ -490,6 +534,8 @@ export const StreamDevicesDriverTypesResponseSchema: GenMessage<StreamDevicesDri
   messageDesc(file_acquisition_main, 10);
 
 /**
+ * Defines the list of changes in device communication units.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
  */
 export type ListOfDeviceCommunicationUnitChange = Message<"io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange"> & {
@@ -501,7 +547,7 @@ export type ListOfDeviceCommunicationUnitChange = Message<"io.clbs.openhes.model
   items: DeviceCommunicationUnitChange[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -509,6 +555,8 @@ export type ListOfDeviceCommunicationUnitChange = Message<"io.clbs.openhes.model
 };
 
 /**
+ * Defines the list of changes in device communication units.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
  */
 export type ListOfDeviceCommunicationUnitChangeJson = {
@@ -520,7 +568,7 @@ export type ListOfDeviceCommunicationUnitChangeJson = {
   items?: DeviceCommunicationUnitChangeJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -535,11 +583,13 @@ export const ListOfDeviceCommunicationUnitChangeSchema: GenMessage<ListOfDeviceC
   messageDesc(file_acquisition_main, 11);
 
 /**
+ * Defines the changes in device communication units.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange
  */
 export type DeviceCommunicationUnitChange = Message<"io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange"> & {
   /**
-   * The device communication unit changes status.
+   * The device communication unit change status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus status = 2;
    */
@@ -547,11 +597,13 @@ export type DeviceCommunicationUnitChange = Message<"io.clbs.openhes.models.acqu
 };
 
 /**
+ * Defines the changes in device communication units.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange
  */
 export type DeviceCommunicationUnitChangeJson = {
   /**
-   * The device communication unit changes status.
+   * The device communication unit change status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus status = 2;
    */
@@ -566,39 +618,41 @@ export const DeviceCommunicationUnitChangeSchema: GenMessage<DeviceCommunication
   messageDesc(file_acquisition_main, 12);
 
 /**
+ * Defines the status of the device communication unit change.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus
  */
 export type DeviceCommunicationUnitChangeStatus = Message<"io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus"> & {
   /**
-   * The timestamp of the change.
+   * The timestamp when the change occured.
    *
    * @generated from field: google.protobuf.Timestamp change_at = 1;
    */
   changeAt?: Timestamp;
 
   /**
-   * The unique identifier of the communication unit.
+   * The unique communication unit identifier.
    *
    * @generated from field: string communication_unit_id = 2;
    */
   communicationUnitId: string;
 
   /**
-   * The name of the communication unit.
+   * The communication unit name.
    *
    * @generated from field: string communication_unit_name = 3;
    */
   communicationUnitName: string;
 
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 4;
    */
   deviceId: string;
 
   /**
-   * The name of the device.
+   * The device name.
    *
    * @generated from field: string device_name = 5;
    */
@@ -606,39 +660,41 @@ export type DeviceCommunicationUnitChangeStatus = Message<"io.clbs.openhes.model
 };
 
 /**
+ * Defines the status of the device communication unit change.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus
  */
 export type DeviceCommunicationUnitChangeStatusJson = {
   /**
-   * The timestamp of the change.
+   * The timestamp when the change occured.
    *
    * @generated from field: google.protobuf.Timestamp change_at = 1;
    */
   changeAt?: TimestampJson;
 
   /**
-   * The unique identifier of the communication unit.
+   * The unique communication unit identifier.
    *
    * @generated from field: string communication_unit_id = 2;
    */
   communicationUnitId?: string;
 
   /**
-   * The name of the communication unit.
+   * The communication unit name.
    *
    * @generated from field: string communication_unit_name = 3;
    */
   communicationUnitName?: string;
 
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 4;
    */
   deviceId?: string;
 
   /**
-   * The name of the device.
+   * The device name.
    *
    * @generated from field: string device_name = 5;
    */
@@ -653,6 +709,8 @@ export const DeviceCommunicationUnitChangeStatusSchema: GenMessage<DeviceCommuni
   messageDesc(file_acquisition_main, 13);
 
 /**
+ * Defines an unknown device model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDevice
  */
 export type UnknownDevice = Message<"io.clbs.openhes.models.acquisition.UnknownDevice"> & {
@@ -672,6 +730,8 @@ export type UnknownDevice = Message<"io.clbs.openhes.models.acquisition.UnknownD
 };
 
 /**
+ * Defines an unknown device model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDevice
  */
 export type UnknownDeviceJson = {
@@ -698,18 +758,20 @@ export const UnknownDeviceSchema: GenMessage<UnknownDevice, {jsonType: UnknownDe
   messageDesc(file_acquisition_main, 14);
 
 /**
+ * Defines the status of an unknown device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDeviceStatus
  */
 export type UnknownDeviceStatus = Message<"io.clbs.openhes.models.acquisition.UnknownDeviceStatus"> & {
   /**
-   * The driver type of the device.
+   * The device driver type.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType: string;
 
   /**
-   * The communication unit identifier of the device.
+   * The unique communication unit identifier of the device.
    *
    * @generated from field: string communication_unit_id = 2;
    */
@@ -717,18 +779,20 @@ export type UnknownDeviceStatus = Message<"io.clbs.openhes.models.acquisition.Un
 };
 
 /**
+ * Defines the status of an unknown device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDeviceStatus
  */
 export type UnknownDeviceStatusJson = {
   /**
-   * The driver type of the device.
+   * The device driver type.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType?: string;
 
   /**
-   * The communication unit identifier of the device.
+   * The unique communication unit identifier of the device.
    *
    * @generated from field: string communication_unit_id = 2;
    */
@@ -743,6 +807,8 @@ export const UnknownDeviceStatusSchema: GenMessage<UnknownDeviceStatus, {jsonTyp
   messageDesc(file_acquisition_main, 15);
 
 /**
+ * Defines the specification for creating a new device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest
  */
 export type CreateDeviceGroupRequest = Message<"io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest"> & {
@@ -762,6 +828,8 @@ export type CreateDeviceGroupRequest = Message<"io.clbs.openhes.models.acquisiti
 };
 
 /**
+ * Defines the specification for creating a new device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest
  */
 export type CreateDeviceGroupRequestJson = {
@@ -788,6 +856,8 @@ export const CreateDeviceGroupRequestSchema: GenMessage<CreateDeviceGroupRequest
   messageDesc(file_acquisition_main, 16);
 
 /**
+ * Defines a list of device groups.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceGroup
  */
 export type ListOfDeviceGroup = Message<"io.clbs.openhes.models.acquisition.ListOfDeviceGroup"> & {
@@ -799,7 +869,7 @@ export type ListOfDeviceGroup = Message<"io.clbs.openhes.models.acquisition.List
   items: DeviceGroup[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -807,6 +877,8 @@ export type ListOfDeviceGroup = Message<"io.clbs.openhes.models.acquisition.List
 };
 
 /**
+ * Defines a list of device groups.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceGroup
  */
 export type ListOfDeviceGroupJson = {
@@ -818,7 +890,7 @@ export type ListOfDeviceGroupJson = {
   items?: DeviceGroupJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -833,6 +905,8 @@ export const ListOfDeviceGroupSchema: GenMessage<ListOfDeviceGroup, {jsonType: L
   messageDesc(file_acquisition_main, 17);
 
 /**
+ * Defines a partial representation of a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDeviceGroup
  */
 export type StreamDeviceGroup = Message<"io.clbs.openhes.models.acquisition.StreamDeviceGroup"> & {
@@ -869,6 +943,8 @@ export type StreamDeviceGroup = Message<"io.clbs.openhes.models.acquisition.Stre
 };
 
 /**
+ * Defines a partial representation of a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDeviceGroup
  */
 export type StreamDeviceGroupJson = {
@@ -902,6 +978,8 @@ export const StreamDeviceGroupSchema: GenMessage<StreamDeviceGroup, {jsonType: S
   messageDesc(file_acquisition_main, 18);
 
 /**
+ * Defines a device group model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroup
  */
 export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGroup"> & {
@@ -921,6 +999,8 @@ export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGrou
 };
 
 /**
+ * Defines a device group model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroup
  */
 export type DeviceGroupJson = {
@@ -947,6 +1027,8 @@ export const DeviceGroupSchema: GenMessage<DeviceGroup, {jsonType: DeviceGroupJs
   messageDesc(file_acquisition_main, 19);
 
 /**
+ * Defines a device group sepcification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupSpec
  */
 export type DeviceGroupSpec = Message<"io.clbs.openhes.models.acquisition.DeviceGroupSpec"> & {
@@ -959,6 +1041,8 @@ export type DeviceGroupSpec = Message<"io.clbs.openhes.models.acquisition.Device
 };
 
 /**
+ * Defines a device group sepcification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupSpec
  */
 export type DeviceGroupSpecJson = {
@@ -978,6 +1062,8 @@ export const DeviceGroupSpecSchema: GenMessage<DeviceGroupSpec, {jsonType: Devic
   messageDesc(file_acquisition_main, 20);
 
 /**
+ * Defines a partial representation of a device group status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus
  */
 export type StreamDeviceGroupStatus = Message<"io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus"> & {
@@ -990,6 +1076,8 @@ export type StreamDeviceGroupStatus = Message<"io.clbs.openhes.models.acquisitio
 };
 
 /**
+ * Defines a partial representation of a device group status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus
  */
 export type StreamDeviceGroupStatusJson = {
@@ -1009,6 +1097,8 @@ export const StreamDeviceGroupStatusSchema: GenMessage<StreamDeviceGroupStatus, 
   messageDesc(file_acquisition_main, 21);
 
 /**
+ * Defines the status of a device within a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
  */
 export type DeviceGroupStatusDevice = Message<"io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice"> & {
@@ -1021,6 +1111,8 @@ export type DeviceGroupStatusDevice = Message<"io.clbs.openhes.models.acquisitio
 };
 
 /**
+ * Defines the status of a device within a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
  */
 export type DeviceGroupStatusDeviceJson = {
@@ -1040,11 +1132,13 @@ export const DeviceGroupStatusDeviceSchema: GenMessage<DeviceGroupStatusDevice, 
   messageDesc(file_acquisition_main, 22);
 
 /**
+ * Defines a specification for adding or updating communication units linked to a device .
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
  */
 export type SetDeviceCommunicationUnitsRequest = Message<"io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest"> & {
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
@@ -1059,11 +1153,13 @@ export type SetDeviceCommunicationUnitsRequest = Message<"io.clbs.openhes.models
 };
 
 /**
+ * Defines a specification for adding or updating communication units linked to a device .
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
  */
 export type SetDeviceCommunicationUnitsRequestJson = {
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
@@ -1085,6 +1181,8 @@ export const SetDeviceCommunicationUnitsRequestSchema: GenMessage<SetDeviceCommu
   messageDesc(file_acquisition_main, 23);
 
 /**
+ * Defines a list of communication units linked to a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
  */
 export type ListOfDeviceCommunicationUnit = Message<"io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit"> & {
@@ -1096,7 +1194,7 @@ export type ListOfDeviceCommunicationUnit = Message<"io.clbs.openhes.models.acqu
   items: DeviceCommunicationUnit[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list .
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1104,6 +1202,8 @@ export type ListOfDeviceCommunicationUnit = Message<"io.clbs.openhes.models.acqu
 };
 
 /**
+ * Defines a list of communication units linked to a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
  */
 export type ListOfDeviceCommunicationUnitJson = {
@@ -1115,7 +1215,7 @@ export type ListOfDeviceCommunicationUnitJson = {
   items?: DeviceCommunicationUnitJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list .
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1130,18 +1230,20 @@ export const ListOfDeviceCommunicationUnitSchema: GenMessage<ListOfDeviceCommuni
   messageDesc(file_acquisition_main, 24);
 
 /**
+ * Defines a specification for adding devices to a device groups.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
  */
 export type AddDevicesToGroupRequest = Message<"io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest"> & {
   /**
-   * The unique identifier of the device group.
+   * The unique device group identifier.
    *
    * @generated from field: string group_id = 1;
    */
   groupId: string;
 
   /**
-   * The unique identifier of the device.
+   * A list of device identifiers.
    *
    * @generated from field: repeated string device_id = 2;
    */
@@ -1149,18 +1251,20 @@ export type AddDevicesToGroupRequest = Message<"io.clbs.openhes.models.acquisiti
 };
 
 /**
+ * Defines a specification for adding devices to a device groups.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest
  */
 export type AddDevicesToGroupRequestJson = {
   /**
-   * The unique identifier of the device group.
+   * The unique device group identifier.
    *
    * @generated from field: string group_id = 1;
    */
   groupId?: string;
 
   /**
-   * The unique identifier of the device.
+   * A list of device identifiers.
    *
    * @generated from field: repeated string device_id = 2;
    */
@@ -1175,18 +1279,20 @@ export const AddDevicesToGroupRequestSchema: GenMessage<AddDevicesToGroupRequest
   messageDesc(file_acquisition_main, 25);
 
 /**
+ * Defines a specification for removing devices from a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
  */
 export type RemoveDevicesFromGroupRequest = Message<"io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest"> & {
   /**
-   * The unique identifier of the device group.
+   * The unique device group identifier.
    *
    * @generated from field: string group_id = 1;
    */
   groupId: string;
 
   /**
-   * The unique identifier of the device.
+   * A list of device identifiers.
    *
    * @generated from field: repeated string device_id = 2;
    */
@@ -1194,18 +1300,20 @@ export type RemoveDevicesFromGroupRequest = Message<"io.clbs.openhes.models.acqu
 };
 
 /**
+ * Defines a specification for removing devices from a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveDevicesFromGroupRequest
  */
 export type RemoveDevicesFromGroupRequestJson = {
   /**
-   * The unique identifier of the device group.
+   * The unique device group identifier.
    *
    * @generated from field: string group_id = 1;
    */
   groupId?: string;
 
   /**
-   * The unique identifier of the device.
+   * A list of device identifiers.
    *
    * @generated from field: repeated string device_id = 2;
    */
@@ -1220,18 +1328,20 @@ export const RemoveDevicesFromGroupRequestSchema: GenMessage<RemoveDevicesFromGr
   messageDesc(file_acquisition_main, 26);
 
 /**
+ * Defines a list of devices withing a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest
  */
 export type ListDeviceGroupDevicesRequest = Message<"io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest"> & {
   /**
-   * The unique identifier of the device group.
+   * The unique device group identifier.
    *
    * @generated from field: string group_id = 1;
    */
   groupId: string;
 
   /**
-   * The list selector.
+   * The listing criteria.
    *
    * @generated from field: io.clbs.openhes.models.common.ListSelector selector = 2;
    */
@@ -1239,18 +1349,20 @@ export type ListDeviceGroupDevicesRequest = Message<"io.clbs.openhes.models.acqu
 };
 
 /**
+ * Defines a list of devices withing a device group.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest
  */
 export type ListDeviceGroupDevicesRequestJson = {
   /**
-   * The unique identifier of the device group.
+   * The unique device group identifier.
    *
    * @generated from field: string group_id = 1;
    */
   groupId?: string;
 
   /**
-   * The list selector.
+   * The listing criteria.
    *
    * @generated from field: io.clbs.openhes.models.common.ListSelector selector = 2;
    */
@@ -1265,11 +1377,13 @@ export const ListDeviceGroupDevicesRequestSchema: GenMessage<ListDeviceGroupDevi
   messageDesc(file_acquisition_main, 27);
 
 /**
+ * Defines a specification for creating a new bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateBulkRequest
  */
 export type CreateBulkRequest = Message<"io.clbs.openhes.models.acquisition.CreateBulkRequest"> & {
   /**
-   * The bulk-job spec.
+   * The bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
    */
@@ -1284,11 +1398,13 @@ export type CreateBulkRequest = Message<"io.clbs.openhes.models.acquisition.Crea
 };
 
 /**
+ * Defines a specification for creating a new bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateBulkRequest
  */
 export type CreateBulkRequestJson = {
   /**
-   * The bulk-job spec.
+   * The bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
    */
@@ -1310,6 +1426,8 @@ export const CreateBulkRequestSchema: GenMessage<CreateBulkRequest, {jsonType: C
   messageDesc(file_acquisition_main, 28);
 
 /**
+ * Defines a list of bulks.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfBulk
  */
 export type ListOfBulk = Message<"io.clbs.openhes.models.acquisition.ListOfBulk"> & {
@@ -1321,7 +1439,7 @@ export type ListOfBulk = Message<"io.clbs.openhes.models.acquisition.ListOfBulk"
   items: Bulk[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1329,6 +1447,8 @@ export type ListOfBulk = Message<"io.clbs.openhes.models.acquisition.ListOfBulk"
 };
 
 /**
+ * Defines a list of bulks.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfBulk
  */
 export type ListOfBulkJson = {
@@ -1340,7 +1460,7 @@ export type ListOfBulkJson = {
   items?: BulkJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1355,18 +1475,20 @@ export const ListOfBulkSchema: GenMessage<ListOfBulk, {jsonType: ListOfBulkJson}
   messageDesc(file_acquisition_main, 29);
 
 /**
+ * Defines a bulk model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Bulk
  */
 export type Bulk = Message<"io.clbs.openhes.models.acquisition.Bulk"> & {
   /**
-   * The bulk-job spec.
+   * The bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
    */
   spec?: BulkSpec;
 
   /**
-   * The bulk-job status/data.
+   * The bulk status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatus status = 2;
    */
@@ -1381,18 +1503,20 @@ export type Bulk = Message<"io.clbs.openhes.models.acquisition.Bulk"> & {
 };
 
 /**
+ * Defines a bulk model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Bulk
  */
 export type BulkJson = {
   /**
-   * The bulk-job spec.
+   * The bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
    */
   spec?: BulkSpecJson;
 
   /**
-   * The bulk-job status/data.
+   * The bulk status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatus status = 2;
    */
@@ -1414,13 +1538,15 @@ export const BulkSchema: GenMessage<Bulk, {jsonType: BulkJson}> = /*@__PURE__*/
   messageDesc(file_acquisition_main, 30);
 
 /**
+ * Defines a bulk specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkSpec
  */
 export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & {
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier, e.g. to define relation to non-homogenous group.
+   * The correlation identifier that represents a non-homogenous group with various device types.
    *
    * @generated from field: string correlation_id = 1;
    */
@@ -1439,7 +1565,7 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
     case: "devices";
   } | {
     /**
-     * The device group identifier.
+     * The unique device group identifier.
      *
      * @generated from field: string device_group_id = 3;
      */
@@ -1448,14 +1574,14 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
   } | { case: undefined; value?: undefined };
 
   /**
-   * The bulk-shared job settings.
+   * The job settings shared across all jobs in the bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettings;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed on each device in the bulk.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobActionSet actions = 5;
    */
@@ -1463,13 +1589,15 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
 };
 
 /**
+ * Defines a bulk specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkSpec
  */
 export type BulkSpecJson = {
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier, e.g. to define relation to non-homogenous group.
+   * The correlation identifier that represents a non-homogenous group with various device types.
    *
    * @generated from field: string correlation_id = 1;
    */
@@ -1483,21 +1611,21 @@ export type BulkSpecJson = {
   devices?: ListOfJobDeviceIdJson;
 
   /**
-   * The device group identifier.
+   * The unique device group identifier.
    *
    * @generated from field: string device_group_id = 3;
    */
   deviceGroupId?: string;
 
   /**
-   * The bulk-shared job settings.
+   * The job settings shared across all jobs in the bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettingsJson;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed on each device in the bulk.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobActionSet actions = 5;
    */
@@ -1512,53 +1640,55 @@ export const BulkSpecSchema: GenMessage<BulkSpec, {jsonType: BulkSpecJson}> = /*
   messageDesc(file_acquisition_main, 31);
 
 /**
+ * Defines the status of a bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkStatus
  */
 export type BulkStatus = Message<"io.clbs.openhes.models.acquisition.BulkStatus"> & {
   /**
-   * The job status.
+   * The overall bulk status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatusCode status = 1;
    */
   status: BulkStatusCode;
 
   /**
-   * The number of jobs in the bulk.
+   * The total number of jobs in the bulk.
    *
    * @generated from field: int32 jobs_count = 2;
    */
   jobsCount: number;
 
   /**
-   * The number of jobs finished.
+   * The number of jobs that have finished.
    *
    * @generated from field: int32 jobs_finished = 3;
    */
   jobsFinished: number;
 
   /**
-   * The number of jobs successful.
+   * The number of jobs that finished successfully.
    *
    * @generated from field: int32 jobs_successful = 4;
    */
   jobsSuccessful: number;
 
   /**
-   * The creation timestamp of the bulk.
+   * The timestamp when the bulk was created.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 5;
    */
   createdAt?: Timestamp;
 
   /**
-   * The start timestamp of the bulk.
+   * The timestamp when the bulk started.
    *
    * @generated from field: google.protobuf.Timestamp started_at = 6;
    */
   startedAt?: Timestamp;
 
   /**
-   * The finish timestamp of the bulk.
+   * The timestamp when the bulk finished.
    *
    * @generated from field: google.protobuf.Timestamp finished_at = 7;
    */
@@ -1566,53 +1696,55 @@ export type BulkStatus = Message<"io.clbs.openhes.models.acquisition.BulkStatus"
 };
 
 /**
+ * Defines the status of a bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkStatus
  */
 export type BulkStatusJson = {
   /**
-   * The job status.
+   * The overall bulk status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatusCode status = 1;
    */
   status?: BulkStatusCodeJson;
 
   /**
-   * The number of jobs in the bulk.
+   * The total number of jobs in the bulk.
    *
    * @generated from field: int32 jobs_count = 2;
    */
   jobsCount?: number;
 
   /**
-   * The number of jobs finished.
+   * The number of jobs that have finished.
    *
    * @generated from field: int32 jobs_finished = 3;
    */
   jobsFinished?: number;
 
   /**
-   * The number of jobs successful.
+   * The number of jobs that finished successfully.
    *
    * @generated from field: int32 jobs_successful = 4;
    */
   jobsSuccessful?: number;
 
   /**
-   * The creation timestamp of the bulk.
+   * The timestamp when the bulk was created.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 5;
    */
   createdAt?: TimestampJson;
 
   /**
-   * The start timestamp of the bulk.
+   * The timestamp when the bulk started.
    *
    * @generated from field: google.protobuf.Timestamp started_at = 6;
    */
   startedAt?: TimestampJson;
 
   /**
-   * The finish timestamp of the bulk.
+   * The timestamp when the bulk finished.
    *
    * @generated from field: google.protobuf.Timestamp finished_at = 7;
    */
@@ -1627,11 +1759,13 @@ export const BulkStatusSchema: GenMessage<BulkStatus, {jsonType: BulkStatusJson}
   messageDesc(file_acquisition_main, 32);
 
 /**
+ * Defines the bulk job model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkJob
  */
 export type BulkJob = Message<"io.clbs.openhes.models.acquisition.BulkJob"> & {
   /**
-   * The job spec.
+   * The job specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkJobSpec spec = 1;
    */
@@ -1653,11 +1787,13 @@ export type BulkJob = Message<"io.clbs.openhes.models.acquisition.BulkJob"> & {
 };
 
 /**
+ * Defines the bulk job model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkJob
  */
 export type BulkJobJson = {
   /**
-   * The job spec.
+   * The job specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkJobSpec spec = 1;
    */
@@ -1686,11 +1822,13 @@ export const BulkJobSchema: GenMessage<BulkJob, {jsonType: BulkJobJson}> = /*@__
   messageDesc(file_acquisition_main, 33);
 
 /**
+ * Defines the specification of a bulk job.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkJobSpec
  */
 export type BulkJobSpec = Message<"io.clbs.openhes.models.acquisition.BulkJobSpec"> & {
   /**
-   * The device info.
+   * The device information.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobDevice device = 1;
    */
@@ -1698,11 +1836,13 @@ export type BulkJobSpec = Message<"io.clbs.openhes.models.acquisition.BulkJobSpe
 };
 
 /**
+ * Defines the specification of a bulk job.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.BulkJobSpec
  */
 export type BulkJobSpecJson = {
   /**
-   * The device info.
+   * The device information.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobDevice device = 1;
    */
@@ -1717,18 +1857,20 @@ export const BulkJobSpecSchema: GenMessage<BulkJobSpec, {jsonType: BulkJobSpecJs
   messageDesc(file_acquisition_main, 34);
 
 /**
+ * Defines a specification for listing of jobs within a specified bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListBulkJobsRequest
  */
 export type ListBulkJobsRequest = Message<"io.clbs.openhes.models.acquisition.ListBulkJobsRequest"> & {
   /**
-   * The bulk identifier.
+   * The unique bulk identifier.
    *
    * @generated from field: string bulk_id = 1;
    */
   bulkId: string;
 
   /**
-   * The list selector.
+   * The listing criteria.
    *
    * @generated from field: io.clbs.openhes.models.common.ListSelector selector = 2;
    */
@@ -1736,18 +1878,20 @@ export type ListBulkJobsRequest = Message<"io.clbs.openhes.models.acquisition.Li
 };
 
 /**
+ * Defines a specification for listing of jobs within a specified bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListBulkJobsRequest
  */
 export type ListBulkJobsRequestJson = {
   /**
-   * The bulk identifier.
+   * The unique bulk identifier.
    *
    * @generated from field: string bulk_id = 1;
    */
   bulkId?: string;
 
   /**
-   * The list selector.
+   * The listing criteria.
    *
    * @generated from field: io.clbs.openhes.models.common.ListSelector selector = 2;
    */
@@ -1762,6 +1906,8 @@ export const ListBulkJobsRequestSchema: GenMessage<ListBulkJobsRequest, {jsonTyp
   messageDesc(file_acquisition_main, 35);
 
 /**
+ * Defines a list of jobs within a bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfBulkJob
  */
 export type ListOfBulkJob = Message<"io.clbs.openhes.models.acquisition.ListOfBulkJob"> & {
@@ -1773,7 +1919,7 @@ export type ListOfBulkJob = Message<"io.clbs.openhes.models.acquisition.ListOfBu
   items: BulkJob[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1781,6 +1927,8 @@ export type ListOfBulkJob = Message<"io.clbs.openhes.models.acquisition.ListOfBu
 };
 
 /**
+ * Defines a list of jobs within a bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfBulkJob
  */
 export type ListOfBulkJobJson = {
@@ -1792,7 +1940,7 @@ export type ListOfBulkJobJson = {
   items?: BulkJobJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -1807,11 +1955,13 @@ export const ListOfBulkJobSchema: GenMessage<ListOfBulkJob, {jsonType: ListOfBul
   messageDesc(file_acquisition_main, 36);
 
 /**
+ * Defines a specification for creating a new proxy bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateProxyBulkRequest
  */
 export type CreateProxyBulkRequest = Message<"io.clbs.openhes.models.acquisition.CreateProxyBulkRequest"> & {
   /**
-   * The proxy bulk-job spec.
+   * The proxy bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ProxyBulkSpec spec = 1;
    */
@@ -1826,11 +1976,13 @@ export type CreateProxyBulkRequest = Message<"io.clbs.openhes.models.acquisition
 };
 
 /**
+ * Defines a specification for creating a new proxy bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateProxyBulkRequest
  */
 export type CreateProxyBulkRequestJson = {
   /**
-   * The proxy bulk-job spec.
+   * The proxy bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ProxyBulkSpec spec = 1;
    */
@@ -1852,41 +2004,43 @@ export const CreateProxyBulkRequestSchema: GenMessage<CreateProxyBulkRequest, {j
   messageDesc(file_acquisition_main, 37);
 
 /**
+ * Defines a proxy bulk specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ProxyBulkSpec
  */
 export type ProxyBulkSpec = Message<"io.clbs.openhes.models.acquisition.ProxyBulkSpec"> & {
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier, e.g. to define relation to non-homogenous group.
+   * The correlation identifier that represents a non-homogenous group with various device types.
    *
    * @generated from field: string correlation_id = 1;
    */
   correlationId: string;
 
   /**
-   * The device (driver) type.
+   * The driver type.
    *
    * @generated from field: string driver_type = 2;
    */
   driverType: string;
 
   /**
-   * The list of custom devices in the proxy bulk.
+   * The list of devices in the proxy bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ListOfJobDevice devices = 3;
    */
   devices?: ListOfJobDevice;
 
   /**
-   * The bulk-shared job settings.
+   * The job settings shared across the bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettings;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction actions = 5;
    */
@@ -1894,41 +2048,43 @@ export type ProxyBulkSpec = Message<"io.clbs.openhes.models.acquisition.ProxyBul
 };
 
 /**
+ * Defines a proxy bulk specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ProxyBulkSpec
  */
 export type ProxyBulkSpecJson = {
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier, e.g. to define relation to non-homogenous group.
+   * The correlation identifier that represents a non-homogenous group with various device types.
    *
    * @generated from field: string correlation_id = 1;
    */
   correlationId?: string;
 
   /**
-   * The device (driver) type.
+   * The driver type.
    *
    * @generated from field: string driver_type = 2;
    */
   driverType?: string;
 
   /**
-   * The list of custom devices in the proxy bulk.
+   * The list of devices in the proxy bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ListOfJobDevice devices = 3;
    */
   devices?: ListOfJobDeviceJson;
 
   /**
-   * The bulk-shared job settings.
+   * The job settings shared across the bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettingsJson;
 
   /**
-   * The list actions to be executed.
+   * The list of actions to be executed.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction actions = 5;
    */
@@ -1943,18 +2099,20 @@ export const ProxyBulkSpecSchema: GenMessage<ProxyBulkSpec, {jsonType: ProxyBulk
   messageDesc(file_acquisition_main, 38);
 
 /**
+ * Defines a proxy bulk model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ProxyBulk
  */
 export type ProxyBulk = Message<"io.clbs.openhes.models.acquisition.ProxyBulk"> & {
   /**
-   * The bulk-job spec.
+   * The proxy bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ProxyBulkSpec spec = 1;
    */
   spec?: ProxyBulkSpec;
 
   /**
-   * The bulk-job status/data.
+   * The proxy bulk status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatus status = 2;
    */
@@ -1969,18 +2127,20 @@ export type ProxyBulk = Message<"io.clbs.openhes.models.acquisition.ProxyBulk"> 
 };
 
 /**
+ * Defines a proxy bulk model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ProxyBulk
  */
 export type ProxyBulkJson = {
   /**
-   * The bulk-job spec.
+   * The proxy bulk specification.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ProxyBulkSpec spec = 1;
    */
   spec?: ProxyBulkSpecJson;
 
   /**
-   * The bulk-job status/data.
+   * The proxy bulk status.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatus status = 2;
    */
@@ -2002,6 +2162,8 @@ export const ProxyBulkSchema: GenMessage<ProxyBulk, {jsonType: ProxyBulkJson}> =
   messageDesc(file_acquisition_main, 39);
 
 /**
+ * Defines a specification for creating or updating a modem pool.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetModemPoolRequest
  */
 export type SetModemPoolRequest = Message<"io.clbs.openhes.models.acquisition.SetModemPoolRequest"> & {
@@ -2021,6 +2183,8 @@ export type SetModemPoolRequest = Message<"io.clbs.openhes.models.acquisition.Se
 };
 
 /**
+ * Defines a specification for creating or updating a modem pool.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetModemPoolRequest
  */
 export type SetModemPoolRequestJson = {
@@ -2047,6 +2211,8 @@ export const SetModemPoolRequestSchema: GenMessage<SetModemPoolRequest, {jsonTyp
   messageDesc(file_acquisition_main, 40);
 
 /**
+ * Defines a list of modem pools.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfModemPool
  */
 export type ListOfModemPool = Message<"io.clbs.openhes.models.acquisition.ListOfModemPool"> & {
@@ -2058,7 +2224,7 @@ export type ListOfModemPool = Message<"io.clbs.openhes.models.acquisition.ListOf
   items: ModemPool[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2066,6 +2232,8 @@ export type ListOfModemPool = Message<"io.clbs.openhes.models.acquisition.ListOf
 };
 
 /**
+ * Defines a list of modem pools.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfModemPool
  */
 export type ListOfModemPoolJson = {
@@ -2077,7 +2245,7 @@ export type ListOfModemPoolJson = {
   items?: ModemPoolJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2092,12 +2260,16 @@ export const ListOfModemPoolSchema: GenMessage<ListOfModemPool, {jsonType: ListO
   messageDesc(file_acquisition_main, 41);
 
 /**
+ * Defines a modem pool specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolSpec
  */
 export type ModemPoolSpec = Message<"io.clbs.openhes.models.acquisition.ModemPoolSpec"> & {
 };
 
 /**
+ * Defines a modem pool specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolSpec
  */
 export type ModemPoolSpecJson = {
@@ -2111,6 +2283,8 @@ export const ModemPoolSpecSchema: GenMessage<ModemPoolSpec, {jsonType: ModemPool
   messageDesc(file_acquisition_main, 42);
 
 /**
+ * Defines a modem pool status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolStatus
  */
 export type ModemPoolStatus = Message<"io.clbs.openhes.models.acquisition.ModemPoolStatus"> & {
@@ -2123,6 +2297,8 @@ export type ModemPoolStatus = Message<"io.clbs.openhes.models.acquisition.ModemP
 };
 
 /**
+ * Defines a modem pool status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ModemPoolStatus
  */
 export type ModemPoolStatusJson = {
@@ -2142,6 +2318,8 @@ export const ModemPoolStatusSchema: GenMessage<ModemPoolStatus, {jsonType: Modem
   messageDesc(file_acquisition_main, 43);
 
 /**
+ * Defines a modem pool model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ModemPool
  */
 export type ModemPool = Message<"io.clbs.openhes.models.acquisition.ModemPool"> & {
@@ -2168,6 +2346,8 @@ export type ModemPool = Message<"io.clbs.openhes.models.acquisition.ModemPool"> 
 };
 
 /**
+ * Defines a modem pool model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ModemPool
  */
 export type ModemPoolJson = {
@@ -2201,11 +2381,13 @@ export const ModemPoolSchema: GenMessage<ModemPool, {jsonType: ModemPoolJson}> =
   messageDesc(file_acquisition_main, 44);
 
 /**
+ * Defines a specification for creating or updating modems linked to a modem pool.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetModemRequest
  */
 export type SetModemRequest = Message<"io.clbs.openhes.models.acquisition.SetModemRequest"> & {
   /**
-   * The modem pool identifier, required for update operation.
+   * The unique modem pool identifier. Required for update operation.
    *
    * @generated from field: string pool_id = 1;
    */
@@ -2220,11 +2402,13 @@ export type SetModemRequest = Message<"io.clbs.openhes.models.acquisition.SetMod
 };
 
 /**
+ * Defines a specification for creating or updating modems linked to a modem pool.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetModemRequest
  */
 export type SetModemRequestJson = {
   /**
-   * The modem pool identifier, required for update operation.
+   * The unique modem pool identifier. Required for update operation.
    *
    * @generated from field: string pool_id = 1;
    */
@@ -2246,6 +2430,8 @@ export const SetModemRequestSchema: GenMessage<SetModemRequest, {jsonType: SetMo
   messageDesc(file_acquisition_main, 45);
 
 /**
+ * Defines a specification for creating or updating a driver.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetDriver
  */
 export type SetDriver = Message<"io.clbs.openhes.models.acquisition.SetDriver"> & {
@@ -2258,6 +2444,8 @@ export type SetDriver = Message<"io.clbs.openhes.models.acquisition.SetDriver"> 
 };
 
 /**
+ * Defines a specification for creating or updating a driver.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.SetDriver
  */
 export type SetDriverJson = {
@@ -2277,6 +2465,8 @@ export const SetDriverSchema: GenMessage<SetDriver, {jsonType: SetDriverJson}> =
   messageDesc(file_acquisition_main, 46);
 
 /**
+ * Defines a list of drivers.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDriver
  */
 export type ListOfDriver = Message<"io.clbs.openhes.models.acquisition.ListOfDriver"> & {
@@ -2288,7 +2478,7 @@ export type ListOfDriver = Message<"io.clbs.openhes.models.acquisition.ListOfDri
   items: Driver[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2296,6 +2486,8 @@ export type ListOfDriver = Message<"io.clbs.openhes.models.acquisition.ListOfDri
 };
 
 /**
+ * Defines a list of drivers.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDriver
  */
 export type ListOfDriverJson = {
@@ -2307,7 +2499,7 @@ export type ListOfDriverJson = {
   items?: DriverJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2322,6 +2514,8 @@ export const ListOfDriverSchema: GenMessage<ListOfDriver, {jsonType: ListOfDrive
   messageDesc(file_acquisition_main, 47);
 
 /**
+ * Defines a driver model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Driver
  */
 export type Driver = Message<"io.clbs.openhes.models.acquisition.Driver"> & {
@@ -2341,6 +2535,8 @@ export type Driver = Message<"io.clbs.openhes.models.acquisition.Driver"> & {
 };
 
 /**
+ * Defines a driver model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Driver
  */
 export type DriverJson = {
@@ -2367,18 +2563,20 @@ export const DriverSchema: GenMessage<Driver, {jsonType: DriverJson}> = /*@__PUR
   messageDesc(file_acquisition_main, 48);
 
 /**
+ * Defines the driver specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DriverSpec
  */
 export type DriverSpec = Message<"io.clbs.openhes.models.acquisition.DriverSpec"> & {
   /**
-   * The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
+   * The driver version. The format is not defined. Typically matches the docker image tag or another user-readable version string.
    *
    * @generated from field: string version = 1;
    */
   version: string;
 
   /**
-   * The port the driver's gRPC will listen on.
+   * The port on which the driver's gRPC listens.
    *
    * @generated from field: uint32 listening_port = 2;
    */
@@ -2392,22 +2590,22 @@ export type DriverSpec = Message<"io.clbs.openhes.models.acquisition.DriverSpec"
   driverType: string;
 
   /**
-   * The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+   * The maximum number of concurrent jobs the driver can handle. A value of `0` is not allowed. The maximum value should respect `typical_mem_usage` to avoid exceeding memory resources!
    *
    * @generated from field: int32 max_concurrent_jobs = 4;
    */
   maxConcurrentJobs: number;
 
   /**
-   * The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
-   * The value 0 means that the driver can handle any number of cascading jobs.
+   * The maximum cascade depth the driver can handle. Value `1` means that cascading jobs are not supported. Value `2` means one level of cascading is allowed, and so on.
+   * Value `0` means that the driver can handle any number of cascading jobs.
    *
    * @generated from field: uint32 max_cascade_depth = 5;
    */
   maxCascadeDepth: number;
 
   /**
-   * The typical memory usage of the driver in MB.
+   * The typical memory usage of the driver in `MB`.
    *
    * @generated from field: int32 typical_mem_usage = 6;
    */
@@ -2421,10 +2619,10 @@ export type DriverSpec = Message<"io.clbs.openhes.models.acquisition.DriverSpec"
   templates?: DriverTemplates;
 
   /**
-   * The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-   * It must respect upper/lower characters.
-   * The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-   * @example: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+   * The display name of the driver. Must be in the following format: `<manufacturer> <device_type> [<device_type_version>]`.
+   * Must respect upper/lower case.
+   * Generic drivers, such as `cybros labs generic`, must be in the following format: `<driver_company_name> generic`.
+   * @example: `Addax NP73E`, `cybros labs generic`, `Landis+Gyr S650 v2`
    *
    * @generated from field: string display_name = 8;
    */
@@ -2432,18 +2630,20 @@ export type DriverSpec = Message<"io.clbs.openhes.models.acquisition.DriverSpec"
 };
 
 /**
+ * Defines the driver specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DriverSpec
  */
 export type DriverSpecJson = {
   /**
-   * The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
+   * The driver version. The format is not defined. Typically matches the docker image tag or another user-readable version string.
    *
    * @generated from field: string version = 1;
    */
   version?: string;
 
   /**
-   * The port the driver's gRPC will listen on.
+   * The port on which the driver's gRPC listens.
    *
    * @generated from field: uint32 listening_port = 2;
    */
@@ -2457,22 +2657,22 @@ export type DriverSpecJson = {
   driverType?: string;
 
   /**
-   * The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+   * The maximum number of concurrent jobs the driver can handle. A value of `0` is not allowed. The maximum value should respect `typical_mem_usage` to avoid exceeding memory resources!
    *
    * @generated from field: int32 max_concurrent_jobs = 4;
    */
   maxConcurrentJobs?: number;
 
   /**
-   * The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
-   * The value 0 means that the driver can handle any number of cascading jobs.
+   * The maximum cascade depth the driver can handle. Value `1` means that cascading jobs are not supported. Value `2` means one level of cascading is allowed, and so on.
+   * Value `0` means that the driver can handle any number of cascading jobs.
    *
    * @generated from field: uint32 max_cascade_depth = 5;
    */
   maxCascadeDepth?: number;
 
   /**
-   * The typical memory usage of the driver in MB.
+   * The typical memory usage of the driver in `MB`.
    *
    * @generated from field: int32 typical_mem_usage = 6;
    */
@@ -2486,10 +2686,10 @@ export type DriverSpecJson = {
   templates?: DriverTemplatesJson;
 
   /**
-   * The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-   * It must respect upper/lower characters.
-   * The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-   * @example: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+   * The display name of the driver. Must be in the following format: `<manufacturer> <device_type> [<device_type_version>]`.
+   * Must respect upper/lower case.
+   * Generic drivers, such as `cybros labs generic`, must be in the following format: `<driver_company_name> generic`.
+   * @example: `Addax NP73E`, `cybros labs generic`, `Landis+Gyr S650 v2`
    *
    * @generated from field: string display_name = 8;
    */
@@ -2504,18 +2704,20 @@ export const DriverSpecSchema: GenMessage<DriverSpec, {jsonType: DriverSpecJson}
   messageDesc(file_acquisition_main, 49);
 
 /**
+ * Defines the driver status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DriverStatus
  */
 export type DriverStatus = Message<"io.clbs.openhes.models.acquisition.DriverStatus"> & {
   /**
-   * Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
+   * Indicates whether this is the latest installed version of the driver in the system. Note that this does not necessarily mean it is the latest released version!
    *
    * @generated from field: bool is_latest = 1;
    */
   isLatest: boolean;
 
   /**
-   * Whether the driver update from previous version (if any) has been finished.
+   * Indicates whether the update from the previous version (if any) has finished.
    *
    * @generated from field: bool update_finished = 2;
    */
@@ -2523,18 +2725,20 @@ export type DriverStatus = Message<"io.clbs.openhes.models.acquisition.DriverSta
 };
 
 /**
+ * Defines the driver status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DriverStatus
  */
 export type DriverStatusJson = {
   /**
-   * Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
+   * Indicates whether this is the latest installed version of the driver in the system. Note that this does not necessarily mean it is the latest released version!
    *
    * @generated from field: bool is_latest = 1;
    */
   isLatest?: boolean;
 
   /**
-   * Whether the driver update from previous version (if any) has been finished.
+   * Indicates whether the update from the previous version (if any) has finished.
    *
    * @generated from field: bool update_finished = 2;
    */
@@ -2549,6 +2753,8 @@ export const DriverStatusSchema: GenMessage<DriverStatus, {jsonType: DriverStatu
   messageDesc(file_acquisition_main, 50);
 
 /**
+ * Defines a specification for creating a new variable.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateVariableRequest
  */
 export type CreateVariableRequest = Message<"io.clbs.openhes.models.acquisition.CreateVariableRequest"> & {
@@ -2568,6 +2774,8 @@ export type CreateVariableRequest = Message<"io.clbs.openhes.models.acquisition.
 };
 
 /**
+ * Defines a specification for creating a new variable.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateVariableRequest
  */
 export type CreateVariableRequestJson = {
@@ -2594,6 +2802,8 @@ export const CreateVariableRequestSchema: GenMessage<CreateVariableRequest, {jso
   messageDesc(file_acquisition_main, 51);
 
 /**
+ * Defines a list of variables.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfVariable
  */
 export type ListOfVariable = Message<"io.clbs.openhes.models.acquisition.ListOfVariable"> & {
@@ -2605,7 +2815,7 @@ export type ListOfVariable = Message<"io.clbs.openhes.models.acquisition.ListOfV
   items: Variable[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2613,6 +2823,8 @@ export type ListOfVariable = Message<"io.clbs.openhes.models.acquisition.ListOfV
 };
 
 /**
+ * Defines a list of variables.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfVariable
  */
 export type ListOfVariableJson = {
@@ -2624,7 +2836,7 @@ export type ListOfVariableJson = {
   items?: VariableJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2639,6 +2851,8 @@ export const ListOfVariableSchema: GenMessage<ListOfVariable, {jsonType: ListOfV
   messageDesc(file_acquisition_main, 52);
 
 /**
+ * Defines a variable model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Variable
  */
 export type Variable = Message<"io.clbs.openhes.models.acquisition.Variable"> & {
@@ -2658,6 +2872,8 @@ export type Variable = Message<"io.clbs.openhes.models.acquisition.Variable"> & 
 };
 
 /**
+ * Defines a variable model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.Variable
  */
 export type VariableJson = {
@@ -2684,6 +2900,8 @@ export const VariableSchema: GenMessage<Variable, {jsonType: VariableJson}> = /*
   messageDesc(file_acquisition_main, 53);
 
 /**
+ * Defines a variable specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.VariableSpec
  */
 export type VariableSpec = Message<"io.clbs.openhes.models.acquisition.VariableSpec"> & {
@@ -2702,7 +2920,7 @@ export type VariableSpec = Message<"io.clbs.openhes.models.acquisition.VariableS
   dataType: FieldDataType;
 
   /**
-   * If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).
+   * Indicates whether the returned data for this variabe should exclude values at `from` timestamp. If set to `true`, the returned device data returned for this variable dos not include values at `from` timestamp. Default value is `false`.
    *
    * @generated from field: bool exclude_data_from = 3;
    */
@@ -2710,6 +2928,8 @@ export type VariableSpec = Message<"io.clbs.openhes.models.acquisition.VariableS
 };
 
 /**
+ * Defines a variable specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.VariableSpec
  */
 export type VariableSpecJson = {
@@ -2728,7 +2948,7 @@ export type VariableSpecJson = {
   dataType?: FieldDataTypeJson;
 
   /**
-   * If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).
+   * Indicates whether the returned data for this variabe should exclude values at `from` timestamp. If set to `true`, the returned device data returned for this variable dos not include values at `from` timestamp. Default value is `false`.
    *
    * @generated from field: bool exclude_data_from = 3;
    */
@@ -2743,18 +2963,20 @@ export const VariableSpecSchema: GenMessage<VariableSpec, {jsonType: VariableSpe
   messageDesc(file_acquisition_main, 54);
 
 /**
+ * Defines a specification for adding registers to a variable.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest
  */
 export type AddRegisterToVariableRequest = Message<"io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest"> & {
   /**
-   * The unique identifier of the variable.
+   * The unique variable identifier.
    *
    * @generated from field: string variable_id = 1;
    */
   variableId: string;
 
   /**
-   * The list of register identifiers to be linked to the variable.
+   * A list of register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -2762,18 +2984,20 @@ export type AddRegisterToVariableRequest = Message<"io.clbs.openhes.models.acqui
 };
 
 /**
+ * Defines a specification for adding registers to a variable.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest
  */
 export type AddRegisterToVariableRequestJson = {
   /**
-   * The unique identifier of the variable.
+   * The unique variable identifier.
    *
    * @generated from field: string variable_id = 1;
    */
   variableId?: string;
 
   /**
-   * The list of register identifiers to be linked to the variable.
+   * A list of register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -2788,6 +3012,8 @@ export const AddRegisterToVariableRequestSchema: GenMessage<AddRegisterToVariabl
   messageDesc(file_acquisition_main, 55);
 
 /**
+ * Defines a specification for removing registers from a variable.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest
  */
 export type RemoveRegisterFromVariableRequest = Message<"io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest"> & {
@@ -2799,7 +3025,7 @@ export type RemoveRegisterFromVariableRequest = Message<"io.clbs.openhes.models.
   variableId: string;
 
   /**
-   * The list of register identifiers to be linked to the variable.
+   * A list of register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -2807,6 +3033,8 @@ export type RemoveRegisterFromVariableRequest = Message<"io.clbs.openhes.models.
 };
 
 /**
+ * Defines a specification for removing registers from a variable.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest
  */
 export type RemoveRegisterFromVariableRequestJson = {
@@ -2818,7 +3046,7 @@ export type RemoveRegisterFromVariableRequestJson = {
   variableId?: string;
 
   /**
-   * The list of register identifiers to be linked to the variable.
+   * A list of register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -2833,6 +3061,8 @@ export const RemoveRegisterFromVariableRequestSchema: GenMessage<RemoveRegisterF
   messageDesc(file_acquisition_main, 56);
 
 /**
+ * Defines the specification for creating a new device configuration register.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest
  */
 export type CreateDeviceConfigurationRegisterRequest = Message<"io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest"> & {
@@ -2852,6 +3082,8 @@ export type CreateDeviceConfigurationRegisterRequest = Message<"io.clbs.openhes.
 };
 
 /**
+ * Defines the specification for creating a new device configuration register.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest
  */
 export type CreateDeviceConfigurationRegisterRequestJson = {
@@ -2878,6 +3110,8 @@ export const CreateDeviceConfigurationRegisterRequestSchema: GenMessage<CreateDe
   messageDesc(file_acquisition_main, 57);
 
 /**
+ * Defines a lost of device configuration registers.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
  */
 export type ListOfDeviceConfigurationRegister = Message<"io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister"> & {
@@ -2889,7 +3123,7 @@ export type ListOfDeviceConfigurationRegister = Message<"io.clbs.openhes.models.
   items: DeviceConfigurationRegister[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2897,6 +3131,8 @@ export type ListOfDeviceConfigurationRegister = Message<"io.clbs.openhes.models.
 };
 
 /**
+ * Defines a lost of device configuration registers.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
  */
 export type ListOfDeviceConfigurationRegisterJson = {
@@ -2908,7 +3144,7 @@ export type ListOfDeviceConfigurationRegisterJson = {
   items?: DeviceConfigurationRegisterJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -2923,6 +3159,8 @@ export const ListOfDeviceConfigurationRegisterSchema: GenMessage<ListOfDeviceCon
   messageDesc(file_acquisition_main, 58);
 
 /**
+ * Defines a device configuration register specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
  */
 export type DeviceConfigurationRegister = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationRegister"> & {
@@ -2942,6 +3180,8 @@ export type DeviceConfigurationRegister = Message<"io.clbs.openhes.models.acquis
 };
 
 /**
+ * Defines a device configuration register specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
  */
 export type DeviceConfigurationRegisterJson = {
@@ -2968,11 +3208,13 @@ export const DeviceConfigurationRegisterSchema: GenMessage<DeviceConfigurationRe
   messageDesc(file_acquisition_main, 59);
 
 /**
+ * Defines a map of device configuration registers.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap
  */
 export type DeviceConfigurationRegisterMap = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap"> & {
   /**
-   * The list of device configuration registers to create a map.
+   * A list of device configuration registers records to form a map.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecord items = 1;
    */
@@ -2980,11 +3222,13 @@ export type DeviceConfigurationRegisterMap = Message<"io.clbs.openhes.models.acq
 };
 
 /**
+ * Defines a map of device configuration registers.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap
  */
 export type DeviceConfigurationRegisterMapJson = {
   /**
-   * The list of device configuration registers to create a map.
+   * A list of device configuration registers records to form a map.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecord items = 1;
    */
@@ -2999,11 +3243,13 @@ export const DeviceConfigurationRegisterMapSchema: GenMessage<DeviceConfiguratio
   messageDesc(file_acquisition_main, 60);
 
 /**
+ * Defines a single record in the device configuration register map.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecord
  */
 export type DeviceConfigurationRegisterMapRecord = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecord"> & {
   /**
-   * The register identifier.
+   * The unique register identifier.
    *
    * @generated from field: int64 register_id = 1;
    */
@@ -3024,7 +3270,7 @@ export type DeviceConfigurationRegisterMapRecord = Message<"io.clbs.openhes.mode
   registerName: string;
 
   /**
-   * The name of the variable, if the register is assigned to some.
+   * Variable names, if the register is assigned to any.
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -3032,11 +3278,13 @@ export type DeviceConfigurationRegisterMapRecord = Message<"io.clbs.openhes.mode
 };
 
 /**
+ * Defines a single record in the device configuration register map.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecord
  */
 export type DeviceConfigurationRegisterMapRecordJson = {
   /**
-   * The register identifier.
+   * The unique register identifier.
    *
    * @generated from field: int64 register_id = 1;
    */
@@ -3057,7 +3305,7 @@ export type DeviceConfigurationRegisterMapRecordJson = {
   registerName?: string;
 
   /**
-   * The name of the variable, if the register is assigned to some.
+   * Variable names, if the register is assigned to any.
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -3072,6 +3320,8 @@ export const DeviceConfigurationRegisterMapRecordSchema: GenMessage<DeviceConfig
   messageDesc(file_acquisition_main, 61);
 
 /**
+ * Defines a specification for creating a new device configuration template.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest
  */
 export type CreateDeviceConfigurationTemplateRequest = Message<"io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest"> & {
@@ -3091,6 +3341,8 @@ export type CreateDeviceConfigurationTemplateRequest = Message<"io.clbs.openhes.
 };
 
 /**
+ * Defines a specification for creating a new device configuration template.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest
  */
 export type CreateDeviceConfigurationTemplateRequestJson = {
@@ -3117,6 +3369,8 @@ export const CreateDeviceConfigurationTemplateRequestSchema: GenMessage<CreateDe
   messageDesc(file_acquisition_main, 62);
 
 /**
+ * Defines a list of device configuration templates.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
  */
 export type ListOfDeviceConfigurationTemplate = Message<"io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate"> & {
@@ -3128,7 +3382,7 @@ export type ListOfDeviceConfigurationTemplate = Message<"io.clbs.openhes.models.
   items: DeviceConfigurationTemplate[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -3136,6 +3390,8 @@ export type ListOfDeviceConfigurationTemplate = Message<"io.clbs.openhes.models.
 };
 
 /**
+ * Defines a list of device configuration templates.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
  */
 export type ListOfDeviceConfigurationTemplateJson = {
@@ -3147,7 +3403,7 @@ export type ListOfDeviceConfigurationTemplateJson = {
   items?: DeviceConfigurationTemplateJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -3162,6 +3418,8 @@ export const ListOfDeviceConfigurationTemplateSchema: GenMessage<ListOfDeviceCon
   messageDesc(file_acquisition_main, 63);
 
 /**
+ * Defines a device configuration template model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
  */
 export type DeviceConfigurationTemplate = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate"> & {
@@ -3181,6 +3439,8 @@ export type DeviceConfigurationTemplate = Message<"io.clbs.openhes.models.acquis
 };
 
 /**
+ * Defines a device configuration template model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
  */
 export type DeviceConfigurationTemplateJson = {
@@ -3207,18 +3467,20 @@ export const DeviceConfigurationTemplateSchema: GenMessage<DeviceConfigurationTe
   messageDesc(file_acquisition_main, 64);
 
 /**
+ * Defines a device configuration template specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
  */
 export type DeviceConfigurationTemplateSpec = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec"> & {
   /**
-   * The device (driver) type.
+   * The driver type.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType: string;
 
   /**
-   * The list of device configuration register identifiers.
+   * A list of device configuration register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3226,18 +3488,20 @@ export type DeviceConfigurationTemplateSpec = Message<"io.clbs.openhes.models.ac
 };
 
 /**
+ * Defines a device configuration template specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
  */
 export type DeviceConfigurationTemplateSpecJson = {
   /**
-   * The device (driver) type.
+   * The driver type.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType?: string;
 
   /**
-   * The list of device configuration register identifiers.
+   * A list of device configuration register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3252,18 +3516,20 @@ export const DeviceConfigurationTemplateSpecSchema: GenMessage<DeviceConfigurati
   messageDesc(file_acquisition_main, 65);
 
 /**
+ * Defines the specification for adding device configuration registers to device configuration templates.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest
  */
 export type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest = Message<"io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest"> & {
   /**
-   * The identifier of the device configuration template.
+   * The unique device configuration template identifier.
    *
    * @generated from field: string dct_id = 1;
    */
   dctId: string;
 
   /**
-   * The list of register identifiers to be linked to the template.
+   * A list of device configuration register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3271,18 +3537,20 @@ export type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest =
 };
 
 /**
+ * Defines the specification for adding device configuration registers to device configuration templates.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest
  */
 export type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequestJson = {
   /**
-   * The identifier of the device configuration template.
+   * The unique device configuration template identifier.
    *
    * @generated from field: string dct_id = 1;
    */
   dctId?: string;
 
   /**
-   * The list of register identifiers to be linked to the template.
+   * A list of device configuration register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3297,18 +3565,20 @@ export const AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequestS
   messageDesc(file_acquisition_main, 66);
 
 /**
+ * Defines the specification for removing device configuration registers to device configuration templates.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
  */
 export type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest = Message<"io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"> & {
   /**
-   * The identifier of the device configuration template.
+   * The unique device configuration template identifier.
    *
    * @generated from field: string dct_id = 1;
    */
   dctId: string;
 
   /**
-   * The list of register identifiers to be unlinked from the template.
+   * A list of device configuration register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3316,18 +3586,20 @@ export type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequ
 };
 
 /**
+ * Defines the specification for removing device configuration registers to device configuration templates.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
  */
 export type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequestJson = {
   /**
-   * The identifier of the device configuration template.
+   * The unique device configuration template identifier.
    *
    * @generated from field: string dct_id = 1;
    */
   dctId?: string;
 
   /**
-   * The list of register identifiers to be unlinked from the template.
+   * A list of device configuration register identifiers.
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3342,46 +3614,48 @@ export const RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateReq
   messageDesc(file_acquisition_main, 67);
 
 /**
+ * Defines a specification for retrieving device data.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceDataRequest
  */
 export type GetDeviceDataRequest = Message<"io.clbs.openhes.models.acquisition.GetDeviceDataRequest"> & {
   /**
-   * The start timestamp of the data. The exclusivness/inclusiveness of the timestamp is defined in the variable.
+   * The start timestamp of the requested data. The exclusivness/inclusiveness of the timestamp is defined in a variable.
    *
    * @generated from field: google.protobuf.Timestamp range_start = 1;
    */
   rangeStart?: Timestamp;
 
   /**
-   * The end timestamp of the data. It is inclusive.
+   * The end timestamp of the data. The timestamp is inclusive.
    *
    * @generated from field: google.protobuf.Timestamp range_end = 2;
    */
   rangeEnd?: Timestamp;
 
   /**
-   * One or more identifiers of the devices.
+   * One or more selectors identifying devices and variables for which data is requested.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector series = 3;
    */
   series: GetDeviceDataSeriesSelector[];
 
   /**
-   * The filter status bits, only values with these status bits will be returned in the response.
+   * The status bit filter. Only values with these status bits will be included in the response.
    *
    * @generated from field: int64 filter_include_status = 4;
    */
   filterIncludeStatus: bigint;
 
   /**
-   * The filter status bits, only values without these status bits will be returned in the response.
+   * The status bit filter. Values with these status bits will not be included in the response.
    *
    * @generated from field: int64 filter_exclude_status = 5;
    */
   filterExcludeStatus: bigint;
 
   /**
-   * If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
+   * If set, returns a snapshot of stoered data from the given point in time.
    *
    * @generated from field: google.protobuf.Timestamp snapshot = 6;
    */
@@ -3389,46 +3663,48 @@ export type GetDeviceDataRequest = Message<"io.clbs.openhes.models.acquisition.G
 };
 
 /**
+ * Defines a specification for retrieving device data.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceDataRequest
  */
 export type GetDeviceDataRequestJson = {
   /**
-   * The start timestamp of the data. The exclusivness/inclusiveness of the timestamp is defined in the variable.
+   * The start timestamp of the requested data. The exclusivness/inclusiveness of the timestamp is defined in a variable.
    *
    * @generated from field: google.protobuf.Timestamp range_start = 1;
    */
   rangeStart?: TimestampJson;
 
   /**
-   * The end timestamp of the data. It is inclusive.
+   * The end timestamp of the data. The timestamp is inclusive.
    *
    * @generated from field: google.protobuf.Timestamp range_end = 2;
    */
   rangeEnd?: TimestampJson;
 
   /**
-   * One or more identifiers of the devices.
+   * One or more selectors identifying devices and variables for which data is requested.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector series = 3;
    */
   series?: GetDeviceDataSeriesSelectorJson[];
 
   /**
-   * The filter status bits, only values with these status bits will be returned in the response.
+   * The status bit filter. Only values with these status bits will be included in the response.
    *
    * @generated from field: int64 filter_include_status = 4;
    */
   filterIncludeStatus?: string;
 
   /**
-   * The filter status bits, only values without these status bits will be returned in the response.
+   * The status bit filter. Values with these status bits will not be included in the response.
    *
    * @generated from field: int64 filter_exclude_status = 5;
    */
   filterExcludeStatus?: string;
 
   /**
-   * If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
+   * If set, returns a snapshot of stoered data from the given point in time.
    *
    * @generated from field: google.protobuf.Timestamp snapshot = 6;
    */
@@ -3443,18 +3719,20 @@ export const GetDeviceDataRequestSchema: GenMessage<GetDeviceDataRequest, {jsonT
   messageDesc(file_acquisition_main, 68);
 
 /**
+ * Defines a selector for identifying device and variable pairs.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector
  */
 export type GetDeviceDataSeriesSelector = Message<"io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector"> & {
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
   deviceId: string;
 
   /**
-   * The unique identifier of the variable.
+   * The unique variable identifier.
    *
    * @generated from field: string variable_id = 2;
    */
@@ -3462,18 +3740,20 @@ export type GetDeviceDataSeriesSelector = Message<"io.clbs.openhes.models.acquis
 };
 
 /**
+ * Defines a selector for identifying device and variable pairs.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector
  */
 export type GetDeviceDataSeriesSelectorJson = {
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
   deviceId?: string;
 
   /**
-   * The unique identifier of the variable.
+   * The unique variable identifier.
    *
    * @generated from field: string variable_id = 2;
    */
@@ -3488,11 +3768,13 @@ export const GetDeviceDataSeriesSelectorSchema: GenMessage<GetDeviceDataSeriesSe
   messageDesc(file_acquisition_main, 69);
 
 /**
+ * Defines a list of data items.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceData
  */
 export type DeviceData = Message<"io.clbs.openhes.models.acquisition.DeviceData"> & {
   /**
-   * The list of device data items.
+   * A list of device data items.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceDeviceData devices = 1;
    */
@@ -3500,11 +3782,13 @@ export type DeviceData = Message<"io.clbs.openhes.models.acquisition.DeviceData"
 };
 
 /**
+ * Defines a list of data items.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceData
  */
 export type DeviceDataJson = {
   /**
-   * The list of device data items.
+   * A list of device data items.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.DeviceDeviceData devices = 1;
    */
@@ -3519,18 +3803,20 @@ export const DeviceDataSchema: GenMessage<DeviceData, {jsonType: DeviceDataJson}
   messageDesc(file_acquisition_main, 70);
 
 /**
+ * Defines data items for a specific device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDeviceData
  */
 export type DeviceDeviceData = Message<"io.clbs.openhes.models.acquisition.DeviceDeviceData"> & {
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
   deviceId: string;
 
   /**
-   * The list of variable data items.
+   * A list of variable data items.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.VariableDeviceData data = 2;
    */
@@ -3538,18 +3824,20 @@ export type DeviceDeviceData = Message<"io.clbs.openhes.models.acquisition.Devic
 };
 
 /**
+ * Defines data items for a specific device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDeviceData
  */
 export type DeviceDeviceDataJson = {
   /**
-   * The unique identifier of the device.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
   deviceId?: string;
 
   /**
-   * The list of variable data items.
+   * A list of variable data items.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.VariableDeviceData data = 2;
    */
@@ -3564,32 +3852,34 @@ export const DeviceDeviceDataSchema: GenMessage<DeviceDeviceData, {jsonType: Dev
   messageDesc(file_acquisition_main, 71);
 
 /**
+ * Defines data for a specific variable within a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.VariableDeviceData
  */
 export type VariableDeviceData = Message<"io.clbs.openhes.models.acquisition.VariableDeviceData"> & {
   /**
-   * The unique identifier of the variable.
+   * The unique variable identifier.
    *
    * @generated from field: string variable_id = 1;
    */
   variableId: string;
 
   /**
-   * The list of timestamps for the variable data.
+   * A list of timestamps for the variable data.
    *
    * @generated from field: repeated google.protobuf.Timestamp timestamps = 2;
    */
   timestamps: Timestamp[];
 
   /**
-   * The list of units for the variable data.
+   * A list of units for the variable data.
    *
    * @generated from field: repeated string units = 3;
    */
   units: string[];
 
   /**
-   * The list of measured values for the variable data.
+   * A list of measured values for the variable data.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.MeasuredValue values = 4;
    */
@@ -3597,32 +3887,34 @@ export type VariableDeviceData = Message<"io.clbs.openhes.models.acquisition.Var
 };
 
 /**
+ * Defines data for a specific variable within a device.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.VariableDeviceData
  */
 export type VariableDeviceDataJson = {
   /**
-   * The unique identifier of the variable.
+   * The unique variable identifier.
    *
    * @generated from field: string variable_id = 1;
    */
   variableId?: string;
 
   /**
-   * The list of timestamps for the variable data.
+   * A list of timestamps for the variable data.
    *
    * @generated from field: repeated google.protobuf.Timestamp timestamps = 2;
    */
   timestamps?: TimestampJson[];
 
   /**
-   * The list of units for the variable data.
+   * A list of units for the variable data.
    *
    * @generated from field: repeated string units = 3;
    */
   units?: string[];
 
   /**
-   * The list of measured values for the variable data.
+   * A list of measured values for the variable data.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.MeasuredValue values = 4;
    */
@@ -3637,6 +3929,8 @@ export const VariableDeviceDataSchema: GenMessage<VariableDeviceData, {jsonType:
   messageDesc(file_acquisition_main, 72);
 
 /**
+ * Defines device data information model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDataInfo
  */
 export type DeviceDataInfo = Message<"io.clbs.openhes.models.acquisition.DeviceDataInfo"> & {
@@ -3656,6 +3950,8 @@ export type DeviceDataInfo = Message<"io.clbs.openhes.models.acquisition.DeviceD
 };
 
 /**
+ * Defines device data information model.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDataInfo
  */
 export type DeviceDataInfoJson = {
@@ -3682,18 +3978,20 @@ export const DeviceDataInfoSchema: GenMessage<DeviceDataInfo, {jsonType: DeviceD
   messageDesc(file_acquisition_main, 73);
 
 /**
+ * Defines the device data information specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDataInfoSpec
  */
 export type DeviceDataInfoSpec = Message<"io.clbs.openhes.models.acquisition.DeviceDataInfoSpec"> & {
   /**
-   * The device identifier.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
   deviceId: string;
 
   /**
-   * The register identifier.
+   * The unique register identifier.
    *
    * @generated from field: string register_id = 2;
    */
@@ -3701,18 +3999,20 @@ export type DeviceDataInfoSpec = Message<"io.clbs.openhes.models.acquisition.Dev
 };
 
 /**
+ * Defines the device data information specification.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDataInfoSpec
  */
 export type DeviceDataInfoSpecJson = {
   /**
-   * The device identifier.
+   * The unique device identifier.
    *
    * @generated from field: string device_id = 1;
    */
   deviceId?: string;
 
   /**
-   * The register identifier.
+   * The unique register identifier.
    *
    * @generated from field: string register_id = 2;
    */
@@ -3727,6 +4027,8 @@ export const DeviceDataInfoSpecSchema: GenMessage<DeviceDataInfoSpec, {jsonType:
   messageDesc(file_acquisition_main, 74);
 
 /**
+ * Defines the device data information status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDataInfoStatus
  */
 export type DeviceDataInfoStatus = Message<"io.clbs.openhes.models.acquisition.DeviceDataInfoStatus"> & {
@@ -3753,6 +4055,8 @@ export type DeviceDataInfoStatus = Message<"io.clbs.openhes.models.acquisition.D
 };
 
 /**
+ * Defines the device data information status.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceDataInfoStatus
  */
 export type DeviceDataInfoStatusJson = {
@@ -3786,6 +4090,8 @@ export const DeviceDataInfoStatusSchema: GenMessage<DeviceDataInfoStatus, {jsonT
   messageDesc(file_acquisition_main, 75);
 
 /**
+ * Defines a list of device data information items.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
  */
 export type ListOfDeviceDataInfo = Message<"io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo"> & {
@@ -3805,6 +4111,8 @@ export type ListOfDeviceDataInfo = Message<"io.clbs.openhes.models.acquisition.L
 };
 
 /**
+ * Defines a list of device data information items.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
  */
 export type ListOfDeviceDataInfoJson = {
@@ -3831,6 +4139,8 @@ export const ListOfDeviceDataInfoSchema: GenMessage<ListOfDeviceDataInfo, {jsonT
   messageDesc(file_acquisition_main, 76);
 
 /**
+ * Defines a specification for retrieving device events.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
  */
 export type GetDeviceEventsRequest = Message<"io.clbs.openhes.models.acquisition.GetDeviceEventsRequest"> & {
@@ -3857,6 +4167,8 @@ export type GetDeviceEventsRequest = Message<"io.clbs.openhes.models.acquisition
 };
 
 /**
+ * Defines a specification for retrieving device events.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
  */
 export type GetDeviceEventsRequestJson = {
@@ -3890,6 +4202,8 @@ export const GetDeviceEventsRequestSchema: GenMessage<GetDeviceEventsRequest, {j
   messageDesc(file_acquisition_main, 77);
 
 /**
+ * Defines a specification for retrieving device bulks from a specified time range.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceBulksRequest
  */
 export type GetDeviceBulksRequest = Message<"io.clbs.openhes.models.acquisition.GetDeviceBulksRequest"> & {
@@ -3916,6 +4230,8 @@ export type GetDeviceBulksRequest = Message<"io.clbs.openhes.models.acquisition.
 };
 
 /**
+ * Defines a specification for retrieving device bulks from a specified time range.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.GetDeviceBulksRequest
  */
 export type GetDeviceBulksRequestJson = {
@@ -3949,6 +4265,8 @@ export const GetDeviceBulksRequestSchema: GenMessage<GetDeviceBulksRequest, {jso
   messageDesc(file_acquisition_main, 78);
 
 /**
+ * Defines a list of device bulks.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceBulks
  */
 export type DeviceBulks = Message<"io.clbs.openhes.models.acquisition.DeviceBulks"> & {
@@ -3961,6 +4279,8 @@ export type DeviceBulks = Message<"io.clbs.openhes.models.acquisition.DeviceBulk
 };
 
 /**
+ * Defines a list of device bulks.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceBulks
  */
 export type DeviceBulksJson = {
@@ -3980,6 +4300,8 @@ export const DeviceBulksSchema: GenMessage<DeviceBulks, {jsonType: DeviceBulksJs
   messageDesc(file_acquisition_main, 79);
 
 /**
+ * Defines a specification for creating a new time-of-use table.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
  */
 export type CreateTimeOfUseTableRequest = Message<"io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest"> & {
@@ -3999,6 +4321,8 @@ export type CreateTimeOfUseTableRequest = Message<"io.clbs.openhes.models.acquis
 };
 
 /**
+ * Defines a specification for creating a new time-of-use table.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
  */
 export type CreateTimeOfUseTableRequestJson = {
@@ -4025,6 +4349,8 @@ export const CreateTimeOfUseTableRequestSchema: GenMessage<CreateTimeOfUseTableR
   messageDesc(file_acquisition_main, 80);
 
 /**
+ * Defines a list of time-of-use tables.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
  */
 export type ListOfTimeOfUseTable = Message<"io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable"> & {
@@ -4036,7 +4362,7 @@ export type ListOfTimeOfUseTable = Message<"io.clbs.openhes.models.acquisition.L
   items: TimeOfUseTable[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -4044,6 +4370,8 @@ export type ListOfTimeOfUseTable = Message<"io.clbs.openhes.models.acquisition.L
 };
 
 /**
+ * Defines a list of time-of-use tables.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
  */
 export type ListOfTimeOfUseTableJson = {
@@ -4055,7 +4383,7 @@ export type ListOfTimeOfUseTableJson = {
   items?: TimeOfUseTableJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */

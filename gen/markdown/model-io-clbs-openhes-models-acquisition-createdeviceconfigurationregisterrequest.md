@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest
 
+Defines the specification for creating a new device configuration register.
+
 ## Fields
 
 | Field | Information |

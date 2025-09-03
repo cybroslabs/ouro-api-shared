@@ -1,9 +1,11 @@
 # Model: io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest
 
+Defines a specification for adding registers to a variable.
+
 ## Fields
 
 | Field | Information |
 | --- | --- |
-| variableId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique identifier of the variable. |
-| registerId | <b>Type:</b> `string`<br><b>Description:</b><br>The list of register identifiers to be linked to the variable. |
+| variableId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique variable identifier. |
+| registerId | <b>Type:</b> `string`<br><b>Description:</b><br>A list of register identifiers. |
 

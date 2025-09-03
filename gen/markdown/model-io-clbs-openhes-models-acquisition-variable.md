@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.Variable
 
+Defines a variable model.
+
 ## Fields
 
 | Field | Information |

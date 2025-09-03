@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.Driver
 
+Defines a driver model.
+
 ## Fields
 
 | Field | Information |

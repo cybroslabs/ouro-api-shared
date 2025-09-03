@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.DeviceDataInfoStatus
 
+Defines the device data information status.
+
 ## Fields
 
 | Field | Information |

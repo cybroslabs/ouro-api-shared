@@ -640,6 +640,8 @@ export const JobActionSetSchema: GenMessage<JobActionSet, {jsonType: JobActionSe
   messageDesc(file_acquisition_shared, 2);
 
 /**
+ * Defines a list of job devices included in a bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfJobDevice
  */
 export type ListOfJobDevice = Message<"io.clbs.openhes.models.acquisition.ListOfJobDevice"> & {
@@ -659,6 +661,8 @@ export type ListOfJobDevice = Message<"io.clbs.openhes.models.acquisition.ListOf
 };
 
 /**
+ * Defines a list of job devices included in a bulk.
+ *
  * @generated from message io.clbs.openhes.models.acquisition.ListOfJobDevice
  */
 export type ListOfJobDeviceJson = {

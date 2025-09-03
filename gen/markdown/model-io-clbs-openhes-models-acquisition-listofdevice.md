@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.ListOfDevice
 
+Defines a list of devices.
+
 ## Fields
 
 | Field | Information |

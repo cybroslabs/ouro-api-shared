@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest
 
+Defines a specification for creating a new communication bus.
+
 ## Fields
 
 | Field | Information |

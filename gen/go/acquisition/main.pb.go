@@ -24,6 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Defines a specification for creating a new communication unit.
 type CreateCommunicationUnitRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *CommunicationUnitSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -117,6 +118,7 @@ func (b0 CreateCommunicationUnitRequest_builder) Build() *CreateCommunicationUni
 	return m0
 }
 
+// Defines a list of communication units.
 type ListOfCommunicationUnit struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*CommunicationUnit  `protobuf:"bytes,1,rep,name=items"`
@@ -208,6 +210,7 @@ func (b0 ListOfCommunicationUnit_builder) Build() *ListOfCommunicationUnit {
 	return m0
 }
 
+// Defines a specification for creating a new communication bus.
 type CreateCommunicationBusRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
@@ -276,6 +279,7 @@ func (b0 CreateCommunicationBusRequest_builder) Build() *CreateCommunicationBusR
 	return m0
 }
 
+// Defines a list of communication buses.
 type ListOfCommunicationBus struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*CommunicationBus   `protobuf:"bytes,1,rep,name=items"`
@@ -367,6 +371,7 @@ func (b0 ListOfCommunicationBus_builder) Build() *ListOfCommunicationBus {
 	return m0
 }
 
+// Defines a specification for adding communication units to a communication bus.
 type AddCommunicationUnitsToCommunicationBusRequest struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationBusId  *string                `protobuf:"bytes,1,opt,name=communication_bus_id,json=communicationBusId"`
@@ -459,6 +464,7 @@ func (b0 AddCommunicationUnitsToCommunicationBusRequest_builder) Build() *AddCom
 	return m0
 }
 
+// Defines a specification for removing communication units from a communicaation bus.
 type RemoveCommunicationUnitsFromCommunicationBusRequest struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CommunicationBusId  *string                `protobuf:"bytes,1,opt,name=communication_bus_id,json=communicationBusId"`
@@ -551,6 +557,7 @@ func (b0 RemoveCommunicationUnitsFromCommunicationBusRequest_builder) Build() *R
 	return m0
 }
 
+// Defines a specification for creating a new device.
 type CreateDeviceRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,opt,name=spec"`
@@ -644,6 +651,7 @@ func (b0 CreateDeviceRequest_builder) Build() *CreateDeviceRequest {
 	return m0
 }
 
+// Defines a list of devices.
 type ListOfDevice struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*Device             `protobuf:"bytes,1,rep,name=items"`
@@ -735,6 +743,7 @@ func (b0 ListOfDevice_builder) Build() *ListOfDevice {
 	return m0
 }
 
+// Defines a device model.
 type Device struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,opt,name=spec"`
@@ -853,6 +862,7 @@ func (b0 Device_builder) Build() *Device {
 	return m0
 }
 
+// Defines a partial representation of driver types for a list of devices.
 type StreamDevicesDriverTypesRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DeviceId []string               `protobuf:"bytes,1,rep,name=device_id,json=deviceId"`
@@ -910,6 +920,7 @@ func (b0 StreamDevicesDriverTypesRequest_builder) Build() *StreamDevicesDriverTy
 	return m0
 }
 
+// Defines the mapping of devices to their driver types in a response.
 type StreamDevicesDriverTypesResponse struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Data map[string]string      `protobuf:"bytes,1,rep,name=data" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -967,6 +978,7 @@ func (b0 StreamDevicesDriverTypesResponse_builder) Build() *StreamDevicesDriverT
 	return m0
 }
 
+// Defines the list of changes in device communication units.
 type ListOfDeviceCommunicationUnitChange struct {
 	state                  protoimpl.MessageState            `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceCommunicationUnitChange `protobuf:"bytes,1,rep,name=items"`
@@ -1058,6 +1070,7 @@ func (b0 ListOfDeviceCommunicationUnitChange_builder) Build() *ListOfDeviceCommu
 	return m0
 }
 
+// Defines the changes in device communication units.
 type DeviceCommunicationUnitChange struct {
 	state             protoimpl.MessageState               `protogen:"opaque.v1"`
 	xxx_hidden_Status *DeviceCommunicationUnitChangeStatus `protobuf:"bytes,2,opt,name=status"`
@@ -1126,6 +1139,7 @@ func (b0 DeviceCommunicationUnitChange_builder) Build() *DeviceCommunicationUnit
 	return m0
 }
 
+// Defines the status of the device communication unit change.
 type DeviceCommunicationUnitChangeStatus struct {
 	state                            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ChangeAt              *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=change_at,json=changeAt"`
@@ -1328,6 +1342,7 @@ func (b0 DeviceCommunicationUnitChangeStatus_builder) Build() *DeviceCommunicati
 	return m0
 }
 
+// Defines an unknown device model.
 type UnknownDevice struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Status   *UnknownDeviceStatus   `protobuf:"bytes,2,opt,name=status"`
@@ -1421,6 +1436,7 @@ func (b0 UnknownDevice_builder) Build() *UnknownDevice {
 	return m0
 }
 
+// Defines the status of an unknown device.
 type UnknownDeviceStatus struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DriverType          *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -1532,6 +1548,7 @@ func (b0 UnknownDeviceStatus_builder) Build() *UnknownDeviceStatus {
 	return m0
 }
 
+// Defines the specification for creating a new device group.
 type CreateDeviceGroupRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,opt,name=spec"`
@@ -1625,6 +1642,7 @@ func (b0 CreateDeviceGroupRequest_builder) Build() *CreateDeviceGroupRequest {
 	return m0
 }
 
+// Defines a list of device groups.
 type ListOfDeviceGroup struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceGroup        `protobuf:"bytes,1,rep,name=items"`
@@ -1716,6 +1734,7 @@ func (b0 ListOfDeviceGroup_builder) Build() *ListOfDeviceGroup {
 	return m0
 }
 
+// Defines a partial representation of a device group.
 type StreamDeviceGroup struct {
 	state            protoimpl.MessageState    `protogen:"opaque.v1"`
 	xxx_hidden_Parts isStreamDeviceGroup_Parts `protobuf_oneof:"parts"`
@@ -1933,6 +1952,7 @@ func (*streamDeviceGroup_Status) isStreamDeviceGroup_Parts() {}
 
 func (*streamDeviceGroup_Metadata) isStreamDeviceGroup_Parts() {}
 
+// Defines a device group model.
 type DeviceGroup struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,opt,name=spec"`
@@ -2026,6 +2046,7 @@ func (b0 DeviceGroup_builder) Build() *DeviceGroup {
 	return m0
 }
 
+// Defines a device group sepcification.
 type DeviceGroupSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ExternalId  *string                `protobuf:"bytes,1,opt,name=external_id,json=externalId"`
@@ -2104,6 +2125,7 @@ func (b0 DeviceGroupSpec_builder) Build() *DeviceGroupSpec {
 	return m0
 }
 
+// Defines a partial representation of a device group status.
 type StreamDeviceGroupStatus struct {
 	state              protoimpl.MessageState              `protogen:"opaque.v1"`
 	xxx_hidden_Devices map[string]*DeviceGroupStatusDevice `protobuf:"bytes,4,rep,name=devices" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -2161,6 +2183,7 @@ func (b0 StreamDeviceGroupStatus_builder) Build() *StreamDeviceGroupStatus {
 	return m0
 }
 
+// Defines the status of a device within a device group.
 type DeviceGroupStatusDevice struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -2239,6 +2262,7 @@ func (b0 DeviceGroupStatusDevice_builder) Build() *DeviceGroupStatusDevice {
 	return m0
 }
 
+// Defines a specification for adding or updating communication units linked to a device .
 type SetDeviceCommunicationUnitsRequest struct {
 	state                         protoimpl.MessageState      `protogen:"opaque.v1"`
 	xxx_hidden_DeviceId           *string                     `protobuf:"bytes,1,opt,name=device_id,json=deviceId"`
@@ -2333,6 +2357,7 @@ func (b0 SetDeviceCommunicationUnitsRequest_builder) Build() *SetDeviceCommunica
 	return m0
 }
 
+// Defines a list of communication units linked to a device.
 type ListOfDeviceCommunicationUnit struct {
 	state                  protoimpl.MessageState      `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceCommunicationUnit `protobuf:"bytes,1,rep,name=items"`
@@ -2424,6 +2449,7 @@ func (b0 ListOfDeviceCommunicationUnit_builder) Build() *ListOfDeviceCommunicati
 	return m0
 }
 
+// Defines a specification for adding devices to a device groups.
 type AddDevicesToGroupRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_GroupId     *string                `protobuf:"bytes,1,opt,name=group_id,json=groupId"`
@@ -2516,6 +2542,7 @@ func (b0 AddDevicesToGroupRequest_builder) Build() *AddDevicesToGroupRequest {
 	return m0
 }
 
+// Defines a specification for removing devices from a device group.
 type RemoveDevicesFromGroupRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_GroupId     *string                `protobuf:"bytes,1,opt,name=group_id,json=groupId"`
@@ -2608,6 +2635,7 @@ func (b0 RemoveDevicesFromGroupRequest_builder) Build() *RemoveDevicesFromGroupR
 	return m0
 }
 
+// Defines a list of devices withing a device group.
 type ListDeviceGroupDevicesRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_GroupId     *string                `protobuf:"bytes,1,opt,name=group_id,json=groupId"`
@@ -2711,6 +2739,7 @@ func (b0 ListDeviceGroupDevicesRequest_builder) Build() *ListDeviceGroupDevicesR
 	return m0
 }
 
+// Defines a specification for creating a new bulk.
 type CreateBulkRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,opt,name=spec"`
@@ -2804,6 +2833,7 @@ func (b0 CreateBulkRequest_builder) Build() *CreateBulkRequest {
 	return m0
 }
 
+// Defines a list of bulks.
 type ListOfBulk struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*Bulk               `protobuf:"bytes,1,rep,name=items"`
@@ -2895,6 +2925,7 @@ func (b0 ListOfBulk_builder) Build() *ListOfBulk {
 	return m0
 }
 
+// Defines a bulk model.
 type Bulk struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,opt,name=spec"`
@@ -3013,6 +3044,7 @@ func (b0 Bulk_builder) Build() *Bulk {
 	return m0
 }
 
+// Defines a bulk specification.
 type BulkSpec struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CorrelationId *string                `protobuf:"bytes,1,opt,name=correlation_id,json=correlationId"`
@@ -3250,13 +3282,14 @@ type bulkSpec_Devices struct {
 }
 
 type bulkSpec_DeviceGroupId struct {
-	DeviceGroupId string `protobuf:"bytes,3,opt,name=device_group_id,json=deviceGroupId,oneof"` // The device group identifier.
+	DeviceGroupId string `protobuf:"bytes,3,opt,name=device_group_id,json=deviceGroupId,oneof"` // The unique device group identifier.
 }
 
 func (*bulkSpec_Devices) isBulkSpec_Device() {}
 
 func (*bulkSpec_DeviceGroupId) isBulkSpec_Device() {}
 
+// Defines the status of a bulk.
 type BulkStatus struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Status         BulkStatusCode         `protobuf:"varint,1,opt,name=status,enum=io.clbs.openhes.models.acquisition.BulkStatusCode"`
@@ -3499,6 +3532,7 @@ func (b0 BulkStatus_builder) Build() *BulkStatus {
 	return m0
 }
 
+// Defines the bulk job model.
 type BulkJob struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *BulkJobSpec           `protobuf:"bytes,1,opt,name=spec"`
@@ -3617,6 +3651,7 @@ func (b0 BulkJob_builder) Build() *BulkJob {
 	return m0
 }
 
+// Defines the specification of a bulk job.
 type BulkJobSpec struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Device *JobDevice             `protobuf:"bytes,1,opt,name=device"`
@@ -3685,6 +3720,7 @@ func (b0 BulkJobSpec_builder) Build() *BulkJobSpec {
 	return m0
 }
 
+// Defines a specification for listing of jobs within a specified bulk.
 type ListBulkJobsRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_BulkId      *string                `protobuf:"bytes,1,opt,name=bulk_id,json=bulkId"`
@@ -3788,6 +3824,7 @@ func (b0 ListBulkJobsRequest_builder) Build() *ListBulkJobsRequest {
 	return m0
 }
 
+// Defines a list of jobs within a bulk.
 type ListOfBulkJob struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*BulkJob            `protobuf:"bytes,1,rep,name=items"`
@@ -3879,6 +3916,7 @@ func (b0 ListOfBulkJob_builder) Build() *ListOfBulkJob {
 	return m0
 }
 
+// Defines a specification for creating a new proxy bulk.
 type CreateProxyBulkRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *ProxyBulkSpec         `protobuf:"bytes,1,opt,name=spec"`
@@ -3972,6 +4010,7 @@ func (b0 CreateProxyBulkRequest_builder) Build() *CreateProxyBulkRequest {
 	return m0
 }
 
+// Defines a proxy bulk specification.
 type ProxyBulkSpec struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CorrelationId *string                `protobuf:"bytes,1,opt,name=correlation_id,json=correlationId"`
@@ -4150,6 +4189,7 @@ func (b0 ProxyBulkSpec_builder) Build() *ProxyBulkSpec {
 	return m0
 }
 
+// Defines a proxy bulk model.
 type ProxyBulk struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *ProxyBulkSpec         `protobuf:"bytes,1,opt,name=spec"`
@@ -4268,6 +4308,7 @@ func (b0 ProxyBulk_builder) Build() *ProxyBulk {
 	return m0
 }
 
+// Defines a specification for creating or updating a modem pool.
 type SetModemPoolRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *ModemPoolSpec         `protobuf:"bytes,1,opt,name=spec"`
@@ -4361,6 +4402,7 @@ func (b0 SetModemPoolRequest_builder) Build() *SetModemPoolRequest {
 	return m0
 }
 
+// Defines a list of modem pools.
 type ListOfModemPool struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*ModemPool          `protobuf:"bytes,1,rep,name=items"`
@@ -4452,6 +4494,7 @@ func (b0 ListOfModemPool_builder) Build() *ListOfModemPool {
 	return m0
 }
 
+// Defines a modem pool specification.
 type ModemPoolSpec struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -4495,6 +4538,7 @@ func (b0 ModemPoolSpec_builder) Build() *ModemPoolSpec {
 	return m0
 }
 
+// Defines a modem pool status.
 type ModemPoolStatus struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Modems *[]*ModemInfo          `protobuf:"bytes,1,rep,name=modems"`
@@ -4554,6 +4598,7 @@ func (b0 ModemPoolStatus_builder) Build() *ModemPoolStatus {
 	return m0
 }
 
+// Defines a modem pool model.
 type ModemPool struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *ModemPoolSpec         `protobuf:"bytes,1,opt,name=spec"`
@@ -4672,6 +4717,7 @@ func (b0 ModemPool_builder) Build() *ModemPool {
 	return m0
 }
 
+// Defines a specification for creating or updating modems linked to a modem pool.
 type SetModemRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_PoolId      *string                `protobuf:"bytes,1,opt,name=pool_id,json=poolId"`
@@ -4775,6 +4821,7 @@ func (b0 SetModemRequest_builder) Build() *SetModemRequest {
 	return m0
 }
 
+// Defines a specification for creating or updating a driver.
 type SetDriver struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec *DriverSpec            `protobuf:"bytes,1,opt,name=spec"`
@@ -4843,6 +4890,7 @@ func (b0 SetDriver_builder) Build() *SetDriver {
 	return m0
 }
 
+// Defines a list of drivers.
 type ListOfDriver struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*Driver             `protobuf:"bytes,1,rep,name=items"`
@@ -4934,6 +4982,7 @@ func (b0 ListOfDriver_builder) Build() *ListOfDriver {
 	return m0
 }
 
+// Defines a driver model.
 type Driver struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec   *DriverSpec            `protobuf:"bytes,1,opt,name=spec"`
@@ -5027,6 +5076,7 @@ func (b0 Driver_builder) Build() *Driver {
 	return m0
 }
 
+// Defines the driver specification.
 type DriverSpec struct {
 	state                        protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Version           *string                `protobuf:"bytes,1,opt,name=version"`
@@ -5270,25 +5320,25 @@ func (x *DriverSpec) ClearDisplayName() {
 type DriverSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
+	// The driver version. The format is not defined. Typically matches the docker image tag or another user-readable version string.
 	Version *string
-	// The port the driver's gRPC will listen on.
+	// The port on which the driver's gRPC listens.
 	ListeningPort *uint32
 	// The technical/internal ID of the driver.
 	DriverType *string
-	// The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+	// The maximum number of concurrent jobs the driver can handle. A value of `0` is not allowed. The maximum value should respect `typical_mem_usage` to avoid exceeding memory resources!
 	MaxConcurrentJobs *int32
-	// The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
-	// The value 0 means that the driver can handle any number of cascading jobs.
+	// The maximum cascade depth the driver can handle. Value `1` means that cascading jobs are not supported. Value `2` means one level of cascading is allowed, and so on.
+	// Value `0` means that the driver can handle any number of cascading jobs.
 	MaxCascadeDepth *uint32
-	// The typical memory usage of the driver in MB.
+	// The typical memory usage of the driver in `MB`.
 	TypicalMemUsage *int32
 	// The connection and action templates.
 	Templates *DriverTemplates
-	// The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-	// It must respect upper/lower characters.
-	// The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-	// @example: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+	// The display name of the driver. Must be in the following format: `<manufacturer> <device_type> [<device_type_version>]`.
+	// Must respect upper/lower case.
+	// Generic drivers, such as `cybros labs generic`, must be in the following format: `<driver_company_name> generic`.
+	// @example: `Addax NP73E`, `cybros labs generic`, `Landis+Gyr S650 v2`
 	DisplayName *string
 }
 
@@ -5328,6 +5378,7 @@ func (b0 DriverSpec_builder) Build() *DriverSpec {
 	return m0
 }
 
+// Defines the driver status.
 type DriverStatus struct {
 	state                     protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_IsLatest       bool                   `protobuf:"varint,1,opt,name=is_latest,json=isLatest"`
@@ -5433,6 +5484,7 @@ func (b0 DriverStatus_builder) Build() *DriverStatus {
 	return m0
 }
 
+// Defines a specification for creating a new variable.
 type CreateVariableRequest struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *VariableSpec          `protobuf:"bytes,1,opt,name=spec"`
@@ -5526,6 +5578,7 @@ func (b0 CreateVariableRequest_builder) Build() *CreateVariableRequest {
 	return m0
 }
 
+// Defines a list of variables.
 type ListOfVariable struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*Variable           `protobuf:"bytes,1,rep,name=items"`
@@ -5617,6 +5670,7 @@ func (b0 ListOfVariable_builder) Build() *ListOfVariable {
 	return m0
 }
 
+// Defines a variable model.
 type Variable struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *VariableSpec          `protobuf:"bytes,1,opt,name=spec"`
@@ -5710,6 +5764,7 @@ func (b0 Variable_builder) Build() *Variable {
 	return m0
 }
 
+// Defines a variable specification.
 type VariableSpec struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RegisterId      []string               `protobuf:"bytes,1,rep,name=register_id,json=registerId"`
@@ -5831,6 +5886,7 @@ func (b0 VariableSpec_builder) Build() *VariableSpec {
 	return m0
 }
 
+// Defines a specification for adding registers to a variable.
 type AddRegisterToVariableRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_VariableId  *string                `protobuf:"bytes,1,opt,name=variable_id,json=variableId"`
@@ -5923,6 +5979,7 @@ func (b0 AddRegisterToVariableRequest_builder) Build() *AddRegisterToVariableReq
 	return m0
 }
 
+// Defines a specification for removing registers from a variable.
 type RemoveRegisterFromVariableRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_VariableId  *string                `protobuf:"bytes,1,opt,name=variable_id,json=variableId"`
@@ -6015,6 +6072,7 @@ func (b0 RemoveRegisterFromVariableRequest_builder) Build() *RemoveRegisterFromV
 	return m0
 }
 
+// Defines the specification for creating a new device configuration register.
 type CreateDeviceConfigurationRegisterRequest struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceConfigurationRegisterSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -6108,6 +6166,7 @@ func (b0 CreateDeviceConfigurationRegisterRequest_builder) Build() *CreateDevice
 	return m0
 }
 
+// Defines a lost of device configuration registers.
 type ListOfDeviceConfigurationRegister struct {
 	state                  protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceConfigurationRegister `protobuf:"bytes,1,rep,name=items"`
@@ -6199,6 +6258,7 @@ func (b0 ListOfDeviceConfigurationRegister_builder) Build() *ListOfDeviceConfigu
 	return m0
 }
 
+// Defines a device configuration register specification.
 type DeviceConfigurationRegister struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceConfigurationRegisterSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -6292,6 +6352,7 @@ func (b0 DeviceConfigurationRegister_builder) Build() *DeviceConfigurationRegist
 	return m0
 }
 
+// Defines a map of device configuration registers.
 type DeviceConfigurationRegisterMap struct {
 	state            protoimpl.MessageState                   `protogen:"opaque.v1"`
 	xxx_hidden_Items *[]*DeviceConfigurationRegisterMapRecord `protobuf:"bytes,1,rep,name=items"`
@@ -6351,6 +6412,7 @@ func (b0 DeviceConfigurationRegisterMap_builder) Build() *DeviceConfigurationReg
 	return m0
 }
 
+// Defines a single record in the device configuration register map.
 type DeviceConfigurationRegisterMapRecord struct {
 	state                       protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RegisterId       int64                  `protobuf:"varint,1,opt,name=register_id,json=registerId"`
@@ -6506,6 +6568,7 @@ func (b0 DeviceConfigurationRegisterMapRecord_builder) Build() *DeviceConfigurat
 	return m0
 }
 
+// Defines a specification for creating a new device configuration template.
 type CreateDeviceConfigurationTemplateRequest struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -6599,6 +6662,7 @@ func (b0 CreateDeviceConfigurationTemplateRequest_builder) Build() *CreateDevice
 	return m0
 }
 
+// Defines a list of device configuration templates.
 type ListOfDeviceConfigurationTemplate struct {
 	state                  protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceConfigurationTemplate `protobuf:"bytes,1,rep,name=items"`
@@ -6690,6 +6754,7 @@ func (b0 ListOfDeviceConfigurationTemplate_builder) Build() *ListOfDeviceConfigu
 	return m0
 }
 
+// Defines a device configuration template model.
 type DeviceConfigurationTemplate struct {
 	state               protoimpl.MessageState           `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceConfigurationTemplateSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -6783,6 +6848,7 @@ func (b0 DeviceConfigurationTemplate_builder) Build() *DeviceConfigurationTempla
 	return m0
 }
 
+// Defines a device configuration template specification.
 type DeviceConfigurationTemplateSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -6875,6 +6941,7 @@ func (b0 DeviceConfigurationTemplateSpec_builder) Build() *DeviceConfigurationTe
 	return m0
 }
 
+// Defines the specification for adding device configuration registers to device configuration templates.
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DctId       *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
@@ -6967,6 +7034,7 @@ func (b0 AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_buil
 	return m0
 }
 
+// Defines the specification for removing device configuration registers to device configuration templates.
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DctId       *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
@@ -7059,6 +7127,7 @@ func (b0 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	return m0
 }
 
+// Defines a specification for retrieving device data.
 type GetDeviceDataRequest struct {
 	state                          protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart          *timestamppb.Timestamp          `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
@@ -7255,6 +7324,7 @@ func (b0 GetDeviceDataRequest_builder) Build() *GetDeviceDataRequest {
 	return m0
 }
 
+// Defines a selector for identifying device and variable pairs.
 type GetDeviceDataSeriesSelector struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DeviceId    *string                `protobuf:"bytes,1,opt,name=device_id,json=deviceId"`
@@ -7366,6 +7436,7 @@ func (b0 GetDeviceDataSeriesSelector_builder) Build() *GetDeviceDataSeriesSelect
 	return m0
 }
 
+// Defines a list of data items.
 type DeviceData struct {
 	state              protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Devices *[]*DeviceDeviceData   `protobuf:"bytes,1,rep,name=devices"`
@@ -7425,6 +7496,7 @@ func (b0 DeviceData_builder) Build() *DeviceData {
 	return m0
 }
 
+// Defines data items for a specific device.
 type DeviceDeviceData struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DeviceId    *string                `protobuf:"bytes,1,opt,name=device_id,json=deviceId"`
@@ -7519,6 +7591,7 @@ func (b0 DeviceDeviceData_builder) Build() *DeviceDeviceData {
 	return m0
 }
 
+// Defines data for a specific variable within a device.
 type VariableDeviceData struct {
 	state                  protoimpl.MessageState    `protogen:"opaque.v1"`
 	xxx_hidden_VariableId  *string                   `protobuf:"bytes,1,opt,name=variable_id,json=variableId"`
@@ -7643,6 +7716,7 @@ func (b0 VariableDeviceData_builder) Build() *VariableDeviceData {
 	return m0
 }
 
+// Defines device data information model.
 type DeviceDataInfo struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec   *DeviceDataInfoSpec    `protobuf:"bytes,1,opt,name=spec"`
@@ -7736,6 +7810,7 @@ func (b0 DeviceDataInfo_builder) Build() *DeviceDataInfo {
 	return m0
 }
 
+// Defines the device data information specification.
 type DeviceDataInfoSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DeviceId    *string                `protobuf:"bytes,1,opt,name=device_id,json=deviceId"`
@@ -7847,6 +7922,7 @@ func (b0 DeviceDataInfoSpec_builder) Build() *DeviceDataInfoSpec {
 	return m0
 }
 
+// Defines the device data information status.
 type DeviceDataInfoStatus struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RegisterName *string                `protobuf:"bytes,1,opt,name=register_name,json=registerName"`
@@ -7980,6 +8056,7 @@ func (b0 DeviceDataInfoStatus_builder) Build() *DeviceDataInfoStatus {
 	return m0
 }
 
+// Defines a list of device data information items.
 type ListOfDeviceDataInfo struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*DeviceDataInfo     `protobuf:"bytes,1,rep,name=items"`
@@ -8071,6 +8148,7 @@ func (b0 ListOfDeviceDataInfo_builder) Build() *ListOfDeviceDataInfo {
 	return m0
 }
 
+// Defines a specification for retrieving device events.
 type GetDeviceEventsRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
@@ -8199,6 +8277,7 @@ func (b0 GetDeviceEventsRequest_builder) Build() *GetDeviceEventsRequest {
 	return m0
 }
 
+// Defines a specification for retrieving device bulks from a specified time range.
 type GetDeviceBulksRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
@@ -8327,6 +8406,7 @@ func (b0 GetDeviceBulksRequest_builder) Build() *GetDeviceBulksRequest {
 	return m0
 }
 
+// Defines a list of device bulks.
 type DeviceBulks struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Bulks *[]*Bulk               `protobuf:"bytes,1,rep,name=bulks"`
@@ -8386,6 +8466,7 @@ func (b0 DeviceBulks_builder) Build() *DeviceBulks {
 	return m0
 }
 
+// Defines a specification for creating a new time-of-use table.
 type CreateTimeOfUseTableRequest struct {
 	state               protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -8479,6 +8560,7 @@ func (b0 CreateTimeOfUseTableRequest_builder) Build() *CreateTimeOfUseTableReque
 	return m0
 }
 
+// Defines a list of time-of-use tables.
 type ListOfTimeOfUseTable struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*TimeOfUseTable     `protobuf:"bytes,1,rep,name=items"`

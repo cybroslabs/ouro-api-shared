@@ -94,7 +94,6 @@ message JobActionSet {
 }
 
 // Defines a list of job devices included in a bulk.
-
 message ListOfJobDevice {
     repeated JobDevice list = 1;  // The list of devices included in the bulk.
     int32 total_count       = 2;  // The total number of items in the list.
@@ -827,8 +826,6 @@ message CommunicationBusStatus {
     repeated string communication_unit_id = 1;  // The list of communication unit identifiers connected to the communication bus.
 }
 
-// Network map messages
-
 // Defines the types of nodes in the network topology.
 enum TopologyNodeType {
     TOPOLOGY_NODE_UNSPECIFIED        = 0;  // Unspecified node type.
@@ -855,8 +852,6 @@ message NetworkMap {
     repeated TopologyNode nodes = 1;  // The list of topology nodes. Can represent a flat or hierarchical structure.
     repeated TopologyEdge edges = 2;  // The list of edges between the devices.
 }
-
-// Communication Unit Log Records
 
 // Defines the severity levels for communication unit log records.
 enum LogRecordLevel {

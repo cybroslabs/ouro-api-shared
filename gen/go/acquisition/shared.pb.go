@@ -2607,6 +2607,7 @@ func (*jobActionSet_ResetBillingPeriod) isJobActionSet_Action() {}
 
 func (*jobActionSet_FwUpdate) isJobActionSet_Action() {}
 
+// Defines a list of job devices included in a bulk.
 type ListOfJobDevice struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_List        *[]*JobDevice          `protobuf:"bytes,1,rep,name=list"`

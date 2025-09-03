@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
 
+Defines a list of device data information items.
+
 ## Fields
 
 | Field | Information |

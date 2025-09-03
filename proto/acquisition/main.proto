@@ -11,111 +11,118 @@ import "common/fields.proto";
 import "acquisition/shared.proto";
 import "acquisition/timeofuse/timeofuse.proto";
 
-// Communication Unit specification.
-
+// Defines a specification for creating a new communication unit.
 message CreateCommunicationUnitRequest {
     CommunicationUnitSpec spec     = 1;  // The communication unit specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a list of communication units.
 message ListOfCommunicationUnit {
-    repeated CommunicationUnit items = 1;  // The communication unit specification.
-    int32 total_count                = 2;  // The total number of items.
+    repeated CommunicationUnit items = 1;  // The list of communication unit specifications.
+    int32 total_count                = 2;  // The total number of items in the list.
 }
 
-// Communication Bus specification.
-
+// Defines a specification for creating a new communication bus.
 message CreateCommunicationBusRequest {
     reserved 1;
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a list of communication buses.
 message ListOfCommunicationBus {
     repeated CommunicationBus items = 1;  // The list of communication unit buses.
-    int32 total_count               = 2;  // The total number of items.
+    int32 total_count               = 2;  // The total number of items in the list.
 }
 
-// CommunicationUnit#CommunicationBus specification.
-
+// Defines a specification for adding communication units to a communication bus.
 message AddCommunicationUnitsToCommunicationBusRequest {
-    string communication_bus_id           = 1;  // The unique identifier of the communication bus.
-    repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
+    string communication_bus_id           = 1;  // The unique communication bus identifier.
+    repeated string communication_unit_id = 2;  // A list of communication unit identifiers.
 }
 
+// Defines a specification for removing communication units from a communicaation bus.
 message RemoveCommunicationUnitsFromCommunicationBusRequest {
-    string communication_bus_id           = 1;  // The unique identifier of the communication bus.
-    repeated string communication_unit_id = 2;  // The unique identifier of the communication unit.
+    string communication_bus_id           = 1;  // The unique communication bus identifier.
+    repeated string communication_unit_id = 2;  // A list of communication unit identifiers.
 }
 
-// Device specification.
-
+// Defines a specification for creating a new device.
 message CreateDeviceRequest {
     DeviceSpec spec                = 1;  // The device specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a list of devices.
 message ListOfDevice {
     repeated Device items = 1;  // The list of devices.
     int32 total_count     = 2;  // The total number of items.
 }
 
+// Defines a device model.
 message Device {
     DeviceSpec spec                = 1;  // The device specification.
     DeviceStatus status            = 2;  // The device status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines a partial representation of driver types for a list of devices.
 message StreamDevicesDriverTypesRequest {
     repeated string device_id = 1;  // The list of devices.
 }
 
+// Defines the mapping of devices to their driver types in a response.
 message StreamDevicesDriverTypesResponse {
-    map<string, string> data = 1;  // The map of devices to their driver types. The key is the device identifier, the value is the driver type.
+    map<string, string> data = 1;  // The map of devices to their driver types. The key is the unique device identifier, the value is the driver type.
 }
 
+// Defines the list of changes in device communication units.
 message ListOfDeviceCommunicationUnitChange {
     repeated DeviceCommunicationUnitChange items = 1;  // The list of device groups.
-    int32 total_count                            = 2;  // The total number of items.
+    int32 total_count                            = 2;  // The total number of items in the list.
 }
 
+// Defines the changes in device communication units.
 message DeviceCommunicationUnitChange {
     reserved 1, 3;
-    DeviceCommunicationUnitChangeStatus status = 2;  // The device communication unit changes status.
+    DeviceCommunicationUnitChangeStatus status = 2;  // The device communication unit change status.
 }
 
+// Defines the status of the device communication unit change.
 message DeviceCommunicationUnitChangeStatus {
-    google.protobuf.Timestamp change_at = 1;  // The timestamp of the change.
-    string communication_unit_id        = 2;  // The unique identifier of the communication unit.
-    string communication_unit_name      = 3;  // The name of the communication unit.
-    string device_id                    = 4;  // The unique identifier of the device.
-    string device_name                  = 5;  // The name of the device.
+    google.protobuf.Timestamp change_at = 1;  // The timestamp when the change occured.
+    string communication_unit_id        = 2;  // The unique communication unit identifier.
+    string communication_unit_name      = 3;  // The communication unit name.
+    string device_id                    = 4;  // The unique device identifier.
+    string device_name                  = 5;  // The device name.
 }
 
-// Unknown device specification.
-
+// Defines an unknown device model.
 message UnknownDevice {
     reserved 1;
     UnknownDeviceStatus status     = 2;  // The unknown device status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines the status of an unknown device.
 message UnknownDeviceStatus {
-    string driver_type           = 1;  // The driver type of the device.
-    string communication_unit_id = 2;  // The communication unit identifier of the device.
+    string driver_type           = 1;  // The device driver type.
+    string communication_unit_id = 2;  // The unique communication unit identifier of the device.
 }
 
-// Device group specification.
-
+// Defines the specification for creating a new device group.
 message CreateDeviceGroupRequest {
     DeviceGroupSpec spec           = 1;  // The device group specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a list of device groups.
 message ListOfDeviceGroup {
     repeated DeviceGroup items = 1;  // The list of device groups.
-    int32 total_count          = 2;  // The total number of items.
+    int32 total_count          = 2;  // The total number of items in the list.
 }
 
+// Defines a partial representation of a device group.
 message StreamDeviceGroup {
     // The oneof field containing the device group partial data.
     oneof parts {
@@ -125,399 +132,432 @@ message StreamDeviceGroup {
     }
 }
 
+// Defines a device group model.
 message DeviceGroup {
     reserved 2;
     DeviceGroupSpec spec           = 1;  // The device group specification.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines a device group sepcification.
 message DeviceGroupSpec {
     string external_id = 1;  // The external identifier of the communication unit.
 }
 
+// Defines a partial representation of a device group status.
 message StreamDeviceGroupStatus {
     map<string, DeviceGroupStatusDevice> devices = 4;  // The list of devices that are part of the group. The key represents the device identifier, the value contains additional information.
 }
 
+// Defines the status of a device within a device group.
 message DeviceGroupStatusDevice {
     string driver_type = 1;  // The driver type.
 }
 
-// Device#CU specification.
-
+// Defines a specification for adding or updating communication units linked to a device .
 message SetDeviceCommunicationUnitsRequest {
-    string device_id                                     = 1;  // The unique identifier of the device.
+    string device_id                                     = 1;  // The unique device identifier.
     repeated DeviceCommunicationUnit communication_units = 2;  // The list of linked communication units.
 }
 
+// Defines a list of communication units linked to a device.
 message ListOfDeviceCommunicationUnit {
     repeated DeviceCommunicationUnit items = 1;  // The list of linked communication units.
-    int32 total_count                      = 2;  // The total number of items.
+    int32 total_count                      = 2;  // The total number of items in the list .
 }
 
-// Device#Group specification.
-
+// Defines a specification for adding devices to a device groups.
 message AddDevicesToGroupRequest {
-    string group_id           = 1;  // The unique identifier of the device group.
-    repeated string device_id = 2;  // The unique identifier of the device.
+    string group_id           = 1;  // The unique device group identifier.
+    repeated string device_id = 2;  // A list of device identifiers.
 }
 
+// Defines a specification for removing devices from a device group.
 message RemoveDevicesFromGroupRequest {
-    string group_id           = 1;  // The unique identifier of the device group.
-    repeated string device_id = 2;  // The unique identifier of the device.
+    string group_id           = 1;  // The unique device group identifier.
+    repeated string device_id = 2;  // A list of device identifiers.
 }
 
+// Defines a list of devices withing a device group.
 message ListDeviceGroupDevicesRequest {
-    string group_id                                     = 1;  // The unique identifier of the device group.
-    io.clbs.openhes.models.common.ListSelector selector = 2;  // The list selector.
+    string group_id                                     = 1;  // The unique device group identifier.
+    io.clbs.openhes.models.common.ListSelector selector = 2;  // The listing criteria.
 }
 
-// Bulk specification.
-
+// Defines a specification for creating a new bulk.
 message CreateBulkRequest {
-    BulkSpec spec                  = 1;  // The bulk-job spec.
+    BulkSpec spec                  = 1;  // The bulk specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a list of bulks.
 message ListOfBulk {
     repeated Bulk items = 1;  // The list of bulks.
-    int32 total_count   = 2;  // The total number of items.
+    int32 total_count   = 2;  // The total number of items in the list.
 }
 
+// Defines a bulk model.
 message Bulk {
-    BulkSpec spec                  = 1;  // The bulk-job spec.
-    BulkStatus status              = 2;  // The bulk-job status/data.
+    BulkSpec spec                  = 1;  // The bulk specification.
+    BulkStatus status              = 2;  // The bulk status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines a bulk specification.
 message BulkSpec {
     // @gqltype: UUID
-    string correlation_id = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
+    string correlation_id = 1;  // The correlation identifier that represents a non-homogenous group with various device types.
     oneof device {
         ListOfJobDeviceId devices = 2;  // The list of devices in the bulk.
-        string device_group_id    = 3;  // The device group identifier.
+        string device_group_id    = 3;  // The unique device group identifier.
     }
-    JobSettings settings          = 4;  // The bulk-shared job settings.
-    repeated JobActionSet actions = 5;  // The list actions to be executed.
+    JobSettings settings          = 4;  // The job settings shared across all jobs in the bulk.
+    repeated JobActionSet actions = 5;  // The list of actions to be executed on each device in the bulk.
 }
 
+// Defines the status of a bulk.
 message BulkStatus {
-    BulkStatusCode status                 = 1;  // The job status.
-    int32 jobs_count                      = 2;  // The number of jobs in the bulk.
-    int32 jobs_finished                   = 3;  // The number of jobs finished.
-    int32 jobs_successful                 = 4;  // The number of jobs successful.
-    google.protobuf.Timestamp created_at  = 5;  // The creation timestamp of the bulk.
-    google.protobuf.Timestamp started_at  = 6;  // The start timestamp of the bulk.
-    google.protobuf.Timestamp finished_at = 7;  // The finish timestamp of the bulk.
+    BulkStatusCode status                 = 1;  // The overall bulk status.
+    int32 jobs_count                      = 2;  // The total number of jobs in the bulk.
+    int32 jobs_finished                   = 3;  // The number of jobs that have finished.
+    int32 jobs_successful                 = 4;  // The number of jobs that finished successfully.
+    google.protobuf.Timestamp created_at  = 5;  // The timestamp when the bulk was created.
+    google.protobuf.Timestamp started_at  = 6;  // The timestamp when the bulk started.
+    google.protobuf.Timestamp finished_at = 7;  // The timestamp when the bulk finished.
 }
 
+// Defines the bulk job model.
 message BulkJob {
-    BulkJobSpec spec               = 1;  // The job spec.
+    BulkJobSpec spec               = 1;  // The job specification.
     JobStatus status               = 2;  // The job status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines the specification of a bulk job.
 message BulkJobSpec {
-    JobDevice device = 1;  // The device info.
+    JobDevice device = 1;  // The device information.
 }
 
+// Defines a specification for listing of jobs within a specified bulk.
 message ListBulkJobsRequest {
-    string bulk_id                                      = 1;  // The bulk identifier.
-    io.clbs.openhes.models.common.ListSelector selector = 2;  // The list selector.
+    string bulk_id                                      = 1;  // The unique bulk identifier.
+    io.clbs.openhes.models.common.ListSelector selector = 2;  // The listing criteria.
 }
 
+// Defines a list of jobs within a bulk.
 message ListOfBulkJob {
     repeated BulkJob items = 1;  // The list of jobs.
-    int32 total_count      = 2;  // The total number of items.
+    int32 total_count      = 2;  // The total number of items in the list.
 }
 
-// Proxy Bulk specification.
-
+// Defines a specification for creating a new proxy bulk.
 message CreateProxyBulkRequest {
-    ProxyBulkSpec spec             = 1;  // The proxy bulk-job spec.
+    ProxyBulkSpec spec             = 1;  // The proxy bulk specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a proxy bulk specification.
 message ProxyBulkSpec {
     // @gqltype: UUID
-    string correlation_id      = 1;  // The correlation identifier, e.g. to define relation to non-homogenous group.
-    string driver_type         = 2;  // The device (driver) type.
-    ListOfJobDevice devices    = 3;  // The list of custom devices in the proxy bulk.
-    JobSettings settings       = 4;  // The bulk-shared job settings.
-    repeated JobAction actions = 5;  // The list actions to be executed.
+    string correlation_id      = 1;  // The correlation identifier that represents a non-homogenous group with various device types.
+    string driver_type         = 2;  // The driver type.
+    ListOfJobDevice devices    = 3;  // The list of devices in the proxy bulk.
+    JobSettings settings       = 4;  // The job settings shared across the bulk.
+    repeated JobAction actions = 5;  // The list of actions to be executed.
 }
 
+// Defines a proxy bulk model.
 message ProxyBulk {
-    ProxyBulkSpec spec             = 1;  // The bulk-job spec.
-    BulkStatus status              = 2;  // The bulk-job status/data.
+    ProxyBulkSpec spec             = 1;  // The proxy bulk specification.
+    BulkStatus status              = 2;  // The proxy bulk status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
-// Modem Pool specification.
-
+// Defines a specification for creating or updating a modem pool.
 message SetModemPoolRequest {
-    reserved 2;                          // reserved for status
+    reserved 2;
     ModemPoolSpec spec             = 1;  // The modem pool specification.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines a list of modem pools.
 message ListOfModemPool {
     repeated ModemPool items = 1;  // The list of modem pools.
-    int32 total_count        = 2;  // The total number of items.
+    int32 total_count        = 2;  // The total number of items in the list.
 }
 
+// Defines a modem pool specification.
 message ModemPoolSpec {
 }
 
+// Defines a modem pool status.
 message ModemPoolStatus {
     repeated ModemInfo modems = 1;  // The list of modems in the pool.
 }
 
+// Defines a modem pool model.
 message ModemPool {
     ModemPoolSpec spec             = 1;  // The modem pool specification.
     ModemPoolStatus status         = 2;  // The modem pool status.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
-// Modem specification.
-
+// Defines a specification for creating or updating modems linked to a modem pool.
 message SetModemRequest {
-    string pool_id  = 1;  // The modem pool identifier, required for update operation.
+    string pool_id  = 1;  // The unique modem pool identifier. Required for update operation.
     ModemInfo modem = 2;  // The modem specification.
 }
 
-// Driver specification.
-
+// Defines a specification for creating or updating a driver.
 message SetDriver {
-    reserved 2, 3;        // reserved for status, metadata
+    reserved 2, 3;
     DriverSpec spec = 1;  // The driver specification.
 }
 
+// Defines a list of drivers.
 message ListOfDriver {
     repeated Driver items = 1;  // The list of drivers.
-    int32 total_count     = 2;  // The total number of items.
+    int32 total_count     = 2;  // The total number of items in the list.
 }
 
+// Defines a driver model.
 message Driver {
-    reserved 3;               // reserved for metadata
+    reserved 3;
     DriverSpec spec     = 1;  // The driver specification.
     DriverStatus status = 2;  // The driver status.
 }
 
+// Defines the driver specification.
 message DriverSpec {
-    // The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.
+    // The driver version. The format is not defined. Typically matches the docker image tag or another user-readable version string.
     string version = 1;
-    // The port the driver's gRPC will listen on.
+    // The port on which the driver's gRPC listens.
     uint32 listening_port = 2;
     // The technical/internal ID of the driver.
     string driver_type = 3;
-    // The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!
+    // The maximum number of concurrent jobs the driver can handle. A value of `0` is not allowed. The maximum value should respect `typical_mem_usage` to avoid exceeding memory resources!
     int32 max_concurrent_jobs = 4;
-    // The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
-    // The value 0 means that the driver can handle any number of cascading jobs.
+    // The maximum cascade depth the driver can handle. Value `1` means that cascading jobs are not supported. Value `2` means one level of cascading is allowed, and so on.
+    // Value `0` means that the driver can handle any number of cascading jobs.
     uint32 max_cascade_depth = 5;
-    // The typical memory usage of the driver in MB.
+    // The typical memory usage of the driver in `MB`.
     int32 typical_mem_usage = 6;
     // The connection and action templates.
     DriverTemplates templates = 7;
-    // The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-    // It must respect upper/lower characters.
-    // The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-    // @example: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'
+    // The display name of the driver. Must be in the following format: `<manufacturer> <device_type> [<device_type_version>]`.
+    // Must respect upper/lower case.
+    // Generic drivers, such as `cybros labs generic`, must be in the following format: `<driver_company_name> generic`.
+    // @example: `Addax NP73E`, `cybros labs generic`, `Landis+Gyr S650 v2`
     string display_name = 8;
 }
 
+// Defines the driver status.
 message DriverStatus {
-    bool is_latest       = 1;  // Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!
-    bool update_finished = 2;  // Whether the driver update from previous version (if any) has been finished.
+    bool is_latest       = 1;  // Indicates whether this is the latest installed version of the driver in the system. Note that this does not necessarily mean it is the latest released version!
+    bool update_finished = 2;  // Indicates whether the update from the previous version (if any) has finished.
 }
 
-// Variables
-
+// Defines a specification for creating a new variable.
 message CreateVariableRequest {
     VariableSpec spec              = 1;  // The variable specification.
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
+// Defines a list of variables.
 message ListOfVariable {
     repeated Variable items = 1;  // The list of variables.
-    int32 total_count       = 2;  // The total number of items.
+    int32 total_count       = 2;  // The total number of items in the list.
 }
 
+// Defines a variable model.
 message Variable {
-    reserved 2;                          // reserved for status
+    reserved 2;
     VariableSpec spec              = 1;  // The variable specification.
     common.MetadataFields metadata = 3;  // The metadata fields.
 }
 
+// Defines a variable specification.
 message VariableSpec {
     repeated string register_id    = 1;  // The list of device configuration register identifiers.
     common.FieldDataType data_type = 2;  // The data type of the variable. Only registers of the same data type can be linked to the variable.
-    bool exclude_data_from         = 3;  // If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).
+    bool exclude_data_from         = 3;  // Indicates whether the returned data for this variabe should exclude values at `from` timestamp. If set to `true`, the returned device data returned for this variable dos not include values at `from` timestamp. Default value is `false`.
 }
 
+// Defines a specification for adding registers to a variable.
 message AddRegisterToVariableRequest {
-    string variable_id          = 1;  // The unique identifier of the variable.
-    repeated string register_id = 2;  // The list of register identifiers to be linked to the variable.
+    string variable_id          = 1;  // The unique variable identifier.
+    repeated string register_id = 2;  // A list of register identifiers.
 }
 
+// Defines a specification for removing registers from a variable.
 message RemoveRegisterFromVariableRequest {
     string variable_id          = 1;  // The unique identifier of the variable.
-    repeated string register_id = 2;  // The list of register identifiers to be linked to the variable.
+    repeated string register_id = 2;  // A list of register identifiers.
 }
 
-// Device Configuration Register specification
-
+// Defines the specification for creating a new device configuration register.
 message CreateDeviceConfigurationRegisterRequest {
     DeviceConfigurationRegisterSpec spec = 1;  // The register specification.
     common.MetadataFields metadata       = 2;  // The metadata fields.
 }
 
+// Defines a lost of device configuration registers.
 message ListOfDeviceConfigurationRegister {
     repeated DeviceConfigurationRegister items = 1;  // The list of registers.
-    int32 total_count                          = 2;  // The total number of items.
+    int32 total_count                          = 2;  // The total number of items in the list.
 }
 
+// Defines a device configuration register specification.
 message DeviceConfigurationRegister {
-    reserved 2;                                // reserved for status
+    reserved 2;
     DeviceConfigurationRegisterSpec spec = 1;  // The register specification.
     common.MetadataFields metadata       = 3;  // The metadata fields.
 }
 
+// Defines a map of device configuration registers.
 message DeviceConfigurationRegisterMap {
-    repeated DeviceConfigurationRegisterMapRecord items = 1;  // The list of device configuration registers to create a map.
+    repeated DeviceConfigurationRegisterMapRecord items = 1;  // A list of device configuration registers records to form a map.
 }
 
+// Defines a single record in the device configuration register map.
 message DeviceConfigurationRegisterMapRecord {
-    int64 register_id             = 1;  // The register identifier.
+    int64 register_id             = 1;  // The unique register identifier.
     string public_register_id     = 2;  // The public register identifier.
     string register_name          = 3;  // The register name.
-    repeated string variable_name = 4;  // The name of the variable, if the register is assigned to some.
+    repeated string variable_name = 4;  // Variable names, if the register is assigned to any.
 }
 
-// Device Configuration Template specification.
-
+// Defines a specification for creating a new device configuration template.
 message CreateDeviceConfigurationTemplateRequest {
     DeviceConfigurationTemplateSpec spec = 1;  // The device configuration template specification.
     common.MetadataFields metadata       = 2;  // The metadata fields.
 }
 
+// Defines a list of device configuration templates.
 message ListOfDeviceConfigurationTemplate {
     repeated DeviceConfigurationTemplate items = 1;  // The list of device configuration templates.
-    int32 total_count                          = 2;  // The total number of items.
+    int32 total_count                          = 2;  // The total number of items in the list.
 }
 
+// Defines a device configuration template model.
 message DeviceConfigurationTemplate {
-    reserved 2;                                // reserved for status
+    reserved 2;
     DeviceConfigurationTemplateSpec spec = 1;  // The device configuration template specification.
     common.MetadataFields metadata       = 3;  // The metadata fields.
 }
 
+// Defines a device configuration template specification.
 message DeviceConfigurationTemplateSpec {
-    string driver_type          = 1;  // The device (driver) type.
-    repeated string register_id = 2;  // The list of device configuration register identifiers.
+    string driver_type          = 1;  // The driver type.
+    repeated string register_id = 2;  // A list of device configuration register identifiers.
 }
 
+// Defines the specification for adding device configuration registers to device configuration templates.
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
-    string dct_id               = 1;  // The identifier of the device configuration template.
-    repeated string register_id = 2;  // The list of register identifiers to be linked to the template.
+    string dct_id               = 1;  // The unique device configuration template identifier.
+    repeated string register_id = 2;  // A list of device configuration register identifiers.
 }
 
+// Defines the specification for removing device configuration registers to device configuration templates.
 message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
-    string dct_id               = 1;  // The identifier of the device configuration template.
-    repeated string register_id = 2;  // The list of register identifiers to be unlinked from the template.
+    string dct_id               = 1;  // The unique device configuration template identifier.
+    repeated string register_id = 2;  // A list of device configuration register identifiers.
 }
 
-// Device Data
-
+// Defines a specification for retrieving device data.
 message GetDeviceDataRequest {
-    google.protobuf.Timestamp range_start       = 1;  // The start timestamp of the data. The exclusivness/inclusiveness of the timestamp is defined in the variable.
-    google.protobuf.Timestamp range_end         = 2;  // The end timestamp of the data. It is inclusive.
-    repeated GetDeviceDataSeriesSelector series = 3;  // One or more identifiers of the devices.
-    int64 filter_include_status                 = 4;  // The filter status bits, only values with these status bits will be returned in the response.
-    int64 filter_exclude_status                 = 5;  // The filter status bits, only values without these status bits will be returned in the response.
-    google.protobuf.Timestamp snapshot          = 6;  // If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.
+    google.protobuf.Timestamp range_start       = 1;  // The start timestamp of the requested data. The exclusivness/inclusiveness of the timestamp is defined in a variable.
+    google.protobuf.Timestamp range_end         = 2;  // The end timestamp of the data. The timestamp is inclusive.
+    repeated GetDeviceDataSeriesSelector series = 3;  // One or more selectors identifying devices and variables for which data is requested.
+    int64 filter_include_status                 = 4;  // The status bit filter. Only values with these status bits will be included in the response.
+    int64 filter_exclude_status                 = 5;  // The status bit filter. Values with these status bits will not be included in the response.
+    google.protobuf.Timestamp snapshot          = 6;  // If set, returns a snapshot of stoered data from the given point in time.
 }
 
+// Defines a selector for identifying device and variable pairs.
 message GetDeviceDataSeriesSelector {
-    string device_id   = 1;  // The unique identifier of the device.
-    string variable_id = 2;  // The unique identifier of the variable.
+    string device_id   = 1;  // The unique device identifier.
+    string variable_id = 2;  // The unique variable identifier.
 }
 
+// Defines a list of data items.
 message DeviceData {
-    repeated DeviceDeviceData devices = 1;  // The list of device data items.
+    repeated DeviceDeviceData devices = 1;  // A list of device data items.
 }
 
+// Defines data items for a specific device.
 message DeviceDeviceData {
-    string device_id                 = 1;  // The unique identifier of the device.
-    repeated VariableDeviceData data = 2;  // The list of variable data items.
+    string device_id                 = 1;  // The unique device identifier.
+    repeated VariableDeviceData data = 2;  // A list of variable data items.
 }
 
+// Defines data for a specific variable within a device.
 message VariableDeviceData {
-    string variable_id                            = 1;  // The unique identifier of the variable.
-    repeated google.protobuf.Timestamp timestamps = 2;  // The list of timestamps for the variable data.
-    repeated string units                         = 3;  // The list of units for the variable data.
-    repeated MeasuredValue values                 = 4;  // The list of measured values for the variable data.
+    string variable_id                            = 1;  // The unique variable identifier.
+    repeated google.protobuf.Timestamp timestamps = 2;  // A list of timestamps for the variable data.
+    repeated string units                         = 3;  // A list of units for the variable data.
+    repeated MeasuredValue values                 = 4;  // A list of measured values for the variable data.
 }
 
-// Device Data Info
-
+// Defines device data information model.
 message DeviceDataInfo {
     reserved 3;
     DeviceDataInfoSpec spec     = 1;  // The device data info specification.
     DeviceDataInfoStatus status = 2;  // The device data info status.
 }
 
+// Defines the device data information specification.
 message DeviceDataInfoSpec {
-    string device_id   = 1;  // The device identifier.
-    string register_id = 2;  // The register identifier.
+    string device_id   = 1;  // The unique device identifier.
+    string register_id = 2;  // The unique register identifier.
 }
 
+// Defines the device data information status.
 message DeviceDataInfoStatus {
     string register_name                    = 1;  // The register name.
     int32 period                            = 2;  // The period of the regular profile values, if applicable.
     google.protobuf.Timestamp last_value_at = 3;  // The timestamp of the last stored value.
 }
 
+// Defines a list of device data information items.
 message ListOfDeviceDataInfo {
     repeated DeviceDataInfo items = 1;  // The list of device data info items.
     int32 total_count             = 2;  // The total number of items.
 }
 
-// Device Events
-
+// Defines a specification for retrieving device events.
 message GetDeviceEventsRequest {
     google.protobuf.Timestamp range_start = 1;  // The start timestamp of the device events selection. It is inclusive.
     google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the device events selection. It is inclusive.
     string device_id                      = 3;  // The unique identifier of the device.
 }
 
-// Device Bulk
-
+// Defines a specification for retrieving device bulks from a specified time range.
 message GetDeviceBulksRequest {
     google.protobuf.Timestamp range_start = 1;  // The start timestamp of the bulks selection. It is inclusive.
     google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the bulks selection. It is inclusive.
     string device_id                      = 3;  // The unique identifier of the device.
 }
 
+// Defines a list of device bulks.
 message DeviceBulks {
     repeated Bulk bulks = 1;  // The list of bulks.
 }
 
-// TOU
-
+// Defines a specification for creating a new time-of-use table.
 message CreateTimeOfUseTableRequest {
     timeofuse.TimeOfUseTableSpec spec = 1;  // The time-of-use table specification.
     common.MetadataFields metadata    = 2;  // The metadata fields.
 }
 
+// Defines a list of time-of-use tables.
 message ListOfTimeOfUseTable {
     repeated TimeOfUseTable items = 1;  // The list of time-of-use tables.
-    int32 total_count             = 2;  // The total number of items.
+    int32 total_count             = 2;  // The total number of items in the list.
 }
 
 message TimeOfUseTable {
-    reserved 2;                             // reserved for status
+    reserved 2;
     timeofuse.TimeOfUseTableSpec spec = 1;  // The time-of-use table specification.
     common.MetadataFields metadata    = 3;  // The metadata fields.
 }

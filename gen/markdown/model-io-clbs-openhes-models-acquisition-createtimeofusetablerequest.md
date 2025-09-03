@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
 
+Defines a specification for creating a new time-of-use table.
+
 ## Fields
 
 | Field | Information |

@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest
 
+Defines a specification for retrieving device bulks from a specified time range.
+
 ## Fields
 
 | Field | Information |

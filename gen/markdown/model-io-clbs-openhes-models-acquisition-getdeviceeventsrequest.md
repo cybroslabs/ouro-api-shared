@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
 
+Defines a specification for retrieving device events.
+
 ## Fields
 
 | Field | Information |

@@ -2425,7 +2425,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for adding communication units to a communication bus.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2451,7 +2451,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the communication bus.</p></td>
+      <td class="content"><p>The unique communication bus identifier.</p></td>
       
     </tr>
     
@@ -2468,7 +2468,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      <td class="content"><p>A list of communication unit identifiers.</p></td>
       
     </tr>
     
@@ -2492,7 +2492,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for adding device configuration registers to device configuration templates.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2518,7 +2518,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The identifier of the device configuration template.</p></td>
+      <td class="content"><p>The unique device configuration template identifier.</p></td>
       
     </tr>
     
@@ -2535,7 +2535,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of register identifiers to be linked to the template.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers.</p></td>
       
     </tr>
     
@@ -2559,7 +2559,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for adding devices to a device groups.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2585,7 +2585,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device group.</p></td>
+      <td class="content"><p>The unique device group identifier.</p></td>
       
     </tr>
     
@@ -2602,7 +2602,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>A list of device identifiers.</p></td>
       
     </tr>
     
@@ -2626,7 +2626,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for adding registers to a variable.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2652,7 +2652,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the variable.</p></td>
+      <td class="content"><p>The unique variable identifier.</p></td>
       
     </tr>
     
@@ -2669,7 +2669,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of register identifiers to be linked to the variable.</p></td>
+      <td class="content"><p>A list of register identifiers.</p></td>
       
     </tr>
     
@@ -2762,7 +2762,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a bulk model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2789,7 +2789,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-job spec.</p></td>
+      <td class="content"><p>The bulk specification.</p></td>
       
     </tr>
     
@@ -2805,7 +2805,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-job status/data.</p></td>
+      <td class="content"><p>The bulk status.</p></td>
       
     </tr>
     
@@ -2845,7 +2845,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the bulk job model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2872,7 +2872,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The job spec.</p></td>
+      <td class="content"><p>The job specification.</p></td>
       
     </tr>
     
@@ -2928,7 +2928,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification of a bulk job.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2955,7 +2955,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The device info.</p></td>
+      <td class="content"><p>The device information.</p></td>
       
     </tr>
     
@@ -2979,7 +2979,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a bulk specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3006,7 +3006,7 @@
         </code>
       </td>
       <td class="content"><p>@gqltype: UUID</p>
-<p>The correlation identifier, e.g. to define relation to non-homogenous group.</p></td>
+<p>The correlation identifier that represents a non-homogenous group with various device types.</p></td>
       
     </tr>
     
@@ -3022,7 +3022,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-shared job settings.</p></td>
+      <td class="content"><p>The job settings shared across all jobs in the bulk.</p></td>
       
     </tr>
     
@@ -3040,7 +3040,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list actions to be executed.</p></td>
+      <td class="content"><p>The list of actions to be executed on each device in the bulk.</p></td>
       
     </tr>
     
@@ -3090,7 +3090,7 @@
               <span>string</span>
             </code>
           </td>
-          <td class="content"><p>The device group identifier.</p></td>
+          <td class="content"><p>The unique device group identifier.</p></td>
           
         </tr>
       
@@ -3114,7 +3114,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the status of a bulk.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3141,7 +3141,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The job status.</p></td>
+      <td class="content"><p>The overall bulk status.</p></td>
       
     </tr>
     
@@ -3156,7 +3156,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The number of jobs in the bulk.</p></td>
+      <td class="content"><p>The total number of jobs in the bulk.</p></td>
       
     </tr>
     
@@ -3171,7 +3171,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The number of jobs finished.</p></td>
+      <td class="content"><p>The number of jobs that have finished.</p></td>
       
     </tr>
     
@@ -3186,7 +3186,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The number of jobs successful.</p></td>
+      <td class="content"><p>The number of jobs that finished successfully.</p></td>
       
     </tr>
     
@@ -3201,7 +3201,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The creation timestamp of the bulk.</p></td>
+      <td class="content"><p>The timestamp when the bulk was created.</p></td>
       
     </tr>
     
@@ -3216,7 +3216,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The start timestamp of the bulk.</p></td>
+      <td class="content"><p>The timestamp when the bulk started.</p></td>
       
     </tr>
     
@@ -3231,7 +3231,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The finish timestamp of the bulk.</p></td>
+      <td class="content"><p>The timestamp when the bulk finished.</p></td>
       
     </tr>
     
@@ -4361,7 +4361,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new bulk.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4388,7 +4388,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-job spec.</p></td>
+      <td class="content"><p>The bulk specification.</p></td>
       
     </tr>
     
@@ -4428,7 +4428,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new communication bus.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4479,7 +4479,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new communication unit.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4546,7 +4546,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for creating a new device configuration register.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4613,7 +4613,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new device configuration template.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4680,7 +4680,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for creating a new device group.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4747,7 +4747,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4814,7 +4814,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new proxy bulk.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4841,7 +4841,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The proxy bulk-job spec.</p></td>
+      <td class="content"><p>The proxy bulk specification.</p></td>
       
     </tr>
     
@@ -4881,7 +4881,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new time-of-use table.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4948,7 +4948,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating a new variable.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5168,7 +5168,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a device model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5251,7 +5251,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of device bulks.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5385,7 +5385,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the changes in device communication units.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5412,7 +5412,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The device communication unit changes status.</p></td>
+      <td class="content"><p>The device communication unit change status.</p></td>
       
     </tr>
     
@@ -5436,7 +5436,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the status of the device communication unit change.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5462,7 +5462,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp of the change.</p></td>
+      <td class="content"><p>The timestamp when the change occured.</p></td>
       
     </tr>
     
@@ -5477,7 +5477,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      <td class="content"><p>The unique communication unit identifier.</p></td>
       
     </tr>
     
@@ -5492,7 +5492,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The name of the communication unit.</p></td>
+      <td class="content"><p>The communication unit name.</p></td>
       
     </tr>
     
@@ -5507,7 +5507,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique device identifier.</p></td>
       
     </tr>
     
@@ -5522,7 +5522,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The name of the device.</p></td>
+      <td class="content"><p>The device name.</p></td>
       
     </tr>
     
@@ -5546,7 +5546,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a device configuration register specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5710,7 +5710,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a device configuration template model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5777,7 +5777,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a device configuration template specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5803,7 +5803,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device (driver) type.</p></td>
+      <td class="content"><p>The driver type.</p></td>
       
     </tr>
     
@@ -5820,7 +5820,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of device configuration register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers.</p></td>
       
     </tr>
     
@@ -5844,7 +5844,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of data items.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5873,7 +5873,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of device data items.</p></td>
+      <td class="content"><p>A list of device data items.</p></td>
       
     </tr>
     
@@ -5897,7 +5897,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines device data information model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5964,7 +5964,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the device data information specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5990,7 +5990,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device identifier.</p></td>
+      <td class="content"><p>The unique device identifier.</p></td>
       
     </tr>
     
@@ -6005,7 +6005,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The register identifier.</p></td>
+      <td class="content"><p>The unique register identifier.</p></td>
       
     </tr>
     
@@ -6029,7 +6029,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the device data information status.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6109,7 +6109,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines data items for a specific device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6135,7 +6135,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique device identifier.</p></td>
       
     </tr>
     
@@ -6153,7 +6153,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of variable data items.</p></td>
+      <td class="content"><p>A list of variable data items.</p></td>
       
     </tr>
     
@@ -6355,7 +6355,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a device group model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6422,7 +6422,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a device group sepcification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6827,7 +6827,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a driver model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6894,7 +6894,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the driver specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6920,7 +6920,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver version. The format is not defined. The driver itself is versioned by the docker image tags so this value shall be either the same (set during the image build) or any useful user-readable version string.</p></td>
+      <td class="content"><p>The driver version. The format is not defined. Typically matches the docker image tag or another user-readable version string.</p></td>
       
     </tr>
     
@@ -6935,7 +6935,7 @@
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The port the driver's gRPC will listen on.</p></td>
+      <td class="content"><p>The port on which the driver's gRPC listens.</p></td>
       
     </tr>
     
@@ -6965,7 +6965,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of concurrent jobs the driver can handle. The value 0 is not allowed, the maximum number respect typical_mem_usage not to overgrow the memory resources!</p></td>
+      <td class="content"><p>The maximum number of concurrent jobs the driver can handle. A value of <code>0</code> is not allowed. The maximum value should respect <code>typical_mem_usage</code> to avoid exceeding memory resources!</p></td>
       
     </tr>
     
@@ -6980,8 +6980,8 @@
           <span>uint32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum cascade depth the driver can handle. Number 1 means that the driver cannot handle cascading jobs, 2 means that the driver can handle cascading jobs with one level of depth, etc.
-The value 0 means that the driver can handle any number of cascading jobs.</p></td>
+      <td class="content"><p>The maximum cascade depth the driver can handle. Value <code>1</code> means that cascading jobs are not supported. Value <code>2</code> means one level of cascading is allowed, and so on.
+Value <code>0</code> means that the driver can handle any number of cascading jobs.</p></td>
       
     </tr>
     
@@ -6996,7 +6996,7 @@ The value 0 means that the driver can handle any number of cascading jobs.</p></
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The typical memory usage of the driver in MB.</p></td>
+      <td class="content"><p>The typical memory usage of the driver in <code>MB</code>.</p></td>
       
     </tr>
     
@@ -7027,10 +7027,10 @@ The value 0 means that the driver can handle any number of cascading jobs.</p></
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The display name of the driver. Must be in format '<manufacturer> <device_type> [<device_type_version>]'.
-It must respect upper/lower characters.
-The generic drivers, such as 'cybros labs generic', must be named as '<driver_company_name> generic'.
-@example: 'Addax NP73E', 'cybros labs generic', 'Landis+Gyr S650 v2'</p></td>
+      <td class="content"><p>The display name of the driver. Must be in the following format: <code>&lt;manufacturer&gt; &lt;device_type&gt; [&lt;device_type_version&gt;]</code>.
+Must respect upper/lower case.
+Generic drivers, such as <code>cybros labs generic</code>, must be in the following format: <code>&lt;driver_company_name&gt; generic</code>.
+@example: <code>Addax NP73E</code>, <code>cybros labs generic</code>, <code>Landis+Gyr S650 v2</code></p></td>
       
     </tr>
     
@@ -7054,7 +7054,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the driver status.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7080,7 +7080,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Whether the driver is the latest installed version in the system. Note that this does not mean that the driver is the latest released version!</p></td>
+      <td class="content"><p>Indicates whether this is the latest installed version of the driver in the system. Note that this does not necessarily mean it is the latest released version!</p></td>
       
     </tr>
     
@@ -7095,7 +7095,7 @@ The generic drivers, such as 'cybros labs generic', must be named as '<driver_co
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Whether the driver update from previous version (if any) has been finished.</p></td>
+      <td class="content"><p>Indicates whether the update from the previous version (if any) has finished.</p></td>
       
     </tr>
     
@@ -7425,7 +7425,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for retrieving device bulks from a specified time range.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7505,7 +7505,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for retrieving device data.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7531,7 +7531,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The start timestamp of the data. The exclusivness/inclusiveness of the timestamp is defined in the variable.</p></td>
+      <td class="content"><p>The start timestamp of the requested data. The exclusivness/inclusiveness of the timestamp is defined in a variable.</p></td>
       
     </tr>
     
@@ -7546,7 +7546,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The end timestamp of the data. It is inclusive.</p></td>
+      <td class="content"><p>The end timestamp of the data. The timestamp is inclusive.</p></td>
       
     </tr>
     
@@ -7564,7 +7564,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
     </a>
         </code>
       </td>
-      <td class="content"><p>One or more identifiers of the devices.</p></td>
+      <td class="content"><p>One or more selectors identifying devices and variables for which data is requested.</p></td>
       
     </tr>
     
@@ -7579,7 +7579,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>int64</span>
         </code>
       </td>
-      <td class="content"><p>The filter status bits, only values with these status bits will be returned in the response.</p></td>
+      <td class="content"><p>The status bit filter. Only values with these status bits will be included in the response.</p></td>
       
     </tr>
     
@@ -7594,7 +7594,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>int64</span>
         </code>
       </td>
-      <td class="content"><p>The filter status bits, only values without these status bits will be returned in the response.</p></td>
+      <td class="content"><p>The status bit filter. Values with these status bits will not be included in the response.</p></td>
       
     </tr>
     
@@ -7609,7 +7609,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>If set, the system will return a snapshot from the given point in time, e.g. what has been stored in the system yesterday.</p></td>
+      <td class="content"><p>If set, returns a snapshot of stoered data from the given point in time.</p></td>
       
     </tr>
     
@@ -7633,7 +7633,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a selector for identifying device and variable pairs.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -7659,7 +7659,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique device identifier.</p></td>
       
     </tr>
     
@@ -7674,7 +7674,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the variable.</p></td>
+      <td class="content"><p>The unique variable identifier.</p></td>
       
     </tr>
     
@@ -7698,7 +7698,7 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for retrieving device events.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9246,7 +9246,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for listing of jobs within a specified bulk.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9272,7 +9272,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The bulk identifier.</p></td>
+      <td class="content"><p>The unique bulk identifier.</p></td>
       
     </tr>
     
@@ -9288,7 +9288,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list selector.</p></td>
+      <td class="content"><p>The listing criteria.</p></td>
       
     </tr>
     
@@ -9312,7 +9312,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of devices withing a device group.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9338,7 +9338,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device group.</p></td>
+      <td class="content"><p>The unique device group identifier.</p></td>
       
     </tr>
     
@@ -9354,7 +9354,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list selector.</p></td>
+      <td class="content"><p>The listing criteria.</p></td>
       
     </tr>
     
@@ -9378,7 +9378,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of bulks.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9422,7 +9422,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -9446,7 +9446,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of jobs within a bulk.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9490,7 +9490,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -9514,7 +9514,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of communication buses.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9558,7 +9558,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -9582,7 +9582,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of communication units.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9611,7 +9611,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The communication unit specification.</p></td>
+      <td class="content"><p>The list of communication unit specifications.</p></td>
       
     </tr>
     
@@ -9626,7 +9626,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -9718,7 +9718,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of devices.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9786,7 +9786,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of communication units linked to a device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9830,7 +9830,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list .</p></td>
       
     </tr>
     
@@ -9854,7 +9854,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the list of changes in device communication units.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9898,7 +9898,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -9922,7 +9922,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a lost of device configuration registers.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9966,7 +9966,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -9990,7 +9990,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of device configuration templates.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10034,7 +10034,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -10058,7 +10058,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of device data information items.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10126,7 +10126,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of device groups.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10170,7 +10170,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -10194,7 +10194,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of drivers.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10238,7 +10238,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -10262,7 +10262,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of job devices included in a bulk.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10398,7 +10398,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of modem pools.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10442,7 +10442,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -10466,7 +10466,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of time-of-use tables.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10510,7 +10510,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -10534,7 +10534,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of variables.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -10578,7 +10578,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -11043,7 +11043,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a modem pool model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11126,7 +11126,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a modem pool specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11161,7 +11161,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a modem pool status.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11436,7 +11436,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a proxy bulk model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11463,7 +11463,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-job spec.</p></td>
+      <td class="content"><p>The proxy bulk specification.</p></td>
       
     </tr>
     
@@ -11479,7 +11479,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-job status/data.</p></td>
+      <td class="content"><p>The proxy bulk status.</p></td>
       
     </tr>
     
@@ -11519,7 +11519,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a proxy bulk specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11546,7 +11546,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
         </code>
       </td>
       <td class="content"><p>@gqltype: UUID</p>
-<p>The correlation identifier, e.g. to define relation to non-homogenous group.</p></td>
+<p>The correlation identifier that represents a non-homogenous group with various device types.</p></td>
       
     </tr>
     
@@ -11561,7 +11561,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The device (driver) type.</p></td>
+      <td class="content"><p>The driver type.</p></td>
       
     </tr>
     
@@ -11577,7 +11577,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of custom devices in the proxy bulk.</p></td>
+      <td class="content"><p>The list of devices in the proxy bulk.</p></td>
       
     </tr>
     
@@ -11593,7 +11593,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk-shared job settings.</p></td>
+      <td class="content"><p>The job settings shared across the bulk.</p></td>
       
     </tr>
     
@@ -11611,7 +11611,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list actions to be executed.</p></td>
+      <td class="content"><p>The list of actions to be executed.</p></td>
       
     </tr>
     
@@ -11769,7 +11769,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for removing communication units from a communicaation bus.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11795,7 +11795,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the communication bus.</p></td>
+      <td class="content"><p>The unique communication bus identifier.</p></td>
       
     </tr>
     
@@ -11812,7 +11812,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the communication unit.</p></td>
+      <td class="content"><p>A list of communication unit identifiers.</p></td>
       
     </tr>
     
@@ -11836,7 +11836,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for removing device configuration registers to device configuration templates.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11862,7 +11862,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The identifier of the device configuration template.</p></td>
+      <td class="content"><p>The unique device configuration template identifier.</p></td>
       
     </tr>
     
@@ -11879,7 +11879,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of register identifiers to be unlinked from the template.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers.</p></td>
       
     </tr>
     
@@ -11903,7 +11903,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for removing devices from a device group.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -11929,7 +11929,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device group.</p></td>
+      <td class="content"><p>The unique device group identifier.</p></td>
       
     </tr>
     
@@ -11946,7 +11946,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>A list of device identifiers.</p></td>
       
     </tr>
     
@@ -11970,7 +11970,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for removing registers from a variable.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12013,7 +12013,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of register identifiers to be linked to the variable.</p></td>
+      <td class="content"><p>A list of register identifiers.</p></td>
       
     </tr>
     
@@ -12037,7 +12037,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for adding or updating communication units linked to a device .</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12063,7 +12063,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique device identifier.</p></td>
       
     </tr>
     
@@ -12105,7 +12105,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating or updating a modem pool.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12172,7 +12172,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating or updating modems linked to a modem pool.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12198,7 +12198,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem pool identifier, required for update operation.</p></td>
+      <td class="content"><p>The unique modem pool identifier. Required for update operation.</p></td>
       
     </tr>
     
@@ -12468,7 +12468,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a variable model.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12535,7 +12535,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines data for a specific variable within a device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12561,7 +12561,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the variable.</p></td>
+      <td class="content"><p>The unique variable identifier.</p></td>
       
     </tr>
     
@@ -12578,7 +12578,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The list of timestamps for the variable data.</p></td>
+      <td class="content"><p>A list of timestamps for the variable data.</p></td>
       
     </tr>
     
@@ -12595,7 +12595,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of units for the variable data.</p></td>
+      <td class="content"><p>A list of units for the variable data.</p></td>
       
     </tr>
     
@@ -12613,7 +12613,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of measured values for the variable data.</p></td>
+      <td class="content"><p>A list of measured values for the variable data.</p></td>
       
     </tr>
     
@@ -12637,7 +12637,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a variable specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12696,7 +12696,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>If true, the device data returned for this variable will exclude values at 'from' timestamp. Default is false (include values at 'from' timestamp).</p></td>
+      <td class="content"><p>Indicates whether the returned data for this variabe should exclude values at <code>from</code> timestamp. If set to <code>true</code>, the returned device data returned for this variable dos not include values at <code>from</code> timestamp. Default value is <code>false</code>.</p></td>
       
     </tr>
     

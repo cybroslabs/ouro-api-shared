@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.ModemPool
 
+Defines a modem pool model.
+
 ## Fields
 
 | Field | Information |

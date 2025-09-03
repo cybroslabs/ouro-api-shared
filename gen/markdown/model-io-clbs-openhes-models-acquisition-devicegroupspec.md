@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.DeviceGroupSpec
 
+Defines a device group sepcification.
+
 ## Fields
 
 | Field | Information |

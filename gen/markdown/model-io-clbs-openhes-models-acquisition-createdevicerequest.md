@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateDeviceRequest
 
+Defines a specification for creating a new device.
+
 ## Fields
 
 | Field | Information |

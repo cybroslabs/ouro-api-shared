@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.DeviceBulks
 
+Defines a list of device bulks.
+
 ## Fields
 
 | Field | Information |

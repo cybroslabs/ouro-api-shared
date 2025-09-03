@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest
 
+Defines a specification for creating a new device configuration template.
+
 ## Fields
 
 | Field | Information |
