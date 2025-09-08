@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// DLMS crypto mode
+// Defines the supported DLMS authenticated encryption modes.
 type AuthenticatedEncryption int32
 
 const (
@@ -65,6 +65,7 @@ func (x AuthenticatedEncryption) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the supported digital signature algorithms.
 type DigitalSignature int32
 
 const (
@@ -109,6 +110,7 @@ func (x DigitalSignature) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the supported key agreements algorithms.
 type KeyAgreement int32
 
 const (
@@ -153,6 +155,7 @@ func (x KeyAgreement) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the supported hash and signature mechanisms.
 type Hash int32
 
 const (
@@ -227,12 +230,13 @@ func (x Hash) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the direction of hash calculations in DLMS key exchange.
 type HashDirection int32
 
 const (
 	HashDirection_HASH_DIRECTION_UNSPECIFIED      HashDirection = 0 // Unspecified direction.
-	HashDirection_HASH_DIRECTION_CLIENT_TO_SERVER HashDirection = 1 // The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
-	HashDirection_HASH_DIRECTION_SERVER_TO_CLIENT HashDirection = 2 // The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
+	HashDirection_HASH_DIRECTION_CLIENT_TO_SERVER HashDirection = 1 // The hash is calculated for requests from client to server (CtoS, when the client starts the key exchange).
+	HashDirection_HASH_DIRECTION_SERVER_TO_CLIENT HashDirection = 2 // The hash is calculated for requests from server to client (StoC, when the server responds to the client's key exchange request).
 )
 
 // Enum value maps for HashDirection.
@@ -271,7 +275,7 @@ func (x HashDirection) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Sub-message containing job parameters
+// Defines a specification for request messages containing job parameters. Only one request type can be set per message.
 type DlmsIn struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id          uint64                 `protobuf:"varint,1,opt,name=id"`
@@ -616,11 +620,11 @@ type isDlmsIn_Request interface {
 }
 
 type dlmsIn_Init struct {
-	Init *DlmsInit `protobuf:"bytes,2,opt,name=init,oneof"` // The initialize request. It can be called only once, as the first request.
+	Init *DlmsInit `protobuf:"bytes,2,opt,name=init,oneof"` // The initialization request. It can be called only once and only as the first request.
 }
 
 type dlmsIn_Setup struct {
-	Setup *DlmsSetServerInfo `protobuf:"bytes,3,opt,name=setup,oneof"` // The setup server into request. This message shall be called when the data known.
+	Setup *DlmsSetServerInfo `protobuf:"bytes,3,opt,name=setup,oneof"` // The setup server info request. This message shall be called when the data known.
 }
 
 type dlmsIn_Hash struct {
@@ -651,6 +655,7 @@ func (*dlmsIn_Decrypt) isDlmsIn_Request() {}
 
 func (*dlmsIn_AuthVerify) isDlmsIn_Request() {}
 
+// Defines a specification for initialization parameters for DLSM, typically sent as the first request.
 type DlmsInit struct {
 	state                   protoimpl.MessageState  `protogen:"opaque.v1"`
 	xxx_hidden_Encryption   AuthenticatedEncryption `protobuf:"varint,1,opt,name=encryption,enum=io.clbs.openhes.models.crypto.AuthenticatedEncryption"`
@@ -958,6 +963,7 @@ func (b0 DlmsInit_builder) Build() *DlmsInit {
 	return m0
 }
 
+// Defines a specification for DLMS server information.
 type DlmsSetServerInfo struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_SystemTitleS []byte                 `protobuf:"bytes,1,opt,name=system_title_s,json=systemTitleS"`
@@ -1069,6 +1075,7 @@ func (b0 DlmsSetServerInfo_builder) Build() *DlmsSetServerInfo {
 	return m0
 }
 
+// Defines a specification for outgoing DLMS message.
 type DlmsOut struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id          uint64                 `protobuf:"varint,1,opt,name=id"`
@@ -1202,6 +1209,7 @@ func (b0 DlmsOut_builder) Build() *DlmsOut {
 	return m0
 }
 
+// Defines a specification for DLMS encryption.
 type DlmsEncrypt struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
@@ -1340,6 +1348,7 @@ func (b0 DlmsEncrypt_builder) Build() *DlmsEncrypt {
 	return m0
 }
 
+// Defines a specification for DLMS decryption.
 type DlmsDecrypt struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_FrameCounter    uint32                 `protobuf:"varint,1,opt,name=frame_counter,json=frameCounter"`
@@ -1478,6 +1487,7 @@ func (b0 DlmsDecrypt_builder) Build() *DlmsDecrypt {
 	return m0
 }
 
+// Defines a specification for DLMS hash requests.
 type DlmsHash struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Direction       HashDirection          `protobuf:"varint,1,opt,name=direction,enum=io.clbs.openhes.models.crypto.HashDirection"`
@@ -1647,6 +1657,7 @@ func (b0 DlmsHash_builder) Build() *DlmsHash {
 	return m0
 }
 
+// Defines a specification for DLMS authentication verifications.
 type DlmsAuthVerify struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Direction       HashDirection          `protobuf:"varint,1,opt,name=direction,enum=io.clbs.openhes.models.crypto.HashDirection"`
@@ -1849,6 +1860,7 @@ func (b0 DlmsAuthVerify_builder) Build() *DlmsAuthVerify {
 	return m0
 }
 
+// Defines a specification for user-facing error message.
 type ErrorMessage struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Code        uint32                 `protobuf:"varint,1,opt,name=code"`
@@ -1938,7 +1950,7 @@ func (x *ErrorMessage) ClearMessage() {
 type ErrorMessage_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The error code, use standard codes package, see https://pkg.go.dev/google.golang.org/grpc/codes#pkg-constants.
+	// The error code. Uses standard gRPC codes, see https://pkg.go.dev/google.golang.org/grpc/codes#pkg-constants.
 	Code *uint32
 	// The error message to be witten to the log.
 	Message *string

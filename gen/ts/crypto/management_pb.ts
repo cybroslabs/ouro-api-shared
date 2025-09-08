@@ -17,25 +17,27 @@ export const file_crypto_management: GenFile = /*@__PURE__*/
   fileDesc("ChdjcnlwdG8vbWFuYWdlbWVudC5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8igAEKFkdldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCSJNCg1DcnlwdG9TZWNyZXRzEjwKB3NlY3JldHMYASADKAsyKy5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNyeXB0by5DcnlwdG9TZWNyZXQi3gEKDENyeXB0b1NlY3JldBIUCgxhY2Nlc3NfbGV2ZWwYASABKAkSDgoGa2V5X2lkGAIgASgJEi4KCmNyZWF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBGRhdGEYDyABKAxKBAgFEAZKBAgGEAdKBAgHEAhKBAgIEAlKBAgJEApKBAgKEAtKBAgLEAxKBAgMEA1KBAgNEA5KBAgOEA8i3gMKFlNldENyeXB0b1NlY3JldFJlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhMKC2RyaXZlcl90eXBlGAIgASgJEhEKCWNyeXB0b19pZBgDIAEoCRIUCgxhY2Nlc3NfbGV2ZWwYBCABKAkSDgoGa2V5X2lkGAUgASgJEhwKFGRlY3J5cHRpb25fc2VjcmV0X2lkGAYgASgJEmYKHXNlc3Npb25fa2V5X2RlY3J5cHRpb25fbWV0aG9kGAcgASgOMj8uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jcnlwdG8uU2VjcmV0U2Vzc2lvbktleURlY3J5cHRpb25NZXRob2QSEwoLc2Vzc2lvbl9rZXkYCCABKAwSWQoWZGF0YV9kZWNyeXB0aW9uX21ldGhvZBgJIAEoDjI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY3J5cHRvLlNlY3JldERhdGFEZWNyeXB0aW9uTWV0aG9kEhoKEmRhdGFfZGVjcnlwdGlvbl9pdhgKIAEoDBIMCgRkYXRhGA8gASgMSgQICxAMSgQIDBANSgQIDRAOSgQIDhAPKmsKGlNlY3JldERhdGFEZWNyeXB0aW9uTWV0aG9kEhsKF1NFQ1JFVF9EQVRBX1VOU1BFQ0lGSUVEEAASFQoRU0VDUkVUX0RBVEFfUExBSU4QARIZChVTRUNSRVRfREFUQV9BRVMyNTZDQkMQAip/CiBTZWNyZXRTZXNzaW9uS2V5RGVjcnlwdGlvbk1ldGhvZBIeChpTRUNSRVRfU0VTU0lPTl9VTlNQRUNJRklFRBAAEhgKFFNFQ1JFVF9TRVNTSU9OX1BMQUlOEAESIQodU0VDUkVUX1NFU1NJT05fUlNBX09BRVBNX0dGMVAQAkI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jcnlwdG9iCGVkaXRpb25zcOgH", [file_google_protobuf_timestamp, file_common_objects]);
 
 /**
+ * Defines a specification for retrieving crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.GetCryptoSecretRequest
  */
 export type GetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.GetCryptoSecretRequest"> & {
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType: ObjectType;
 
   /**
-   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
    *
    * @generated from field: string driver_type = 2;
    */
   driverType: string;
 
   /**
-   * The crypto ID of the secret to retrieve.
+   * The crypto identifier of the secret to retrieve.
    *
    * @generated from field: string crypto_id = 3;
    */
@@ -43,25 +45,27 @@ export type GetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.GetC
 };
 
 /**
+ * Defines a specification for retrieving crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.GetCryptoSecretRequest
  */
 export type GetCryptoSecretRequestJson = {
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
    *
    * @generated from field: string driver_type = 2;
    */
   driverType?: string;
 
   /**
-   * The crypto ID of the secret to retrieve.
+   * The crypto identifier of the secret to retrieve.
    *
    * @generated from field: string crypto_id = 3;
    */
@@ -76,11 +80,13 @@ export const GetCryptoSecretRequestSchema: GenMessage<GetCryptoSecretRequest, {j
   messageDesc(file_crypto_management, 0);
 
 /**
+ * Defines a list of crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.CryptoSecrets
  */
 export type CryptoSecrets = Message<"io.clbs.openhes.models.crypto.CryptoSecrets"> & {
   /**
-   * List of secrets.
+   * A list of crypto secrets.
    *
    * @generated from field: repeated io.clbs.openhes.models.crypto.CryptoSecret secrets = 1;
    */
@@ -88,11 +94,13 @@ export type CryptoSecrets = Message<"io.clbs.openhes.models.crypto.CryptoSecrets
 };
 
 /**
+ * Defines a list of crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.CryptoSecrets
  */
 export type CryptoSecretsJson = {
   /**
-   * List of secrets.
+   * A list of crypto secrets.
    *
    * @generated from field: repeated io.clbs.openhes.models.crypto.CryptoSecret secrets = 1;
    */
@@ -107,32 +115,34 @@ export const CryptoSecretsSchema: GenMessage<CryptoSecrets, {jsonType: CryptoSec
   messageDesc(file_crypto_management, 1);
 
 /**
+ * Defines a specification of crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.CryptoSecret
  */
 export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret"> & {
   /**
-   * Access level for the secret, e.g., "admin", "user", etc.
+   * The access level for the secret (for example, `admin`, `user`).
    *
    * @generated from field: string access_level = 1;
    */
   accessLevel: string;
 
   /**
-   * Unique identifier for the secret key.
+   * The unique secret key identifier.
    *
    * @generated from field: string key_id = 2;
    */
   keyId: string;
 
   /**
-   * Timestamp when the secret was created.
+   * The timestamp when the secret was created.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: Timestamp;
 
   /**
-   * Timestamp when the secret was last updated.
+   * The timestamp when the secret was last updated.
    *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
@@ -147,32 +157,34 @@ export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret">
 };
 
 /**
+ * Defines a specification of crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.CryptoSecret
  */
 export type CryptoSecretJson = {
   /**
-   * Access level for the secret, e.g., "admin", "user", etc.
+   * The access level for the secret (for example, `admin`, `user`).
    *
    * @generated from field: string access_level = 1;
    */
   accessLevel?: string;
 
   /**
-   * Unique identifier for the secret key.
+   * The unique secret key identifier.
    *
    * @generated from field: string key_id = 2;
    */
   keyId?: string;
 
   /**
-   * Timestamp when the secret was created.
+   * The timestamp when the secret was created.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: TimestampJson;
 
   /**
-   * Timestamp when the secret was last updated.
+   * The timestamp when the secret was last updated.
    *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
@@ -194,74 +206,76 @@ export const CryptoSecretSchema: GenMessage<CryptoSecret, {jsonType: CryptoSecre
   messageDesc(file_crypto_management, 2);
 
 /**
+ * Defines a specification for creating or updating crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.SetCryptoSecretRequest
  */
 export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetCryptoSecretRequest"> & {
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType: ObjectType;
 
   /**
-   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
    *
    * @generated from field: string driver_type = 2;
    */
   driverType: string;
 
   /**
-   * The crypto ID of the secret to retrieve.
+   * The crypto identifier of the secret to retrieve.
    *
    * @generated from field: string crypto_id = 3;
    */
   cryptoId: string;
 
   /**
-   * Access level for the secret, e.g., "admin", "user", etc.
+   * The access level for the secret (for example, `admin`, `user`).
    *
    * @generated from field: string access_level = 4;
    */
   accessLevel: string;
 
   /**
-   * Unique identifier for the secret key.
+   * The unique secret key identifier.
    *
    * @generated from field: string key_id = 5;
    */
   keyId: string;
 
   /**
-   * Identifier for the key used to decrypt the either the session key or the data directly.
+   * The uniqie identifier for the key used to decrypt either the session key or the data directly.
    *
    * @generated from field: string decryption_secret_id = 6;
    */
   decryptionSecretId: string;
 
   /**
-   * Method used to decrypt the session key. May be unset if the session key is unset and no used.
+   * the method used to decrypt the session key. May be unset if the session key is not set or not used.
    *
    * @generated from field: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;
    */
   sessionKeyDecryptionMethod: SecretSessionKeyDecryptionMethod;
 
   /**
-   * The session key, usually encrypted, used to decrypt the data.
+   * The session key (usually encrypted) used to decrypt the data.
    *
    * @generated from field: bytes session_key = 8;
    */
   sessionKey: Uint8Array;
 
   /**
-   * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   * The method used to decrypt the secret data. May be unset if the data is not encrypted.
    *
    * @generated from field: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod data_decryption_method = 9;
    */
   dataDecryptionMethod: SecretDataDecryptionMethod;
 
   /**
-   * Initialization vector for the decryption method, if applicable.
+   * The initialization vector for the decryption method, if applicable.
    *
    * @generated from field: bytes data_decryption_iv = 10;
    */
@@ -276,74 +290,76 @@ export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetC
 };
 
 /**
+ * Defines a specification for creating or updating crypto secrets.
+ *
  * @generated from message io.clbs.openhes.models.crypto.SetCryptoSecretRequest
  */
 export type SetCryptoSecretRequestJson = {
   /**
-   * Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.
+   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"
+   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
    *
    * @generated from field: string driver_type = 2;
    */
   driverType?: string;
 
   /**
-   * The crypto ID of the secret to retrieve.
+   * The crypto identifier of the secret to retrieve.
    *
    * @generated from field: string crypto_id = 3;
    */
   cryptoId?: string;
 
   /**
-   * Access level for the secret, e.g., "admin", "user", etc.
+   * The access level for the secret (for example, `admin`, `user`).
    *
    * @generated from field: string access_level = 4;
    */
   accessLevel?: string;
 
   /**
-   * Unique identifier for the secret key.
+   * The unique secret key identifier.
    *
    * @generated from field: string key_id = 5;
    */
   keyId?: string;
 
   /**
-   * Identifier for the key used to decrypt the either the session key or the data directly.
+   * The uniqie identifier for the key used to decrypt either the session key or the data directly.
    *
    * @generated from field: string decryption_secret_id = 6;
    */
   decryptionSecretId?: string;
 
   /**
-   * Method used to decrypt the session key. May be unset if the session key is unset and no used.
+   * the method used to decrypt the session key. May be unset if the session key is not set or not used.
    *
    * @generated from field: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;
    */
   sessionKeyDecryptionMethod?: SecretSessionKeyDecryptionMethodJson;
 
   /**
-   * The session key, usually encrypted, used to decrypt the data.
+   * The session key (usually encrypted) used to decrypt the data.
    *
    * @generated from field: bytes session_key = 8;
    */
   sessionKey?: string;
 
   /**
-   * Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.
+   * The method used to decrypt the secret data. May be unset if the data is not encrypted.
    *
    * @generated from field: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod data_decryption_method = 9;
    */
   dataDecryptionMethod?: SecretDataDecryptionMethodJson;
 
   /**
-   * Initialization vector for the decryption method, if applicable.
+   * The initialization vector for the decryption method, if applicable.
    *
    * @generated from field: bytes data_decryption_iv = 10;
    */
@@ -365,7 +381,7 @@ export const SetCryptoSecretRequestSchema: GenMessage<SetCryptoSecretRequest, {j
   messageDesc(file_crypto_management, 3);
 
 /**
- * DLMS crypto mode
+ * Defines the supported DLMS decryption methods.
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
  */
@@ -378,14 +394,14 @@ export enum SecretDataDecryptionMethod {
   SECRET_DATA_UNSPECIFIED = 0,
 
   /**
-   * Plain data, no decryption needed
+   * Plain data. No decryption required.
    *
    * @generated from enum value: SECRET_DATA_PLAIN = 1;
    */
   SECRET_DATA_PLAIN = 1,
 
   /**
-   * AES-256-CBC encryption method
+   * AES-256-CBC dencryption method.
    *
    * @generated from enum value: SECRET_DATA_AES256CBC = 2;
    */
@@ -393,7 +409,7 @@ export enum SecretDataDecryptionMethod {
 }
 
 /**
- * DLMS crypto mode
+ * Defines the supported DLMS decryption methods.
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
  */
@@ -406,25 +422,27 @@ export const SecretDataDecryptionMethodSchema: GenEnum<SecretDataDecryptionMetho
   enumDesc(file_crypto_management, 0);
 
 /**
+ * Defines the supported decryption methods for session keys.
+ *
  * @generated from enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
  */
 export enum SecretSessionKeyDecryptionMethod {
   /**
-   * No session key decryption method, used when the session key is not set or not used.
+   * No session key decryption method. Used when the session key is not set or not used.
    *
    * @generated from enum value: SECRET_SESSION_UNSPECIFIED = 0;
    */
   SECRET_SESSION_UNSPECIFIED = 0,
 
   /**
-   * Plain session key, no session-key decryption needed.
+   * Plain session key. No session-key decryption required.
    *
    * @generated from enum value: SECRET_SESSION_PLAIN = 1;
    */
   SECRET_SESSION_PLAIN = 1,
 
   /**
-   * RSA-OAEP-MGF1P decryption method, used for session keys.
+   * RSA-OAEP-MGF1P decryption method. Used for session keys.
    *
    * @generated from enum value: SECRET_SESSION_RSA_OAEPM_GF1P = 2;
    */
@@ -432,6 +450,8 @@ export enum SecretSessionKeyDecryptionMethod {
 }
 
 /**
+ * Defines the supported decryption methods for session keys.
+ *
  * @generated from enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
  */
 export type SecretSessionKeyDecryptionMethodJson = "SECRET_SESSION_UNSPECIFIED" | "SECRET_SESSION_PLAIN" | "SECRET_SESSION_RSA_OAEPM_GF1P";

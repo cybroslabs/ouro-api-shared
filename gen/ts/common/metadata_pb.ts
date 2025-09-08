@@ -18,41 +18,41 @@ export const file_common_metadata: GenFile = /*@__PURE__*/
   fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIl0KDlVwZGF0ZU1ldGFkYXRhEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAJKBAgCEAMiYwoZVXBkYXRlT2JqZWN0RmllbGRzUmVxdWVzdBI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0RmllbGRzU3BlY0oECAIQA0oECAMQBCKGAgoNU2V0RmllbGRzU3BlYxJICgZmaWVsZHMYASADKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5TZXRGaWVsZHNTcGVjLkZpZWxkc0VudHJ5Ej4KC29iamVjdF90eXBlGAIgASgOMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uT2JqZWN0VHlwZRIRCglvYmplY3RfaWQYAyABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct, file_common_fields, file_common_objects]);
 
 /**
- * The metadata fields managed by user and system.
+ * Defines a specification for metadata fields managed by both users and the system.
  *
  * @generated from message io.clbs.openhes.models.common.MetadataFields
  */
 export type MetadataFields = Message<"io.clbs.openhes.models.common.MetadataFields"> & {
   /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   * The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
    *
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
-   * The generation of the resource.
+   * The resource generation.
    *
    * @generated from field: int32 generation = 2;
    */
   generation: number;
 
   /**
-   * The additional fields managed by user.
+   * Additional fields managed by the user.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 3;
    */
   fields: { [key: string]: FieldValue };
 
   /**
-   * The additional fields managed by system.
+   * Additional fields managed by the system.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
    */
   managedFields: { [key: string]: FieldValue };
 
   /**
-   * The name of the resource. It's mutable and typically set by user. Must be set.
+   * The resource name. Mutable and typically set by the user. Must be set.
    *
    * @generated from field: string name = 5;
    */
@@ -60,41 +60,41 @@ export type MetadataFields = Message<"io.clbs.openhes.models.common.MetadataFiel
 };
 
 /**
- * The metadata fields managed by user and system.
+ * Defines a specification for metadata fields managed by both users and the system.
  *
  * @generated from message io.clbs.openhes.models.common.MetadataFields
  */
 export type MetadataFieldsJson = {
   /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   * The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
    *
    * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * The generation of the resource.
+   * The resource generation.
    *
    * @generated from field: int32 generation = 2;
    */
   generation?: number;
 
   /**
-   * The additional fields managed by user.
+   * Additional fields managed by the user.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 3;
    */
   fields?: { [key: string]: FieldValueJson };
 
   /**
-   * The additional fields managed by system.
+   * Additional fields managed by the system.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 4;
    */
   managedFields?: { [key: string]: FieldValueJson };
 
   /**
-   * The name of the resource. It's mutable and typically set by user. Must be set.
+   * The resource name. Mutable and typically set by the user. Must be set.
    *
    * @generated from field: string name = 5;
    */
@@ -109,6 +109,8 @@ export const MetadataFieldsSchema: GenMessage<MetadataFields, {jsonType: Metadat
   messageDesc(file_common_metadata, 0);
 
 /**
+ * Defines a specification for updating metadata.
+ *
  * @generated from message io.clbs.openhes.models.common.UpdateMetadata
  */
 export type UpdateMetadata = Message<"io.clbs.openhes.models.common.UpdateMetadata"> & {
@@ -121,6 +123,8 @@ export type UpdateMetadata = Message<"io.clbs.openhes.models.common.UpdateMetada
 };
 
 /**
+ * Defines a specification for updating metadata.
+ *
  * @generated from message io.clbs.openhes.models.common.UpdateMetadata
  */
 export type UpdateMetadataJson = {
@@ -140,11 +144,13 @@ export const UpdateMetadataSchema: GenMessage<UpdateMetadata, {jsonType: UpdateM
   messageDesc(file_common_metadata, 1);
 
 /**
+ * Defines a specification for updating object fields.
+ *
  * @generated from message io.clbs.openhes.models.common.UpdateObjectFieldsRequest
  */
 export type UpdateObjectFieldsRequest = Message<"io.clbs.openhes.models.common.UpdateObjectFieldsRequest"> & {
   /**
-   * The specification of the fields to set for the resource(s).
+   * The specification of the fields to set for the resources.
    *
    * @generated from field: io.clbs.openhes.models.common.SetFieldsSpec spec = 1;
    */
@@ -152,11 +158,13 @@ export type UpdateObjectFieldsRequest = Message<"io.clbs.openhes.models.common.U
 };
 
 /**
+ * Defines a specification for updating object fields.
+ *
  * @generated from message io.clbs.openhes.models.common.UpdateObjectFieldsRequest
  */
 export type UpdateObjectFieldsRequestJson = {
   /**
-   * The specification of the fields to set for the resource(s).
+   * The specification of the fields to set for the resources.
    *
    * @generated from field: io.clbs.openhes.models.common.SetFieldsSpec spec = 1;
    */
@@ -171,25 +179,27 @@ export const UpdateObjectFieldsRequestSchema: GenMessage<UpdateObjectFieldsReque
   messageDesc(file_common_metadata, 2);
 
 /**
+ * Defines a specification for creating or updating fields for resources.
+ *
  * @generated from message io.clbs.openhes.models.common.SetFieldsSpec
  */
 export type SetFieldsSpec = Message<"io.clbs.openhes.models.common.SetFieldsSpec"> & {
   /**
-   * The fields to set for the resource(s).
+   * The fields to set for the resources.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 1;
    */
   fields: { [key: string]: FieldValue };
 
   /**
-   * The type of the managed fields update. It defines the resource type for which the fields are set.
+   * The type of the managed fields update. Defines resource type the fields apply to.
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
    */
   objectType: ObjectType;
 
   /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   * The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
    *
    * @generated from field: string object_id = 3;
    */
@@ -197,25 +207,27 @@ export type SetFieldsSpec = Message<"io.clbs.openhes.models.common.SetFieldsSpec
 };
 
 /**
+ * Defines a specification for creating or updating fields for resources.
+ *
  * @generated from message io.clbs.openhes.models.common.SetFieldsSpec
  */
 export type SetFieldsSpecJson = {
   /**
-   * The fields to set for the resource(s).
+   * The fields to set for the resources.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> fields = 1;
    */
   fields?: { [key: string]: FieldValueJson };
 
   /**
-   * The type of the managed fields update. It defines the resource type for which the fields are set.
+   * The type of the managed fields update. Defines resource type the fields apply to.
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   * The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
    *
    * @generated from field: string object_id = 3;
    */

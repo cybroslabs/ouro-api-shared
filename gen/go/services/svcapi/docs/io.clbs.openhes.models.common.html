@@ -1253,7 +1253,7 @@
 </h4>
 
 <div class="block content">
-  <p>The formatted message structure.</p>
+  <p>Defines a structure of a user-facing formatted message.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1279,7 +1279,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The message or a format string.</p></td>
+      <td class="content"><p>The message text or format string.</p></td>
       
     </tr>
     
@@ -1296,7 +1296,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The format arguments. If set then the message is used as a format string.</p></td>
+      <td class="content"><p>A list of format arguments. If provided, the <code>message</code> field is used interpreted as a format string.</p></td>
       
     </tr>
     
@@ -1311,7 +1311,7 @@
           <span>google.protobuf.Struct</span>
         </code>
       </td>
-      <td class="content"><p>The additional named parameters. It must be single-level map, i.e., it must not contain nested objects or arrays.</p></td>
+      <td class="content"><p>Additional named parameters as a single-level map. Nested objects or arrays are not allowed.</p></td>
       
     </tr>
     
@@ -1468,7 +1468,7 @@
 </h4>
 
 <div class="block content">
-  <p>The list of UUID items.</p>
+  <p>Defines a list of UUID identifiers.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1496,7 +1496,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"></td>
+      <td class="content"><p>The list of UUID identifiers.</p></td>
       
     </tr>
     
@@ -1520,7 +1520,7 @@
 </h4>
 
 <div class="block content">
-  <p>The list of common-string items.</p>
+  <p>Defines a list of common-string items.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1548,7 +1548,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"></td>
+      <td class="content"><p>The list of common-string items.</p></td>
       
     </tr>
     
@@ -1937,7 +1937,7 @@
 </h4>
 
 <div class="block content">
-  <p>The metadata fields managed by user and system.</p>
+  <p>Defines a specification for metadata fields managed by both users and the system.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1963,7 +1963,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.</p></td>
+      <td class="content"><p>The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during <code>Create</code> operations.</p></td>
       
     </tr>
     
@@ -1978,7 +1978,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The generation of the resource.</p></td>
+      <td class="content"><p>The resource generation.</p></td>
       
     </tr>
     
@@ -1993,7 +1993,7 @@
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The additional fields managed by user.</p></td>
+      <td class="content"><p>Additional fields managed by the user.</p></td>
       
     </tr>
     
@@ -2008,7 +2008,7 @@
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The additional fields managed by system.</p></td>
+      <td class="content"><p>Additional fields managed by the system.</p></td>
       
     </tr>
     
@@ -2023,7 +2023,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The name of the resource. It's mutable and typically set by user. Must be set.</p></td>
+      <td class="content"><p>The resource name. Mutable and typically set by the user. Must be set.</p></td>
       
     </tr>
     
@@ -2047,7 +2047,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating or updating fields for resources.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2073,7 +2073,7 @@
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The fields to set for the resource(s).</p></td>
+      <td class="content"><p>The fields to set for the resources.</p></td>
       
     </tr>
     
@@ -2089,7 +2089,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The type of the managed fields update. It defines the resource type for which the fields are set.</p></td>
+      <td class="content"><p>The type of the managed fields update. Defines resource type the fields apply to.</p></td>
       
     </tr>
     
@@ -2104,7 +2104,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.</p></td>
+      <td class="content"><p>The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during <code>Create</code> operations.</p></td>
       
     </tr>
     
@@ -2128,7 +2128,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for updating metadata.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2179,7 +2179,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for updating object fields.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2206,7 +2206,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The specification of the fields to set for the resource(s).</p></td>
+      <td class="content"><p>The specification of the fields to set for the resources.</p></td>
       
     </tr>
     
@@ -2504,7 +2504,7 @@
 </h4>
 
 <div class="block content">
-  <p><p>Enum representing the object type.
+  <p><p>Defines the possible object types within the system.
 @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
 @sort</p></p>
 </div>
@@ -2554,7 +2554,7 @@
     <tr>
       <td><code>DEVICE_CONFIGURATION_REGISTER</code></td>
       <td>5</td>
-      <td class="content"><p>The register.</p></td>
+      <td class="content"><p>The device configuration register.</p></td>
     </tr>
     
     <tr>
@@ -2566,7 +2566,7 @@
     <tr>
       <td><code>DEVICE_CONFIGURATION_TEMPLATE</code></td>
       <td>7</td>
-      <td class="content"><p>The device template.</p></td>
+      <td class="content"><p>The device configuration template.</p></td>
     </tr>
     
     <tr>

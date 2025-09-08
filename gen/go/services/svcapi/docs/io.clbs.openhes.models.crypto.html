@@ -147,7 +147,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification of crypto secrets.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -173,7 +173,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Access level for the secret, e.g., "admin", "user", etc.</p></td>
+      <td class="content"><p>The access level for the secret (for example, <code>admin</code>, <code>user</code>).</p></td>
       
     </tr>
     
@@ -188,7 +188,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the secret key.</p></td>
+      <td class="content"><p>The unique secret key identifier.</p></td>
       
     </tr>
     
@@ -203,7 +203,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>Timestamp when the secret was created.</p></td>
+      <td class="content"><p>The timestamp when the secret was created.</p></td>
       
     </tr>
     
@@ -218,7 +218,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>Timestamp when the secret was last updated.</p></td>
+      <td class="content"><p>The timestamp when the secret was last updated.</p></td>
       
     </tr>
     
@@ -257,7 +257,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list of crypto secrets.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -286,7 +286,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>List of secrets.</p></td>
+      <td class="content"><p>A list of crypto secrets.</p></td>
       
     </tr>
     
@@ -310,7 +310,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for retrieving crypto secrets.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -337,7 +337,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.</p></td>
+      <td class="content"><p>Thehe resource type for which the secret is defined (for example, <code>BULK</code>, <code>DEVICE</code>).</p></td>
       
     </tr>
     
@@ -352,7 +352,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"</p></td>
+      <td class="content"><p>The driver type for which the secret is requested (for example, <code>METERCONTROL_ST402D_DLMS</code>).</p></td>
       
     </tr>
     
@@ -367,7 +367,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The crypto ID of the secret to retrieve.</p></td>
+      <td class="content"><p>The crypto identifier of the secret to retrieve.</p></td>
       
     </tr>
     
@@ -391,7 +391,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for creating or updating crypto secrets.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -418,7 +418,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Defines the resource type for which the field descriptor is defined, e.g., BULK, DEVICE, etc.</p></td>
+      <td class="content"><p>Thehe resource type for which the secret is defined (for example, <code>BULK</code>, <code>DEVICE</code>).</p></td>
       
     </tr>
     
@@ -433,7 +433,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type for which the secret is requested, e.g., "METERCONTROL_ST402D_DLMS"</p></td>
+      <td class="content"><p>The driver type for which the secret is requested (for example, <code>METERCONTROL_ST402D_DLMS</code>).</p></td>
       
     </tr>
     
@@ -448,7 +448,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The crypto ID of the secret to retrieve.</p></td>
+      <td class="content"><p>The crypto identifier of the secret to retrieve.</p></td>
       
     </tr>
     
@@ -463,7 +463,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Access level for the secret, e.g., "admin", "user", etc.</p></td>
+      <td class="content"><p>The access level for the secret (for example, <code>admin</code>, <code>user</code>).</p></td>
       
     </tr>
     
@@ -478,7 +478,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier for the secret key.</p></td>
+      <td class="content"><p>The unique secret key identifier.</p></td>
       
     </tr>
     
@@ -493,7 +493,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Identifier for the key used to decrypt the either the session key or the data directly.</p></td>
+      <td class="content"><p>The uniqie identifier for the key used to decrypt either the session key or the data directly.</p></td>
       
     </tr>
     
@@ -509,7 +509,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Method used to decrypt the session key. May be unset if the session key is unset and no used.</p></td>
+      <td class="content"><p>the method used to decrypt the session key. May be unset if the session key is not set or not used.</p></td>
       
     </tr>
     
@@ -524,7 +524,7 @@
           <span>bytes</span>
         </code>
       </td>
-      <td class="content"><p>The session key, usually encrypted, used to decrypt the data.</p></td>
+      <td class="content"><p>The session key (usually encrypted) used to decrypt the data.</p></td>
       
     </tr>
     
@@ -540,7 +540,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Method used to decrypt the secret data. May be unset if the data is not encrypted and vice versa.</p></td>
+      <td class="content"><p>The method used to decrypt the secret data. May be unset if the data is not encrypted.</p></td>
       
     </tr>
     
@@ -555,7 +555,7 @@
           <span>bytes</span>
         </code>
       </td>
-      <td class="content"><p>Initialization vector for the decryption method, if applicable.</p></td>
+      <td class="content"><p>The initialization vector for the decryption method, if applicable.</p></td>
       
     </tr>
     
@@ -598,7 +598,7 @@
 </h4>
 
 <div class="block content">
-  <p><p>DLMS crypto mode</p></p>
+  <p><p>Defines the supported DLMS decryption methods.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -620,13 +620,13 @@
     <tr>
       <td><code>SECRET_DATA_PLAIN</code></td>
       <td>1</td>
-      <td class="content"><p>Plain data, no decryption needed</p></td>
+      <td class="content"><p>Plain data. No decryption required.</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_DATA_AES256CBC</code></td>
       <td>2</td>
-      <td class="content"><p>AES-256-CBC encryption method</p></td>
+      <td class="content"><p>AES-256-CBC dencryption method.</p></td>
     </tr>
     
   </tbody>
@@ -640,7 +640,7 @@
 </h4>
 
 <div class="block content">
-  <p></p>
+  <p><p>Defines the supported decryption methods for session keys.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -656,19 +656,19 @@
     <tr>
       <td><code>SECRET_SESSION_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>No session key decryption method, used when the session key is not set or not used.</p></td>
+      <td class="content"><p>No session key decryption method. Used when the session key is not set or not used.</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_SESSION_PLAIN</code></td>
       <td>1</td>
-      <td class="content"><p>Plain session key, no session-key decryption needed.</p></td>
+      <td class="content"><p>Plain session key. No session-key decryption required.</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_SESSION_RSA_OAEPM_GF1P</code></td>
       <td>2</td>
-      <td class="content"><p>RSA-OAEP-MGF1P decryption method, used for session keys.</p></td>
+      <td class="content"><p>RSA-OAEP-MGF1P decryption method. Used for session keys.</p></td>
     </tr>
     
   </tbody>

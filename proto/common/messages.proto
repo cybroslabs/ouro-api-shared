@@ -6,9 +6,9 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
 import "google/protobuf/struct.proto";
 
-// The formatted message structure.
+// Defines a structure of a user-facing formatted message.
 message FormattedMessage {
-    string message                = 1;  // The message or a format string.
-    repeated string args          = 2;  // The format arguments. If set then the message is used as a format string.
-    google.protobuf.Struct params = 3;  // The additional named parameters. It must be single-level map, i.e., it must not contain nested objects or arrays.
+    string message                = 1;  // The message text or format string.
+    repeated string args          = 2;  // A list of format arguments. If provided, the `message` field is used interpreted as a format string.
+    google.protobuf.Struct params = 3;  // Additional named parameters as a single-level map. Nested objects or arrays are not allowed.
 }

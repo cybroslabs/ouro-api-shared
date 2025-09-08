@@ -13,24 +13,28 @@ export const file_common_types: GenFile = /*@__PURE__*/
   fileDesc("ChJjb21tb24vdHlwZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIhYKCExpc3RPZklkEgoKAmlkGAEgAygJIhwKC0xpc3RPZkludDY0Eg0KBWl0ZW1zGAEgAygDIh0KDExpc3RPZlVJbnQ2NBINCgVpdGVtcxgBIAMoBCIdCgxMaXN0T2ZTdHJpbmcSDQoFaXRlbXMYASADKAkiOgoUTGlzdE9mU3RyaW5nUmVzcG9uc2USDQoFaXRlbXMYASADKAkSEwoLdG90YWxfY291bnQYAiABKAVCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw");
 
 /**
- * The list of UUID items.
+ * Defines a list of UUID identifiers.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfId
  */
 export type ListOfId = Message<"io.clbs.openhes.models.common.ListOfId"> & {
   /**
+   * The list of UUID identifiers.
+   *
    * @generated from field: repeated string id = 1;
    */
   id: string[];
 };
 
 /**
- * The list of UUID items.
+ * Defines a list of UUID identifiers.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfId
  */
 export type ListOfIdJson = {
   /**
+   * The list of UUID identifiers.
+   *
    * @generated from field: repeated string id = 1;
    */
   id?: string[];
@@ -44,24 +48,28 @@ export const ListOfIdSchema: GenMessage<ListOfId, {jsonType: ListOfIdJson}> = /*
   messageDesc(file_common_types, 0);
 
 /**
- * The list of signed int64 items.
+ * Defines a list of signed int64 items.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfInt64
  */
 export type ListOfInt64 = Message<"io.clbs.openhes.models.common.ListOfInt64"> & {
   /**
+   * The list of signed int64 items.
+   *
    * @generated from field: repeated int64 items = 1;
    */
   items: bigint[];
 };
 
 /**
- * The list of signed int64 items.
+ * Defines a list of signed int64 items.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfInt64
  */
 export type ListOfInt64Json = {
   /**
+   * The list of signed int64 items.
+   *
    * @generated from field: repeated int64 items = 1;
    */
   items?: string[];
@@ -75,24 +83,28 @@ export const ListOfInt64Schema: GenMessage<ListOfInt64, {jsonType: ListOfInt64Js
   messageDesc(file_common_types, 1);
 
 /**
- * The list of unsigned int64 items.
+ * Defines a list of unsigned int64 items.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfUInt64
  */
 export type ListOfUInt64 = Message<"io.clbs.openhes.models.common.ListOfUInt64"> & {
   /**
+   * The list of unsigned int64 items.
+   *
    * @generated from field: repeated uint64 items = 1;
    */
   items: bigint[];
 };
 
 /**
- * The list of unsigned int64 items.
+ * Defines a list of unsigned int64 items.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfUInt64
  */
 export type ListOfUInt64Json = {
   /**
+   * The list of unsigned int64 items.
+   *
    * @generated from field: repeated uint64 items = 1;
    */
   items?: string[];
@@ -106,24 +118,28 @@ export const ListOfUInt64Schema: GenMessage<ListOfUInt64, {jsonType: ListOfUInt6
   messageDesc(file_common_types, 2);
 
 /**
- * The list of common-string items.
+ * Defines a list of common-string items.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfString
  */
 export type ListOfString = Message<"io.clbs.openhes.models.common.ListOfString"> & {
   /**
+   * The list of common-string items.
+   *
    * @generated from field: repeated string items = 1;
    */
   items: string[];
 };
 
 /**
- * The list of common-string items.
+ * Defines a list of common-string items.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfString
  */
 export type ListOfStringJson = {
   /**
+   * The list of common-string items.
+   *
    * @generated from field: repeated string items = 1;
    */
   items?: string[];
@@ -137,20 +153,20 @@ export const ListOfStringSchema: GenMessage<ListOfString, {jsonType: ListOfStrin
   messageDesc(file_common_types, 3);
 
 /**
- * Response model for the list of string items.
+ * Defines a list of string items in a response.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfStringResponse
  */
 export type ListOfStringResponse = Message<"io.clbs.openhes.models.common.ListOfStringResponse"> & {
   /**
-   * Generic list of string items.
+   * A generic list of string items.
    *
    * @generated from field: repeated string items = 1;
    */
   items: string[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -158,20 +174,20 @@ export type ListOfStringResponse = Message<"io.clbs.openhes.models.common.ListOf
 };
 
 /**
- * Response model for the list of string items.
+ * Defines a list of string items in a response.
  *
  * @generated from message io.clbs.openhes.models.common.ListOfStringResponse
  */
 export type ListOfStringResponseJson = {
   /**
-   * Generic list of string items.
+   * A generic list of string items.
    *
    * @generated from field: repeated string items = 1;
    */
   items?: string[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */

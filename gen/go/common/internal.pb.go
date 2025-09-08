@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The request to set the managed fields of the resource.
+// Defines a specification for adding or updating metadata fields managed by both the users and system.
 type SetManagedFieldsRequest struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,1,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -145,6 +145,7 @@ func (b0 SetManagedFieldsRequest_builder) Build() *SetManagedFieldsRequest {
 	return m0
 }
 
+// Defines the internal specification of a field descriptor.
 type FieldDescriptorInternal struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Group           *string                `protobuf:"bytes,1,opt,name=group"`
@@ -281,6 +282,7 @@ func (b0 FieldDescriptorInternal_builder) Build() *FieldDescriptorInternal {
 	return m0
 }
 
+// Defines the specification for updating field descriptors.
 type UpdateFieldDescriptorsRequest struct {
 	state                     protoimpl.MessageState      `protogen:"opaque.v1"`
 	xxx_hidden_Items          *[]*FieldDescriptorInternal `protobuf:"bytes,1,rep,name=items"`
@@ -372,6 +374,7 @@ func (b0 UpdateFieldDescriptorsRequest_builder) Build() *UpdateFieldDescriptorsR
 	return m0
 }
 
+// Defines a list of internatl field descriptors.
 type ListOfFieldDescriptorInternal struct {
 	state            protoimpl.MessageState      `protogen:"opaque.v1"`
 	xxx_hidden_Items *[]*FieldDescriptorInternal `protobuf:"bytes,1,rep,name=items"`
@@ -431,6 +434,7 @@ func (b0 ListOfFieldDescriptorInternal_builder) Build() *ListOfFieldDescriptorIn
 	return m0
 }
 
+// Defines a list of devices keys.
 type ListOfDeviceKey struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -523,6 +527,7 @@ func (b0 ListOfDeviceKey_builder) Build() *ListOfDeviceKey {
 	return m0
 }
 
+// Defines mapping of device keys to the system-wide device identifiers.
 type MapDeviceKeyXId struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items map[string]int64       `protobuf:"bytes,1,rep,name=items" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
@@ -569,8 +574,8 @@ func (x *MapDeviceKeyXId) SetItems(v map[string]int64) {
 type MapDeviceKeyXId_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
-	// The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+	// A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+	// The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
 	Items map[string]int64
 }
 

@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The metadata fields managed by user and system.
+// Defines a specification for metadata fields managed by both users and the system.
 type MetadataFields struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id            *string                `protobuf:"bytes,1,opt,name=id"`
@@ -191,6 +191,7 @@ func (b0 MetadataFields_builder) Build() *MetadataFields {
 	return m0
 }
 
+// Defines a specification for updating metadata.
 type UpdateMetadata struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Metadata *MetadataFields        `protobuf:"bytes,3,opt,name=metadata"`
@@ -259,6 +260,7 @@ func (b0 UpdateMetadata_builder) Build() *UpdateMetadata {
 	return m0
 }
 
+// Defines a specification for updating object fields.
 type UpdateObjectFieldsRequest struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec *SetFieldsSpec         `protobuf:"bytes,1,opt,name=spec"`
@@ -327,6 +329,7 @@ func (b0 UpdateObjectFieldsRequest_builder) Build() *UpdateObjectFieldsRequest {
 	return m0
 }
 
+// Defines a specification for creating or updating fields for resources.
 type SetFieldsSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Fields      map[string]*FieldValue `protobuf:"bytes,1,rep,name=fields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`

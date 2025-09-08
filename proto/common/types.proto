@@ -4,28 +4,28 @@ package io.clbs.openhes.models.common;
 
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
-// The list of UUID items.
+// Defines a list of UUID identifiers.
 message ListOfId {
-    repeated string id = 1;
+    repeated string id = 1;  // The list of UUID identifiers.
 }
 
-// The list of signed int64 items.
+// Defines a list of signed int64 items.
 message ListOfInt64 {
-    repeated int64 items = 1;
+    repeated int64 items = 1;  // The list of signed int64 items.
 }
 
-// The list of unsigned int64 items.
+// Defines a list of unsigned int64 items.
 message ListOfUInt64 {
-    repeated uint64 items = 1;
+    repeated uint64 items = 1;  // The list of unsigned int64 items.
 }
 
-// The list of common-string items.
+// Defines a list of common-string items.
 message ListOfString {
-    repeated string items = 1;
+    repeated string items = 1;  // The list of common-string items.
 }
 
-// Response model for the list of string items.
+// Defines a list of string items in a response.
 message ListOfStringResponse {
-    repeated string items = 1;  // Generic list of string items.
-    int32 total_count     = 2;  // The total number of items.
+    repeated string items = 1;  // A generic list of string items.
+    int32 total_count     = 2;  // The total number of items in the list.
 }

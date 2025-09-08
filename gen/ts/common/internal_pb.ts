@@ -17,27 +17,27 @@ export const file_common_internal: GenFile = /*@__PURE__*/
   fileDesc("ChVjb21tb24vaW50ZXJuYWwucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIqkCChdTZXRNYW5hZ2VkRmllbGRzUmVxdWVzdBJhCg5tYW5hZ2VkX2ZpZWxkcxgBIAMoCzJJLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldE1hbmFnZWRGaWVsZHNSZXF1ZXN0Lk1hbmFnZWRGaWVsZHNFbnRyeRI+CgtvYmplY3RfdHlwZRgCIAEoDjIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk9iamVjdFR5cGUSCgoCaWQYAyABKAkaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIoMBChdGaWVsZERlc2NyaXB0b3JJbnRlcm5hbBINCgVncm91cBgBIAEoCRIPCgdkYl9wYXRoGAIgASgJEkgKEGZpZWxkX2Rlc2NyaXB0b3IYAyABKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IifwodVXBkYXRlRmllbGREZXNjcmlwdG9yc1JlcXVlc3QSRQoFaXRlbXMYASADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbBIXCg9jbGVhbnVwX21pc3NpbmcYAiABKAgiZgodTGlzdE9mRmllbGREZXNjcmlwdG9ySW50ZXJuYWwSRQoFaXRlbXMYASADKAsyNi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3JJbnRlcm5hbCI1Cg9MaXN0T2ZEZXZpY2VLZXkSEwoLZHJpdmVyX3R5cGUYASABKAkSDQoFaXRlbXMYAiADKAkiiQEKD01hcERldmljZUtleVhJZBJICgVpdGVtcxgBIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1hcERldmljZUtleVhJZC5JdGVtc0VudHJ5GiwKCkl0ZW1zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgDOgI4AUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_common_fields, file_common_objects]);
 
 /**
- * The request to set the managed fields of the resource.
+ * Defines a specification for adding or updating metadata fields managed by both the users and system.
  *
  * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
  */
 export type SetManagedFieldsRequest = Message<"io.clbs.openhes.models.common.SetManagedFieldsRequest"> & {
   /**
-   * The fields to set for the resource(s).
+   * The fields to set for the resources.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 1;
    */
   managedFields: { [key: string]: FieldValue };
 
   /**
-   * The type of the managed fields update. It defines the resource type for which the managed fields are set.
+   * The type of the managed fields update. Defines resource type the fields apply to.
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
    */
   objectType: ObjectType;
 
   /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   * The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
    *
    * @generated from field: string id = 3;
    */
@@ -45,27 +45,27 @@ export type SetManagedFieldsRequest = Message<"io.clbs.openhes.models.common.Set
 };
 
 /**
- * The request to set the managed fields of the resource.
+ * Defines a specification for adding or updating metadata fields managed by both the users and system.
  *
  * @generated from message io.clbs.openhes.models.common.SetManagedFieldsRequest
  */
 export type SetManagedFieldsRequestJson = {
   /**
-   * The fields to set for the resource(s).
+   * The fields to set for the resources.
    *
    * @generated from field: map<string, io.clbs.openhes.models.common.FieldValue> managed_fields = 1;
    */
   managedFields?: { [key: string]: FieldValueJson };
 
   /**
-   * The type of the managed fields update. It defines the resource type for which the managed fields are set.
+   * The type of the managed fields update. Defines resource type the fields apply to.
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 2;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+   * The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
    *
    * @generated from field: string id = 3;
    */
@@ -80,18 +80,20 @@ export const SetManagedFieldsRequestSchema: GenMessage<SetManagedFieldsRequest, 
   messageDesc(file_common_internal, 0);
 
 /**
+ * Defines the internal specification of a field descriptor.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorInternal
  */
 export type FieldDescriptorInternal = Message<"io.clbs.openhes.models.common.FieldDescriptorInternal"> & {
   /**
-   * The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
+   * The group identifier of the field descriptors (for example, object type or driver type). Obsolete field descriptors are detected and removed based on this field.
    *
    * @generated from field: string group = 1;
    */
   group: string;
 
   /**
-   * The database path of the field, used for JSONB columns.
+   * The field database path of the field, used for JSONB columns.
    *
    * @generated from field: string db_path = 2;
    */
@@ -106,18 +108,20 @@ export type FieldDescriptorInternal = Message<"io.clbs.openhes.models.common.Fie
 };
 
 /**
+ * Defines the internal specification of a field descriptor.
+ *
  * @generated from message io.clbs.openhes.models.common.FieldDescriptorInternal
  */
 export type FieldDescriptorInternalJson = {
   /**
-   * The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
+   * The group identifier of the field descriptors (for example, object type or driver type). Obsolete field descriptors are detected and removed based on this field.
    *
    * @generated from field: string group = 1;
    */
   group?: string;
 
   /**
-   * The database path of the field, used for JSONB columns.
+   * The field database path of the field, used for JSONB columns.
    *
    * @generated from field: string db_path = 2;
    */
@@ -139,6 +143,8 @@ export const FieldDescriptorInternalSchema: GenMessage<FieldDescriptorInternal, 
   messageDesc(file_common_internal, 1);
 
 /**
+ * Defines the specification for updating field descriptors.
+ *
  * @generated from message io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
  */
 export type UpdateFieldDescriptorsRequest = Message<"io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest"> & {
@@ -150,7 +156,7 @@ export type UpdateFieldDescriptorsRequest = Message<"io.clbs.openhes.models.comm
   items: FieldDescriptorInternal[];
 
   /**
-   * If true, it will remove all field descriptors that are not present in the request for given component type.
+   * Indicates, whether field descriptors that are not included in the request for the given types should be removed. If set to `true`, such e descriptors are removed.
    *
    * @generated from field: bool cleanup_missing = 2;
    */
@@ -158,6 +164,8 @@ export type UpdateFieldDescriptorsRequest = Message<"io.clbs.openhes.models.comm
 };
 
 /**
+ * Defines the specification for updating field descriptors.
+ *
  * @generated from message io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest
  */
 export type UpdateFieldDescriptorsRequestJson = {
@@ -169,7 +177,7 @@ export type UpdateFieldDescriptorsRequestJson = {
   items?: FieldDescriptorInternalJson[];
 
   /**
-   * If true, it will remove all field descriptors that are not present in the request for given component type.
+   * Indicates, whether field descriptors that are not included in the request for the given types should be removed. If set to `true`, such e descriptors are removed.
    *
    * @generated from field: bool cleanup_missing = 2;
    */
@@ -184,6 +192,8 @@ export const UpdateFieldDescriptorsRequestSchema: GenMessage<UpdateFieldDescript
   messageDesc(file_common_internal, 2);
 
 /**
+ * Defines a list of internatl field descriptors.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
  */
 export type ListOfFieldDescriptorInternal = Message<"io.clbs.openhes.models.common.ListOfFieldDescriptorInternal"> & {
@@ -196,6 +206,8 @@ export type ListOfFieldDescriptorInternal = Message<"io.clbs.openhes.models.comm
 };
 
 /**
+ * Defines a list of internatl field descriptors.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfFieldDescriptorInternal
  */
 export type ListOfFieldDescriptorInternalJson = {
@@ -215,18 +227,20 @@ export const ListOfFieldDescriptorInternalSchema: GenMessage<ListOfFieldDescript
   messageDesc(file_common_internal, 3);
 
 /**
+ * Defines a list of devices keys.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfDeviceKey
  */
 export type ListOfDeviceKey = Message<"io.clbs.openhes.models.common.ListOfDeviceKey"> & {
   /**
-   * The driver type for which the device keys are defined. It is used to identify the device keys for a specific driver.
+   * The driver type for which the device keys are defined. Used to identify keys for this specific driver.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType: string;
 
   /**
-   * The list of device keys. The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+   * The list of device keys. Each key is a unique physical identifier of the device (system-title, MAC address) that must be unique within the specified driver type.
    *
    * @generated from field: repeated string items = 2;
    */
@@ -234,18 +248,20 @@ export type ListOfDeviceKey = Message<"io.clbs.openhes.models.common.ListOfDevic
 };
 
 /**
+ * Defines a list of devices keys.
+ *
  * @generated from message io.clbs.openhes.models.common.ListOfDeviceKey
  */
 export type ListOfDeviceKeyJson = {
   /**
-   * The driver type for which the device keys are defined. It is used to identify the device keys for a specific driver.
+   * The driver type for which the device keys are defined. Used to identify keys for this specific driver.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType?: string;
 
   /**
-   * The list of device keys. The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+   * The list of device keys. Each key is a unique physical identifier of the device (system-title, MAC address) that must be unique within the specified driver type.
    *
    * @generated from field: repeated string items = 2;
    */
@@ -260,12 +276,14 @@ export const ListOfDeviceKeySchema: GenMessage<ListOfDeviceKey, {jsonType: ListO
   messageDesc(file_common_internal, 4);
 
 /**
+ * Defines mapping of device keys to the system-wide device identifiers.
+ *
  * @generated from message io.clbs.openhes.models.common.MapDeviceKeyXId
  */
 export type MapDeviceKeyXId = Message<"io.clbs.openhes.models.common.MapDeviceKeyXId"> & {
   /**
-   * The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
-   * The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+   * A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+   * The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
    *
    * @generated from field: map<string, int64> items = 1;
    */
@@ -273,12 +291,14 @@ export type MapDeviceKeyXId = Message<"io.clbs.openhes.models.common.MapDeviceKe
 };
 
 /**
+ * Defines mapping of device keys to the system-wide device identifiers.
+ *
  * @generated from message io.clbs.openhes.models.common.MapDeviceKeyXId
  */
 export type MapDeviceKeyXIdJson = {
   /**
-   * The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
-   * The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+   * A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+   * The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
    *
    * @generated from field: map<string, int64> items = 1;
    */

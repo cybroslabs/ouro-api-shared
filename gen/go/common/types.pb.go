@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The list of UUID items.
+// Defines a list of UUID identifiers.
 type ListOfId struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id []string               `protobuf:"bytes,1,rep,name=id"`
@@ -78,7 +78,7 @@ func (b0 ListOfId_builder) Build() *ListOfId {
 	return m0
 }
 
-// The list of signed int64 items.
+// Defines a list of signed int64 items.
 type ListOfInt64 struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items []int64                `protobuf:"varint,1,rep,packed,name=items"`
@@ -136,7 +136,7 @@ func (b0 ListOfInt64_builder) Build() *ListOfInt64 {
 	return m0
 }
 
-// The list of unsigned int64 items.
+// Defines a list of unsigned int64 items.
 type ListOfUInt64 struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items []uint64               `protobuf:"varint,1,rep,packed,name=items"`
@@ -194,7 +194,7 @@ func (b0 ListOfUInt64_builder) Build() *ListOfUInt64 {
 	return m0
 }
 
-// The list of common-string items.
+// Defines a list of common-string items.
 type ListOfString struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items []string               `protobuf:"bytes,1,rep,name=items"`
@@ -252,7 +252,7 @@ func (b0 ListOfString_builder) Build() *ListOfString {
 	return m0
 }
 
-// Response model for the list of string items.
+// Defines a list of string items in a response.
 type ListOfStringResponse struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       []string               `protobuf:"bytes,1,rep,name=items"`

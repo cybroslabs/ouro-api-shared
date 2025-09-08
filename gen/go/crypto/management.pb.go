@@ -22,13 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// DLMS crypto mode
+// Defines the supported DLMS decryption methods.
 type SecretDataDecryptionMethod int32
 
 const (
 	SecretDataDecryptionMethod_SECRET_DATA_UNSPECIFIED SecretDataDecryptionMethod = 0 // Unspecified decryption method.
-	SecretDataDecryptionMethod_SECRET_DATA_PLAIN       SecretDataDecryptionMethod = 1 // Plain data, no decryption needed
-	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC   SecretDataDecryptionMethod = 2 // AES-256-CBC encryption method
+	SecretDataDecryptionMethod_SECRET_DATA_PLAIN       SecretDataDecryptionMethod = 1 // Plain data. No decryption required.
+	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC   SecretDataDecryptionMethod = 2 // AES-256-CBC dencryption method.
 )
 
 // Enum value maps for SecretDataDecryptionMethod.
@@ -67,12 +67,13 @@ func (x SecretDataDecryptionMethod) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines the supported decryption methods for session keys.
 type SecretSessionKeyDecryptionMethod int32
 
 const (
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED    SecretSessionKeyDecryptionMethod = 0 // No session key decryption method, used when the session key is not set or not used.
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_PLAIN          SecretSessionKeyDecryptionMethod = 1 // Plain session key, no session-key decryption needed.
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_RSA_OAEPM_GF1P SecretSessionKeyDecryptionMethod = 2 // RSA-OAEP-MGF1P decryption method, used for session keys.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED    SecretSessionKeyDecryptionMethod = 0 // No session key decryption method. Used when the session key is not set or not used.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_PLAIN          SecretSessionKeyDecryptionMethod = 1 // Plain session key. No session-key decryption required.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_RSA_OAEPM_GF1P SecretSessionKeyDecryptionMethod = 2 // RSA-OAEP-MGF1P decryption method. Used for session keys.
 )
 
 // Enum value maps for SecretSessionKeyDecryptionMethod.
@@ -111,6 +112,7 @@ func (x SecretSessionKeyDecryptionMethod) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
+// Defines a specification for retrieving crypto secrets.
 type GetCryptoSecretRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ObjectType  common.ObjectType      `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
@@ -254,6 +256,7 @@ func (b0 GetCryptoSecretRequest_builder) Build() *GetCryptoSecretRequest {
 	return m0
 }
 
+// Defines a list of crypto secrets.
 type CryptoSecrets struct {
 	state              protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Secrets *[]*CryptoSecret       `protobuf:"bytes,1,rep,name=secrets"`
@@ -313,6 +316,7 @@ func (b0 CryptoSecrets_builder) Build() *CryptoSecrets {
 	return m0
 }
 
+// Defines a specification of crypto secrets.
 type CryptoSecret struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_AccessLevel *string                `protobuf:"bytes,1,opt,name=access_level,json=accessLevel"`
@@ -507,6 +511,7 @@ func (b0 CryptoSecret_builder) Build() *CryptoSecret {
 	return m0
 }
 
+// Defines a specification for creating or updating crypto secrets.
 type SetCryptoSecretRequest struct {
 	state                                 protoimpl.MessageState           `protogen:"opaque.v1"`
 	xxx_hidden_ObjectType                 common.ObjectType                `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`

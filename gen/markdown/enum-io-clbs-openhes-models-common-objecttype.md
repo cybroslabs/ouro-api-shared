@@ -1,6 +1,6 @@
 # Enum: io.clbs.openhes.models.common.ObjectType
 
-Enum representing the object type.
+Defines the possible object types within the system.
 
 ## Options
 
@@ -14,8 +14,8 @@ Enum representing the object type.
 | CRON_JOB | The cron job. |
 | DEVICE | The device. |
 | DEVICE_COMMUNICATION_UNIT_CHANGE | The device communication unit change. |
-| DEVICE_CONFIGURATION_REGISTER | The register. |
-| DEVICE_CONFIGURATION_TEMPLATE | The device template. |
+| DEVICE_CONFIGURATION_REGISTER | The device configuration register. |
+| DEVICE_CONFIGURATION_TEMPLATE | The device configuration template. |
 | DEVICE_DATA_INFO | The device data info. |
 | DEVICE_GROUP | The device group. |
 | DRIVER | The driver. |

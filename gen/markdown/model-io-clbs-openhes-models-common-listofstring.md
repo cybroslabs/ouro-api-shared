@@ -1,10 +1,10 @@
 # Model: io.clbs.openhes.models.common.ListOfString
 
-The list of common-string items.
+Defines a list of common-string items.
 
 ## Fields
 
 | Field | Information |
 | --- | --- |
-| items | <b>Type:</b> `string`<br><b>Description:</b><br> |
+| items | <b>Type:</b> `string`<br><b>Description:</b><br>The list of common-string items. |
 

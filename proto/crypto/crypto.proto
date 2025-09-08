@@ -4,25 +4,28 @@ package io.clbs.openhes.models.crypto;
 
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/crypto";
 
-// DLMS crypto mode
+// Defines the supported DLMS authenticated encryption modes.
 enum AuthenticatedEncryption {
     AE_UNSPECIFIED = 0;  // No authenticated encryption.
     AE_AES_GCM_128 = 1;  // AES-GCM with 128-bit key.
     AE_AES_GCM_256 = 2;  // AES-GCM with 256-bit key.
 }
 
+// Defines the supported digital signature algorithms.
 enum DigitalSignature {
     DS_ECDSA_UNSPECIFIED = 0;  // No digital signature.
     DS_ECDSA_P_256       = 1;  // ECDSA using the NIST P-256 curve.
     DS_ECDSA_P_384       = 2;  // ECDSA using the NIST P-384 curve.
 }
 
+// Defines the supported key agreements algorithms.
 enum KeyAgreement {
     KA_UNSPECIFIED = 0;  // No key agreement.
     KA_ECDH_P_256  = 1;  // ECDH using the NIST P-256 curve.
     KA_ECDH_P_384  = 2;  // ECDH using the NIST P-384 curve.
 }
 
+// Defines the supported hash and signature mechanisms.
 enum Hash {
     // No hash.
     HASH_UNSPECIFIED = 0;
@@ -48,18 +51,19 @@ enum Hash {
     HASH_ECDSA = 5;
 }
 
+// Defines the direction of hash calculations in DLMS key exchange.
 enum HashDirection {
     HASH_DIRECTION_UNSPECIFIED      = 0;  // Unspecified direction.
-    HASH_DIRECTION_CLIENT_TO_SERVER = 1;  // The hash is calculated for requests that go from client to the server (CtoS, when the client starts the key exchange).
-    HASH_DIRECTION_SERVER_TO_CLIENT = 2;  // The hash is calculated for requests that go from server to the client (StoC, when the server responds to the client's key exchange request).
+    HASH_DIRECTION_CLIENT_TO_SERVER = 1;  // The hash is calculated for requests from client to server (CtoS, when the client starts the key exchange).
+    HASH_DIRECTION_SERVER_TO_CLIENT = 2;  // The hash is calculated for requests from server to client (StoC, when the server responds to the client's key exchange request).
 }
 
-// Sub-message containing job parameters
+// Defines a specification for request messages containing job parameters. Only one request type can be set per message.
 message DlmsIn {
-    uint64 id = 1;  // The request ID.
+    uint64 id = 1;  // The request identifier.
     oneof request {
-        DlmsInit init              = 2;  // The initialize request. It can be called only once, as the first request.
-        DlmsSetServerInfo setup    = 3;  // The setup server into request. This message shall be called when the data known.
+        DlmsInit init              = 2;  // The initialization request. It can be called only once and only as the first request.
+        DlmsSetServerInfo setup    = 3;  // The setup server info request. This message shall be called when the data known.
         DlmsHash hash              = 4;  // The hash request.
         DlmsEncrypt encrypt        = 5;  // The encryption request.
         DlmsDecrypt decrypt        = 6;  // The decryption request.
@@ -67,57 +71,65 @@ message DlmsIn {
     }
 }
 
+// Defines a specification for initialization parameters for DLSM, typically sent as the first request.
 message DlmsInit {
     AuthenticatedEncryption encryption = 1;  // The encryption mode.
     DigitalSignature signature         = 2;  // The digital signature mode.
     string driver_id                   = 3;  // The driver identifier.
-    string serial_number               = 4;  // The serial number of the device.
+    string serial_number               = 4;  // The device serial number.
     string access_level                = 5;  // The access level.
-    bytes system_title_c               = 6;  // The client system-title.
-    bytes system_title_s               = 7;  // The server system-title.
+    bytes system_title_c               = 6;  // The client system title.
+    bytes system_title_s               = 7;  // The server system title.
     bytes c_to_s                       = 8;  // The client-to-server data.
 }
 
+// Defines a specification for DLMS server information.
 message DlmsSetServerInfo {
-    bytes system_title_s = 1;  // The server system-title. If not set then the shall be kept from the init message.
-    bytes s_to_c         = 2;  // The server-to-client data. If not set then the shall be kept from the init message.
+    bytes system_title_s = 1;  // The server system title. If not set, the value from the initialization message is used.
+    bytes s_to_c         = 2;  // The server-to-client data. If not set, the value from the initialization message is used.
 }
 
+// Defines a specification for outgoing DLMS message.
 message DlmsOut {
-    uint64 id          = 1;  // The request ID.
+    uint64 id          = 1;  // The request identifier.
     ErrorMessage error = 2;  // The error message, if any.
     bytes data         = 3;  // The result of the operation.
 }
 
+// Defines a specification for DLMS encryption.
 message DlmsEncrypt {
     uint32 frame_counter    = 1;  // The server frame counter.
-    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 2;  // The security control. Only the lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
     bytes data              = 3;  // The data to be encrypted.
 }
 
+// Defines a specification for DLMS decryption.
 message DlmsDecrypt {
     uint32 frame_counter    = 1;  // The client frame counter.
-    uint32 security_control = 2;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 2;  // The security control. Only the lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
     bytes data              = 3;  // The data to be decrypted.
 }
 
+// Defines a specification for DLMS hash requests.
 message DlmsHash {
     HashDirection direction = 1;  // The hash direction.
     Hash mode               = 2;  // The hash mode.
     uint32 frame_counter    = 3;  // The server frame counter.
-    uint32 security_control = 4;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    uint32 security_control = 4;  // The security control. Only the lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
 }
 
+// Defines a specification for DLMS authentication verifications.
 message DlmsAuthVerify {
     HashDirection direction = 1;  // The hash direction.
     Hash mode               = 2;  // The hash mode.
     uint32 frame_counter    = 3;  // The server frame counter.
-    uint32 security_control = 4;  // The security control. Only lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
-    bytes data              = 5;  // The reference (recevied) data to be verified.
+    uint32 security_control = 4;  // The security control. Only the lowest 8-bites (values 0-255) are used, upper 24-bites are ignored.
+    bytes data              = 5;  // The reference (received) data to be verified.
 }
 
+// Defines a specification for user-facing error message.
 message ErrorMessage {
-    // The error code, use standard codes package, see https://pkg.go.dev/google.golang.org/grpc/codes#pkg-constants.
+    // The error code. Uses standard gRPC codes, see https://pkg.go.dev/google.golang.org/grpc/codes#pkg-constants.
     uint32 code = 1;
     // The error message to be witten to the log.
     string message = 2;

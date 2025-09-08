@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.common.UpdateMetadata
 
+Defines a specification for updating metadata.
+
 ## Fields
 
 | Field | Information |

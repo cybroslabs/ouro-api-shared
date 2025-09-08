@@ -12,10 +12,9 @@ export const file_common_objects: GenFile = /*@__PURE__*/
   fileDesc("ChRjb21tb24vb2JqZWN0cy5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24qggMKCk9iamVjdFR5cGUSGwoXT0JKRUNUX1RZUEVfVU5TUEVDSUZJRUQQABIICgRCVUxLEAESDAoIQlVMS19KT0IQAhIWChJDT01NVU5JQ0FUSU9OX1VOSVQQAxIKCgZERVZJQ0UQBBIhCh1ERVZJQ0VfQ09ORklHVVJBVElPTl9SRUdJU1RFUhAFEgwKCFZBUklBQkxFEAYSIQodREVWSUNFX0NPTkZJR1VSQVRJT05fVEVNUExBVEUQBxIVChFDT01NVU5JQ0FUSU9OX0JVUxAIEg4KCk1PREVNX1BPT0wQCRIQCgxERVZJQ0VfR1JPVVAQChIVChFUSU1FX09GX1VTRV9UQUJMRRALEgoKBkRSSVZFUhAMEgwKCENST05fSk9CEA0SJAogREVWSUNFX0NPTU1VTklDQVRJT05fVU5JVF9DSEFOR0UQDhIUChBERVZJQ0VfREFUQV9JTkZPEA8SIQodQ09NTVVOSUNBVElPTl9VTklUX0xPR19SRUNPUkQQEEI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH");
 
 /**
- * Enum representing the object type.
+ * Defines the possible object types within the system.
  * @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
  * @sort
- *
  *
  * @generated from enum io.clbs.openhes.models.common.ObjectType
  */
@@ -60,7 +59,7 @@ export enum ObjectType {
   DEVICE = 4,
 
   /**
-   * The register.
+   * The device configuration register.
    *
    * @generated from enum value: DEVICE_CONFIGURATION_REGISTER = 5;
    */
@@ -74,7 +73,7 @@ export enum ObjectType {
   VARIABLE = 6,
 
   /**
-   * The device template.
+   * The device configuration template.
    *
    * @generated from enum value: DEVICE_CONFIGURATION_TEMPLATE = 7;
    */
@@ -147,10 +146,9 @@ export enum ObjectType {
 }
 
 /**
- * Enum representing the object type.
+ * Defines the possible object types within the system.
  * @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
  * @sort
- *
  *
  * @generated from enum io.clbs.openhes.models.common.ObjectType
  */

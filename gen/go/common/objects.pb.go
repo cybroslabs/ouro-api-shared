@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Enum representing the object type.
+// Defines the possible object types within the system.
 // @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
 // @sort
 type ObjectType int32
@@ -33,9 +33,9 @@ const (
 	ObjectType_BULK_JOB                      ObjectType = 2  // The bulk job.
 	ObjectType_COMMUNICATION_UNIT            ObjectType = 3  // The communication unit.
 	ObjectType_DEVICE                        ObjectType = 4  // The device.
-	ObjectType_DEVICE_CONFIGURATION_REGISTER ObjectType = 5  // The register.
+	ObjectType_DEVICE_CONFIGURATION_REGISTER ObjectType = 5  // The device configuration register.
 	ObjectType_VARIABLE                      ObjectType = 6  // The variable.
-	ObjectType_DEVICE_CONFIGURATION_TEMPLATE ObjectType = 7  // The device template.
+	ObjectType_DEVICE_CONFIGURATION_TEMPLATE ObjectType = 7  // The device configuration template.
 	ObjectType_COMMUNICATION_BUS             ObjectType = 8  // The communication bus.
 	ObjectType_MODEM_POOL                    ObjectType = 9  // The modem pool.
 	ObjectType_DEVICE_GROUP                  ObjectType = 10 // The device group.

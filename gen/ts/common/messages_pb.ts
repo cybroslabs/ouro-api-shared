@@ -15,27 +15,27 @@ export const file_common_messages: GenFile = /*@__PURE__*/
   fileDesc("ChVjb21tb24vbWVzc2FnZXMucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIloKEEZvcm1hdHRlZE1lc3NhZ2USDwoHbWVzc2FnZRgBIAEoCRIMCgRhcmdzGAIgAygJEicKBnBhcmFtcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct]);
 
 /**
- * The formatted message structure.
+ * Defines a structure of a user-facing formatted message.
  *
  * @generated from message io.clbs.openhes.models.common.FormattedMessage
  */
 export type FormattedMessage = Message<"io.clbs.openhes.models.common.FormattedMessage"> & {
   /**
-   * The message or a format string.
+   * The message text or format string.
    *
    * @generated from field: string message = 1;
    */
   message: string;
 
   /**
-   * The format arguments. If set then the message is used as a format string.
+   * A list of format arguments. If provided, the `message` field is used interpreted as a format string.
    *
    * @generated from field: repeated string args = 2;
    */
   args: string[];
 
   /**
-   * The additional named parameters. It must be single-level map, i.e., it must not contain nested objects or arrays.
+   * Additional named parameters as a single-level map. Nested objects or arrays are not allowed.
    *
    * @generated from field: google.protobuf.Struct params = 3;
    */
@@ -43,27 +43,27 @@ export type FormattedMessage = Message<"io.clbs.openhes.models.common.FormattedM
 };
 
 /**
- * The formatted message structure.
+ * Defines a structure of a user-facing formatted message.
  *
  * @generated from message io.clbs.openhes.models.common.FormattedMessage
  */
 export type FormattedMessageJson = {
   /**
-   * The message or a format string.
+   * The message text or format string.
    *
    * @generated from field: string message = 1;
    */
   message?: string;
 
   /**
-   * The format arguments. If set then the message is used as a format string.
+   * A list of format arguments. If provided, the `message` field is used interpreted as a format string.
    *
    * @generated from field: repeated string args = 2;
    */
   args?: string[];
 
   /**
-   * The additional named parameters. It must be single-level map, i.e., it must not contain nested objects or arrays.
+   * Additional named parameters as a single-level map. Nested objects or arrays are not allowed.
    *
    * @generated from field: google.protobuf.Struct params = 3;
    */

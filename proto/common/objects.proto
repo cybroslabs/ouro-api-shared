@@ -4,10 +4,9 @@ package io.clbs.openhes.models.common;
 
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 
-// Enum representing the object type.
+// Defines the possible object types within the system.
 // @internal: DO NOT CHANGE THE NUMBERS! IT WILL BREAK THE SYSTEM COMPATIBILITY!
 // @sort
-//
 enum ObjectType {
     // @internal: The unspecified object type.
     OBJECT_TYPE_UNSPECIFIED = 0;  // Unspecified object type.
@@ -17,9 +16,9 @@ enum ObjectType {
     BULK_JOB                      = 2;   // The bulk job.
     COMMUNICATION_UNIT            = 3;   // The communication unit.
     DEVICE                        = 4;   // The device.
-    DEVICE_CONFIGURATION_REGISTER = 5;   // The register.
+    DEVICE_CONFIGURATION_REGISTER = 5;   // The device configuration register.
     VARIABLE                      = 6;   // The variable.
-    DEVICE_CONFIGURATION_TEMPLATE = 7;   // The device template.
+    DEVICE_CONFIGURATION_TEMPLATE = 7;   // The device configuration template.
     COMMUNICATION_BUS             = 8;   // The communication bus.
     MODEM_POOL                    = 9;   // The modem pool.
     DEVICE_GROUP                  = 10;  // The device group.

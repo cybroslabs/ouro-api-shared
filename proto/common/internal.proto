@@ -7,35 +7,40 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/common";
 import "common/fields.proto";
 import "common/objects.proto";
 
-// The request to set the managed fields of the resource.
+// Defines a specification for adding or updating metadata fields managed by both the users and system.
 message SetManagedFieldsRequest {
-    map<string, common.FieldValue> managed_fields = 1;  // The fields to set for the resource(s).
-    ObjectType object_type                        = 2;  // The type of the managed fields update. It defines the resource type for which the managed fields are set.
-    string id                                     = 3;  // The UUID of the resource. It serves as the unique identifier of the resource. It's immutable and typically auto-generated during Create operations.
+    map<string, common.FieldValue> managed_fields = 1;  // The fields to set for the resources.
+    ObjectType object_type                        = 2;  // The type of the managed fields update. Defines resource type the fields apply to.
+    string id                                     = 3;  // The UUID of the resource. Serves as the unique identifier of the resource. Immutable and typically auto-generated during `Create` operations.
 }
 
+// Defines the internal specification of a field descriptor.
 message FieldDescriptorInternal {
-    string group                     = 1;  // The group identifier of the field descriptors, either object type or driver type for example. The obsolete field descriptors are detected and removed based on this field.
-    string db_path                   = 2;  // The database path of the field, used for JSONB columns.
+    string group                     = 1;  // The group identifier of the field descriptors (for example, object type or driver type). Obsolete field descriptors are detected and removed based on this field.
+    string db_path                   = 2;  // The field database path of the field, used for JSONB columns.
     FieldDescriptor field_descriptor = 3;  // The field descriptor of the field, used for JSONB columns.
 }
 
+// Defines the specification for updating field descriptors.
 message UpdateFieldDescriptorsRequest {
     repeated FieldDescriptorInternal items = 1;  // The list of field descriptors.
-    bool cleanup_missing                   = 2;  // If true, it will remove all field descriptors that are not present in the request for given component type.
+    bool cleanup_missing                   = 2;  // Indicates, whether field descriptors that are not included in the request for the given types should be removed. If set to `true`, such e descriptors are removed.
 }
 
+// Defines a list of internatl field descriptors.
 message ListOfFieldDescriptorInternal {
     repeated FieldDescriptorInternal items = 1;  // The list of field descriptors.
 }
 
+// Defines a list of devices keys.
 message ListOfDeviceKey {
-    string driver_type    = 1;  // The driver type for which the device keys are defined. It is used to identify the device keys for a specific driver.
-    repeated string items = 2;  // The list of device keys. The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
+    string driver_type    = 1;  // The driver type for which the device keys are defined. Used to identify keys for this specific driver.
+    repeated string items = 2;  // The list of device keys. Each key is a unique physical identifier of the device (system-title, MAC address) that must be unique within the specified driver type.
 }
 
+// Defines mapping of device keys to the system-wide device identifiers.
 message MapDeviceKeyXId {
-    // The map of device keys to device IDs. The key is the device key, the value is the device ID. The keys are taken from the ListOfDeviceKey message.
-    // The values are x-device-identifiers, which are unique within the system and can be used to identify devices in topology, neighbourds table, unknown devices etc.
+    // A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+    // The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
     map<string, int64> items = 1;
 }
