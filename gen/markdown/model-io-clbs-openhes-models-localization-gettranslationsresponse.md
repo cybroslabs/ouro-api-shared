@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.localization.GetTranslationsResponse
 
-Defines the response message containing the translations.
+Defines the response containing translations.
 
 ## Fields
 

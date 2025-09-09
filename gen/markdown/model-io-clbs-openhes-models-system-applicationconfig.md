@@ -1,6 +1,6 @@
 # Model: io.clbs.openhes.models.system.ApplicationConfig
 
-Application config specification.
+Defines a specification for application configuration.
 
 ## Fields
 

@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.system.OpenIdConfiguration
 
+Defines the OpenID Connect (OIDC) configuration.
+
 ## Fields
 
 | Field | Information |

@@ -18,6 +18,8 @@ export const file_messaging_messaging: GenFile = /*@__PURE__*/
   fileDesc("ChltZXNzYWdpbmcvbWVzc2FnaW5nLnByb3RvEiBpby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZyLGAQoXTWVzc2FnaW5nQ29uc3VtZXJDbGllbnQSSQoFc2V0dXAYASABKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb25zdW1lclNldHVwSAASKwoDYWNrGAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSAASKwoDbmFrGAMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSABCBgoEa2luZCJvChdNZXNzYWdpbmdDb25zdW1lclNlcnZlchJMCgdyZWNlaXZlGAEgASgLMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2VIAEIGCgRraW5lIrwBChhNZXNzYWdpbmdQdWJsaXNoZXJDbGllbnQSSgoFc2V0dXAYASABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoZXJTZXR1cEgAEkwKB3B1Ymxpc2gYAiABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoTWVzc2FnZUgAQgYKBGtpbmQiZgoXTWVzc2FnaW5nUHVibGlzaGVyU2V0dXASPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAEQAkoECAIQAyI4ChdNZXNzYWdpbmdQdWJsaXNoTWVzc2FnZRIPCgdzdWJqZWN0GAEgASgJEgwKBGRhdGEYAiABKAwitwEKFk1lc3NhZ2luZ0NvbnN1bWVyU2V0dXASVgoIc2V0dGluZ3MYAiABKAsyRC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb21wb25lbnRDb25zdW1lclNldHRpbmdzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAIiTAoXTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2USEgoKbWVzc2FnZV9pZBgBIAEoCRIPCgdzdWJqZWN0GAIgASgJEgwKBGRhdGEYAyABKAwidAoYTGlzdE9mTWVzc2FnaW5nQ29tcG9uZW50EkMKBWl0ZW1zGAEgAygLMjQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50EhMKC3RvdGFsX2NvdW50GAIgASgFIukBChJNZXNzYWdpbmdDb21wb25lbnQSRgoEc3BlYxgBIAEoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubWVzc2FnaW5nLk1lc3NhZ2luZ0NvbXBvbmVudFNwZWMSSgoGc3RhdHVzGAIgASgLMjouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50U3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiawoiTWVzc2FnaW5nQ29tcG9uZW50Q29uc3VtZXJTZXR0aW5ncxITCgtjb25zdW1lcl9pZBgBIAEoCRIeChZtYXhfaW5fZmxpZ2h0X21lc3NhZ2VzGAIgASgFEhAKCHN1YmplY3RzGAMgAygJIoIBChZNZXNzYWdpbmdDb21wb25lbnRTcGVjEg8KB2VuYWJsZWQYASABKAgSVwoJY29uc3VtZXJzGAIgAygLMkQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50Q29uc3VtZXJTZXR0aW5ncyIaChhNZXNzYWdpbmdDb21wb25lbnRTdGF0dXNCOFo2Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vbWVzc2FnaW5nYghlZGl0aW9uc3DoBw", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
 
 /**
+ * Defines the specification for consumer messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerClient
  */
 export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.MessagingConsumerClient"> & {
@@ -26,7 +28,7 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
    */
   kind: {
     /**
-     * Setup action to initialize the consumer. It must be the first message sent defining the consumer. Any other subsequent setup message will be rejected.
+     * Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingConsumerSetup setup = 1;
      */
@@ -42,7 +44,7 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
     case: "ack";
   } | {
     /**
-     * Negative-acknowledgement action to reject and requeue the message with the given message ID.
+     * Negative acknowledgement action to reject and requeue the message with the given message ID.
      *
      * @generated from field: google.protobuf.StringValue nak = 3;
      */
@@ -52,11 +54,13 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
+ * Defines the specification for consumer messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerClient
  */
 export type MessagingConsumerClientJson = {
   /**
-   * Setup action to initialize the consumer. It must be the first message sent defining the consumer. Any other subsequent setup message will be rejected.
+   * Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingConsumerSetup setup = 1;
    */
@@ -70,7 +74,7 @@ export type MessagingConsumerClientJson = {
   ack?: StringValueJson;
 
   /**
-   * Negative-acknowledgement action to reject and requeue the message with the given message ID.
+   * Negative acknowledgement action to reject and requeue the message with the given message ID.
    *
    * @generated from field: google.protobuf.StringValue nak = 3;
    */
@@ -85,6 +89,8 @@ export const MessagingConsumerClientSchema: GenMessage<MessagingConsumerClient, 
   messageDesc(file_messaging_messaging, 0);
 
 /**
+ * Defines the specification for server messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerServer
  */
 export type MessagingConsumerServer = Message<"io.clbs.openhes.models.messaging.MessagingConsumerServer"> & {
@@ -103,6 +109,8 @@ export type MessagingConsumerServer = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
+ * Defines the specification for server messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerServer
  */
 export type MessagingConsumerServerJson = {
@@ -122,6 +130,8 @@ export const MessagingConsumerServerSchema: GenMessage<MessagingConsumerServer, 
   messageDesc(file_messaging_messaging, 1);
 
 /**
+ * Defines the specification for published messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublisherClient
  */
 export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging.MessagingPublisherClient"> & {
@@ -130,7 +140,7 @@ export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging
    */
   kind: {
     /**
-     * Setup action to initialize the publisher. It must be the first message sent defining the publisher. Any other subsequent setup message will be rejected.
+     * Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingPublisherSetup setup = 1;
      */
@@ -138,7 +148,7 @@ export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging
     case: "setup";
   } | {
     /**
-     * Publish action to send a message to be published.
+     * Publish action to send a message.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingPublishMessage publish = 2;
      */
@@ -148,18 +158,20 @@ export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging
 };
 
 /**
+ * Defines the specification for published messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublisherClient
  */
 export type MessagingPublisherClientJson = {
   /**
-   * Setup action to initialize the publisher. It must be the first message sent defining the publisher. Any other subsequent setup message will be rejected.
+   * Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingPublisherSetup setup = 1;
    */
   setup?: MessagingPublisherSetupJson;
 
   /**
-   * Publish action to send a message to be published.
+   * Publish action to send a message.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingPublishMessage publish = 2;
    */
@@ -174,11 +186,13 @@ export const MessagingPublisherClientSchema: GenMessage<MessagingPublisherClient
   messageDesc(file_messaging_messaging, 2);
 
 /**
+ * Defines a specification for messages to initialize a publisher.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublisherSetup
  */
 export type MessagingPublisherSetup = Message<"io.clbs.openhes.models.messaging.MessagingPublisherSetup"> & {
   /**
-   * The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.
+   * The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -186,11 +200,13 @@ export type MessagingPublisherSetup = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
+ * Defines a specification for messages to initialize a publisher.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublisherSetup
  */
 export type MessagingPublisherSetupJson = {
   /**
-   * The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.
+   * The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -205,18 +221,20 @@ export const MessagingPublisherSetupSchema: GenMessage<MessagingPublisherSetup, 
   messageDesc(file_messaging_messaging, 3);
 
 /**
+ * Defines a publish action for sending messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublishMessage
  */
 export type MessagingPublishMessage = Message<"io.clbs.openhes.models.messaging.MessagingPublishMessage"> & {
   /**
-   * Subject of the message to be published.
+   * The subject of the message.
    *
    * @generated from field: string subject = 1;
    */
   subject: string;
 
   /**
-   * The message data to be published.
+   * The message data.
    *
    * @generated from field: bytes data = 2;
    */
@@ -224,18 +242,20 @@ export type MessagingPublishMessage = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
+ * Defines a publish action for sending messages.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublishMessage
  */
 export type MessagingPublishMessageJson = {
   /**
-   * Subject of the message to be published.
+   * The subject of the message.
    *
    * @generated from field: string subject = 1;
    */
   subject?: string;
 
   /**
-   * The message data to be published.
+   * The message data.
    *
    * @generated from field: bytes data = 2;
    */
@@ -250,18 +270,20 @@ export const MessagingPublishMessageSchema: GenMessage<MessagingPublishMessage, 
   messageDesc(file_messaging_messaging, 4);
 
 /**
+ * Defines a specification for messages to initialize a consumer.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerSetup
  */
 export type MessagingConsumerSetup = Message<"io.clbs.openhes.models.messaging.MessagingConsumerSetup"> & {
   /**
-   * Settings for the messaging component.
+   * The consumer-specific message settings.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings settings = 2;
    */
   settings?: MessagingComponentConsumerSettings;
 
   /**
-   * The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.
+   * The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -269,18 +291,20 @@ export type MessagingConsumerSetup = Message<"io.clbs.openhes.models.messaging.M
 };
 
 /**
+ * Defines a specification for messages to initialize a consumer.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerSetup
  */
 export type MessagingConsumerSetupJson = {
   /**
-   * Settings for the messaging component.
+   * The consumer-specific message settings.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings settings = 2;
    */
   settings?: MessagingComponentConsumerSettingsJson;
 
   /**
-   * The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.
+   * The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -295,18 +319,20 @@ export const MessagingConsumerSetupSchema: GenMessage<MessagingConsumerSetup, {j
   messageDesc(file_messaging_messaging, 5);
 
 /**
+ * Defines a specification for messages delivered from server to a consumer.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingReceiveMessage
  */
 export type MessagingReceiveMessage = Message<"io.clbs.openhes.models.messaging.MessagingReceiveMessage"> & {
   /**
-   * Unique identifier of the message.
+   * The unique message identifier.
    *
    * @generated from field: string message_id = 1;
    */
   messageId: string;
 
   /**
-   * Subject of the message.
+   * The subjects of the message.
    *
    * @generated from field: string subject = 2;
    */
@@ -321,18 +347,20 @@ export type MessagingReceiveMessage = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
+ * Defines a specification for messages delivered from server to a consumer.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingReceiveMessage
  */
 export type MessagingReceiveMessageJson = {
   /**
-   * Unique identifier of the message.
+   * The unique message identifier.
    *
    * @generated from field: string message_id = 1;
    */
   messageId?: string;
 
   /**
-   * Subject of the message.
+   * The subjects of the message.
    *
    * @generated from field: string subject = 2;
    */
@@ -354,6 +382,8 @@ export const MessagingReceiveMessageSchema: GenMessage<MessagingReceiveMessage, 
   messageDesc(file_messaging_messaging, 6);
 
 /**
+ * Defines a list o messaging components.
+ *
  * @generated from message io.clbs.openhes.models.messaging.ListOfMessagingComponent
  */
 export type ListOfMessagingComponent = Message<"io.clbs.openhes.models.messaging.ListOfMessagingComponent"> & {
@@ -365,7 +395,7 @@ export type ListOfMessagingComponent = Message<"io.clbs.openhes.models.messaging
   items: MessagingComponent[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -373,6 +403,8 @@ export type ListOfMessagingComponent = Message<"io.clbs.openhes.models.messaging
 };
 
 /**
+ * Defines a list o messaging components.
+ *
  * @generated from message io.clbs.openhes.models.messaging.ListOfMessagingComponent
  */
 export type ListOfMessagingComponentJson = {
@@ -384,7 +416,7 @@ export type ListOfMessagingComponentJson = {
   items?: MessagingComponentJson[];
 
   /**
-   * The total number of items.
+   * The total number of items in the list.
    *
    * @generated from field: int32 total_count = 2;
    */
@@ -399,18 +431,20 @@ export const ListOfMessagingComponentSchema: GenMessage<ListOfMessagingComponent
   messageDesc(file_messaging_messaging, 7);
 
 /**
+ * Defines a specification of the messaging component.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponent
  */
 export type MessagingComponent = Message<"io.clbs.openhes.models.messaging.MessagingComponent"> & {
   /**
-   * Specification of the messaging component.
+   * The specification of the messaging component.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingComponentSpec spec = 1;
    */
   spec?: MessagingComponentSpec;
 
   /**
-   * Specification of the messaging component.
+   * The status of the messaging component.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingComponentStatus status = 2;
    */
@@ -425,18 +459,20 @@ export type MessagingComponent = Message<"io.clbs.openhes.models.messaging.Messa
 };
 
 /**
+ * Defines a specification of the messaging component.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponent
  */
 export type MessagingComponentJson = {
   /**
-   * Specification of the messaging component.
+   * The specification of the messaging component.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingComponentSpec spec = 1;
    */
   spec?: MessagingComponentSpecJson;
 
   /**
-   * Specification of the messaging component.
+   * The status of the messaging component.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingComponentStatus status = 2;
    */
@@ -458,25 +494,27 @@ export const MessagingComponentSchema: GenMessage<MessagingComponent, {jsonType:
   messageDesc(file_messaging_messaging, 8);
 
 /**
+ * Defines a specification of messaging component settings for a specified consumer.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
  */
 export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"> & {
   /**
-   * Unique UUID identifier for the consumer. It must be unique across all consumers of the same component.
+   * The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.
    *
    * @generated from field: string consumer_id = 1;
    */
   consumerId: string;
 
   /**
-   * Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
+   * The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order.
    *
    * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages: number;
 
   /**
-   * List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!
+   * The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!
    *
    * @generated from field: repeated string subjects = 3;
    */
@@ -484,25 +522,27 @@ export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models
 };
 
 /**
+ * Defines a specification of messaging component settings for a specified consumer.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
  */
 export type MessagingComponentConsumerSettingsJson = {
   /**
-   * Unique UUID identifier for the consumer. It must be unique across all consumers of the same component.
+   * The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.
    *
    * @generated from field: string consumer_id = 1;
    */
   consumerId?: string;
 
   /**
-   * Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
+   * The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order.
    *
    * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages?: number;
 
   /**
-   * List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!
+   * The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!
    *
    * @generated from field: repeated string subjects = 3;
    */
@@ -517,18 +557,20 @@ export const MessagingComponentConsumerSettingsSchema: GenMessage<MessagingCompo
   messageDesc(file_messaging_messaging, 9);
 
 /**
+ * Defines a specification of a messaging component.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentSpec
  */
 export type MessagingComponentSpec = Message<"io.clbs.openhes.models.messaging.MessagingComponentSpec"> & {
   /**
-   * Whether the component is enabled or disabled. If disabled, the component will not receive any messages.
+   * Indicates whether the component is enabled. If disabled, the component does not receive any messages.
    *
    * @generated from field: bool enabled = 1;
    */
   enabled: boolean;
 
   /**
-   * Settings for the messaging component.
+   * The consumer settings for the component.
    *
    * @generated from field: repeated io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings consumers = 2;
    */
@@ -536,18 +578,20 @@ export type MessagingComponentSpec = Message<"io.clbs.openhes.models.messaging.M
 };
 
 /**
+ * Defines a specification of a messaging component.
+ *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentSpec
  */
 export type MessagingComponentSpecJson = {
   /**
-   * Whether the component is enabled or disabled. If disabled, the component will not receive any messages.
+   * Indicates whether the component is enabled. If disabled, the component does not receive any messages.
    *
    * @generated from field: bool enabled = 1;
    */
   enabled?: boolean;
 
   /**
-   * Settings for the messaging component.
+   * The consumer settings for the component.
    *
    * @generated from field: repeated io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings consumers = 2;
    */
@@ -562,6 +606,8 @@ export const MessagingComponentSpecSchema: GenMessage<MessagingComponentSpec, {j
   messageDesc(file_messaging_messaging, 10);
 
 /**
+ * Defines the status of a messaging component.
+ *
  * FIXME: Add status fields as needed
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentStatus
@@ -570,6 +616,8 @@ export type MessagingComponentStatus = Message<"io.clbs.openhes.models.messaging
 };
 
 /**
+ * Defines the status of a messaging component.
+ *
  * FIXME: Add status fields as needed
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentStatus

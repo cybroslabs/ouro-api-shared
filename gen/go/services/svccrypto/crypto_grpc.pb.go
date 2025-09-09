@@ -30,16 +30,16 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// The Deviceregistry service definition.
+// Defines a specification for the `Deviceregistry` service.
 type CryptoServiceClient interface {
 	// @group: Cryptography
-	// Initialize the crypto service stream-based RPC for DLMS frames.
+	// Initializes the crypto service stream-based RPC for DLMS frames.
 	Dlms(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[crypto.DlmsIn, crypto.DlmsOut], error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error)
 	// @group: Cryptography
-	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
+	// Creates or updates a cryptographic secret. If a secret with the same identifier already exists, it is replaced.
 	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -88,16 +88,16 @@ func (c *cryptoServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.Se
 // All implementations must embed UnimplementedCryptoServiceServer
 // for forward compatibility.
 //
-// The Deviceregistry service definition.
+// Defines a specification for the `Deviceregistry` service.
 type CryptoServiceServer interface {
 	// @group: Cryptography
-	// Initialize the crypto service stream-based RPC for DLMS frames.
+	// Initializes the crypto service stream-based RPC for DLMS frames.
 	Dlms(grpc.BidiStreamingServer[crypto.DlmsIn, crypto.DlmsOut]) error
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error)
 	// @group: Cryptography
-	// Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
+	// Creates or updates a cryptographic secret. If a secret with the same identifier already exists, it is replaced.
 	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedCryptoServiceServer()
 }

@@ -5,9 +5,9 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcdr
 
 import "acquisition/internal.proto";
 
-// The driver service definition.
-// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
+// Defines a specification for a driver service.
+// All drivers must implement these gRPC services to provide required control for the Taskmaster.
 service DriverService {
-    // The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
+    // Starts a new job for the driver. Called by the Taskmaster with the job specification and a list of actions to be executed.
     rpc StartJob(io.clbs.openhes.models.acquisition.StartJobsRequest) returns (stream io.clbs.openhes.models.acquisition.ProgressUpdate);
 }

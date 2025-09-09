@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.system.ComponentConfig
 
+Defines a specification for a single component configuration.
+
 ## Fields
 
 | Field | Information |

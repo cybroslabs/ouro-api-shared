@@ -27,10 +27,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// The driver service definition.
-// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
+// Defines a specification for a driver service.
+// All drivers must implement these gRPC services to provide required control for the Taskmaster.
 type DriverServiceClient interface {
-	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
+	// Starts a new job for the driver. Called by the Taskmaster with the job specification and a list of actions to be executed.
 	StartJob(ctx context.Context, in *acquisition.StartJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.ProgressUpdate], error)
 }
 
@@ -65,10 +65,10 @@ type DriverService_StartJobClient = grpc.ServerStreamingClient[acquisition.Progr
 // All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility.
 //
-// The driver service definition.
-// Those are the gRPC services that all drivers must implement to provide required control for the Taskmaster.
+// Defines a specification for a driver service.
+// All drivers must implement these gRPC services to provide required control for the Taskmaster.
 type DriverServiceServer interface {
-	// The method called by the Taskmaster to start a new job. The parameter contains the job specification and the list of actions to be executed.
+	// Starts a new job for the driver. Called by the Taskmaster with the job specification and a list of actions to be executed.
 	StartJob(*acquisition.StartJobsRequest, grpc.ServerStreamingServer[acquisition.ProgressUpdate]) error
 	mustEmbedUnimplementedDriverServiceServer()
 }

@@ -22,7 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Defines the request message for retrieving translations based on language (and keys).
+// Defines the request for retrieving translations based on language and keys.
 type GetTranslationsRequest struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_IetfLanguageTag *string                `protobuf:"bytes,1,opt,name=ietf_language_tag,json=ietfLanguageTag"`
@@ -115,7 +115,7 @@ func (b0 GetTranslationsRequest_builder) Build() *GetTranslationsRequest {
 	return m0
 }
 
-// Defines the response message containing the translations.
+// Defines the response containing translations.
 type GetTranslationsResponse struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Translations map[string]string      `protobuf:"bytes,1,rep,name=translations" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`

@@ -22,6 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Defines the specification for consumer messages.
 type MessagingConsumerClient struct {
 	state           protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Kind isMessagingConsumerClient_Kind `protobuf_oneof:"kind"`
@@ -220,7 +221,7 @@ type isMessagingConsumerClient_Kind interface {
 }
 
 type messagingConsumerClient_Setup struct {
-	Setup *MessagingConsumerSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup action to initialize the consumer. It must be the first message sent defining the consumer. Any other subsequent setup message will be rejected.
+	Setup *MessagingConsumerSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
 }
 
 type messagingConsumerClient_Ack struct {
@@ -228,7 +229,7 @@ type messagingConsumerClient_Ack struct {
 }
 
 type messagingConsumerClient_Nak struct {
-	Nak *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=nak,oneof"` // Negative-acknowledgement action to reject and requeue the message with the given message ID.
+	Nak *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=nak,oneof"` // Negative acknowledgement action to reject and requeue the message with the given message ID.
 }
 
 func (*messagingConsumerClient_Setup) isMessagingConsumerClient_Kind() {}
@@ -237,6 +238,7 @@ func (*messagingConsumerClient_Ack) isMessagingConsumerClient_Kind() {}
 
 func (*messagingConsumerClient_Nak) isMessagingConsumerClient_Kind() {}
 
+// Defines the specification for server messages.
 type MessagingConsumerServer struct {
 	state           protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Kine isMessagingConsumerServer_Kine `protobuf_oneof:"kine"`
@@ -364,6 +366,7 @@ type messagingConsumerServer_Receive struct {
 
 func (*messagingConsumerServer_Receive) isMessagingConsumerServer_Kine() {}
 
+// Defines the specification for published messages.
 type MessagingPublisherClient struct {
 	state           protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_Kind isMessagingPublisherClient_Kind `protobuf_oneof:"kind"`
@@ -524,17 +527,18 @@ type isMessagingPublisherClient_Kind interface {
 }
 
 type messagingPublisherClient_Setup struct {
-	Setup *MessagingPublisherSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup action to initialize the publisher. It must be the first message sent defining the publisher. Any other subsequent setup message will be rejected.
+	Setup *MessagingPublisherSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
 }
 
 type messagingPublisherClient_Publish struct {
-	Publish *MessagingPublishMessage `protobuf:"bytes,2,opt,name=publish,oneof"` // Publish action to send a message to be published.
+	Publish *MessagingPublishMessage `protobuf:"bytes,2,opt,name=publish,oneof"` // Publish action to send a message.
 }
 
 func (*messagingPublisherClient_Setup) isMessagingPublisherClient_Kind() {}
 
 func (*messagingPublisherClient_Publish) isMessagingPublisherClient_Kind() {}
 
+// Defines a specification for messages to initialize a publisher.
 type MessagingPublisherSetup struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,3,opt,name=metadata"`
@@ -603,6 +607,7 @@ func (b0 MessagingPublisherSetup_builder) Build() *MessagingPublisherSetup {
 	return m0
 }
 
+// Defines a publish action for sending messages.
 type MessagingPublishMessage struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Subject     *string                `protobuf:"bytes,1,opt,name=subject"`
@@ -714,6 +719,7 @@ func (b0 MessagingPublishMessage_builder) Build() *MessagingPublishMessage {
 	return m0
 }
 
+// Defines a specification for messages to initialize a consumer.
 type MessagingConsumerSetup struct {
 	state               protoimpl.MessageState              `protogen:"opaque.v1"`
 	xxx_hidden_Settings *MessagingComponentConsumerSettings `protobuf:"bytes,2,opt,name=settings"`
@@ -807,6 +813,7 @@ func (b0 MessagingConsumerSetup_builder) Build() *MessagingConsumerSetup {
 	return m0
 }
 
+// Defines a specification for messages delivered from server to a consumer.
 type MessagingReceiveMessage struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_MessageId   *string                `protobuf:"bytes,1,opt,name=message_id,json=messageId"`
@@ -951,6 +958,7 @@ func (b0 MessagingReceiveMessage_builder) Build() *MessagingReceiveMessage {
 	return m0
 }
 
+// Defines a list o messaging components.
 type ListOfMessagingComponent struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items       *[]*MessagingComponent `protobuf:"bytes,1,rep,name=items"`
@@ -1042,6 +1050,7 @@ func (b0 ListOfMessagingComponent_builder) Build() *ListOfMessagingComponent {
 	return m0
 }
 
+// Defines a specification of the messaging component.
 type MessagingComponent struct {
 	state               protoimpl.MessageState    `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *MessagingComponentSpec   `protobuf:"bytes,1,opt,name=spec"`
@@ -1160,6 +1169,7 @@ func (b0 MessagingComponent_builder) Build() *MessagingComponent {
 	return m0
 }
 
+// Defines a specification of messaging component settings for a specified consumer.
 type MessagingComponentConsumerSettings struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ConsumerId          *string                `protobuf:"bytes,1,opt,name=consumer_id,json=consumerId"`
@@ -1282,6 +1292,7 @@ func (b0 MessagingComponentConsumerSettings_builder) Build() *MessagingComponent
 	return m0
 }
 
+// Defines a specification of a messaging component.
 type MessagingComponentSpec struct {
 	state                  protoimpl.MessageState                 `protogen:"opaque.v1"`
 	xxx_hidden_Enabled     bool                                   `protobuf:"varint,1,opt,name=enabled"`
@@ -1373,6 +1384,7 @@ func (b0 MessagingComponentSpec_builder) Build() *MessagingComponentSpec {
 	return m0
 }
 
+// Defines the status of a messaging component.
 type MessagingComponentStatus struct {
 	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields

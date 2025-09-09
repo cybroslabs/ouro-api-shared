@@ -16,20 +16,20 @@ export const file_localization_localization: GenFile = /*@__PURE__*/
   fileDesc("Ch9sb2NhbGl6YXRpb24vbG9jYWxpemF0aW9uLnByb3RvEiNpby5jbGJzLm9wZW5oZXMubW9kZWxzLmxvY2FsaXphdGlvbiJBChZHZXRUcmFuc2xhdGlvbnNSZXF1ZXN0EhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAEgASgJEgwKBGtleXMYAiADKAkitAEKF0dldFRyYW5zbGF0aW9uc1Jlc3BvbnNlEmQKDHRyYW5zbGF0aW9ucxgBIAMoCzJOLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubG9jYWxpemF0aW9uLkdldFRyYW5zbGF0aW9uc1Jlc3BvbnNlLlRyYW5zbGF0aW9uc0VudHJ5GjMKEVRyYW5zbGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCO1o5Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vbG9jYWxpemF0aW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
 
 /**
- * Defines the request message for retrieving translations based on language (and keys).
+ * Defines the request for retrieving translations based on language and keys.
  *
  * @generated from message io.clbs.openhes.models.localization.GetTranslationsRequest
  */
 export type GetTranslationsRequest = Message<"io.clbs.openhes.models.localization.GetTranslationsRequest"> & {
   /**
-   * The IETF language tag (e.g., "en-US", "fr-FR") for which translations are requested.
+   * The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are requested.
    *
    * @generated from field: string ietf_language_tag = 1;
    */
   ietfLanguageTag: string;
 
   /**
-   * List of keys for which translations are requested. If empty, all translations for the specified language will be returned.
+   * The list of keys for which translations are requested. If empty, all translations for the specified language are returned.
    *
    * @generated from field: repeated string keys = 2;
    */
@@ -37,20 +37,20 @@ export type GetTranslationsRequest = Message<"io.clbs.openhes.models.localizatio
 };
 
 /**
- * Defines the request message for retrieving translations based on language (and keys).
+ * Defines the request for retrieving translations based on language and keys.
  *
  * @generated from message io.clbs.openhes.models.localization.GetTranslationsRequest
  */
 export type GetTranslationsRequestJson = {
   /**
-   * The IETF language tag (e.g., "en-US", "fr-FR") for which translations are requested.
+   * The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are requested.
    *
    * @generated from field: string ietf_language_tag = 1;
    */
   ietfLanguageTag?: string;
 
   /**
-   * List of keys for which translations are requested. If empty, all translations for the specified language will be returned.
+   * The list of keys for which translations are requested. If empty, all translations for the specified language are returned.
    *
    * @generated from field: repeated string keys = 2;
    */
@@ -65,7 +65,7 @@ export const GetTranslationsRequestSchema: GenMessage<GetTranslationsRequest, {j
   messageDesc(file_localization_localization, 0);
 
 /**
- * Defines the response message containing the translations.
+ * Defines the response containing translations.
  *
  * @generated from message io.clbs.openhes.models.localization.GetTranslationsResponse
  */
@@ -79,7 +79,7 @@ export type GetTranslationsResponse = Message<"io.clbs.openhes.models.localizati
 };
 
 /**
- * Defines the response message containing the translations.
+ * Defines the response containing translations.
  *
  * @generated from message io.clbs.openhes.models.localization.GetTranslationsResponse
  */

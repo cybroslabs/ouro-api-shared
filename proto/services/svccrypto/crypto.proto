@@ -8,16 +8,16 @@ import "google/protobuf/empty.proto";
 import "crypto/crypto.proto";
 import "crypto/management.proto";
 
-// The Deviceregistry service definition.
+// Defines a specification for the `Deviceregistry` service.
 service CryptoService {
     // @group: Cryptography
-    // Initialize the crypto service stream-based RPC for DLMS frames.
+    // Initializes the crypto service stream-based RPC for DLMS frames.
     rpc Dlms(stream io.clbs.openhes.models.crypto.DlmsIn) returns (stream io.clbs.openhes.models.crypto.DlmsOut);
 
     // @group: Cryptography
     // Retrieves a cryptographic secret based on the specified request parameters.
     rpc GetCryptoSecret(io.clbs.openhes.models.crypto.GetCryptoSecretRequest) returns (io.clbs.openhes.models.crypto.CryptoSecrets);
     // @group: Cryptography
-    // Creates a cryptographic the secret. If a secret with the same identifier already exists, it will be replaced.
+    // Creates or updates a cryptographic secret. If a secret with the same identifier already exists, it is replaced.
     rpc SetCryptoSecret(io.clbs.openhes.models.crypto.SetCryptoSecretRequest) returns (google.protobuf.Empty);
 }

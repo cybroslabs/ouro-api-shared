@@ -7,26 +7,30 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/system";
 import "common/fields.proto";
 import "google/protobuf/struct.proto";
 
-// Application config specification.
+// Defines a specification for application configuration.
 message ApplicationConfig {
     repeated ComponentConfig items = 2;  // The default values for the application configuration.
 }
 
+// Defines a specification for a single component configuration.
 message ComponentConfig {
     string name              = 1;  // The component name.
     common.FieldValues items = 2;  // The component configuration values.
 }
 
+// Defines a specification for component configuration descriptors.
 message ComponentConfigDescriptor {
     string name                           = 1;  // The component name.
-    repeated common.FieldDescriptor items = 2;  // The component configuration descriptors.
+    repeated common.FieldDescriptor items = 2;  // The list of component configuration field descriptors.
 }
 
+// Defines a specification for application configuration descriptors.
 message ApplicationConfigDescriptor {
-    repeated ComponentConfigDescriptor descriptors = 1;  // The component configuration descriptors.
-    repeated ComponentConfig items                 = 2;  // The default values for the application configuration.
+    repeated ComponentConfigDescriptor descriptors = 1;  // The list of component configuration descriptors.
+    repeated ComponentConfig items                 = 2;  // The list of default configuration values for the application component.
 }
 
+// Defines the license information for the application.
 message License {
     string token                = 1;  // The license token.
     string id                   = 2;  // The license ID.
@@ -36,6 +40,7 @@ message License {
     int32 version               = 6;  // The license options structure version.
 }
 
+// Defines the OpenID Connect (OIDC) configuration.
 message OpenIdConfiguration {
     bytes content = 1;  // The raw JSON configuration of the OIDC service.
 }

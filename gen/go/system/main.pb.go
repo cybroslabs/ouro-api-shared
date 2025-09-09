@@ -22,7 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Application config specification.
+// Defines a specification for application configuration.
 type ApplicationConfig struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items *[]*ComponentConfig    `protobuf:"bytes,2,rep,name=items"`
@@ -82,6 +82,7 @@ func (b0 ApplicationConfig_builder) Build() *ApplicationConfig {
 	return m0
 }
 
+// Defines a specification for a single component configuration.
 type ComponentConfig struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Name        *string                `protobuf:"bytes,1,opt,name=name"`
@@ -185,6 +186,7 @@ func (b0 ComponentConfig_builder) Build() *ComponentConfig {
 	return m0
 }
 
+// Defines a specification for component configuration descriptors.
 type ComponentConfigDescriptor struct {
 	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_Name        *string                    `protobuf:"bytes,1,opt,name=name"`
@@ -279,6 +281,7 @@ func (b0 ComponentConfigDescriptor_builder) Build() *ComponentConfigDescriptor {
 	return m0
 }
 
+// Defines a specification for application configuration descriptors.
 type ApplicationConfigDescriptor struct {
 	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Descriptors *[]*ComponentConfigDescriptor `protobuf:"bytes,1,rep,name=descriptors"`
@@ -354,6 +357,7 @@ func (b0 ApplicationConfigDescriptor_builder) Build() *ApplicationConfigDescript
 	return m0
 }
 
+// Defines the license information for the application.
 type License struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Token       *string                `protobuf:"bytes,1,opt,name=token"`
@@ -575,6 +579,7 @@ func (b0 License_builder) Build() *License {
 	return m0
 }
 
+// Defines the OpenID Connect (OIDC) configuration.
 type OpenIdConfiguration struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Content     []byte                 `protobuf:"bytes,1,opt,name=content"`

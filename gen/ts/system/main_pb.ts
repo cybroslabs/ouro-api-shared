@@ -16,7 +16,7 @@ export const file_system_main: GenFile = /*@__PURE__*/
   fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWcizgEKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASImChNPcGVuSWRDb25maWd1cmF0aW9uEg8KB2NvbnRlbnQYASABKAxCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct]);
 
 /**
- * Application config specification.
+ * Defines a specification for application configuration.
  *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfig
  */
@@ -30,7 +30,7 @@ export type ApplicationConfig = Message<"io.clbs.openhes.models.system.Applicati
 };
 
 /**
- * Application config specification.
+ * Defines a specification for application configuration.
  *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfig
  */
@@ -51,6 +51,8 @@ export const ApplicationConfigSchema: GenMessage<ApplicationConfig, {jsonType: A
   messageDesc(file_system_main, 0);
 
 /**
+ * Defines a specification for a single component configuration.
+ *
  * @generated from message io.clbs.openhes.models.system.ComponentConfig
  */
 export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentConfig"> & {
@@ -70,6 +72,8 @@ export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentCo
 };
 
 /**
+ * Defines a specification for a single component configuration.
+ *
  * @generated from message io.clbs.openhes.models.system.ComponentConfig
  */
 export type ComponentConfigJson = {
@@ -96,6 +100,8 @@ export const ComponentConfigSchema: GenMessage<ComponentConfig, {jsonType: Compo
   messageDesc(file_system_main, 1);
 
 /**
+ * Defines a specification for component configuration descriptors.
+ *
  * @generated from message io.clbs.openhes.models.system.ComponentConfigDescriptor
  */
 export type ComponentConfigDescriptor = Message<"io.clbs.openhes.models.system.ComponentConfigDescriptor"> & {
@@ -107,7 +113,7 @@ export type ComponentConfigDescriptor = Message<"io.clbs.openhes.models.system.C
   name: string;
 
   /**
-   * The component configuration descriptors.
+   * The list of component configuration field descriptors.
    *
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 2;
    */
@@ -115,6 +121,8 @@ export type ComponentConfigDescriptor = Message<"io.clbs.openhes.models.system.C
 };
 
 /**
+ * Defines a specification for component configuration descriptors.
+ *
  * @generated from message io.clbs.openhes.models.system.ComponentConfigDescriptor
  */
 export type ComponentConfigDescriptorJson = {
@@ -126,7 +134,7 @@ export type ComponentConfigDescriptorJson = {
   name?: string;
 
   /**
-   * The component configuration descriptors.
+   * The list of component configuration field descriptors.
    *
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 2;
    */
@@ -141,18 +149,20 @@ export const ComponentConfigDescriptorSchema: GenMessage<ComponentConfigDescript
   messageDesc(file_system_main, 2);
 
 /**
+ * Defines a specification for application configuration descriptors.
+ *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfigDescriptor
  */
 export type ApplicationConfigDescriptor = Message<"io.clbs.openhes.models.system.ApplicationConfigDescriptor"> & {
   /**
-   * The component configuration descriptors.
+   * The list of component configuration descriptors.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfigDescriptor descriptors = 1;
    */
   descriptors: ComponentConfigDescriptor[];
 
   /**
-   * The default values for the application configuration.
+   * The list of default configuration values for the application component.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
@@ -160,18 +170,20 @@ export type ApplicationConfigDescriptor = Message<"io.clbs.openhes.models.system
 };
 
 /**
+ * Defines a specification for application configuration descriptors.
+ *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfigDescriptor
  */
 export type ApplicationConfigDescriptorJson = {
   /**
-   * The component configuration descriptors.
+   * The list of component configuration descriptors.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfigDescriptor descriptors = 1;
    */
   descriptors?: ComponentConfigDescriptorJson[];
 
   /**
-   * The default values for the application configuration.
+   * The list of default configuration values for the application component.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
@@ -186,6 +198,8 @@ export const ApplicationConfigDescriptorSchema: GenMessage<ApplicationConfigDesc
   messageDesc(file_system_main, 3);
 
 /**
+ * Defines the license information for the application.
+ *
  * @generated from message io.clbs.openhes.models.system.License
  */
 export type License = Message<"io.clbs.openhes.models.system.License"> & {
@@ -233,6 +247,8 @@ export type License = Message<"io.clbs.openhes.models.system.License"> & {
 };
 
 /**
+ * Defines the license information for the application.
+ *
  * @generated from message io.clbs.openhes.models.system.License
  */
 export type LicenseJson = {
@@ -287,6 +303,8 @@ export const LicenseSchema: GenMessage<License, {jsonType: LicenseJson}> = /*@__
   messageDesc(file_system_main, 4);
 
 /**
+ * Defines the OpenID Connect (OIDC) configuration.
+ *
  * @generated from message io.clbs.openhes.models.system.OpenIdConfiguration
  */
 export type OpenIdConfiguration = Message<"io.clbs.openhes.models.system.OpenIdConfiguration"> & {
@@ -299,6 +317,8 @@ export type OpenIdConfiguration = Message<"io.clbs.openhes.models.system.OpenIdC
 };
 
 /**
+ * Defines the OpenID Connect (OIDC) configuration.
+ *
  * @generated from message io.clbs.openhes.models.system.OpenIdConfiguration
  */
 export type OpenIdConfigurationJson = {

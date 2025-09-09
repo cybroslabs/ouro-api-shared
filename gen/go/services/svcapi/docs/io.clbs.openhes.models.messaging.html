@@ -205,7 +205,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a list o messaging components.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -249,7 +249,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The total number of items.</p></td>
+      <td class="content"><p>The total number of items in the list.</p></td>
       
     </tr>
     
@@ -273,7 +273,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification of the messaging component.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -300,7 +300,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Specification of the messaging component.</p></td>
+      <td class="content"><p>The specification of the messaging component.</p></td>
       
     </tr>
     
@@ -316,7 +316,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Specification of the messaging component.</p></td>
+      <td class="content"><p>The status of the messaging component.</p></td>
       
     </tr>
     
@@ -356,7 +356,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification of messaging component settings for a specified consumer.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -382,7 +382,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique UUID identifier for the consumer. It must be unique across all consumers of the same component.</p></td>
+      <td class="content"><p>The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.</p></td>
       
     </tr>
     
@@ -397,7 +397,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value &gt;1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.</p></td>
+      <td class="content"><p>The maximum number of in-flight (unacknowledged) messages allowed. A value <code>&gt;1</code> allows multiple consumers to receive messages concurrently without preserving order. Value <code>1</code> allows only a single in-flight message at any time and preserves the message order.</p></td>
       
     </tr>
     
@@ -414,7 +414,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!</p></td>
+      <td class="content"><p>The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!</p></td>
       
     </tr>
     
@@ -438,7 +438,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification of a messaging component.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -464,7 +464,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Whether the component is enabled or disabled. If disabled, the component will not receive any messages.</p></td>
+      <td class="content"><p>Indicates whether the component is enabled. If disabled, the component does not receive any messages.</p></td>
       
     </tr>
     
@@ -482,7 +482,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Settings for the messaging component.</p></td>
+      <td class="content"><p>The consumer settings for the component.</p></td>
       
     </tr>
     
@@ -506,7 +506,8 @@
 </h4>
 
 <div class="block content">
-  <p>FIXME: Add status fields as needed</p>
+  <p>Defines the status of a messaging component.</p>
+<p>FIXME: Add status fields as needed</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -541,7 +542,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for consumer messages.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -583,7 +584,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Setup action to initialize the consumer. It must be the first message sent defining the consumer. Any other subsequent setup message will be rejected.</p></td>
+          <td class="content"><p>Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.</p></td>
           
         </tr>
       
@@ -621,7 +622,7 @@
               <span>google.protobuf.StringValue</span>
             </code>
           </td>
-          <td class="content"><p>Negative-acknowledgement action to reject and requeue the message with the given message ID.</p></td>
+          <td class="content"><p>Negative acknowledgement action to reject and requeue the message with the given message ID.</p></td>
           
         </tr>
       
@@ -645,7 +646,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for server messages.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -711,7 +712,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for messages to initialize a consumer.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -738,7 +739,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>Settings for the messaging component.</p></td>
+      <td class="content"><p>The consumer-specific message settings.</p></td>
       
     </tr>
     
@@ -754,7 +755,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.</p></td>
+      <td class="content"><p>The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.</p></td>
       
     </tr>
     
@@ -778,7 +779,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a publish action for sending messages.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -804,7 +805,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Subject of the message to be published.</p></td>
+      <td class="content"><p>The subject of the message.</p></td>
       
     </tr>
     
@@ -819,7 +820,7 @@
           <span>bytes</span>
         </code>
       </td>
-      <td class="content"><p>The message data to be published.</p></td>
+      <td class="content"><p>The message data.</p></td>
       
     </tr>
     
@@ -843,7 +844,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines the specification for published messages.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -885,7 +886,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Setup action to initialize the publisher. It must be the first message sent defining the publisher. Any other subsequent setup message will be rejected.</p></td>
+          <td class="content"><p>Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.</p></td>
           
         </tr>
       
@@ -905,7 +906,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Publish action to send a message to be published.</p></td>
+          <td class="content"><p>Publish action to send a message.</p></td>
           
         </tr>
       
@@ -929,7 +930,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for messages to initialize a publisher.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -956,7 +957,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.</p></td>
+      <td class="content"><p>The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.</p></td>
       
     </tr>
     
@@ -980,7 +981,7 @@
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for messages delivered from server to a consumer.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1006,7 +1007,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Unique identifier of the message.</p></td>
+      <td class="content"><p>The unique message identifier.</p></td>
       
     </tr>
     
@@ -1021,7 +1022,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>Subject of the message.</p></td>
+      <td class="content"><p>The subjects of the message.</p></td>
       
     </tr>
     

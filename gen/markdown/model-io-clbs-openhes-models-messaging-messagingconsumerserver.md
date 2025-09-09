@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.messaging.MessagingConsumerServer
 
+Defines the specification for server messages.
+
 ## Fields
 
 | Field | Information |

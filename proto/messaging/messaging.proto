@@ -8,71 +8,83 @@ import "google/protobuf/wrappers.proto";
 import "common/fields.proto";
 import "common/metadata.proto";
 
+// Defines the specification for consumer messages.
 message MessagingConsumerClient {
     oneof kind {
-        MessagingConsumerSetup setup    = 1;  // Setup action to initialize the consumer. It must be the first message sent defining the consumer. Any other subsequent setup message will be rejected.
+        MessagingConsumerSetup setup    = 1;  // Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
         google.protobuf.StringValue ack = 2;  // Acknowledgement action to confirm the message with the given message ID.
-        google.protobuf.StringValue nak = 3;  // Negative-acknowledgement action to reject and requeue the message with the given message ID.
+        google.protobuf.StringValue nak = 3;  // Negative acknowledgement action to reject and requeue the message with the given message ID.
     }
 }
 
+// Defines the specification for server messages.
 message MessagingConsumerServer {
     oneof kine {
         MessagingReceiveMessage receive = 1;  // Receive action to deliver a message to the consumer.
     }
 }
 
+// Defines the specification for published messages.
 message MessagingPublisherClient {
     oneof kind {
-        MessagingPublisherSetup setup   = 1;  // Setup action to initialize the publisher. It must be the first message sent defining the publisher. Any other subsequent setup message will be rejected.
-        MessagingPublishMessage publish = 2;  // Publish action to send a message to be published.
+        MessagingPublisherSetup setup   = 1;  // Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
+        MessagingPublishMessage publish = 2;  // Publish action to send a message.
     }
 }
 
+// Defines a specification for messages to initialize a publisher.
 message MessagingPublisherSetup {
     reserved 1, 2;
-    common.MetadataFields metadata = 3;  // The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.
+    common.MetadataFields metadata = 3;  // The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.
 }
 
+// Defines a publish action for sending messages.
 message MessagingPublishMessage {
-    string subject = 1;  // Subject of the message to be published.
-    bytes data     = 2;  // The message data to be published.
+    string subject = 1;  // The subject of the message.
+    bytes data     = 2;  // The message data.
 }
 
+// Defines a specification for messages to initialize a consumer.
 message MessagingConsumerSetup {
     reserved 1;
-    MessagingComponentConsumerSettings settings = 2;  // Settings for the messaging component.
-    common.MetadataFields metadata              = 3;  // The metadata fields. The ID and name represents the component ID and name and must be the same for all publishers and consumers of the same component.
+    MessagingComponentConsumerSettings settings = 2;  // The consumer-specific message settings.
+    common.MetadataFields metadata              = 3;  // The metadata fields. The ID and name represent the component ID and name and must match for all publishers and consumers of the same component.
 }
 
+// Defines a specification for messages delivered from server to a consumer.
 message MessagingReceiveMessage {
-    string message_id = 1;  // Unique identifier of the message.
-    string subject    = 2;  // Subject of the message.
+    string message_id = 1;  // The unique message identifier.
+    string subject    = 2;  // The subjects of the message.
     bytes data        = 3;  // The message data.
 }
 
+// Defines a list o messaging components.
 message ListOfMessagingComponent {
     repeated MessagingComponent items = 1;  // The list of messaging components known to the system.
-    int32 total_count                 = 2;  // The total number of items.
+    int32 total_count                 = 2;  // The total number of items in the list.
 }
 
+// Defines a specification of the messaging component.
 message MessagingComponent {
-    MessagingComponentSpec spec     = 1;  // Specification of the messaging component.
-    MessagingComponentStatus status = 2;  // Specification of the messaging component.
+    MessagingComponentSpec spec     = 1;  // The specification of the messaging component.
+    MessagingComponentStatus status = 2;  // The status of the messaging component.
     common.MetadataFields metadata  = 3;  // The metadata fields.
 }
 
+// Defines a specification of messaging component settings for a specified consumer.
 message MessagingComponentConsumerSettings {
-    string consumer_id           = 1;  // Unique UUID identifier for the consumer. It must be unique across all consumers of the same component.
-    int32 max_in_flight_messages = 2;  // Maximum number of in-flight (unacknowledged) messages allowed for the consumer. Value >1 means that multiple consumers may receive messages concurrently without preserving order. Value 1 means that only a single message may be in-flight at any time, preserving order even when multiple consumers are running.
-    repeated string subjects     = 3;  // List of non-empty subjects the consumer is interested in. At least one must be set. If it's changed then all instances of the same component will be affected!
+    string consumer_id           = 1;  // The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.
+    int32 max_in_flight_messages = 2;  // The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order.
+    repeated string subjects     = 3;  // The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!
 }
 
+// Defines a specification of a messaging component.
 message MessagingComponentSpec {
-    bool enabled                                          = 1;  // Whether the component is enabled or disabled. If disabled, the component will not receive any messages.
-    repeated MessagingComponentConsumerSettings consumers = 2;  // Settings for the messaging component.
+    bool enabled                                          = 1;  // Indicates whether the component is enabled. If disabled, the component does not receive any messages.
+    repeated MessagingComponentConsumerSettings consumers = 2;  // The consumer settings for the component.
 }
 
+// Defines the status of a messaging component.
 message MessagingComponentStatus {
     // FIXME: Add status fields as needed
 }
