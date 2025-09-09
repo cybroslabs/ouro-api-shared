@@ -256,6 +256,16 @@ CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) r
 - Input: [`io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest`](model-io-clbs-openhes-models-acquisition-createdevicegrouprequest.md)
 - Output: `google.protobuf.StringValue`
 
+## UpdateDeviceGroup
+
+Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
+
+```proto
+UpdateDeviceGroup(io.clbs.openhes.models.acquisition.DeviceGroup)
+```
+
+- Input: [`io.clbs.openhes.models.acquisition.DeviceGroup`](model-io-clbs-openhes-models-acquisition-devicegroup.md)
+
 ## ListDeviceGroups
 
 Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.

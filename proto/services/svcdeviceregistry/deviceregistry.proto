@@ -163,6 +163,8 @@ service DeviceRegistryService {
 
     // Creates a new device group. Returns the identifier of the newly created device group.
     rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
+    // Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
+    rpc UpdateDeviceGroup(io.clbs.openhes.models.acquisition.DeviceGroup) returns (google.protobuf.Empty);
     // Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceGroups(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceGroup);
     // @param The device group identifier.

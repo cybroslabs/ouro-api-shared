@@ -90,6 +90,7 @@ const (
 	ApiService_GetDeviceNetworkMap_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceNetworkMap"
 	ApiService_GetDeviceBulks_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceBulks"
 	ApiService_CreateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
+	ApiService_UpdateDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceGroup"
 	ApiService_ListDeviceGroups_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
 	ApiService_GetDeviceGroup_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetDeviceGroup"
 	ApiService_DeleteDeviceGroup_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/DeleteDeviceGroup"
@@ -360,6 +361,10 @@ type ApiServiceClient interface {
 	// @tag: devicegroup
 	// Creates a new device group. Returns the identifier of the newly created device group.
 	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Devices
+	// @tag: devicegroup
+	// Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
+	UpdateDeviceGroup(ctx context.Context, in *acquisition.DeviceGroup, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: devicegroup
 	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
@@ -1148,6 +1153,16 @@ func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisitio
 	return out, nil
 }
 
+func (c *apiServiceClient) UpdateDeviceGroup(ctx context.Context, in *acquisition.DeviceGroup, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateDeviceGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) ListDeviceGroups(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceGroup, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.ListOfDeviceGroup)
@@ -1874,6 +1889,10 @@ type ApiServiceServer interface {
 	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
 	// @group: Devices
 	// @tag: devicegroup
+	// Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
+	UpdateDeviceGroup(context.Context, *acquisition.DeviceGroup) (*emptypb.Empty, error)
+	// @group: Devices
+	// @tag: devicegroup
 	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceGroups(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceGroup, error)
 	// @group: Devices
@@ -2225,6 +2244,9 @@ func (UnimplementedApiServiceServer) GetDeviceBulks(context.Context, *acquisitio
 }
 func (UnimplementedApiServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateDeviceGroup(context.Context, *acquisition.DeviceGroup) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeviceGroup not implemented")
 }
 func (UnimplementedApiServiceServer) ListDeviceGroups(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeviceGroups not implemented")
@@ -3504,6 +3526,24 @@ func _ApiService_CreateDeviceGroup_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_UpdateDeviceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.DeviceGroup)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateDeviceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateDeviceGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateDeviceGroup(ctx, req.(*acquisition.DeviceGroup))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_ListDeviceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.ListSelector)
 	if err := dec(in); err != nil {
@@ -4561,6 +4601,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateDeviceGroup",
 			Handler:    _ApiService_CreateDeviceGroup_Handler,
+		},
+		{
+			MethodName: "UpdateDeviceGroup",
+			Handler:    _ApiService_UpdateDeviceGroup_Handler,
 		},
 		{
 			MethodName: "ListDeviceGroups",

@@ -214,6 +214,9 @@ const (
 	// ApiServiceCreateDeviceGroupProcedure is the fully-qualified name of the ApiService's
 	// CreateDeviceGroup RPC.
 	ApiServiceCreateDeviceGroupProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateDeviceGroup"
+	// ApiServiceUpdateDeviceGroupProcedure is the fully-qualified name of the ApiService's
+	// UpdateDeviceGroup RPC.
+	ApiServiceUpdateDeviceGroupProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateDeviceGroup"
 	// ApiServiceListDeviceGroupsProcedure is the fully-qualified name of the ApiService's
 	// ListDeviceGroups RPC.
 	ApiServiceListDeviceGroupsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListDeviceGroups"
@@ -565,6 +568,10 @@ type ApiServiceClient interface {
 	// @tag: devicegroup
 	// Creates a new device group. Returns the identifier of the newly created device group.
 	CreateDeviceGroup(context.Context, *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Devices
+	// @tag: devicegroup
+	// Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
+	UpdateDeviceGroup(context.Context, *connect.Request[acquisition.DeviceGroup]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
@@ -1108,6 +1115,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("CreateDeviceGroup")),
 			connect.WithClientOptions(opts...),
 		),
+		updateDeviceGroup: connect.NewClient[acquisition.DeviceGroup, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateDeviceGroupProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateDeviceGroup")),
+			connect.WithClientOptions(opts...),
+		),
 		listDeviceGroups: connect.NewClient[common.ListSelector, acquisition.ListOfDeviceGroup](
 			httpClient,
 			baseURL+ApiServiceListDeviceGroupsProcedure,
@@ -1457,6 +1470,7 @@ type apiServiceClient struct {
 	getDeviceNetworkMap                                              *connect.Client[wrapperspb.StringValue, acquisition.NetworkMap]
 	getDeviceBulks                                                   *connect.Client[acquisition.GetDeviceBulksRequest, acquisition.DeviceBulks]
 	createDeviceGroup                                                *connect.Client[acquisition.CreateDeviceGroupRequest, wrapperspb.StringValue]
+	updateDeviceGroup                                                *connect.Client[acquisition.DeviceGroup, emptypb.Empty]
 	listDeviceGroups                                                 *connect.Client[common.ListSelector, acquisition.ListOfDeviceGroup]
 	getDeviceGroup                                                   *connect.Client[wrapperspb.StringValue, acquisition.DeviceGroup]
 	deleteDeviceGroup                                                *connect.Client[wrapperspb.StringValue, emptypb.Empty]
@@ -1835,6 +1849,11 @@ func (c *apiServiceClient) GetDeviceBulks(ctx context.Context, req *connect.Requ
 // CreateDeviceGroup calls io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup.
 func (c *apiServiceClient) CreateDeviceGroup(ctx context.Context, req *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.createDeviceGroup.CallUnary(ctx, req)
+}
+
+// UpdateDeviceGroup calls io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceGroup.
+func (c *apiServiceClient) UpdateDeviceGroup(ctx context.Context, req *connect.Request[acquisition.DeviceGroup]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateDeviceGroup.CallUnary(ctx, req)
 }
 
 // ListDeviceGroups calls io.clbs.openhes.services.svcapi.ApiService.ListDeviceGroups.
@@ -2293,6 +2312,10 @@ type ApiServiceHandler interface {
 	// @tag: devicegroup
 	// Creates a new device group. Returns the identifier of the newly created device group.
 	CreateDeviceGroup(context.Context, *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Devices
+	// @tag: devicegroup
+	// Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
+	UpdateDeviceGroup(context.Context, *connect.Request[acquisition.DeviceGroup]) (*connect.Response[emptypb.Empty], error)
 	// @group: Devices
 	// @tag: devicegroup
 	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
@@ -2832,6 +2855,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("CreateDeviceGroup")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceUpdateDeviceGroupHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateDeviceGroupProcedure,
+		svc.UpdateDeviceGroup,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateDeviceGroup")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceListDeviceGroupsHandler := connect.NewUnaryHandler(
 		ApiServiceListDeviceGroupsProcedure,
 		svc.ListDeviceGroups,
@@ -3240,6 +3269,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetDeviceBulksHandler.ServeHTTP(w, r)
 		case ApiServiceCreateDeviceGroupProcedure:
 			apiServiceCreateDeviceGroupHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateDeviceGroupProcedure:
+			apiServiceUpdateDeviceGroupHandler.ServeHTTP(w, r)
 		case ApiServiceListDeviceGroupsProcedure:
 			apiServiceListDeviceGroupsHandler.ServeHTTP(w, r)
 		case ApiServiceGetDeviceGroupProcedure:
@@ -3589,6 +3620,10 @@ func (UnimplementedApiServiceHandler) GetDeviceBulks(context.Context, *connect.R
 
 func (UnimplementedApiServiceHandler) CreateDeviceGroup(context.Context, *connect.Request[acquisition.CreateDeviceGroupRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateDeviceGroup is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateDeviceGroup(context.Context, *connect.Request[acquisition.DeviceGroup]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateDeviceGroup is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) ListDeviceGroups(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfDeviceGroup], error) {

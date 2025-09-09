@@ -231,6 +231,7 @@
       "DeleteModemPool",
       "ListDeviceGroups",
       "CreateDeviceGroup",
+      "UpdateDeviceGroup",
       "DeleteDeviceGroup",
       "AddDevicesToGroup",
       "GetDeviceNetworkMap",
