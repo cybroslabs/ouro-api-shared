@@ -9,7 +9,7 @@ import "crypto/crypto.proto";
 import "crypto/management.proto";
 
 // The Deviceregistry service definition.
-service CryproService {
+service CryptoService {
     // @group: Cryptography
     // Initialize the crypto service stream-based RPC for DLMS frames.
     rpc Dlms(stream io.clbs.openhes.models.crypto.DlmsIn) returns (stream io.clbs.openhes.models.crypto.DlmsOut);

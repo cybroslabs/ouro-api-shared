@@ -1555,7 +1555,7 @@
     "tags1": [
       "ConnectionTypeModemPool"
     ],
-    "tags2": "Defines the connection information for phone line modem connection type The phone number the device connect The unique modem pool identifier modem pool group modems that can used connect the device The final modem selected the Taskmaster the job start The modem device assigned the job This field filled only when the connection type modem The value assigned the Taskmaster the start the job and the driver musr use this modem exclusively for this job"
+    "tags2": "Defines the connection information for phone line modem connection type The phone number the device connect The unique modem pool identifier modem pool group modems that can used connect the device The final modem selected the Taskmaster the job start The modem device assigned the job This field filled only when the connection type modem The value assigned the Taskmaster the start the job and the driver must use this modem exclusively for this job"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialdirect.md",

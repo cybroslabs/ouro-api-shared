@@ -1365,7 +1365,7 @@ export type ConnectionTypeModemPool = Message<"io.clbs.openhes.models.acquisitio
   poolId: string;
 
   /**
-   * The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver musr use this modem exclusively for this job!
+   * The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job!
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ModemInfo modem = 4;
    */
@@ -1393,7 +1393,7 @@ export type ConnectionTypeModemPoolJson = {
   poolId?: string;
 
   /**
-   * The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver musr use this modem exclusively for this job!
+   * The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job!
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ModemInfo modem = 4;
    */

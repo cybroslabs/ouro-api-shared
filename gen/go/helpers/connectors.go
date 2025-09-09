@@ -59,7 +59,7 @@ type Connectors interface {
 	// OpenOuroOperatorServiceClient opens a new gRPC connection to the OuroOperator service.
 	OpenOuroOperatorServiceClient() (svcourooperator.OuroOperatorServiceClient, context.CancelFunc, error)
 	// OpenCryptoServiceClient opens a new gRPC connection to the crypto service.
-	OpenCryptoServiceClient() (svccrypto.CryproServiceClient, context.CancelFunc, error)
+	OpenCryptoServiceClient() (svccrypto.CryptoServiceClient, context.CancelFunc, error)
 }
 
 type connectors struct {
@@ -198,12 +198,12 @@ func (ra *connectors) OpenOuroOperatorServiceClient() (svcourooperator.OuroOpera
 }
 
 // Open a new gRPC connection to the crypto service. The connection must be closed by calling func in the second return value.
-func (ra *connectors) OpenCryptoServiceClient() (svccrypto.CryproServiceClient, context.CancelFunc, error) {
+func (ra *connectors) OpenCryptoServiceClient() (svccrypto.CryptoServiceClient, context.CancelFunc, error) {
 	conn, err := grpc.NewClient(ra.cryptoHost, ra.grpcOptionsCrypto...)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	client := svccrypto.NewCryproServiceClient(conn)
+	client := svccrypto.NewCryptoServiceClient(conn)
 	return client, func() { _ = conn.Close() }, nil
 }
