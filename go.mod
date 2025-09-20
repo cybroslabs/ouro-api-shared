@@ -1,6 +1,6 @@
 module github.com/cybroslabs/ouro-api-shared
 
-go 1.24.6
+go 1.25
 
 retract (
 	v0.0.0-20240512071833-41b886c985c4
@@ -9,7 +9,7 @@ retract (
 
 require (
 	connectrpc.com/connect v1.18.1
-	github.com/99designs/gqlgen v0.17.79
+	github.com/99designs/gqlgen v0.17.80
 	github.com/google/uuid v1.6.0
 	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.30
