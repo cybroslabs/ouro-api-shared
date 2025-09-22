@@ -377,7 +377,6 @@ func getLimitOffset(in *database.DbSelector) (string, error) {
 
 func addMultiOperandOperator(parts *[]string, values *[]any, col string, in *common.ListSelectorFilterBy, operator string) error {
 	base_id := len(*values) + 1
-	operand_types := ""
 	switch in.GetDataType() {
 	case common.FieldDataType_TEXT:
 		for _, t := range in.GetText() {
@@ -388,13 +387,11 @@ func addMultiOperandOperator(parts *[]string, values *[]any, col string, in *com
 			*values = append(*values, t)
 		}
 		col = "(" + col + ")::int"
-		operand_types = "::int"
 	case common.FieldDataType_DOUBLE:
 		for _, t := range in.GetNumber() {
 			*values = append(*values, t)
 		}
 		col = "(" + col + ")::numeric"
-		operand_types = "::numeric"
 	default:
 		return errors.New("unsupported data type")
 	}
@@ -411,7 +408,7 @@ func addMultiOperandOperator(parts *[]string, values *[]any, col string, in *com
 		if i > base_id {
 			tmp.WriteString(", ")
 		}
-		tmp.WriteString(fmt.Sprintf("$%d%s", i, operand_types))
+		tmp.WriteString(fmt.Sprintf("$%d", i))
 	}
 	tmp.WriteString(")")
 	*parts = append(*parts, tmp.String())
