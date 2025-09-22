@@ -14,7 +14,7 @@ require (
 	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.30
 	go.uber.org/zap v1.27.0
-	google.golang.org/genproto v0.0.0-20250908214217-97024824d090
+	google.golang.org/genproto v0.0.0-20250922171735-9219d122eba9
 	google.golang.org/grpc v1.75.1
 	google.golang.org/protobuf v1.36.9
 	k8s.io/utils v0.0.0-20250820121507-0af2bda4dd1d
