@@ -19,7 +19,17 @@ type PersistentWhere struct {
 	Arg   any
 }
 
-func WithListSelector(selector *common.ListSelector) *DbSelector {
+func WithListSelector(selector *common.ListSelector, idPath string) *DbSelector {
+	// Optimize for the common case of filtering by object ID.
+	if filters := selector.GetFilterBy(); len(filters) == 1 {
+		filter := filters[0]
+		values := filter.GetText()
+		if filter.GetPath() == idPath && filter.GetOperator() == common.FilterOperator_EQUAL && filter.GetDataType() == common.FieldDataType_TEXT && len(values) == 1 {
+			if uid, err := uuid.Parse(values[0]); err == nil {
+				return WithId(uid)
+			}
+		}
+	}
 	return &DbSelector{FilterBy: selector}
 }
 
