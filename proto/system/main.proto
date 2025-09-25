@@ -6,6 +6,7 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/system";
 
 import "common/fields.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 // Defines a specification for application configuration.
 message ApplicationConfig {
@@ -32,12 +33,15 @@ message ApplicationConfigDescriptor {
 
 // Defines the license information for the application.
 message License {
-    string token                = 1;  // The license token.
-    string id                   = 2;  // The license ID.
-    string name                 = 3;  // The license name.
-    string description          = 4;  // The license description.
-    map<string, string> options = 5;  // The licensed options.
-    int32 version               = 6;  // The license options structure version.
+    string token                                 = 1;   // The license token.
+    string id                                    = 2;   // The license ID.
+    string name                                  = 3;   // The license name.
+    string description                           = 4;   // The license description.
+    map<string, string> options                  = 5;   // The licensed options.
+    int32 version                                = 6;   // The license options structure version.
+    google.protobuf.Timestamp token_expiration   = 7;   // The license token expiration date. This does not necessarily reflect the actual license expiry date but the date when the license token is no longer valid. For air-gapped systems at this point the license key must be renewed. The value is taken from the 'exp' claim in the license token.
+    google.protobuf.Timestamp license_expiration = 9;   // The actual license expiration date. This can be any date or unset for perpetual licenses.
+    google.protobuf.Timestamp service_expiration = 10;  // The service expiration date. This is the date until when the license entitles to free updates and support.
 }
 
 // Defines the OpenID Connect (OIDC) configuration.

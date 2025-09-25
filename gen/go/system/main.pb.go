@@ -11,6 +11,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/structpb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -359,17 +360,20 @@ func (b0 ApplicationConfigDescriptor_builder) Build() *ApplicationConfigDescript
 
 // Defines the license information for the application.
 type License struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Token       *string                `protobuf:"bytes,1,opt,name=token"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,2,opt,name=id"`
-	xxx_hidden_Name        *string                `protobuf:"bytes,3,opt,name=name"`
-	xxx_hidden_Description *string                `protobuf:"bytes,4,opt,name=description"`
-	xxx_hidden_Options     map[string]string      `protobuf:"bytes,5,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	xxx_hidden_Version     int32                  `protobuf:"varint,6,opt,name=version"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Token             *string                `protobuf:"bytes,1,opt,name=token"`
+	xxx_hidden_Id                *string                `protobuf:"bytes,2,opt,name=id"`
+	xxx_hidden_Name              *string                `protobuf:"bytes,3,opt,name=name"`
+	xxx_hidden_Description       *string                `protobuf:"bytes,4,opt,name=description"`
+	xxx_hidden_Options           map[string]string      `protobuf:"bytes,5,rep,name=options" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Version           int32                  `protobuf:"varint,6,opt,name=version"`
+	xxx_hidden_TokenExpiration   *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=token_expiration,json=tokenExpiration"`
+	xxx_hidden_LicenseExpiration *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=license_expiration,json=licenseExpiration"`
+	xxx_hidden_ServiceExpiration *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=service_expiration,json=serviceExpiration"`
+	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
+	XXX_presence                 [1]uint32
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *License) Reset() {
@@ -451,24 +455,45 @@ func (x *License) GetVersion() int32 {
 	return 0
 }
 
+func (x *License) GetTokenExpiration() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_TokenExpiration
+	}
+	return nil
+}
+
+func (x *License) GetLicenseExpiration() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_LicenseExpiration
+	}
+	return nil
+}
+
+func (x *License) GetServiceExpiration() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_ServiceExpiration
+	}
+	return nil
+}
+
 func (x *License) SetToken(v string) {
 	x.xxx_hidden_Token = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
 }
 
 func (x *License) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
 }
 
 func (x *License) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
 }
 
 func (x *License) SetDescription(v string) {
 	x.xxx_hidden_Description = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
 }
 
 func (x *License) SetOptions(v map[string]string) {
@@ -477,7 +502,19 @@ func (x *License) SetOptions(v map[string]string) {
 
 func (x *License) SetVersion(v int32) {
 	x.xxx_hidden_Version = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
+}
+
+func (x *License) SetTokenExpiration(v *timestamppb.Timestamp) {
+	x.xxx_hidden_TokenExpiration = v
+}
+
+func (x *License) SetLicenseExpiration(v *timestamppb.Timestamp) {
+	x.xxx_hidden_LicenseExpiration = v
+}
+
+func (x *License) SetServiceExpiration(v *timestamppb.Timestamp) {
+	x.xxx_hidden_ServiceExpiration = v
 }
 
 func (x *License) HasToken() bool {
@@ -515,6 +552,27 @@ func (x *License) HasVersion() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
+func (x *License) HasTokenExpiration() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_TokenExpiration != nil
+}
+
+func (x *License) HasLicenseExpiration() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_LicenseExpiration != nil
+}
+
+func (x *License) HasServiceExpiration() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_ServiceExpiration != nil
+}
+
 func (x *License) ClearToken() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Token = nil
@@ -540,15 +598,30 @@ func (x *License) ClearVersion() {
 	x.xxx_hidden_Version = 0
 }
 
+func (x *License) ClearTokenExpiration() {
+	x.xxx_hidden_TokenExpiration = nil
+}
+
+func (x *License) ClearLicenseExpiration() {
+	x.xxx_hidden_LicenseExpiration = nil
+}
+
+func (x *License) ClearServiceExpiration() {
+	x.xxx_hidden_ServiceExpiration = nil
+}
+
 type License_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Token       *string
-	Id          *string
-	Name        *string
-	Description *string
-	Options     map[string]string
-	Version     *int32
+	Token             *string
+	Id                *string
+	Name              *string
+	Description       *string
+	Options           map[string]string
+	Version           *int32
+	TokenExpiration   *timestamppb.Timestamp
+	LicenseExpiration *timestamppb.Timestamp
+	ServiceExpiration *timestamppb.Timestamp
 }
 
 func (b0 License_builder) Build() *License {
@@ -556,26 +629,29 @@ func (b0 License_builder) Build() *License {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Token != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
 		x.xxx_hidden_Token = b.Token
 	}
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
 		x.xxx_hidden_Id = b.Id
 	}
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
 		x.xxx_hidden_Name = b.Name
 	}
 	if b.Description != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
 		x.xxx_hidden_Description = b.Description
 	}
 	x.xxx_hidden_Options = b.Options
 	if b.Version != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
 		x.xxx_hidden_Version = *b.Version
 	}
+	x.xxx_hidden_TokenExpiration = b.TokenExpiration
+	x.xxx_hidden_LicenseExpiration = b.LicenseExpiration
+	x.xxx_hidden_ServiceExpiration = b.ServiceExpiration
 	return m0
 }
 
@@ -662,7 +738,7 @@ var File_system_main_proto protoreflect.FileDescriptor
 
 const file_system_main_proto_rawDesc = "" +
 	"\n" +
-	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13common/fields.proto\x1a\x1cgoogle/protobuf/struct.proto\"Y\n" +
+	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13common/fields.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"Y\n" +
 	"\x11ApplicationConfig\x12D\n" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"g\n" +
 	"\x0fComponentConfig\x12\x12\n" +
@@ -673,14 +749,18 @@ const file_system_main_proto_rawDesc = "" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x05items\"\xbf\x01\n" +
 	"\x1bApplicationConfigDescriptor\x12Z\n" +
 	"\vdescriptors\x18\x01 \x03(\v28.io.clbs.openhes.models.system.ComponentConfigDescriptorR\vdescriptors\x12D\n" +
-	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\x8a\x02\n" +
+	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"\xe7\x03\n" +
 	"\aLicense\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12M\n" +
 	"\aoptions\x18\x05 \x03(\v23.io.clbs.openhes.models.system.License.OptionsEntryR\aoptions\x12\x18\n" +
-	"\aversion\x18\x06 \x01(\x05R\aversion\x1a:\n" +
+	"\aversion\x18\x06 \x01(\x05R\aversion\x12E\n" +
+	"\x10token_expiration\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x0ftokenExpiration\x12I\n" +
+	"\x12license_expiration\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\x11licenseExpiration\x12I\n" +
+	"\x12service_expiration\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\x11serviceExpiration\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"/\n" +
@@ -698,6 +778,7 @@ var file_system_main_proto_goTypes = []any{
 	nil,                                 // 6: io.clbs.openhes.models.system.License.OptionsEntry
 	(*common.FieldValues)(nil),          // 7: io.clbs.openhes.models.common.FieldValues
 	(*common.FieldDescriptor)(nil),      // 8: io.clbs.openhes.models.common.FieldDescriptor
+	(*timestamppb.Timestamp)(nil),       // 9: google.protobuf.Timestamp
 }
 var file_system_main_proto_depIdxs = []int32{
 	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
@@ -706,11 +787,14 @@ var file_system_main_proto_depIdxs = []int32{
 	2, // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
 	1, // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
 	6, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	9, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
+	9, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
+	9, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_system_main_proto_init() }

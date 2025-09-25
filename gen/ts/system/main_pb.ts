@@ -6,14 +6,15 @@ import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FieldDescriptor, FieldDescriptorJson, FieldValues, FieldValuesJson } from "../common/fields_pb";
 import { file_common_fields } from "../common/fields_pb";
-import { file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
+import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWcizgEKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRouCgxPcHRpb25zRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASImChNPcGVuSWRDb25maWd1cmF0aW9uEg8KB2NvbnRlbnQYASABKAxCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiJgoTT3BlbklkQ29uZmlndXJhdGlvbhIPCgdjb250ZW50GAEgASgMQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -244,6 +245,27 @@ export type License = Message<"io.clbs.openhes.models.system.License"> & {
    * @generated from field: int32 version = 6;
    */
   version: number;
+
+  /**
+   * The license token expiration date. This does not necessarily reflect the actual license expiry date but the date when the license token is no longer valid. For air-gapped systems at this point the license key must be renewed. The value is taken from the 'exp' claim in the license token.
+   *
+   * @generated from field: google.protobuf.Timestamp token_expiration = 7;
+   */
+  tokenExpiration?: Timestamp;
+
+  /**
+   * The actual license expiration date. This can be any date or unset for perpetual licenses.
+   *
+   * @generated from field: google.protobuf.Timestamp license_expiration = 9;
+   */
+  licenseExpiration?: Timestamp;
+
+  /**
+   * The service expiration date. This is the date until when the license entitles to free updates and support.
+   *
+   * @generated from field: google.protobuf.Timestamp service_expiration = 10;
+   */
+  serviceExpiration?: Timestamp;
 };
 
 /**
@@ -293,6 +315,27 @@ export type LicenseJson = {
    * @generated from field: int32 version = 6;
    */
   version?: number;
+
+  /**
+   * The license token expiration date. This does not necessarily reflect the actual license expiry date but the date when the license token is no longer valid. For air-gapped systems at this point the license key must be renewed. The value is taken from the 'exp' claim in the license token.
+   *
+   * @generated from field: google.protobuf.Timestamp token_expiration = 7;
+   */
+  tokenExpiration?: TimestampJson;
+
+  /**
+   * The actual license expiration date. This can be any date or unset for perpetual licenses.
+   *
+   * @generated from field: google.protobuf.Timestamp license_expiration = 9;
+   */
+  licenseExpiration?: TimestampJson;
+
+  /**
+   * The service expiration date. This is the date until when the license entitles to free updates and support.
+   *
+   * @generated from field: google.protobuf.Timestamp service_expiration = 10;
+   */
+  serviceExpiration?: TimestampJson;
 };
 
 /**

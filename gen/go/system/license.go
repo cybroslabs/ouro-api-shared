@@ -10,8 +10,16 @@ import (
 type LicensedItem string
 
 const (
+	// Licensed items; the claim must be a number.
 	LicensedItemParallelAcqusitionChannels LicensedItem = "parallel_acqusition_channels"
-	LicensedItemDeviceDrivers              LicensedItem = "device_drivers"
+	// Licensed items; the claim must be an array of strings where each string is one of the driver types.
+	LicensedItemDeviceDrivers LicensedItem = "device_drivers"
+	// Licensed items; the claim must be an array of strings where each string is one of the component versions in the format "<app_name>:<op><semver>[ <op><semver>]*" where <op> is one of =, >, >=, <, <= and <semver> is a semantic version in the format X.Y.Z or vX.Y.Z (e.g. "myapp:>=1.2.0 <2.0.0").
+	LicensedItemComponentVersions LicensedItem = "component_versions"
+	// Licensed items; the claim must be a timestamp in RFC3339 format.
+	LicensedItemLicenseExpiration LicensedItem = "license_expiration"
+	// Licensed items; the claim must be a timestamp in RFC3339 format.
+	LicensedItemServiceExpiration LicensedItem = "service_expiration"
 )
 
 // IsLicensed returns true if the licensed item is present in the license.
