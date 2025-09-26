@@ -82,7 +82,7 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, idColumn
 		return
 	}
 
-	qLimit, err = getLimitOffset(in)
+	qArgs, qLimit, err = getLimitOffset(in, qArgs)
 	return
 }
 
@@ -362,17 +362,21 @@ func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string,
 	return tmp.String(), nil
 }
 
-func getLimitOffset(in *database.DbSelector) (string, error) {
+func getLimitOffset(in *database.DbSelector, qArgsIn []any) ([]any, string, error) {
+	next_arg_id := len(qArgsIn) + 1
+	qLimit := fmt.Sprintf(" LIMIT $%d OFFSET $%d", next_arg_id, next_arg_id+1)
+
 	if in == nil {
-		return " LIMIT 100", nil
+		return append(qArgsIn, 100, 0), qLimit, nil
 	}
 	limit := in.GetPageSize()
 	if limit == 0 {
 		limit = 100
 	} else if limit > 10000 {
-		return "", errors.New("limit too high")
+		return qArgsIn, "", errors.New("limit too high")
 	}
-	return fmt.Sprintf(" LIMIT %d OFFSET %d", limit, in.GetOffset()), nil
+
+	return append(qArgsIn, limit, in.GetOffset()), qLimit, nil
 }
 
 func addMultiOperandOperator(parts *[]string, values *[]any, col string, in *common.ListSelectorFilterBy, operator string) error {
