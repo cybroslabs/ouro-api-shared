@@ -84,7 +84,10 @@ func NewLicenseManager(opts *LicenseManagerOpts) (LicenseManager, error) {
 		event:            make(chan struct{}, 1),
 	}
 
-	if sv, err := getSemVerParts(opts.AppVersion); err != nil {
+	is_dev := strings.EqualFold(opts.AppVersion, "dev")
+	if is_dev {
+		lm.appSemVer = []int{999, 999, 999} // Far future version for 'dev' version
+	} else if sv, err := getSemVerParts(opts.AppVersion); err != nil {
 		return nil, err
 	} else {
 		lm.appSemVer = sv
@@ -92,7 +95,9 @@ func NewLicenseManager(opts *LicenseManagerOpts) (LicenseManager, error) {
 	if !_lowercase.MatchString(opts.AppName) {
 		return nil, errors.New("AppName must be lowercase letters and hyphens only, starting and ending with a letter")
 	}
-	if t, err := time.Parse(time.RFC3339, opts.AppBuiltDate); err != nil {
+	if is_dev {
+		lm.appBuiltDate = time.Date(2100, 1, 1, 0, 0, 0, 0, time.UTC) // Far future date for 'dev' version
+	} else if t, err := time.Parse(time.RFC3339, opts.AppBuiltDate); err != nil {
 		return nil, errors.New("AppBuiltDate must be in RFC3339 format")
 	} else {
 		lm.appBuiltDate = t
