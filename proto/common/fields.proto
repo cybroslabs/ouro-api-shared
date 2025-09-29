@@ -132,6 +132,7 @@ message FieldDescriptor {
     FieldValue default_value   = 20;  // The default value of the . Multi-value fields are not supported.
     bool sortable              = 21;  // Indicates whether the field can be used for sorting. Default is `true`.
     bool filterable            = 22;  // Indicates whether the field can be used for filtering. Default is `true`.
+    int32 display_order        = 23;  // The order in which the field is displayed relative to other fields.
 }
 
 // Defines validation rules applied to a field.

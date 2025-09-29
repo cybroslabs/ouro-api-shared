@@ -28,4 +28,5 @@ Defines the field descriptor specification.
 | defaultValue | <b>Type:</b> [`io.clbs.openhes.models.common.FieldValue`](model-io-clbs-openhes-models-common-fieldvalue.md)<br><b>Description:</b><br>The default value of the . Multi-value fields are not supported. |
 | sortable | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether the field can be used for sorting. Default is `true`. |
 | filterable | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether the field can be used for filtering. Default is `true`. |
+| displayOrder | <b>Type:</b> `int32`<br><b>Description:</b><br>The order in which the field is displayed relative to other fields. |
 
