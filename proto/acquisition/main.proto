@@ -213,6 +213,7 @@ message BulkSpec {
     }
     JobSettings settings          = 4;  // The job settings shared across all jobs in the bulk.
     repeated JobActionSet actions = 5;  // The list of actions to be executed on each device in the bulk.
+    bool skip_data_processing     = 6;  // Indicates whether data processing should be skipped for this job. Default value is `false`.
 }
 
 // Defines the status of a bulk.

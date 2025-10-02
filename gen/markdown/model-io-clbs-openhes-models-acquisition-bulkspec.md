@@ -11,4 +11,5 @@ Defines a bulk specification.
 | deviceGroupId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique device group identifier. |
 | settings | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobSettings`](model-io-clbs-openhes-models-acquisition-jobsettings.md)<br><b>Description:</b><br>The job settings shared across all jobs in the bulk. |
 | actions | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobActionSet`](model-io-clbs-openhes-models-acquisition-jobactionset.md)<br><b>Description:</b><br>The list of actions to be executed on each device in the bulk. |
+| skipDataProcessing | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether data processing should be skipped for this job. Default value is `false`. |
 
