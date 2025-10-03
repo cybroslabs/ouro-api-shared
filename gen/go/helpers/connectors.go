@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"slices"
+	"strconv"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svccrypto"
@@ -133,13 +133,21 @@ func emptyOr(value string, valueFallback string) string {
 }
 
 func initGrpcOptions(opts []grpc.DialOption) []grpc.DialOption {
-	if opts == nil {
-		return []grpc.DialOption{
-			// Use insecure credentials by default if no options are provided.
-			grpc.WithTransportCredentials(insecure.NewCredentials()),
+	// Default gRPC options
+	tmp := make([]grpc.DialOption, 0, len(opts)+2)
+
+	// Use insecure credentials by default if no options are provided.
+	tmp = append(tmp, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// Check for a custom max message size from the environment variable OURO_GRPC_MAX_RECV_MSG_SIZE
+	if t, ok := os.LookupEnv("OURO_GRPC_MAX_RECV_MSG_SIZE"); ok {
+		if maxMsgSize, err := strconv.Atoi(t); err == nil {
+			tmp = append(tmp, grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxMsgSize)))
 		}
 	}
-	return slices.Clone(opts)
+	if opts != nil {
+		tmp = append(tmp, opts...)
+	}
+	return tmp
 }
 
 // Open a new gRPC connection to the API service. The connection must be closed by calling func in the second return value.
