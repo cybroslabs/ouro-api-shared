@@ -84,7 +84,7 @@ func NewLicenseManager(opts *LicenseManagerOpts) (LicenseManager, error) {
 		event:            make(chan struct{}, 1),
 	}
 
-	is_dev := strings.EqualFold(opts.AppVersion, "dev")
+	is_dev := strings.EqualFold(opts.AppVersion, "dev") || strings.EqualFold(opts.AppVersion, "development")
 	if is_dev {
 		lm.appSemVer = []int{999, 999, 999} // Far future version for 'dev' version
 	} else if sv, err := getSemVerParts(opts.AppVersion); err != nil {
