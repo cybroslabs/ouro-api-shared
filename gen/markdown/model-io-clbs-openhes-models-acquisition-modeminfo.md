@@ -16,5 +16,4 @@ Defines modem connection information.
 | commandTimeout | <b>Type:</b> `google.protobuf.Duration`<br><b>Description:</b><br>The modem command timeout, if applicable given by the modem_connection field. |
 | tcpip | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp`](model-io-clbs-openhes-models-acquisition-connectiontypedirecttcpip.md)<br><b>Description:</b><br>The TCP connection type. The modem either supports TCP directly, or an IP-to-serial converter is used that handles the serial configuration. |
 | serialOverIp | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial`](model-io-clbs-openhes-models-acquisition-connectiontypecontrolledserial.md)<br><b>Description:</b><br>The serial-over-IP connection type. Used when the modem is connected via an IP-to-serial converter and requires specific handling. |
-| serialBaudRate | <b>Type:</b> `uint32`<br><b>Description:</b><br>The serial baud rate, if applicable by the `modem_connection` field. |
 

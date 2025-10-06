@@ -137,7 +137,6 @@ message ModemInfo {
         ConnectionTypeDirectTcpIp tcpip               = 9;   // The TCP connection type. The modem either supports TCP directly, or an IP-to-serial converter is used that handles the serial configuration.
         ConnectionTypeControlledSerial serial_over_ip = 10;  // The serial-over-IP connection type. Used when the modem is connected via an IP-to-serial converter and requires specific handling.
     }
-    uint32 serial_baud_rate = 11;  // The serial baud rate, if applicable by the `modem_connection` field.
 }
 
 // Defines the available serial port parity types.
@@ -238,6 +237,7 @@ message ConnectionTypeSerialMoxa {
     uint32 data_port                 = 2;  // The TCP data port number of the device to connect to.
     uint32 command_port              = 3;  // The TCP command port number of the device to connect to.
     google.protobuf.Duration timeout = 4;  // The timeout for the serial port connection using the Moxa protocol.
+    SerialConfig serial_config       = 5;  // The serial port configuration. Optional. If not set, current Moxa settings are preserved.
 }
 
 // Defines the connection information for a controlled serial line using the RFC 2217 protocol.
@@ -245,6 +245,7 @@ message ConnectionTypeSerialRfc2217 {
     string host                      = 1;  // The host name or IP address of the device to connect to.
     uint32 port                      = 2;  // The TCP port number of the device to connect to.
     google.protobuf.Duration timeout = 3;  // The timeout for serial port connection using the RFC 2217 protocol.
+    SerialConfig serial_config       = 4;  // The serial port configuration. Optional. If not set, current Moxa settings are preserved.
 }
 
 // Defines the supported communication types for device connections.
@@ -477,6 +478,7 @@ message ConnectionTypeControlledSerial {
         ConnectionTypeSerialRfc2217 rfc2217 = 3;  // The RFC 2217 connection type.
         // TBA: Add Advanctech and other IP-to-serial converters.
     }
+    SerialConfig config = 4;  // The serial port configuration.
 }
 
 // Defines the supported action types. Each action type corresponds to a specific operation that can be performed on a device.

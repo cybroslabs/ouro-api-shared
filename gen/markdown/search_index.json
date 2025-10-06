@@ -460,92 +460,108 @@
     "tags2": ""
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
     "tags0": [
-      "keys",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.GetTranslationsRequest"
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
     ],
     "tags1": [
-      "GetTranslationsRequest"
+      "AES256CBC",
+      "DATA",
+      "PLAIN",
+      "SECRET",
+      "SecretDataDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the request for retrieving translations based language and keys The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+    "tags2": "Defines the supported DLMS decryption methods Unspecified decryption method Plain data decryption required AES CBC dencryption method"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
     "tags0": [
-      "translations",
-      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
     ],
     "tags1": [
-      "GetTranslationsResponse"
+      "GF1P",
+      "OAEPM",
+      "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
+    "tags2": "Defines the supported decryption methods for session keys session key decryption method Used when the session key not set not used Plain session key session key decryption required RSA OAEP MGF1P decryption method Used for session keys"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
     "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
+      "data",
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
     ],
     "tags1": [
-      "ApplicationConfig"
+      "CryptoSecret"
     ],
-    "tags2": "Defines specification for application configuration The default values for the application configuration"
+    "tags2": "Defines specification crypto secrets The access level for the secret for example admin user The unique secret key identifier The timestamp when the secret was created The timestamp when the secret was last updated The secret data"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
     "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
     ],
     "tags1": [
-      "ApplicationConfigDescriptor"
+      "CryptoSecrets"
     ],
-    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
+    "tags2": "Defines list crypto secrets list crypto secrets"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
     ],
     "tags1": [
-      "ComponentConfig"
+      "GetCryptoSecretRequest"
     ],
-    "tags2": "Defines specification for single component configuration The component name The component configuration values"
+    "tags2": "Defines specification for retrieving crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+      "data",
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
     ],
     "tags1": [
-      "ComponentConfigDescriptor"
+      "SetCryptoSecretRequest"
     ],
-    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
-    "tags0": [
-      "content",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
-    ],
-    "tags1": [
-      "OpenIdConfiguration"
-    ],
-    "tags2": "Defines the OpenID Connect OIDC configuration The raw JSON configuration the OIDC service"
+    "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
@@ -885,6 +901,97 @@
       "UNSPECIFIED"
     ],
     "tags2": "Defines the read path policies for retrieving data from devices Keeps the current behavior typically data concentrator first Attempts read directly from the meter and falls back the data concentrator needed and supported Attempts read from the data concentrator first and falls back the meter needed and supported"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigbaudrate.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.SerialConfigBaudRate",
+    "tags0": [
+      "BAUD_RATE_110",
+      "BAUD_RATE_300",
+      "BAUD_RATE_600",
+      "BAUD_RATE_1200",
+      "BAUD_RATE_2400",
+      "BAUD_RATE_4800",
+      "BAUD_RATE_9600",
+      "BAUD_RATE_14400",
+      "BAUD_RATE_19200",
+      "BAUD_RATE_38400",
+      "BAUD_RATE_57600",
+      "BAUD_RATE_115200",
+      "BAUD_RATE_230400",
+      "BAUD_RATE_460800",
+      "BAUD_RATE_921600",
+      "BAUD_RATE_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.SerialConfigBaudRate"
+    ],
+    "tags1": [
+      "BAUD",
+      "RATE",
+      "SerialConfigBaudRate",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the available serial port baud rate types Unspecified baud rate baud baud baud baud baud baud baud baud baud baud baud baud baud baud baud"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigdatabits.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.SerialConfigDataBits",
+    "tags0": [
+      "DATA_BITS_5",
+      "DATA_BITS_6",
+      "DATA_BITS_7",
+      "DATA_BITS_8",
+      "DATA_BITS_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.SerialConfigDataBits"
+    ],
+    "tags1": [
+      "BITS",
+      "DATA",
+      "SerialConfigDataBits",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the available serial port data bit types Unspecified data bits data bits data bits data bits data bits"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigparity.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.SerialConfigParity",
+    "tags0": [
+      "PARITY_ODD",
+      "PARITY_NONE",
+      "PARITY_EVEN",
+      "PARITY_MARK",
+      "PARITY_SPACE",
+      "PARITY_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.SerialConfigParity"
+    ],
+    "tags1": [
+      "EVEN",
+      "MARK",
+      "NONE",
+      "ODD",
+      "PARITY",
+      "SPACE",
+      "SerialConfigParity",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the available serial port parity types Unspecified parity parity Even parity Odd parity Mark parity Space parity"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigstopbits.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.SerialConfigStopBits",
+    "tags0": [
+      "STOP_BITS_1",
+      "STOP_BITS_2",
+      "STOP_BITS_1_5",
+      "STOP_BITS_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.SerialConfigStopBits"
+    ],
+    "tags1": [
+      "BITS",
+      "STOP",
+      "SerialConfigStopBits",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the available serial port stop bit types Unspecified stop bits stop bit stop bits stop bits"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-topologynodetype.md",
@@ -1351,13 +1458,14 @@
     "tags0": [
       "moxa",
       "direct",
+      "config",
       "rfc2217",
       "io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial"
     ],
     "tags1": [
       "ConnectionTypeControlledSerial"
     ],
-    "tags2": "Defines the connection infoformation for controlled serial line over for example Moxa The simple direct serial connection type The Moxa connection type The RFC connection type"
+    "tags2": "Defines the connection infoformation for controlled serial line over for example Moxa The simple direct serial connection type The Moxa connection type The RFC connection type The serial port configuration"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypedirecttcpip.md",
@@ -1409,12 +1517,13 @@
       "timeout",
       "dataPort",
       "commandPort",
+      "serialConfig",
       "io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa"
     ],
     "tags1": [
       "ConnectionTypeSerialMoxa"
     ],
-    "tags2": "Defines the connection information for controlled serial line using the Moxa protocol The host name address the device connect The TCP data port number the device connect The TCP command port number the device connect The timeout for the serial port connection using the Moxa protocol"
+    "tags2": "Defines the connection information for controlled serial line using the Moxa protocol The host name address the device connect The TCP data port number the device connect The TCP command port number the device connect The timeout for the serial port connection using the Moxa protocol The serial port configuration Optional not set current Moxa settings are preserved"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialrfc2217.md",
@@ -1423,12 +1532,13 @@
       "host",
       "port",
       "timeout",
+      "serialConfig",
       "io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217"
     ],
     "tags1": [
       "ConnectionTypeSerialRfc2217"
     ],
-    "tags2": "Defines the connection information for controlled serial line using the RFC protocol The host name address the device connect The TCP port number the device connect The timeout for serial port connection using the RFC protocol"
+    "tags2": "Defines the connection information for controlled serial line using the RFC protocol The host name address the device connect The TCP port number the device connect The timeout for serial port connection using the RFC protocol The serial port configuration Optional not set current Moxa settings are preserved"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-createbulkrequest.md",
@@ -2491,13 +2601,12 @@
       "serialOverIp",
       "connectTimeout",
       "commandTimeout",
-      "serialBaudRate",
       "io.clbs.openhes.models.acquisition.ModemInfo"
     ],
     "tags1": [
       "ModemInfo"
     ],
-    "tags2": "Defines modem connection information The unique identifier the modem automatically generated during creation The name the modem The modem initialization command For example FE0X3 The modem dial command For example ATD The modem hangup command For example ATH The modem escape command For exampl The modem connection timeout applicable the modem connection field The modem command timeout applicable given the modem connection field The TCP connection type The modem either supports TCP directly serial converter used that handles the serial configuration The serial over connection type Used when the modem connected via serial converter and requires specific handling The serial baud rate applicable the modem connection field"
+    "tags2": "Defines modem connection information The unique identifier the modem automatically generated during creation The name the modem The modem initialization command For example FE0X3 The modem dial command For example ATD The modem hangup command For example ATH The modem escape command For exampl The modem connection timeout applicable the modem connection field The modem command timeout applicable given the modem connection field The TCP connection type The modem either supports TCP directly serial converter used that handles the serial configuration The serial over connection type Used when the modem connected via serial converter and requires specific handling"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempool.md",
@@ -2683,6 +2792,21 @@
       "RemoveRegisterFromVariableRequest"
     ],
     "tags2": "Defines specification for removing registers from variable The unique identifier the variable list register identifiers"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-serialconfig.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.SerialConfig",
+    "tags0": [
+      "parity",
+      "baudRate",
+      "dataBits",
+      "stopBits",
+      "io.clbs.openhes.models.acquisition.SerialConfig"
+    ],
+    "tags1": [
+      "SerialConfig"
+    ],
+    "tags2": "Defines the parameters for serial port configuration The baud rate The parity The data bits The stop bits"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-setdevicecommunicationunitsrequest.md",
@@ -2963,95 +3087,92 @@
     "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
     "tags0": [
-      "CRON_JOB_TYPE_START_BULK",
-      "CRON_JOB_TYPE_UNSPECIFIED",
-      "CRON_JOB_TYPE_START_PROXY_BULK",
-      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+      "keys",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest"
     ],
     "tags1": [
-      "BULK",
-      "CRON",
-      "CronJobTypeEnum",
-      "JOB",
-      "PROXY",
-      "START",
-      "TYPE",
-      "UNSPECIFIED"
+      "GetTranslationsRequest"
     ],
-    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
+    "tags2": "Defines the request for retrieving translations based language and keys The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
     "tags0": [
-      "spec",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
+      "translations",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
     ],
     "tags1": [
-      "CreateCronJobRequest"
+      "GetTranslationsResponse"
     ],
-    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
+    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
-    "tags0": [
-      "spec",
-      "status",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CronJob"
-    ],
-    "tags1": [
-      "CronJob"
-    ],
-    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
-    "tags0": [
-      "type",
-      "data",
-      "suspend",
-      "schedule",
-      "timezone",
-      "io.clbs.openhes.models.cronjobs.CronJobSpec"
-    ],
-    "tags1": [
-      "CronJobSpec"
-    ],
-    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
-    "tags0": [
-      "error",
-      "lastRunAt",
-      "nextRunAt",
-      "io.clbs.openhes.models.cronjobs.CronJobStatus"
-    ],
-    "tags1": [
-      "CronJobStatus"
-    ],
-    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
     "tags0": [
       "items",
-      "totalCount",
-      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+      "io.clbs.openhes.models.system.ApplicationConfig"
     ],
     "tags1": [
-      "ListOfCronJob"
+      "ApplicationConfig"
     ],
-    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
+    "tags2": "Defines specification for application configuration The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines specification for single component configuration The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
+    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "tags0": [
+      "content",
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": "Defines the OpenID Connect OIDC configuration The raw JSON configuration the OIDC service"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -3487,108 +3608,95 @@
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
+    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
     "tags0": [
-      "SECRET_DATA_PLAIN",
-      "SECRET_DATA_AES256CBC",
-      "SECRET_DATA_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_UNSPECIFIED",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
     ],
     "tags1": [
-      "AES256CBC",
-      "DATA",
-      "PLAIN",
-      "SECRET",
-      "SecretDataDecryptionMethod",
+      "BULK",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
+      "PROXY",
+      "START",
+      "TYPE",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the supported DLMS decryption methods Unspecified decryption method Plain data decryption required AES CBC dencryption method"
+    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
+    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
     "tags0": [
-      "SECRET_SESSION_PLAIN",
-      "SECRET_SESSION_UNSPECIFIED",
-      "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
+      "spec",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
     ],
     "tags1": [
-      "GF1P",
-      "OAEPM",
-      "PLAIN",
-      "RSA",
-      "SECRET",
-      "SESSION",
-      "SecretSessionKeyDecryptionMethod",
-      "UNSPECIFIED"
+      "CreateCronJobRequest"
     ],
-    "tags2": "Defines the supported decryption methods for session keys session key decryption method Used when the session key not set not used Plain session key session key decryption required RSA OAEP MGF1P decryption method Used for session keys"
+    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
     "tags0": [
+      "spec",
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CronJob"
+    ],
+    "tags1": [
+      "CronJob"
+    ],
+    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
+    "tags0": [
+      "type",
       "data",
-      "keyId",
-      "createdAt",
-      "updatedAt",
-      "accessLevel",
-      "io.clbs.openhes.models.crypto.CryptoSecret"
+      "suspend",
+      "schedule",
+      "timezone",
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
     ],
     "tags1": [
-      "CryptoSecret"
+      "CronJobSpec"
     ],
-    "tags2": "Defines specification crypto secrets The access level for the secret for example admin user The unique secret key identifier The timestamp when the secret was created The timestamp when the secret was last updated The secret data"
+    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
   },
   {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
     "tags0": [
-      "secrets",
-      "io.clbs.openhes.models.crypto.CryptoSecrets"
+      "error",
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
     ],
     "tags1": [
-      "CryptoSecrets"
+      "CronJobStatus"
     ],
-    "tags2": "Defines list crypto secrets list crypto secrets"
+    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
   },
   {
-    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
+    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
     "tags0": [
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
     ],
     "tags1": [
-      "GetCryptoSecretRequest"
+      "ListOfCronJob"
     ],
-    "tags2": "Defines specification for retrieving crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
-    "tags0": [
-      "data",
-      "keyId",
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "sessionKey",
-      "accessLevel",
-      "dataDecryptionIv",
-      "decryptionSecretId",
-      "dataDecryptionMethod",
-      "sessionKeyDecryptionMethod",
-      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "SetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
+    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",

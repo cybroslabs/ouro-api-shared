@@ -1221,6 +1221,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.SerialConfig">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SerialConfig</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>SetDeviceCommunicationUnitsRequest</code> 
@@ -1383,6 +1392,34 @@
         <a href="#enum-io.clbs.openhes.models.acquisition.ReadPathPolicy">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>ReadPathPolicy</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>SerialConfigBaudRate</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigDataBits">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>SerialConfigDataBits</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigParity">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>SerialConfigParity</code> 
+        </a>
+      </p>
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigStopBits">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>SerialConfigStopBits</code> 
         </a>
       </p>
     
@@ -3869,6 +3906,22 @@
   </thead>
   <tbody>
     
+    <tr>
+      <td>4</td>
+      <td>
+        config
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfig">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.SerialConfig"><span title="io.clbs.openhes.models.acquisition.SerialConfig">io.clbs.openhes.models.acquisition.SerialConfig</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The serial port configuration.</p></td>
+      
+    </tr>
+    
     
       
         
@@ -4276,6 +4329,22 @@
       
     </tr>
     
+    <tr>
+      <td>5</td>
+      <td>
+        serialConfig
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfig">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.SerialConfig"><span title="io.clbs.openhes.models.acquisition.SerialConfig">io.clbs.openhes.models.acquisition.SerialConfig</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The serial port configuration. Optional. If not set, current Moxa settings are preserved.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -4353,6 +4422,22 @@
         </code>
       </td>
       <td class="content"><p>The timeout for serial port connection using the RFC 2217 protocol.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        serialConfig
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfig">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.SerialConfig"><span title="io.clbs.openhes.models.acquisition.SerialConfig">io.clbs.openhes.models.acquisition.SerialConfig</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The serial port configuration. Optional. If not set, current Moxa settings are preserved.</p></td>
       
     </tr>
     
@@ -10972,21 +11057,6 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       
     </tr>
     
-    <tr>
-      <td>11</td>
-      <td>
-        serialBaudRate
-      </td>
-      <td>
-        <code title="uint32">
-          
-          <span>uint32</span>
-        </code>
-      </td>
-      <td class="content"><p>The serial baud rate, if applicable by the <code>modem_connection</code> field.</p></td>
-      
-    </tr>
-    
     
       
         
@@ -12029,6 +12099,105 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
         </code>
       </td>
       <td class="content"><p>A list of register identifiers.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.SerialConfig">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.SerialConfig" title="io.clbs.openhes.models.acquisition.SerialConfig">message SerialConfig</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the parameters for serial port configuration.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        baudRate
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfigBaudRate">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate"><span title="io.clbs.openhes.models.acquisition.SerialConfigBaudRate">io.clbs.openhes.models.acquisition.SerialConfigBaudRate</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The baud rate.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        parity
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfigParity">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.SerialConfigParity"><span title="io.clbs.openhes.models.acquisition.SerialConfigParity">io.clbs.openhes.models.acquisition.SerialConfigParity</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The parity.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        dataBits
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfigDataBits">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.SerialConfigDataBits"><span title="io.clbs.openhes.models.acquisition.SerialConfigDataBits">io.clbs.openhes.models.acquisition.SerialConfigDataBits</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The data bits.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        stopBits
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfigStopBits">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.SerialConfigStopBits"><span title="io.clbs.openhes.models.acquisition.SerialConfigStopBits">io.clbs.openhes.models.acquisition.SerialConfigStopBits</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The stop bits.</p></td>
       
     </tr>
     
@@ -13536,6 +13705,288 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       <td><code>READ_PATH_POLICY_DC_FIRST</code></td>
       <td>2</td>
       <td class="content"><p>Attempts to read from the data concentrator first and falls back to the meter if needed and supported.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate">
+  <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate" title="io.clbs.openhes.models.acquisition.SerialConfigBaudRate">enum SerialConfigBaudRate</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Defines the available serial port baud rate types.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>BAUD_RATE_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Unspecified baud rate.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_110</code></td>
+      <td>1</td>
+      <td class="content"><p>110 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_300</code></td>
+      <td>2</td>
+      <td class="content"><p>300 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_600</code></td>
+      <td>3</td>
+      <td class="content"><p>600 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_1200</code></td>
+      <td>4</td>
+      <td class="content"><p>1200 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_2400</code></td>
+      <td>5</td>
+      <td class="content"><p>2400 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_4800</code></td>
+      <td>6</td>
+      <td class="content"><p>4800 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_9600</code></td>
+      <td>7</td>
+      <td class="content"><p>9600 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_14400</code></td>
+      <td>8</td>
+      <td class="content"><p>14400 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_19200</code></td>
+      <td>9</td>
+      <td class="content"><p>19200 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_38400</code></td>
+      <td>10</td>
+      <td class="content"><p>38400 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_57600</code></td>
+      <td>11</td>
+      <td class="content"><p>57600 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_115200</code></td>
+      <td>12</td>
+      <td class="content"><p>115200 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_230400</code></td>
+      <td>13</td>
+      <td class="content"><p>230400 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_460800</code></td>
+      <td>14</td>
+      <td class="content"><p>460800 baud.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>BAUD_RATE_921600</code></td>
+      <td>15</td>
+      <td class="content"><p>921600 baud.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.SerialConfigDataBits">
+  <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigDataBits" title="io.clbs.openhes.models.acquisition.SerialConfigDataBits">enum SerialConfigDataBits</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Defines the available serial port data bit types.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>DATA_BITS_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Unspecified data bits.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DATA_BITS_5</code></td>
+      <td>1</td>
+      <td class="content"><p>5 data bits.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DATA_BITS_6</code></td>
+      <td>2</td>
+      <td class="content"><p>6 data bits.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DATA_BITS_7</code></td>
+      <td>3</td>
+      <td class="content"><p>7 data bits.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>DATA_BITS_8</code></td>
+      <td>4</td>
+      <td class="content"><p>8 data bits.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.SerialConfigParity">
+  <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigParity" title="io.clbs.openhes.models.acquisition.SerialConfigParity">enum SerialConfigParity</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Defines the available serial port parity types.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>PARITY_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Unspecified parity.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PARITY_NONE</code></td>
+      <td>1</td>
+      <td class="content"><p>No parity.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PARITY_EVEN</code></td>
+      <td>2</td>
+      <td class="content"><p>Even parity.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PARITY_ODD</code></td>
+      <td>3</td>
+      <td class="content"><p>Odd parity.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PARITY_MARK</code></td>
+      <td>4</td>
+      <td class="content"><p>Mark parity.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>PARITY_SPACE</code></td>
+      <td>5</td>
+      <td class="content"><p>Space parity.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.SerialConfigStopBits">
+  <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigStopBits" title="io.clbs.openhes.models.acquisition.SerialConfigStopBits">enum SerialConfigStopBits</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Defines the available serial port stop bit types.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>STOP_BITS_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Unspecified stop bits.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>STOP_BITS_1</code></td>
+      <td>1</td>
+      <td class="content"><p>1 stop bit.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>STOP_BITS_1_5</code></td>
+      <td>2</td>
+      <td class="content"><p>1.5 stop bits.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>STOP_BITS_2</code></td>
+      <td>3</td>
+      <td class="content"><p>2 stop bits.</p></td>
     </tr>
     
   </tbody>
