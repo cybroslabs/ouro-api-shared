@@ -1396,13 +1396,6 @@
       </p>
     
       <p>
-        <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate">
-          <span class="tag" style="min-width: 6em">Enum</span>
-          <code>SerialConfigBaudRate</code> 
-        </a>
-      </p>
-    
-      <p>
         <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigDataBits">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>SerialConfigDataBits</code> 
@@ -11463,15 +11456,15 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     <tr>
       <td>1</td>
       <td>
-        period
+        maxDuration
       </td>
       <td>
-        <code title="int32">
+        <code title="google.protobuf.Duration">
           
-          <span>int32</span>
+          <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The period of the profile values in seconds.</p></td>
+      <td class="content"><p>The period of the profile values.</p></td>
       
     </tr>
     
@@ -12150,10 +12143,9 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
         baudRate
       </td>
       <td>
-        <code title="io.clbs.openhes.models.acquisition.SerialConfigBaudRate">
+        <code title="int32">
           
-          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate"><span title="io.clbs.openhes.models.acquisition.SerialConfigBaudRate">io.clbs.openhes.models.acquisition.SerialConfigBaudRate</span>
-    </a>
+          <span>int32</span>
         </code>
       </td>
       <td class="content"><p>The baud rate.</p></td>
@@ -13728,126 +13720,6 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       <td><code>READ_PATH_POLICY_DC_FIRST</code></td>
       <td>2</td>
       <td class="content"><p>Attempts to read from the data concentrator first and falls back to the meter if needed and supported.</p></td>
-    </tr>
-    
-  </tbody>
-</table> 
-    </div>
-    
-    <div class="block">
-      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate">
-  <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigBaudRate" title="io.clbs.openhes.models.acquisition.SerialConfigBaudRate">enum SerialConfigBaudRate</a>
-  
-</h4>
-
-<div class="block content">
-  <p><p>Defines the available serial port baud rate types.</p></p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td><code>BAUD_RATE_UNSPECIFIED</code></td>
-      <td>0</td>
-      <td class="content"><p>Unspecified baud rate.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_110</code></td>
-      <td>1</td>
-      <td class="content"><p>110 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_300</code></td>
-      <td>2</td>
-      <td class="content"><p>300 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_600</code></td>
-      <td>3</td>
-      <td class="content"><p>600 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_1200</code></td>
-      <td>4</td>
-      <td class="content"><p>1200 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_2400</code></td>
-      <td>5</td>
-      <td class="content"><p>2400 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_4800</code></td>
-      <td>6</td>
-      <td class="content"><p>4800 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_9600</code></td>
-      <td>7</td>
-      <td class="content"><p>9600 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_14400</code></td>
-      <td>8</td>
-      <td class="content"><p>14400 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_19200</code></td>
-      <td>9</td>
-      <td class="content"><p>19200 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_38400</code></td>
-      <td>10</td>
-      <td class="content"><p>38400 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_57600</code></td>
-      <td>11</td>
-      <td class="content"><p>57600 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_115200</code></td>
-      <td>12</td>
-      <td class="content"><p>115200 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_230400</code></td>
-      <td>13</td>
-      <td class="content"><p>230400 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_460800</code></td>
-      <td>14</td>
-      <td class="content"><p>460800 baud.</p></td>
-    </tr>
-    
-    <tr>
-      <td><code>BAUD_RATE_921600</code></td>
-      <td>15</td>
-      <td class="content"><p>921600 baud.</p></td>
     </tr>
     
   </tbody>

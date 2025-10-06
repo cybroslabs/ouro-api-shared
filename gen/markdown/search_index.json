@@ -460,6 +460,69 @@
     "tags2": ""
   },
   {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Defines specification for application configuration The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines specification for single component configuration The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
+    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
+    "tags0": [
+      "content",
+      "io.clbs.openhes.models.system.OpenIdConfiguration"
+    ],
+    "tags1": [
+      "OpenIdConfiguration"
+    ],
+    "tags2": "Defines the OpenID Connect OIDC configuration The raw JSON configuration the OIDC service"
+  },
+  {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
     "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
     "tags0": [
@@ -562,31 +625,6 @@
       "SetCryptoSecretRequest"
     ],
     "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
-    "tags0": [
-      "keys",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.GetTranslationsRequest"
-    ],
-    "tags1": [
-      "GetTranslationsRequest"
-    ],
-    "tags2": "Defines the request for retrieving translations based language and keys The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
-    "tags0": [
-      "translations",
-      "io.clbs.openhes.models.localization.GetTranslationsResponse"
-    ],
-    "tags1": [
-      "GetTranslationsResponse"
-    ],
-    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
@@ -926,36 +964,6 @@
       "UNSPECIFIED"
     ],
     "tags2": "Defines the read path policies for retrieving data from devices Keeps the current behavior typically data concentrator first Attempts read directly from the meter and falls back the data concentrator needed and supported Attempts read from the data concentrator first and falls back the meter needed and supported"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigbaudrate.md",
-    "title": "Enum: io.clbs.openhes.models.acquisition.SerialConfigBaudRate",
-    "tags0": [
-      "BAUD_RATE_110",
-      "BAUD_RATE_300",
-      "BAUD_RATE_600",
-      "BAUD_RATE_1200",
-      "BAUD_RATE_2400",
-      "BAUD_RATE_4800",
-      "BAUD_RATE_9600",
-      "BAUD_RATE_14400",
-      "BAUD_RATE_19200",
-      "BAUD_RATE_38400",
-      "BAUD_RATE_57600",
-      "BAUD_RATE_115200",
-      "BAUD_RATE_230400",
-      "BAUD_RATE_460800",
-      "BAUD_RATE_921600",
-      "BAUD_RATE_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.acquisition.SerialConfigBaudRate"
-    ],
-    "tags1": [
-      "BAUD",
-      "RATE",
-      "SerialConfigBaudRate",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the available serial port baud rate types Unspecified baud rate baud baud baud baud baud baud baud baud baud baud baud baud baud baud baud"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigdatabits.md",
@@ -2722,14 +2730,14 @@
     "title": "Model: io.clbs.openhes.models.acquisition.ProfileValues",
     "tags0": [
       "unit",
-      "period",
       "blocks",
+      "maxDuration",
       "io.clbs.openhes.models.acquisition.ProfileValues"
     ],
     "tags1": [
       "ProfileValues"
     ],
-    "tags2": "Defines the profile type values The period the profile values seconds The unit the profile values The list continuous profile blocks"
+    "tags2": "Defines the profile type values The period the profile values The unit the profile values The list continuous profile blocks"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-proxybulk.md",
@@ -3132,6 +3140,31 @@
       "MessagingReceiveMessage"
     ],
     "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
+    "tags0": [
+      "keys",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest"
+    ],
+    "tags1": [
+      "GetTranslationsRequest"
+    ],
+    "tags2": "Defines the request for retrieving translations based language and keys The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "tags0": [
+      "translations",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+    ],
+    "tags1": [
+      "GetTranslationsResponse"
+    ],
+    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -3565,69 +3598,6 @@
       "UpdateObjectFieldsRequest"
     ],
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
-    "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
-    ],
-    "tags1": [
-      "ApplicationConfig"
-    ],
-    "tags2": "Defines specification for application configuration The default values for the application configuration"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
-    "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
-    ],
-    "tags1": [
-      "ApplicationConfigDescriptor"
-    ],
-    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
-    ],
-    "tags1": [
-      "ComponentConfig"
-    ],
-    "tags2": "Defines specification for single component configuration The component name The component configuration values"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
-    "tags0": [
-      "content",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
-    ],
-    "tags1": [
-      "OpenIdConfiguration"
-    ],
-    "tags2": "Defines the OpenID Connect OIDC configuration The raw JSON configuration the OIDC service"
   },
   {
     "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
