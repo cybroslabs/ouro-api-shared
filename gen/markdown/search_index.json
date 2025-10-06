@@ -2730,8 +2730,8 @@
     "title": "Model: io.clbs.openhes.models.acquisition.ProfileValues",
     "tags0": [
       "unit",
+      "period",
       "blocks",
-      "maxDuration",
       "io.clbs.openhes.models.acquisition.ProfileValues"
     ],
     "tags1": [

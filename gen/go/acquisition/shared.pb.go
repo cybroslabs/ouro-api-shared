@@ -6962,7 +6962,7 @@ func (b0 DeviceInfo_builder) Build() *DeviceInfo {
 // Defines the profile-type values.
 type ProfileValues struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_MaxDuration *durationpb.Duration   `protobuf:"bytes,1,opt,name=max_duration,json=maxDuration"`
+	xxx_hidden_Period      *durationpb.Duration   `protobuf:"bytes,1,opt,name=period"`
 	xxx_hidden_Unit        *string                `protobuf:"bytes,2,opt,name=unit"`
 	xxx_hidden_Blocks      *[]*ProfileBlock       `protobuf:"bytes,3,rep,name=blocks"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
@@ -6996,9 +6996,9 @@ func (x *ProfileValues) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ProfileValues) GetMaxDuration() *durationpb.Duration {
+func (x *ProfileValues) GetPeriod() *durationpb.Duration {
 	if x != nil {
-		return x.xxx_hidden_MaxDuration
+		return x.xxx_hidden_Period
 	}
 	return nil
 }
@@ -7022,8 +7022,8 @@ func (x *ProfileValues) GetBlocks() []*ProfileBlock {
 	return nil
 }
 
-func (x *ProfileValues) SetMaxDuration(v *durationpb.Duration) {
-	x.xxx_hidden_MaxDuration = v
+func (x *ProfileValues) SetPeriod(v *durationpb.Duration) {
+	x.xxx_hidden_Period = v
 }
 
 func (x *ProfileValues) SetUnit(v string) {
@@ -7035,11 +7035,11 @@ func (x *ProfileValues) SetBlocks(v []*ProfileBlock) {
 	x.xxx_hidden_Blocks = &v
 }
 
-func (x *ProfileValues) HasMaxDuration() bool {
+func (x *ProfileValues) HasPeriod() bool {
 	if x == nil {
 		return false
 	}
-	return x.xxx_hidden_MaxDuration != nil
+	return x.xxx_hidden_Period != nil
 }
 
 func (x *ProfileValues) HasUnit() bool {
@@ -7049,8 +7049,8 @@ func (x *ProfileValues) HasUnit() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *ProfileValues) ClearMaxDuration() {
-	x.xxx_hidden_MaxDuration = nil
+func (x *ProfileValues) ClearPeriod() {
+	x.xxx_hidden_Period = nil
 }
 
 func (x *ProfileValues) ClearUnit() {
@@ -7061,16 +7061,16 @@ func (x *ProfileValues) ClearUnit() {
 type ProfileValues_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	MaxDuration *durationpb.Duration
-	Unit        *string
-	Blocks      []*ProfileBlock
+	Period *durationpb.Duration
+	Unit   *string
+	Blocks []*ProfileBlock
 }
 
 func (b0 ProfileValues_builder) Build() *ProfileValues {
 	m0 := &ProfileValues{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.xxx_hidden_MaxDuration = b.MaxDuration
+	x.xxx_hidden_Period = b.Period
 	if b.Unit != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_Unit = b.Unit
@@ -13511,9 +13511,9 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\fdevice_model\x18\x06 \x01(\tR\vdeviceModel\x12%\n" +
 	"\x0eerror_register\x18\a \x01(\x04R\rerrorRegister\x12!\n" +
 	"\frelay_states\x18\b \x03(\bR\vrelayStates\x12)\n" +
-	"\x10connection_state\x18\t \x01(\bR\x0fconnectionState\"\xab\x01\n" +
-	"\rProfileValues\x12<\n" +
-	"\fmax_duration\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\vmaxDuration\x12\x12\n" +
+	"\x10connection_state\x18\t \x01(\bR\x0fconnectionState\"\xa0\x01\n" +
+	"\rProfileValues\x121\n" +
+	"\x06period\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\x06period\x12\x12\n" +
 	"\x04unit\x18\x02 \x01(\tR\x04unit\x12H\n" +
 	"\x06blocks\x18\x03 \x03(\v20.io.clbs.openhes.models.acquisition.ProfileBlockR\x06blocks\"x\n" +
 	"\x16IrregularProfileValues\x12\x12\n" +
@@ -14120,7 +14120,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	42,  // 87: io.clbs.openhes.models.acquisition.DeviceEvents.events:type_name -> io.clbs.openhes.models.acquisition.DeviceEventRecord
 	110, // 88: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
 	109, // 89: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
-	109, // 90: io.clbs.openhes.models.acquisition.ProfileValues.max_duration:type_name -> google.protobuf.Duration
+	109, // 90: io.clbs.openhes.models.acquisition.ProfileValues.period:type_name -> google.protobuf.Duration
 	48,  // 91: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
 	47,  // 92: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
 	110, // 93: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp

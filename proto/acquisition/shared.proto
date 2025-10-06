@@ -399,9 +399,9 @@ message DeviceInfo {
 
 // Defines the profile-type values.
 message ProfileValues {
-    google.protobuf.Duration max_duration = 1;  // The period of the profile values.
-    string unit                           = 2;  // The unit of the profile values.
-    repeated ProfileBlock blocks          = 3;  // The list of continuous profile blocks.
+    google.protobuf.Duration period = 1;  // The period of the profile values.
+    string unit                     = 2;  // The unit of the profile values.
+    repeated ProfileBlock blocks    = 3;  // The list of continuous profile blocks.
 }
 
 // Defines the irregular (non-perioic) profile values.
