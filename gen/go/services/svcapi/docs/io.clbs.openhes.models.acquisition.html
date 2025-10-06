@@ -1410,6 +1410,13 @@
       </p>
     
       <p>
+        <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigFLowControler">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>SerialConfigFLowControler</code> 
+        </a>
+      </p>
+    
+      <p>
         <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigParity">
           <span class="tag" style="min-width: 6em">Enum</span>
           <code>SerialConfigParity</code> 
@@ -12201,6 +12208,22 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       
     </tr>
     
+    <tr>
+      <td>5</td>
+      <td>
+        flowControl
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.SerialConfigFLowControler">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#enum-io.clbs.openhes.models.acquisition.SerialConfigFLowControler"><span title="io.clbs.openhes.models.acquisition.SerialConfigFLowControler">io.clbs.openhes.models.acquisition.SerialConfigFLowControler</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The flow control.</p></td>
+      
+    </tr>
+    
     
   </tbody>
 </table>
@@ -13879,6 +13902,54 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       <td><code>DATA_BITS_8</code></td>
       <td>4</td>
       <td class="content"><p>8 data bits.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.acquisition.SerialConfigFLowControler">
+  <a href="#enum-io.clbs.openhes.models.acquisition.SerialConfigFLowControler" title="io.clbs.openhes.models.acquisition.SerialConfigFLowControler">enum SerialConfigFLowControler</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Defines the available serial port parity types.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>FLOW_CONTROL_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Unspecified flow control.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>FLOW_CONTROL_NONE</code></td>
+      <td>1</td>
+      <td class="content"><p>No flow control.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>FLOW_CONTROL_HARDWARE</code></td>
+      <td>2</td>
+      <td class="content"><p>Hardware flow control (RTS/CTS).</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>FLOW_CONTROL_SOFTWARE</code></td>
+      <td>3</td>
+      <td class="content"><p>Software flow control (XON/XOFF).</p></td>
     </tr>
     
   </tbody>

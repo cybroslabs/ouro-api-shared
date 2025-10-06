@@ -186,12 +186,21 @@ enum SerialConfigStopBits {
     STOP_BITS_2           = 3;  // 2 stop bits.
 }
 
+// Defines the available serial port parity types.
+enum SerialConfigFLowControler {
+    FLOW_CONTROL_UNSPECIFIED = 0;  // Unspecified flow control.
+    FLOW_CONTROL_NONE        = 1;  // No flow control.
+    FLOW_CONTROL_HARDWARE    = 2;  // Hardware flow control (RTS/CTS).
+    FLOW_CONTROL_SOFTWARE    = 3;  // Software flow control (XON/XOFF).
+}
+
 // Defines the parameters for serial port configuration.
 message SerialConfig {
-    SerialConfigBaudRate baud_rate = 1;  // The baud rate.
-    SerialConfigParity parity      = 2;  // The parity.
-    SerialConfigDataBits data_bits = 3;  // The data bits.
-    SerialConfigStopBits stop_bits = 4;  // The stop bits.
+    SerialConfigBaudRate baud_rate         = 1;  // The baud rate.
+    SerialConfigParity parity              = 2;  // The parity.
+    SerialConfigDataBits data_bits         = 3;  // The data bits.
+    SerialConfigStopBits stop_bits         = 4;  // The stop bits.
+    SerialConfigFLowControler flow_control = 5;  // The flow control.
 }
 
 // Defines the configuration parameters for device connection.
