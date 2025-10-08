@@ -1,15 +1,5 @@
 [
   {
-    "filename": "service-general-apiservice.md",
-    "title": "ApiService - General",
-    "tags0": [
-      "SetLicense",
-      "GetLicenseRequestCode"
-    ],
-    "tags1": [],
-    "tags2": ""
-  },
-  {
     "filename": "service-bulks-apiservice.md",
     "title": "ApiService - Bulks",
     "tags0": [
@@ -396,16 +386,15 @@
     "filename": "service-system-apiservice.md",
     "title": "ApiService - System",
     "tags0": [
+      "SetLicense",
       "GetTranslations",
-      "GetOpenIdConfiguration",
-      "io.clbs.openhes.models.system.OpenIdConfiguration",
+      "GetLicenseRequestCode",
       "io.clbs.openhes.models.localization.GetTranslationsRequest",
       "io.clbs.openhes.models.localization.GetTranslationsResponse"
     ],
     "tags1": [
       "GetTranslationsRequest",
-      "GetTranslationsResponse",
-      "OpenIdConfiguration"
+      "GetTranslationsResponse"
     ],
     "tags2": ""
   },
@@ -509,18 +498,6 @@
       "ComponentConfigDescriptor"
     ],
     "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-openidconfiguration.md",
-    "title": "Model: io.clbs.openhes.models.system.OpenIdConfiguration",
-    "tags0": [
-      "content",
-      "io.clbs.openhes.models.system.OpenIdConfiguration"
-    ],
-    "tags1": [
-      "OpenIdConfiguration"
-    ],
-    "tags2": "Defines the OpenID Connect OIDC configuration The raw JSON configuration the OIDC service"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",

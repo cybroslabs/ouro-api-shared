@@ -85,53 +85,6 @@
 
   <div class="taggroup">
     
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetLicenseRequestCode">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetLicenseRequestCode">
-            rpc <code>GetLicenseRequestCode</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
-    </a></code><br>
-        Response: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>The method returns the license request code if the license is not set. Otherwise it returns empty string.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SetLicense">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SetLicense">
-            rpc <code>SetLicense</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
-    </a></code><br>
-        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>The method stored a new license key. Used only and only for air-gapped installations.</p></p>
-      </div>
-      
-    </div>
-    
-  </div>
-
-  <div class="taggroup">
-    
     <h4>Bulks</h4>
     
     
@@ -2452,22 +2405,42 @@ Values missing from the defaults will be deleted if they were previously set in 
     
     <div class="box">
       <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetOpenIdConfiguration">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetOpenIdConfiguration">
-            rpc <code>GetOpenIdConfiguration</code>
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetLicenseRequestCode">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetLicenseRequestCode">
+            rpc <code>GetLicenseRequestCode</code>
           </a>
         </h5>
         
         Request: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
     </a></code><br>
-        Response: <code><a href="io.clbs.openhes.models.system.html#message-io.clbs.openhes.models.system.OpenIdConfiguration"><span title="io.clbs.openhes.models.system.OpenIdConfiguration">io.clbs.openhes.models.system.OpenIdConfiguration</span>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
     </a></code><br>
       </div>
 
       
       <div class="block">
-        <p><p>Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
-All the authenticated endpoints shall be protected using a token issued by this OIDC service.</p></p>
+        <p><p>The method returns the license request code if the license is not set. Otherwise it returns empty string.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SetLicense">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SetLicense">
+            rpc <code>SetLicense</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="google.protobuf.html#message-google.protobuf.StringValue"><span title="google.protobuf.StringValue">google.protobuf.StringValue</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>The method stored a new license key. Used only and only for air-gapped installations.</p></p>
       </div>
       
     </div>

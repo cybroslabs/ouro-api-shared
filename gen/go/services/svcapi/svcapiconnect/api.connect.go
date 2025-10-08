@@ -320,9 +320,6 @@ const (
 	// ApiServiceUpdateObjectFieldsProcedure is the fully-qualified name of the ApiService's
 	// UpdateObjectFields RPC.
 	ApiServiceUpdateObjectFieldsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
-	// ApiServiceGetOpenIdConfigurationProcedure is the fully-qualified name of the ApiService's
-	// GetOpenIdConfiguration RPC.
-	ApiServiceGetOpenIdConfigurationProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetOpenIdConfiguration"
 	// ApiServiceGetLicenseRequestCodeProcedure is the fully-qualified name of the ApiService's
 	// GetLicenseRequestCode RPC.
 	ApiServiceGetLicenseRequestCodeProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetLicenseRequestCode"
@@ -702,11 +699,9 @@ type ApiServiceClient interface {
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
-	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
-	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
 	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
 	GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: System
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
@@ -1343,12 +1338,6 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("UpdateObjectFields")),
 			connect.WithClientOptions(opts...),
 		),
-		getOpenIdConfiguration: connect.NewClient[emptypb.Empty, system.OpenIdConfiguration](
-			httpClient,
-			baseURL+ApiServiceGetOpenIdConfigurationProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
-			connect.WithClientOptions(opts...),
-		),
 		getLicenseRequestCode: connect.NewClient[emptypb.Empty, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceGetLicenseRequestCodeProcedure,
@@ -1508,7 +1497,6 @@ type apiServiceClient struct {
 	pauseCronJob                                                     *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	resumeCronJob                                                    *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	updateObjectFields                                               *connect.Client[common.UpdateObjectFieldsRequest, emptypb.Empty]
-	getOpenIdConfiguration                                           *connect.Client[emptypb.Empty, system.OpenIdConfiguration]
 	getLicenseRequestCode                                            *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	setLicense                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
@@ -2043,11 +2031,6 @@ func (c *apiServiceClient) UpdateObjectFields(ctx context.Context, req *connect.
 	return c.updateObjectFields.CallUnary(ctx, req)
 }
 
-// GetOpenIdConfiguration calls io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration.
-func (c *apiServiceClient) GetOpenIdConfiguration(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error) {
-	return c.getOpenIdConfiguration.CallUnary(ctx, req)
-}
-
 // GetLicenseRequestCode calls io.clbs.openhes.services.svcapi.ApiService.GetLicenseRequestCode.
 func (c *apiServiceClient) GetLicenseRequestCode(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.getLicenseRequestCode.CallUnary(ctx, req)
@@ -2446,11 +2429,9 @@ type ApiServiceHandler interface {
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
-	// All the authenticated endpoints shall be protected using a token issued by this OIDC service.
-	GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error)
 	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
 	GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: System
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
@@ -3083,12 +3064,6 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("UpdateObjectFields")),
 		connect.WithHandlerOptions(opts...),
 	)
-	apiServiceGetOpenIdConfigurationHandler := connect.NewUnaryHandler(
-		ApiServiceGetOpenIdConfigurationProcedure,
-		svc.GetOpenIdConfiguration,
-		connect.WithSchema(apiServiceMethods.ByName("GetOpenIdConfiguration")),
-		connect.WithHandlerOptions(opts...),
-	)
 	apiServiceGetLicenseRequestCodeHandler := connect.NewUnaryHandler(
 		ApiServiceGetLicenseRequestCodeProcedure,
 		svc.GetLicenseRequestCode,
@@ -3345,8 +3320,6 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceResumeCronJobHandler.ServeHTTP(w, r)
 		case ApiServiceUpdateObjectFieldsProcedure:
 			apiServiceUpdateObjectFieldsHandler.ServeHTTP(w, r)
-		case ApiServiceGetOpenIdConfigurationProcedure:
-			apiServiceGetOpenIdConfigurationHandler.ServeHTTP(w, r)
 		case ApiServiceGetLicenseRequestCodeProcedure:
 			apiServiceGetLicenseRequestCodeHandler.ServeHTTP(w, r)
 		case ApiServiceSetLicenseProcedure:
@@ -3772,10 +3745,6 @@ func (UnimplementedApiServiceHandler) ResumeCronJob(context.Context, *connect.Re
 
 func (UnimplementedApiServiceHandler) UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateObjectFields is not implemented"))
-}
-
-func (UnimplementedApiServiceHandler) GetOpenIdConfiguration(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.OpenIdConfiguration], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetOpenIdConfiguration is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {

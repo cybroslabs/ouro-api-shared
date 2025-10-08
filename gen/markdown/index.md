@@ -6,7 +6,6 @@ This page lists all the services and models available in the API. Each service h
 
 The Dataproxy related service definition.
 
-- [General](service-general-apiservice.md)
 - [Bulks](service-bulks-apiservice.md)
 - [Configuration](service-configuration-apiservice.md)
 - [Cron Jobs](service-cron-jobs-apiservice.md)

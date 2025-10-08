@@ -1,15 +1,24 @@
 # ApiService - System
 
-## GetOpenIdConfiguration
+## GetLicenseRequestCode
 
-Retrieves the details of the OpenId configuration, proxied directly from the configured OIDC service.
-All the authenticated endpoints shall be protected using a token issued by this OIDC service.
+The method returns the license request code if the license is not set. Otherwise it returns empty string.
 
 ```proto
-GetOpenIdConfiguration() returns (io.clbs.openhes.models.system.OpenIdConfiguration)
+GetLicenseRequestCode() returns (google.protobuf.StringValue)
 ```
 
-- Output: [`io.clbs.openhes.models.system.OpenIdConfiguration`](model-io-clbs-openhes-models-system-openidconfiguration.md)
+- Output: `google.protobuf.StringValue`
+
+## SetLicense
+
+The method stored a new license key. Used only and only for air-gapped installations.
+
+```proto
+SetLicense(google.protobuf.StringValue)
+```
+
+- Input: `google.protobuf.StringValue`
 
 ## GetTranslations
 
