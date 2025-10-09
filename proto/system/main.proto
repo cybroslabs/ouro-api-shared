@@ -44,7 +44,7 @@ message License {
     google.protobuf.Timestamp service_expiration = 10;  // The service expiration date. This is the date until when the license entitles to free updates and support.
 }
 
-// Defines the OpenID Connect (OIDC) configuration.
-message OpenIdConfiguration {
-    bytes content = 1;  // The raw JSON configuration of the OIDC service.
+// Defines the user information structure.
+message UserProfile {
+    // FIXME: Define the user information fields here.
 }

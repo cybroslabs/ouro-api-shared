@@ -421,6 +421,18 @@
     "tags2": ""
   },
   {
+    "filename": "service-user-management-apiservice.md",
+    "title": "ApiService - User Management",
+    "tags0": [
+      "GetUserProfile",
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": ""
+  },
+  {
     "filename": "service-variables-apiservice.md",
     "title": "ApiService - Variables",
     "tags0": [
@@ -498,6 +510,17 @@
       "ComponentConfigDescriptor"
     ],
     "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
+    "title": "Model: io.clbs.openhes.models.system.UserProfile",
+    "tags0": [
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": "Defines the user information structure FIXME Define the user information fields here"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",

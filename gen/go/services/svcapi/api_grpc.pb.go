@@ -137,6 +137,7 @@ const (
 	ApiService_CreateMessagingPublisher_FullMethodName                                         = "/io.clbs.openhes.services.svcapi.ApiService/CreateMessagingPublisher"
 	ApiService_ListMessagingComponents_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/ListMessagingComponents"
 	ApiService_UpdateMessagingComponent_FullMethodName                                         = "/io.clbs.openhes.services.svcapi.ApiService/UpdateMessagingComponent"
+	ApiService_GetUserProfile_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetUserProfile"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -520,6 +521,9 @@ type ApiServiceClient interface {
 	// @group: Messaging
 	// Updates the details of an existing messaging component.
 	UpdateMessagingComponent(ctx context.Context, in *messaging.MessagingComponent, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: User Management
+	// Retrieves information about the currently authenticated user.
+	GetUserProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.UserProfile, error)
 }
 
 type apiServiceClient struct {
@@ -1653,6 +1657,16 @@ func (c *apiServiceClient) UpdateMessagingComponent(ctx context.Context, in *mes
 	return out, nil
 }
 
+func (c *apiServiceClient) GetUserProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.UserProfile, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(system.UserProfile)
+	err := c.cc.Invoke(ctx, ApiService_GetUserProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -2034,6 +2048,9 @@ type ApiServiceServer interface {
 	// @group: Messaging
 	// Updates the details of an existing messaging component.
 	UpdateMessagingComponent(context.Context, *messaging.MessagingComponent) (*emptypb.Empty, error)
+	// @group: User Management
+	// Retrieves information about the currently authenticated user.
+	GetUserProfile(context.Context, *emptypb.Empty) (*system.UserProfile, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -2370,6 +2387,9 @@ func (UnimplementedApiServiceServer) ListMessagingComponents(context.Context, *c
 }
 func (UnimplementedApiServiceServer) UpdateMessagingComponent(context.Context, *messaging.MessagingComponent) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessagingComponent not implemented")
+}
+func (UnimplementedApiServiceServer) GetUserProfile(context.Context, *emptypb.Empty) (*system.UserProfile, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserProfile not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -4311,6 +4331,24 @@ func _ApiService_UpdateMessagingComponent_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetUserProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetUserProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetUserProfile(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4733,6 +4771,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateMessagingComponent",
 			Handler:    _ApiService_UpdateMessagingComponent_Handler,
+		},
+		{
+			MethodName: "GetUserProfile",
+			Handler:    _ApiService_GetUserProfile_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

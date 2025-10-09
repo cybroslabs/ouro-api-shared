@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiJgoTT3BlbklkQ29uZmlndXJhdGlvbhIPCgdjb250ZW50GAEgASgMQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiDQoLVXNlclByb2ZpbGVCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -346,37 +346,29 @@ export const LicenseSchema: GenMessage<License, {jsonType: LicenseJson}> = /*@__
   messageDesc(file_system_main, 4);
 
 /**
- * Defines the OpenID Connect (OIDC) configuration.
+ * Defines the user information structure.
  *
- * @generated from message io.clbs.openhes.models.system.OpenIdConfiguration
+ * FIXME: Define the user information fields here.
+ *
+ * @generated from message io.clbs.openhes.models.system.UserProfile
  */
-export type OpenIdConfiguration = Message<"io.clbs.openhes.models.system.OpenIdConfiguration"> & {
-  /**
-   * The raw JSON configuration of the OIDC service.
-   *
-   * @generated from field: bytes content = 1;
-   */
-  content: Uint8Array;
+export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> & {
 };
 
 /**
- * Defines the OpenID Connect (OIDC) configuration.
+ * Defines the user information structure.
  *
- * @generated from message io.clbs.openhes.models.system.OpenIdConfiguration
+ * FIXME: Define the user information fields here.
+ *
+ * @generated from message io.clbs.openhes.models.system.UserProfile
  */
-export type OpenIdConfigurationJson = {
-  /**
-   * The raw JSON configuration of the OIDC service.
-   *
-   * @generated from field: bytes content = 1;
-   */
-  content?: string;
+export type UserProfileJson = {
 };
 
 /**
- * Describes the message io.clbs.openhes.models.system.OpenIdConfiguration.
- * Use `create(OpenIdConfigurationSchema)` to create a new message.
+ * Describes the message io.clbs.openhes.models.system.UserProfile.
+ * Use `create(UserProfileSchema)` to create a new message.
  */
-export const OpenIdConfigurationSchema: GenMessage<OpenIdConfiguration, {jsonType: OpenIdConfigurationJson}> = /*@__PURE__*/
+export const UserProfileSchema: GenMessage<UserProfile, {jsonType: UserProfileJson}> = /*@__PURE__*/
   messageDesc(file_system_main, 5);
 

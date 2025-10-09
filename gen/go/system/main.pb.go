@@ -655,30 +655,27 @@ func (b0 License_builder) Build() *License {
 	return m0
 }
 
-// Defines the OpenID Connect (OIDC) configuration.
-type OpenIdConfiguration struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Content     []byte                 `protobuf:"bytes,1,opt,name=content"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+// Defines the user information structure.
+type UserProfile struct {
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *OpenIdConfiguration) Reset() {
-	*x = OpenIdConfiguration{}
+func (x *UserProfile) Reset() {
+	*x = UserProfile{}
 	mi := &file_system_main_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *OpenIdConfiguration) String() string {
+func (x *UserProfile) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenIdConfiguration) ProtoMessage() {}
+func (*UserProfile) ProtoMessage() {}
 
-func (x *OpenIdConfiguration) ProtoReflect() protoreflect.Message {
+func (x *UserProfile) ProtoReflect() protoreflect.Message {
 	mi := &file_system_main_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -690,47 +687,15 @@ func (x *OpenIdConfiguration) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *OpenIdConfiguration) GetContent() []byte {
-	if x != nil {
-		return x.xxx_hidden_Content
-	}
-	return nil
-}
-
-func (x *OpenIdConfiguration) SetContent(v []byte) {
-	if v == nil {
-		v = []byte{}
-	}
-	x.xxx_hidden_Content = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
-}
-
-func (x *OpenIdConfiguration) HasContent() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *OpenIdConfiguration) ClearContent() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Content = nil
-}
-
-type OpenIdConfiguration_builder struct {
+type UserProfile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Content []byte
 }
 
-func (b0 OpenIdConfiguration_builder) Build() *OpenIdConfiguration {
-	m0 := &OpenIdConfiguration{}
+func (b0 UserProfile_builder) Build() *UserProfile {
+	m0 := &UserProfile{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.Content != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
-		x.xxx_hidden_Content = b.Content
-	}
 	return m0
 }
 
@@ -763,9 +728,8 @@ const file_system_main_proto_rawDesc = "" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\x11serviceExpiration\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"/\n" +
-	"\x13OpenIdConfiguration\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\fR\acontentB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\r\n" +
+	"\vUserProfileB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
 
 var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_system_main_proto_goTypes = []any{
@@ -774,7 +738,7 @@ var file_system_main_proto_goTypes = []any{
 	(*ComponentConfigDescriptor)(nil),   // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
 	(*ApplicationConfigDescriptor)(nil), // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	(*License)(nil),                     // 4: io.clbs.openhes.models.system.License
-	(*OpenIdConfiguration)(nil),         // 5: io.clbs.openhes.models.system.OpenIdConfiguration
+	(*UserProfile)(nil),                 // 5: io.clbs.openhes.models.system.UserProfile
 	nil,                                 // 6: io.clbs.openhes.models.system.License.OptionsEntry
 	(*common.FieldValues)(nil),          // 7: io.clbs.openhes.models.common.FieldValues
 	(*common.FieldDescriptor)(nil),      // 8: io.clbs.openhes.models.common.FieldDescriptor

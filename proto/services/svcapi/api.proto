@@ -418,4 +418,8 @@ service ApiService {
     // @group: Messaging
     // Updates the details of an existing messaging component.
     rpc UpdateMessagingComponent(io.clbs.openhes.models.messaging.MessagingComponent) returns (google.protobuf.Empty);
+
+    // @group: User Management
+    // Retrieves information about the currently authenticated user.
+    rpc GetUserProfile(google.protobuf.Empty) returns (io.clbs.openhes.models.system.UserProfile);
 }

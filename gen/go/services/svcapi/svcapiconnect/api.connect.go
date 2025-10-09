@@ -346,6 +346,9 @@ const (
 	// ApiServiceUpdateMessagingComponentProcedure is the fully-qualified name of the ApiService's
 	// UpdateMessagingComponent RPC.
 	ApiServiceUpdateMessagingComponentProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateMessagingComponent"
+	// ApiServiceGetUserProfileProcedure is the fully-qualified name of the ApiService's GetUserProfile
+	// RPC.
+	ApiServiceGetUserProfileProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetUserProfile"
 )
 
 // ApiServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiService service.
@@ -725,6 +728,9 @@ type ApiServiceClient interface {
 	// @group: Messaging
 	// Updates the details of an existing messaging component.
 	UpdateMessagingComponent(context.Context, *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error)
+	// @group: User Management
+	// Retrieves information about the currently authenticated user.
+	GetUserProfile(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.UserProfile], error)
 }
 
 // NewApiServiceClient constructs a client for the io.clbs.openhes.services.svcapi.ApiService
@@ -1392,6 +1398,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("UpdateMessagingComponent")),
 			connect.WithClientOptions(opts...),
 		),
+		getUserProfile: connect.NewClient[emptypb.Empty, system.UserProfile](
+			httpClient,
+			baseURL+ApiServiceGetUserProfileProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetUserProfile")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -1506,6 +1518,7 @@ type apiServiceClient struct {
 	createMessagingPublisher                                         *connect.Client[messaging.MessagingPublisherClient, emptypb.Empty]
 	listMessagingComponents                                          *connect.Client[common.ListSelector, messaging.ListOfMessagingComponent]
 	updateMessagingComponent                                         *connect.Client[messaging.MessagingComponent, emptypb.Empty]
+	getUserProfile                                                   *connect.Client[emptypb.Empty, system.UserProfile]
 }
 
 // CreateVariable calls io.clbs.openhes.services.svcapi.ApiService.CreateVariable.
@@ -2078,6 +2091,11 @@ func (c *apiServiceClient) UpdateMessagingComponent(ctx context.Context, req *co
 	return c.updateMessagingComponent.CallUnary(ctx, req)
 }
 
+// GetUserProfile calls io.clbs.openhes.services.svcapi.ApiService.GetUserProfile.
+func (c *apiServiceClient) GetUserProfile(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[system.UserProfile], error) {
+	return c.getUserProfile.CallUnary(ctx, req)
+}
+
 // ApiServiceHandler is an implementation of the io.clbs.openhes.services.svcapi.ApiService service.
 type ApiServiceHandler interface {
 	// @group: Variables
@@ -2455,6 +2473,9 @@ type ApiServiceHandler interface {
 	// @group: Messaging
 	// Updates the details of an existing messaging component.
 	UpdateMessagingComponent(context.Context, *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error)
+	// @group: User Management
+	// Retrieves information about the currently authenticated user.
+	GetUserProfile(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.UserProfile], error)
 }
 
 // NewApiServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -3118,6 +3139,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("UpdateMessagingComponent")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetUserProfileHandler := connect.NewUnaryHandler(
+		ApiServiceGetUserProfileProcedure,
+		svc.GetUserProfile,
+		connect.WithSchema(apiServiceMethods.ByName("GetUserProfile")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiServiceCreateVariableProcedure:
@@ -3338,6 +3365,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceListMessagingComponentsHandler.ServeHTTP(w, r)
 		case ApiServiceUpdateMessagingComponentProcedure:
 			apiServiceUpdateMessagingComponentHandler.ServeHTTP(w, r)
+		case ApiServiceGetUserProfileProcedure:
+			apiServiceGetUserProfileHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -3781,4 +3810,8 @@ func (UnimplementedApiServiceHandler) ListMessagingComponents(context.Context, *
 
 func (UnimplementedApiServiceHandler) UpdateMessagingComponent(context.Context, *connect.Request[messaging.MessagingComponent]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateMessagingComponent is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetUserProfile(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[system.UserProfile], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetUserProfile is not implemented"))
 }
