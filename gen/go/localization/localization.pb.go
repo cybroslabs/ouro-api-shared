@@ -25,8 +25,9 @@ const (
 // Defines the request for retrieving translations based on language and keys.
 type GetTranslationsRequest struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_IetfLanguageTag *string                `protobuf:"bytes,1,opt,name=ietf_language_tag,json=ietfLanguageTag"`
-	xxx_hidden_Keys            []string               `protobuf:"bytes,2,rep,name=keys"`
+	xxx_hidden_Application     *string                `protobuf:"bytes,1,opt,name=application"`
+	xxx_hidden_IetfLanguageTag *string                `protobuf:"bytes,2,opt,name=ietf_language_tag,json=ietfLanguageTag"`
+	xxx_hidden_Keys            []string               `protobuf:"bytes,3,rep,name=keys"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
 	XXX_presence               [1]uint32
 	unknownFields              protoimpl.UnknownFields
@@ -58,6 +59,16 @@ func (x *GetTranslationsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
+func (x *GetTranslationsRequest) GetApplication() string {
+	if x != nil {
+		if x.xxx_hidden_Application != nil {
+			return *x.xxx_hidden_Application
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *GetTranslationsRequest) GetIetfLanguageTag() string {
 	if x != nil {
 		if x.xxx_hidden_IetfLanguageTag != nil {
@@ -75,30 +86,48 @@ func (x *GetTranslationsRequest) GetKeys() []string {
 	return nil
 }
 
+func (x *GetTranslationsRequest) SetApplication(v string) {
+	x.xxx_hidden_Application = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
 func (x *GetTranslationsRequest) SetIetfLanguageTag(v string) {
 	x.xxx_hidden_IetfLanguageTag = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *GetTranslationsRequest) SetKeys(v []string) {
 	x.xxx_hidden_Keys = v
 }
 
-func (x *GetTranslationsRequest) HasIetfLanguageTag() bool {
+func (x *GetTranslationsRequest) HasApplication() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *GetTranslationsRequest) ClearIetfLanguageTag() {
+func (x *GetTranslationsRequest) HasIetfLanguageTag() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *GetTranslationsRequest) ClearApplication() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Application = nil
+}
+
+func (x *GetTranslationsRequest) ClearIetfLanguageTag() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_IetfLanguageTag = nil
 }
 
 type GetTranslationsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	Application     *string
 	IetfLanguageTag *string
 	Keys            []string
 }
@@ -107,11 +136,160 @@ func (b0 GetTranslationsRequest_builder) Build() *GetTranslationsRequest {
 	m0 := &GetTranslationsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.Application != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Application = b.Application
+	}
 	if b.IetfLanguageTag != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_IetfLanguageTag = b.IetfLanguageTag
 	}
 	x.xxx_hidden_Keys = b.Keys
+	return m0
+}
+
+// Indicates that a translation is missing for the specified language and key.
+type MissingTranslationRequest struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Application     *string                `protobuf:"bytes,1,opt,name=application"`
+	xxx_hidden_IetfLanguageTag *string                `protobuf:"bytes,2,opt,name=ietf_language_tag,json=ietfLanguageTag"`
+	xxx_hidden_Key             *string                `protobuf:"bytes,3,opt,name=key"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *MissingTranslationRequest) Reset() {
+	*x = MissingTranslationRequest{}
+	mi := &file_localization_localization_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MissingTranslationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MissingTranslationRequest) ProtoMessage() {}
+
+func (x *MissingTranslationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_localization_localization_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MissingTranslationRequest) GetApplication() string {
+	if x != nil {
+		if x.xxx_hidden_Application != nil {
+			return *x.xxx_hidden_Application
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *MissingTranslationRequest) GetIetfLanguageTag() string {
+	if x != nil {
+		if x.xxx_hidden_IetfLanguageTag != nil {
+			return *x.xxx_hidden_IetfLanguageTag
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *MissingTranslationRequest) GetKey() string {
+	if x != nil {
+		if x.xxx_hidden_Key != nil {
+			return *x.xxx_hidden_Key
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *MissingTranslationRequest) SetApplication(v string) {
+	x.xxx_hidden_Application = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
+func (x *MissingTranslationRequest) SetIetfLanguageTag(v string) {
+	x.xxx_hidden_IetfLanguageTag = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *MissingTranslationRequest) SetKey(v string) {
+	x.xxx_hidden_Key = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+}
+
+func (x *MissingTranslationRequest) HasApplication() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MissingTranslationRequest) HasIetfLanguageTag() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MissingTranslationRequest) HasKey() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *MissingTranslationRequest) ClearApplication() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Application = nil
+}
+
+func (x *MissingTranslationRequest) ClearIetfLanguageTag() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_IetfLanguageTag = nil
+}
+
+func (x *MissingTranslationRequest) ClearKey() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Key = nil
+}
+
+type MissingTranslationRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Application     *string
+	IetfLanguageTag *string
+	Key             *string
+}
+
+func (b0 MissingTranslationRequest_builder) Build() *MissingTranslationRequest {
+	m0 := &MissingTranslationRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Application != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Application = b.Application
+	}
+	if b.IetfLanguageTag != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_IetfLanguageTag = b.IetfLanguageTag
+	}
+	if b.Key != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_Key = b.Key
+	}
 	return m0
 }
 
@@ -125,7 +303,7 @@ type GetTranslationsResponse struct {
 
 func (x *GetTranslationsResponse) Reset() {
 	*x = GetTranslationsResponse{}
-	mi := &file_localization_localization_proto_msgTypes[1]
+	mi := &file_localization_localization_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -137,7 +315,7 @@ func (x *GetTranslationsResponse) String() string {
 func (*GetTranslationsResponse) ProtoMessage() {}
 
 func (x *GetTranslationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_localization_localization_proto_msgTypes[1]
+	mi := &file_localization_localization_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -173,33 +351,209 @@ func (b0 GetTranslationsResponse_builder) Build() *GetTranslationsResponse {
 	return m0
 }
 
+// Defines the request for updating translations.
+type UpdateTranslationsRequest struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Version         *string                `protobuf:"bytes,1,opt,name=version"`
+	xxx_hidden_Application     *string                `protobuf:"bytes,2,opt,name=application"`
+	xxx_hidden_IetfLanguageTag *string                `protobuf:"bytes,3,opt,name=ietf_language_tag,json=ietfLanguageTag"`
+	xxx_hidden_Translations    map[string]string      `protobuf:"bytes,4,rep,name=translations" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *UpdateTranslationsRequest) Reset() {
+	*x = UpdateTranslationsRequest{}
+	mi := &file_localization_localization_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateTranslationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateTranslationsRequest) ProtoMessage() {}
+
+func (x *UpdateTranslationsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_localization_localization_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *UpdateTranslationsRequest) GetVersion() string {
+	if x != nil {
+		if x.xxx_hidden_Version != nil {
+			return *x.xxx_hidden_Version
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UpdateTranslationsRequest) GetApplication() string {
+	if x != nil {
+		if x.xxx_hidden_Application != nil {
+			return *x.xxx_hidden_Application
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UpdateTranslationsRequest) GetIetfLanguageTag() string {
+	if x != nil {
+		if x.xxx_hidden_IetfLanguageTag != nil {
+			return *x.xxx_hidden_IetfLanguageTag
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UpdateTranslationsRequest) GetTranslations() map[string]string {
+	if x != nil {
+		return x.xxx_hidden_Translations
+	}
+	return nil
+}
+
+func (x *UpdateTranslationsRequest) SetVersion(v string) {
+	x.xxx_hidden_Version = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+}
+
+func (x *UpdateTranslationsRequest) SetApplication(v string) {
+	x.xxx_hidden_Application = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+}
+
+func (x *UpdateTranslationsRequest) SetIetfLanguageTag(v string) {
+	x.xxx_hidden_IetfLanguageTag = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+}
+
+func (x *UpdateTranslationsRequest) SetTranslations(v map[string]string) {
+	x.xxx_hidden_Translations = v
+}
+
+func (x *UpdateTranslationsRequest) HasVersion() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *UpdateTranslationsRequest) HasApplication() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *UpdateTranslationsRequest) HasIetfLanguageTag() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *UpdateTranslationsRequest) ClearVersion() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Version = nil
+}
+
+func (x *UpdateTranslationsRequest) ClearApplication() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Application = nil
+}
+
+func (x *UpdateTranslationsRequest) ClearIetfLanguageTag() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_IetfLanguageTag = nil
+}
+
+type UpdateTranslationsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Version         *string
+	Application     *string
+	IetfLanguageTag *string
+	Translations    map[string]string
+}
+
+func (b0 UpdateTranslationsRequest_builder) Build() *UpdateTranslationsRequest {
+	m0 := &UpdateTranslationsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Version != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		x.xxx_hidden_Version = b.Version
+	}
+	if b.Application != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		x.xxx_hidden_Application = b.Application
+	}
+	if b.IetfLanguageTag != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		x.xxx_hidden_IetfLanguageTag = b.IetfLanguageTag
+	}
+	x.xxx_hidden_Translations = b.Translations
+	return m0
+}
+
 var File_localization_localization_proto protoreflect.FileDescriptor
 
 const file_localization_localization_proto_rawDesc = "" +
 	"\n" +
-	"\x1flocalization/localization.proto\x12#io.clbs.openhes.models.localization\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\"X\n" +
-	"\x16GetTranslationsRequest\x12*\n" +
-	"\x11ietf_language_tag\x18\x01 \x01(\tR\x0fietfLanguageTag\x12\x12\n" +
-	"\x04keys\x18\x02 \x03(\tR\x04keys\"\xce\x01\n" +
+	"\x1flocalization/localization.proto\x12#io.clbs.openhes.models.localization\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\"z\n" +
+	"\x16GetTranslationsRequest\x12 \n" +
+	"\vapplication\x18\x01 \x01(\tR\vapplication\x12*\n" +
+	"\x11ietf_language_tag\x18\x02 \x01(\tR\x0fietfLanguageTag\x12\x12\n" +
+	"\x04keys\x18\x03 \x03(\tR\x04keys\"{\n" +
+	"\x19MissingTranslationRequest\x12 \n" +
+	"\vapplication\x18\x01 \x01(\tR\vapplication\x12*\n" +
+	"\x11ietf_language_tag\x18\x02 \x01(\tR\x0fietfLanguageTag\x12\x10\n" +
+	"\x03key\x18\x03 \x01(\tR\x03key\"\xce\x01\n" +
 	"\x17GetTranslationsResponse\x12r\n" +
 	"\ftranslations\x18\x01 \x03(\v2N.io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntryR\ftranslations\x1a?\n" +
 	"\x11TranslationsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xba\x02\n" +
+	"\x19UpdateTranslationsRequest\x12\x18\n" +
+	"\aversion\x18\x01 \x01(\tR\aversion\x12 \n" +
+	"\vapplication\x18\x02 \x01(\tR\vapplication\x12*\n" +
+	"\x11ietf_language_tag\x18\x03 \x01(\tR\x0fietfLanguageTag\x12t\n" +
+	"\ftranslations\x18\x04 \x03(\v2P.io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntryR\ftranslations\x1a?\n" +
+	"\x11TranslationsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B;Z9github.com/cybroslabs/ouro-api-shared/gen/go/localizationb\beditionsp\xe8\a"
 
-var file_localization_localization_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_localization_localization_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_localization_localization_proto_goTypes = []any{
-	(*GetTranslationsRequest)(nil),  // 0: io.clbs.openhes.models.localization.GetTranslationsRequest
-	(*GetTranslationsResponse)(nil), // 1: io.clbs.openhes.models.localization.GetTranslationsResponse
-	nil,                             // 2: io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
+	(*GetTranslationsRequest)(nil),    // 0: io.clbs.openhes.models.localization.GetTranslationsRequest
+	(*MissingTranslationRequest)(nil), // 1: io.clbs.openhes.models.localization.MissingTranslationRequest
+	(*GetTranslationsResponse)(nil),   // 2: io.clbs.openhes.models.localization.GetTranslationsResponse
+	(*UpdateTranslationsRequest)(nil), // 3: io.clbs.openhes.models.localization.UpdateTranslationsRequest
+	nil,                               // 4: io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
+	nil,                               // 5: io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntry
 }
 var file_localization_localization_proto_depIdxs = []int32{
-	2, // 0: io.clbs.openhes.models.localization.GetTranslationsResponse.translations:type_name -> io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: io.clbs.openhes.models.localization.GetTranslationsResponse.translations:type_name -> io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
+	5, // 1: io.clbs.openhes.models.localization.UpdateTranslationsRequest.translations:type_name -> io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntry
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_localization_localization_proto_init() }
@@ -213,7 +567,7 @@ func file_localization_localization_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_localization_localization_proto_rawDesc), len(file_localization_localization_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

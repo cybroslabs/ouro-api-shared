@@ -131,6 +131,8 @@ const (
 	ApiService_GetLicenseRequestCode_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetLicenseRequestCode"
 	ApiService_SetLicense_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/SetLicense"
 	ApiService_GetTranslations_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
+	ApiService_SetTranslationMissing_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/SetTranslationMissing"
+	ApiService_UpdateTranslations_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTranslations"
 	ApiService_GetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetCryptoSecret"
 	ApiService_SetCryptoSecret_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/SetCryptoSecret"
 	ApiService_CreateMessagingConsumer_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/CreateMessagingConsumer"
@@ -503,6 +505,12 @@ type ApiServiceClient interface {
 	// @group: System
 	// Retrieves the translation data.
 	GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error)
+	// @group: System
+	// Indicates that a translation is missing for the specified language and key.
+	SetTranslationMissing(ctx context.Context, in *localization.MissingTranslationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
+	UpdateTranslations(ctx context.Context, in *localization.UpdateTranslationsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error)
@@ -1591,6 +1599,26 @@ func (c *apiServiceClient) GetTranslations(ctx context.Context, in *localization
 	return out, nil
 }
 
+func (c *apiServiceClient) SetTranslationMissing(ctx context.Context, in *localization.MissingTranslationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_SetTranslationMissing_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateTranslations(ctx context.Context, in *localization.UpdateTranslationsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateTranslations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) GetCryptoSecret(ctx context.Context, in *crypto.GetCryptoSecretRequest, opts ...grpc.CallOption) (*crypto.CryptoSecrets, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(crypto.CryptoSecrets)
@@ -2030,6 +2058,12 @@ type ApiServiceServer interface {
 	// @group: System
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error)
+	// @group: System
+	// Indicates that a translation is missing for the specified language and key.
+	SetTranslationMissing(context.Context, *localization.MissingTranslationRequest) (*emptypb.Empty, error)
+	// @group: System
+	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
+	UpdateTranslations(context.Context, *localization.UpdateTranslationsRequest) (*emptypb.Empty, error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error)
@@ -2369,6 +2403,12 @@ func (UnimplementedApiServiceServer) SetLicense(context.Context, *wrapperspb.Str
 }
 func (UnimplementedApiServiceServer) GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranslations not implemented")
+}
+func (UnimplementedApiServiceServer) SetTranslationMissing(context.Context, *localization.MissingTranslationRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTranslationMissing not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateTranslations(context.Context, *localization.UpdateTranslationsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTranslations not implemented")
 }
 func (UnimplementedApiServiceServer) GetCryptoSecret(context.Context, *crypto.GetCryptoSecretRequest) (*crypto.CryptoSecrets, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCryptoSecret not implemented")
@@ -4245,6 +4285,42 @@ func _ApiService_GetTranslations_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_SetTranslationMissing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(localization.MissingTranslationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).SetTranslationMissing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_SetTranslationMissing_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).SetTranslationMissing(ctx, req.(*localization.MissingTranslationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(localization.UpdateTranslationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateTranslations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateTranslations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateTranslations(ctx, req.(*localization.UpdateTranslationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_GetCryptoSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(crypto.GetCryptoSecretRequest)
 	if err := dec(in); err != nil {
@@ -4755,6 +4831,14 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTranslations",
 			Handler:    _ApiService_GetTranslations_Handler,
+		},
+		{
+			MethodName: "SetTranslationMissing",
+			Handler:    _ApiService_SetTranslationMissing_Handler,
+		},
+		{
+			MethodName: "UpdateTranslations",
+			Handler:    _ApiService_UpdateTranslations_Handler,
 		},
 		{
 			MethodName: "GetCryptoSecret",

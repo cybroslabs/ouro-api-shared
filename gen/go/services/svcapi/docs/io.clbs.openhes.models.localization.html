@@ -85,6 +85,24 @@
       </p>
       
     
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.localization.MissingTranslationRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>MissingTranslationRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.localization.UpdateTranslationsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>UpdateTranslationsRequest</code> 
+        </a>
+      </p>
+      
+    
 
     
   </div>
@@ -133,6 +151,21 @@
     <tr>
       <td>1</td>
       <td>
+        application
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The application or plugin identifier where the translation is missing. Can be empty for core application.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
         ietfLanguageTag
       </td>
       <td>
@@ -146,7 +179,7 @@
     </tr>
     
     <tr>
-      <td>2</td>
+      <td>3</td>
       <td>
         keys
       </td>
@@ -199,6 +232,181 @@
     
     <tr>
       <td>1</td>
+      <td>
+        translations
+      </td>
+      <td>
+        <code title="map&lt;string, string&gt;">
+          
+          <span>map&lt;string, string&gt;</span>
+        </code>
+      </td>
+      <td class="content"><p>A map of keys to their corresponding translated strings.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.localization.MissingTranslationRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.localization.MissingTranslationRequest" title="io.clbs.openhes.models.localization.MissingTranslationRequest">message MissingTranslationRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Indicates that a translation is missing for the specified language and key.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        application
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The application or plugin identifier where the translation is missing. Can be empty for core application.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        ietfLanguageTag
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The IETF language tag (for example, <code>en-US</code>, <code>fr-FR</code>) for which a translation is missing.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        key
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The key for which the translation is missing.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.localization.UpdateTranslationsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.localization.UpdateTranslationsRequest" title="io.clbs.openhes.models.localization.UpdateTranslationsRequest">message UpdateTranslationsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the request for updating translations.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        version
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The version of the translations, corresponding to the application or plugin version.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        application
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The application or plugin identifier where the translations are to be updated. Can be empty for core application.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        ietfLanguageTag
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The IETF language tag (for example, <code>en-US</code>, <code>fr-FR</code>) for which translations are to be updated.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
       <td>
         translations
       </td>

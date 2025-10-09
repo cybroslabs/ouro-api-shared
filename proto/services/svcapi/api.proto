@@ -398,6 +398,12 @@ service ApiService {
     // @group: System
     // Retrieves the translation data.
     rpc GetTranslations(io.clbs.openhes.models.localization.GetTranslationsRequest) returns (io.clbs.openhes.models.localization.GetTranslationsResponse);
+    // @group: System
+    // Indicates that a translation is missing for the specified language and key.
+    rpc SetTranslationMissing(io.clbs.openhes.models.localization.MissingTranslationRequest) returns (google.protobuf.Empty);
+    // @group: System
+    // Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
+    rpc UpdateTranslations(io.clbs.openhes.models.localization.UpdateTranslationsRequest) returns (google.protobuf.Empty);
 
     // @group: Cryptography
     // Retrieves a cryptographic secret based on the specified request parameters.
