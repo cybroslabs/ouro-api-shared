@@ -401,7 +401,14 @@ message DeviceInfo {
 message ProfileValues {
     google.protobuf.Duration period = 1;  // The period of the profile values.
     string unit                     = 2;  // The unit of the profile values.
-    repeated ProfileBlock blocks    = 3;  // The list of continuous profile blocks.
+    oneof kind {
+        MeasuredDoubleBlocks double_blocks            = 4;  // The block of measured double values.
+        MeasuredIntegerBlocks integer_blocks          = 5;  // The block of measured integer values.
+        MeasuredStringBlocks string_blocks            = 6;  // The block of measured string values.
+        MeasuredTimestampBlocks timestamp_blocks      = 7;  // The block of measured timestamp values.
+        MeasuredTimestampTzBlocks timestamp_tz_blocks = 8;  // The block of measured timestamp with timezone values.
+        MeasuredBoolBlocks bool_blocks                = 9;  // The block of measured boolean values.
+    }
 }
 
 // Defines the irregular (non-perioic) profile values.
@@ -448,6 +455,126 @@ message MeasuredValue {
     }
     uint64 nstatus                    = 9;   // The normalized status of the value. See `StatusBits` enum for details.
     google.protobuf.Timestamp peak_ts = 10;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+}
+
+// Defines blocks of measured values of double type.
+message MeasuredDoubleBlocks {
+    repeated MeasuredDoubleBlock values = 1;  // The list of regular double values.
+}
+
+// Defines blocks of measured values of integer type.
+message MeasuredIntegerBlocks {
+    repeated MeasuredIntegerBlock values = 1;  // The list of regular integer values.
+}
+
+// Defines blocks of measured values of string type.
+message MeasuredStringBlocks {
+    repeated MeasuredStringBlock values = 1;  // The list of regular string values.
+}
+
+// Defines blocks of measured values of timestamp type.
+message MeasuredTimestampBlocks {
+    repeated MeasuredTimestampBlock values = 1;  // The list of regular timestamp values.
+}
+
+// Defines blocks of measured values of timestamp with timezone type.
+message MeasuredTimestampTzBlocks {
+    repeated MeasuredTimestampTzBlock values = 1;  // The list of regular timestamp with timezone values.
+}
+
+// Defines blocks of measured values of boolean type.
+message MeasuredBoolBlocks {
+    repeated MeasuredBoolBlock values = 1;  // The list of regular boolean values.
+}
+
+// Defines a list of measured double values.
+message MeasuredDoubleBlock {
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredDoubleValue values       = 2;  // The list of measured double values.
+}
+
+// Defines a list of measured integer values.
+message MeasuredIntegerBlock {
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredIntegerValue values      = 2;  // The list of measured integer values.
+}
+
+// Defines a list of measured string values.
+message MeasuredStringBlock {
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredStringValue values       = 2;  // The list of measured string values.
+}
+
+// Defines a list of measured timestamp values.
+message MeasuredTimestampBlock {
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredTimestampValue values    = 2;  // The list of measured timestamp values.
+}
+
+// Defines a list of measured timestamp with timezone values.
+message MeasuredTimestampTzBlock {
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredTimestampTzValue values  = 2;  // The list of measured timestamp with timezone values.
+}
+
+// Defines a list of measured boolean values.
+message MeasuredBoolBlock {
+    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
+    repeated MeasuredBoolValue values         = 2;  // The list of measured boolean values.
+}
+
+// Defines a measured value.
+message MeasuredDoubleValue {
+    int64 status                      = 1;  // The status of the value.
+    int32 exponent                    = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    double double_value               = 3;  // The double-typed value.
+    uint64 nstatus                    = 4;  // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts = 5;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+}
+
+// Defines a measured value.
+message MeasuredIntegerValue {
+    int64 status                      = 1;  // The status of the value.
+    int32 exponent                    = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    int64 integer_value               = 3;  // The integer-typed value.
+    uint64 nstatus                    = 4;  // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts = 5;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+}
+
+// Defines a measured value.
+message MeasuredStringValue {
+    int64 status                      = 1;  // The status of the value.
+    int32 exponent                    = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    string string_value               = 3;  // The string-typed value.
+    uint64 nstatus                    = 4;  // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts = 5;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+}
+
+// Defines a measured value.
+message MeasuredTimestampValue {
+    int64 status                              = 1;  // The status of the value.
+    int32 exponent                            = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    google.protobuf.Timestamp timestamp_value = 3;  // The timestamp-typed value.
+    uint64 nstatus                            = 4;  // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts         = 5;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+}
+
+// Defines a measured value.
+message MeasuredTimestampTzValue {
+    int64 status                      = 1;  // The status of the value.
+    int32 exponent                    = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    string timestamp_tz_value         = 3;  // The timestamp with timezone-typed value, stored as an ISO-8601 string.
+    uint64 nstatus                    = 4;  // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts = 5;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+}
+
+// Defines a measured value.
+message MeasuredBoolValue {
+    int64 status                      = 1;  // The status of the value.
+    int32 exponent                    = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    bool bool_value                   = 3;  // The boolean-typed value.
+    uint64 nstatus                    = 4;  // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts = 5;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
 }
 
 // Defines the template for job action attributes.

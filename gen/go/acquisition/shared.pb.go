@@ -6964,7 +6964,7 @@ type ProfileValues struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Period      *durationpb.Duration   `protobuf:"bytes,1,opt,name=period"`
 	xxx_hidden_Unit        *string                `protobuf:"bytes,2,opt,name=unit"`
-	xxx_hidden_Blocks      *[]*ProfileBlock       `protobuf:"bytes,3,rep,name=blocks"`
+	xxx_hidden_Kind        isProfileValues_Kind   `protobuf_oneof:"kind"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -7013,10 +7013,55 @@ func (x *ProfileValues) GetUnit() string {
 	return ""
 }
 
-func (x *ProfileValues) GetBlocks() []*ProfileBlock {
+func (x *ProfileValues) GetDoubleBlocks() *MeasuredDoubleBlocks {
 	if x != nil {
-		if x.xxx_hidden_Blocks != nil {
-			return *x.xxx_hidden_Blocks
+		if x, ok := x.xxx_hidden_Kind.(*profileValues_DoubleBlocks); ok {
+			return x.DoubleBlocks
+		}
+	}
+	return nil
+}
+
+func (x *ProfileValues) GetIntegerBlocks() *MeasuredIntegerBlocks {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Kind.(*profileValues_IntegerBlocks); ok {
+			return x.IntegerBlocks
+		}
+	}
+	return nil
+}
+
+func (x *ProfileValues) GetStringBlocks() *MeasuredStringBlocks {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Kind.(*profileValues_StringBlocks); ok {
+			return x.StringBlocks
+		}
+	}
+	return nil
+}
+
+func (x *ProfileValues) GetTimestampBlocks() *MeasuredTimestampBlocks {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Kind.(*profileValues_TimestampBlocks); ok {
+			return x.TimestampBlocks
+		}
+	}
+	return nil
+}
+
+func (x *ProfileValues) GetTimestampTzBlocks() *MeasuredTimestampTzBlocks {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Kind.(*profileValues_TimestampTzBlocks); ok {
+			return x.TimestampTzBlocks
+		}
+	}
+	return nil
+}
+
+func (x *ProfileValues) GetBoolBlocks() *MeasuredBoolBlocks {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Kind.(*profileValues_BoolBlocks); ok {
+			return x.BoolBlocks
 		}
 	}
 	return nil
@@ -7031,8 +7076,52 @@ func (x *ProfileValues) SetUnit(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *ProfileValues) SetBlocks(v []*ProfileBlock) {
-	x.xxx_hidden_Blocks = &v
+func (x *ProfileValues) SetDoubleBlocks(v *MeasuredDoubleBlocks) {
+	if v == nil {
+		x.xxx_hidden_Kind = nil
+		return
+	}
+	x.xxx_hidden_Kind = &profileValues_DoubleBlocks{v}
+}
+
+func (x *ProfileValues) SetIntegerBlocks(v *MeasuredIntegerBlocks) {
+	if v == nil {
+		x.xxx_hidden_Kind = nil
+		return
+	}
+	x.xxx_hidden_Kind = &profileValues_IntegerBlocks{v}
+}
+
+func (x *ProfileValues) SetStringBlocks(v *MeasuredStringBlocks) {
+	if v == nil {
+		x.xxx_hidden_Kind = nil
+		return
+	}
+	x.xxx_hidden_Kind = &profileValues_StringBlocks{v}
+}
+
+func (x *ProfileValues) SetTimestampBlocks(v *MeasuredTimestampBlocks) {
+	if v == nil {
+		x.xxx_hidden_Kind = nil
+		return
+	}
+	x.xxx_hidden_Kind = &profileValues_TimestampBlocks{v}
+}
+
+func (x *ProfileValues) SetTimestampTzBlocks(v *MeasuredTimestampTzBlocks) {
+	if v == nil {
+		x.xxx_hidden_Kind = nil
+		return
+	}
+	x.xxx_hidden_Kind = &profileValues_TimestampTzBlocks{v}
+}
+
+func (x *ProfileValues) SetBoolBlocks(v *MeasuredBoolBlocks) {
+	if v == nil {
+		x.xxx_hidden_Kind = nil
+		return
+	}
+	x.xxx_hidden_Kind = &profileValues_BoolBlocks{v}
 }
 
 func (x *ProfileValues) HasPeriod() bool {
@@ -7049,6 +7138,61 @@ func (x *ProfileValues) HasUnit() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
+func (x *ProfileValues) HasKind() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Kind != nil
+}
+
+func (x *ProfileValues) HasDoubleBlocks() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Kind.(*profileValues_DoubleBlocks)
+	return ok
+}
+
+func (x *ProfileValues) HasIntegerBlocks() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Kind.(*profileValues_IntegerBlocks)
+	return ok
+}
+
+func (x *ProfileValues) HasStringBlocks() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Kind.(*profileValues_StringBlocks)
+	return ok
+}
+
+func (x *ProfileValues) HasTimestampBlocks() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Kind.(*profileValues_TimestampBlocks)
+	return ok
+}
+
+func (x *ProfileValues) HasTimestampTzBlocks() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Kind.(*profileValues_TimestampTzBlocks)
+	return ok
+}
+
+func (x *ProfileValues) HasBoolBlocks() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Kind.(*profileValues_BoolBlocks)
+	return ok
+}
+
 func (x *ProfileValues) ClearPeriod() {
 	x.xxx_hidden_Period = nil
 }
@@ -7058,12 +7202,89 @@ func (x *ProfileValues) ClearUnit() {
 	x.xxx_hidden_Unit = nil
 }
 
+func (x *ProfileValues) ClearKind() {
+	x.xxx_hidden_Kind = nil
+}
+
+func (x *ProfileValues) ClearDoubleBlocks() {
+	if _, ok := x.xxx_hidden_Kind.(*profileValues_DoubleBlocks); ok {
+		x.xxx_hidden_Kind = nil
+	}
+}
+
+func (x *ProfileValues) ClearIntegerBlocks() {
+	if _, ok := x.xxx_hidden_Kind.(*profileValues_IntegerBlocks); ok {
+		x.xxx_hidden_Kind = nil
+	}
+}
+
+func (x *ProfileValues) ClearStringBlocks() {
+	if _, ok := x.xxx_hidden_Kind.(*profileValues_StringBlocks); ok {
+		x.xxx_hidden_Kind = nil
+	}
+}
+
+func (x *ProfileValues) ClearTimestampBlocks() {
+	if _, ok := x.xxx_hidden_Kind.(*profileValues_TimestampBlocks); ok {
+		x.xxx_hidden_Kind = nil
+	}
+}
+
+func (x *ProfileValues) ClearTimestampTzBlocks() {
+	if _, ok := x.xxx_hidden_Kind.(*profileValues_TimestampTzBlocks); ok {
+		x.xxx_hidden_Kind = nil
+	}
+}
+
+func (x *ProfileValues) ClearBoolBlocks() {
+	if _, ok := x.xxx_hidden_Kind.(*profileValues_BoolBlocks); ok {
+		x.xxx_hidden_Kind = nil
+	}
+}
+
+const ProfileValues_Kind_not_set_case case_ProfileValues_Kind = 0
+const ProfileValues_DoubleBlocks_case case_ProfileValues_Kind = 4
+const ProfileValues_IntegerBlocks_case case_ProfileValues_Kind = 5
+const ProfileValues_StringBlocks_case case_ProfileValues_Kind = 6
+const ProfileValues_TimestampBlocks_case case_ProfileValues_Kind = 7
+const ProfileValues_TimestampTzBlocks_case case_ProfileValues_Kind = 8
+const ProfileValues_BoolBlocks_case case_ProfileValues_Kind = 9
+
+func (x *ProfileValues) WhichKind() case_ProfileValues_Kind {
+	if x == nil {
+		return ProfileValues_Kind_not_set_case
+	}
+	switch x.xxx_hidden_Kind.(type) {
+	case *profileValues_DoubleBlocks:
+		return ProfileValues_DoubleBlocks_case
+	case *profileValues_IntegerBlocks:
+		return ProfileValues_IntegerBlocks_case
+	case *profileValues_StringBlocks:
+		return ProfileValues_StringBlocks_case
+	case *profileValues_TimestampBlocks:
+		return ProfileValues_TimestampBlocks_case
+	case *profileValues_TimestampTzBlocks:
+		return ProfileValues_TimestampTzBlocks_case
+	case *profileValues_BoolBlocks:
+		return ProfileValues_BoolBlocks_case
+	default:
+		return ProfileValues_Kind_not_set_case
+	}
+}
+
 type ProfileValues_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Period *durationpb.Duration
 	Unit   *string
-	Blocks []*ProfileBlock
+	// Fields of oneof xxx_hidden_Kind:
+	DoubleBlocks      *MeasuredDoubleBlocks
+	IntegerBlocks     *MeasuredIntegerBlocks
+	StringBlocks      *MeasuredStringBlocks
+	TimestampBlocks   *MeasuredTimestampBlocks
+	TimestampTzBlocks *MeasuredTimestampTzBlocks
+	BoolBlocks        *MeasuredBoolBlocks
+	// -- end of xxx_hidden_Kind
 }
 
 func (b0 ProfileValues_builder) Build() *ProfileValues {
@@ -7075,9 +7296,76 @@ func (b0 ProfileValues_builder) Build() *ProfileValues {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_Unit = b.Unit
 	}
-	x.xxx_hidden_Blocks = &b.Blocks
+	if b.DoubleBlocks != nil {
+		x.xxx_hidden_Kind = &profileValues_DoubleBlocks{b.DoubleBlocks}
+	}
+	if b.IntegerBlocks != nil {
+		x.xxx_hidden_Kind = &profileValues_IntegerBlocks{b.IntegerBlocks}
+	}
+	if b.StringBlocks != nil {
+		x.xxx_hidden_Kind = &profileValues_StringBlocks{b.StringBlocks}
+	}
+	if b.TimestampBlocks != nil {
+		x.xxx_hidden_Kind = &profileValues_TimestampBlocks{b.TimestampBlocks}
+	}
+	if b.TimestampTzBlocks != nil {
+		x.xxx_hidden_Kind = &profileValues_TimestampTzBlocks{b.TimestampTzBlocks}
+	}
+	if b.BoolBlocks != nil {
+		x.xxx_hidden_Kind = &profileValues_BoolBlocks{b.BoolBlocks}
+	}
 	return m0
 }
+
+type case_ProfileValues_Kind protoreflect.FieldNumber
+
+func (x case_ProfileValues_Kind) String() string {
+	md := file_acquisition_shared_proto_msgTypes[28].Descriptor()
+	if x == 0 {
+		return "not set"
+	}
+	return protoimpl.X.MessageFieldStringOf(md, protoreflect.FieldNumber(x))
+}
+
+type isProfileValues_Kind interface {
+	isProfileValues_Kind()
+}
+
+type profileValues_DoubleBlocks struct {
+	DoubleBlocks *MeasuredDoubleBlocks `protobuf:"bytes,4,opt,name=double_blocks,json=doubleBlocks,oneof"` // The block of measured double values.
+}
+
+type profileValues_IntegerBlocks struct {
+	IntegerBlocks *MeasuredIntegerBlocks `protobuf:"bytes,5,opt,name=integer_blocks,json=integerBlocks,oneof"` // The block of measured integer values.
+}
+
+type profileValues_StringBlocks struct {
+	StringBlocks *MeasuredStringBlocks `protobuf:"bytes,6,opt,name=string_blocks,json=stringBlocks,oneof"` // The block of measured string values.
+}
+
+type profileValues_TimestampBlocks struct {
+	TimestampBlocks *MeasuredTimestampBlocks `protobuf:"bytes,7,opt,name=timestamp_blocks,json=timestampBlocks,oneof"` // The block of measured timestamp values.
+}
+
+type profileValues_TimestampTzBlocks struct {
+	TimestampTzBlocks *MeasuredTimestampTzBlocks `protobuf:"bytes,8,opt,name=timestamp_tz_blocks,json=timestampTzBlocks,oneof"` // The block of measured timestamp with timezone values.
+}
+
+type profileValues_BoolBlocks struct {
+	BoolBlocks *MeasuredBoolBlocks `protobuf:"bytes,9,opt,name=bool_blocks,json=boolBlocks,oneof"` // The block of measured boolean values.
+}
+
+func (*profileValues_DoubleBlocks) isProfileValues_Kind() {}
+
+func (*profileValues_IntegerBlocks) isProfileValues_Kind() {}
+
+func (*profileValues_StringBlocks) isProfileValues_Kind() {}
+
+func (*profileValues_TimestampBlocks) isProfileValues_Kind() {}
+
+func (*profileValues_TimestampTzBlocks) isProfileValues_Kind() {}
+
+func (*profileValues_BoolBlocks) isProfileValues_Kind() {}
 
 // Defines the irregular (non-perioic) profile values.
 type IrregularProfileValues struct {
@@ -7987,6 +8275,2023 @@ func (*measuredValue_TimestampTzValue) isMeasuredValue_Kind() {}
 
 func (*measuredValue_BoolValue) isMeasuredValue_Kind() {}
 
+// Defines blocks of measured values of double type.
+type MeasuredDoubleBlocks struct {
+	state             protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_Values *[]*MeasuredDoubleBlock `protobuf:"bytes,1,rep,name=values"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MeasuredDoubleBlocks) Reset() {
+	*x = MeasuredDoubleBlocks{}
+	mi := &file_acquisition_shared_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredDoubleBlocks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredDoubleBlocks) ProtoMessage() {}
+
+func (x *MeasuredDoubleBlocks) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredDoubleBlocks) GetValues() []*MeasuredDoubleBlock {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredDoubleBlocks) SetValues(v []*MeasuredDoubleBlock) {
+	x.xxx_hidden_Values = &v
+}
+
+type MeasuredDoubleBlocks_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Values []*MeasuredDoubleBlock
+}
+
+func (b0 MeasuredDoubleBlocks_builder) Build() *MeasuredDoubleBlocks {
+	m0 := &MeasuredDoubleBlocks{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines blocks of measured values of integer type.
+type MeasuredIntegerBlocks struct {
+	state             protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_Values *[]*MeasuredIntegerBlock `protobuf:"bytes,1,rep,name=values"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MeasuredIntegerBlocks) Reset() {
+	*x = MeasuredIntegerBlocks{}
+	mi := &file_acquisition_shared_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredIntegerBlocks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredIntegerBlocks) ProtoMessage() {}
+
+func (x *MeasuredIntegerBlocks) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredIntegerBlocks) GetValues() []*MeasuredIntegerBlock {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredIntegerBlocks) SetValues(v []*MeasuredIntegerBlock) {
+	x.xxx_hidden_Values = &v
+}
+
+type MeasuredIntegerBlocks_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Values []*MeasuredIntegerBlock
+}
+
+func (b0 MeasuredIntegerBlocks_builder) Build() *MeasuredIntegerBlocks {
+	m0 := &MeasuredIntegerBlocks{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines blocks of measured values of string type.
+type MeasuredStringBlocks struct {
+	state             protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_Values *[]*MeasuredStringBlock `protobuf:"bytes,1,rep,name=values"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MeasuredStringBlocks) Reset() {
+	*x = MeasuredStringBlocks{}
+	mi := &file_acquisition_shared_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredStringBlocks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredStringBlocks) ProtoMessage() {}
+
+func (x *MeasuredStringBlocks) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredStringBlocks) GetValues() []*MeasuredStringBlock {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredStringBlocks) SetValues(v []*MeasuredStringBlock) {
+	x.xxx_hidden_Values = &v
+}
+
+type MeasuredStringBlocks_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Values []*MeasuredStringBlock
+}
+
+func (b0 MeasuredStringBlocks_builder) Build() *MeasuredStringBlocks {
+	m0 := &MeasuredStringBlocks{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines blocks of measured values of timestamp type.
+type MeasuredTimestampBlocks struct {
+	state             protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_Values *[]*MeasuredTimestampBlock `protobuf:"bytes,1,rep,name=values"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MeasuredTimestampBlocks) Reset() {
+	*x = MeasuredTimestampBlocks{}
+	mi := &file_acquisition_shared_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredTimestampBlocks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredTimestampBlocks) ProtoMessage() {}
+
+func (x *MeasuredTimestampBlocks) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredTimestampBlocks) GetValues() []*MeasuredTimestampBlock {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampBlocks) SetValues(v []*MeasuredTimestampBlock) {
+	x.xxx_hidden_Values = &v
+}
+
+type MeasuredTimestampBlocks_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Values []*MeasuredTimestampBlock
+}
+
+func (b0 MeasuredTimestampBlocks_builder) Build() *MeasuredTimestampBlocks {
+	m0 := &MeasuredTimestampBlocks{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines blocks of measured values of timestamp with timezone type.
+type MeasuredTimestampTzBlocks struct {
+	state             protoimpl.MessageState       `protogen:"opaque.v1"`
+	xxx_hidden_Values *[]*MeasuredTimestampTzBlock `protobuf:"bytes,1,rep,name=values"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MeasuredTimestampTzBlocks) Reset() {
+	*x = MeasuredTimestampTzBlocks{}
+	mi := &file_acquisition_shared_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredTimestampTzBlocks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredTimestampTzBlocks) ProtoMessage() {}
+
+func (x *MeasuredTimestampTzBlocks) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredTimestampTzBlocks) GetValues() []*MeasuredTimestampTzBlock {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampTzBlocks) SetValues(v []*MeasuredTimestampTzBlock) {
+	x.xxx_hidden_Values = &v
+}
+
+type MeasuredTimestampTzBlocks_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Values []*MeasuredTimestampTzBlock
+}
+
+func (b0 MeasuredTimestampTzBlocks_builder) Build() *MeasuredTimestampTzBlocks {
+	m0 := &MeasuredTimestampTzBlocks{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines blocks of measured values of boolean type.
+type MeasuredBoolBlocks struct {
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Values *[]*MeasuredBoolBlock  `protobuf:"bytes,1,rep,name=values"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MeasuredBoolBlocks) Reset() {
+	*x = MeasuredBoolBlocks{}
+	mi := &file_acquisition_shared_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredBoolBlocks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredBoolBlocks) ProtoMessage() {}
+
+func (x *MeasuredBoolBlocks) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredBoolBlocks) GetValues() []*MeasuredBoolBlock {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredBoolBlocks) SetValues(v []*MeasuredBoolBlock) {
+	x.xxx_hidden_Values = &v
+}
+
+type MeasuredBoolBlocks_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Values []*MeasuredBoolBlock
+}
+
+func (b0 MeasuredBoolBlocks_builder) Build() *MeasuredBoolBlocks {
+	m0 := &MeasuredBoolBlocks{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a list of measured double values.
+type MeasuredDoubleBlock struct {
+	state                     protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp  `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
+	xxx_hidden_Values         *[]*MeasuredDoubleValue `protobuf:"bytes,2,rep,name=values"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredDoubleBlock) Reset() {
+	*x = MeasuredDoubleBlock{}
+	mi := &file_acquisition_shared_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredDoubleBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredDoubleBlock) ProtoMessage() {}
+
+func (x *MeasuredDoubleBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredDoubleBlock) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *MeasuredDoubleBlock) GetValues() []*MeasuredDoubleValue {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredDoubleBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *MeasuredDoubleBlock) SetValues(v []*MeasuredDoubleValue) {
+	x.xxx_hidden_Values = &v
+}
+
+func (x *MeasuredDoubleBlock) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *MeasuredDoubleBlock) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type MeasuredDoubleBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	StartTimestamp *timestamppb.Timestamp
+	Values         []*MeasuredDoubleValue
+}
+
+func (b0 MeasuredDoubleBlock_builder) Build() *MeasuredDoubleBlock {
+	m0 := &MeasuredDoubleBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a list of measured integer values.
+type MeasuredIntegerBlock struct {
+	state                     protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp   `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
+	xxx_hidden_Values         *[]*MeasuredIntegerValue `protobuf:"bytes,2,rep,name=values"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredIntegerBlock) Reset() {
+	*x = MeasuredIntegerBlock{}
+	mi := &file_acquisition_shared_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredIntegerBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredIntegerBlock) ProtoMessage() {}
+
+func (x *MeasuredIntegerBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredIntegerBlock) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *MeasuredIntegerBlock) GetValues() []*MeasuredIntegerValue {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredIntegerBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *MeasuredIntegerBlock) SetValues(v []*MeasuredIntegerValue) {
+	x.xxx_hidden_Values = &v
+}
+
+func (x *MeasuredIntegerBlock) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *MeasuredIntegerBlock) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type MeasuredIntegerBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	StartTimestamp *timestamppb.Timestamp
+	Values         []*MeasuredIntegerValue
+}
+
+func (b0 MeasuredIntegerBlock_builder) Build() *MeasuredIntegerBlock {
+	m0 := &MeasuredIntegerBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a list of measured string values.
+type MeasuredStringBlock struct {
+	state                     protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp  `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
+	xxx_hidden_Values         *[]*MeasuredStringValue `protobuf:"bytes,2,rep,name=values"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredStringBlock) Reset() {
+	*x = MeasuredStringBlock{}
+	mi := &file_acquisition_shared_proto_msgTypes[43]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredStringBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredStringBlock) ProtoMessage() {}
+
+func (x *MeasuredStringBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[43]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredStringBlock) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *MeasuredStringBlock) GetValues() []*MeasuredStringValue {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredStringBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *MeasuredStringBlock) SetValues(v []*MeasuredStringValue) {
+	x.xxx_hidden_Values = &v
+}
+
+func (x *MeasuredStringBlock) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *MeasuredStringBlock) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type MeasuredStringBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	StartTimestamp *timestamppb.Timestamp
+	Values         []*MeasuredStringValue
+}
+
+func (b0 MeasuredStringBlock_builder) Build() *MeasuredStringBlock {
+	m0 := &MeasuredStringBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a list of measured timestamp values.
+type MeasuredTimestampBlock struct {
+	state                     protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp     `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
+	xxx_hidden_Values         *[]*MeasuredTimestampValue `protobuf:"bytes,2,rep,name=values"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredTimestampBlock) Reset() {
+	*x = MeasuredTimestampBlock{}
+	mi := &file_acquisition_shared_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredTimestampBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredTimestampBlock) ProtoMessage() {}
+
+func (x *MeasuredTimestampBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredTimestampBlock) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampBlock) GetValues() []*MeasuredTimestampValue {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *MeasuredTimestampBlock) SetValues(v []*MeasuredTimestampValue) {
+	x.xxx_hidden_Values = &v
+}
+
+func (x *MeasuredTimestampBlock) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *MeasuredTimestampBlock) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type MeasuredTimestampBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	StartTimestamp *timestamppb.Timestamp
+	Values         []*MeasuredTimestampValue
+}
+
+func (b0 MeasuredTimestampBlock_builder) Build() *MeasuredTimestampBlock {
+	m0 := &MeasuredTimestampBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a list of measured timestamp with timezone values.
+type MeasuredTimestampTzBlock struct {
+	state                     protoimpl.MessageState       `protogen:"opaque.v1"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp       `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
+	xxx_hidden_Values         *[]*MeasuredTimestampTzValue `protobuf:"bytes,2,rep,name=values"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredTimestampTzBlock) Reset() {
+	*x = MeasuredTimestampTzBlock{}
+	mi := &file_acquisition_shared_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredTimestampTzBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredTimestampTzBlock) ProtoMessage() {}
+
+func (x *MeasuredTimestampTzBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredTimestampTzBlock) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampTzBlock) GetValues() []*MeasuredTimestampTzValue {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampTzBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *MeasuredTimestampTzBlock) SetValues(v []*MeasuredTimestampTzValue) {
+	x.xxx_hidden_Values = &v
+}
+
+func (x *MeasuredTimestampTzBlock) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *MeasuredTimestampTzBlock) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type MeasuredTimestampTzBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	StartTimestamp *timestamppb.Timestamp
+	Values         []*MeasuredTimestampTzValue
+}
+
+func (b0 MeasuredTimestampTzBlock_builder) Build() *MeasuredTimestampTzBlock {
+	m0 := &MeasuredTimestampTzBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a list of measured boolean values.
+type MeasuredBoolBlock struct {
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=start_timestamp,json=startTimestamp"`
+	xxx_hidden_Values         *[]*MeasuredBoolValue  `protobuf:"bytes,2,rep,name=values"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredBoolBlock) Reset() {
+	*x = MeasuredBoolBlock{}
+	mi := &file_acquisition_shared_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredBoolBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredBoolBlock) ProtoMessage() {}
+
+func (x *MeasuredBoolBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredBoolBlock) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *MeasuredBoolBlock) GetValues() []*MeasuredBoolValue {
+	if x != nil {
+		if x.xxx_hidden_Values != nil {
+			return *x.xxx_hidden_Values
+		}
+	}
+	return nil
+}
+
+func (x *MeasuredBoolBlock) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *MeasuredBoolBlock) SetValues(v []*MeasuredBoolValue) {
+	x.xxx_hidden_Values = &v
+}
+
+func (x *MeasuredBoolBlock) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *MeasuredBoolBlock) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type MeasuredBoolBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	StartTimestamp *timestamppb.Timestamp
+	Values         []*MeasuredBoolValue
+}
+
+func (b0 MeasuredBoolBlock_builder) Build() *MeasuredBoolBlock {
+	m0 := &MeasuredBoolBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	x.xxx_hidden_Values = &b.Values
+	return m0
+}
+
+// Defines a measured value.
+type MeasuredDoubleValue struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Status      int64                  `protobuf:"varint,1,opt,name=status"`
+	xxx_hidden_Exponent    int32                  `protobuf:"varint,2,opt,name=exponent"`
+	xxx_hidden_DoubleValue float64                `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue"`
+	xxx_hidden_Nstatus     uint64                 `protobuf:"varint,4,opt,name=nstatus"`
+	xxx_hidden_PeakTs      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=peak_ts,json=peakTs"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *MeasuredDoubleValue) Reset() {
+	*x = MeasuredDoubleValue{}
+	mi := &file_acquisition_shared_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredDoubleValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredDoubleValue) ProtoMessage() {}
+
+func (x *MeasuredDoubleValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredDoubleValue) GetStatus() int64 {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return 0
+}
+
+func (x *MeasuredDoubleValue) GetExponent() int32 {
+	if x != nil {
+		return x.xxx_hidden_Exponent
+	}
+	return 0
+}
+
+func (x *MeasuredDoubleValue) GetDoubleValue() float64 {
+	if x != nil {
+		return x.xxx_hidden_DoubleValue
+	}
+	return 0
+}
+
+func (x *MeasuredDoubleValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
+func (x *MeasuredDoubleValue) GetPeakTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_PeakTs
+	}
+	return nil
+}
+
+func (x *MeasuredDoubleValue) SetStatus(v int64) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *MeasuredDoubleValue) SetExponent(v int32) {
+	x.xxx_hidden_Exponent = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *MeasuredDoubleValue) SetDoubleValue(v float64) {
+	x.xxx_hidden_DoubleValue = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+}
+
+func (x *MeasuredDoubleValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *MeasuredDoubleValue) SetPeakTs(v *timestamppb.Timestamp) {
+	x.xxx_hidden_PeakTs = v
+}
+
+func (x *MeasuredDoubleValue) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MeasuredDoubleValue) HasExponent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MeasuredDoubleValue) HasDoubleValue() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *MeasuredDoubleValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *MeasuredDoubleValue) HasPeakTs() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_PeakTs != nil
+}
+
+func (x *MeasuredDoubleValue) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = 0
+}
+
+func (x *MeasuredDoubleValue) ClearExponent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Exponent = 0
+}
+
+func (x *MeasuredDoubleValue) ClearDoubleValue() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_DoubleValue = 0
+}
+
+func (x *MeasuredDoubleValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
+func (x *MeasuredDoubleValue) ClearPeakTs() {
+	x.xxx_hidden_PeakTs = nil
+}
+
+type MeasuredDoubleValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status      *int64
+	Exponent    *int32
+	DoubleValue *float64
+	Nstatus     *uint64
+	PeakTs      *timestamppb.Timestamp
+}
+
+func (b0 MeasuredDoubleValue_builder) Build() *MeasuredDoubleValue {
+	m0 := &MeasuredDoubleValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Exponent != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Exponent = *b.Exponent
+	}
+	if b.DoubleValue != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_DoubleValue = *b.DoubleValue
+	}
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Nstatus = *b.Nstatus
+	}
+	x.xxx_hidden_PeakTs = b.PeakTs
+	return m0
+}
+
+// Defines a measured value.
+type MeasuredIntegerValue struct {
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Status       int64                  `protobuf:"varint,1,opt,name=status"`
+	xxx_hidden_Exponent     int32                  `protobuf:"varint,2,opt,name=exponent"`
+	xxx_hidden_IntegerValue int64                  `protobuf:"varint,3,opt,name=integer_value,json=integerValue"`
+	xxx_hidden_Nstatus      uint64                 `protobuf:"varint,4,opt,name=nstatus"`
+	xxx_hidden_PeakTs       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=peak_ts,json=peakTs"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *MeasuredIntegerValue) Reset() {
+	*x = MeasuredIntegerValue{}
+	mi := &file_acquisition_shared_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredIntegerValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredIntegerValue) ProtoMessage() {}
+
+func (x *MeasuredIntegerValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredIntegerValue) GetStatus() int64 {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return 0
+}
+
+func (x *MeasuredIntegerValue) GetExponent() int32 {
+	if x != nil {
+		return x.xxx_hidden_Exponent
+	}
+	return 0
+}
+
+func (x *MeasuredIntegerValue) GetIntegerValue() int64 {
+	if x != nil {
+		return x.xxx_hidden_IntegerValue
+	}
+	return 0
+}
+
+func (x *MeasuredIntegerValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
+func (x *MeasuredIntegerValue) GetPeakTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_PeakTs
+	}
+	return nil
+}
+
+func (x *MeasuredIntegerValue) SetStatus(v int64) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *MeasuredIntegerValue) SetExponent(v int32) {
+	x.xxx_hidden_Exponent = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *MeasuredIntegerValue) SetIntegerValue(v int64) {
+	x.xxx_hidden_IntegerValue = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+}
+
+func (x *MeasuredIntegerValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *MeasuredIntegerValue) SetPeakTs(v *timestamppb.Timestamp) {
+	x.xxx_hidden_PeakTs = v
+}
+
+func (x *MeasuredIntegerValue) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MeasuredIntegerValue) HasExponent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MeasuredIntegerValue) HasIntegerValue() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *MeasuredIntegerValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *MeasuredIntegerValue) HasPeakTs() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_PeakTs != nil
+}
+
+func (x *MeasuredIntegerValue) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = 0
+}
+
+func (x *MeasuredIntegerValue) ClearExponent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Exponent = 0
+}
+
+func (x *MeasuredIntegerValue) ClearIntegerValue() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_IntegerValue = 0
+}
+
+func (x *MeasuredIntegerValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
+func (x *MeasuredIntegerValue) ClearPeakTs() {
+	x.xxx_hidden_PeakTs = nil
+}
+
+type MeasuredIntegerValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status       *int64
+	Exponent     *int32
+	IntegerValue *int64
+	Nstatus      *uint64
+	PeakTs       *timestamppb.Timestamp
+}
+
+func (b0 MeasuredIntegerValue_builder) Build() *MeasuredIntegerValue {
+	m0 := &MeasuredIntegerValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Exponent != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Exponent = *b.Exponent
+	}
+	if b.IntegerValue != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_IntegerValue = *b.IntegerValue
+	}
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Nstatus = *b.Nstatus
+	}
+	x.xxx_hidden_PeakTs = b.PeakTs
+	return m0
+}
+
+// Defines a measured value.
+type MeasuredStringValue struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Status      int64                  `protobuf:"varint,1,opt,name=status"`
+	xxx_hidden_Exponent    int32                  `protobuf:"varint,2,opt,name=exponent"`
+	xxx_hidden_StringValue *string                `protobuf:"bytes,3,opt,name=string_value,json=stringValue"`
+	xxx_hidden_Nstatus     uint64                 `protobuf:"varint,4,opt,name=nstatus"`
+	xxx_hidden_PeakTs      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=peak_ts,json=peakTs"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *MeasuredStringValue) Reset() {
+	*x = MeasuredStringValue{}
+	mi := &file_acquisition_shared_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredStringValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredStringValue) ProtoMessage() {}
+
+func (x *MeasuredStringValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredStringValue) GetStatus() int64 {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return 0
+}
+
+func (x *MeasuredStringValue) GetExponent() int32 {
+	if x != nil {
+		return x.xxx_hidden_Exponent
+	}
+	return 0
+}
+
+func (x *MeasuredStringValue) GetStringValue() string {
+	if x != nil {
+		if x.xxx_hidden_StringValue != nil {
+			return *x.xxx_hidden_StringValue
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *MeasuredStringValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
+func (x *MeasuredStringValue) GetPeakTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_PeakTs
+	}
+	return nil
+}
+
+func (x *MeasuredStringValue) SetStatus(v int64) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *MeasuredStringValue) SetExponent(v int32) {
+	x.xxx_hidden_Exponent = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *MeasuredStringValue) SetStringValue(v string) {
+	x.xxx_hidden_StringValue = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+}
+
+func (x *MeasuredStringValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *MeasuredStringValue) SetPeakTs(v *timestamppb.Timestamp) {
+	x.xxx_hidden_PeakTs = v
+}
+
+func (x *MeasuredStringValue) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MeasuredStringValue) HasExponent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MeasuredStringValue) HasStringValue() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *MeasuredStringValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *MeasuredStringValue) HasPeakTs() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_PeakTs != nil
+}
+
+func (x *MeasuredStringValue) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = 0
+}
+
+func (x *MeasuredStringValue) ClearExponent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Exponent = 0
+}
+
+func (x *MeasuredStringValue) ClearStringValue() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_StringValue = nil
+}
+
+func (x *MeasuredStringValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
+func (x *MeasuredStringValue) ClearPeakTs() {
+	x.xxx_hidden_PeakTs = nil
+}
+
+type MeasuredStringValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status      *int64
+	Exponent    *int32
+	StringValue *string
+	Nstatus     *uint64
+	PeakTs      *timestamppb.Timestamp
+}
+
+func (b0 MeasuredStringValue_builder) Build() *MeasuredStringValue {
+	m0 := &MeasuredStringValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Exponent != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Exponent = *b.Exponent
+	}
+	if b.StringValue != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_StringValue = b.StringValue
+	}
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Nstatus = *b.Nstatus
+	}
+	x.xxx_hidden_PeakTs = b.PeakTs
+	return m0
+}
+
+// Defines a measured value.
+type MeasuredTimestampValue struct {
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Status         int64                  `protobuf:"varint,1,opt,name=status"`
+	xxx_hidden_Exponent       int32                  `protobuf:"varint,2,opt,name=exponent"`
+	xxx_hidden_TimestampValue *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=timestamp_value,json=timestampValue"`
+	xxx_hidden_Nstatus        uint64                 `protobuf:"varint,4,opt,name=nstatus"`
+	xxx_hidden_PeakTs         *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=peak_ts,json=peakTs"`
+	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
+	XXX_presence              [1]uint32
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *MeasuredTimestampValue) Reset() {
+	*x = MeasuredTimestampValue{}
+	mi := &file_acquisition_shared_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredTimestampValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredTimestampValue) ProtoMessage() {}
+
+func (x *MeasuredTimestampValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredTimestampValue) GetStatus() int64 {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return 0
+}
+
+func (x *MeasuredTimestampValue) GetExponent() int32 {
+	if x != nil {
+		return x.xxx_hidden_Exponent
+	}
+	return 0
+}
+
+func (x *MeasuredTimestampValue) GetTimestampValue() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_TimestampValue
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
+func (x *MeasuredTimestampValue) GetPeakTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_PeakTs
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampValue) SetStatus(v int64) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *MeasuredTimestampValue) SetExponent(v int32) {
+	x.xxx_hidden_Exponent = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *MeasuredTimestampValue) SetTimestampValue(v *timestamppb.Timestamp) {
+	x.xxx_hidden_TimestampValue = v
+}
+
+func (x *MeasuredTimestampValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *MeasuredTimestampValue) SetPeakTs(v *timestamppb.Timestamp) {
+	x.xxx_hidden_PeakTs = v
+}
+
+func (x *MeasuredTimestampValue) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MeasuredTimestampValue) HasExponent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MeasuredTimestampValue) HasTimestampValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_TimestampValue != nil
+}
+
+func (x *MeasuredTimestampValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *MeasuredTimestampValue) HasPeakTs() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_PeakTs != nil
+}
+
+func (x *MeasuredTimestampValue) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = 0
+}
+
+func (x *MeasuredTimestampValue) ClearExponent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Exponent = 0
+}
+
+func (x *MeasuredTimestampValue) ClearTimestampValue() {
+	x.xxx_hidden_TimestampValue = nil
+}
+
+func (x *MeasuredTimestampValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
+func (x *MeasuredTimestampValue) ClearPeakTs() {
+	x.xxx_hidden_PeakTs = nil
+}
+
+type MeasuredTimestampValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status         *int64
+	Exponent       *int32
+	TimestampValue *timestamppb.Timestamp
+	Nstatus        *uint64
+	PeakTs         *timestamppb.Timestamp
+}
+
+func (b0 MeasuredTimestampValue_builder) Build() *MeasuredTimestampValue {
+	m0 := &MeasuredTimestampValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Exponent != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Exponent = *b.Exponent
+	}
+	x.xxx_hidden_TimestampValue = b.TimestampValue
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Nstatus = *b.Nstatus
+	}
+	x.xxx_hidden_PeakTs = b.PeakTs
+	return m0
+}
+
+// Defines a measured value.
+type MeasuredTimestampTzValue struct {
+	state                       protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Status           int64                  `protobuf:"varint,1,opt,name=status"`
+	xxx_hidden_Exponent         int32                  `protobuf:"varint,2,opt,name=exponent"`
+	xxx_hidden_TimestampTzValue *string                `protobuf:"bytes,3,opt,name=timestamp_tz_value,json=timestampTzValue"`
+	xxx_hidden_Nstatus          uint64                 `protobuf:"varint,4,opt,name=nstatus"`
+	xxx_hidden_PeakTs           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=peak_ts,json=peakTs"`
+	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
+	XXX_presence                [1]uint32
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
+}
+
+func (x *MeasuredTimestampTzValue) Reset() {
+	*x = MeasuredTimestampTzValue{}
+	mi := &file_acquisition_shared_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredTimestampTzValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredTimestampTzValue) ProtoMessage() {}
+
+func (x *MeasuredTimestampTzValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredTimestampTzValue) GetStatus() int64 {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return 0
+}
+
+func (x *MeasuredTimestampTzValue) GetExponent() int32 {
+	if x != nil {
+		return x.xxx_hidden_Exponent
+	}
+	return 0
+}
+
+func (x *MeasuredTimestampTzValue) GetTimestampTzValue() string {
+	if x != nil {
+		if x.xxx_hidden_TimestampTzValue != nil {
+			return *x.xxx_hidden_TimestampTzValue
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *MeasuredTimestampTzValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
+func (x *MeasuredTimestampTzValue) GetPeakTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_PeakTs
+	}
+	return nil
+}
+
+func (x *MeasuredTimestampTzValue) SetStatus(v int64) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *MeasuredTimestampTzValue) SetExponent(v int32) {
+	x.xxx_hidden_Exponent = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *MeasuredTimestampTzValue) SetTimestampTzValue(v string) {
+	x.xxx_hidden_TimestampTzValue = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+}
+
+func (x *MeasuredTimestampTzValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *MeasuredTimestampTzValue) SetPeakTs(v *timestamppb.Timestamp) {
+	x.xxx_hidden_PeakTs = v
+}
+
+func (x *MeasuredTimestampTzValue) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MeasuredTimestampTzValue) HasExponent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MeasuredTimestampTzValue) HasTimestampTzValue() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *MeasuredTimestampTzValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *MeasuredTimestampTzValue) HasPeakTs() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_PeakTs != nil
+}
+
+func (x *MeasuredTimestampTzValue) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = 0
+}
+
+func (x *MeasuredTimestampTzValue) ClearExponent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Exponent = 0
+}
+
+func (x *MeasuredTimestampTzValue) ClearTimestampTzValue() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_TimestampTzValue = nil
+}
+
+func (x *MeasuredTimestampTzValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
+func (x *MeasuredTimestampTzValue) ClearPeakTs() {
+	x.xxx_hidden_PeakTs = nil
+}
+
+type MeasuredTimestampTzValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status           *int64
+	Exponent         *int32
+	TimestampTzValue *string
+	Nstatus          *uint64
+	PeakTs           *timestamppb.Timestamp
+}
+
+func (b0 MeasuredTimestampTzValue_builder) Build() *MeasuredTimestampTzValue {
+	m0 := &MeasuredTimestampTzValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Exponent != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Exponent = *b.Exponent
+	}
+	if b.TimestampTzValue != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_TimestampTzValue = b.TimestampTzValue
+	}
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Nstatus = *b.Nstatus
+	}
+	x.xxx_hidden_PeakTs = b.PeakTs
+	return m0
+}
+
+// Defines a measured value.
+type MeasuredBoolValue struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Status      int64                  `protobuf:"varint,1,opt,name=status"`
+	xxx_hidden_Exponent    int32                  `protobuf:"varint,2,opt,name=exponent"`
+	xxx_hidden_BoolValue   bool                   `protobuf:"varint,3,opt,name=bool_value,json=boolValue"`
+	xxx_hidden_Nstatus     uint64                 `protobuf:"varint,4,opt,name=nstatus"`
+	xxx_hidden_PeakTs      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=peak_ts,json=peakTs"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *MeasuredBoolValue) Reset() {
+	*x = MeasuredBoolValue{}
+	mi := &file_acquisition_shared_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeasuredBoolValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeasuredBoolValue) ProtoMessage() {}
+
+func (x *MeasuredBoolValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *MeasuredBoolValue) GetStatus() int64 {
+	if x != nil {
+		return x.xxx_hidden_Status
+	}
+	return 0
+}
+
+func (x *MeasuredBoolValue) GetExponent() int32 {
+	if x != nil {
+		return x.xxx_hidden_Exponent
+	}
+	return 0
+}
+
+func (x *MeasuredBoolValue) GetBoolValue() bool {
+	if x != nil {
+		return x.xxx_hidden_BoolValue
+	}
+	return false
+}
+
+func (x *MeasuredBoolValue) GetNstatus() uint64 {
+	if x != nil {
+		return x.xxx_hidden_Nstatus
+	}
+	return 0
+}
+
+func (x *MeasuredBoolValue) GetPeakTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_PeakTs
+	}
+	return nil
+}
+
+func (x *MeasuredBoolValue) SetStatus(v int64) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+}
+
+func (x *MeasuredBoolValue) SetExponent(v int32) {
+	x.xxx_hidden_Exponent = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+}
+
+func (x *MeasuredBoolValue) SetBoolValue(v bool) {
+	x.xxx_hidden_BoolValue = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
+}
+
+func (x *MeasuredBoolValue) SetNstatus(v uint64) {
+	x.xxx_hidden_Nstatus = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *MeasuredBoolValue) SetPeakTs(v *timestamppb.Timestamp) {
+	x.xxx_hidden_PeakTs = v
+}
+
+func (x *MeasuredBoolValue) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *MeasuredBoolValue) HasExponent() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *MeasuredBoolValue) HasBoolValue() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *MeasuredBoolValue) HasNstatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *MeasuredBoolValue) HasPeakTs() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_PeakTs != nil
+}
+
+func (x *MeasuredBoolValue) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = 0
+}
+
+func (x *MeasuredBoolValue) ClearExponent() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Exponent = 0
+}
+
+func (x *MeasuredBoolValue) ClearBoolValue() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_BoolValue = false
+}
+
+func (x *MeasuredBoolValue) ClearNstatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Nstatus = 0
+}
+
+func (x *MeasuredBoolValue) ClearPeakTs() {
+	x.xxx_hidden_PeakTs = nil
+}
+
+type MeasuredBoolValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status    *int64
+	Exponent  *int32
+	BoolValue *bool
+	Nstatus   *uint64
+	PeakTs    *timestamppb.Timestamp
+}
+
+func (b0 MeasuredBoolValue_builder) Build() *MeasuredBoolValue {
+	m0 := &MeasuredBoolValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Exponent != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_Exponent = *b.Exponent
+	}
+	if b.BoolValue != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_BoolValue = *b.BoolValue
+	}
+	if b.Nstatus != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_Nstatus = *b.Nstatus
+	}
+	x.xxx_hidden_PeakTs = b.PeakTs
+	return m0
+}
+
 // Defines the template for job action attributes.
 type JobActionAttributes struct {
 	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
@@ -8000,7 +10305,7 @@ type JobActionAttributes struct {
 
 func (x *JobActionAttributes) Reset() {
 	*x = JobActionAttributes{}
-	mi := &file_acquisition_shared_proto_msgTypes[35]
+	mi := &file_acquisition_shared_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8012,7 +10317,7 @@ func (x *JobActionAttributes) String() string {
 func (*JobActionAttributes) ProtoMessage() {}
 
 func (x *JobActionAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[35]
+	mi := &file_acquisition_shared_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8094,7 +10399,7 @@ type ConnectionTypeControlledSerial struct {
 
 func (x *ConnectionTypeControlledSerial) Reset() {
 	*x = ConnectionTypeControlledSerial{}
-	mi := &file_acquisition_shared_proto_msgTypes[36]
+	mi := &file_acquisition_shared_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8106,7 +10411,7 @@ func (x *ConnectionTypeControlledSerial) String() string {
 func (*ConnectionTypeControlledSerial) ProtoMessage() {}
 
 func (x *ConnectionTypeControlledSerial) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[36]
+	mi := &file_acquisition_shared_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8297,7 +10602,7 @@ func (b0 ConnectionTypeControlledSerial_builder) Build() *ConnectionTypeControll
 type case_ConnectionTypeControlledSerial_Converter protoreflect.FieldNumber
 
 func (x case_ConnectionTypeControlledSerial_Converter) String() string {
-	md := file_acquisition_shared_proto_msgTypes[36].Descriptor()
+	md := file_acquisition_shared_proto_msgTypes[54].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -8338,7 +10643,7 @@ type ActionGetRegister struct {
 
 func (x *ActionGetRegister) Reset() {
 	*x = ActionGetRegister{}
-	mi := &file_acquisition_shared_proto_msgTypes[37]
+	mi := &file_acquisition_shared_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8350,7 +10655,7 @@ func (x *ActionGetRegister) String() string {
 func (*ActionGetRegister) ProtoMessage() {}
 
 func (x *ActionGetRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[37]
+	mi := &file_acquisition_shared_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8418,7 +10723,7 @@ type ActionGetPeriodicalProfile struct {
 
 func (x *ActionGetPeriodicalProfile) Reset() {
 	*x = ActionGetPeriodicalProfile{}
-	mi := &file_acquisition_shared_proto_msgTypes[38]
+	mi := &file_acquisition_shared_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8430,7 +10735,7 @@ func (x *ActionGetPeriodicalProfile) String() string {
 func (*ActionGetPeriodicalProfile) ProtoMessage() {}
 
 func (x *ActionGetPeriodicalProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[38]
+	mi := &file_acquisition_shared_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8546,7 +10851,7 @@ type ActionGetIrregularProfile struct {
 
 func (x *ActionGetIrregularProfile) Reset() {
 	*x = ActionGetIrregularProfile{}
-	mi := &file_acquisition_shared_proto_msgTypes[39]
+	mi := &file_acquisition_shared_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8558,7 +10863,7 @@ func (x *ActionGetIrregularProfile) String() string {
 func (*ActionGetIrregularProfile) ProtoMessage() {}
 
 func (x *ActionGetIrregularProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[39]
+	mi := &file_acquisition_shared_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8671,7 +10976,7 @@ type ActionGetEvents struct {
 
 func (x *ActionGetEvents) Reset() {
 	*x = ActionGetEvents{}
-	mi := &file_acquisition_shared_proto_msgTypes[40]
+	mi := &file_acquisition_shared_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8683,7 +10988,7 @@ func (x *ActionGetEvents) String() string {
 func (*ActionGetEvents) ProtoMessage() {}
 
 func (x *ActionGetEvents) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[40]
+	mi := &file_acquisition_shared_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8763,7 +11068,7 @@ type ActionGetDeviceInfo struct {
 
 func (x *ActionGetDeviceInfo) Reset() {
 	*x = ActionGetDeviceInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[41]
+	mi := &file_acquisition_shared_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8775,7 +11080,7 @@ func (x *ActionGetDeviceInfo) String() string {
 func (*ActionGetDeviceInfo) ProtoMessage() {}
 
 func (x *ActionGetDeviceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[41]
+	mi := &file_acquisition_shared_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8807,7 +11112,7 @@ type ActionSyncClock struct {
 
 func (x *ActionSyncClock) Reset() {
 	*x = ActionSyncClock{}
-	mi := &file_acquisition_shared_proto_msgTypes[42]
+	mi := &file_acquisition_shared_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8819,7 +11124,7 @@ func (x *ActionSyncClock) String() string {
 func (*ActionSyncClock) ProtoMessage() {}
 
 func (x *ActionSyncClock) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[42]
+	mi := &file_acquisition_shared_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8851,7 +11156,7 @@ type ActionSetRelayState struct {
 
 func (x *ActionSetRelayState) Reset() {
 	*x = ActionSetRelayState{}
-	mi := &file_acquisition_shared_proto_msgTypes[43]
+	mi := &file_acquisition_shared_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8863,7 +11168,7 @@ func (x *ActionSetRelayState) String() string {
 func (*ActionSetRelayState) ProtoMessage() {}
 
 func (x *ActionSetRelayState) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[43]
+	mi := &file_acquisition_shared_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8895,7 +11200,7 @@ type ActionSetDisconnectorState struct {
 
 func (x *ActionSetDisconnectorState) Reset() {
 	*x = ActionSetDisconnectorState{}
-	mi := &file_acquisition_shared_proto_msgTypes[44]
+	mi := &file_acquisition_shared_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8907,7 +11212,7 @@ func (x *ActionSetDisconnectorState) String() string {
 func (*ActionSetDisconnectorState) ProtoMessage() {}
 
 func (x *ActionSetDisconnectorState) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[44]
+	mi := &file_acquisition_shared_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8942,7 +11247,7 @@ type ActionGetTou struct {
 
 func (x *ActionGetTou) Reset() {
 	*x = ActionGetTou{}
-	mi := &file_acquisition_shared_proto_msgTypes[45]
+	mi := &file_acquisition_shared_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8954,7 +11259,7 @@ func (x *ActionGetTou) String() string {
 func (*ActionGetTou) ProtoMessage() {}
 
 func (x *ActionGetTou) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[45]
+	mi := &file_acquisition_shared_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9016,7 +11321,7 @@ type ActionSetTou struct {
 
 func (x *ActionSetTou) Reset() {
 	*x = ActionSetTou{}
-	mi := &file_acquisition_shared_proto_msgTypes[46]
+	mi := &file_acquisition_shared_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9028,7 +11333,7 @@ func (x *ActionSetTou) String() string {
 func (*ActionSetTou) ProtoMessage() {}
 
 func (x *ActionSetTou) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[46]
+	mi := &file_acquisition_shared_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9084,7 +11389,7 @@ type ActionSetLimiter struct {
 
 func (x *ActionSetLimiter) Reset() {
 	*x = ActionSetLimiter{}
-	mi := &file_acquisition_shared_proto_msgTypes[47]
+	mi := &file_acquisition_shared_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9096,7 +11401,7 @@ func (x *ActionSetLimiter) String() string {
 func (*ActionSetLimiter) ProtoMessage() {}
 
 func (x *ActionSetLimiter) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[47]
+	mi := &file_acquisition_shared_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9128,7 +11433,7 @@ type ActionResetBillingPeriod struct {
 
 func (x *ActionResetBillingPeriod) Reset() {
 	*x = ActionResetBillingPeriod{}
-	mi := &file_acquisition_shared_proto_msgTypes[48]
+	mi := &file_acquisition_shared_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9140,7 +11445,7 @@ func (x *ActionResetBillingPeriod) String() string {
 func (*ActionResetBillingPeriod) ProtoMessage() {}
 
 func (x *ActionResetBillingPeriod) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[48]
+	mi := &file_acquisition_shared_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9172,7 +11477,7 @@ type ActionFwUpdate struct {
 
 func (x *ActionFwUpdate) Reset() {
 	*x = ActionFwUpdate{}
-	mi := &file_acquisition_shared_proto_msgTypes[49]
+	mi := &file_acquisition_shared_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9184,7 +11489,7 @@ func (x *ActionFwUpdate) String() string {
 func (*ActionFwUpdate) ProtoMessage() {}
 
 func (x *ActionFwUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[49]
+	mi := &file_acquisition_shared_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9218,7 +11523,7 @@ type JobActionContraints struct {
 
 func (x *JobActionContraints) Reset() {
 	*x = JobActionContraints{}
-	mi := &file_acquisition_shared_proto_msgTypes[50]
+	mi := &file_acquisition_shared_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9230,7 +11535,7 @@ func (x *JobActionContraints) String() string {
 func (*JobActionContraints) ProtoMessage() {}
 
 func (x *JobActionContraints) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[50]
+	mi := &file_acquisition_shared_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9306,7 +11611,7 @@ type JobStatus struct {
 
 func (x *JobStatus) Reset() {
 	*x = JobStatus{}
-	mi := &file_acquisition_shared_proto_msgTypes[51]
+	mi := &file_acquisition_shared_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9318,7 +11623,7 @@ func (x *JobStatus) String() string {
 func (*JobStatus) ProtoMessage() {}
 
 func (x *JobStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[51]
+	mi := &file_acquisition_shared_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9589,7 +11894,7 @@ type StartJobData struct {
 
 func (x *StartJobData) Reset() {
 	*x = StartJobData{}
-	mi := &file_acquisition_shared_proto_msgTypes[52]
+	mi := &file_acquisition_shared_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9601,7 +11906,7 @@ func (x *StartJobData) String() string {
 func (*StartJobData) ProtoMessage() {}
 
 func (x *StartJobData) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[52]
+	mi := &file_acquisition_shared_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9783,7 +12088,7 @@ type CancelJobRequest struct {
 
 func (x *CancelJobRequest) Reset() {
 	*x = CancelJobRequest{}
-	mi := &file_acquisition_shared_proto_msgTypes[53]
+	mi := &file_acquisition_shared_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9795,7 +12100,7 @@ func (x *CancelJobRequest) String() string {
 func (*CancelJobRequest) ProtoMessage() {}
 
 func (x *CancelJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[53]
+	mi := &file_acquisition_shared_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9865,7 +12170,7 @@ type DeviceConfigurationRegisterSpec struct {
 
 func (x *DeviceConfigurationRegisterSpec) Reset() {
 	*x = DeviceConfigurationRegisterSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[54]
+	mi := &file_acquisition_shared_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9877,7 +12182,7 @@ func (x *DeviceConfigurationRegisterSpec) String() string {
 func (*DeviceConfigurationRegisterSpec) ProtoMessage() {}
 
 func (x *DeviceConfigurationRegisterSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[54]
+	mi := &file_acquisition_shared_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10022,7 +12327,7 @@ type DeviceRegister struct {
 
 func (x *DeviceRegister) Reset() {
 	*x = DeviceRegister{}
-	mi := &file_acquisition_shared_proto_msgTypes[55]
+	mi := &file_acquisition_shared_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10034,7 +12339,7 @@ func (x *DeviceRegister) String() string {
 func (*DeviceRegister) ProtoMessage() {}
 
 func (x *DeviceRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[55]
+	mi := &file_acquisition_shared_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10173,7 +12478,7 @@ type DeviceConnectionInfo struct {
 
 func (x *DeviceConnectionInfo) Reset() {
 	*x = DeviceConnectionInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[56]
+	mi := &file_acquisition_shared_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10185,7 +12490,7 @@ func (x *DeviceConnectionInfo) String() string {
 func (*DeviceConnectionInfo) ProtoMessage() {}
 
 func (x *DeviceConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[56]
+	mi := &file_acquisition_shared_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10400,7 +12705,7 @@ type ListOfModemInfo struct {
 
 func (x *ListOfModemInfo) Reset() {
 	*x = ListOfModemInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[57]
+	mi := &file_acquisition_shared_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10412,7 +12717,7 @@ func (x *ListOfModemInfo) String() string {
 func (*ListOfModemInfo) ProtoMessage() {}
 
 func (x *ListOfModemInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[57]
+	mi := &file_acquisition_shared_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10492,7 +12797,7 @@ type ListOfConnectionInfo struct {
 
 func (x *ListOfConnectionInfo) Reset() {
 	*x = ListOfConnectionInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[58]
+	mi := &file_acquisition_shared_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10504,7 +12809,7 @@ func (x *ListOfConnectionInfo) String() string {
 func (*ListOfConnectionInfo) ProtoMessage() {}
 
 func (x *ListOfConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[58]
+	mi := &file_acquisition_shared_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10581,7 +12886,7 @@ type FieldValuesList struct {
 
 func (x *FieldValuesList) Reset() {
 	*x = FieldValuesList{}
-	mi := &file_acquisition_shared_proto_msgTypes[59]
+	mi := &file_acquisition_shared_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10593,7 +12898,7 @@ func (x *FieldValuesList) String() string {
 func (*FieldValuesList) ProtoMessage() {}
 
 func (x *FieldValuesList) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[59]
+	mi := &file_acquisition_shared_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10650,7 +12955,7 @@ type AttributeSelector struct {
 
 func (x *AttributeSelector) Reset() {
 	*x = AttributeSelector{}
-	mi := &file_acquisition_shared_proto_msgTypes[60]
+	mi := &file_acquisition_shared_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10662,7 +12967,7 @@ func (x *AttributeSelector) String() string {
 func (*AttributeSelector) ProtoMessage() {}
 
 func (x *AttributeSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[60]
+	mi := &file_acquisition_shared_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10856,7 +13161,7 @@ type DeviceAttributeSelector struct {
 
 func (x *DeviceAttributeSelector) Reset() {
 	*x = DeviceAttributeSelector{}
-	mi := &file_acquisition_shared_proto_msgTypes[61]
+	mi := &file_acquisition_shared_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10868,7 +13173,7 @@ func (x *DeviceAttributeSelector) String() string {
 func (*DeviceAttributeSelector) ProtoMessage() {}
 
 func (x *DeviceAttributeSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[61]
+	mi := &file_acquisition_shared_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10919,7 +13224,7 @@ type CommunicationUnitAttributeSelector struct {
 
 func (x *CommunicationUnitAttributeSelector) Reset() {
 	*x = CommunicationUnitAttributeSelector{}
-	mi := &file_acquisition_shared_proto_msgTypes[62]
+	mi := &file_acquisition_shared_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10931,7 +13236,7 @@ func (x *CommunicationUnitAttributeSelector) String() string {
 func (*CommunicationUnitAttributeSelector) ProtoMessage() {}
 
 func (x *CommunicationUnitAttributeSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[62]
+	mi := &file_acquisition_shared_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11017,7 +13322,7 @@ type ActionResult struct {
 
 func (x *ActionResult) Reset() {
 	*x = ActionResult{}
-	mi := &file_acquisition_shared_proto_msgTypes[63]
+	mi := &file_acquisition_shared_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11029,7 +13334,7 @@ func (x *ActionResult) String() string {
 func (*ActionResult) ProtoMessage() {}
 
 func (x *ActionResult) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[63]
+	mi := &file_acquisition_shared_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11220,7 +13525,7 @@ type JobEventData struct {
 
 func (x *JobEventData) Reset() {
 	*x = JobEventData{}
-	mi := &file_acquisition_shared_proto_msgTypes[64]
+	mi := &file_acquisition_shared_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11232,7 +13537,7 @@ func (x *JobEventData) String() string {
 func (*JobEventData) ProtoMessage() {}
 
 func (x *JobEventData) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[64]
+	mi := &file_acquisition_shared_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11303,7 +13608,7 @@ type DeviceSpec struct {
 
 func (x *DeviceSpec) Reset() {
 	*x = DeviceSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[65]
+	mi := &file_acquisition_shared_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11315,7 +13620,7 @@ func (x *DeviceSpec) String() string {
 func (*DeviceSpec) ProtoMessage() {}
 
 func (x *DeviceSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[65]
+	mi := &file_acquisition_shared_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11478,7 +13783,7 @@ type DeviceStatus struct {
 
 func (x *DeviceStatus) Reset() {
 	*x = DeviceStatus{}
-	mi := &file_acquisition_shared_proto_msgTypes[66]
+	mi := &file_acquisition_shared_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11490,7 +13795,7 @@ func (x *DeviceStatus) String() string {
 func (*DeviceStatus) ProtoMessage() {}
 
 func (x *DeviceStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[66]
+	mi := &file_acquisition_shared_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11583,7 +13888,7 @@ type DeviceCommunicationUnit struct {
 
 func (x *DeviceCommunicationUnit) Reset() {
 	*x = DeviceCommunicationUnit{}
-	mi := &file_acquisition_shared_proto_msgTypes[67]
+	mi := &file_acquisition_shared_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11595,7 +13900,7 @@ func (x *DeviceCommunicationUnit) String() string {
 func (*DeviceCommunicationUnit) ProtoMessage() {}
 
 func (x *DeviceCommunicationUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[67]
+	mi := &file_acquisition_shared_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11707,7 +14012,7 @@ type DefaultDeviceCommunicationUnitAttributes struct {
 
 func (x *DefaultDeviceCommunicationUnitAttributes) Reset() {
 	*x = DefaultDeviceCommunicationUnitAttributes{}
-	mi := &file_acquisition_shared_proto_msgTypes[68]
+	mi := &file_acquisition_shared_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11719,7 +14024,7 @@ func (x *DefaultDeviceCommunicationUnitAttributes) String() string {
 func (*DefaultDeviceCommunicationUnitAttributes) ProtoMessage() {}
 
 func (x *DefaultDeviceCommunicationUnitAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[68]
+	mi := &file_acquisition_shared_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11802,7 +14107,7 @@ type JobSpec struct {
 
 func (x *JobSpec) Reset() {
 	*x = JobSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[69]
+	mi := &file_acquisition_shared_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11814,7 +14119,7 @@ func (x *JobSpec) String() string {
 func (*JobSpec) ProtoMessage() {}
 
 func (x *JobSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[69]
+	mi := &file_acquisition_shared_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11962,7 +14267,7 @@ type JobActionMapRecord struct {
 
 func (x *JobActionMapRecord) Reset() {
 	*x = JobActionMapRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[70]
+	mi := &file_acquisition_shared_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11974,7 +14279,7 @@ func (x *JobActionMapRecord) String() string {
 func (*JobActionMapRecord) ProtoMessage() {}
 
 func (x *JobActionMapRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[70]
+	mi := &file_acquisition_shared_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12111,7 +14416,7 @@ type JobDoneNotification struct {
 
 func (x *JobDoneNotification) Reset() {
 	*x = JobDoneNotification{}
-	mi := &file_acquisition_shared_proto_msgTypes[71]
+	mi := &file_acquisition_shared_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12123,7 +14428,7 @@ func (x *JobDoneNotification) String() string {
 func (*JobDoneNotification) ProtoMessage() {}
 
 func (x *JobDoneNotification) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[71]
+	mi := &file_acquisition_shared_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12207,7 +14512,7 @@ type DriverInfo struct {
 
 func (x *DriverInfo) Reset() {
 	*x = DriverInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[72]
+	mi := &file_acquisition_shared_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12219,7 +14524,7 @@ func (x *DriverInfo) String() string {
 func (*DriverInfo) ProtoMessage() {}
 
 func (x *DriverInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[72]
+	mi := &file_acquisition_shared_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12317,7 +14622,7 @@ type CommunicationUnit struct {
 
 func (x *CommunicationUnit) Reset() {
 	*x = CommunicationUnit{}
-	mi := &file_acquisition_shared_proto_msgTypes[73]
+	mi := &file_acquisition_shared_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12329,7 +14634,7 @@ func (x *CommunicationUnit) String() string {
 func (*CommunicationUnit) ProtoMessage() {}
 
 func (x *CommunicationUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[73]
+	mi := &file_acquisition_shared_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12413,7 +14718,7 @@ type CommunicationUnitSpec struct {
 
 func (x *CommunicationUnitSpec) Reset() {
 	*x = CommunicationUnitSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[74]
+	mi := &file_acquisition_shared_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12425,7 +14730,7 @@ func (x *CommunicationUnitSpec) String() string {
 func (*CommunicationUnitSpec) ProtoMessage() {}
 
 func (x *CommunicationUnitSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[74]
+	mi := &file_acquisition_shared_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12515,7 +14820,7 @@ type CommunicationBus struct {
 
 func (x *CommunicationBus) Reset() {
 	*x = CommunicationBus{}
-	mi := &file_acquisition_shared_proto_msgTypes[75]
+	mi := &file_acquisition_shared_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12527,7 +14832,7 @@ func (x *CommunicationBus) String() string {
 func (*CommunicationBus) ProtoMessage() {}
 
 func (x *CommunicationBus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[75]
+	mi := &file_acquisition_shared_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12608,7 +14913,7 @@ type CommunicationBusStatus struct {
 
 func (x *CommunicationBusStatus) Reset() {
 	*x = CommunicationBusStatus{}
-	mi := &file_acquisition_shared_proto_msgTypes[76]
+	mi := &file_acquisition_shared_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12620,7 +14925,7 @@ func (x *CommunicationBusStatus) String() string {
 func (*CommunicationBusStatus) ProtoMessage() {}
 
 func (x *CommunicationBusStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[76]
+	mi := &file_acquisition_shared_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12670,7 +14975,7 @@ type TopologyNode struct {
 
 func (x *TopologyNode) Reset() {
 	*x = TopologyNode{}
-	mi := &file_acquisition_shared_proto_msgTypes[77]
+	mi := &file_acquisition_shared_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12682,7 +14987,7 @@ func (x *TopologyNode) String() string {
 func (*TopologyNode) ProtoMessage() {}
 
 func (x *TopologyNode) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[77]
+	mi := &file_acquisition_shared_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12803,7 +15108,7 @@ type TopologyEdge struct {
 
 func (x *TopologyEdge) Reset() {
 	*x = TopologyEdge{}
-	mi := &file_acquisition_shared_proto_msgTypes[78]
+	mi := &file_acquisition_shared_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12815,7 +15120,7 @@ func (x *TopologyEdge) String() string {
 func (*TopologyEdge) ProtoMessage() {}
 
 func (x *TopologyEdge) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[78]
+	mi := &file_acquisition_shared_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12931,7 +15236,7 @@ type NetworkMap struct {
 
 func (x *NetworkMap) Reset() {
 	*x = NetworkMap{}
-	mi := &file_acquisition_shared_proto_msgTypes[79]
+	mi := &file_acquisition_shared_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12943,7 +15248,7 @@ func (x *NetworkMap) String() string {
 func (*NetworkMap) ProtoMessage() {}
 
 func (x *NetworkMap) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[79]
+	mi := &file_acquisition_shared_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13012,7 +15317,7 @@ type CommunicationUnitLogRecord struct {
 
 func (x *CommunicationUnitLogRecord) Reset() {
 	*x = CommunicationUnitLogRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[80]
+	mi := &file_acquisition_shared_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13024,7 +15329,7 @@ func (x *CommunicationUnitLogRecord) String() string {
 func (*CommunicationUnitLogRecord) ProtoMessage() {}
 
 func (x *CommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[80]
+	mi := &file_acquisition_shared_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13211,7 +15516,7 @@ type ListOfCommunicationUnitLogRecord struct {
 
 func (x *ListOfCommunicationUnitLogRecord) Reset() {
 	*x = ListOfCommunicationUnitLogRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[81]
+	mi := &file_acquisition_shared_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13223,7 +15528,7 @@ func (x *ListOfCommunicationUnitLogRecord) String() string {
 func (*ListOfCommunicationUnitLogRecord) ProtoMessage() {}
 
 func (x *ListOfCommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[81]
+	mi := &file_acquisition_shared_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13511,11 +15816,18 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\fdevice_model\x18\x06 \x01(\tR\vdeviceModel\x12%\n" +
 	"\x0eerror_register\x18\a \x01(\x04R\rerrorRegister\x12!\n" +
 	"\frelay_states\x18\b \x03(\bR\vrelayStates\x12)\n" +
-	"\x10connection_state\x18\t \x01(\bR\x0fconnectionState\"\xa0\x01\n" +
+	"\x10connection_state\x18\t \x01(\bR\x0fconnectionState\"\xba\x05\n" +
 	"\rProfileValues\x121\n" +
 	"\x06period\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\x06period\x12\x12\n" +
-	"\x04unit\x18\x02 \x01(\tR\x04unit\x12H\n" +
-	"\x06blocks\x18\x03 \x03(\v20.io.clbs.openhes.models.acquisition.ProfileBlockR\x06blocks\"x\n" +
+	"\x04unit\x18\x02 \x01(\tR\x04unit\x12_\n" +
+	"\rdouble_blocks\x18\x04 \x01(\v28.io.clbs.openhes.models.acquisition.MeasuredDoubleBlocksH\x00R\fdoubleBlocks\x12b\n" +
+	"\x0einteger_blocks\x18\x05 \x01(\v29.io.clbs.openhes.models.acquisition.MeasuredIntegerBlocksH\x00R\rintegerBlocks\x12_\n" +
+	"\rstring_blocks\x18\x06 \x01(\v28.io.clbs.openhes.models.acquisition.MeasuredStringBlocksH\x00R\fstringBlocks\x12h\n" +
+	"\x10timestamp_blocks\x18\a \x01(\v2;.io.clbs.openhes.models.acquisition.MeasuredTimestampBlocksH\x00R\x0ftimestampBlocks\x12o\n" +
+	"\x13timestamp_tz_blocks\x18\b \x01(\v2=.io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlocksH\x00R\x11timestampTzBlocks\x12Y\n" +
+	"\vbool_blocks\x18\t \x01(\v26.io.clbs.openhes.models.acquisition.MeasuredBoolBlocksH\x00R\n" +
+	"boolBlocksB\x06\n" +
+	"\x04kind\"x\n" +
 	"\x16IrregularProfileValues\x12\x12\n" +
 	"\x04unit\x18\x01 \x01(\tR\x04unit\x12J\n" +
 	"\x06values\x18\x02 \x03(\v22.io.clbs.openhes.models.acquisition.IrregularValueR\x06values\"\x93\x01\n" +
@@ -13544,7 +15856,74 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\anstatus\x18\t \x01(\x04R\anstatus\x123\n" +
 	"\apeak_ts\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTsB\x06\n" +
-	"\x04kind\"\xa9\x01\n" +
+	"\x04kind\"g\n" +
+	"\x14MeasuredDoubleBlocks\x12O\n" +
+	"\x06values\x18\x01 \x03(\v27.io.clbs.openhes.models.acquisition.MeasuredDoubleBlockR\x06values\"i\n" +
+	"\x15MeasuredIntegerBlocks\x12P\n" +
+	"\x06values\x18\x01 \x03(\v28.io.clbs.openhes.models.acquisition.MeasuredIntegerBlockR\x06values\"g\n" +
+	"\x14MeasuredStringBlocks\x12O\n" +
+	"\x06values\x18\x01 \x03(\v27.io.clbs.openhes.models.acquisition.MeasuredStringBlockR\x06values\"m\n" +
+	"\x17MeasuredTimestampBlocks\x12R\n" +
+	"\x06values\x18\x01 \x03(\v2:.io.clbs.openhes.models.acquisition.MeasuredTimestampBlockR\x06values\"q\n" +
+	"\x19MeasuredTimestampTzBlocks\x12T\n" +
+	"\x06values\x18\x01 \x03(\v2<.io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlockR\x06values\"c\n" +
+	"\x12MeasuredBoolBlocks\x12M\n" +
+	"\x06values\x18\x01 \x03(\v25.io.clbs.openhes.models.acquisition.MeasuredBoolBlockR\x06values\"\xab\x01\n" +
+	"\x13MeasuredDoubleBlock\x12C\n" +
+	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12O\n" +
+	"\x06values\x18\x02 \x03(\v27.io.clbs.openhes.models.acquisition.MeasuredDoubleValueR\x06values\"\xad\x01\n" +
+	"\x14MeasuredIntegerBlock\x12C\n" +
+	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12P\n" +
+	"\x06values\x18\x02 \x03(\v28.io.clbs.openhes.models.acquisition.MeasuredIntegerValueR\x06values\"\xab\x01\n" +
+	"\x13MeasuredStringBlock\x12C\n" +
+	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12O\n" +
+	"\x06values\x18\x02 \x03(\v27.io.clbs.openhes.models.acquisition.MeasuredStringValueR\x06values\"\xb1\x01\n" +
+	"\x16MeasuredTimestampBlock\x12C\n" +
+	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12R\n" +
+	"\x06values\x18\x02 \x03(\v2:.io.clbs.openhes.models.acquisition.MeasuredTimestampValueR\x06values\"\xb5\x01\n" +
+	"\x18MeasuredTimestampTzBlock\x12C\n" +
+	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12T\n" +
+	"\x06values\x18\x02 \x03(\v2<.io.clbs.openhes.models.acquisition.MeasuredTimestampTzValueR\x06values\"\xa7\x01\n" +
+	"\x11MeasuredBoolBlock\x12C\n" +
+	"\x0fstart_timestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0estartTimestamp\x12M\n" +
+	"\x06values\x18\x02 \x03(\v25.io.clbs.openhes.models.acquisition.MeasuredBoolValueR\x06values\"\xbb\x01\n" +
+	"\x13MeasuredDoubleValue\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
+	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12!\n" +
+	"\fdouble_value\x18\x03 \x01(\x01R\vdoubleValue\x12\x18\n" +
+	"\anstatus\x18\x04 \x01(\x04R\anstatus\x123\n" +
+	"\apeak_ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTs\"\xbe\x01\n" +
+	"\x14MeasuredIntegerValue\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
+	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12#\n" +
+	"\rinteger_value\x18\x03 \x01(\x03R\fintegerValue\x12\x18\n" +
+	"\anstatus\x18\x04 \x01(\x04R\anstatus\x123\n" +
+	"\apeak_ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTs\"\xbb\x01\n" +
+	"\x13MeasuredStringValue\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
+	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12!\n" +
+	"\fstring_value\x18\x03 \x01(\tR\vstringValue\x12\x18\n" +
+	"\anstatus\x18\x04 \x01(\x04R\anstatus\x123\n" +
+	"\apeak_ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTs\"\xe0\x01\n" +
+	"\x16MeasuredTimestampValue\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
+	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12C\n" +
+	"\x0ftimestamp_value\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0etimestampValue\x12\x18\n" +
+	"\anstatus\x18\x04 \x01(\x04R\anstatus\x123\n" +
+	"\apeak_ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTs\"\xcb\x01\n" +
+	"\x18MeasuredTimestampTzValue\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
+	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12,\n" +
+	"\x12timestamp_tz_value\x18\x03 \x01(\tR\x10timestampTzValue\x12\x18\n" +
+	"\anstatus\x18\x04 \x01(\x04R\anstatus\x123\n" +
+	"\apeak_ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTs\"\xb5\x01\n" +
+	"\x11MeasuredBoolValue\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x1a\n" +
+	"\bexponent\x18\x02 \x01(\x05R\bexponent\x12\x1d\n" +
+	"\n" +
+	"bool_value\x18\x03 \x01(\bR\tboolValue\x12\x18\n" +
+	"\anstatus\x18\x04 \x01(\x04R\anstatus\x123\n" +
+	"\apeak_ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06peakTs\"\xa9\x01\n" +
 	"\x13JobActionAttributes\x12B\n" +
 	"\x04type\x18\x01 \x01(\x0e2..io.clbs.openhes.models.acquisition.ActionTypeR\x04type\x12N\n" +
 	"\n" +
@@ -13905,7 +16284,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x16LOG_RECORD_LEVEL_FATAL\x10\x04B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_shared_proto_enumTypes = make([]protoimpl.EnumInfo, 17)
-var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
+var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 110)
 var file_acquisition_shared_proto_goTypes = []any{
 	(JobPriority)(0),                                 // 0: io.clbs.openhes.models.acquisition.JobPriority
 	(ReadPathPolicy)(0),                              // 1: io.clbs.openhes.models.acquisition.ReadPathPolicy
@@ -13959,268 +16338,316 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*RegisterValues)(nil),                           // 49: io.clbs.openhes.models.acquisition.RegisterValues
 	(*RegisterValue)(nil),                            // 50: io.clbs.openhes.models.acquisition.RegisterValue
 	(*MeasuredValue)(nil),                            // 51: io.clbs.openhes.models.acquisition.MeasuredValue
-	(*JobActionAttributes)(nil),                      // 52: io.clbs.openhes.models.acquisition.JobActionAttributes
-	(*ConnectionTypeControlledSerial)(nil),           // 53: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
-	(*ActionGetRegister)(nil),                        // 54: io.clbs.openhes.models.acquisition.ActionGetRegister
-	(*ActionGetPeriodicalProfile)(nil),               // 55: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	(*ActionGetIrregularProfile)(nil),                // 56: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	(*ActionGetEvents)(nil),                          // 57: io.clbs.openhes.models.acquisition.ActionGetEvents
-	(*ActionGetDeviceInfo)(nil),                      // 58: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	(*ActionSyncClock)(nil),                          // 59: io.clbs.openhes.models.acquisition.ActionSyncClock
-	(*ActionSetRelayState)(nil),                      // 60: io.clbs.openhes.models.acquisition.ActionSetRelayState
-	(*ActionSetDisconnectorState)(nil),               // 61: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	(*ActionGetTou)(nil),                             // 62: io.clbs.openhes.models.acquisition.ActionGetTou
-	(*ActionSetTou)(nil),                             // 63: io.clbs.openhes.models.acquisition.ActionSetTou
-	(*ActionSetLimiter)(nil),                         // 64: io.clbs.openhes.models.acquisition.ActionSetLimiter
-	(*ActionResetBillingPeriod)(nil),                 // 65: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	(*ActionFwUpdate)(nil),                           // 66: io.clbs.openhes.models.acquisition.ActionFwUpdate
-	(*JobActionContraints)(nil),                      // 67: io.clbs.openhes.models.acquisition.JobActionContraints
-	(*JobStatus)(nil),                                // 68: io.clbs.openhes.models.acquisition.JobStatus
-	(*StartJobData)(nil),                             // 69: io.clbs.openhes.models.acquisition.StartJobData
-	(*CancelJobRequest)(nil),                         // 70: io.clbs.openhes.models.acquisition.CancelJobRequest
-	(*DeviceConfigurationRegisterSpec)(nil),          // 71: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	(*DeviceRegister)(nil),                           // 72: io.clbs.openhes.models.acquisition.DeviceRegister
-	(*DeviceConnectionInfo)(nil),                     // 73: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	(*ListOfModemInfo)(nil),                          // 74: io.clbs.openhes.models.acquisition.ListOfModemInfo
-	(*ListOfConnectionInfo)(nil),                     // 75: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	(*FieldValuesList)(nil),                          // 76: io.clbs.openhes.models.acquisition.FieldValuesList
-	(*AttributeSelector)(nil),                        // 77: io.clbs.openhes.models.acquisition.AttributeSelector
-	(*DeviceAttributeSelector)(nil),                  // 78: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
-	(*CommunicationUnitAttributeSelector)(nil),       // 79: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
-	(*ActionResult)(nil),                             // 80: io.clbs.openhes.models.acquisition.ActionResult
-	(*JobEventData)(nil),                             // 81: io.clbs.openhes.models.acquisition.JobEventData
-	(*DeviceSpec)(nil),                               // 82: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceStatus)(nil),                             // 83: io.clbs.openhes.models.acquisition.DeviceStatus
-	(*DeviceCommunicationUnit)(nil),                  // 84: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*DefaultDeviceCommunicationUnitAttributes)(nil), // 85: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
-	(*JobSpec)(nil),                                  // 86: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobActionMapRecord)(nil),                       // 87: io.clbs.openhes.models.acquisition.JobActionMapRecord
-	(*JobDoneNotification)(nil),                      // 88: io.clbs.openhes.models.acquisition.JobDoneNotification
-	(*DriverInfo)(nil),                               // 89: io.clbs.openhes.models.acquisition.DriverInfo
-	(*CommunicationUnit)(nil),                        // 90: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*CommunicationUnitSpec)(nil),                    // 91: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*CommunicationBus)(nil),                         // 92: io.clbs.openhes.models.acquisition.CommunicationBus
-	(*CommunicationBusStatus)(nil),                   // 93: io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	(*TopologyNode)(nil),                             // 94: io.clbs.openhes.models.acquisition.TopologyNode
-	(*TopologyEdge)(nil),                             // 95: io.clbs.openhes.models.acquisition.TopologyEdge
-	(*NetworkMap)(nil),                               // 96: io.clbs.openhes.models.acquisition.NetworkMap
-	(*CommunicationUnitLogRecord)(nil),               // 97: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	(*ListOfCommunicationUnitLogRecord)(nil),         // 98: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
-	nil,                                              // 99: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
-	nil,                                              // 100: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
-	nil,                                              // 101: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
-	nil,                                              // 102: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
-	nil,                                              // 103: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
-	nil,                                              // 104: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
-	nil,                                              // 105: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
-	nil,                                              // 106: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	nil,                                              // 107: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	nil,                                              // 108: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
-	(*durationpb.Duration)(nil),                      // 109: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),                    // 110: google.protobuf.Timestamp
-	(*common.FieldDescriptor)(nil),                   // 111: io.clbs.openhes.models.common.FieldDescriptor
-	(*common.FormattedMessage)(nil),                  // 112: io.clbs.openhes.models.common.FormattedMessage
-	(*emptypb.Empty)(nil),                            // 113: google.protobuf.Empty
-	(*timeofuse.TimeOfUseTableSpec)(nil),             // 114: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	(common.FieldDataType)(0),                        // 115: io.clbs.openhes.models.common.FieldDataType
-	(*common.FieldValues)(nil),                       // 116: io.clbs.openhes.models.common.FieldValues
-	(common.FilterOperator)(0),                       // 117: io.clbs.openhes.models.common.FilterOperator
-	(*common.MetadataFields)(nil),                    // 118: io.clbs.openhes.models.common.MetadataFields
-	(*common.FieldValue)(nil),                        // 119: io.clbs.openhes.models.common.FieldValue
-	(*common.ListOfString)(nil),                      // 120: io.clbs.openhes.models.common.ListOfString
+	(*MeasuredDoubleBlocks)(nil),                     // 52: io.clbs.openhes.models.acquisition.MeasuredDoubleBlocks
+	(*MeasuredIntegerBlocks)(nil),                    // 53: io.clbs.openhes.models.acquisition.MeasuredIntegerBlocks
+	(*MeasuredStringBlocks)(nil),                     // 54: io.clbs.openhes.models.acquisition.MeasuredStringBlocks
+	(*MeasuredTimestampBlocks)(nil),                  // 55: io.clbs.openhes.models.acquisition.MeasuredTimestampBlocks
+	(*MeasuredTimestampTzBlocks)(nil),                // 56: io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlocks
+	(*MeasuredBoolBlocks)(nil),                       // 57: io.clbs.openhes.models.acquisition.MeasuredBoolBlocks
+	(*MeasuredDoubleBlock)(nil),                      // 58: io.clbs.openhes.models.acquisition.MeasuredDoubleBlock
+	(*MeasuredIntegerBlock)(nil),                     // 59: io.clbs.openhes.models.acquisition.MeasuredIntegerBlock
+	(*MeasuredStringBlock)(nil),                      // 60: io.clbs.openhes.models.acquisition.MeasuredStringBlock
+	(*MeasuredTimestampBlock)(nil),                   // 61: io.clbs.openhes.models.acquisition.MeasuredTimestampBlock
+	(*MeasuredTimestampTzBlock)(nil),                 // 62: io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlock
+	(*MeasuredBoolBlock)(nil),                        // 63: io.clbs.openhes.models.acquisition.MeasuredBoolBlock
+	(*MeasuredDoubleValue)(nil),                      // 64: io.clbs.openhes.models.acquisition.MeasuredDoubleValue
+	(*MeasuredIntegerValue)(nil),                     // 65: io.clbs.openhes.models.acquisition.MeasuredIntegerValue
+	(*MeasuredStringValue)(nil),                      // 66: io.clbs.openhes.models.acquisition.MeasuredStringValue
+	(*MeasuredTimestampValue)(nil),                   // 67: io.clbs.openhes.models.acquisition.MeasuredTimestampValue
+	(*MeasuredTimestampTzValue)(nil),                 // 68: io.clbs.openhes.models.acquisition.MeasuredTimestampTzValue
+	(*MeasuredBoolValue)(nil),                        // 69: io.clbs.openhes.models.acquisition.MeasuredBoolValue
+	(*JobActionAttributes)(nil),                      // 70: io.clbs.openhes.models.acquisition.JobActionAttributes
+	(*ConnectionTypeControlledSerial)(nil),           // 71: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	(*ActionGetRegister)(nil),                        // 72: io.clbs.openhes.models.acquisition.ActionGetRegister
+	(*ActionGetPeriodicalProfile)(nil),               // 73: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	(*ActionGetIrregularProfile)(nil),                // 74: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	(*ActionGetEvents)(nil),                          // 75: io.clbs.openhes.models.acquisition.ActionGetEvents
+	(*ActionGetDeviceInfo)(nil),                      // 76: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	(*ActionSyncClock)(nil),                          // 77: io.clbs.openhes.models.acquisition.ActionSyncClock
+	(*ActionSetRelayState)(nil),                      // 78: io.clbs.openhes.models.acquisition.ActionSetRelayState
+	(*ActionSetDisconnectorState)(nil),               // 79: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	(*ActionGetTou)(nil),                             // 80: io.clbs.openhes.models.acquisition.ActionGetTou
+	(*ActionSetTou)(nil),                             // 81: io.clbs.openhes.models.acquisition.ActionSetTou
+	(*ActionSetLimiter)(nil),                         // 82: io.clbs.openhes.models.acquisition.ActionSetLimiter
+	(*ActionResetBillingPeriod)(nil),                 // 83: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	(*ActionFwUpdate)(nil),                           // 84: io.clbs.openhes.models.acquisition.ActionFwUpdate
+	(*JobActionContraints)(nil),                      // 85: io.clbs.openhes.models.acquisition.JobActionContraints
+	(*JobStatus)(nil),                                // 86: io.clbs.openhes.models.acquisition.JobStatus
+	(*StartJobData)(nil),                             // 87: io.clbs.openhes.models.acquisition.StartJobData
+	(*CancelJobRequest)(nil),                         // 88: io.clbs.openhes.models.acquisition.CancelJobRequest
+	(*DeviceConfigurationRegisterSpec)(nil),          // 89: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	(*DeviceRegister)(nil),                           // 90: io.clbs.openhes.models.acquisition.DeviceRegister
+	(*DeviceConnectionInfo)(nil),                     // 91: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	(*ListOfModemInfo)(nil),                          // 92: io.clbs.openhes.models.acquisition.ListOfModemInfo
+	(*ListOfConnectionInfo)(nil),                     // 93: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(*FieldValuesList)(nil),                          // 94: io.clbs.openhes.models.acquisition.FieldValuesList
+	(*AttributeSelector)(nil),                        // 95: io.clbs.openhes.models.acquisition.AttributeSelector
+	(*DeviceAttributeSelector)(nil),                  // 96: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
+	(*CommunicationUnitAttributeSelector)(nil),       // 97: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
+	(*ActionResult)(nil),                             // 98: io.clbs.openhes.models.acquisition.ActionResult
+	(*JobEventData)(nil),                             // 99: io.clbs.openhes.models.acquisition.JobEventData
+	(*DeviceSpec)(nil),                               // 100: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceStatus)(nil),                             // 101: io.clbs.openhes.models.acquisition.DeviceStatus
+	(*DeviceCommunicationUnit)(nil),                  // 102: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*DefaultDeviceCommunicationUnitAttributes)(nil), // 103: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
+	(*JobSpec)(nil),                                  // 104: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobActionMapRecord)(nil),                       // 105: io.clbs.openhes.models.acquisition.JobActionMapRecord
+	(*JobDoneNotification)(nil),                      // 106: io.clbs.openhes.models.acquisition.JobDoneNotification
+	(*DriverInfo)(nil),                               // 107: io.clbs.openhes.models.acquisition.DriverInfo
+	(*CommunicationUnit)(nil),                        // 108: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*CommunicationUnitSpec)(nil),                    // 109: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*CommunicationBus)(nil),                         // 110: io.clbs.openhes.models.acquisition.CommunicationBus
+	(*CommunicationBusStatus)(nil),                   // 111: io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	(*TopologyNode)(nil),                             // 112: io.clbs.openhes.models.acquisition.TopologyNode
+	(*TopologyEdge)(nil),                             // 113: io.clbs.openhes.models.acquisition.TopologyEdge
+	(*NetworkMap)(nil),                               // 114: io.clbs.openhes.models.acquisition.NetworkMap
+	(*CommunicationUnitLogRecord)(nil),               // 115: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*ListOfCommunicationUnitLogRecord)(nil),         // 116: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
+	nil,                                              // 117: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
+	nil,                                              // 118: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
+	nil,                                              // 119: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
+	nil,                                              // 120: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
+	nil,                                              // 121: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
+	nil,                                              // 122: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
+	nil,                                              // 123: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
+	nil,                                              // 124: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
+	nil,                                              // 125: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	nil,                                              // 126: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
+	(*durationpb.Duration)(nil),                      // 127: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),                    // 128: google.protobuf.Timestamp
+	(*common.FieldDescriptor)(nil),                   // 129: io.clbs.openhes.models.common.FieldDescriptor
+	(*common.FormattedMessage)(nil),                  // 130: io.clbs.openhes.models.common.FormattedMessage
+	(*emptypb.Empty)(nil),                            // 131: google.protobuf.Empty
+	(*timeofuse.TimeOfUseTableSpec)(nil),             // 132: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	(common.FieldDataType)(0),                        // 133: io.clbs.openhes.models.common.FieldDataType
+	(*common.FieldValues)(nil),                       // 134: io.clbs.openhes.models.common.FieldValues
+	(common.FilterOperator)(0),                       // 135: io.clbs.openhes.models.common.FilterOperator
+	(*common.MetadataFields)(nil),                    // 136: io.clbs.openhes.models.common.MetadataFields
+	(*common.FieldValue)(nil),                        // 137: io.clbs.openhes.models.common.FieldValue
+	(*common.ListOfString)(nil),                      // 138: io.clbs.openhes.models.common.ListOfString
 }
 var file_acquisition_shared_proto_depIdxs = []int32{
-	109, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
+	127, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
 	0,   // 1: io.clbs.openhes.models.acquisition.JobSettings.priority:type_name -> io.clbs.openhes.models.acquisition.JobPriority
-	109, // 2: io.clbs.openhes.models.acquisition.JobSettings.retry_delay:type_name -> google.protobuf.Duration
-	109, // 3: io.clbs.openhes.models.acquisition.JobSettings.defer_start:type_name -> google.protobuf.Duration
-	110, // 4: io.clbs.openhes.models.acquisition.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
+	127, // 2: io.clbs.openhes.models.acquisition.JobSettings.retry_delay:type_name -> google.protobuf.Duration
+	127, // 3: io.clbs.openhes.models.acquisition.JobSettings.defer_start:type_name -> google.protobuf.Duration
+	128, // 4: io.clbs.openhes.models.acquisition.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
 	1,   // 5: io.clbs.openhes.models.acquisition.JobSettings.read_path_policy:type_name -> io.clbs.openhes.models.acquisition.ReadPathPolicy
-	99,  // 6: io.clbs.openhes.models.acquisition.JobAction.attributes:type_name -> io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
-	54,  // 7: io.clbs.openhes.models.acquisition.JobAction.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
-	55,  // 8: io.clbs.openhes.models.acquisition.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	56,  // 9: io.clbs.openhes.models.acquisition.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	57,  // 10: io.clbs.openhes.models.acquisition.JobAction.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
-	58,  // 11: io.clbs.openhes.models.acquisition.JobAction.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	59,  // 12: io.clbs.openhes.models.acquisition.JobAction.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
-	60,  // 13: io.clbs.openhes.models.acquisition.JobAction.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
-	61,  // 14: io.clbs.openhes.models.acquisition.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	62,  // 15: io.clbs.openhes.models.acquisition.JobAction.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
-	63,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
-	64,  // 17: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
-	65,  // 18: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	66,  // 19: io.clbs.openhes.models.acquisition.JobAction.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
-	54,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
-	55,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	56,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	57,  // 23: io.clbs.openhes.models.acquisition.JobActionSet.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
-	58,  // 24: io.clbs.openhes.models.acquisition.JobActionSet.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	59,  // 25: io.clbs.openhes.models.acquisition.JobActionSet.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
-	60,  // 26: io.clbs.openhes.models.acquisition.JobActionSet.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
-	61,  // 27: io.clbs.openhes.models.acquisition.JobActionSet.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	62,  // 28: io.clbs.openhes.models.acquisition.JobActionSet.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
-	63,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
-	64,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
-	65,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	66,  // 32: io.clbs.openhes.models.acquisition.JobActionSet.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
+	117, // 6: io.clbs.openhes.models.acquisition.JobAction.attributes:type_name -> io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
+	72,  // 7: io.clbs.openhes.models.acquisition.JobAction.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
+	73,  // 8: io.clbs.openhes.models.acquisition.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	74,  // 9: io.clbs.openhes.models.acquisition.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	75,  // 10: io.clbs.openhes.models.acquisition.JobAction.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
+	76,  // 11: io.clbs.openhes.models.acquisition.JobAction.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	77,  // 12: io.clbs.openhes.models.acquisition.JobAction.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
+	78,  // 13: io.clbs.openhes.models.acquisition.JobAction.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
+	79,  // 14: io.clbs.openhes.models.acquisition.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	80,  // 15: io.clbs.openhes.models.acquisition.JobAction.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
+	81,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
+	82,  // 17: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
+	83,  // 18: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	84,  // 19: io.clbs.openhes.models.acquisition.JobAction.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
+	72,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
+	73,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	74,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	75,  // 23: io.clbs.openhes.models.acquisition.JobActionSet.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
+	76,  // 24: io.clbs.openhes.models.acquisition.JobActionSet.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	77,  // 25: io.clbs.openhes.models.acquisition.JobActionSet.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
+	78,  // 26: io.clbs.openhes.models.acquisition.JobActionSet.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
+	79,  // 27: io.clbs.openhes.models.acquisition.JobActionSet.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	80,  // 28: io.clbs.openhes.models.acquisition.JobActionSet.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
+	81,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
+	82,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
+	83,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	84,  // 32: io.clbs.openhes.models.acquisition.JobActionSet.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
 	23,  // 33: io.clbs.openhes.models.acquisition.ListOfJobDevice.list:type_name -> io.clbs.openhes.models.acquisition.JobDevice
 	22,  // 34: io.clbs.openhes.models.acquisition.ListOfJobDeviceId.list:type_name -> io.clbs.openhes.models.acquisition.JobDeviceId
-	100, // 35: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
+	118, // 35: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
 	26,  // 36: io.clbs.openhes.models.acquisition.JobDevice.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
 	8,   // 37: io.clbs.openhes.models.acquisition.JobDevice.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	109, // 38: io.clbs.openhes.models.acquisition.ModemInfo.connect_timeout:type_name -> google.protobuf.Duration
-	109, // 39: io.clbs.openhes.models.acquisition.ModemInfo.command_timeout:type_name -> google.protobuf.Duration
+	127, // 38: io.clbs.openhes.models.acquisition.ModemInfo.connect_timeout:type_name -> google.protobuf.Duration
+	127, // 39: io.clbs.openhes.models.acquisition.ModemInfo.command_timeout:type_name -> google.protobuf.Duration
 	27,  // 40: io.clbs.openhes.models.acquisition.ModemInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
-	53,  // 41: io.clbs.openhes.models.acquisition.ModemInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	71,  // 41: io.clbs.openhes.models.acquisition.ModemInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 	2,   // 42: io.clbs.openhes.models.acquisition.SerialConfig.parity:type_name -> io.clbs.openhes.models.acquisition.SerialConfigParity
 	3,   // 43: io.clbs.openhes.models.acquisition.SerialConfig.data_bits:type_name -> io.clbs.openhes.models.acquisition.SerialConfigDataBits
 	4,   // 44: io.clbs.openhes.models.acquisition.SerialConfig.stop_bits:type_name -> io.clbs.openhes.models.acquisition.SerialConfigStopBits
 	5,   // 45: io.clbs.openhes.models.acquisition.SerialConfig.flow_control:type_name -> io.clbs.openhes.models.acquisition.SerialConfigFLowControler
 	27,  // 46: io.clbs.openhes.models.acquisition.ConnectionInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
 	28,  // 47: io.clbs.openhes.models.acquisition.ConnectionInfo.modem_pool:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeModemPool
-	53,  // 48: io.clbs.openhes.models.acquisition.ConnectionInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	71,  // 48: io.clbs.openhes.models.acquisition.ConnectionInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 	7,   // 49: io.clbs.openhes.models.acquisition.ConnectionInfo.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	101, // 50: io.clbs.openhes.models.acquisition.ConnectionInfo.attributes:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
-	109, // 51: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp.timeout:type_name -> google.protobuf.Duration
+	119, // 50: io.clbs.openhes.models.acquisition.ConnectionInfo.attributes:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
+	127, // 51: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp.timeout:type_name -> google.protobuf.Duration
 	24,  // 52: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	109, // 53: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect.timeout:type_name -> google.protobuf.Duration
-	109, // 54: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.timeout:type_name -> google.protobuf.Duration
+	127, // 53: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect.timeout:type_name -> google.protobuf.Duration
+	127, // 54: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.timeout:type_name -> google.protobuf.Duration
 	25,  // 55: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.serial_config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
-	109, // 56: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.timeout:type_name -> google.protobuf.Duration
+	127, // 56: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.timeout:type_name -> google.protobuf.Duration
 	25,  // 57: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.serial_config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
 	8,   // 58: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	111, // 59: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	129, // 59: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	7,   // 60: io.clbs.openhes.models.acquisition.DataLinkTemplate.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
 	8,   // 61: io.clbs.openhes.models.acquisition.DataLinkTemplate.app_protocol_refs:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	111, // 62: io.clbs.openhes.models.acquisition.DataLinkTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	129, // 62: io.clbs.openhes.models.acquisition.DataLinkTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	6,   // 63: io.clbs.openhes.models.acquisition.CommunicationTemplate.type:type_name -> io.clbs.openhes.models.acquisition.CommunicationType
 	33,  // 64: io.clbs.openhes.models.acquisition.CommunicationTemplate.datalinks:type_name -> io.clbs.openhes.models.acquisition.DataLinkTemplate
 	34,  // 65: io.clbs.openhes.models.acquisition.DriverTemplates.communication_templates:type_name -> io.clbs.openhes.models.acquisition.CommunicationTemplate
 	32,  // 66: io.clbs.openhes.models.acquisition.DriverTemplates.app_protocols:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate
-	52,  // 67: io.clbs.openhes.models.acquisition.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionAttributes
+	70,  // 67: io.clbs.openhes.models.acquisition.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionAttributes
 	35,  // 68: io.clbs.openhes.models.acquisition.DriverTemplates.access_templates:type_name -> io.clbs.openhes.models.acquisition.AccessLevelTemplate
-	67,  // 69: io.clbs.openhes.models.acquisition.DriverTemplates.action_constraints:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints
-	111, // 70: io.clbs.openhes.models.acquisition.DriverTemplates.uknown_device_descriptors:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	85,  // 69: io.clbs.openhes.models.acquisition.DriverTemplates.action_constraints:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints
+	129, // 70: io.clbs.openhes.models.acquisition.DriverTemplates.uknown_device_descriptors:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	10,  // 71: io.clbs.openhes.models.acquisition.ActionProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
 	39,  // 72: io.clbs.openhes.models.acquisition.ActionProgressUpdate.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	112, // 73: io.clbs.openhes.models.acquisition.ActionProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	130, // 73: io.clbs.openhes.models.acquisition.ActionProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
 	11,  // 74: io.clbs.openhes.models.acquisition.JobProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
-	109, // 75: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
-	112, // 76: io.clbs.openhes.models.acquisition.JobProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	113, // 77: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
+	127, // 75: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
+	130, // 76: io.clbs.openhes.models.acquisition.JobProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	131, // 77: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
 	49,  // 78: io.clbs.openhes.models.acquisition.ActionData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
 	45,  // 79: io.clbs.openhes.models.acquisition.ActionData.profile:type_name -> io.clbs.openhes.models.acquisition.ProfileValues
 	46,  // 80: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
 	44,  // 81: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
 	40,  // 82: io.clbs.openhes.models.acquisition.ActionData.events:type_name -> io.clbs.openhes.models.acquisition.EventRecords
-	114, // 83: io.clbs.openhes.models.acquisition.ActionData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	132, // 83: io.clbs.openhes.models.acquisition.ActionData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 	41,  // 84: io.clbs.openhes.models.acquisition.EventRecords.values:type_name -> io.clbs.openhes.models.acquisition.EventRecord
-	110, // 85: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
-	110, // 86: io.clbs.openhes.models.acquisition.DeviceEventRecord.timestamp:type_name -> google.protobuf.Timestamp
+	128, // 85: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
+	128, // 86: io.clbs.openhes.models.acquisition.DeviceEventRecord.timestamp:type_name -> google.protobuf.Timestamp
 	42,  // 87: io.clbs.openhes.models.acquisition.DeviceEvents.events:type_name -> io.clbs.openhes.models.acquisition.DeviceEventRecord
-	110, // 88: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
-	109, // 89: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
-	109, // 90: io.clbs.openhes.models.acquisition.ProfileValues.period:type_name -> google.protobuf.Duration
-	48,  // 91: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
-	47,  // 92: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
-	110, // 93: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
-	51,  // 94: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	110, // 95: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
-	51,  // 96: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	50,  // 97: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
-	110, // 98: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
-	51,  // 99: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	110, // 100: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
-	110, // 101: io.clbs.openhes.models.acquisition.MeasuredValue.peak_ts:type_name -> google.protobuf.Timestamp
-	9,   // 102: io.clbs.openhes.models.acquisition.JobActionAttributes.type:type_name -> io.clbs.openhes.models.acquisition.ActionType
-	111, // 103: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	29,  // 104: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.direct:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
-	30,  // 105: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.moxa:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
-	31,  // 106: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.rfc2217:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
-	25,  // 107: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
-	115, // 108: io.clbs.openhes.models.acquisition.ActionGetRegister.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 109: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_start:type_name -> google.protobuf.Timestamp
-	110, // 110: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_end:type_name -> google.protobuf.Timestamp
-	115, // 111: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 112: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_start:type_name -> google.protobuf.Timestamp
-	110, // 113: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_end:type_name -> google.protobuf.Timestamp
-	115, // 114: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 115: io.clbs.openhes.models.acquisition.ActionGetEvents.range_start:type_name -> google.protobuf.Timestamp
-	110, // 116: io.clbs.openhes.models.acquisition.ActionGetEvents.range_end:type_name -> google.protobuf.Timestamp
-	114, // 117: io.clbs.openhes.models.acquisition.ActionSetTou.table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	102, // 118: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_name:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
-	103, // 119: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
-	14,  // 120: io.clbs.openhes.models.acquisition.JobStatus.status:type_name -> io.clbs.openhes.models.acquisition.JobStatusCode
-	11,  // 121: io.clbs.openhes.models.acquisition.JobStatus.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
-	80,  // 122: io.clbs.openhes.models.acquisition.JobStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionResult
-	110, // 123: io.clbs.openhes.models.acquisition.JobStatus.started_at:type_name -> google.protobuf.Timestamp
-	110, // 124: io.clbs.openhes.models.acquisition.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
-	44,  // 125: io.clbs.openhes.models.acquisition.JobStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	112, // 126: io.clbs.openhes.models.acquisition.JobStatus.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	104, // 127: io.clbs.openhes.models.acquisition.StartJobData.device_attributes:type_name -> io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
-	17,  // 128: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	18,  // 129: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	8,   // 130: io.clbs.openhes.models.acquisition.StartJobData.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	13,  // 131: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
-	105, // 132: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
-	115, // 133: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	71,  // 134: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	26,  // 135: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.communication_unit:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	8,   // 136: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	106, // 137: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	72,  // 138: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
-	24,  // 139: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	73,  // 140: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	116, // 141: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	117, // 142: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
-	115, // 143: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 144: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
-	77,  // 145: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	7,   // 146: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	77,  // 147: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	10,  // 148: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	39,  // 149: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	112, // 150: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	84,  // 151: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	85,  // 152: io.clbs.openhes.models.acquisition.DeviceSpec.default_link_attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
-	44,  // 153: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	8,   // 154: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	107, // 155: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	8,   // 156: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	108, // 157: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
-	23,  // 158: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	17,  // 159: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	18,  // 160: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	87,  // 161: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
-	86,  // 162: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	68,  // 163: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	91,  // 164: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	118, // 165: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	26,  // 166: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	93,  // 167: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	118, // 168: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	15,  // 169: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
-	116, // 170: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	116, // 171: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	94,  // 172: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
-	95,  // 173: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
-	110, // 174: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
-	16,  // 175: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
-	97,  // 176: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	119, // 177: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 178: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 179: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	120, // 180: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
-	119, // 181: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 182: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 183: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 184: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 185: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	186, // [186:186] is the sub-list for method output_type
-	186, // [186:186] is the sub-list for method input_type
-	186, // [186:186] is the sub-list for extension type_name
-	186, // [186:186] is the sub-list for extension extendee
-	0,   // [0:186] is the sub-list for field type_name
+	128, // 88: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
+	127, // 89: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
+	127, // 90: io.clbs.openhes.models.acquisition.ProfileValues.period:type_name -> google.protobuf.Duration
+	52,  // 91: io.clbs.openhes.models.acquisition.ProfileValues.double_blocks:type_name -> io.clbs.openhes.models.acquisition.MeasuredDoubleBlocks
+	53,  // 92: io.clbs.openhes.models.acquisition.ProfileValues.integer_blocks:type_name -> io.clbs.openhes.models.acquisition.MeasuredIntegerBlocks
+	54,  // 93: io.clbs.openhes.models.acquisition.ProfileValues.string_blocks:type_name -> io.clbs.openhes.models.acquisition.MeasuredStringBlocks
+	55,  // 94: io.clbs.openhes.models.acquisition.ProfileValues.timestamp_blocks:type_name -> io.clbs.openhes.models.acquisition.MeasuredTimestampBlocks
+	56,  // 95: io.clbs.openhes.models.acquisition.ProfileValues.timestamp_tz_blocks:type_name -> io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlocks
+	57,  // 96: io.clbs.openhes.models.acquisition.ProfileValues.bool_blocks:type_name -> io.clbs.openhes.models.acquisition.MeasuredBoolBlocks
+	47,  // 97: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
+	128, // 98: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
+	51,  // 99: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	128, // 100: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	51,  // 101: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	50,  // 102: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
+	128, // 103: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
+	51,  // 104: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	128, // 105: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
+	128, // 106: io.clbs.openhes.models.acquisition.MeasuredValue.peak_ts:type_name -> google.protobuf.Timestamp
+	58,  // 107: io.clbs.openhes.models.acquisition.MeasuredDoubleBlocks.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredDoubleBlock
+	59,  // 108: io.clbs.openhes.models.acquisition.MeasuredIntegerBlocks.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredIntegerBlock
+	60,  // 109: io.clbs.openhes.models.acquisition.MeasuredStringBlocks.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredStringBlock
+	61,  // 110: io.clbs.openhes.models.acquisition.MeasuredTimestampBlocks.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredTimestampBlock
+	62,  // 111: io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlocks.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlock
+	63,  // 112: io.clbs.openhes.models.acquisition.MeasuredBoolBlocks.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredBoolBlock
+	128, // 113: io.clbs.openhes.models.acquisition.MeasuredDoubleBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	64,  // 114: io.clbs.openhes.models.acquisition.MeasuredDoubleBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredDoubleValue
+	128, // 115: io.clbs.openhes.models.acquisition.MeasuredIntegerBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	65,  // 116: io.clbs.openhes.models.acquisition.MeasuredIntegerBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredIntegerValue
+	128, // 117: io.clbs.openhes.models.acquisition.MeasuredStringBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	66,  // 118: io.clbs.openhes.models.acquisition.MeasuredStringBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredStringValue
+	128, // 119: io.clbs.openhes.models.acquisition.MeasuredTimestampBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	67,  // 120: io.clbs.openhes.models.acquisition.MeasuredTimestampBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredTimestampValue
+	128, // 121: io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	68,  // 122: io.clbs.openhes.models.acquisition.MeasuredTimestampTzBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredTimestampTzValue
+	128, // 123: io.clbs.openhes.models.acquisition.MeasuredBoolBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	69,  // 124: io.clbs.openhes.models.acquisition.MeasuredBoolBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredBoolValue
+	128, // 125: io.clbs.openhes.models.acquisition.MeasuredDoubleValue.peak_ts:type_name -> google.protobuf.Timestamp
+	128, // 126: io.clbs.openhes.models.acquisition.MeasuredIntegerValue.peak_ts:type_name -> google.protobuf.Timestamp
+	128, // 127: io.clbs.openhes.models.acquisition.MeasuredStringValue.peak_ts:type_name -> google.protobuf.Timestamp
+	128, // 128: io.clbs.openhes.models.acquisition.MeasuredTimestampValue.timestamp_value:type_name -> google.protobuf.Timestamp
+	128, // 129: io.clbs.openhes.models.acquisition.MeasuredTimestampValue.peak_ts:type_name -> google.protobuf.Timestamp
+	128, // 130: io.clbs.openhes.models.acquisition.MeasuredTimestampTzValue.peak_ts:type_name -> google.protobuf.Timestamp
+	128, // 131: io.clbs.openhes.models.acquisition.MeasuredBoolValue.peak_ts:type_name -> google.protobuf.Timestamp
+	9,   // 132: io.clbs.openhes.models.acquisition.JobActionAttributes.type:type_name -> io.clbs.openhes.models.acquisition.ActionType
+	129, // 133: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	29,  // 134: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.direct:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
+	30,  // 135: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.moxa:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
+	31,  // 136: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.rfc2217:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
+	25,  // 137: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
+	133, // 138: io.clbs.openhes.models.acquisition.ActionGetRegister.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	128, // 139: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_start:type_name -> google.protobuf.Timestamp
+	128, // 140: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_end:type_name -> google.protobuf.Timestamp
+	133, // 141: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	128, // 142: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_start:type_name -> google.protobuf.Timestamp
+	128, // 143: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_end:type_name -> google.protobuf.Timestamp
+	133, // 144: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	128, // 145: io.clbs.openhes.models.acquisition.ActionGetEvents.range_start:type_name -> google.protobuf.Timestamp
+	128, // 146: io.clbs.openhes.models.acquisition.ActionGetEvents.range_end:type_name -> google.protobuf.Timestamp
+	132, // 147: io.clbs.openhes.models.acquisition.ActionSetTou.table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	120, // 148: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_name:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
+	121, // 149: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
+	14,  // 150: io.clbs.openhes.models.acquisition.JobStatus.status:type_name -> io.clbs.openhes.models.acquisition.JobStatusCode
+	11,  // 151: io.clbs.openhes.models.acquisition.JobStatus.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
+	98,  // 152: io.clbs.openhes.models.acquisition.JobStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionResult
+	128, // 153: io.clbs.openhes.models.acquisition.JobStatus.started_at:type_name -> google.protobuf.Timestamp
+	128, // 154: io.clbs.openhes.models.acquisition.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
+	44,  // 155: io.clbs.openhes.models.acquisition.JobStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	130, // 156: io.clbs.openhes.models.acquisition.JobStatus.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	122, // 157: io.clbs.openhes.models.acquisition.StartJobData.device_attributes:type_name -> io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
+	17,  // 158: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	18,  // 159: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	8,   // 160: io.clbs.openhes.models.acquisition.StartJobData.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	13,  // 161: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
+	123, // 162: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
+	133, // 163: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	89,  // 164: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	26,  // 165: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.communication_unit:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	8,   // 166: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	124, // 167: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
+	90,  // 168: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
+	24,  // 169: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	91,  // 170: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	134, // 171: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	135, // 172: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
+	133, // 173: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	128, // 174: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
+	95,  // 175: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	7,   // 176: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
+	95,  // 177: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	10,  // 178: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
+	39,  // 179: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
+	130, // 180: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	102, // 181: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	103, // 182: io.clbs.openhes.models.acquisition.DeviceSpec.default_link_attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
+	44,  // 183: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	8,   // 184: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	125, // 185: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	8,   // 186: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	126, // 187: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
+	23,  // 188: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	17,  // 189: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	18,  // 190: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	105, // 191: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
+	104, // 192: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	86,  // 193: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	109, // 194: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	136, // 195: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	26,  // 196: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	111, // 197: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	136, // 198: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	15,  // 199: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
+	134, // 200: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	134, // 201: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	112, // 202: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
+	113, // 203: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
+	128, // 204: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
+	16,  // 205: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
+	115, // 206: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	137, // 207: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	137, // 208: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	137, // 209: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	138, // 210: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
+	137, // 211: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	137, // 212: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	137, // 213: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	137, // 214: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	137, // 215: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	216, // [216:216] is the sub-list for method output_type
+	216, // [216:216] is the sub-list for method input_type
+	216, // [216:216] is the sub-list for extension type_name
+	216, // [216:216] is the sub-list for extension extendee
+	0,   // [0:216] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_shared_proto_init() }
@@ -14276,6 +16703,14 @@ func file_acquisition_shared_proto_init() {
 		(*actionData_Events)(nil),
 		(*actionData_TouTable)(nil),
 	}
+	file_acquisition_shared_proto_msgTypes[28].OneofWrappers = []any{
+		(*profileValues_DoubleBlocks)(nil),
+		(*profileValues_IntegerBlocks)(nil),
+		(*profileValues_StringBlocks)(nil),
+		(*profileValues_TimestampBlocks)(nil),
+		(*profileValues_TimestampTzBlocks)(nil),
+		(*profileValues_BoolBlocks)(nil),
+	}
 	file_acquisition_shared_proto_msgTypes[34].OneofWrappers = []any{
 		(*measuredValue_DoubleValue)(nil),
 		(*measuredValue_IntegerValue)(nil),
@@ -14284,7 +16719,7 @@ func file_acquisition_shared_proto_init() {
 		(*measuredValue_TimestampTzValue)(nil),
 		(*measuredValue_BoolValue)(nil),
 	}
-	file_acquisition_shared_proto_msgTypes[36].OneofWrappers = []any{
+	file_acquisition_shared_proto_msgTypes[54].OneofWrappers = []any{
 		(*connectionTypeControlledSerial_Direct)(nil),
 		(*connectionTypeControlledSerial_Moxa)(nil),
 		(*connectionTypeControlledSerial_Rfc2217)(nil),
@@ -14295,7 +16730,7 @@ func file_acquisition_shared_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_shared_proto_rawDesc), len(file_acquisition_shared_proto_rawDesc)),
 			NumEnums:      17,
-			NumMessages:   92,
+			NumMessages:   110,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
