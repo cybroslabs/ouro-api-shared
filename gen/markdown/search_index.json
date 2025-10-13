@@ -346,6 +346,26 @@
     "tags2": ""
   },
   {
+    "filename": "service-globalization-apiservice.md",
+    "title": "ApiService - Globalization",
+    "tags0": [
+      "GetTranslations",
+      "UpdateTranslations",
+      "SetTranslationMissing",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse",
+      "io.clbs.openhes.models.localization.MissingTranslationRequest",
+      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
+    ],
+    "tags1": [
+      "GetTranslationsRequest",
+      "GetTranslationsResponse",
+      "MissingTranslationRequest",
+      "UpdateTranslationsRequest"
+    ],
+    "tags2": ""
+  },
+  {
     "filename": "service-messaging-apiservice.md",
     "title": "ApiService - Messaging",
     "tags0": [
@@ -387,20 +407,16 @@
     "title": "ApiService - System",
     "tags0": [
       "SetLicense",
-      "GetTranslations",
-      "UpdateTranslations",
+      "SetScreenConfig",
+      "GetScreenConfig",
+      "DeleteScreenConfig",
       "GetLicenseRequestCode",
-      "SetTranslationMissing",
-      "io.clbs.openhes.models.localization.GetTranslationsRequest",
-      "io.clbs.openhes.models.localization.GetTranslationsResponse",
-      "io.clbs.openhes.models.localization.MissingTranslationRequest",
-      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
+      "io.clbs.openhes.models.system.ScreenConfigSelector",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
     ],
     "tags1": [
-      "GetTranslationsRequest",
-      "GetTranslationsResponse",
-      "MissingTranslationRequest",
-      "UpdateTranslationsRequest"
+      "ScreenConfigSelector",
+      "SetScreenConfigRequest"
     ],
     "tags2": ""
   },
@@ -3090,7 +3106,7 @@
     "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
     "tags0": [
       "keys",
-      "application",
+      "applicationId",
       "ietfLanguageTag",
       "io.clbs.openhes.models.localization.GetTranslationsRequest"
     ],
@@ -3116,7 +3132,7 @@
     "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
     "tags0": [
       "key",
-      "application",
+      "applicationId",
       "ietfLanguageTag",
       "io.clbs.openhes.models.localization.MissingTranslationRequest"
     ],
@@ -3130,8 +3146,8 @@
     "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
     "tags0": [
       "version",
-      "application",
       "translations",
+      "applicationId",
       "ietfLanguageTag",
       "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
     ],
@@ -3623,6 +3639,33 @@
       "ComponentConfigDescriptor"
     ],
     "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
+    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "tags0": [
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.ScreenConfigSelector"
+    ],
+    "tags1": [
+      "ScreenConfigSelector"
+    ],
+    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
+    "tags0": [
+      "data",
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
+    ],
+    "tags1": [
+      "SetScreenConfigRequest"
+    ],
+    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic data model holding data related for the screen"
   },
   {
     "filename": "model-io-clbs-openhes-models-system-userprofile.md",

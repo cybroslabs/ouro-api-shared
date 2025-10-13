@@ -105,6 +105,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.system.ScreenConfigSelector">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ScreenConfigSelector</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.system.SetScreenConfigRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>SetScreenConfigRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.system.UserProfile">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>UserProfile</code> 
@@ -377,6 +395,151 @@
         </code>
       </td>
       <td class="content"><p>The list of component configuration field descriptors.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.system.ScreenConfigSelector">
+  <span>
+    <a href="#message-io.clbs.openhes.models.system.ScreenConfigSelector" title="io.clbs.openhes.models.system.ScreenConfigSelector">message ScreenConfigSelector</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the selection criteria for UI screen configuration.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        applicationId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The application or ui-plugin identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        screenId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The screen identifier within the application/ui-plugin.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.system.SetScreenConfigRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.system.SetScreenConfigRequest" title="io.clbs.openhes.models.system.SetScreenConfigRequest">message SetScreenConfigRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        applicationId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The application or ui-plugin identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        screenId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The screen identifier within the application/ui-plugin.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        data
+      </td>
+      <td>
+        <code title="google.protobuf.Struct">
+          
+          <span>google.protobuf.Struct</span>
+        </code>
+      </td>
+      <td class="content"><p>Generic data model holding data related for the screen.</p></td>
       
     </tr>
     

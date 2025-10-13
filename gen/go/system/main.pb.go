@@ -10,7 +10,7 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/structpb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -699,6 +699,255 @@ func (b0 UserProfile_builder) Build() *UserProfile {
 	return m0
 }
 
+// Defines the
+type SetScreenConfigRequest struct {
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ApplicationId *string                `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
+	xxx_hidden_ScreenId      *string                `protobuf:"bytes,2,opt,name=screen_id,json=screenId"`
+	xxx_hidden_Data          *structpb.Struct       `protobuf:"bytes,3,opt,name=data"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *SetScreenConfigRequest) Reset() {
+	*x = SetScreenConfigRequest{}
+	mi := &file_system_main_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetScreenConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetScreenConfigRequest) ProtoMessage() {}
+
+func (x *SetScreenConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *SetScreenConfigRequest) GetApplicationId() string {
+	if x != nil {
+		if x.xxx_hidden_ApplicationId != nil {
+			return *x.xxx_hidden_ApplicationId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *SetScreenConfigRequest) GetScreenId() string {
+	if x != nil {
+		if x.xxx_hidden_ScreenId != nil {
+			return *x.xxx_hidden_ScreenId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *SetScreenConfigRequest) GetData() *structpb.Struct {
+	if x != nil {
+		return x.xxx_hidden_Data
+	}
+	return nil
+}
+
+func (x *SetScreenConfigRequest) SetApplicationId(v string) {
+	x.xxx_hidden_ApplicationId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
+func (x *SetScreenConfigRequest) SetScreenId(v string) {
+	x.xxx_hidden_ScreenId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *SetScreenConfigRequest) SetData(v *structpb.Struct) {
+	x.xxx_hidden_Data = v
+}
+
+func (x *SetScreenConfigRequest) HasApplicationId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *SetScreenConfigRequest) HasScreenId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *SetScreenConfigRequest) HasData() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Data != nil
+}
+
+func (x *SetScreenConfigRequest) ClearApplicationId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_ApplicationId = nil
+}
+
+func (x *SetScreenConfigRequest) ClearScreenId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_ScreenId = nil
+}
+
+func (x *SetScreenConfigRequest) ClearData() {
+	x.xxx_hidden_Data = nil
+}
+
+type SetScreenConfigRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	ApplicationId *string
+	ScreenId      *string
+	Data          *structpb.Struct
+}
+
+func (b0 SetScreenConfigRequest_builder) Build() *SetScreenConfigRequest {
+	m0 := &SetScreenConfigRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.ApplicationId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_ApplicationId = b.ApplicationId
+	}
+	if b.ScreenId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_ScreenId = b.ScreenId
+	}
+	x.xxx_hidden_Data = b.Data
+	return m0
+}
+
+// Defines the selection criteria for UI screen configuration.
+type ScreenConfigSelector struct {
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ApplicationId *string                `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
+	xxx_hidden_ScreenId      *string                `protobuf:"bytes,2,opt,name=screen_id,json=screenId"`
+	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
+	XXX_presence             [1]uint32
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *ScreenConfigSelector) Reset() {
+	*x = ScreenConfigSelector{}
+	mi := &file_system_main_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ScreenConfigSelector) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ScreenConfigSelector) ProtoMessage() {}
+
+func (x *ScreenConfigSelector) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ScreenConfigSelector) GetApplicationId() string {
+	if x != nil {
+		if x.xxx_hidden_ApplicationId != nil {
+			return *x.xxx_hidden_ApplicationId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ScreenConfigSelector) GetScreenId() string {
+	if x != nil {
+		if x.xxx_hidden_ScreenId != nil {
+			return *x.xxx_hidden_ScreenId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ScreenConfigSelector) SetApplicationId(v string) {
+	x.xxx_hidden_ApplicationId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *ScreenConfigSelector) SetScreenId(v string) {
+	x.xxx_hidden_ScreenId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ScreenConfigSelector) HasApplicationId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *ScreenConfigSelector) HasScreenId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ScreenConfigSelector) ClearApplicationId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_ApplicationId = nil
+}
+
+func (x *ScreenConfigSelector) ClearScreenId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_ScreenId = nil
+}
+
+type ScreenConfigSelector_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	ApplicationId *string
+	ScreenId      *string
+}
+
+func (b0 ScreenConfigSelector_builder) Build() *ScreenConfigSelector {
+	m0 := &ScreenConfigSelector{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.ApplicationId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_ApplicationId = b.ApplicationId
+	}
+	if b.ScreenId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_ScreenId = b.ScreenId
+	}
+	return m0
+}
+
 var File_system_main_proto protoreflect.FileDescriptor
 
 const file_system_main_proto_rawDesc = "" +
@@ -729,9 +978,16 @@ const file_system_main_proto_rawDesc = "" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\r\n" +
-	"\vUserProfileB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
+	"\vUserProfile\"\x89\x01\n" +
+	"\x16SetScreenConfigRequest\x12%\n" +
+	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
+	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\x12+\n" +
+	"\x04data\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04data\"Z\n" +
+	"\x14ScreenConfigSelector\x12%\n" +
+	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
+	"\tscreen_id\x18\x02 \x01(\tR\bscreenIdB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
 
-var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_system_main_proto_goTypes = []any{
 	(*ApplicationConfig)(nil),           // 0: io.clbs.openhes.models.system.ApplicationConfig
 	(*ComponentConfig)(nil),             // 1: io.clbs.openhes.models.system.ComponentConfig
@@ -739,26 +995,30 @@ var file_system_main_proto_goTypes = []any{
 	(*ApplicationConfigDescriptor)(nil), // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor
 	(*License)(nil),                     // 4: io.clbs.openhes.models.system.License
 	(*UserProfile)(nil),                 // 5: io.clbs.openhes.models.system.UserProfile
-	nil,                                 // 6: io.clbs.openhes.models.system.License.OptionsEntry
-	(*common.FieldValues)(nil),          // 7: io.clbs.openhes.models.common.FieldValues
-	(*common.FieldDescriptor)(nil),      // 8: io.clbs.openhes.models.common.FieldDescriptor
-	(*timestamppb.Timestamp)(nil),       // 9: google.protobuf.Timestamp
+	(*SetScreenConfigRequest)(nil),      // 6: io.clbs.openhes.models.system.SetScreenConfigRequest
+	(*ScreenConfigSelector)(nil),        // 7: io.clbs.openhes.models.system.ScreenConfigSelector
+	nil,                                 // 8: io.clbs.openhes.models.system.License.OptionsEntry
+	(*common.FieldValues)(nil),          // 9: io.clbs.openhes.models.common.FieldValues
+	(*common.FieldDescriptor)(nil),      // 10: io.clbs.openhes.models.common.FieldDescriptor
+	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),             // 12: google.protobuf.Struct
 }
 var file_system_main_proto_depIdxs = []int32{
-	1, // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	7, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	8, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	2, // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
-	1, // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	6, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
-	9, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
-	9, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
-	9, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	1,  // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
+	9,  // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	10, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	2,  // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
+	1,  // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
+	8,  // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
+	11, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
+	11, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
+	11, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
+	12, // 9: io.clbs.openhes.models.system.SetScreenConfigRequest.data:type_name -> google.protobuf.Struct
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_system_main_proto_init() }
@@ -772,7 +1032,7 @@ func file_system_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_system_main_proto_rawDesc), len(file_system_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

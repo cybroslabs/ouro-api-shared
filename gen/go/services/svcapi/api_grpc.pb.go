@@ -19,6 +19,7 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -130,6 +131,9 @@ const (
 	ApiService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateObjectFields"
 	ApiService_GetLicenseRequestCode_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/GetLicenseRequestCode"
 	ApiService_SetLicense_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/SetLicense"
+	ApiService_SetScreenConfig_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/SetScreenConfig"
+	ApiService_GetScreenConfig_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfig"
+	ApiService_DeleteScreenConfig_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
 	ApiService_GetTranslations_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
 	ApiService_SetTranslationMissing_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/SetTranslationMissing"
 	ApiService_UpdateTranslations_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTranslations"
@@ -503,12 +507,18 @@ type ApiServiceClient interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
+	SetScreenConfig(ctx context.Context, in *system.SetScreenConfigRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*structpb.Struct, error)
+	// @group: System
+	DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error)
-	// @group: System
+	// @group: Globalization
 	// Indicates that a translation is missing for the specified language and key.
 	SetTranslationMissing(ctx context.Context, in *localization.MissingTranslationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// @group: System
+	// @group: Globalization
 	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
 	UpdateTranslations(ctx context.Context, in *localization.UpdateTranslationsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Cryptography
@@ -1589,6 +1599,36 @@ func (c *apiServiceClient) SetLicense(ctx context.Context, in *wrapperspb.String
 	return out, nil
 }
 
+func (c *apiServiceClient) SetScreenConfig(ctx context.Context, in *system.SetScreenConfigRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_SetScreenConfig_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*structpb.Struct, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(structpb.Struct)
+	err := c.cc.Invoke(ctx, ApiService_GetScreenConfig_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_DeleteScreenConfig_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(localization.GetTranslationsResponse)
@@ -2056,12 +2096,18 @@ type ApiServiceServer interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
+	SetScreenConfig(context.Context, *system.SetScreenConfigRequest) (*emptypb.Empty, error)
+	// @group: System
+	GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*structpb.Struct, error)
+	// @group: System
+	DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error)
+	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error)
-	// @group: System
+	// @group: Globalization
 	// Indicates that a translation is missing for the specified language and key.
 	SetTranslationMissing(context.Context, *localization.MissingTranslationRequest) (*emptypb.Empty, error)
-	// @group: System
+	// @group: Globalization
 	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
 	UpdateTranslations(context.Context, *localization.UpdateTranslationsRequest) (*emptypb.Empty, error)
 	// @group: Cryptography
@@ -2400,6 +2446,15 @@ func (UnimplementedApiServiceServer) GetLicenseRequestCode(context.Context, *emp
 }
 func (UnimplementedApiServiceServer) SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetLicense not implemented")
+}
+func (UnimplementedApiServiceServer) SetScreenConfig(context.Context, *system.SetScreenConfigRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetScreenConfig not implemented")
+}
+func (UnimplementedApiServiceServer) GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*structpb.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScreenConfig not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenConfig not implemented")
 }
 func (UnimplementedApiServiceServer) GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranslations not implemented")
@@ -4267,6 +4322,60 @@ func _ApiService_SetLicense_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_SetScreenConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.SetScreenConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).SetScreenConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_SetScreenConfig_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).SetScreenConfig(ctx, req.(*system.SetScreenConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetScreenConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.ScreenConfigSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetScreenConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetScreenConfig_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetScreenConfig(ctx, req.(*system.ScreenConfigSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_DeleteScreenConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.ScreenConfigSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteScreenConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteScreenConfig_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteScreenConfig(ctx, req.(*system.ScreenConfigSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_GetTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(localization.GetTranslationsRequest)
 	if err := dec(in); err != nil {
@@ -4827,6 +4936,18 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetLicense",
 			Handler:    _ApiService_SetLicense_Handler,
+		},
+		{
+			MethodName: "SetScreenConfig",
+			Handler:    _ApiService_SetScreenConfig_Handler,
+		},
+		{
+			MethodName: "GetScreenConfig",
+			Handler:    _ApiService_GetScreenConfig_Handler,
+		},
+		{
+			MethodName: "DeleteScreenConfig",
+			Handler:    _ApiService_DeleteScreenConfig_Handler,
 		},
 		{
 			MethodName: "GetTranslations",

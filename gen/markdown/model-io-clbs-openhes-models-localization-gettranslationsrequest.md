@@ -6,7 +6,7 @@ Defines the request for retrieving translations based on language and keys.
 
 | Field | Information |
 | --- | --- |
-| application | <b>Type:</b> `string`<br><b>Description:</b><br>The application or plugin identifier where the translation is missing. Can be empty for core application. |
+| applicationId | <b>Type:</b> `string`<br><b>Description:</b><br>The application or ui-plugin identifier where the translation is missing. Can be empty for core application. |
 | ietfLanguageTag | <b>Type:</b> `string`<br><b>Description:</b><br>The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are requested. |
 | keys | <b>Type:</b> `string`<br><b>Description:</b><br>The list of keys for which translations are requested. If empty, all translations for the specified language are returned. |
 

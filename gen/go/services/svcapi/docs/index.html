@@ -2281,6 +2281,76 @@ Values missing from the defaults will be deleted if they were previously set in 
 
   <div class="taggroup">
     
+    <h4>Globalization</h4>
+    
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetTranslations">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetTranslations">
+            rpc <code>GetTranslations</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.GetTranslationsRequest"><span title="io.clbs.openhes.models.localization.GetTranslationsRequest">io.clbs.openhes.models.localization.GetTranslationsRequest</span>
+    </a></code><br>
+        Response: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.GetTranslationsResponse"><span title="io.clbs.openhes.models.localization.GetTranslationsResponse">io.clbs.openhes.models.localization.GetTranslationsResponse</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Retrieves the translation data.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SetTranslationMissing">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SetTranslationMissing">
+            rpc <code>SetTranslationMissing</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.MissingTranslationRequest"><span title="io.clbs.openhes.models.localization.MissingTranslationRequest">io.clbs.openhes.models.localization.MissingTranslationRequest</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Indicates that a translation is missing for the specified language and key.</p></p>
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="block">
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-UpdateTranslations">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-UpdateTranslations">
+            rpc <code>UpdateTranslations</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.UpdateTranslationsRequest"><span title="io.clbs.openhes.models.localization.UpdateTranslationsRequest">io.clbs.openhes.models.localization.UpdateTranslationsRequest</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
+    </a></code><br>
+      </div>
+
+      
+      <div class="block">
+        <p><p>Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.</p></p>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <div class="taggroup">
+    
     <h4>Messaging</h4>
     
     
@@ -2447,64 +2517,52 @@ Values missing from the defaults will be deleted if they were previously set in 
     
     <div class="box">
       <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetTranslations">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetTranslations">
-            rpc <code>GetTranslations</code>
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SetScreenConfig">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SetScreenConfig">
+            rpc <code>SetScreenConfig</code>
           </a>
         </h5>
         
-        Request: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.GetTranslationsRequest"><span title="io.clbs.openhes.models.localization.GetTranslationsRequest">io.clbs.openhes.models.localization.GetTranslationsRequest</span>
-    </a></code><br>
-        Response: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.GetTranslationsResponse"><span title="io.clbs.openhes.models.localization.GetTranslationsResponse">io.clbs.openhes.models.localization.GetTranslationsResponse</span>
-    </a></code><br>
-      </div>
-
-      
-      <div class="block">
-        <p><p>Retrieves the translation data.</p></p>
-      </div>
-      
-    </div>
-    
-    <div class="box">
-      <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-SetTranslationMissing">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-SetTranslationMissing">
-            rpc <code>SetTranslationMissing</code>
-          </a>
-        </h5>
-        
-        Request: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.MissingTranslationRequest"><span title="io.clbs.openhes.models.localization.MissingTranslationRequest">io.clbs.openhes.models.localization.MissingTranslationRequest</span>
+        Request: <code><a href="io.clbs.openhes.models.system.html#message-io.clbs.openhes.models.system.SetScreenConfigRequest"><span title="io.clbs.openhes.models.system.SetScreenConfigRequest">io.clbs.openhes.models.system.SetScreenConfigRequest</span>
     </a></code><br>
         Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
     </a></code><br>
       </div>
 
       
+    </div>
+    
+    <div class="box">
       <div class="block">
-        <p><p>Indicates that a translation is missing for the specified language and key.</p></p>
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-GetScreenConfig">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-GetScreenConfig">
+            rpc <code>GetScreenConfig</code>
+          </a>
+        </h5>
+        
+        Request: <code><a href="io.clbs.openhes.models.system.html#message-io.clbs.openhes.models.system.ScreenConfigSelector"><span title="io.clbs.openhes.models.system.ScreenConfigSelector">io.clbs.openhes.models.system.ScreenConfigSelector</span>
+    </a></code><br>
+        Response: <code><a href="google.protobuf.html#message-google.protobuf.Struct"><span title="google.protobuf.Struct">google.protobuf.Struct</span>
+    </a></code><br>
       </div>
+
       
     </div>
     
     <div class="box">
       <div class="block">
-        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-UpdateTranslations">
-          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-UpdateTranslations">
-            rpc <code>UpdateTranslations</code>
+        <h5 class="title is-5" id="service-io.clbs.openhes.services.svcapi.ApiService-DeleteScreenConfig">
+          <a href="#service-io.clbs.openhes.services.svcapi.ApiService-DeleteScreenConfig">
+            rpc <code>DeleteScreenConfig</code>
           </a>
         </h5>
         
-        Request: <code><a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.UpdateTranslationsRequest"><span title="io.clbs.openhes.models.localization.UpdateTranslationsRequest">io.clbs.openhes.models.localization.UpdateTranslationsRequest</span>
+        Request: <code><a href="io.clbs.openhes.models.system.html#message-io.clbs.openhes.models.system.ScreenConfigSelector"><span title="io.clbs.openhes.models.system.ScreenConfigSelector">io.clbs.openhes.models.system.ScreenConfigSelector</span>
     </a></code><br>
         Response: <code><a href="google.protobuf.html#message-google.protobuf.Empty"><span title="google.protobuf.Empty">google.protobuf.Empty</span>
     </a></code><br>
       </div>
 
-      
-      <div class="block">
-        <p><p>Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.</p></p>
-      </div>
       
     </div>
     

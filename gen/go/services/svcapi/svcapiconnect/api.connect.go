@@ -17,6 +17,7 @@ import (
 	svcapi "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	http "net/http"
 	strings "strings"
@@ -325,6 +326,15 @@ const (
 	ApiServiceGetLicenseRequestCodeProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetLicenseRequestCode"
 	// ApiServiceSetLicenseProcedure is the fully-qualified name of the ApiService's SetLicense RPC.
 	ApiServiceSetLicenseProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetLicense"
+	// ApiServiceSetScreenConfigProcedure is the fully-qualified name of the ApiService's
+	// SetScreenConfig RPC.
+	ApiServiceSetScreenConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetScreenConfig"
+	// ApiServiceGetScreenConfigProcedure is the fully-qualified name of the ApiService's
+	// GetScreenConfig RPC.
+	ApiServiceGetScreenConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfig"
+	// ApiServiceDeleteScreenConfigProcedure is the fully-qualified name of the ApiService's
+	// DeleteScreenConfig RPC.
+	ApiServiceDeleteScreenConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
 	// ApiServiceGetTranslationsProcedure is the fully-qualified name of the ApiService's
 	// GetTranslations RPC.
 	ApiServiceGetTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
@@ -714,12 +724,18 @@ type ApiServiceClient interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error)
+	// @group: System
+	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
+	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
-	// @group: System
+	// @group: Globalization
 	// Indicates that a translation is missing for the specified language and key.
 	SetTranslationMissing(context.Context, *connect.Request[localization.MissingTranslationRequest]) (*connect.Response[emptypb.Empty], error)
-	// @group: System
+	// @group: Globalization
 	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
 	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Cryptography
@@ -1368,6 +1384,24 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetLicense")),
 			connect.WithClientOptions(opts...),
 		),
+		setScreenConfig: connect.NewClient[system.SetScreenConfigRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceSetScreenConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("SetScreenConfig")),
+			connect.WithClientOptions(opts...),
+		),
+		getScreenConfig: connect.NewClient[system.ScreenConfigSelector, structpb.Struct](
+			httpClient,
+			baseURL+ApiServiceGetScreenConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetScreenConfig")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteScreenConfig: connect.NewClient[system.ScreenConfigSelector, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteScreenConfigProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteScreenConfig")),
+			connect.WithClientOptions(opts...),
+		),
 		getTranslations: connect.NewClient[localization.GetTranslationsRequest, localization.GetTranslationsResponse](
 			httpClient,
 			baseURL+ApiServiceGetTranslationsProcedure,
@@ -1535,6 +1569,9 @@ type apiServiceClient struct {
 	updateObjectFields                                               *connect.Client[common.UpdateObjectFieldsRequest, emptypb.Empty]
 	getLicenseRequestCode                                            *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	setLicense                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	setScreenConfig                                                  *connect.Client[system.SetScreenConfigRequest, emptypb.Empty]
+	getScreenConfig                                                  *connect.Client[system.ScreenConfigSelector, structpb.Struct]
+	deleteScreenConfig                                               *connect.Client[system.ScreenConfigSelector, emptypb.Empty]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	setTranslationMissing                                            *connect.Client[localization.MissingTranslationRequest, emptypb.Empty]
 	updateTranslations                                               *connect.Client[localization.UpdateTranslationsRequest, emptypb.Empty]
@@ -2080,6 +2117,21 @@ func (c *apiServiceClient) SetLicense(ctx context.Context, req *connect.Request[
 	return c.setLicense.CallUnary(ctx, req)
 }
 
+// SetScreenConfig calls io.clbs.openhes.services.svcapi.ApiService.SetScreenConfig.
+func (c *apiServiceClient) SetScreenConfig(ctx context.Context, req *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.setScreenConfig.CallUnary(ctx, req)
+}
+
+// GetScreenConfig calls io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig.
+func (c *apiServiceClient) GetScreenConfig(ctx context.Context, req *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error) {
+	return c.getScreenConfig.CallUnary(ctx, req)
+}
+
+// DeleteScreenConfig calls io.clbs.openhes.services.svcapi.ApiService.DeleteScreenConfig.
+func (c *apiServiceClient) DeleteScreenConfig(ctx context.Context, req *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteScreenConfig.CallUnary(ctx, req)
+}
+
 // GetTranslations calls io.clbs.openhes.services.svcapi.ApiService.GetTranslations.
 func (c *apiServiceClient) GetTranslations(ctx context.Context, req *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {
 	return c.getTranslations.CallUnary(ctx, req)
@@ -2489,12 +2541,18 @@ type ApiServiceHandler interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error)
+	// @group: System
+	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
+	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
-	// @group: System
+	// @group: Globalization
 	// Indicates that a translation is missing for the specified language and key.
 	SetTranslationMissing(context.Context, *connect.Request[localization.MissingTranslationRequest]) (*connect.Response[emptypb.Empty], error)
-	// @group: System
+	// @group: Globalization
 	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
 	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Cryptography
@@ -3139,6 +3197,24 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("SetLicense")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceSetScreenConfigHandler := connect.NewUnaryHandler(
+		ApiServiceSetScreenConfigProcedure,
+		svc.SetScreenConfig,
+		connect.WithSchema(apiServiceMethods.ByName("SetScreenConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetScreenConfigHandler := connect.NewUnaryHandler(
+		ApiServiceGetScreenConfigProcedure,
+		svc.GetScreenConfig,
+		connect.WithSchema(apiServiceMethods.ByName("GetScreenConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteScreenConfigHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteScreenConfigProcedure,
+		svc.DeleteScreenConfig,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteScreenConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetTranslationsHandler := connect.NewUnaryHandler(
 		ApiServiceGetTranslationsProcedure,
 		svc.GetTranslations,
@@ -3405,6 +3481,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetLicenseRequestCodeHandler.ServeHTTP(w, r)
 		case ApiServiceSetLicenseProcedure:
 			apiServiceSetLicenseHandler.ServeHTTP(w, r)
+		case ApiServiceSetScreenConfigProcedure:
+			apiServiceSetScreenConfigHandler.ServeHTTP(w, r)
+		case ApiServiceGetScreenConfigProcedure:
+			apiServiceGetScreenConfigHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteScreenConfigProcedure:
+			apiServiceDeleteScreenConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetTranslationsProcedure:
 			apiServiceGetTranslationsHandler.ServeHTTP(w, r)
 		case ApiServiceSetTranslationMissingProcedure:
@@ -3840,6 +3922,18 @@ func (UnimplementedApiServiceHandler) GetLicenseRequestCode(context.Context, *co
 
 func (UnimplementedApiServiceHandler) SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetLicense is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetScreenConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteScreenConfig is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {

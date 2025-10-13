@@ -6,15 +6,15 @@ import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FieldDescriptor, FieldDescriptorJson, FieldValues, FieldValuesJson } from "../common/fields_pb";
 import { file_common_fields } from "../common/fields_pb";
-import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { StructJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiDQoLVXNlclByb2ZpbGVCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiDQoLVXNlclByb2ZpbGUiagoWU2V0U2NyZWVuQ29uZmlnUmVxdWVzdBIWCg5hcHBsaWNhdGlvbl9pZBgBIAEoCRIRCglzY3JlZW5faWQYAiABKAkSJQoEZGF0YRgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiQQoUU2NyZWVuQ29uZmlnU2VsZWN0b3ISFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -371,4 +371,116 @@ export type UserProfileJson = {
  */
 export const UserProfileSchema: GenMessage<UserProfile, {jsonType: UserProfileJson}> = /*@__PURE__*/
   messageDesc(file_system_main, 5);
+
+/**
+ * Defines the
+ *
+ * @generated from message io.clbs.openhes.models.system.SetScreenConfigRequest
+ */
+export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetScreenConfigRequest"> & {
+  /**
+   * The application or ui-plugin identifier.
+   *
+   * @generated from field: string application_id = 1;
+   */
+  applicationId: string;
+
+  /**
+   * The screen identifier within the application/ui-plugin.
+   *
+   * @generated from field: string screen_id = 2;
+   */
+  screenId: string;
+
+  /**
+   * Generic data model holding data related for the screen.
+   *
+   * @generated from field: google.protobuf.Struct data = 3;
+   */
+  data?: JsonObject;
+};
+
+/**
+ * Defines the
+ *
+ * @generated from message io.clbs.openhes.models.system.SetScreenConfigRequest
+ */
+export type SetScreenConfigRequestJson = {
+  /**
+   * The application or ui-plugin identifier.
+   *
+   * @generated from field: string application_id = 1;
+   */
+  applicationId?: string;
+
+  /**
+   * The screen identifier within the application/ui-plugin.
+   *
+   * @generated from field: string screen_id = 2;
+   */
+  screenId?: string;
+
+  /**
+   * Generic data model holding data related for the screen.
+   *
+   * @generated from field: google.protobuf.Struct data = 3;
+   */
+  data?: StructJson;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.SetScreenConfigRequest.
+ * Use `create(SetScreenConfigRequestSchema)` to create a new message.
+ */
+export const SetScreenConfigRequestSchema: GenMessage<SetScreenConfigRequest, {jsonType: SetScreenConfigRequestJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 6);
+
+/**
+ * Defines the selection criteria for UI screen configuration.
+ *
+ * @generated from message io.clbs.openhes.models.system.ScreenConfigSelector
+ */
+export type ScreenConfigSelector = Message<"io.clbs.openhes.models.system.ScreenConfigSelector"> & {
+  /**
+   * The application or ui-plugin identifier.
+   *
+   * @generated from field: string application_id = 1;
+   */
+  applicationId: string;
+
+  /**
+   * The screen identifier within the application/ui-plugin.
+   *
+   * @generated from field: string screen_id = 2;
+   */
+  screenId: string;
+};
+
+/**
+ * Defines the selection criteria for UI screen configuration.
+ *
+ * @generated from message io.clbs.openhes.models.system.ScreenConfigSelector
+ */
+export type ScreenConfigSelectorJson = {
+  /**
+   * The application or ui-plugin identifier.
+   *
+   * @generated from field: string application_id = 1;
+   */
+  applicationId?: string;
+
+  /**
+   * The screen identifier within the application/ui-plugin.
+   *
+   * @generated from field: string screen_id = 2;
+   */
+  screenId?: string;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.ScreenConfigSelector.
+ * Use `create(ScreenConfigSelectorSchema)` to create a new message.
+ */
+export const ScreenConfigSelectorSchema: GenMessage<ScreenConfigSelector, {jsonType: ScreenConfigSelectorJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 7);
 

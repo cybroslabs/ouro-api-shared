@@ -10,14 +10,14 @@ import "common/metadata.proto";
 
 // Defines the request for retrieving translations based on language and keys.
 message GetTranslationsRequest {
-    string application       = 1;  // The application or plugin identifier where the translation is missing. Can be empty for core application.
+    string application_id    = 1;  // The application or ui-plugin identifier where the translation is missing. Can be empty for core application.
     string ietf_language_tag = 2;  // The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are requested.
     repeated string keys     = 3;  // The list of keys for which translations are requested. If empty, all translations for the specified language are returned.
 }
 
 // Indicates that a translation is missing for the specified language and key.
 message MissingTranslationRequest {
-    string application       = 1;  // The application or plugin identifier where the translation is missing. Can be empty for core application.
+    string application_id    = 1;  // The application or ui-plugin identifier where the translation is missing. Can be empty for core application.
     string ietf_language_tag = 2;  // The IETF language tag (for example, `en-US`, `fr-FR`) for which a translation is missing.
     string key               = 3;  // The key for which the translation is missing.
 }
@@ -29,8 +29,8 @@ message GetTranslationsResponse {
 
 // Defines the request for updating translations.
 message UpdateTranslationsRequest {
-    string version                   = 1;  // The version of the translations, corresponding to the application or plugin version.
-    string application               = 2;  // The application or plugin identifier where the translations are to be updated. Can be empty for core application.
+    string version                   = 1;  // The version of the translations, corresponding to the application or ui-plugin version.
+    string application_id            = 2;  // The application or ui-plugin identifier where the translations are to be updated. Can be empty for core application.
     string ietf_language_tag         = 3;  // The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are to be updated.
     map<string, string> translations = 4;  // A map of keys to their corresponding translated strings.
 }

@@ -20,34 +20,28 @@ SetLicense(google.protobuf.StringValue)
 
 - Input: `google.protobuf.StringValue`
 
-## GetTranslations
-
-Retrieves the translation data.
+## SetScreenConfig
 
 ```proto
-GetTranslations(io.clbs.openhes.models.localization.GetTranslationsRequest) returns (io.clbs.openhes.models.localization.GetTranslationsResponse)
+SetScreenConfig(io.clbs.openhes.models.system.SetScreenConfigRequest)
 ```
 
-- Input: [`io.clbs.openhes.models.localization.GetTranslationsRequest`](model-io-clbs-openhes-models-localization-gettranslationsrequest.md)
-- Output: [`io.clbs.openhes.models.localization.GetTranslationsResponse`](model-io-clbs-openhes-models-localization-gettranslationsresponse.md)
+- Input: [`io.clbs.openhes.models.system.SetScreenConfigRequest`](model-io-clbs-openhes-models-system-setscreenconfigrequest.md)
 
-## SetTranslationMissing
-
-Indicates that a translation is missing for the specified language and key.
+## GetScreenConfig
 
 ```proto
-SetTranslationMissing(io.clbs.openhes.models.localization.MissingTranslationRequest)
+GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.Struct)
 ```
 
-- Input: [`io.clbs.openhes.models.localization.MissingTranslationRequest`](model-io-clbs-openhes-models-localization-missingtranslationrequest.md)
+- Input: [`io.clbs.openhes.models.system.ScreenConfigSelector`](model-io-clbs-openhes-models-system-screenconfigselector.md)
+- Output: `google.protobuf.Struct`
 
-## UpdateTranslations
-
-Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
+## DeleteScreenConfig
 
 ```proto
-UpdateTranslations(io.clbs.openhes.models.localization.UpdateTranslationsRequest)
+DeleteScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector)
 ```
 
-- Input: [`io.clbs.openhes.models.localization.UpdateTranslationsRequest`](model-io-clbs-openhes-models-localization-updatetranslationsrequest.md)
+- Input: [`io.clbs.openhes.models.system.ScreenConfigSelector`](model-io-clbs-openhes-models-system-screenconfigselector.md)
 

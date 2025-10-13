@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file localization/localization.proto.
  */
 export const file_localization_localization: GenFile = /*@__PURE__*/
-  fileDesc("Ch9sb2NhbGl6YXRpb24vbG9jYWxpemF0aW9uLnByb3RvEiNpby5jbGJzLm9wZW5oZXMubW9kZWxzLmxvY2FsaXphdGlvbiJWChZHZXRUcmFuc2xhdGlvbnNSZXF1ZXN0EhMKC2FwcGxpY2F0aW9uGAEgASgJEhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAIgASgJEgwKBGtleXMYAyADKAkiWAoZTWlzc2luZ1RyYW5zbGF0aW9uUmVxdWVzdBITCgthcHBsaWNhdGlvbhgBIAEoCRIZChFpZXRmX2xhbmd1YWdlX3RhZxgCIAEoCRILCgNrZXkYAyABKAkitAEKF0dldFRyYW5zbGF0aW9uc1Jlc3BvbnNlEmQKDHRyYW5zbGF0aW9ucxgBIAMoCzJOLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubG9jYWxpemF0aW9uLkdldFRyYW5zbGF0aW9uc1Jlc3BvbnNlLlRyYW5zbGF0aW9uc0VudHJ5GjMKEVRyYW5zbGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEi+QEKGVVwZGF0ZVRyYW5zbGF0aW9uc1JlcXVlc3QSDwoHdmVyc2lvbhgBIAEoCRITCgthcHBsaWNhdGlvbhgCIAEoCRIZChFpZXRmX2xhbmd1YWdlX3RhZxgDIAEoCRJmCgx0cmFuc2xhdGlvbnMYBCADKAsyUC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmxvY2FsaXphdGlvbi5VcGRhdGVUcmFuc2xhdGlvbnNSZXF1ZXN0LlRyYW5zbGF0aW9uc0VudHJ5GjMKEVRyYW5zbGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCO1o5Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vbG9jYWxpemF0aW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
+  fileDesc("Ch9sb2NhbGl6YXRpb24vbG9jYWxpemF0aW9uLnByb3RvEiNpby5jbGJzLm9wZW5oZXMubW9kZWxzLmxvY2FsaXphdGlvbiJZChZHZXRUcmFuc2xhdGlvbnNSZXF1ZXN0EhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAIgASgJEgwKBGtleXMYAyADKAkiWwoZTWlzc2luZ1RyYW5zbGF0aW9uUmVxdWVzdBIWCg5hcHBsaWNhdGlvbl9pZBgBIAEoCRIZChFpZXRmX2xhbmd1YWdlX3RhZxgCIAEoCRILCgNrZXkYAyABKAkitAEKF0dldFRyYW5zbGF0aW9uc1Jlc3BvbnNlEmQKDHRyYW5zbGF0aW9ucxgBIAMoCzJOLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubG9jYWxpemF0aW9uLkdldFRyYW5zbGF0aW9uc1Jlc3BvbnNlLlRyYW5zbGF0aW9uc0VudHJ5GjMKEVRyYW5zbGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEi/AEKGVVwZGF0ZVRyYW5zbGF0aW9uc1JlcXVlc3QSDwoHdmVyc2lvbhgBIAEoCRIWCg5hcHBsaWNhdGlvbl9pZBgCIAEoCRIZChFpZXRmX2xhbmd1YWdlX3RhZxgDIAEoCRJmCgx0cmFuc2xhdGlvbnMYBCADKAsyUC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmxvY2FsaXphdGlvbi5VcGRhdGVUcmFuc2xhdGlvbnNSZXF1ZXN0LlRyYW5zbGF0aW9uc0VudHJ5GjMKEVRyYW5zbGF0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCO1o5Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vbG9jYWxpemF0aW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
 
 /**
  * Defines the request for retrieving translations based on language and keys.
@@ -22,11 +22,11 @@ export const file_localization_localization: GenFile = /*@__PURE__*/
  */
 export type GetTranslationsRequest = Message<"io.clbs.openhes.models.localization.GetTranslationsRequest"> & {
   /**
-   * The application or plugin identifier where the translation is missing. Can be empty for core application.
+   * The application or ui-plugin identifier where the translation is missing. Can be empty for core application.
    *
-   * @generated from field: string application = 1;
+   * @generated from field: string application_id = 1;
    */
-  application: string;
+  applicationId: string;
 
   /**
    * The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are requested.
@@ -50,11 +50,11 @@ export type GetTranslationsRequest = Message<"io.clbs.openhes.models.localizatio
  */
 export type GetTranslationsRequestJson = {
   /**
-   * The application or plugin identifier where the translation is missing. Can be empty for core application.
+   * The application or ui-plugin identifier where the translation is missing. Can be empty for core application.
    *
-   * @generated from field: string application = 1;
+   * @generated from field: string application_id = 1;
    */
-  application?: string;
+  applicationId?: string;
 
   /**
    * The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are requested.
@@ -85,11 +85,11 @@ export const GetTranslationsRequestSchema: GenMessage<GetTranslationsRequest, {j
  */
 export type MissingTranslationRequest = Message<"io.clbs.openhes.models.localization.MissingTranslationRequest"> & {
   /**
-   * The application or plugin identifier where the translation is missing. Can be empty for core application.
+   * The application or ui-plugin identifier where the translation is missing. Can be empty for core application.
    *
-   * @generated from field: string application = 1;
+   * @generated from field: string application_id = 1;
    */
-  application: string;
+  applicationId: string;
 
   /**
    * The IETF language tag (for example, `en-US`, `fr-FR`) for which a translation is missing.
@@ -113,11 +113,11 @@ export type MissingTranslationRequest = Message<"io.clbs.openhes.models.localiza
  */
 export type MissingTranslationRequestJson = {
   /**
-   * The application or plugin identifier where the translation is missing. Can be empty for core application.
+   * The application or ui-plugin identifier where the translation is missing. Can be empty for core application.
    *
-   * @generated from field: string application = 1;
+   * @generated from field: string application_id = 1;
    */
-  application?: string;
+  applicationId?: string;
 
   /**
    * The IETF language tag (for example, `en-US`, `fr-FR`) for which a translation is missing.
@@ -183,18 +183,18 @@ export const GetTranslationsResponseSchema: GenMessage<GetTranslationsResponse, 
  */
 export type UpdateTranslationsRequest = Message<"io.clbs.openhes.models.localization.UpdateTranslationsRequest"> & {
   /**
-   * The version of the translations, corresponding to the application or plugin version.
+   * The version of the translations, corresponding to the application or ui-plugin version.
    *
    * @generated from field: string version = 1;
    */
   version: string;
 
   /**
-   * The application or plugin identifier where the translations are to be updated. Can be empty for core application.
+   * The application or ui-plugin identifier where the translations are to be updated. Can be empty for core application.
    *
-   * @generated from field: string application = 2;
+   * @generated from field: string application_id = 2;
    */
-  application: string;
+  applicationId: string;
 
   /**
    * The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are to be updated.
@@ -218,18 +218,18 @@ export type UpdateTranslationsRequest = Message<"io.clbs.openhes.models.localiza
  */
 export type UpdateTranslationsRequestJson = {
   /**
-   * The version of the translations, corresponding to the application or plugin version.
+   * The version of the translations, corresponding to the application or ui-plugin version.
    *
    * @generated from field: string version = 1;
    */
   version?: string;
 
   /**
-   * The application or plugin identifier where the translations are to be updated. Can be empty for core application.
+   * The application or ui-plugin identifier where the translations are to be updated. Can be empty for core application.
    *
-   * @generated from field: string application = 2;
+   * @generated from field: string application_id = 2;
    */
-  application?: string;
+  applicationId?: string;
 
   /**
    * The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are to be updated.
