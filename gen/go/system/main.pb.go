@@ -657,9 +657,14 @@ func (b0 License_builder) Build() *License {
 
 // Defines the user information structure.
 type UserProfile struct {
-	state         protoimpl.MessageState `protogen:"opaque.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_DisplayName *string                `protobuf:"bytes,2,opt,name=display_name,json=displayName"`
+	xxx_hidden_Roles       *string                `protobuf:"bytes,3,opt,name=roles"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *UserProfile) Reset() {
@@ -687,15 +692,111 @@ func (x *UserProfile) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
+func (x *UserProfile) GetId() string {
+	if x != nil {
+		if x.xxx_hidden_Id != nil {
+			return *x.xxx_hidden_Id
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UserProfile) GetDisplayName() string {
+	if x != nil {
+		if x.xxx_hidden_DisplayName != nil {
+			return *x.xxx_hidden_DisplayName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UserProfile) GetRoles() string {
+	if x != nil {
+		if x.xxx_hidden_Roles != nil {
+			return *x.xxx_hidden_Roles
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UserProfile) SetId(v string) {
+	x.xxx_hidden_Id = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+}
+
+func (x *UserProfile) SetDisplayName(v string) {
+	x.xxx_hidden_DisplayName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *UserProfile) SetRoles(v string) {
+	x.xxx_hidden_Roles = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+}
+
+func (x *UserProfile) HasId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *UserProfile) HasDisplayName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *UserProfile) HasRoles() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *UserProfile) ClearId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Id = nil
+}
+
+func (x *UserProfile) ClearDisplayName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_DisplayName = nil
+}
+
+func (x *UserProfile) ClearRoles() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Roles = nil
+}
+
 type UserProfile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	Id          *string
+	DisplayName *string
+	Roles       *string
 }
 
 func (b0 UserProfile_builder) Build() *UserProfile {
 	m0 := &UserProfile{}
 	b, x := &b0, m0
 	_, _ = b, x
+	if b.Id != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Id = b.Id
+	}
+	if b.DisplayName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_DisplayName = b.DisplayName
+	}
+	if b.Roles != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_Roles = b.Roles
+	}
 	return m0
 }
 
@@ -704,7 +805,7 @@ type SetScreenConfigRequest struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ApplicationId *string                `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
 	xxx_hidden_ScreenId      *string                `protobuf:"bytes,2,opt,name=screen_id,json=screenId"`
-	xxx_hidden_Data          *structpb.Struct       `protobuf:"bytes,3,opt,name=data"`
+	xxx_hidden_Settings      *structpb.Struct       `protobuf:"bytes,3,opt,name=settings"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -756,9 +857,9 @@ func (x *SetScreenConfigRequest) GetScreenId() string {
 	return ""
 }
 
-func (x *SetScreenConfigRequest) GetData() *structpb.Struct {
+func (x *SetScreenConfigRequest) GetSettings() *structpb.Struct {
 	if x != nil {
-		return x.xxx_hidden_Data
+		return x.xxx_hidden_Settings
 	}
 	return nil
 }
@@ -773,8 +874,8 @@ func (x *SetScreenConfigRequest) SetScreenId(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *SetScreenConfigRequest) SetData(v *structpb.Struct) {
-	x.xxx_hidden_Data = v
+func (x *SetScreenConfigRequest) SetSettings(v *structpb.Struct) {
+	x.xxx_hidden_Settings = v
 }
 
 func (x *SetScreenConfigRequest) HasApplicationId() bool {
@@ -791,11 +892,11 @@ func (x *SetScreenConfigRequest) HasScreenId() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *SetScreenConfigRequest) HasData() bool {
+func (x *SetScreenConfigRequest) HasSettings() bool {
 	if x == nil {
 		return false
 	}
-	return x.xxx_hidden_Data != nil
+	return x.xxx_hidden_Settings != nil
 }
 
 func (x *SetScreenConfigRequest) ClearApplicationId() {
@@ -808,8 +909,8 @@ func (x *SetScreenConfigRequest) ClearScreenId() {
 	x.xxx_hidden_ScreenId = nil
 }
 
-func (x *SetScreenConfigRequest) ClearData() {
-	x.xxx_hidden_Data = nil
+func (x *SetScreenConfigRequest) ClearSettings() {
+	x.xxx_hidden_Settings = nil
 }
 
 type SetScreenConfigRequest_builder struct {
@@ -817,7 +918,7 @@ type SetScreenConfigRequest_builder struct {
 
 	ApplicationId *string
 	ScreenId      *string
-	Data          *structpb.Struct
+	Settings      *structpb.Struct
 }
 
 func (b0 SetScreenConfigRequest_builder) Build() *SetScreenConfigRequest {
@@ -832,7 +933,7 @@ func (b0 SetScreenConfigRequest_builder) Build() *SetScreenConfigRequest {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_ScreenId = b.ScreenId
 	}
-	x.xxx_hidden_Data = b.Data
+	x.xxx_hidden_Settings = b.Settings
 	return m0
 }
 
@@ -977,12 +1078,15 @@ const file_system_main_proto_rawDesc = "" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\x11serviceExpiration\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\r\n" +
-	"\vUserProfile\"\x89\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"V\n" +
+	"\vUserProfile\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
+	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x14\n" +
+	"\x05roles\x18\x03 \x01(\tR\x05roles\"\x91\x01\n" +
 	"\x16SetScreenConfigRequest\x12%\n" +
 	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
-	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\x12+\n" +
-	"\x04data\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04data\"Z\n" +
+	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\x123\n" +
+	"\bsettings\x18\x03 \x01(\v2\x17.google.protobuf.StructR\bsettings\"Z\n" +
 	"\x14ScreenConfigSelector\x12%\n" +
 	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
 	"\tscreen_id\x18\x02 \x01(\tR\bscreenIdB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
@@ -1013,7 +1117,7 @@ var file_system_main_proto_depIdxs = []int32{
 	11, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
 	11, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
 	11, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
-	12, // 9: io.clbs.openhes.models.system.SetScreenConfigRequest.data:type_name -> google.protobuf.Struct
+	12, // 9: io.clbs.openhes.models.system.SetScreenConfigRequest.settings:type_name -> google.protobuf.Struct
 	10, // [10:10] is the sub-list for method output_type
 	10, // [10:10] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name

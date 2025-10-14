@@ -144,3 +144,27 @@ message SetCurrentDeviceCommunicationUnitInternalRequest {
     common.ListSelector device_selector       = 2;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
     ApplicationProtocol proposed_app_protocol = 3;  // The application protocol to be used as a default.
 }
+
+// Defines a stable object for periodical profile storage.
+message PeriodicalProfileStoreObject {
+    repeated StorablePeriodicalProfileValue current  = 1;  // The list of profile values to be stored.
+    map<int32, StorablePeriodicalProfileAudit> audit = 2;  // The map of audit trails for the profile values. The key is the index of the profile value in the 'current' list.
+}
+
+// Defines a storable audit trail for periodical profile values.
+message StorablePeriodicalProfileAudit {
+    repeated StorablePeriodicalProfileAuditRecord items = 1;  // The list of meter data objects to be stored.
+}
+
+// Defines a storable periodical profile value.
+message StorablePeriodicalProfileValue {
+    google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value - when was the value captured (and stored).
+    string user_id                      = 2;  // The UUID of the user who set the value; can be empty if the value was set by the system itself.
+    MeasuredValue value                 = 3;  // The measured value.
+}
+
+// Defines a storable periodical profile audit record.
+message StorablePeriodicalProfileAuditRecord {
+    StorablePeriodicalProfileValue value = 1;  // The measured value.
+    string reason                        = 4;  // The reason why the value was changed.
+}

@@ -2,5 +2,11 @@
 
 Defines the user information structure.
 
-FIXME: Define the user information fields here.
+## Fields
+
+| Field | Information |
+| --- | --- |
+| id | <b>Type:</b> `string`<br><b>Description:</b><br>The UUID of the user. |
+| displayName | <b>Type:</b> `string`<br><b>Description:</b><br>The display name of the user. |
+| roles | <b>Type:</b> `string`<br><b>Description:</b><br>The list of user roles. |
 

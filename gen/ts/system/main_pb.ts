@@ -14,7 +14,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiDQoLVXNlclByb2ZpbGUiagoWU2V0U2NyZWVuQ29uZmlnUmVxdWVzdBIWCg5hcHBsaWNhdGlvbl9pZBgBIAEoCRIRCglzY3JlZW5faWQYAiABKAkSJQoEZGF0YRgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiQQoUU2NyZWVuQ29uZmlnU2VsZWN0b3ISFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJQjVaM2dpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL3N5c3RlbWIIZWRpdGlvbnNw6Ac", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiPgoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgASgJIm4KFlNldFNjcmVlbkNvbmZpZ1JlcXVlc3QSFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJEikKCHNldHRpbmdzGAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdCJBChRTY3JlZW5Db25maWdTZWxlY3RvchIWCg5hcHBsaWNhdGlvbl9pZBgBIAEoCRIRCglzY3JlZW5faWQYAiABKAlCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -348,21 +348,57 @@ export const LicenseSchema: GenMessage<License, {jsonType: LicenseJson}> = /*@__
 /**
  * Defines the user information structure.
  *
- * FIXME: Define the user information fields here.
- *
  * @generated from message io.clbs.openhes.models.system.UserProfile
  */
 export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> & {
+  /**
+   * The UUID of the user.
+   *
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * The display name of the user.
+   *
+   * @generated from field: string display_name = 2;
+   */
+  displayName: string;
+
+  /**
+   * The list of user roles.
+   *
+   * @generated from field: string roles = 3;
+   */
+  roles: string;
 };
 
 /**
  * Defines the user information structure.
  *
- * FIXME: Define the user information fields here.
- *
  * @generated from message io.clbs.openhes.models.system.UserProfile
  */
 export type UserProfileJson = {
+  /**
+   * The UUID of the user.
+   *
+   * @generated from field: string id = 1;
+   */
+  id?: string;
+
+  /**
+   * The display name of the user.
+   *
+   * @generated from field: string display_name = 2;
+   */
+  displayName?: string;
+
+  /**
+   * The list of user roles.
+   *
+   * @generated from field: string roles = 3;
+   */
+  roles?: string;
 };
 
 /**
@@ -395,9 +431,9 @@ export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetS
   /**
    * Generic data model holding data related for the screen.
    *
-   * @generated from field: google.protobuf.Struct data = 3;
+   * @generated from field: google.protobuf.Struct settings = 3;
    */
-  data?: JsonObject;
+  settings?: JsonObject;
 };
 
 /**
@@ -423,9 +459,9 @@ export type SetScreenConfigRequestJson = {
   /**
    * Generic data model holding data related for the screen.
    *
-   * @generated from field: google.protobuf.Struct data = 3;
+   * @generated from field: google.protobuf.Struct settings = 3;
    */
-  data?: StructJson;
+  settings?: StructJson;
 };
 
 /**

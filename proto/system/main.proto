@@ -46,14 +46,16 @@ message License {
 
 // Defines the user information structure.
 message UserProfile {
-    // FIXME: Define the user information fields here.
+    string id           = 1;  // The UUID of the user.
+    string display_name = 2;  // The display name of the user.
+    string roles        = 3;  // The list of user roles.
 }
 
 // Defines the
 message SetScreenConfigRequest {
-    string application_id       = 1;  // The application or ui-plugin identifier.
-    string screen_id            = 2;  // The screen identifier within the application/ui-plugin.
-    google.protobuf.Struct data = 3;  // Generic data model holding data related for the screen.
+    string application_id           = 1;  // The application or ui-plugin identifier.
+    string screen_id                = 2;  // The screen identifier within the application/ui-plugin.
+    google.protobuf.Struct settings = 3;  // Generic data model holding data related for the screen.
 }
 
 // Defines the selection criteria for UI screen configuration.

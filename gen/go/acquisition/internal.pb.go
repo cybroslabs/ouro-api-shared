@@ -11,7 +11,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -2396,6 +2396,373 @@ func (b0 SetCurrentDeviceCommunicationUnitInternalRequest_builder) Build() *SetC
 	return m0
 }
 
+// Defines a stable object for periodical profile storage.
+type PeriodicalProfileStoreObject struct {
+	state              protoimpl.MessageState                    `protogen:"opaque.v1"`
+	xxx_hidden_Current *[]*StorablePeriodicalProfileValue        `protobuf:"bytes,1,rep,name=current"`
+	xxx_hidden_Audit   map[int32]*StorablePeriodicalProfileAudit `protobuf:"bytes,2,rep,name=audit" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *PeriodicalProfileStoreObject) Reset() {
+	*x = PeriodicalProfileStoreObject{}
+	mi := &file_acquisition_internal_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PeriodicalProfileStoreObject) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PeriodicalProfileStoreObject) ProtoMessage() {}
+
+func (x *PeriodicalProfileStoreObject) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *PeriodicalProfileStoreObject) GetCurrent() []*StorablePeriodicalProfileValue {
+	if x != nil {
+		if x.xxx_hidden_Current != nil {
+			return *x.xxx_hidden_Current
+		}
+	}
+	return nil
+}
+
+func (x *PeriodicalProfileStoreObject) GetAudit() map[int32]*StorablePeriodicalProfileAudit {
+	if x != nil {
+		return x.xxx_hidden_Audit
+	}
+	return nil
+}
+
+func (x *PeriodicalProfileStoreObject) SetCurrent(v []*StorablePeriodicalProfileValue) {
+	x.xxx_hidden_Current = &v
+}
+
+func (x *PeriodicalProfileStoreObject) SetAudit(v map[int32]*StorablePeriodicalProfileAudit) {
+	x.xxx_hidden_Audit = v
+}
+
+type PeriodicalProfileStoreObject_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Current []*StorablePeriodicalProfileValue
+	Audit   map[int32]*StorablePeriodicalProfileAudit
+}
+
+func (b0 PeriodicalProfileStoreObject_builder) Build() *PeriodicalProfileStoreObject {
+	m0 := &PeriodicalProfileStoreObject{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Current = &b.Current
+	x.xxx_hidden_Audit = b.Audit
+	return m0
+}
+
+// Defines a storable audit trail for periodical profile values.
+type StorablePeriodicalProfileAudit struct {
+	state            protoimpl.MessageState                   `protogen:"opaque.v1"`
+	xxx_hidden_Items *[]*StorablePeriodicalProfileAuditRecord `protobuf:"bytes,1,rep,name=items"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *StorablePeriodicalProfileAudit) Reset() {
+	*x = StorablePeriodicalProfileAudit{}
+	mi := &file_acquisition_internal_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StorablePeriodicalProfileAudit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StorablePeriodicalProfileAudit) ProtoMessage() {}
+
+func (x *StorablePeriodicalProfileAudit) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *StorablePeriodicalProfileAudit) GetItems() []*StorablePeriodicalProfileAuditRecord {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *StorablePeriodicalProfileAudit) SetItems(v []*StorablePeriodicalProfileAuditRecord) {
+	x.xxx_hidden_Items = &v
+}
+
+type StorablePeriodicalProfileAudit_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items []*StorablePeriodicalProfileAuditRecord
+}
+
+func (b0 StorablePeriodicalProfileAudit_builder) Build() *StorablePeriodicalProfileAudit {
+	m0 := &StorablePeriodicalProfileAudit{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = &b.Items
+	return m0
+}
+
+// Defines a storable periodical profile value.
+type StorablePeriodicalProfileValue struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Timestamp   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp"`
+	xxx_hidden_UserId      *string                `protobuf:"bytes,2,opt,name=user_id,json=userId"`
+	xxx_hidden_Value       *MeasuredValue         `protobuf:"bytes,3,opt,name=value"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *StorablePeriodicalProfileValue) Reset() {
+	*x = StorablePeriodicalProfileValue{}
+	mi := &file_acquisition_internal_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StorablePeriodicalProfileValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StorablePeriodicalProfileValue) ProtoMessage() {}
+
+func (x *StorablePeriodicalProfileValue) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *StorablePeriodicalProfileValue) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_Timestamp
+	}
+	return nil
+}
+
+func (x *StorablePeriodicalProfileValue) GetUserId() string {
+	if x != nil {
+		if x.xxx_hidden_UserId != nil {
+			return *x.xxx_hidden_UserId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *StorablePeriodicalProfileValue) GetValue() *MeasuredValue {
+	if x != nil {
+		return x.xxx_hidden_Value
+	}
+	return nil
+}
+
+func (x *StorablePeriodicalProfileValue) SetTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_Timestamp = v
+}
+
+func (x *StorablePeriodicalProfileValue) SetUserId(v string) {
+	x.xxx_hidden_UserId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+}
+
+func (x *StorablePeriodicalProfileValue) SetValue(v *MeasuredValue) {
+	x.xxx_hidden_Value = v
+}
+
+func (x *StorablePeriodicalProfileValue) HasTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Timestamp != nil
+}
+
+func (x *StorablePeriodicalProfileValue) HasUserId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *StorablePeriodicalProfileValue) HasValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Value != nil
+}
+
+func (x *StorablePeriodicalProfileValue) ClearTimestamp() {
+	x.xxx_hidden_Timestamp = nil
+}
+
+func (x *StorablePeriodicalProfileValue) ClearUserId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_UserId = nil
+}
+
+func (x *StorablePeriodicalProfileValue) ClearValue() {
+	x.xxx_hidden_Value = nil
+}
+
+type StorablePeriodicalProfileValue_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Timestamp *timestamppb.Timestamp
+	UserId    *string
+	Value     *MeasuredValue
+}
+
+func (b0 StorablePeriodicalProfileValue_builder) Build() *StorablePeriodicalProfileValue {
+	m0 := &StorablePeriodicalProfileValue{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Timestamp = b.Timestamp
+	if b.UserId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_UserId = b.UserId
+	}
+	x.xxx_hidden_Value = b.Value
+	return m0
+}
+
+// Defines a storable periodical profile audit record.
+type StorablePeriodicalProfileAuditRecord struct {
+	state                  protoimpl.MessageState          `protogen:"opaque.v1"`
+	xxx_hidden_Value       *StorablePeriodicalProfileValue `protobuf:"bytes,1,opt,name=value"`
+	xxx_hidden_Reason      *string                         `protobuf:"bytes,4,opt,name=reason"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) Reset() {
+	*x = StorablePeriodicalProfileAuditRecord{}
+	mi := &file_acquisition_internal_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StorablePeriodicalProfileAuditRecord) ProtoMessage() {}
+
+func (x *StorablePeriodicalProfileAuditRecord) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_internal_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) GetValue() *StorablePeriodicalProfileValue {
+	if x != nil {
+		return x.xxx_hidden_Value
+	}
+	return nil
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) GetReason() string {
+	if x != nil {
+		if x.xxx_hidden_Reason != nil {
+			return *x.xxx_hidden_Reason
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) SetValue(v *StorablePeriodicalProfileValue) {
+	x.xxx_hidden_Value = v
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) SetReason(v string) {
+	x.xxx_hidden_Reason = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) HasValue() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Value != nil
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) HasReason() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) ClearValue() {
+	x.xxx_hidden_Value = nil
+}
+
+func (x *StorablePeriodicalProfileAuditRecord) ClearReason() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Reason = nil
+}
+
+type StorablePeriodicalProfileAuditRecord_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Value  *StorablePeriodicalProfileValue
+	Reason *string
+}
+
+func (b0 StorablePeriodicalProfileAuditRecord_builder) Build() *StorablePeriodicalProfileAuditRecord {
+	m0 := &StorablePeriodicalProfileAuditRecord{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Value = b.Value
+	if b.Reason != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Reason = b.Reason
+	}
+	return m0
+}
+
 var File_acquisition_internal_proto protoreflect.FileDescriptor
 
 const file_acquisition_internal_proto_rawDesc = "" +
@@ -2498,14 +2865,30 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"0SetCurrentDeviceCommunicationUnitInternalRequest\x122\n" +
 	"\x15communication_unit_id\x18\x01 \x01(\tR\x13communicationUnitId\x12T\n" +
 	"\x0fdevice_selector\x18\x02 \x01(\v2+.io.clbs.openhes.models.common.ListSelectorR\x0edeviceSelector\x12k\n" +
-	"\x15proposed_app_protocol\x18\x03 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\x13proposedAppProtocol*\x8c\x01\n" +
+	"\x15proposed_app_protocol\x18\x03 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\x13proposedAppProtocol\"\xdd\x02\n" +
+	"\x1cPeriodicalProfileStoreObject\x12\\\n" +
+	"\acurrent\x18\x01 \x03(\v2B.io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValueR\acurrent\x12a\n" +
+	"\x05audit\x18\x02 \x03(\v2K.io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntryR\x05audit\x1a|\n" +
+	"\n" +
+	"AuditEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12X\n" +
+	"\x05value\x18\x02 \x01(\v2B.io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditR\x05value:\x028\x01\"\x80\x01\n" +
+	"\x1eStorablePeriodicalProfileAudit\x12^\n" +
+	"\x05items\x18\x01 \x03(\v2H.io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecordR\x05items\"\xbc\x01\n" +
+	"\x1eStorablePeriodicalProfileValue\x128\n" +
+	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12G\n" +
+	"\x05value\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.MeasuredValueR\x05value\"\x98\x01\n" +
+	"$StorablePeriodicalProfileAuditRecord\x12X\n" +
+	"\x05value\x18\x01 \x01(\v2B.io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValueR\x05value\x12\x16\n" +
+	"\x06reason\x18\x04 \x01(\tR\x06reason*\x8c\x01\n" +
 	"\x13DeviceNeighbourType\x12%\n" +
 	"!DEVICE_NEIGHBOUR_TYPE_UNSPECIFIED\x10\x00\x12,\n" +
 	"(DEVICE_NEIGHBOUR_TYPE_COMMUNICATION_UNIT\x10\x01\x12 \n" +
 	"\x1cDEVICE_NEIGHBOUR_TYPE_DEVICE\x10\x02B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_acquisition_internal_proto_goTypes = []any{
 	(DeviceNeighbourType)(0),                                 // 0: io.clbs.openhes.models.acquisition.DeviceNeighbourType
 	(*SetCacheRequest)(nil),                                  // 1: io.clbs.openhes.models.acquisition.SetCacheRequest
@@ -2532,60 +2915,74 @@ var file_acquisition_internal_proto_goTypes = []any{
 	(*DeviceNeightbour)(nil),                                 // 22: io.clbs.openhes.models.acquisition.DeviceNeightbour
 	(*SetCurrentDeviceCommunicationUnitRequest)(nil),         // 23: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
 	(*SetCurrentDeviceCommunicationUnitInternalRequest)(nil), // 24: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
-	nil,                                // 25: io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
-	nil,                                // 26: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	nil,                                // 27: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
-	nil,                                // 28: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
-	nil,                                // 29: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
-	(*common.FieldValue)(nil),          // 30: io.clbs.openhes.models.common.FieldValue
-	(*common.FieldDescriptor)(nil),     // 31: io.clbs.openhes.models.common.FieldDescriptor
-	(*ConnectionInfo)(nil),             // 32: io.clbs.openhes.models.acquisition.ConnectionInfo
-	(*StartJobData)(nil),               // 33: io.clbs.openhes.models.acquisition.StartJobData
-	(*JobProgressUpdate)(nil),          // 34: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionProgressUpdate)(nil),       // 35: io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	(*JobSpec)(nil),                    // 36: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobStatus)(nil),                  // 37: io.clbs.openhes.models.acquisition.JobStatus
-	(*DeviceInfo)(nil),                 // 38: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*CommunicationUnitLogRecord)(nil), // 39: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	(*AttributeSelector)(nil),          // 40: io.clbs.openhes.models.acquisition.AttributeSelector
-	(ApplicationProtocol)(0),           // 41: io.clbs.openhes.models.acquisition.ApplicationProtocol
-	(*common.ListSelector)(nil),        // 42: io.clbs.openhes.models.common.ListSelector
-	(*ListOfConnectionInfo)(nil),       // 43: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(*PeriodicalProfileStoreObject)(nil),                     // 25: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject
+	(*StorablePeriodicalProfileAudit)(nil),                   // 26: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit
+	(*StorablePeriodicalProfileValue)(nil),                   // 27: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
+	(*StorablePeriodicalProfileAuditRecord)(nil),             // 28: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord
+	nil,                                // 29: io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
+	nil,                                // 30: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	nil,                                // 31: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
+	nil,                                // 32: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
+	nil,                                // 33: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
+	nil,                                // 34: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry
+	(*common.FieldValue)(nil),          // 35: io.clbs.openhes.models.common.FieldValue
+	(*common.FieldDescriptor)(nil),     // 36: io.clbs.openhes.models.common.FieldDescriptor
+	(*ConnectionInfo)(nil),             // 37: io.clbs.openhes.models.acquisition.ConnectionInfo
+	(*StartJobData)(nil),               // 38: io.clbs.openhes.models.acquisition.StartJobData
+	(*JobProgressUpdate)(nil),          // 39: io.clbs.openhes.models.acquisition.JobProgressUpdate
+	(*ActionProgressUpdate)(nil),       // 40: io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	(*JobSpec)(nil),                    // 41: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobStatus)(nil),                  // 42: io.clbs.openhes.models.acquisition.JobStatus
+	(*DeviceInfo)(nil),                 // 43: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*CommunicationUnitLogRecord)(nil), // 44: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*AttributeSelector)(nil),          // 45: io.clbs.openhes.models.acquisition.AttributeSelector
+	(ApplicationProtocol)(0),           // 46: io.clbs.openhes.models.acquisition.ApplicationProtocol
+	(*common.ListSelector)(nil),        // 47: io.clbs.openhes.models.common.ListSelector
+	(*timestamppb.Timestamp)(nil),      // 48: google.protobuf.Timestamp
+	(*MeasuredValue)(nil),              // 49: io.clbs.openhes.models.acquisition.MeasuredValue
+	(*ListOfConnectionInfo)(nil),       // 50: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
 }
 var file_acquisition_internal_proto_depIdxs = []int32{
-	30, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	30, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	31, // 2: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	32, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	33, // 4: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
-	34, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
-	35, // 6: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	36, // 7: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	25, // 8: io.clbs.openhes.models.acquisition.QueueJobsResponse.job_ids:type_name -> io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
-	37, // 9: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	26, // 10: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	38, // 11: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	39, // 12: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	35, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	35, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	36, // 2: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	37, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	38, // 4: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
+	39, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
+	40, // 6: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	41, // 7: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	29, // 8: io.clbs.openhes.models.acquisition.QueueJobsResponse.job_ids:type_name -> io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
+	42, // 9: io.clbs.openhes.models.acquisition.GetJobResponse.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	30, // 10: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	43, // 11: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	44, // 12: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
 	18, // 13: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem
-	27, // 14: io.clbs.openhes.models.acquisition.UnknownDevicesItem.attributes:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
-	28, // 15: io.clbs.openhes.models.acquisition.DirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
-	29, // 16: io.clbs.openhes.models.acquisition.IndirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
+	31, // 14: io.clbs.openhes.models.acquisition.UnknownDevicesItem.attributes:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
+	32, // 15: io.clbs.openhes.models.acquisition.DirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
+	33, // 16: io.clbs.openhes.models.acquisition.IndirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
 	19, // 17: io.clbs.openhes.models.acquisition.SetNeighboursRequest.direct_neighbours:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours
 	20, // 18: io.clbs.openhes.models.acquisition.SetNeighboursRequest.indirect_neighbours:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours
 	0,  // 19: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
-	40, // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	41, // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	42, // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.device_selector:type_name -> io.clbs.openhes.models.common.ListSelector
-	41, // 23: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	43, // 24: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	30, // 25: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	30, // 26: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	30, // 27: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	28, // [28:28] is the sub-list for method output_type
-	28, // [28:28] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	45, // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	46, // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	47, // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.device_selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	46, // 23: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	27, // 24: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.current:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
+	34, // 25: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.audit:type_name -> io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry
+	28, // 26: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit.items:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord
+	48, // 27: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue.timestamp:type_name -> google.protobuf.Timestamp
+	49, // 28: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	27, // 29: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord.value:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
+	50, // 30: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	35, // 31: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	35, // 32: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	35, // 33: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	26, // 34: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry.value:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit
+	35, // [35:35] is the sub-list for method output_type
+	35, // [35:35] is the sub-list for method input_type
+	35, // [35:35] is the sub-list for extension type_name
+	35, // [35:35] is the sub-list for extension extendee
+	0,  // [0:35] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_internal_proto_init() }
@@ -2604,7 +3001,7 @@ func file_acquisition_internal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_internal_proto_rawDesc), len(file_acquisition_internal_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   29,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
