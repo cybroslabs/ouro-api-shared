@@ -46,9 +46,9 @@ message License {
 
 // Defines the user information structure.
 message UserProfile {
-    string id           = 1;  // The UUID of the user.
-    string display_name = 2;  // The display name of the user.
-    string roles        = 3;  // The list of user roles.
+    string id             = 1;  // The UUID of the user.
+    string display_name   = 2;  // The display name of the user.
+    repeated string roles = 3;  // The list of user roles.
 }
 
 // Defines the
