@@ -11,6 +11,7 @@ require (
 	connectrpc.com/connect v1.19.1
 	github.com/99designs/gqlgen v0.17.81
 	github.com/google/uuid v1.6.0
+	github.com/klauspost/compress v1.18.0
 	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.30
 	go.uber.org/zap v1.27.0
