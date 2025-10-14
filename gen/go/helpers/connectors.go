@@ -14,6 +14,11 @@ import (
 	"github.com/cybroslabs/ouro-api-shared/gen/go/services/svctaskmaster"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/encoding"
+)
+
+const (
+	primaryCompressor = "zstd"
 )
 
 // ConnectorsOpts contains the options for creating a Connectors instance.
@@ -83,7 +88,7 @@ type connectors struct {
 }
 
 func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
-	tokenBytes, err := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/token")
+	token_bytes, err := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/token")
 	if err != nil {
 		return nil, fmt.Errorf("error reading service account token: %w", err)
 	}
@@ -93,20 +98,13 @@ func NewConnectors(opts *ConnectorsOpts) (Connectors, error) {
 		opts = &ConnectorsOpts{}
 	}
 
-	grpcOptionsApi := initGrpcOptions(opts.GrpcOptionsApi)
-	grpcOptionsDataproxy := initGrpcOptions(opts.GrpcOptionsDataproxy)
-	grpcOptionsTaskmaster := initGrpcOptions(opts.GrpcOptionsTaskmaster)
-	grpcOptionsDeviceRegistry := initGrpcOptions(opts.GrpcOptionsDeviceRegistry)
-	grpcOptionsOuroOperator := initGrpcOptions(opts.GrpcOptionsOuroOperator)
-	grpcOptionsCrypto := initGrpcOptions(opts.GrpcOptionsCrypto)
-
-	// Attach our 'namespace' to all outgoing unary RPC requests for the data-proxy service
-	grpcOptionsApi = append(grpcOptionsApi, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
-	grpcOptionsDataproxy = append(grpcOptionsDataproxy, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
-	grpcOptionsTaskmaster = append(grpcOptionsTaskmaster, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
-	grpcOptionsDeviceRegistry = append(grpcOptionsDeviceRegistry, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
-	grpcOptionsOuroOperator = append(grpcOptionsOuroOperator, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
-	grpcOptionsCrypto = append(grpcOptionsCrypto, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
+	token_bytes_str := string(token_bytes)
+	grpcOptionsApi := initGrpcOptions(opts.GrpcOptionsApi, token_bytes_str)
+	grpcOptionsDataproxy := initGrpcOptions(opts.GrpcOptionsDataproxy, token_bytes_str)
+	grpcOptionsTaskmaster := initGrpcOptions(opts.GrpcOptionsTaskmaster, token_bytes_str)
+	grpcOptionsDeviceRegistry := initGrpcOptions(opts.GrpcOptionsDeviceRegistry, token_bytes_str)
+	grpcOptionsOuroOperator := initGrpcOptions(opts.GrpcOptionsOuroOperator, token_bytes_str)
+	grpcOptionsCrypto := initGrpcOptions(opts.GrpcOptionsCrypto, token_bytes_str)
 
 	return &connectors{
 		apiHost:            emptyOr(opts.ApiHost, os.Getenv("OURO_API_GRPC_HOST")),
@@ -132,7 +130,7 @@ func emptyOr(value string, valueFallback string) string {
 	return value
 }
 
-func initGrpcOptions(opts []grpc.DialOption) []grpc.DialOption {
+func initGrpcOptions(opts []grpc.DialOption, tokenBytes string) []grpc.DialOption {
 	// Default gRPC options
 	tmp := make([]grpc.DialOption, 0, len(opts)+2)
 
@@ -144,9 +142,18 @@ func initGrpcOptions(opts []grpc.DialOption) []grpc.DialOption {
 			tmp = append(tmp, grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(maxMsgSize)))
 		}
 	}
+
+	// Register the primary compressor if not already registered.
+	if compressor := encoding.GetCompressor(primaryCompressor); compressor != nil {
+		tmp = append(tmp, grpc.WithDefaultCallOptions(grpc.UseCompressor(primaryCompressor)))
+	}
+
 	if opts != nil {
 		tmp = append(tmp, opts...)
 	}
+
+	tmp = append(tmp, grpc.WithUnaryInterceptor(grpcNamespaceInterceptor(string(tokenBytes))))
+
 	return tmp
 }
 
