@@ -6,15 +6,15 @@ import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FieldDescriptor, FieldDescriptorJson, FieldValues, FieldValuesJson } from "../common/fields_pb";
 import { file_common_fields } from "../common/fields_pb";
-import type { StructJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { JsonObject, Message } from "@bufbuild/protobuf";
+import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiPgoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJIm4KFlNldFNjcmVlbkNvbmZpZ1JlcXVlc3QSFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJEikKCHNldHRpbmdzGAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdCJBChRTY3JlZW5Db25maWdTZWxlY3RvchIWCg5hcHBsaWNhdGlvbl9pZBgBIAEoCRIRCglzY3JlZW5faWQYAiABKAlCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiPgoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJIlUKFlNldFNjcmVlbkNvbmZpZ1JlcXVlc3QSFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJEhAKCHNldHRpbmdzGAMgASgJIkEKFFNjcmVlbkNvbmZpZ1NlbGVjdG9yEhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9zeXN0ZW1iCGVkaXRpb25zcOgH", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -431,9 +431,9 @@ export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetS
   /**
    * Generic data model holding data related for the screen.
    *
-   * @generated from field: google.protobuf.Struct settings = 3;
+   * @generated from field: string settings = 3;
    */
-  settings?: JsonObject;
+  settings: string;
 };
 
 /**
@@ -459,9 +459,9 @@ export type SetScreenConfigRequestJson = {
   /**
    * Generic data model holding data related for the screen.
    *
-   * @generated from field: google.protobuf.Struct settings = 3;
+   * @generated from field: string settings = 3;
    */
-  settings?: StructJson;
+  settings?: string;
 };
 
 /**

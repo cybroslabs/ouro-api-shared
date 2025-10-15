@@ -17,7 +17,6 @@ import (
 	svcapi "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	system "github.com/cybroslabs/ouro-api-shared/gen/go/system"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	http "net/http"
 	strings "strings"
@@ -726,7 +725,7 @@ type ApiServiceClient interface {
 	// @group: System
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error)
+	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: Globalization
@@ -1390,7 +1389,7 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("SetScreenConfig")),
 			connect.WithClientOptions(opts...),
 		),
-		getScreenConfig: connect.NewClient[system.ScreenConfigSelector, structpb.Struct](
+		getScreenConfig: connect.NewClient[system.ScreenConfigSelector, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceGetScreenConfigProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("GetScreenConfig")),
@@ -1570,7 +1569,7 @@ type apiServiceClient struct {
 	getLicenseRequestCode                                            *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	setLicense                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	setScreenConfig                                                  *connect.Client[system.SetScreenConfigRequest, emptypb.Empty]
-	getScreenConfig                                                  *connect.Client[system.ScreenConfigSelector, structpb.Struct]
+	getScreenConfig                                                  *connect.Client[system.ScreenConfigSelector, wrapperspb.StringValue]
 	deleteScreenConfig                                               *connect.Client[system.ScreenConfigSelector, emptypb.Empty]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	setTranslationMissing                                            *connect.Client[localization.MissingTranslationRequest, emptypb.Empty]
@@ -2123,7 +2122,7 @@ func (c *apiServiceClient) SetScreenConfig(ctx context.Context, req *connect.Req
 }
 
 // GetScreenConfig calls io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig.
-func (c *apiServiceClient) GetScreenConfig(ctx context.Context, req *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error) {
+func (c *apiServiceClient) GetScreenConfig(ctx context.Context, req *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.getScreenConfig.CallUnary(ctx, req)
 }
 
@@ -2543,7 +2542,7 @@ type ApiServiceHandler interface {
 	// @group: System
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error)
+	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: Globalization
@@ -3928,7 +3927,7 @@ func (UnimplementedApiServiceHandler) SetScreenConfig(context.Context, *connect.
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetScreenConfig is not implemented"))
 }
 
-func (UnimplementedApiServiceHandler) GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[structpb.Struct], error) {
+func (UnimplementedApiServiceHandler) GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig is not implemented"))
 }
 

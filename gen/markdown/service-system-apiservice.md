@@ -31,11 +31,11 @@ SetScreenConfig(io.clbs.openhes.models.system.SetScreenConfigRequest)
 ## GetScreenConfig
 
 ```proto
-GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.Struct)
+GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.StringValue)
 ```
 
 - Input: [`io.clbs.openhes.models.system.ScreenConfigSelector`](model-io-clbs-openhes-models-system-screenconfigselector.md)
-- Output: `google.protobuf.Struct`
+- Output: `google.protobuf.StringValue`
 
 ## DeleteScreenConfig
 

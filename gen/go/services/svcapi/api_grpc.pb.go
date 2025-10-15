@@ -19,7 +19,6 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -509,7 +508,7 @@ type ApiServiceClient interface {
 	// @group: System
 	SetScreenConfig(ctx context.Context, in *system.SetScreenConfigRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*structpb.Struct, error)
+	GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
 	DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Globalization
@@ -1609,9 +1608,9 @@ func (c *apiServiceClient) SetScreenConfig(ctx context.Context, in *system.SetSc
 	return out, nil
 }
 
-func (c *apiServiceClient) GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*structpb.Struct, error) {
+func (c *apiServiceClient) GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(structpb.Struct)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, ApiService_GetScreenConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -2098,7 +2097,7 @@ type ApiServiceServer interface {
 	// @group: System
 	SetScreenConfig(context.Context, *system.SetScreenConfigRequest) (*emptypb.Empty, error)
 	// @group: System
-	GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*structpb.Struct, error)
+	GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*wrapperspb.StringValue, error)
 	// @group: System
 	DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error)
 	// @group: Globalization
@@ -2450,7 +2449,7 @@ func (UnimplementedApiServiceServer) SetLicense(context.Context, *wrapperspb.Str
 func (UnimplementedApiServiceServer) SetScreenConfig(context.Context, *system.SetScreenConfigRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetScreenConfig not implemented")
 }
-func (UnimplementedApiServiceServer) GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*structpb.Struct, error) {
+func (UnimplementedApiServiceServer) GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetScreenConfig not implemented")
 }
 func (UnimplementedApiServiceServer) DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error) {

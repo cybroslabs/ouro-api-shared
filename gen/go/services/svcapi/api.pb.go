@@ -17,7 +17,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	structpb "google.golang.org/protobuf/types/known/structpb"
+	_ "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -34,7 +34,7 @@ var File_services_svcapi_api_proto protoreflect.FileDescriptor
 
 const file_services_svcapi_api_proto_rawDesc = "" +
 	"\n" +
-	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x17crypto/management.proto\x1a\x1flocalization/localization.proto\x1a\x19messaging/messaging.proto\x1a\x11system/main.proto2\xe0b\n" +
+	"\x19services/svcapi/api.proto\x12\x1fio.clbs.openhes.services.svcapi\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13common/fields.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x17cronjobs/cronjobs.proto\x1a\x17crypto/management.proto\x1a\x1flocalization/localization.proto\x1a\x19messaging/messaging.proto\x1a\x11system/main.proto2\xe5b\n" +
 	"\n" +
 	"ApiService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
@@ -146,8 +146,8 @@ const file_services_svcapi_api_proto_rawDesc = "" +
 	"\x15GetLicenseRequestCode\x12\x16.google.protobuf.Empty\x1a\x1c.google.protobuf.StringValue\x12B\n" +
 	"\n" +
 	"SetLicense\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12`\n" +
-	"\x0fSetScreenConfig\x125.io.clbs.openhes.models.system.SetScreenConfigRequest\x1a\x16.google.protobuf.Empty\x12_\n" +
-	"\x0fGetScreenConfig\x123.io.clbs.openhes.models.system.ScreenConfigSelector\x1a\x17.google.protobuf.Struct\x12a\n" +
+	"\x0fSetScreenConfig\x125.io.clbs.openhes.models.system.SetScreenConfigRequest\x1a\x16.google.protobuf.Empty\x12d\n" +
+	"\x0fGetScreenConfig\x123.io.clbs.openhes.models.system.ScreenConfigSelector\x1a\x1c.google.protobuf.StringValue\x12a\n" +
 	"\x12DeleteScreenConfig\x123.io.clbs.openhes.models.system.ScreenConfigSelector\x1a\x16.google.protobuf.Empty\x12\x8c\x01\n" +
 	"\x0fGetTranslations\x12;.io.clbs.openhes.models.localization.GetTranslationsRequest\x1a<.io.clbs.openhes.models.localization.GetTranslationsResponse\x12o\n" +
 	"\x15SetTranslationMissing\x12>.io.clbs.openhes.models.localization.MissingTranslationRequest\x1a\x16.google.protobuf.Empty\x12l\n" +
@@ -252,12 +252,11 @@ var file_services_svcapi_api_proto_goTypes = []any{
 	(*acquisition.DeviceEvents)(nil),                                                            // 88: io.clbs.openhes.models.acquisition.DeviceEvents
 	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 89: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
 	(*cronjobs.ListOfCronJob)(nil),                                                              // 90: io.clbs.openhes.models.cronjobs.ListOfCronJob
-	(*structpb.Struct)(nil),                                                                     // 91: google.protobuf.Struct
-	(*localization.GetTranslationsResponse)(nil),                                                // 92: io.clbs.openhes.models.localization.GetTranslationsResponse
-	(*crypto.CryptoSecrets)(nil),                                                                // 93: io.clbs.openhes.models.crypto.CryptoSecrets
-	(*messaging.MessagingConsumerServer)(nil),                                                   // 94: io.clbs.openhes.models.messaging.MessagingConsumerServer
-	(*messaging.ListOfMessagingComponent)(nil),                                                  // 95: io.clbs.openhes.models.messaging.ListOfMessagingComponent
-	(*system.UserProfile)(nil),                                                                  // 96: io.clbs.openhes.models.system.UserProfile
+	(*localization.GetTranslationsResponse)(nil),                                                // 91: io.clbs.openhes.models.localization.GetTranslationsResponse
+	(*crypto.CryptoSecrets)(nil),                                                                // 92: io.clbs.openhes.models.crypto.CryptoSecrets
+	(*messaging.MessagingConsumerServer)(nil),                                                   // 93: io.clbs.openhes.models.messaging.MessagingConsumerServer
+	(*messaging.ListOfMessagingComponent)(nil),                                                  // 94: io.clbs.openhes.models.messaging.ListOfMessagingComponent
+	(*system.UserProfile)(nil),                                                                  // 95: io.clbs.openhes.models.system.UserProfile
 }
 var file_services_svcapi_api_proto_depIdxs = []int32{
 	0,   // 0: io.clbs.openhes.services.svcapi.ApiService.CreateVariable:input_type -> io.clbs.openhes.models.acquisition.CreateVariableRequest
@@ -478,18 +477,18 @@ var file_services_svcapi_api_proto_depIdxs = []int32{
 	2,   // 215: io.clbs.openhes.services.svcapi.ApiService.GetLicenseRequestCode:output_type -> google.protobuf.StringValue
 	15,  // 216: io.clbs.openhes.services.svcapi.ApiService.SetLicense:output_type -> google.protobuf.Empty
 	15,  // 217: io.clbs.openhes.services.svcapi.ApiService.SetScreenConfig:output_type -> google.protobuf.Empty
-	91,  // 218: io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig:output_type -> google.protobuf.Struct
+	2,   // 218: io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig:output_type -> google.protobuf.StringValue
 	15,  // 219: io.clbs.openhes.services.svcapi.ApiService.DeleteScreenConfig:output_type -> google.protobuf.Empty
-	92,  // 220: io.clbs.openhes.services.svcapi.ApiService.GetTranslations:output_type -> io.clbs.openhes.models.localization.GetTranslationsResponse
+	91,  // 220: io.clbs.openhes.services.svcapi.ApiService.GetTranslations:output_type -> io.clbs.openhes.models.localization.GetTranslationsResponse
 	15,  // 221: io.clbs.openhes.services.svcapi.ApiService.SetTranslationMissing:output_type -> google.protobuf.Empty
 	15,  // 222: io.clbs.openhes.services.svcapi.ApiService.UpdateTranslations:output_type -> google.protobuf.Empty
-	93,  // 223: io.clbs.openhes.services.svcapi.ApiService.GetCryptoSecret:output_type -> io.clbs.openhes.models.crypto.CryptoSecrets
+	92,  // 223: io.clbs.openhes.services.svcapi.ApiService.GetCryptoSecret:output_type -> io.clbs.openhes.models.crypto.CryptoSecrets
 	15,  // 224: io.clbs.openhes.services.svcapi.ApiService.SetCryptoSecret:output_type -> google.protobuf.Empty
-	94,  // 225: io.clbs.openhes.services.svcapi.ApiService.CreateMessagingConsumer:output_type -> io.clbs.openhes.models.messaging.MessagingConsumerServer
+	93,  // 225: io.clbs.openhes.services.svcapi.ApiService.CreateMessagingConsumer:output_type -> io.clbs.openhes.models.messaging.MessagingConsumerServer
 	15,  // 226: io.clbs.openhes.services.svcapi.ApiService.CreateMessagingPublisher:output_type -> google.protobuf.Empty
-	95,  // 227: io.clbs.openhes.services.svcapi.ApiService.ListMessagingComponents:output_type -> io.clbs.openhes.models.messaging.ListOfMessagingComponent
+	94,  // 227: io.clbs.openhes.services.svcapi.ApiService.ListMessagingComponents:output_type -> io.clbs.openhes.models.messaging.ListOfMessagingComponent
 	15,  // 228: io.clbs.openhes.services.svcapi.ApiService.UpdateMessagingComponent:output_type -> google.protobuf.Empty
-	96,  // 229: io.clbs.openhes.services.svcapi.ApiService.GetUserProfile:output_type -> io.clbs.openhes.models.system.UserProfile
+	95,  // 229: io.clbs.openhes.services.svcapi.ApiService.GetUserProfile:output_type -> io.clbs.openhes.models.system.UserProfile
 	115, // [115:230] is the sub-list for method output_type
 	0,   // [0:115] is the sub-list for method input_type
 	0,   // [0:0] is the sub-list for extension type_name

@@ -53,9 +53,9 @@ message UserProfile {
 
 // Defines the
 message SetScreenConfigRequest {
-    string application_id           = 1;  // The application or ui-plugin identifier.
-    string screen_id                = 2;  // The screen identifier within the application/ui-plugin.
-    google.protobuf.Struct settings = 3;  // Generic data model holding data related for the screen.
+    string application_id = 1;  // The application or ui-plugin identifier.
+    string screen_id      = 2;  // The screen identifier within the application/ui-plugin.
+    string settings       = 3;  // Generic data model holding data related for the screen.
 }
 
 // Defines the selection criteria for UI screen configuration.

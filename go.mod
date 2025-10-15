@@ -15,7 +15,7 @@ require (
 	github.com/rmg/iso4217 v1.0.1
 	github.com/vektah/gqlparser/v2 v2.5.30
 	go.uber.org/zap v1.27.0
-	google.golang.org/genproto v0.0.0-20251007200510-49b9836ed3ff
+	google.golang.org/genproto v0.0.0-20251014184007-4626949a642f
 	google.golang.org/grpc v1.76.0
 	google.golang.org/protobuf v1.36.10
 	k8s.io/utils v0.0.0-20251002143259-bc988d571ff4
@@ -36,7 +36,7 @@ require (
 	golang.org/x/sys v0.37.0 // indirect
 	golang.org/x/text v0.30.0 // indirect
 	golang.org/x/tools v0.38.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20251007200510-49b9836ed3ff // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20251014184007-4626949a642f // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

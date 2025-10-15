@@ -399,7 +399,7 @@ service ApiService {
     // @group: System
     rpc SetScreenConfig(io.clbs.openhes.models.system.SetScreenConfigRequest) returns (google.protobuf.Empty);
     // @group: System
-    rpc GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.Struct);
+    rpc GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.StringValue);
     // @group: System
     rpc DeleteScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.Empty);
 
