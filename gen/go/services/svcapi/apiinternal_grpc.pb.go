@@ -9,6 +9,7 @@ package svcapi
 import (
 	context "context"
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	localization "github.com/cybroslabs/ouro-api-shared/gen/go/localization"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ApiInternalService_ListFieldDescriptors_FullMethodName   = "/io.clbs.openhes.services.svcapi.ApiInternalService/ListFieldDescriptors"
 	ApiInternalService_UpdateFieldDescriptors_FullMethodName = "/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateFieldDescriptors"
+	ApiInternalService_UpdateTranslations_FullMethodName     = "/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateTranslations"
 )
 
 // ApiInternalServiceClient is the client API for ApiInternalService service.
@@ -37,6 +39,9 @@ type ApiInternalServiceClient interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	UpdateFieldDescriptors(ctx context.Context, in *common.UpdateFieldDescriptorsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Globalization
+	// Updates the translations
+	UpdateTranslations(ctx context.Context, in *localization.UpdateTranslationsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiInternalServiceClient struct {
@@ -67,6 +72,16 @@ func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, i
 	return out, nil
 }
 
+func (c *apiInternalServiceClient) UpdateTranslations(ctx context.Context, in *localization.UpdateTranslationsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiInternalService_UpdateTranslations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiInternalServiceServer is the server API for ApiInternalService service.
 // All implementations must embed UnimplementedApiInternalServiceServer
 // for forward compatibility.
@@ -79,6 +94,9 @@ type ApiInternalServiceServer interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	UpdateFieldDescriptors(context.Context, *common.UpdateFieldDescriptorsRequest) (*emptypb.Empty, error)
+	// @group: Globalization
+	// Updates the translations
+	UpdateTranslations(context.Context, *localization.UpdateTranslationsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiInternalServiceServer()
 }
 
@@ -94,6 +112,9 @@ func (UnimplementedApiInternalServiceServer) ListFieldDescriptors(context.Contex
 }
 func (UnimplementedApiInternalServiceServer) UpdateFieldDescriptors(context.Context, *common.UpdateFieldDescriptorsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFieldDescriptors not implemented")
+}
+func (UnimplementedApiInternalServiceServer) UpdateTranslations(context.Context, *localization.UpdateTranslationsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTranslations not implemented")
 }
 func (UnimplementedApiInternalServiceServer) mustEmbedUnimplementedApiInternalServiceServer() {}
 func (UnimplementedApiInternalServiceServer) testEmbeddedByValue()                            {}
@@ -152,6 +173,24 @@ func _ApiInternalService_UpdateFieldDescriptors_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiInternalService_UpdateTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(localization.UpdateTranslationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiInternalServiceServer).UpdateTranslations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiInternalService_UpdateTranslations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiInternalServiceServer).UpdateTranslations(ctx, req.(*localization.UpdateTranslationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiInternalService_ServiceDesc is the grpc.ServiceDesc for ApiInternalService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -166,6 +205,10 @@ var ApiInternalService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateFieldDescriptors",
 			Handler:    _ApiInternalService_UpdateFieldDescriptors_Handler,
+		},
+		{
+			MethodName: "UpdateTranslations",
+			Handler:    _ApiInternalService_UpdateTranslations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -6,6 +6,7 @@ option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcap
 
 import "google/protobuf/empty.proto";
 import "common/internal.proto";
+import "localization/localization.proto";
 
 // The Dataproxy related service definition.
 service ApiInternalService {
@@ -15,4 +16,7 @@ service ApiInternalService {
     // @group: Fields
     // The method to get the list of fields.
     rpc UpdateFieldDescriptors(io.clbs.openhes.models.common.UpdateFieldDescriptorsRequest) returns (google.protobuf.Empty);
+    // @group: Globalization
+    // Updates the translations
+    rpc UpdateTranslations(io.clbs.openhes.models.localization.UpdateTranslationsRequest) returns (google.protobuf.Empty);
 }

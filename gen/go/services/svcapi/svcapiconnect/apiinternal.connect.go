@@ -9,6 +9,7 @@ import (
 	context "context"
 	errors "errors"
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	localization "github.com/cybroslabs/ouro-api-shared/gen/go/localization"
 	svcapi "github.com/cybroslabs/ouro-api-shared/gen/go/services/svcapi"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
@@ -41,6 +42,9 @@ const (
 	// ApiInternalServiceUpdateFieldDescriptorsProcedure is the fully-qualified name of the
 	// ApiInternalService's UpdateFieldDescriptors RPC.
 	ApiInternalServiceUpdateFieldDescriptorsProcedure = "/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateFieldDescriptors"
+	// ApiInternalServiceUpdateTranslationsProcedure is the fully-qualified name of the
+	// ApiInternalService's UpdateTranslations RPC.
+	ApiInternalServiceUpdateTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiInternalService/UpdateTranslations"
 )
 
 // ApiInternalServiceClient is a client for the io.clbs.openhes.services.svcapi.ApiInternalService
@@ -52,6 +56,9 @@ type ApiInternalServiceClient interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Globalization
+	// Updates the translations
+	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiInternalServiceClient constructs a client for the
@@ -78,6 +85,12 @@ func NewApiInternalServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(apiInternalServiceMethods.ByName("UpdateFieldDescriptors")),
 			connect.WithClientOptions(opts...),
 		),
+		updateTranslations: connect.NewClient[localization.UpdateTranslationsRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ApiInternalServiceUpdateTranslationsProcedure,
+			connect.WithSchema(apiInternalServiceMethods.ByName("UpdateTranslations")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -85,6 +98,7 @@ func NewApiInternalServiceClient(httpClient connect.HTTPClient, baseURL string, 
 type apiInternalServiceClient struct {
 	listFieldDescriptors   *connect.Client[emptypb.Empty, common.ListOfFieldDescriptorInternal]
 	updateFieldDescriptors *connect.Client[common.UpdateFieldDescriptorsRequest, emptypb.Empty]
+	updateTranslations     *connect.Client[localization.UpdateTranslationsRequest, emptypb.Empty]
 }
 
 // ListFieldDescriptors calls
@@ -99,6 +113,11 @@ func (c *apiInternalServiceClient) UpdateFieldDescriptors(ctx context.Context, r
 	return c.updateFieldDescriptors.CallUnary(ctx, req)
 }
 
+// UpdateTranslations calls io.clbs.openhes.services.svcapi.ApiInternalService.UpdateTranslations.
+func (c *apiInternalServiceClient) UpdateTranslations(ctx context.Context, req *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateTranslations.CallUnary(ctx, req)
+}
+
 // ApiInternalServiceHandler is an implementation of the
 // io.clbs.openhes.services.svcapi.ApiInternalService service.
 type ApiInternalServiceHandler interface {
@@ -108,6 +127,9 @@ type ApiInternalServiceHandler interface {
 	// @group: Fields
 	// The method to get the list of fields.
 	UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Globalization
+	// Updates the translations
+	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewApiInternalServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -129,12 +151,20 @@ func NewApiInternalServiceHandler(svc ApiInternalServiceHandler, opts ...connect
 		connect.WithSchema(apiInternalServiceMethods.ByName("UpdateFieldDescriptors")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiInternalServiceUpdateTranslationsHandler := connect.NewUnaryHandler(
+		ApiInternalServiceUpdateTranslationsProcedure,
+		svc.UpdateTranslations,
+		connect.WithSchema(apiInternalServiceMethods.ByName("UpdateTranslations")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/io.clbs.openhes.services.svcapi.ApiInternalService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApiInternalServiceListFieldDescriptorsProcedure:
 			apiInternalServiceListFieldDescriptorsHandler.ServeHTTP(w, r)
 		case ApiInternalServiceUpdateFieldDescriptorsProcedure:
 			apiInternalServiceUpdateFieldDescriptorsHandler.ServeHTTP(w, r)
+		case ApiInternalServiceUpdateTranslationsProcedure:
+			apiInternalServiceUpdateTranslationsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -150,4 +180,8 @@ func (UnimplementedApiInternalServiceHandler) ListFieldDescriptors(context.Conte
 
 func (UnimplementedApiInternalServiceHandler) UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors is not implemented"))
+}
+
+func (UnimplementedApiInternalServiceHandler) UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiInternalService.UpdateTranslations is not implemented"))
 }
