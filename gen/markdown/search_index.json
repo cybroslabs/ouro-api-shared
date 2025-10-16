@@ -447,6 +447,7 @@
     "title": "ApiService - User Management",
     "tags0": [
       "GetUserProfile",
+      "UpdateUserProfile",
       "io.clbs.openhes.models.system.UserProfile"
     ],
     "tags1": [
@@ -670,13 +671,15 @@
     "tags0": [
       "id",
       "roles",
+      "timezone",
       "displayName",
+      "ietfLanguageTag",
       "io.clbs.openhes.models.system.UserProfile"
     ],
     "tags1": [
       "UserProfile"
     ],
-    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles"
+    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
   },
   {
     "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",

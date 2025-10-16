@@ -143,6 +143,7 @@ const (
 	ApiService_ListMessagingComponents_FullMethodName                                          = "/io.clbs.openhes.services.svcapi.ApiService/ListMessagingComponents"
 	ApiService_UpdateMessagingComponent_FullMethodName                                         = "/io.clbs.openhes.services.svcapi.ApiService/UpdateMessagingComponent"
 	ApiService_GetUserProfile_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetUserProfile"
+	ApiService_UpdateUserProfile_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/UpdateUserProfile"
 )
 
 // ApiServiceClient is the client API for ApiService service.
@@ -541,6 +542,9 @@ type ApiServiceClient interface {
 	// @group: User Management
 	// Retrieves information about the currently authenticated user.
 	GetUserProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.UserProfile, error)
+	// @group: User Management
+	// Updates the profile of the user identified by the UserProfile's id field. Read only fields will be ignored. Permissions may apply to update other user's profiles.
+	UpdateUserProfile(ctx context.Context, in *system.UserProfile, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiServiceClient struct {
@@ -1734,6 +1738,16 @@ func (c *apiServiceClient) GetUserProfile(ctx context.Context, in *emptypb.Empty
 	return out, nil
 }
 
+func (c *apiServiceClient) UpdateUserProfile(ctx context.Context, in *system.UserProfile, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateUserProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiServiceServer is the server API for ApiService service.
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
@@ -2130,6 +2144,9 @@ type ApiServiceServer interface {
 	// @group: User Management
 	// Retrieves information about the currently authenticated user.
 	GetUserProfile(context.Context, *emptypb.Empty) (*system.UserProfile, error)
+	// @group: User Management
+	// Updates the profile of the user identified by the UserProfile's id field. Read only fields will be ignored. Permissions may apply to update other user's profiles.
+	UpdateUserProfile(context.Context, *system.UserProfile) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -2484,6 +2501,9 @@ func (UnimplementedApiServiceServer) UpdateMessagingComponent(context.Context, *
 }
 func (UnimplementedApiServiceServer) GetUserProfile(context.Context, *emptypb.Empty) (*system.UserProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserProfile not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateUserProfile(context.Context, *system.UserProfile) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserProfile not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 func (UnimplementedApiServiceServer) testEmbeddedByValue()                    {}
@@ -4533,6 +4553,24 @@ func _ApiService_GetUserProfile_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_UpdateUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.UserProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateUserProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateUserProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateUserProfile(ctx, req.(*system.UserProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiService_ServiceDesc is the grpc.ServiceDesc for ApiService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4979,6 +5017,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserProfile",
 			Handler:    _ApiService_GetUserProfile_Handler,
+		},
+		{
+			MethodName: "UpdateUserProfile",
+			Handler:    _ApiService_UpdateUserProfile_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

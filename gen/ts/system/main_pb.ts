@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiPgoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJIlUKFlNldFNjcmVlbkNvbmZpZ1JlcXVlc3QSFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJEhAKCHNldHRpbmdzGAMgASgJIkEKFFNjcmVlbkNvbmZpZ1NlbGVjdG9yEhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9zeXN0ZW1iCGVkaXRpb25zcOgH", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiawoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJEhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAQgASgJEhAKCHRpbWV6b25lGAUgASgJIlUKFlNldFNjcmVlbkNvbmZpZ1JlcXVlc3QSFgoOYXBwbGljYXRpb25faWQYASABKAkSEQoJc2NyZWVuX2lkGAIgASgJEhAKCHNldHRpbmdzGAMgASgJIkEKFFNjcmVlbkNvbmZpZ1NlbGVjdG9yEhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9zeXN0ZW1iCGVkaXRpb25zcOgH", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -366,11 +366,25 @@ export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> &
   displayName: string;
 
   /**
-   * The list of user roles.
+   * The list of user roles. This is read-only and managed by the system.
    *
    * @generated from field: repeated string roles = 3;
    */
   roles: string[];
+
+  /**
+   * The preferred user interface language.
+   *
+   * @generated from field: string ietf_language_tag = 4;
+   */
+  ietfLanguageTag: string;
+
+  /**
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+   *
+   * @generated from field: string timezone = 5;
+   */
+  timezone: string;
 };
 
 /**
@@ -394,11 +408,25 @@ export type UserProfileJson = {
   displayName?: string;
 
   /**
-   * The list of user roles.
+   * The list of user roles. This is read-only and managed by the system.
    *
    * @generated from field: repeated string roles = 3;
    */
   roles?: string[];
+
+  /**
+   * The preferred user interface language.
+   *
+   * @generated from field: string ietf_language_tag = 4;
+   */
+  ietfLanguageTag?: string;
+
+  /**
+   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+   *
+   * @generated from field: string timezone = 5;
+   */
+  timezone?: string;
 };
 
 /**

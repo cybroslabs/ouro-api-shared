@@ -436,4 +436,7 @@ service ApiService {
     // @group: User Management
     // Retrieves information about the currently authenticated user.
     rpc GetUserProfile(google.protobuf.Empty) returns (io.clbs.openhes.models.system.UserProfile);
+    // @group: User Management
+    // Updates the profile of the user identified by the UserProfile's id field. Read only fields will be ignored. Permissions may apply to update other user's profiles.
+    rpc UpdateUserProfile(io.clbs.openhes.models.system.UserProfile) returns (google.protobuf.Empty);
 }

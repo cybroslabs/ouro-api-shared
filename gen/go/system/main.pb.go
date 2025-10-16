@@ -657,14 +657,16 @@ func (b0 License_builder) Build() *License {
 
 // Defines the user information structure.
 type UserProfile struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id          *string                `protobuf:"bytes,1,opt,name=id"`
-	xxx_hidden_DisplayName *string                `protobuf:"bytes,2,opt,name=display_name,json=displayName"`
-	xxx_hidden_Roles       []string               `protobuf:"bytes,3,rep,name=roles"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id              *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_DisplayName     *string                `protobuf:"bytes,2,opt,name=display_name,json=displayName"`
+	xxx_hidden_Roles           []string               `protobuf:"bytes,3,rep,name=roles"`
+	xxx_hidden_IetfLanguageTag *string                `protobuf:"bytes,4,opt,name=ietf_language_tag,json=ietfLanguageTag"`
+	xxx_hidden_Timezone        *string                `protobuf:"bytes,5,opt,name=timezone"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *UserProfile) Reset() {
@@ -719,18 +721,48 @@ func (x *UserProfile) GetRoles() []string {
 	return nil
 }
 
+func (x *UserProfile) GetIetfLanguageTag() string {
+	if x != nil {
+		if x.xxx_hidden_IetfLanguageTag != nil {
+			return *x.xxx_hidden_IetfLanguageTag
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *UserProfile) GetTimezone() string {
+	if x != nil {
+		if x.xxx_hidden_Timezone != nil {
+			return *x.xxx_hidden_Timezone
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *UserProfile) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *UserProfile) SetDisplayName(v string) {
 	x.xxx_hidden_DisplayName = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *UserProfile) SetRoles(v []string) {
 	x.xxx_hidden_Roles = v
+}
+
+func (x *UserProfile) SetIetfLanguageTag(v string) {
+	x.xxx_hidden_IetfLanguageTag = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
+}
+
+func (x *UserProfile) SetTimezone(v string) {
+	x.xxx_hidden_Timezone = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
 }
 
 func (x *UserProfile) HasId() bool {
@@ -747,6 +779,20 @@ func (x *UserProfile) HasDisplayName() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
+func (x *UserProfile) HasIetfLanguageTag() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *UserProfile) HasTimezone() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
+}
+
 func (x *UserProfile) ClearId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Id = nil
@@ -757,12 +803,24 @@ func (x *UserProfile) ClearDisplayName() {
 	x.xxx_hidden_DisplayName = nil
 }
 
+func (x *UserProfile) ClearIetfLanguageTag() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_IetfLanguageTag = nil
+}
+
+func (x *UserProfile) ClearTimezone() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_Timezone = nil
+}
+
 type UserProfile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id          *string
-	DisplayName *string
-	Roles       []string
+	Id              *string
+	DisplayName     *string
+	Roles           []string
+	IetfLanguageTag *string
+	Timezone        *string
 }
 
 func (b0 UserProfile_builder) Build() *UserProfile {
@@ -770,14 +828,22 @@ func (b0 UserProfile_builder) Build() *UserProfile {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
 		x.xxx_hidden_Id = b.Id
 	}
 	if b.DisplayName != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
 		x.xxx_hidden_DisplayName = b.DisplayName
 	}
 	x.xxx_hidden_Roles = b.Roles
+	if b.IetfLanguageTag != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_IetfLanguageTag = b.IetfLanguageTag
+	}
+	if b.Timezone != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
+		x.xxx_hidden_Timezone = b.Timezone
+	}
 	return m0
 }
 
@@ -1067,11 +1133,13 @@ const file_system_main_proto_rawDesc = "" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\x11serviceExpiration\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"V\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x9e\x01\n" +
 	"\vUserProfile\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x14\n" +
-	"\x05roles\x18\x03 \x03(\tR\x05roles\"x\n" +
+	"\x05roles\x18\x03 \x03(\tR\x05roles\x12*\n" +
+	"\x11ietf_language_tag\x18\x04 \x01(\tR\x0fietfLanguageTag\x12\x1a\n" +
+	"\btimezone\x18\x05 \x01(\tR\btimezone\"x\n" +
 	"\x16SetScreenConfigRequest\x12%\n" +
 	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
 	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\x12\x1a\n" +
