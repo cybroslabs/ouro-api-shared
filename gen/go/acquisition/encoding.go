@@ -60,7 +60,7 @@ type TimeWithTimeZone struct {
 
 type maxvalueHeader [29]byte
 
-type ProfileValuesEncoding struct { // statefull, so no thread safe
+type ProfileValuesEncoder struct { // statefull, so no thread safe
 	nextstring    string
 	nextinteger   int64
 	nexttype      byte
@@ -76,7 +76,7 @@ type ProfileValuesEncoding struct { // statefull, so no thread safe
 	buffer          bytes.Buffer
 }
 
-type ProfileValuesDencoding struct { // statefull, so no thread safe
+type ProfileValuesDecoder struct { // statefull, so no thread safe
 	empty         bool
 	periodseconds int32
 	unit          string
@@ -91,8 +91,8 @@ type ProfileValueItem struct {
 	Err       error
 }
 
-func NewProfileValuesEncoding(periodseconds int32, unit string) *ProfileValuesEncoding { // no value at all means no bytes, is it ok?
-	ret := &ProfileValuesEncoding{
+func NewProfileValuesEncoder(periodseconds int32, unit string) *ProfileValuesEncoder { // no value at all means no bytes, is it ok?
+	ret := &ProfileValuesEncoder{
 		unit:          unit,
 		periodseconds: periodseconds,
 	}
@@ -100,7 +100,7 @@ func NewProfileValuesEncoding(periodseconds int32, unit string) *ProfileValuesEn
 	return ret
 }
 
-func (pe *ProfileValuesEncoding) Reset(periodseconds int32, unit string) {
+func (pe *ProfileValuesEncoder) Reset(periodseconds int32, unit string) {
 	pe.nextstring = ""
 	pe.nextinteger = 0
 	pe.nexttype = typeUnspecified
@@ -116,7 +116,7 @@ func (pe *ProfileValuesEncoding) Reset(periodseconds int32, unit string) {
 	pe.writeheader()
 }
 
-func (pe *ProfileValuesEncoding) writeheader() {
+func (pe *ProfileValuesEncoder) writeheader() {
 	var tmp [4]byte
 
 	_ = pe.buffer.WriteByte(_version)
@@ -129,12 +129,12 @@ func (pe *ProfileValuesEncoding) writeheader() {
 	_, _ = pe.buffer.WriteString(pe.unit)
 }
 
-func (pe *ProfileValuesEncoding) Bytes() []byte { // should be called at the end, closing also current block, append can continue but it wont be so effective (new block, wasting bytes)
+func (pe *ProfileValuesEncoder) Bytes() []byte { // should be called at the end, closing also current block, append can continue but it wont be so effective (new block, wasting bytes)
 	pe.closeblock()
 	return pe.buffer.Bytes()
 }
 
-func (pe *ProfileValuesEncoding) closeblock() {
+func (pe *ProfileValuesEncoder) closeblock() {
 	if pe.nexttype == typeUnspecified { // first or closed block, do nothing
 		return
 	}
@@ -144,7 +144,7 @@ func (pe *ProfileValuesEncoding) closeblock() {
 	binary.BigEndian.PutUint32(b[to+12:], uint32(pe.buffer.Len()-to))
 }
 
-func (pe *ProfileValuesEncoding) startblock(ts time.Time, valueType byte) {
+func (pe *ProfileValuesEncoder) startblock(ts time.Time, valueType byte) {
 	var tmp [17]byte // header
 	binary.BigEndian.PutUint64(tmp[:], uint64(ts.Unix()))
 	tmp[16] = valueType
@@ -157,7 +157,7 @@ func (pe *ProfileValuesEncoding) startblock(ts time.Time, valueType byte) {
 	pe.nextexponent = 0
 }
 
-func (pe *ProfileValuesEncoding) codevalueheader(dst *maxvalueHeader, status int64, nstatus uint64, exponent int32, pts *time.Time) int {
+func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int64, nstatus uint64, exponent int32, pts *time.Time) int {
 	off := 1
 	dst[0] = 0
 
@@ -184,14 +184,14 @@ func (pe *ProfileValuesEncoding) codevalueheader(dst *maxvalueHeader, status int
 	return off
 }
 
-func (pe *ProfileValuesEncoding) nextblock(ts time.Time, t byte) {
+func (pe *ProfileValuesEncoder) nextblock(ts time.Time, t byte) {
 	if pe.nexttype != t || !pe.nextstamp.Equal(ts) { // create a new block
 		pe.closeblock()
 		pe.startblock(ts, t)
 	}
 }
 
-func (pe *ProfileValuesEncoding) AppendValue(ts time.Time, status int64, nstatus uint64, exponent int32, value any, pts *time.Time) error {
+func (pe *ProfileValuesEncoder) AppendValue(ts time.Time, status int64, nstatus uint64, exponent int32, value any, pts *time.Time) error {
 	switch v := value.(type) { // maybe more types here?
 	case float64:
 		pe.AppendDouble(ts, status, nstatus, exponent, v, pts)
@@ -211,7 +211,7 @@ func (pe *ProfileValuesEncoding) AppendValue(ts time.Time, status int64, nstatus
 	return nil
 }
 
-func (pe *ProfileValuesEncoding) AppendInteger(ts time.Time, status int64, nstatus uint64, exponent int32, value int64, pts *time.Time) {
+func (pe *ProfileValuesEncoder) AppendInteger(ts time.Time, status int64, nstatus uint64, exponent int32, value int64, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeInteger)
 
@@ -256,7 +256,7 @@ func (pe *ProfileValuesEncoding) AppendInteger(ts time.Time, status int64, nstat
 	_, _ = pe.buffer.Write(tmp[:8])
 }
 
-func (pe *ProfileValuesEncoding) AppendDouble(ts time.Time, status int64, nstatus uint64, exponent int32, value float64, pts *time.Time) {
+func (pe *ProfileValuesEncoder) AppendDouble(ts time.Time, status int64, nstatus uint64, exponent int32, value float64, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeDouble)
 
@@ -268,7 +268,7 @@ func (pe *ProfileValuesEncoding) AppendDouble(ts time.Time, status int64, nstatu
 	_, _ = pe.buffer.Write(tmp[:8]) // write that everytime, no subtype
 }
 
-func (pe *ProfileValuesEncoding) AppendString(ts time.Time, status int64, nstatus uint64, exponent int32, value string, pts *time.Time) {
+func (pe *ProfileValuesEncoder) AppendString(ts time.Time, status int64, nstatus uint64, exponent int32, value string, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeString)
 
@@ -316,7 +316,7 @@ func (pe *ProfileValuesEncoding) AppendString(ts time.Time, status int64, nstatu
 	_, _ = pe.buffer.WriteString(value)
 }
 
-func (pe *ProfileValuesEncoding) AppendTimestamp(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
+func (pe *ProfileValuesEncoder) AppendTimestamp(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeTimestamp)
 
@@ -328,7 +328,7 @@ func (pe *ProfileValuesEncoding) AppendTimestamp(ts time.Time, status int64, nst
 	_, _ = pe.buffer.Write(tmp[:8]) // no subtype
 }
 
-func (pe *ProfileValuesEncoding) AppendTimestampWithTz(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
+func (pe *ProfileValuesEncoder) AppendTimestampWithTz(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeTimestampWithTz)
 
@@ -345,7 +345,7 @@ func (pe *ProfileValuesEncoding) AppendTimestampWithTz(ts time.Time, status int6
 	_, _ = pe.buffer.WriteString(str)       // no subtype
 }
 
-func (pe *ProfileValuesEncoding) AppendBoolean(ts time.Time, status int64, nstatus uint64, exponent int32, value bool, pts *time.Time) {
+func (pe *ProfileValuesEncoder) AppendBoolean(ts time.Time, status int64, nstatus uint64, exponent int32, value bool, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeBoolean)
 
@@ -360,7 +360,7 @@ func (pe *ProfileValuesEncoding) AppendBoolean(ts time.Time, status int64, nstat
 
 func MergeProfileBlobs(dst []byte, src1, src2 []byte) ([]byte, error) {
 	dst = dst[:0]
-	pd1, err := NewProfileValuesDencoding(src1)
+	pd1, err := NewProfileValuesDecoder(src1)
 	if err != nil {
 		return dst, err
 	}
@@ -368,7 +368,7 @@ func MergeProfileBlobs(dst []byte, src1, src2 []byte) ([]byte, error) {
 		dst = append(dst, src2...)
 		return dst, nil
 	}
-	pd2, err := NewProfileValuesDencoding(src2)
+	pd2, err := NewProfileValuesDecoder(src2)
 	if err != nil {
 		return dst, err
 	}
@@ -387,9 +387,9 @@ func MergeProfileBlobs(dst []byte, src1, src2 []byte) ([]byte, error) {
 	return dst, nil
 }
 
-func NewProfileValuesDencoding(src []byte) (*ProfileValuesDencoding, error) { // creates no copy from src, so watch out
+func NewProfileValuesDecoder(src []byte) (*ProfileValuesDecoder, error) { // creates no copy from src, so watch out
 	var tmp [9]byte // version, period, unit string length
-	ret := &ProfileValuesDencoding{}
+	ret := &ProfileValuesDecoder{}
 	if len(src) == 0 {
 		ret.empty = true
 		return ret, nil
@@ -417,11 +417,11 @@ func NewProfileValuesDencoding(src []byte) (*ProfileValuesDencoding, error) { //
 	return ret, nil
 }
 
-func (pd *ProfileValuesDencoding) IsNil() bool {
+func (pd *ProfileValuesDecoder) IsNil() bool {
 	return pd.empty
 }
 
-func (pd *ProfileValuesDencoding) GetPeriod() (d time.Duration) {
+func (pd *ProfileValuesDecoder) GetPeriod() (d time.Duration) {
 	if pd.empty {
 		return
 	}
@@ -429,7 +429,7 @@ func (pd *ProfileValuesDencoding) GetPeriod() (d time.Duration) {
 	return
 }
 
-func (pd *ProfileValuesDencoding) GetPeriodSeconds() (d int32) {
+func (pd *ProfileValuesDecoder) GetPeriodSeconds() (d int32) {
 	if pd.empty {
 		return
 	}
@@ -437,7 +437,7 @@ func (pd *ProfileValuesDencoding) GetPeriodSeconds() (d int32) {
 	return
 }
 
-func (pd *ProfileValuesDencoding) GetUnit() (u string) {
+func (pd *ProfileValuesDecoder) GetUnit() (u string) {
 	if pd.empty {
 		return
 	}
@@ -445,7 +445,7 @@ func (pd *ProfileValuesDencoding) GetUnit() (u string) {
 	return
 }
 
-func (pd *ProfileValuesDencoding) GetLastTimeStamp() (lt time.Time, err error) {
+func (pd *ProfileValuesDecoder) GetLastTimeStamp() (lt time.Time, err error) {
 	var tmp [16]byte
 
 	if pd.empty {
@@ -540,7 +540,7 @@ func (ctx *decodeContext) clear() {
 	ctx.peakts = time.Time{}
 }
 
-func (pd *ProfileValuesDencoding) Values() iter.Seq[ProfileValueItem] {
+func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 	return func(yield func(ProfileValueItem) bool) {
 		if pd.empty {
 			return
