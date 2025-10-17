@@ -445,8 +445,9 @@ func (pd *ProfileValuesDecoder) GetUnit() (u string) {
 	return
 }
 
-func (pd *ProfileValuesDecoder) GetLastTimeStamp() (lt time.Time, err error) {
+func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
 	var tmp [16]byte
+	var lt time.Time
 
 	if pd.empty {
 		return
@@ -482,6 +483,7 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (lt time.Time, err error) {
 			return
 		}
 	}
+	ltt = lt
 	return
 }
 
