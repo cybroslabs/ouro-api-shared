@@ -401,7 +401,7 @@ func NewProfileValuesDecoder(src []byte) (*ProfileValuesDecoder, error) { // cre
 		return nil, err
 	}
 	if tmp[0] != _version {
-		return nil, fmt.Errorf("invalid data version: %x", tmp[0])
+		return nil, fmt.Errorf("invalid data version: %d", tmp[0])
 	}
 	ret.periodseconds = int32(binary.BigEndian.Uint32(tmp[1:5]))
 	ln := int(binary.BigEndian.Uint32(tmp[5:9]))
