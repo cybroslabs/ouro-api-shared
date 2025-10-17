@@ -346,7 +346,7 @@ message ActionData {
     oneof data {
         google.protobuf.Empty nodata             = 1;  // Indicates that no data was returned by the action.
         RegisterValues registers                 = 2;  // The set of register values.
-        ProfileValues profile                    = 3;  // The set of profile values.
+        bytes profile                            = 3;  // The set of profile values. For efficiency, the profile values are binary-encoded, see acquisition/encoding.go.
         IrregularProfileValues irregular_profile = 4;  // The set of irregular (non-periodical) profile values, such as daily profiles.
         DeviceInfo device_info                   = 5;  // The device information.
         EventRecords events                      = 6;  // The event records.
