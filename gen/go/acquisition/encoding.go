@@ -24,8 +24,8 @@ var (
 any bytes - unit string (4B length + string)
 <for each block>
 	8B - start timestamp (unix)
-	4B - items count
 	4B - bytes count
+	1B - items count, 0 means 1 and so on, no empty block possible then
 	1B - value type (1 double 8B, 2 int64 8B, 3 string xB, 4 timestamp 8B, 5 timestamp with timezone xB, 6 boolean 1B)
 	<for each item>
 		1B - item header, bitfield, status/nstatus present bit, exponent present bit, peak present bit, prev value bit, higher 4 bites, value subtype
@@ -140,21 +140,21 @@ func (pe *ProfileValuesEncoder) closeblock() {
 	}
 	b := pe.buffer.Bytes() // this is a bit hardcore to update that buffer, but whatever ;)
 	to := pe.lastblockoffset
-	binary.BigEndian.PutUint32(b[to+8:], uint32(pe.items))
-	binary.BigEndian.PutUint32(b[to+12:], uint32(pe.buffer.Len()-to))
+	binary.BigEndian.PutUint32(b[to+8:], uint32(pe.buffer.Len()-to))
+	b[to+12] = byte(pe.items - 1)
 }
 
 func (pe *ProfileValuesEncoder) startblock(ts time.Time, valueType byte) {
-	var tmp [17]byte // header
+	var tmp [14]byte // header
 	binary.BigEndian.PutUint64(tmp[:], uint64(ts.Unix()))
-	tmp[16] = valueType
+	tmp[13] = valueType
 	pe.lastblockoffset = pe.buffer.Len()
 	pe.items = 0
 	pe.nexttype = valueType
-	_, _ = pe.buffer.Write(tmp[:])
 	pe.nextstatus = 0
 	pe.nextnstatus = 0
 	pe.nextexponent = 0
+	_, _ = pe.buffer.Write(tmp[:])
 }
 
 func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int64, nstatus uint64, exponent int32, pts *time.Time) int {
@@ -185,7 +185,7 @@ func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int6
 }
 
 func (pe *ProfileValuesEncoder) nextblock(ts time.Time, t byte) {
-	if pe.nexttype != t || !pe.nextstamp.Equal(ts) { // create a new block
+	if pe.items == 256 || pe.nexttype != t || !pe.nextstamp.Equal(ts) { // create a new block
 		pe.closeblock()
 		pe.startblock(ts, t)
 	}
@@ -446,7 +446,7 @@ func (pd *ProfileValuesDecoder) GetUnit() (u string) {
 }
 
 func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
-	var tmp [16]byte
+	var tmp [14]byte
 	var lt time.Time
 
 	if pd.empty {
@@ -465,20 +465,16 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
 			return
 		}
 
-		b := binary.BigEndian.Uint32(tmp[12:])
-		if b < 17 {
+		b := binary.BigEndian.Uint32(tmp[8:])
+		if b < 15 {
 			err = fmt.Errorf("data error, invalid block size in bytes")
 			return
 		}
-		cnt := binary.BigEndian.Uint32(tmp[8:])
-		if cnt == 0 {
-			continue
-		}
-		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(cnt-1), 0)
+		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0)
 		if lt.Before(ts) {
 			lt = ts
 		}
-		_, err = bf.Seek(int64(b-16), io.SeekCurrent)
+		_, err = bf.Seek(int64(b-14), io.SeekCurrent)
 		if err != nil {
 			return
 		}
@@ -555,7 +551,7 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 			return
 		}
 
-		var tmp [17]byte // at least block header
+		var tmp [14]byte // at least block header
 		var ctx decodeContext
 		var itemid byte
 
@@ -567,17 +563,17 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 				return
 			}
 
-			cnt := binary.BigEndian.Uint32(tmp[8:])
+			cnt := int(tmp[12]) + 1
 			ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0)
-			b := binary.BigEndian.Uint32(tmp[12:])
-			if b < 17 {
+			b := binary.BigEndian.Uint32(tmp[8:])
+			if b < 15 {
 				err = fmt.Errorf("data error, invalid block size in bytes")
 				yield(ProfileValueItem{Err: err})
 				return
 			}
 
-			bf := io.LimitReader(bff, int64(b-17))
-			switch tmp[16] {
+			bf := io.LimitReader(bff, int64(b-14))
+			switch tmp[13] {
 			case typeUnspecified:
 				err = fmt.Errorf("data error, unspecified type in block")
 				yield(ProfileValueItem{Err: err})
@@ -865,7 +861,7 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					ts = ts.Add(time.Duration(pd.periodseconds) * time.Second)
 				}
 			default:
-				err = fmt.Errorf("data error, unknown type %d in block", tmp[16])
+				err = fmt.Errorf("data error, unknown type %d in block", tmp[13])
 				yield(ProfileValueItem{Err: err})
 				return
 			}
