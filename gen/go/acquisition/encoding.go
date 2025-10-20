@@ -15,8 +15,7 @@ import (
 )
 
 var (
-	_version  = byte(1)
-	_zeroUUID uuid.UUID
+	_version = byte(1)
 )
 
 /*
@@ -106,7 +105,7 @@ func NewProfileValuesEncoder(periodseconds int32, unit string) *ProfileValuesEnc
 }
 
 func (pe *ProfileValuesEncoder) Reset(periodseconds int32, unit string) {
-	pe.nextuserid = _zeroUUID
+	pe.nextuserid = uuid.Nil
 	pe.nextstring = ""
 	pe.nextinteger = 0
 	pe.nexttype = typeUnspecified
@@ -162,7 +161,7 @@ func (pe *ProfileValuesEncoder) startblock(ts time.Time, valueType byte) {
 	pe.nextexponent = 0
 	pe.nextstring = ""
 	pe.nextinteger = 0
-	pe.nextuserid = _zeroUUID
+	pe.nextuserid = uuid.Nil
 	_, _ = pe.buffer.Write(tmp[:])
 }
 
@@ -190,7 +189,7 @@ func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int6
 		off += 8
 	}
 	if userid == nil {
-		userid = &_zeroUUID
+		userid = &uuid.Nil
 	}
 	if *userid != pe.nextuserid {
 		copy(dst[off:], userid[:])
@@ -554,7 +553,7 @@ func (ctx *decodeContext) decodeItemHeader(bf io.Reader) (itemid byte, err error
 }
 
 func (ctx *decodeContext) clear() {
-	ctx.prevuserid = _zeroUUID
+	ctx.prevuserid = uuid.Nil
 	ctx.prevstring = ""
 	ctx.previnteger = 0
 	ctx.prevstatus = 0
