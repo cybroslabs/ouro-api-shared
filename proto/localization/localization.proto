@@ -34,3 +34,14 @@ message UpdateTranslationsRequest {
     string ietf_language_tag         = 3;  // The IETF language tag (for example, `en-US`, `fr-FR`) for which translations are to be updated.
     map<string, string> translations = 4;  // A map of keys to their corresponding translated strings.
 }
+
+// Defines the list of applications with available translations.
+message TranslationList {
+    repeated TranslationInfo applications = 1;  // A map of application IDs to their corresponding translation information.
+}
+
+// Defines the information about translations for a specific application.
+message TranslationInfo {
+    string application_id             = 1;  // The application or ui-plugin identifier.
+    repeated string ietf_language_tag = 2;  // The list of IETF language tags (for example, `en-US`, `fr-FR`) for which translations are available for the application.
+}

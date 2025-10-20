@@ -343,6 +343,9 @@ const (
 	// ApiServiceUpdateTranslationsProcedure is the fully-qualified name of the ApiService's
 	// UpdateTranslations RPC.
 	ApiServiceUpdateTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTranslations"
+	// ApiServiceGetTranslationListProcedure is the fully-qualified name of the ApiService's
+	// GetTranslationList RPC.
+	ApiServiceGetTranslationListProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslationList"
 	// ApiServiceGetCryptoSecretProcedure is the fully-qualified name of the ApiService's
 	// GetCryptoSecret RPC.
 	ApiServiceGetCryptoSecretProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetCryptoSecret"
@@ -740,6 +743,9 @@ type ApiServiceClient interface {
 	// @group: Globalization
 	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
 	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Globalization
+	// Retrieves the list of applications with available translations.
+	GetTranslationList(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[localization.TranslationList], error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error)
@@ -1425,6 +1431,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("UpdateTranslations")),
 			connect.WithClientOptions(opts...),
 		),
+		getTranslationList: connect.NewClient[emptypb.Empty, localization.TranslationList](
+			httpClient,
+			baseURL+ApiServiceGetTranslationListProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetTranslationList")),
+			connect.WithClientOptions(opts...),
+		),
 		getCryptoSecret: connect.NewClient[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets](
 			httpClient,
 			baseURL+ApiServiceGetCryptoSecretProcedure,
@@ -1586,6 +1598,7 @@ type apiServiceClient struct {
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	setTranslationMissing                                            *connect.Client[localization.MissingTranslationRequest, emptypb.Empty]
 	updateTranslations                                               *connect.Client[localization.UpdateTranslationsRequest, emptypb.Empty]
+	getTranslationList                                               *connect.Client[emptypb.Empty, localization.TranslationList]
 	getCryptoSecret                                                  *connect.Client[crypto.GetCryptoSecretRequest, crypto.CryptoSecrets]
 	setCryptoSecret                                                  *connect.Client[crypto.SetCryptoSecretRequest, emptypb.Empty]
 	createMessagingConsumer                                          *connect.Client[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer]
@@ -2159,6 +2172,11 @@ func (c *apiServiceClient) UpdateTranslations(ctx context.Context, req *connect.
 	return c.updateTranslations.CallUnary(ctx, req)
 }
 
+// GetTranslationList calls io.clbs.openhes.services.svcapi.ApiService.GetTranslationList.
+func (c *apiServiceClient) GetTranslationList(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[localization.TranslationList], error) {
+	return c.getTranslationList.CallUnary(ctx, req)
+}
+
 // GetCryptoSecret calls io.clbs.openhes.services.svcapi.ApiService.GetCryptoSecret.
 func (c *apiServiceClient) GetCryptoSecret(ctx context.Context, req *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error) {
 	return c.getCryptoSecret.CallUnary(ctx, req)
@@ -2572,6 +2590,9 @@ type ApiServiceHandler interface {
 	// @group: Globalization
 	// Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
 	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Globalization
+	// Retrieves the list of applications with available translations.
+	GetTranslationList(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[localization.TranslationList], error)
 	// @group: Cryptography
 	// Retrieves a cryptographic secret based on the specified request parameters.
 	GetCryptoSecret(context.Context, *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error)
@@ -3253,6 +3274,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("UpdateTranslations")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetTranslationListHandler := connect.NewUnaryHandler(
+		ApiServiceGetTranslationListProcedure,
+		svc.GetTranslationList,
+		connect.WithSchema(apiServiceMethods.ByName("GetTranslationList")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetCryptoSecretHandler := connect.NewUnaryHandler(
 		ApiServiceGetCryptoSecretProcedure,
 		svc.GetCryptoSecret,
@@ -3519,6 +3546,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceSetTranslationMissingHandler.ServeHTTP(w, r)
 		case ApiServiceUpdateTranslationsProcedure:
 			apiServiceUpdateTranslationsHandler.ServeHTTP(w, r)
+		case ApiServiceGetTranslationListProcedure:
+			apiServiceGetTranslationListHandler.ServeHTTP(w, r)
 		case ApiServiceGetCryptoSecretProcedure:
 			apiServiceGetCryptoSecretHandler.ServeHTTP(w, r)
 		case ApiServiceSetCryptoSecretProcedure:
@@ -3974,6 +4003,10 @@ func (UnimplementedApiServiceHandler) SetTranslationMissing(context.Context, *co
 
 func (UnimplementedApiServiceHandler) UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateTranslations is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetTranslationList(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[localization.TranslationList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetTranslationList is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetCryptoSecret(context.Context, *connect.Request[crypto.GetCryptoSecretRequest]) (*connect.Response[crypto.CryptoSecrets], error) {

@@ -510,6 +510,159 @@ func (b0 UpdateTranslationsRequest_builder) Build() *UpdateTranslationsRequest {
 	return m0
 }
 
+// Defines the list of applications with available translations.
+type TranslationList struct {
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Applications *[]*TranslationInfo    `protobuf:"bytes,1,rep,name=applications"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *TranslationList) Reset() {
+	*x = TranslationList{}
+	mi := &file_localization_localization_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TranslationList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TranslationList) ProtoMessage() {}
+
+func (x *TranslationList) ProtoReflect() protoreflect.Message {
+	mi := &file_localization_localization_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *TranslationList) GetApplications() []*TranslationInfo {
+	if x != nil {
+		if x.xxx_hidden_Applications != nil {
+			return *x.xxx_hidden_Applications
+		}
+	}
+	return nil
+}
+
+func (x *TranslationList) SetApplications(v []*TranslationInfo) {
+	x.xxx_hidden_Applications = &v
+}
+
+type TranslationList_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Applications []*TranslationInfo
+}
+
+func (b0 TranslationList_builder) Build() *TranslationList {
+	m0 := &TranslationList{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Applications = &b.Applications
+	return m0
+}
+
+// Defines the information about translations for a specific application.
+type TranslationInfo struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ApplicationId   *string                `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
+	xxx_hidden_IetfLanguageTag []string               `protobuf:"bytes,2,rep,name=ietf_language_tag,json=ietfLanguageTag"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *TranslationInfo) Reset() {
+	*x = TranslationInfo{}
+	mi := &file_localization_localization_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TranslationInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TranslationInfo) ProtoMessage() {}
+
+func (x *TranslationInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_localization_localization_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *TranslationInfo) GetApplicationId() string {
+	if x != nil {
+		if x.xxx_hidden_ApplicationId != nil {
+			return *x.xxx_hidden_ApplicationId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *TranslationInfo) GetIetfLanguageTag() []string {
+	if x != nil {
+		return x.xxx_hidden_IetfLanguageTag
+	}
+	return nil
+}
+
+func (x *TranslationInfo) SetApplicationId(v string) {
+	x.xxx_hidden_ApplicationId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *TranslationInfo) SetIetfLanguageTag(v []string) {
+	x.xxx_hidden_IetfLanguageTag = v
+}
+
+func (x *TranslationInfo) HasApplicationId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *TranslationInfo) ClearApplicationId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_ApplicationId = nil
+}
+
+type TranslationInfo_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	ApplicationId   *string
+	IetfLanguageTag []string
+}
+
+func (b0 TranslationInfo_builder) Build() *TranslationInfo {
+	m0 := &TranslationInfo{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.ApplicationId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_ApplicationId = b.ApplicationId
+	}
+	x.xxx_hidden_IetfLanguageTag = b.IetfLanguageTag
+	return m0
+}
+
 var File_localization_localization_proto protoreflect.FileDescriptor
 
 const file_localization_localization_proto_rawDesc = "" +
@@ -535,25 +688,33 @@ const file_localization_localization_proto_rawDesc = "" +
 	"\ftranslations\x18\x04 \x03(\v2P.io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntryR\ftranslations\x1a?\n" +
 	"\x11TranslationsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B;Z9github.com/cybroslabs/ouro-api-shared/gen/go/localizationb\beditionsp\xe8\a"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"k\n" +
+	"\x0fTranslationList\x12X\n" +
+	"\fapplications\x18\x01 \x03(\v24.io.clbs.openhes.models.localization.TranslationInfoR\fapplications\"d\n" +
+	"\x0fTranslationInfo\x12%\n" +
+	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12*\n" +
+	"\x11ietf_language_tag\x18\x02 \x03(\tR\x0fietfLanguageTagB;Z9github.com/cybroslabs/ouro-api-shared/gen/go/localizationb\beditionsp\xe8\a"
 
-var file_localization_localization_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_localization_localization_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_localization_localization_proto_goTypes = []any{
 	(*GetTranslationsRequest)(nil),    // 0: io.clbs.openhes.models.localization.GetTranslationsRequest
 	(*MissingTranslationRequest)(nil), // 1: io.clbs.openhes.models.localization.MissingTranslationRequest
 	(*GetTranslationsResponse)(nil),   // 2: io.clbs.openhes.models.localization.GetTranslationsResponse
 	(*UpdateTranslationsRequest)(nil), // 3: io.clbs.openhes.models.localization.UpdateTranslationsRequest
-	nil,                               // 4: io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
-	nil,                               // 5: io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntry
+	(*TranslationList)(nil),           // 4: io.clbs.openhes.models.localization.TranslationList
+	(*TranslationInfo)(nil),           // 5: io.clbs.openhes.models.localization.TranslationInfo
+	nil,                               // 6: io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
+	nil,                               // 7: io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntry
 }
 var file_localization_localization_proto_depIdxs = []int32{
-	4, // 0: io.clbs.openhes.models.localization.GetTranslationsResponse.translations:type_name -> io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
-	5, // 1: io.clbs.openhes.models.localization.UpdateTranslationsRequest.translations:type_name -> io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntry
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 0: io.clbs.openhes.models.localization.GetTranslationsResponse.translations:type_name -> io.clbs.openhes.models.localization.GetTranslationsResponse.TranslationsEntry
+	7, // 1: io.clbs.openhes.models.localization.UpdateTranslationsRequest.translations:type_name -> io.clbs.openhes.models.localization.UpdateTranslationsRequest.TranslationsEntry
+	5, // 2: io.clbs.openhes.models.localization.TranslationList.applications:type_name -> io.clbs.openhes.models.localization.TranslationInfo
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_localization_localization_proto_init() }
@@ -567,7 +728,7 @@ func file_localization_localization_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_localization_localization_proto_rawDesc), len(file_localization_localization_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

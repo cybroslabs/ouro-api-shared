@@ -351,7 +351,9 @@
     "tags0": [
       "GetTranslations",
       "UpdateTranslations",
+      "GetTranslationList",
       "SetTranslationMissing",
+      "io.clbs.openhes.models.localization.TranslationList",
       "io.clbs.openhes.models.localization.GetTranslationsRequest",
       "io.clbs.openhes.models.localization.GetTranslationsResponse",
       "io.clbs.openhes.models.localization.MissingTranslationRequest",
@@ -361,6 +363,7 @@
       "GetTranslationsRequest",
       "GetTranslationsResponse",
       "MissingTranslationRequest",
+      "TranslationList",
       "UpdateTranslationsRequest"
     ],
     "tags2": ""
@@ -524,6 +527,31 @@
     "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
   },
   {
+    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
+    "tags0": [
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.TranslationInfo"
+    ],
+    "tags1": [
+      "TranslationInfo"
+    ],
+    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
+    "tags0": [
+      "applications",
+      "io.clbs.openhes.models.localization.TranslationList"
+    ],
+    "tags1": [
+      "TranslationList"
+    ],
+    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
+  },
+  {
     "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
     "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
     "tags0": [
@@ -537,130 +565,6 @@
       "UpdateTranslationsRequest"
     ],
     "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
-    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
-    "tags0": [
-      "RELAY_STATE_CONNECT",
-      "RELAY_STATE_DISCONNECT",
-      "RELAY_STATE_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
-    ],
-    "tags1": [
-      "CONNECT",
-      "DISCONNECT",
-      "RELAY",
-      "RelayState",
-      "STATE",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
-    "tags0": [
-      "dayId",
-      "switching",
-      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
-    ],
-    "tags1": [
-      "DayProfile"
-    ],
-    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
-    "tags0": [
-      "state",
-      "relayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
-    ],
-    "tags1": [
-      "RelayStateRecord"
-    ],
-    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
-    "tags0": [
-      "id",
-      "name",
-      "weekId",
-      "startDay",
-      "startYear",
-      "startMonth",
-      "io.clbs.openhes.models.acquisition.timeofuse.Season"
-    ],
-    "tags1": [
-      "Season"
-    ],
-    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
-    "tags0": [
-      "day",
-      "year",
-      "month",
-      "dayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
-    ],
-    "tags1": [
-      "SpecialDay"
-    ],
-    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
-    "tags0": [
-      "hour",
-      "minute",
-      "tariff",
-      "relays",
-      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
-    ],
-    "tags1": [
-      "Switching"
-    ],
-    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
-    "tags0": [
-      "weeks",
-      "seasons",
-      "expiesAt",
-      "hdoGroupId",
-      "activateAt",
-      "dayProfiles",
-      "specialDays",
-      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
-    ],
-    "tags1": [
-      "TimeOfUseTableSpec"
-    ],
-    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
-    "tags0": [
-      "weekId",
-      "dayIds",
-      "weekName",
-      "io.clbs.openhes.models.acquisition.timeofuse.Week"
-    ],
-    "tags1": [
-      "Week"
-    ],
-    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -1185,6 +1089,225 @@
       "ListOfCronJob"
     ],
     "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
+    "tags0": [
+      "RELAY_STATE_CONNECT",
+      "RELAY_STATE_DISCONNECT",
+      "RELAY_STATE_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
+    ],
+    "tags1": [
+      "CONNECT",
+      "DISCONNECT",
+      "RELAY",
+      "RelayState",
+      "STATE",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
+    "tags0": [
+      "dayId",
+      "switching",
+      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
+    ],
+    "tags1": [
+      "DayProfile"
+    ],
+    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
+    "tags0": [
+      "state",
+      "relayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
+    ],
+    "tags1": [
+      "RelayStateRecord"
+    ],
+    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
+    "tags0": [
+      "id",
+      "name",
+      "weekId",
+      "startDay",
+      "startYear",
+      "startMonth",
+      "io.clbs.openhes.models.acquisition.timeofuse.Season"
+    ],
+    "tags1": [
+      "Season"
+    ],
+    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
+    "tags0": [
+      "day",
+      "year",
+      "month",
+      "dayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
+    ],
+    "tags1": [
+      "SpecialDay"
+    ],
+    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
+    "tags0": [
+      "hour",
+      "minute",
+      "tariff",
+      "relays",
+      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
+    ],
+    "tags1": [
+      "Switching"
+    ],
+    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
+    "tags0": [
+      "weeks",
+      "seasons",
+      "expiesAt",
+      "hdoGroupId",
+      "activateAt",
+      "dayProfiles",
+      "specialDays",
+      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
+    ],
+    "tags1": [
+      "TimeOfUseTableSpec"
+    ],
+    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
+    "tags0": [
+      "weekId",
+      "dayIds",
+      "weekName",
+      "io.clbs.openhes.models.acquisition.timeofuse.Week"
+    ],
+    "tags1": [
+      "Week"
+    ],
+    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Defines specification for application configuration The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines specification for single component configuration The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
+    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "tags0": [
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.ScreenConfigSelector"
+    ],
+    "tags1": [
+      "ScreenConfigSelector"
+    ],
+    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
+    "tags0": [
+      "raw",
+      "json",
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
+    ],
+    "tags1": [
+      "SetScreenConfigRequest"
+    ],
+    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic JSON encoded data model holding data related for the screen Generic data model holding data related for the screen"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
+    "title": "Model: io.clbs.openhes.models.system.UserProfile",
+    "tags0": [
+      "id",
+      "roles",
+      "timezone",
+      "displayName",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
@@ -3804,100 +3927,5 @@
       "VariableSpec"
     ],
     "tags2": "Defines variable specification The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable Indicates whether the returned data for this variabe should exclude values from timestamp set true the returned device data returned for this variable dos not include values from timestamp Default value false"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
-    "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
-    ],
-    "tags1": [
-      "ApplicationConfig"
-    ],
-    "tags2": "Defines specification for application configuration The default values for the application configuration"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
-    "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
-    ],
-    "tags1": [
-      "ApplicationConfigDescriptor"
-    ],
-    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
-    ],
-    "tags1": [
-      "ComponentConfig"
-    ],
-    "tags2": "Defines specification for single component configuration The component name The component configuration values"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
-    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
-    "tags0": [
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.ScreenConfigSelector"
-    ],
-    "tags1": [
-      "ScreenConfigSelector"
-    ],
-    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
-    "tags0": [
-      "raw",
-      "json",
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.SetScreenConfigRequest"
-    ],
-    "tags1": [
-      "SetScreenConfigRequest"
-    ],
-    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic JSON encoded data model holding data related for the screen Generic data model holding data related for the screen"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
-    "title": "Model: io.clbs.openhes.models.system.UserProfile",
-    "tags0": [
-      "id",
-      "roles",
-      "timezone",
-      "displayName",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.system.UserProfile"
-    ],
-    "tags1": [
-      "UserProfile"
-    ],
-    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
   }
 ]

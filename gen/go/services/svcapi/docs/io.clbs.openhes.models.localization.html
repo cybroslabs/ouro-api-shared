@@ -96,6 +96,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.localization.TranslationInfo">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>TranslationInfo</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.localization.TranslationList">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>TranslationList</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.localization.UpdateTranslationsRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>UpdateTranslationsRequest</code> 
@@ -322,6 +340,126 @@
         </code>
       </td>
       <td class="content"><p>The key for which the translation is missing.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.localization.TranslationInfo">
+  <span>
+    <a href="#message-io.clbs.openhes.models.localization.TranslationInfo" title="io.clbs.openhes.models.localization.TranslationInfo">message TranslationInfo</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the information about translations for a specific application.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        applicationId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The application or ui-plugin identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        ietfLanguageTag
+      </td>
+      <td>
+        <code title="string">
+          
+            repeated
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The list of IETF language tags (for example, <code>en-US</code>, <code>fr-FR</code>) for which translations are available for the application.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.localization.TranslationList">
+  <span>
+    <a href="#message-io.clbs.openhes.models.localization.TranslationList" title="io.clbs.openhes.models.localization.TranslationList">message TranslationList</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the list of applications with available translations.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        applications
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.localization.TranslationInfo">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.localization.html#message-io.clbs.openhes.models.localization.TranslationInfo"><span title="io.clbs.openhes.models.localization.TranslationInfo">io.clbs.openhes.models.localization.TranslationInfo</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>A map of application IDs to their corresponding translation information.</p></td>
       
     </tr>
     

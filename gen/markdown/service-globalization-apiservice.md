@@ -31,3 +31,13 @@ UpdateTranslations(io.clbs.openhes.models.localization.UpdateTranslationsRequest
 
 - Input: [`io.clbs.openhes.models.localization.UpdateTranslationsRequest`](model-io-clbs-openhes-models-localization-updatetranslationsrequest.md)
 
+## GetTranslationList
+
+Retrieves the list of applications with available translations.
+
+```proto
+GetTranslationList() returns (io.clbs.openhes.models.localization.TranslationList)
+```
+
+- Output: [`io.clbs.openhes.models.localization.TranslationList`](model-io-clbs-openhes-models-localization-translationlist.md)
+

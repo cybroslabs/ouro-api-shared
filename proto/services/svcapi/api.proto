@@ -412,6 +412,9 @@ service ApiService {
     // @group: Globalization
     // Updates the translations for a specific language. Existing translations for the specified language will be replaced with the new ones provided in the request.
     rpc UpdateTranslations(io.clbs.openhes.models.localization.UpdateTranslationsRequest) returns (google.protobuf.Empty);
+    // @group: Globalization
+    // Retrieves the list of applications with available translations.
+    rpc GetTranslationList(google.protobuf.Empty) returns (io.clbs.openhes.models.localization.TranslationList);
 
     // @group: Cryptography
     // Retrieves a cryptographic secret based on the specified request parameters.
