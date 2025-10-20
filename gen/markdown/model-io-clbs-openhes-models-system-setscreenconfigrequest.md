@@ -8,5 +8,6 @@ Defines the
 | --- | --- |
 | applicationId | <b>Type:</b> `string`<br><b>Description:</b><br>The application or ui-plugin identifier. |
 | screenId | <b>Type:</b> `string`<br><b>Description:</b><br>The screen identifier within the application/ui-plugin. |
-| settings | <b>Type:</b> `string`<br><b>Description:</b><br>Generic data model holding data related for the screen. |
+| json | <b>Type:</b> `string`<br><b>Description:</b><br>Generic JSON-encoded data model holding data related for the screen. |
+| raw | <b>Type:</b> `google.protobuf.Struct`<br><b>Description:</b><br>Generic data model holding data related for the screen. |
 

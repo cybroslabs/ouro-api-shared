@@ -10,7 +10,7 @@ import (
 	common "github.com/cybroslabs/ouro-api-shared/gen/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/structpb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -849,10 +849,10 @@ func (b0 UserProfile_builder) Build() *UserProfile {
 
 // Defines the
 type SetScreenConfigRequest struct {
-	state                    protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ApplicationId *string                `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
-	xxx_hidden_ScreenId      *string                `protobuf:"bytes,2,opt,name=screen_id,json=screenId"`
-	xxx_hidden_Settings      *string                `protobuf:"bytes,3,opt,name=settings"`
+	state                    protoimpl.MessageState            `protogen:"opaque.v1"`
+	xxx_hidden_ApplicationId *string                           `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
+	xxx_hidden_ScreenId      *string                           `protobuf:"bytes,2,opt,name=screen_id,json=screenId"`
+	xxx_hidden_Settings      isSetScreenConfigRequest_Settings `protobuf_oneof:"settings"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -904,14 +904,22 @@ func (x *SetScreenConfigRequest) GetScreenId() string {
 	return ""
 }
 
-func (x *SetScreenConfigRequest) GetSettings() string {
+func (x *SetScreenConfigRequest) GetJson() string {
 	if x != nil {
-		if x.xxx_hidden_Settings != nil {
-			return *x.xxx_hidden_Settings
+		if x, ok := x.xxx_hidden_Settings.(*setScreenConfigRequest_Json); ok {
+			return x.Json
 		}
-		return ""
 	}
 	return ""
+}
+
+func (x *SetScreenConfigRequest) GetRaw() *structpb.Struct {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Settings.(*setScreenConfigRequest_Raw); ok {
+			return x.Raw
+		}
+	}
+	return nil
 }
 
 func (x *SetScreenConfigRequest) SetApplicationId(v string) {
@@ -924,9 +932,16 @@ func (x *SetScreenConfigRequest) SetScreenId(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
-func (x *SetScreenConfigRequest) SetSettings(v string) {
-	x.xxx_hidden_Settings = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
+func (x *SetScreenConfigRequest) SetJson(v string) {
+	x.xxx_hidden_Settings = &setScreenConfigRequest_Json{v}
+}
+
+func (x *SetScreenConfigRequest) SetRaw(v *structpb.Struct) {
+	if v == nil {
+		x.xxx_hidden_Settings = nil
+		return
+	}
+	x.xxx_hidden_Settings = &setScreenConfigRequest_Raw{v}
 }
 
 func (x *SetScreenConfigRequest) HasApplicationId() bool {
@@ -947,7 +962,23 @@ func (x *SetScreenConfigRequest) HasSettings() bool {
 	if x == nil {
 		return false
 	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+	return x.xxx_hidden_Settings != nil
+}
+
+func (x *SetScreenConfigRequest) HasJson() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Settings.(*setScreenConfigRequest_Json)
+	return ok
+}
+
+func (x *SetScreenConfigRequest) HasRaw() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Settings.(*setScreenConfigRequest_Raw)
+	return ok
 }
 
 func (x *SetScreenConfigRequest) ClearApplicationId() {
@@ -961,8 +992,37 @@ func (x *SetScreenConfigRequest) ClearScreenId() {
 }
 
 func (x *SetScreenConfigRequest) ClearSettings() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_Settings = nil
+}
+
+func (x *SetScreenConfigRequest) ClearJson() {
+	if _, ok := x.xxx_hidden_Settings.(*setScreenConfigRequest_Json); ok {
+		x.xxx_hidden_Settings = nil
+	}
+}
+
+func (x *SetScreenConfigRequest) ClearRaw() {
+	if _, ok := x.xxx_hidden_Settings.(*setScreenConfigRequest_Raw); ok {
+		x.xxx_hidden_Settings = nil
+	}
+}
+
+const SetScreenConfigRequest_Settings_not_set_case case_SetScreenConfigRequest_Settings = 0
+const SetScreenConfigRequest_Json_case case_SetScreenConfigRequest_Settings = 3
+const SetScreenConfigRequest_Raw_case case_SetScreenConfigRequest_Settings = 4
+
+func (x *SetScreenConfigRequest) WhichSettings() case_SetScreenConfigRequest_Settings {
+	if x == nil {
+		return SetScreenConfigRequest_Settings_not_set_case
+	}
+	switch x.xxx_hidden_Settings.(type) {
+	case *setScreenConfigRequest_Json:
+		return SetScreenConfigRequest_Json_case
+	case *setScreenConfigRequest_Raw:
+		return SetScreenConfigRequest_Raw_case
+	default:
+		return SetScreenConfigRequest_Settings_not_set_case
+	}
 }
 
 type SetScreenConfigRequest_builder struct {
@@ -970,7 +1030,12 @@ type SetScreenConfigRequest_builder struct {
 
 	ApplicationId *string
 	ScreenId      *string
-	Settings      *string
+	// The screen configuration settings.
+
+	// Fields of oneof xxx_hidden_Settings:
+	Json *string
+	Raw  *structpb.Struct
+	// -- end of xxx_hidden_Settings
 }
 
 func (b0 SetScreenConfigRequest_builder) Build() *SetScreenConfigRequest {
@@ -985,12 +1050,40 @@ func (b0 SetScreenConfigRequest_builder) Build() *SetScreenConfigRequest {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
 		x.xxx_hidden_ScreenId = b.ScreenId
 	}
-	if b.Settings != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
-		x.xxx_hidden_Settings = b.Settings
+	if b.Json != nil {
+		x.xxx_hidden_Settings = &setScreenConfigRequest_Json{*b.Json}
+	}
+	if b.Raw != nil {
+		x.xxx_hidden_Settings = &setScreenConfigRequest_Raw{b.Raw}
 	}
 	return m0
 }
+
+type case_SetScreenConfigRequest_Settings protoreflect.FieldNumber
+
+func (x case_SetScreenConfigRequest_Settings) String() string {
+	md := file_system_main_proto_msgTypes[6].Descriptor()
+	if x == 0 {
+		return "not set"
+	}
+	return protoimpl.X.MessageFieldStringOf(md, protoreflect.FieldNumber(x))
+}
+
+type isSetScreenConfigRequest_Settings interface {
+	isSetScreenConfigRequest_Settings()
+}
+
+type setScreenConfigRequest_Json struct {
+	Json string `protobuf:"bytes,3,opt,name=json,oneof"` // Generic JSON-encoded data model holding data related for the screen.
+}
+
+type setScreenConfigRequest_Raw struct {
+	Raw *structpb.Struct `protobuf:"bytes,4,opt,name=raw,oneof"` // Generic data model holding data related for the screen.
+}
+
+func (*setScreenConfigRequest_Json) isSetScreenConfigRequest_Settings() {}
+
+func (*setScreenConfigRequest_Raw) isSetScreenConfigRequest_Settings() {}
 
 // Defines the selection criteria for UI screen configuration.
 type ScreenConfigSelector struct {
@@ -1139,11 +1232,14 @@ const file_system_main_proto_rawDesc = "" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x14\n" +
 	"\x05roles\x18\x03 \x03(\tR\x05roles\x12*\n" +
 	"\x11ietf_language_tag\x18\x04 \x01(\tR\x0fietfLanguageTag\x12\x1a\n" +
-	"\btimezone\x18\x05 \x01(\tR\btimezone\"x\n" +
+	"\btimezone\x18\x05 \x01(\tR\btimezone\"\xab\x01\n" +
 	"\x16SetScreenConfigRequest\x12%\n" +
 	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
-	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\x12\x1a\n" +
-	"\bsettings\x18\x03 \x01(\tR\bsettings\"Z\n" +
+	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\x12\x14\n" +
+	"\x04json\x18\x03 \x01(\tH\x00R\x04json\x12+\n" +
+	"\x03raw\x18\x04 \x01(\v2\x17.google.protobuf.StructH\x00R\x03rawB\n" +
+	"\n" +
+	"\bsettings\"Z\n" +
 	"\x14ScreenConfigSelector\x12%\n" +
 	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
 	"\tscreen_id\x18\x02 \x01(\tR\bscreenIdB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
@@ -1162,6 +1258,7 @@ var file_system_main_proto_goTypes = []any{
 	(*common.FieldValues)(nil),          // 9: io.clbs.openhes.models.common.FieldValues
 	(*common.FieldDescriptor)(nil),      // 10: io.clbs.openhes.models.common.FieldDescriptor
 	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),             // 12: google.protobuf.Struct
 }
 var file_system_main_proto_depIdxs = []int32{
 	1,  // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
@@ -1173,17 +1270,22 @@ var file_system_main_proto_depIdxs = []int32{
 	11, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
 	11, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
 	11, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
-	9,  // [9:9] is the sub-list for method output_type
-	9,  // [9:9] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	12, // 9: io.clbs.openhes.models.system.SetScreenConfigRequest.raw:type_name -> google.protobuf.Struct
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_system_main_proto_init() }
 func file_system_main_proto_init() {
 	if File_system_main_proto != nil {
 		return
+	}
+	file_system_main_proto_msgTypes[6].OneofWrappers = []any{
+		(*setScreenConfigRequest_Json)(nil),
+		(*setScreenConfigRequest_Raw)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
