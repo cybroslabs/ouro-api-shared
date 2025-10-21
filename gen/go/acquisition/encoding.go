@@ -9,7 +9,6 @@ import (
 	"math"
 	"time"
 
-	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"k8s.io/utils/ptr"
 )
@@ -29,18 +28,17 @@ any bytes - unit string (4B length + string)
 	1B - items count, 0 means 1 and so on, no empty block possible then
 	1B - value type (1 double 8B, 2 int64 8B, 3 string xB, 4 timestamp 8B, 5 timestamp with timezone xB, 6 boolean 1B)
 	<for each item>
-		1B - item header, bitfield, status/nstatus present bit, exponent present bit, peak present bit, uuid present bit, higher 4 bites, value subtype, bit 4 usually marks previous value
+		1B - item header, bitfield, status/nstatus present bit, exponent present bit, peak present bit, not used bit, higher 4 bites, value subtype, bit 4 usually marks previous value
 		optional 8B - status
 		optional 8B - nstatus
 		optional 4B - exponent
 		optional 8B - peak ts (unix)
-		optional 16B - guid user id
 		any bytes - value, depending on type, numbers, bool and timestamps have direct representation, string has present flag and length
 
 value subtypes:
 	double - no subtype (no previous value possible)
-	integer - 0 - 0, 1 - single byte integer, 2 - double byte integer, 4 - four byte integer, 8 - eight byte integer
-	string - 0 - empty string, 1 - single byte length, 2 - double byte length, 4 - four byte length, 5-15 - length in that value - 4
+	integer - 0 - 0, 1 - prev value, 2 - single byte integer, 3 - double byte integer, 4 - four byte integer, 5 - eight byte integer
+	string - 0 - empty string, 1 - previous, 2 - single byte length, 3 - double byte length, 4 - four byte length, 5-15 - length in that value - 4
 	timestamp - no subtype (no previous value possible)
 	timestamp with timezone - no subtype, first byte is length of string (no previous value possible)
 	boolean - 0 - false, 1 - true (no previous value possible, really not needed)
@@ -60,10 +58,9 @@ type TimeWithTimeZone struct {
 	Timestamp time.Time
 }
 
-type maxvalueHeader [45]byte
+type maxvalueHeader [29]byte
 
 type ProfileValuesEncoder struct { // statefull, so no thread safe
-	nextuserid    uuid.UUID
 	nextstring    string
 	nextinteger   int64
 	nexttype      byte
@@ -89,7 +86,6 @@ type ProfileValuesDecoder struct { // statefull, so no thread safe
 }
 
 type ProfileValueItem struct {
-	UserId    uuid.UUID
 	Timestamp time.Time
 	Value     *MeasuredValue
 	Err       error
@@ -105,7 +101,6 @@ func NewProfileValuesEncoder(periodseconds int32, unit string) *ProfileValuesEnc
 }
 
 func (pe *ProfileValuesEncoder) Reset(periodseconds int32, unit string) {
-	pe.nextuserid = uuid.Nil
 	pe.nextstring = ""
 	pe.nextinteger = 0
 	pe.nexttype = typeUnspecified
@@ -161,11 +156,10 @@ func (pe *ProfileValuesEncoder) startblock(ts time.Time, valueType byte) {
 	pe.nextexponent = 0
 	pe.nextstring = ""
 	pe.nextinteger = 0
-	pe.nextuserid = uuid.Nil
 	_, _ = pe.buffer.Write(tmp[:])
 }
 
-func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int64, nstatus uint64, exponent int32, pts *time.Time, userid *uuid.UUID) int {
+func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int64, nstatus uint64, exponent int32, pts *time.Time) int {
 	off := 1
 	dst[0] = 0
 
@@ -188,15 +182,6 @@ func (pe *ProfileValuesEncoder) codevalueheader(dst *maxvalueHeader, status int6
 		dst[0] |= 4
 		off += 8
 	}
-	if userid == nil {
-		userid = &uuid.Nil
-	}
-	if *userid != pe.nextuserid {
-		copy(dst[off:], userid[:])
-		dst[0] |= 8
-		off += 16
-		pe.nextuserid = *userid
-	}
 
 	return off
 }
@@ -208,33 +193,33 @@ func (pe *ProfileValuesEncoder) nextblock(ts time.Time, t byte) {
 	}
 }
 
-func (pe *ProfileValuesEncoder) AppendValue(ts time.Time, status int64, nstatus uint64, exponent int32, value any, pts *time.Time, userid *uuid.UUID) error {
+func (pe *ProfileValuesEncoder) AppendValue(ts time.Time, status int64, nstatus uint64, exponent int32, value any, pts *time.Time) error {
 	switch v := value.(type) { // maybe more types here?
 	case float64:
-		pe.AppendDouble(ts, status, nstatus, exponent, v, pts, userid)
+		pe.AppendDouble(ts, status, nstatus, exponent, v, pts)
 	case int64:
-		pe.AppendInteger(ts, status, nstatus, exponent, v, pts, userid)
+		pe.AppendInteger(ts, status, nstatus, exponent, v, pts)
 	case string:
-		pe.AppendString(ts, status, nstatus, exponent, v, pts, userid)
+		pe.AppendString(ts, status, nstatus, exponent, v, pts)
 	case time.Time:
-		pe.AppendTimestamp(ts, status, nstatus, exponent, v, pts, userid)
+		pe.AppendTimestamp(ts, status, nstatus, exponent, v, pts)
 	case TimeWithTimeZone:
-		pe.AppendTimestampWithTz(ts, status, nstatus, exponent, v.Timestamp, pts, userid)
+		pe.AppendTimestampWithTz(ts, status, nstatus, exponent, v.Timestamp, pts)
 	case bool:
-		pe.AppendBoolean(ts, status, nstatus, exponent, v, pts, userid)
+		pe.AppendBoolean(ts, status, nstatus, exponent, v, pts)
 	default:
 		return fmt.Errorf("unknown type to add %T", v)
 	}
 	return nil
 }
 
-func (pe *ProfileValuesEncoder) AppendInteger(ts time.Time, status int64, nstatus uint64, exponent int32, value int64, pts *time.Time, userid *uuid.UUID) {
+func (pe *ProfileValuesEncoder) AppendInteger(ts time.Time, status int64, nstatus uint64, exponent int32, value int64, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeInteger)
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts, userid)
+	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
 	if pe.nextinteger == value {
 		tmp[0] |= 0x10
 		_, _ = pe.buffer.Write(tmp[:off])
@@ -273,25 +258,25 @@ func (pe *ProfileValuesEncoder) AppendInteger(ts time.Time, status int64, nstatu
 	_, _ = pe.buffer.Write(tmp[:8])
 }
 
-func (pe *ProfileValuesEncoder) AppendDouble(ts time.Time, status int64, nstatus uint64, exponent int32, value float64, pts *time.Time, userid *uuid.UUID) {
+func (pe *ProfileValuesEncoder) AppendDouble(ts time.Time, status int64, nstatus uint64, exponent int32, value float64, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeDouble)
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts, userid)
+	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
 	_, _ = pe.buffer.Write(tmp[:off])
 	binary.BigEndian.PutUint64(tmp[:], math.Float64bits(value))
 	_, _ = pe.buffer.Write(tmp[:8]) // write that everytime, no subtype
 }
 
-func (pe *ProfileValuesEncoder) AppendString(ts time.Time, status int64, nstatus uint64, exponent int32, value string, pts *time.Time, userid *uuid.UUID) {
+func (pe *ProfileValuesEncoder) AppendString(ts time.Time, status int64, nstatus uint64, exponent int32, value string, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeString)
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts, userid)
+	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
 	if pe.nextstring == value {
 		tmp[0] |= 0x10
 		_, _ = pe.buffer.Write(tmp[:off])
@@ -333,25 +318,25 @@ func (pe *ProfileValuesEncoder) AppendString(ts time.Time, status int64, nstatus
 	_, _ = pe.buffer.WriteString(value)
 }
 
-func (pe *ProfileValuesEncoder) AppendTimestamp(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time, userid *uuid.UUID) {
+func (pe *ProfileValuesEncoder) AppendTimestamp(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeTimestamp)
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts, userid)
+	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
 	_, _ = pe.buffer.Write(tmp[:off])
 	binary.BigEndian.PutUint64(tmp[:], uint64(value.Unix()))
 	_, _ = pe.buffer.Write(tmp[:8]) // no subtype
 }
 
-func (pe *ProfileValuesEncoder) AppendTimestampWithTz(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time, userid *uuid.UUID) {
+func (pe *ProfileValuesEncoder) AppendTimestampWithTz(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeTimestampWithTz)
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts, userid)
+	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
 	_, _ = pe.buffer.Write(tmp[:off])
 
 	str := value.Format(time.RFC3339)
@@ -362,13 +347,13 @@ func (pe *ProfileValuesEncoder) AppendTimestampWithTz(ts time.Time, status int64
 	_, _ = pe.buffer.WriteString(str)       // no subtype
 }
 
-func (pe *ProfileValuesEncoder) AppendBoolean(ts time.Time, status int64, nstatus uint64, exponent int32, value bool, pts *time.Time, userid *uuid.UUID) {
+func (pe *ProfileValuesEncoder) AppendBoolean(ts time.Time, status int64, nstatus uint64, exponent int32, value bool, pts *time.Time) {
 	var tmp maxvalueHeader
 	pe.nextblock(ts, typeBoolean)
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts, userid)
+	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
 	if value {
 		tmp[0] |= 0x10 // use subtype
 	}
@@ -501,7 +486,6 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
 }
 
 type decodeContext struct {
-	prevuserid   uuid.UUID
 	prevstring   string
 	previnteger  int64
 	prevstatus   int64
@@ -543,17 +527,10 @@ func (ctx *decodeContext) decodeItemHeader(bf io.Reader) (itemid byte, err error
 		ctx.peakts = time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0)
 		ctx.haspeak = true
 	}
-	if itemid&8 != 0 { // user id present
-		_, err = io.ReadFull(bf, ctx.prevuserid[:])
-		if err != nil {
-			return
-		}
-	}
 	return
 }
 
 func (ctx *decodeContext) clear() {
-	ctx.prevuserid = uuid.Nil
 	ctx.prevstring = ""
 	ctx.previnteger = 0
 	ctx.prevstatus = 0
@@ -617,7 +594,6 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					}
 
 					val := ProfileValueItem{
-						UserId:    ctx.prevuserid,
 						Timestamp: ts,
 						Value: MeasuredValue_builder{
 							Status:   ptr.To(ctx.prevstatus), // a bit weird, so value is valid only inside yield? that should be checked
@@ -649,7 +625,6 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					}
 
 					val := ProfileValueItem{
-						UserId:    ctx.prevuserid,
 						Timestamp: ts,
 						Value: MeasuredValue_builder{
 							Status:   ptr.To(ctx.prevstatus), // a bit weird, so value is valid only inside yield? that should be checked
@@ -700,7 +675,6 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					}
 
 					val := ProfileValueItem{
-						UserId:    ctx.prevuserid,
 						Timestamp: ts,
 						Value: MeasuredValue_builder{
 							Status:   ptr.To(ctx.prevstatus), // a bit weird, so value is valid only inside yield? that should be checked
@@ -780,7 +754,6 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					}
 
 					val := ProfileValueItem{
-						UserId:    ctx.prevuserid,
 						Timestamp: ts,
 						Value: MeasuredValue_builder{
 							Status:   ptr.To(ctx.prevstatus), // a bit weird, so value is valid only inside yield? that should be checked
@@ -812,7 +785,6 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					}
 
 					val := ProfileValueItem{
-						UserId:    ctx.prevuserid,
 						Timestamp: ts,
 						Value: MeasuredValue_builder{
 							Status:   ptr.To(ctx.prevstatus), // a bit weird, so value is valid only inside yield? that should be checked
@@ -851,7 +823,6 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					}
 
 					val := ProfileValueItem{
-						UserId:    ctx.prevuserid,
 						Timestamp: ts,
 						Value: MeasuredValue_builder{
 							Status:   ptr.To(ctx.prevstatus), // a bit weird, so value is valid only inside yield? that should be checked
