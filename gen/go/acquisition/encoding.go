@@ -40,7 +40,7 @@ value subtypes:
 	integer - 0 - 0, 1 - prev value, 2 - single byte integer, 3 - double byte integer, 4 - four byte integer, 5 - eight byte integer
 	string - 0 - empty string, 1 - previous, 2 - single byte length, 3 - double byte length, 4 - four byte length, 5-15 - length in that value - 4
 	timestamp - no subtype (no previous value possible)
-	timestamp with timezone - no subtype, first byte is length of string (no previous value possible)
+	timestamp with timezone - same as string
 	boolean - 0 - false, 1 - true (no previous value possible, really not needed)
 */
 
@@ -271,8 +271,12 @@ func (pe *ProfileValuesEncoder) AppendDouble(ts time.Time, status int64, nstatus
 }
 
 func (pe *ProfileValuesEncoder) AppendString(ts time.Time, status int64, nstatus uint64, exponent int32, value string, pts *time.Time) {
-	var tmp maxvalueHeader
 	pe.nextblock(ts, typeString)
+	pe.appendString(ts, status, nstatus, exponent, value, pts)
+}
+
+func (pe *ProfileValuesEncoder) appendString(ts time.Time, status int64, nstatus uint64, exponent int32, value string, pts *time.Time) {
+	var tmp maxvalueHeader
 
 	pe.items++
 	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
@@ -331,20 +335,9 @@ func (pe *ProfileValuesEncoder) AppendTimestamp(ts time.Time, status int64, nsta
 }
 
 func (pe *ProfileValuesEncoder) AppendTimestampWithTz(ts time.Time, status int64, nstatus uint64, exponent int32, value time.Time, pts *time.Time) {
-	var tmp maxvalueHeader
 	pe.nextblock(ts, typeTimestampWithTz)
-
-	pe.items++
-	pe.nextstamp = ts.Add(time.Duration(pe.periodseconds) * time.Second)
-	off := pe.codevalueheader(&tmp, status, nstatus, exponent, pts)
-	_, _ = pe.buffer.Write(tmp[:off])
-
 	str := value.Format(time.RFC3339)
-	if len(str) > 255 { // really shouldnt happen
-		panic("timestamp with timezone is too long")
-	}
-	_ = pe.buffer.WriteByte(byte(len(str))) // a bit hardcore
-	_, _ = pe.buffer.WriteString(str)       // no subtype
+	pe.appendString(ts, status, nstatus, exponent, str, pts)
 }
 
 func (pe *ProfileValuesEncoder) AppendBoolean(ts time.Time, status int64, nstatus uint64, exponent int32, value bool, pts *time.Time) {
@@ -686,58 +679,11 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 						val.Value.SetPeakTs(timestamppb.New(ctx.peakts))
 					}
 
-					id := itemid >> 4
-					switch id {
-					case 0:
-						ctx.prevstring = ""
-					case 1:
-					case 2:
-						_, err = io.ReadFull(bf, tmp[:1])
-						if err != nil {
-							break
-						}
-						str := make([]byte, tmp[0])
-						_, err = io.ReadFull(bf, str)
-						if err != nil {
-							break
-						}
-						ctx.prevstring = string(str)
-					case 3:
-						_, err = io.ReadFull(bf, tmp[:2])
-						if err != nil {
-							break
-						}
-						str := make([]byte, binary.BigEndian.Uint16(tmp[:]))
-						_, err = io.ReadFull(bf, str)
-						if err != nil {
-							break
-						}
-						ctx.prevstring = string(str)
-					case 4:
-						_, err = io.ReadFull(bf, tmp[:4])
-						if err != nil {
-							break
-						}
-						str := make([]byte, binary.BigEndian.Uint32(tmp[:]))
-						_, err = io.ReadFull(bf, str)
-						if err != nil {
-							break
-						}
-						ctx.prevstring = string(str)
-					default:
-						id -= 4
-						str := make([]byte, id)
-						_, err = io.ReadFull(bf, str)
-						if err != nil {
-							break
-						}
-						ctx.prevstring = string(str)
-					}
+					err = decodeString(itemid, &ctx, bf)
 					if err != nil {
 						yield(ProfileValueItem{Err: err})
 						return
 					}
-
 					val.Value.SetStringValue(ctx.prevstring)
 
 					if !yield(val) {
@@ -778,7 +724,7 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 				}
 			case typeTimestampWithTz:
 				for range cnt {
-					_, err = ctx.decodeItemHeader(bf)
+					itemid, err = ctx.decodeItemHeader(bf)
 					if err != nil {
 						yield(ProfileValueItem{Err: err})
 						return
@@ -795,19 +741,13 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 					if ctx.haspeak {
 						val.Value.SetPeakTs(timestamppb.New(ctx.peakts))
 					}
-					_, err = io.ReadFull(bf, tmp[:1])
-					if err != nil {
-						yield(ProfileValueItem{Err: err})
-						return
-					}
 
-					str := make([]byte, tmp[0])
-					_, err = io.ReadFull(bf, str)
+					err = decodeString(itemid, &ctx, bf)
 					if err != nil {
 						yield(ProfileValueItem{Err: err})
 						return
 					}
-					val.Value.SetTimestampTzValue(string(str))
+					val.Value.SetTimestampTzValue(ctx.prevstring)
 
 					if !yield(val) {
 						return
@@ -851,4 +791,56 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 			}
 		}
 	}
+}
+
+func decodeString(itemid byte, ctx *decodeContext, bf io.Reader) (err error) {
+	var tmp [4]byte
+	id := itemid >> 4
+	switch id {
+	case 0:
+		ctx.prevstring = ""
+	case 1:
+	case 2:
+		_, err = io.ReadFull(bf, tmp[:1])
+		if err != nil {
+			return
+		}
+		str := make([]byte, tmp[0])
+		_, err = io.ReadFull(bf, str)
+		if err != nil {
+			return
+		}
+		ctx.prevstring = string(str)
+	case 3:
+		_, err = io.ReadFull(bf, tmp[:2])
+		if err != nil {
+			return
+		}
+		str := make([]byte, binary.BigEndian.Uint16(tmp[:]))
+		_, err = io.ReadFull(bf, str)
+		if err != nil {
+			return
+		}
+		ctx.prevstring = string(str)
+	case 4:
+		_, err = io.ReadFull(bf, tmp[:4])
+		if err != nil {
+			return
+		}
+		str := make([]byte, binary.BigEndian.Uint32(tmp[:]))
+		_, err = io.ReadFull(bf, str)
+		if err != nil {
+			return
+		}
+		ctx.prevstring = string(str)
+	default:
+		id -= 4
+		str := make([]byte, id)
+		_, err = io.ReadFull(bf, str)
+		if err != nil {
+			return
+		}
+		ctx.prevstring = string(str)
+	}
+	return
 }
