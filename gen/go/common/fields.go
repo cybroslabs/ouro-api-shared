@@ -3,6 +3,7 @@ package common
 import (
 	"errors"
 	"fmt"
+	"maps"
 	"regexp"
 	"slices"
 	"strconv"
@@ -13,8 +14,8 @@ import (
 )
 
 var (
-	reCapUnderscores = regexp.MustCompile(`^[A-Z]+(?:_[A-Z]+)*$`)
-	reCapitals       = regexp.MustCompile(`([A-Z]+)`)
+	reCapUnderscores = regexp.MustCompile(`^[A-Z]+(?:_[A-Z0-9]+)*$`)
+	reCapitals       = regexp.MustCompile(`([A-Z0-9]+)`)
 )
 
 // NewFieldDescriptorInternal creates a new FieldDescriptorInternal with the given parameters.
@@ -351,15 +352,31 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 	fd.SetDataType(FieldDataType_INTEGER)
 	tmp := make(map[string]string, len(options))
 
+	common_prefix_init := true
+	common_prefix := ""
+
 	// Detect enum names format.
 	// If all options are in the format of ALL_CAPS_UNDERSCORES, then we will convert them to a human-readable format with spaces.
 	// If all options are in the format of PascalCase, we will prefix all capital letters with a space to make them more readable.
 	all_cap_underscores := true
 	no_space := true
 	for k, v := range options {
+		if common_prefix_init {
+			common_prefix_init = false
+			common_prefix = v
+		}
+
 		if k == 0 && strings.HasSuffix(v, "_UNSPECIFIED") {
 			// Ignore UNSPECIFIED values.
 			continue
+		}
+
+		// Detect common prefix
+		for i := 0; i < len(common_prefix) && i < len(v); i++ {
+			if common_prefix[i] != v[i] {
+				common_prefix = common_prefix[:i]
+				break
+			}
 		}
 
 		tmp[strconv.FormatInt(int64(k), 10)] = v
@@ -372,20 +389,26 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 	}
 
 	if all_cap_underscores {
-		for k := range tmp {
-			parts := strings.Split(tmp[k], "_")
+		// Common prefix length
+		prefix_len := len(common_prefix)
+		// Humanize values
+		for k, v := range maps.Clone(tmp) {
+			if prefix_len > 0 {
+				v = v[prefix_len:]
+			}
+			parts := strings.Split(v, "_")
 			for i, part := range parts {
-				// Capitalize the first letter of each part.
+				// Capitalize first letter, lowercase the rest
 				if len(part) > 0 {
-					parts[i] = strings.ToUpper(part[:1]) + part[1:]
+					parts[i] = part[:1] + strings.ToLower(part[1:])
 				}
 			}
 			tmp[k] = strings.Join(parts, " ")
 		}
 	} else if no_space {
-		for k := range tmp {
+		for k, v := range maps.Clone(tmp) {
 			// Replace PascalCase values 'v' by prefixing all capital letters with a space.
-			tmp[k] = strings.TrimSpace(reCapitals.ReplaceAllString(tmp[k], " $1"))
+			tmp[k] = strings.TrimSpace(reCapitals.ReplaceAllString(v, " $1"))
 		}
 	}
 

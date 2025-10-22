@@ -708,10 +708,10 @@ type BulkStatusCode int32
 
 const (
 	BulkStatusCode_BULK_STATUS_UNSPECIFIED BulkStatusCode = 0 // Unspecified bulk status.
-	BulkStatusCode_BULK_STATUS_QUEUED      BulkStatusCode = 1 // The bulk is waiting in the queue.
-	BulkStatusCode_BULK_STATUS_RUNNING     BulkStatusCode = 2 // The bulk is currently running.
-	BulkStatusCode_BULK_STATUS_COMPLETED   BulkStatusCode = 3 // The bulk has been completed.
-	BulkStatusCode_BULK_STATUS_CANCELLED   BulkStatusCode = 4 // The bulk has been cancelled.
+	BulkStatusCode_BULK_STATUS_PREPARING   BulkStatusCode = 1 // The bulk is being prepared.
+	BulkStatusCode_BULK_STATUS_QUEUED      BulkStatusCode = 2 // The bulk is waiting in the queue and ready to be started.
+	BulkStatusCode_BULK_STATUS_RUNNING     BulkStatusCode = 3 // The bulk is currently running.
+	BulkStatusCode_BULK_STATUS_COMPLETED   BulkStatusCode = 4 // The bulk has been completed.
 	BulkStatusCode_BULK_STATUS_EXPIRED     BulkStatusCode = 5 // The bulk has expired.
 )
 
@@ -719,18 +719,18 @@ const (
 var (
 	BulkStatusCode_name = map[int32]string{
 		0: "BULK_STATUS_UNSPECIFIED",
-		1: "BULK_STATUS_QUEUED",
-		2: "BULK_STATUS_RUNNING",
-		3: "BULK_STATUS_COMPLETED",
-		4: "BULK_STATUS_CANCELLED",
+		1: "BULK_STATUS_PREPARING",
+		2: "BULK_STATUS_QUEUED",
+		3: "BULK_STATUS_RUNNING",
+		4: "BULK_STATUS_COMPLETED",
 		5: "BULK_STATUS_EXPIRED",
 	}
 	BulkStatusCode_value = map[string]int32{
 		"BULK_STATUS_UNSPECIFIED": 0,
-		"BULK_STATUS_QUEUED":      1,
-		"BULK_STATUS_RUNNING":     2,
-		"BULK_STATUS_COMPLETED":   3,
-		"BULK_STATUS_CANCELLED":   4,
+		"BULK_STATUS_PREPARING":   1,
+		"BULK_STATUS_QUEUED":      2,
+		"BULK_STATUS_RUNNING":     3,
+		"BULK_STATUS_COMPLETED":   4,
 		"BULK_STATUS_EXPIRED":     5,
 	}
 )
@@ -818,8 +818,9 @@ const (
 	JobStatusCode_JOB_STATUS_PROCESSING_DATA JobStatusCode = 3 // The job has finished acquiring data and is now processing it.
 	JobStatusCode_JOB_STATUS_COMPLETED       JobStatusCode = 4 // The job has been completed.
 	JobStatusCode_JOB_STATUS_FAILED          JobStatusCode = 5 // The job has failed.
-	JobStatusCode_JOB_STATUS_CANCELLED       JobStatusCode = 6 // The job has been cancelled.
-	JobStatusCode_JOB_STATUS_EXPIRED         JobStatusCode = 7 // The job has expired.
+	JobStatusCode_JOB_STATUS_CANCELLING      JobStatusCode = 6 // The job is being cancelled. This is a transient state when the parent bulk or the job itself has been requested to be cancelled. When the cancellation is completed, the job status changes to `CANCELLED`.
+	JobStatusCode_JOB_STATUS_CANCELLED       JobStatusCode = 7 // The job has been cancelled.
+	JobStatusCode_JOB_STATUS_EXPIRED         JobStatusCode = 8 // The job has expired.
 )
 
 // Enum value maps for JobStatusCode.
@@ -831,8 +832,9 @@ var (
 		3: "JOB_STATUS_PROCESSING_DATA",
 		4: "JOB_STATUS_COMPLETED",
 		5: "JOB_STATUS_FAILED",
-		6: "JOB_STATUS_CANCELLED",
-		7: "JOB_STATUS_EXPIRED",
+		6: "JOB_STATUS_CANCELLING",
+		7: "JOB_STATUS_CANCELLED",
+		8: "JOB_STATUS_EXPIRED",
 	}
 	JobStatusCode_value = map[string]int32{
 		"JOB_STATUS_UNSPECIFIED":     0,
@@ -841,8 +843,9 @@ var (
 		"JOB_STATUS_PROCESSING_DATA": 3,
 		"JOB_STATUS_COMPLETED":       4,
 		"JOB_STATUS_FAILED":          5,
-		"JOB_STATUS_CANCELLED":       6,
-		"JOB_STATUS_EXPIRED":         7,
+		"JOB_STATUS_CANCELLING":      6,
+		"JOB_STATUS_CANCELLED":       7,
+		"JOB_STATUS_EXPIRED":         8,
 	}
 )
 
@@ -13871,27 +13874,28 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x1dJOB_ERROR_CODE_ALREADY_EXISTS\x10\b\x12\x18\n" +
 	"\x14JOB_ERROR_CODE_FATAL\x10\t*\xad\x01\n" +
 	"\x0eBulkStatusCode\x12\x1b\n" +
-	"\x17BULK_STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12BULK_STATUS_QUEUED\x10\x01\x12\x17\n" +
-	"\x13BULK_STATUS_RUNNING\x10\x02\x12\x19\n" +
-	"\x15BULK_STATUS_COMPLETED\x10\x03\x12\x19\n" +
-	"\x15BULK_STATUS_CANCELLED\x10\x04\x12\x17\n" +
+	"\x17BULK_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +
+	"\x15BULK_STATUS_PREPARING\x10\x01\x12\x16\n" +
+	"\x12BULK_STATUS_QUEUED\x10\x02\x12\x17\n" +
+	"\x13BULK_STATUS_RUNNING\x10\x03\x12\x19\n" +
+	"\x15BULK_STATUS_COMPLETED\x10\x04\x12\x17\n" +
 	"\x13BULK_STATUS_EXPIRED\x10\x05*\x97\x01\n" +
 	"\x1fDeviceConfigurationRegisterKind\x12\x14\n" +
 	"\x10KIND_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rKIND_REGISTER\x10\x01\x12\x1b\n" +
 	"\x17KIND_PERIODICAL_PROFILE\x10\x02\x12\x1a\n" +
 	"\x16KIND_IRREGULAR_PROFILE\x10\x03\x12\x12\n" +
-	"\x0eKIND_SYNTHETIC\x10c*\xdd\x01\n" +
+	"\x0eKIND_SYNTHETIC\x10c*\xf8\x01\n" +
 	"\rJobStatusCode\x12\x1a\n" +
 	"\x16JOB_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11JOB_STATUS_QUEUED\x10\x01\x12\x16\n" +
 	"\x12JOB_STATUS_RUNNING\x10\x02\x12\x1e\n" +
 	"\x1aJOB_STATUS_PROCESSING_DATA\x10\x03\x12\x18\n" +
 	"\x14JOB_STATUS_COMPLETED\x10\x04\x12\x15\n" +
-	"\x11JOB_STATUS_FAILED\x10\x05\x12\x18\n" +
-	"\x14JOB_STATUS_CANCELLED\x10\x06\x12\x16\n" +
-	"\x12JOB_STATUS_EXPIRED\x10\a*q\n" +
+	"\x11JOB_STATUS_FAILED\x10\x05\x12\x19\n" +
+	"\x15JOB_STATUS_CANCELLING\x10\x06\x12\x18\n" +
+	"\x14JOB_STATUS_CANCELLED\x10\a\x12\x16\n" +
+	"\x12JOB_STATUS_EXPIRED\x10\b*q\n" +
 	"\x10TopologyNodeType\x12\x1d\n" +
 	"\x19TOPOLOGY_NODE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14TOPOLOGY_NODE_DEVICE\x10\x01\x12$\n" +

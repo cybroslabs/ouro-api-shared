@@ -596,10 +596,10 @@ message JobActionContraints {
 // Defines the status information of an entire bulk.
 enum BulkStatusCode {
     BULK_STATUS_UNSPECIFIED = 0;  // Unspecified bulk status.
-    BULK_STATUS_QUEUED      = 1;  // The bulk is waiting in the queue.
-    BULK_STATUS_RUNNING     = 2;  // The bulk is currently running.
-    BULK_STATUS_COMPLETED   = 3;  // The bulk has been completed.
-    BULK_STATUS_CANCELLED   = 4;  // The bulk has been cancelled.
+    BULK_STATUS_PREPARING   = 1;  // The bulk is being prepared.
+    BULK_STATUS_QUEUED      = 2;  // The bulk is waiting in the queue and ready to be started.
+    BULK_STATUS_RUNNING     = 3;  // The bulk is currently running.
+    BULK_STATUS_COMPLETED   = 4;  // The bulk has been completed.
     BULK_STATUS_EXPIRED     = 5;  // The bulk has expired.
 }
 
@@ -715,8 +715,9 @@ enum JobStatusCode {
     JOB_STATUS_PROCESSING_DATA = 3;  // The job has finished acquiring data and is now processing it.
     JOB_STATUS_COMPLETED       = 4;  // The job has been completed.
     JOB_STATUS_FAILED          = 5;  // The job has failed.
-    JOB_STATUS_CANCELLED       = 6;  // The job has been cancelled.
-    JOB_STATUS_EXPIRED         = 7;  // The job has expired.
+    JOB_STATUS_CANCELLING      = 6;  // The job is being cancelled. This is a transient state when the parent bulk or the job itself has been requested to be cancelled. When the cancellation is completed, the job status changes to `CANCELLED`.
+    JOB_STATUS_CANCELLED       = 7;  // The job has been cancelled.
+    JOB_STATUS_EXPIRED         = 8;  // The job has expired.
 }
 
 // Defines the result of a single action.

@@ -1000,420 +1000,6 @@
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
-    "tags0": [
-      "CRON_JOB_TYPE_START_BULK",
-      "CRON_JOB_TYPE_UNSPECIFIED",
-      "CRON_JOB_TYPE_START_PROXY_BULK",
-      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
-    ],
-    "tags1": [
-      "BULK",
-      "CRON",
-      "CronJobTypeEnum",
-      "JOB",
-      "PROXY",
-      "START",
-      "TYPE",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
-    "tags0": [
-      "spec",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
-    ],
-    "tags1": [
-      "CreateCronJobRequest"
-    ],
-    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
-    "tags0": [
-      "spec",
-      "status",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CronJob"
-    ],
-    "tags1": [
-      "CronJob"
-    ],
-    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
-    "tags0": [
-      "type",
-      "data",
-      "suspend",
-      "schedule",
-      "timezone",
-      "io.clbs.openhes.models.cronjobs.CronJobSpec"
-    ],
-    "tags1": [
-      "CronJobSpec"
-    ],
-    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
-    "tags0": [
-      "error",
-      "lastRunAt",
-      "nextRunAt",
-      "io.clbs.openhes.models.cronjobs.CronJobStatus"
-    ],
-    "tags1": [
-      "CronJobStatus"
-    ],
-    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
-    "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
-    ],
-    "tags1": [
-      "ListOfCronJob"
-    ],
-    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
-    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
-    "tags0": [
-      "RELAY_STATE_CONNECT",
-      "RELAY_STATE_DISCONNECT",
-      "RELAY_STATE_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
-    ],
-    "tags1": [
-      "CONNECT",
-      "DISCONNECT",
-      "RELAY",
-      "RelayState",
-      "STATE",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
-    "tags0": [
-      "dayId",
-      "switching",
-      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
-    ],
-    "tags1": [
-      "DayProfile"
-    ],
-    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
-    "tags0": [
-      "state",
-      "relayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
-    ],
-    "tags1": [
-      "RelayStateRecord"
-    ],
-    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
-    "tags0": [
-      "id",
-      "name",
-      "weekId",
-      "startDay",
-      "startYear",
-      "startMonth",
-      "io.clbs.openhes.models.acquisition.timeofuse.Season"
-    ],
-    "tags1": [
-      "Season"
-    ],
-    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
-    "tags0": [
-      "day",
-      "year",
-      "month",
-      "dayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
-    ],
-    "tags1": [
-      "SpecialDay"
-    ],
-    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
-    "tags0": [
-      "hour",
-      "minute",
-      "tariff",
-      "relays",
-      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
-    ],
-    "tags1": [
-      "Switching"
-    ],
-    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
-    "tags0": [
-      "weeks",
-      "seasons",
-      "expiesAt",
-      "hdoGroupId",
-      "activateAt",
-      "dayProfiles",
-      "specialDays",
-      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
-    ],
-    "tags1": [
-      "TimeOfUseTableSpec"
-    ],
-    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
-    "tags0": [
-      "weekId",
-      "dayIds",
-      "weekName",
-      "io.clbs.openhes.models.acquisition.timeofuse.Week"
-    ],
-    "tags1": [
-      "Week"
-    ],
-    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
-    "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
-    ],
-    "tags1": [
-      "ApplicationConfig"
-    ],
-    "tags2": "Defines specification for application configuration The default values for the application configuration"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
-    "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
-    ],
-    "tags1": [
-      "ApplicationConfigDescriptor"
-    ],
-    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
-    ],
-    "tags1": [
-      "ComponentConfig"
-    ],
-    "tags2": "Defines specification for single component configuration The component name The component configuration values"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
-    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
-    "tags0": [
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.ScreenConfigSelector"
-    ],
-    "tags1": [
-      "ScreenConfigSelector"
-    ],
-    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
-    "tags0": [
-      "raw",
-      "json",
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.SetScreenConfigRequest"
-    ],
-    "tags1": [
-      "SetScreenConfigRequest"
-    ],
-    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic JSON encoded data model holding data related for the screen Generic data model holding data related for the screen"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
-    "title": "Model: io.clbs.openhes.models.system.UserProfile",
-    "tags0": [
-      "id",
-      "roles",
-      "timezone",
-      "displayName",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.system.UserProfile"
-    ],
-    "tags1": [
-      "UserProfile"
-    ],
-    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
-    "tags0": [
-      "SECRET_DATA_PLAIN",
-      "SECRET_DATA_AES256CBC",
-      "SECRET_DATA_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
-    ],
-    "tags1": [
-      "AES256CBC",
-      "DATA",
-      "PLAIN",
-      "SECRET",
-      "SecretDataDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the supported DLMS decryption methods Unspecified decryption method Plain data decryption required AES CBC dencryption method"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
-    "tags0": [
-      "SECRET_SESSION_PLAIN",
-      "SECRET_SESSION_UNSPECIFIED",
-      "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
-    ],
-    "tags1": [
-      "GF1P",
-      "OAEPM",
-      "PLAIN",
-      "RSA",
-      "SECRET",
-      "SESSION",
-      "SecretSessionKeyDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the supported decryption methods for session keys session key decryption method Used when the session key not set not used Plain session key session key decryption required RSA OAEP MGF1P decryption method Used for session keys"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
-    "tags0": [
-      "data",
-      "keyId",
-      "createdAt",
-      "updatedAt",
-      "accessLevel",
-      "io.clbs.openhes.models.crypto.CryptoSecret"
-    ],
-    "tags1": [
-      "CryptoSecret"
-    ],
-    "tags2": "Defines specification crypto secrets The access level for the secret for example admin user The unique secret key identifier The timestamp when the secret was created The timestamp when the secret was last updated The secret data"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
-    "tags0": [
-      "secrets",
-      "io.clbs.openhes.models.crypto.CryptoSecrets"
-    ],
-    "tags1": [
-      "CryptoSecrets"
-    ],
-    "tags2": "Defines list crypto secrets list crypto secrets"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
-    "tags0": [
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "GetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for retrieving crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
-    "tags0": [
-      "data",
-      "keyId",
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "sessionKey",
-      "accessLevel",
-      "dataDecryptionIv",
-      "decryptionSecretId",
-      "dataDecryptionMethod",
-      "sessionKeyDecryptionMethod",
-      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "SetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
-  },
-  {
     "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
     "title": "Model: io.clbs.openhes.models.messaging.ListOfMessagingComponent",
     "tags0": [
@@ -1683,23 +1269,23 @@
       "BULK_STATUS_QUEUED",
       "BULK_STATUS_RUNNING",
       "BULK_STATUS_EXPIRED",
+      "BULK_STATUS_PREPARING",
       "BULK_STATUS_COMPLETED",
-      "BULK_STATUS_CANCELLED",
       "BULK_STATUS_UNSPECIFIED",
       "Enum: io.clbs.openhes.models.acquisition.BulkStatusCode"
     ],
     "tags1": [
       "BULK",
       "BulkStatusCode",
-      "CANCELLED",
       "COMPLETED",
       "EXPIRED",
+      "PREPARING",
       "QUEUED",
       "RUNNING",
       "STATUS",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the status information entire bulk Unspecified bulk status The bulk waiting the queue The bulk currently running The bulk has been completed The bulk has been cancelled The bulk has expired"
+    "tags2": "Defines the status information entire bulk Unspecified bulk status The bulk being prepared The bulk waiting the queue and ready started The bulk currently running The bulk has been completed The bulk has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-communicationtype.md",
@@ -1843,12 +1429,14 @@
       "JOB_STATUS_EXPIRED",
       "JOB_STATUS_COMPLETED",
       "JOB_STATUS_CANCELLED",
+      "JOB_STATUS_CANCELLING",
       "JOB_STATUS_UNSPECIFIED",
       "JOB_STATUS_PROCESSING_DATA",
       "Enum: io.clbs.openhes.models.acquisition.JobStatusCode"
     ],
     "tags1": [
       "CANCELLED",
+      "CANCELLING",
       "COMPLETED",
       "DATA",
       "EXPIRED",
@@ -1861,7 +1449,7 @@
       "STATUS",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the possible statuses jobs Unspecified job status The job waiting the queue for execution The job currently running The job has finished acquiring data and now processing The job has been completed The job has failed The job has been cancelled The job has expired"
+    "tags2": "Defines the possible statuses jobs Unspecified job status The job waiting the queue for execution The job currently running The job has finished acquiring data and now processing The job has been completed The job has failed The job being cancelled This transient state when the parent bulk the job itself has been requested cancelled When the cancellation completed the job status changes CANCELLED The job has been cancelled The job has expired"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-logrecordlevel.md",
@@ -3927,5 +3515,419 @@
       "VariableSpec"
     ],
     "tags2": "Defines variable specification The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable Indicates whether the returned data for this variabe should exclude values from timestamp set true the returned device data returned for this variable dos not include values from timestamp Default value false"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
+    "tags0": [
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_UNSPECIFIED",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+    ],
+    "tags1": [
+      "BULK",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
+      "PROXY",
+      "START",
+      "TYPE",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
+    "tags0": [
+      "spec",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
+    ],
+    "tags1": [
+      "CreateCronJobRequest"
+    ],
+    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
+    "tags0": [
+      "spec",
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CronJob"
+    ],
+    "tags1": [
+      "CronJob"
+    ],
+    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
+    "tags0": [
+      "type",
+      "data",
+      "suspend",
+      "schedule",
+      "timezone",
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
+    ],
+    "tags1": [
+      "CronJobSpec"
+    ],
+    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
+    "tags0": [
+      "error",
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
+    ],
+    "tags1": [
+      "CronJobStatus"
+    ],
+    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "tags0": [
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+    ],
+    "tags1": [
+      "ListOfCronJob"
+    ],
+    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Defines specification for application configuration The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines specification for single component configuration The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
+    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "tags0": [
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.ScreenConfigSelector"
+    ],
+    "tags1": [
+      "ScreenConfigSelector"
+    ],
+    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
+    "tags0": [
+      "raw",
+      "json",
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
+    ],
+    "tags1": [
+      "SetScreenConfigRequest"
+    ],
+    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic JSON encoded data model holding data related for the screen Generic data model holding data related for the screen"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
+    "title": "Model: io.clbs.openhes.models.system.UserProfile",
+    "tags0": [
+      "id",
+      "roles",
+      "timezone",
+      "displayName",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
+    "tags0": [
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
+    ],
+    "tags1": [
+      "AES256CBC",
+      "DATA",
+      "PLAIN",
+      "SECRET",
+      "SecretDataDecryptionMethod",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the supported DLMS decryption methods Unspecified decryption method Plain data decryption required AES CBC dencryption method"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
+    "tags0": [
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
+    ],
+    "tags1": [
+      "GF1P",
+      "OAEPM",
+      "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the supported decryption methods for session keys session key decryption method Used when the session key not set not used Plain session key session key decryption required RSA OAEP MGF1P decryption method Used for session keys"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
+    "tags0": [
+      "data",
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
+    ],
+    "tags1": [
+      "CryptoSecret"
+    ],
+    "tags2": "Defines specification crypto secrets The access level for the secret for example admin user The unique secret key identifier The timestamp when the secret was created The timestamp when the secret was last updated The secret data"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
+    "tags0": [
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
+    ],
+    "tags1": [
+      "CryptoSecrets"
+    ],
+    "tags2": "Defines list crypto secrets list crypto secrets"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
+    "tags0": [
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "GetCryptoSecretRequest"
+    ],
+    "tags2": "Defines specification for retrieving crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
+    "tags0": [
+      "data",
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "SetCryptoSecretRequest"
+    ],
+    "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
+    "tags0": [
+      "RELAY_STATE_CONNECT",
+      "RELAY_STATE_DISCONNECT",
+      "RELAY_STATE_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
+    ],
+    "tags1": [
+      "CONNECT",
+      "DISCONNECT",
+      "RELAY",
+      "RelayState",
+      "STATE",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
+    "tags0": [
+      "dayId",
+      "switching",
+      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
+    ],
+    "tags1": [
+      "DayProfile"
+    ],
+    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
+    "tags0": [
+      "state",
+      "relayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
+    ],
+    "tags1": [
+      "RelayStateRecord"
+    ],
+    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
+    "tags0": [
+      "id",
+      "name",
+      "weekId",
+      "startDay",
+      "startYear",
+      "startMonth",
+      "io.clbs.openhes.models.acquisition.timeofuse.Season"
+    ],
+    "tags1": [
+      "Season"
+    ],
+    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
+    "tags0": [
+      "day",
+      "year",
+      "month",
+      "dayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
+    ],
+    "tags1": [
+      "SpecialDay"
+    ],
+    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
+    "tags0": [
+      "hour",
+      "minute",
+      "tariff",
+      "relays",
+      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
+    ],
+    "tags1": [
+      "Switching"
+    ],
+    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
+    "tags0": [
+      "weeks",
+      "seasons",
+      "expiesAt",
+      "hdoGroupId",
+      "activateAt",
+      "dayProfiles",
+      "specialDays",
+      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
+    ],
+    "tags1": [
+      "TimeOfUseTableSpec"
+    ],
+    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
+    "tags0": [
+      "weekId",
+      "dayIds",
+      "weekName",
+      "io.clbs.openhes.models.acquisition.timeofuse.Week"
+    ],
+    "tags1": [
+      "Week"
+    ],
+    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
   }
 ]

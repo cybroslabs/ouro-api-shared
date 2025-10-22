@@ -12,5 +12,6 @@ Defines the possible statuses of jobs.
 | JOB_STATUS_PROCESSING_DATA | The job has finished acquiring data and is now processing it. |
 | JOB_STATUS_COMPLETED | The job has been completed. |
 | JOB_STATUS_FAILED | The job has failed. |
+| JOB_STATUS_CANCELLING | The job is being cancelled. This is a transient state when the parent bulk or the job itself has been requested to be cancelled. When the cancellation is completed, the job status changes to `CANCELLED`. |
 | JOB_STATUS_CANCELLED | The job has been cancelled. |
 | JOB_STATUS_EXPIRED | The job has expired. |
