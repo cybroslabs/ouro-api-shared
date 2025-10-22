@@ -412,6 +412,28 @@ func (fd *FieldDescriptor) WithIntegerOptions(options map[int32]string) *FieldDe
 		}
 	}
 
+	// Tune common strings
+	reIecSpec := regexp.MustCompile(`(?i)\siec[\s_-]+([0-9]+)\s`)
+	reMBus := regexp.MustCompile(`(?i)\smbus\s`)
+	reDlmsSn := regexp.MustCompile(`(?i)\sdlms[\s_-]+sn\s`)
+	reDlmsLn := regexp.MustCompile(`(?i)\sdlms[\s_-]+ln\s`)
+	reDlms := regexp.MustCompile(`(?i)\sdlms\s`)
+	reMqtt := regexp.MustCompile(`(?i)\smqtt\s`)
+	reSctm := regexp.MustCompile(`(?i)\ssctm\s`)
+	reVdew := regexp.MustCompile(`(?i)\svdew\s`)
+	for _, k := range slices.Collect(maps.Keys(tmp)) {
+		v := " " + tmp[k] + " "
+		v = reIecSpec.ReplaceAllString(v, " IEC-$1 ")
+		v = reMBus.ReplaceAllString(v, " MBus ")
+		v = reDlmsSn.ReplaceAllString(v, " DLMS/SN ")
+		v = reDlmsLn.ReplaceAllString(v, " DLMS/LN ")
+		v = reDlms.ReplaceAllString(v, " DLMS ")
+		v = reMqtt.ReplaceAllString(v, " MQTT ")
+		v = reSctm.ReplaceAllString(v, " SCTM ")
+		v = reVdew.ReplaceAllString(v, " VDEW ")
+		tmp[k] = strings.TrimSpace(v)
+	}
+
 	fd.SetFormat(FieldDisplayFormat_COMBO)
 	validation := fd.ensureValidation()
 	validation.SetOptions(tmp)
