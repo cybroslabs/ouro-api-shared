@@ -465,7 +465,7 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
 			err = fmt.Errorf("data error, invalid block size in bytes")
 			return
 		}
-		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0)
+		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
 		if lt.Before(ts) {
 			lt = ts
 		}
@@ -517,7 +517,7 @@ func (ctx *decodeContext) decodeItemHeader(bf io.Reader) (itemid byte, err error
 		if err != nil {
 			return
 		}
-		ctx.peakts = time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0)
+		ctx.peakts = time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0).UTC()
 		ctx.haspeak = true
 	}
 	return
@@ -559,7 +559,7 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 			}
 
 			cnt := int(tmp[12]) + 1
-			ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0)
+			ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0).UTC()
 			b := binary.BigEndian.Uint32(tmp[8:])
 			if b < 15 {
 				err = fmt.Errorf("data error, invalid block size in bytes")
@@ -715,7 +715,7 @@ func (pd *ProfileValuesDecoder) Values() iter.Seq[ProfileValueItem] {
 						yield(ProfileValueItem{Err: err})
 						return
 					}
-					val.Value.SetTimestampValue(timestamppb.New(time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0)))
+					val.Value.SetTimestampValue(timestamppb.New(time.Unix(int64(binary.BigEndian.Uint64(tmp[:])), 0).UTC()))
 
 					if !yield(val) {
 						return
