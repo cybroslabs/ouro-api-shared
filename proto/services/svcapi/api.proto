@@ -113,9 +113,6 @@ service ApiService {
     // @group: Bulks
     // Cancels the specified job bulk. It can be used for both proxy and regular bulks.
     rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
-    // @group: Bulks
-    // Cancels the specified jobs in an existing bulk.
-    rpc CancelBulkJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
 
     // @group: Bulks
     // @tag: acquisition

@@ -12,10 +12,8 @@
       "ListBulkJobs",
       "GetProxyBulk",
       "UpdateBulkJob",
-      "CancelBulkJobs",
       "GetDeviceBulks",
       "CreateProxyBulk",
-      "io.clbs.openhes.models.common.ListOfId",
       "io.clbs.openhes.models.acquisition.Bulk",
       "io.clbs.openhes.models.common.ListSelector",
       "io.clbs.openhes.models.acquisition.BulkJob",
@@ -39,7 +37,6 @@
       "ListBulkJobsRequest",
       "ListOfBulk",
       "ListOfBulkJob",
-      "ListOfId",
       "ListSelector",
       "ProxyBulk",
       "UpdateMetadata"
@@ -872,18 +869,6 @@
       "ListOfFieldDescriptor"
     ],
     "tags2": "Defines list filed descriptors The list field descriptors The total number items the list"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-common-listofid.md",
-    "title": "Model: io.clbs.openhes.models.common.ListOfId",
-    "tags0": [
-      "id",
-      "io.clbs.openhes.models.common.ListOfId"
-    ],
-    "tags1": [
-      "ListOfId"
-    ],
-    "tags2": "Defines list UUID identifiers The list UUID identifiers"
   },
   {
     "filename": "model-io-clbs-openhes-models-common-listofstring.md",

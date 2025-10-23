@@ -126,9 +126,6 @@ const (
 	ApiServiceUpdateBulkJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateBulkJob"
 	// ApiServiceCancelBulkProcedure is the fully-qualified name of the ApiService's CancelBulk RPC.
 	ApiServiceCancelBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulk"
-	// ApiServiceCancelBulkJobsProcedure is the fully-qualified name of the ApiService's CancelBulkJobs
-	// RPC.
-	ApiServiceCancelBulkJobsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CancelBulkJobs"
 	// ApiServiceCreateProxyBulkProcedure is the fully-qualified name of the ApiService's
 	// CreateProxyBulk RPC.
 	ApiServiceCreateProxyBulkProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateProxyBulk"
@@ -463,9 +460,6 @@ type ApiServiceClient interface {
 	// @group: Bulks
 	// Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
-	// @group: Bulks
-	// Cancels the specified jobs in an existing bulk.
-	CancelBulkJobs(context.Context, *connect.Request[common.ListOfId]) (*connect.Response[emptypb.Empty], error)
 	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
@@ -955,12 +949,6 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+ApiServiceCancelBulkProcedure,
 			connect.WithSchema(apiServiceMethods.ByName("CancelBulk")),
-			connect.WithClientOptions(opts...),
-		),
-		cancelBulkJobs: connect.NewClient[common.ListOfId, emptypb.Empty](
-			httpClient,
-			baseURL+ApiServiceCancelBulkJobsProcedure,
-			connect.WithSchema(apiServiceMethods.ByName("CancelBulkJobs")),
 			connect.WithClientOptions(opts...),
 		),
 		createProxyBulk: connect.NewClient[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue](
@@ -1519,7 +1507,6 @@ type apiServiceClient struct {
 	getBulkJob                                                       *connect.Client[wrapperspb.StringValue, acquisition.BulkJob]
 	updateBulkJob                                                    *connect.Client[common.UpdateMetadata, emptypb.Empty]
 	cancelBulk                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
-	cancelBulkJobs                                                   *connect.Client[common.ListOfId, emptypb.Empty]
 	createProxyBulk                                                  *connect.Client[acquisition.CreateProxyBulkRequest, wrapperspb.StringValue]
 	getProxyBulk                                                     *connect.Client[wrapperspb.StringValue, acquisition.ProxyBulk]
 	createBulk                                                       *connect.Client[acquisition.CreateBulkRequest, wrapperspb.StringValue]
@@ -1766,11 +1753,6 @@ func (c *apiServiceClient) UpdateBulkJob(ctx context.Context, req *connect.Reque
 // CancelBulk calls io.clbs.openhes.services.svcapi.ApiService.CancelBulk.
 func (c *apiServiceClient) CancelBulk(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return c.cancelBulk.CallUnary(ctx, req)
-}
-
-// CancelBulkJobs calls io.clbs.openhes.services.svcapi.ApiService.CancelBulkJobs.
-func (c *apiServiceClient) CancelBulkJobs(ctx context.Context, req *connect.Request[common.ListOfId]) (*connect.Response[emptypb.Empty], error) {
-	return c.cancelBulkJobs.CallUnary(ctx, req)
 }
 
 // CreateProxyBulk calls io.clbs.openhes.services.svcapi.ApiService.CreateProxyBulk.
@@ -2311,9 +2293,6 @@ type ApiServiceHandler interface {
 	// Cancels the specified job bulk. It can be used for both proxy and regular bulks.
 	CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: Bulks
-	// Cancels the specified jobs in an existing bulk.
-	CancelBulkJobs(context.Context, *connect.Request[common.ListOfId]) (*connect.Response[emptypb.Empty], error)
-	// @group: Bulks
 	// @tag: acquisition
 	// @tag: action
 	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
@@ -2798,12 +2777,6 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		ApiServiceCancelBulkProcedure,
 		svc.CancelBulk,
 		connect.WithSchema(apiServiceMethods.ByName("CancelBulk")),
-		connect.WithHandlerOptions(opts...),
-	)
-	apiServiceCancelBulkJobsHandler := connect.NewUnaryHandler(
-		ApiServiceCancelBulkJobsProcedure,
-		svc.CancelBulkJobs,
-		connect.WithSchema(apiServiceMethods.ByName("CancelBulkJobs")),
 		connect.WithHandlerOptions(opts...),
 	)
 	apiServiceCreateProxyBulkHandler := connect.NewUnaryHandler(
@@ -3388,8 +3361,6 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateBulkJobHandler.ServeHTTP(w, r)
 		case ApiServiceCancelBulkProcedure:
 			apiServiceCancelBulkHandler.ServeHTTP(w, r)
-		case ApiServiceCancelBulkJobsProcedure:
-			apiServiceCancelBulkJobsHandler.ServeHTTP(w, r)
 		case ApiServiceCreateProxyBulkProcedure:
 			apiServiceCreateProxyBulkHandler.ServeHTTP(w, r)
 		case ApiServiceGetProxyBulkProcedure:
@@ -3687,10 +3658,6 @@ func (UnimplementedApiServiceHandler) UpdateBulkJob(context.Context, *connect.Re
 
 func (UnimplementedApiServiceHandler) CancelBulk(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CancelBulk is not implemented"))
-}
-
-func (UnimplementedApiServiceHandler) CancelBulkJobs(context.Context, *connect.Request[common.ListOfId]) (*connect.Response[emptypb.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CancelBulkJobs is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateProxyBulk(context.Context, *connect.Request[acquisition.CreateProxyBulkRequest]) (*connect.Response[wrapperspb.StringValue], error) {

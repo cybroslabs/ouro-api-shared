@@ -32,9 +32,6 @@ service DataproxyService {
     // Cancels the specified job bulk. It can be used for both proxy and regular bulks.
     rpc CancelBulk(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Bulks
-    // Cancels the specified jobs in an existing bulk.
-    rpc CancelBulkJobs(io.clbs.openhes.models.common.ListOfId) returns (google.protobuf.Empty);
-    // @group: Bulks
     // Retrieves the list of bulk jobs related to a given device within the specified time range. All parameters are required.
     rpc GetDeviceBulks(io.clbs.openhes.models.acquisition.GetDeviceBulksRequest) returns (io.clbs.openhes.models.acquisition.DeviceBulks);
 
