@@ -354,7 +354,6 @@ func (pe *ProfileValuesEncoder) AppendBoolean(ts time.Time, status int64, nstatu
 }
 
 func MergeProfileBlobs(dst []byte, src1, src2 []byte) ([]byte, error) {
-	dst = dst[:0]
 	pd1, err := NewProfileValuesDecoder(src1)
 	if err != nil {
 		return dst, err
