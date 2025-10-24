@@ -761,7 +761,8 @@ message ActionProgressResult {
     string action_id                      = 1;  // The unique action identifier.
     ActionResultCode status               = 2;  // The status code of the action.
     ActionProgressData data               = 3;  // The action result data.
-    common.FormattedMessage error_message = 4;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
+    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relats to a register. Applicable only for results of regular bulks.
+    common.FormattedMessage error_message = 5;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 
 // Defines the job or action progress update message sent from Taskmaster to Dataproxy.

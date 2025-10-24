@@ -11894,7 +11894,8 @@ type ActionProgressResult struct {
 	xxx_hidden_ActionId     *string                  `protobuf:"bytes,1,opt,name=action_id,json=actionId"`
 	xxx_hidden_Status       ActionResultCode         `protobuf:"varint,2,opt,name=status,enum=io.clbs.openhes.models.acquisition.ActionResultCode"`
 	xxx_hidden_Data         *ActionProgressData      `protobuf:"bytes,3,opt,name=data"`
-	xxx_hidden_ErrorMessage *common.FormattedMessage `protobuf:"bytes,4,opt,name=error_message,json=errorMessage"`
+	xxx_hidden_RegisterId   *string                  `protobuf:"bytes,4,opt,name=register_id,json=registerId"`
+	xxx_hidden_ErrorMessage *common.FormattedMessage `protobuf:"bytes,5,opt,name=error_message,json=errorMessage"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
 	unknownFields           protoimpl.UnknownFields
@@ -11952,6 +11953,16 @@ func (x *ActionProgressResult) GetData() *ActionProgressData {
 	return nil
 }
 
+func (x *ActionProgressResult) GetRegisterId() string {
+	if x != nil {
+		if x.xxx_hidden_RegisterId != nil {
+			return *x.xxx_hidden_RegisterId
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *ActionProgressResult) GetErrorMessage() *common.FormattedMessage {
 	if x != nil {
 		return x.xxx_hidden_ErrorMessage
@@ -11961,16 +11972,21 @@ func (x *ActionProgressResult) GetErrorMessage() *common.FormattedMessage {
 
 func (x *ActionProgressResult) SetActionId(v string) {
 	x.xxx_hidden_ActionId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *ActionProgressResult) SetStatus(v ActionResultCode) {
 	x.xxx_hidden_Status = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *ActionProgressResult) SetData(v *ActionProgressData) {
 	x.xxx_hidden_Data = v
+}
+
+func (x *ActionProgressResult) SetRegisterId(v string) {
+	x.xxx_hidden_RegisterId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
 }
 
 func (x *ActionProgressResult) SetErrorMessage(v *common.FormattedMessage) {
@@ -11998,6 +12014,13 @@ func (x *ActionProgressResult) HasData() bool {
 	return x.xxx_hidden_Data != nil
 }
 
+func (x *ActionProgressResult) HasRegisterId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
 func (x *ActionProgressResult) HasErrorMessage() bool {
 	if x == nil {
 		return false
@@ -12019,6 +12042,11 @@ func (x *ActionProgressResult) ClearData() {
 	x.xxx_hidden_Data = nil
 }
 
+func (x *ActionProgressResult) ClearRegisterId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_RegisterId = nil
+}
+
 func (x *ActionProgressResult) ClearErrorMessage() {
 	x.xxx_hidden_ErrorMessage = nil
 }
@@ -12029,6 +12057,7 @@ type ActionProgressResult_builder struct {
 	ActionId     *string
 	Status       *ActionResultCode
 	Data         *ActionProgressData
+	RegisterId   *string
 	ErrorMessage *common.FormattedMessage
 }
 
@@ -12037,14 +12066,18 @@ func (b0 ActionProgressResult_builder) Build() *ActionProgressResult {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.ActionId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
 		x.xxx_hidden_ActionId = b.ActionId
 	}
 	if b.Status != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
 		x.xxx_hidden_Status = *b.Status
 	}
 	x.xxx_hidden_Data = b.Data
+	if b.RegisterId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_RegisterId = b.RegisterId
+	}
 	x.xxx_hidden_ErrorMessage = b.ErrorMessage
 	return m0
 }
@@ -14546,12 +14579,14 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\vregister_id\x18\x04 \x01(\tR\n" +
 	"registerId\x12#\n" +
 	"\rvariable_name\x18\x05 \x03(\tR\fvariableName\x12T\n" +
-	"\rerror_message\x18\x06 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xa3\x02\n" +
+	"\rerror_message\x18\x06 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xc4\x02\n" +
 	"\x14ActionProgressResult\x12\x1b\n" +
 	"\taction_id\x18\x01 \x01(\tR\bactionId\x12L\n" +
 	"\x06status\x18\x02 \x01(\x0e24.io.clbs.openhes.models.acquisition.ActionResultCodeR\x06status\x12J\n" +
-	"\x04data\x18\x03 \x01(\v26.io.clbs.openhes.models.acquisition.ActionProgressDataR\x04data\x12T\n" +
-	"\rerror_message\x18\x04 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"%\n" +
+	"\x04data\x18\x03 \x01(\v26.io.clbs.openhes.models.acquisition.ActionProgressDataR\x04data\x12\x1f\n" +
+	"\vregister_id\x18\x04 \x01(\tR\n" +
+	"registerId\x12T\n" +
+	"\rerror_message\x18\x05 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"%\n" +
 	"\fJobEventData\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\fR\x05jobId\"\xdc\x02\n" +
 	"\n" +
