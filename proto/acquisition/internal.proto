@@ -64,10 +64,6 @@ message QueueJobsResponse {
     map<string, uint64> job_ids = 1;  // The map of queue job identifiers. The key is the job identifier, the value is the queue ID assigned by the Taskmaster.
 }
 
-message GetJobResponse {
-    JobStatus status = 1;  // The status of the job
-}
-
 // OuroOperator <-> Taskmaster communication
 
 message SetDriverScaleRequest {

@@ -14,7 +14,6 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	TaskmasterService_QueueJobs_FullMethodName                          = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/QueueJobs"
-	TaskmasterService_GetJob_FullMethodName                             = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetJob"
 	TaskmasterService_CancelJobs_FullMethodName                         = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/CancelJobs"
 	TaskmasterService_SetDriver_FullMethodName                          = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriver"
 	TaskmasterService_SetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
@@ -49,8 +47,6 @@ const (
 // Those are the gRPC services that the Taskmaster provides for other components.
 type TaskmasterServiceClient interface {
 	QueueJobs(ctx context.Context, in *acquisition.QueueJobsRequest, opts ...grpc.CallOption) (*acquisition.QueueJobsResponse, error)
-	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJobs(ctx context.Context, in *common.ListOfUInt64, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
@@ -112,16 +108,6 @@ func (c *taskmasterServiceClient) QueueJobs(ctx context.Context, in *acquisition
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.QueueJobsResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_QueueJobs_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *taskmasterServiceClient) GetJob(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetJobResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(acquisition.GetJobResponse)
-	err := c.cc.Invoke(ctx, TaskmasterService_GetJob_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -276,8 +262,6 @@ func (c *taskmasterServiceClient) SetCurrentDeviceCommunicationUnit(ctx context.
 // Those are the gRPC services that the Taskmaster provides for other components.
 type TaskmasterServiceServer interface {
 	QueueJobs(context.Context, *acquisition.QueueJobsRequest) (*acquisition.QueueJobsResponse, error)
-	// The method called by the RestApi to get the job status. The parameter contains the job identifier.
-	GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error)
 	// The method called by the RestApi to cancel the job.
 	CancelJobs(context.Context, *common.ListOfUInt64) (*emptypb.Empty, error)
 	// @group: Drivers
@@ -337,9 +321,6 @@ type UnimplementedTaskmasterServiceServer struct{}
 
 func (UnimplementedTaskmasterServiceServer) QueueJobs(context.Context, *acquisition.QueueJobsRequest) (*acquisition.QueueJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueueJobs not implemented")
-}
-func (UnimplementedTaskmasterServiceServer) GetJob(context.Context, *wrapperspb.StringValue) (*acquisition.GetJobResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) CancelJobs(context.Context, *common.ListOfUInt64) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelJobs not implemented")
@@ -418,24 +399,6 @@ func _TaskmasterService_QueueJobs_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskmasterServiceServer).QueueJobs(ctx, req.(*acquisition.QueueJobsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TaskmasterService_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.StringValue)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TaskmasterServiceServer).GetJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TaskmasterService_GetJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetJob(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -702,10 +665,6 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "QueueJobs",
 			Handler:    _TaskmasterService_QueueJobs_Handler,
-		},
-		{
-			MethodName: "GetJob",
-			Handler:    _TaskmasterService_GetJob_Handler,
 		},
 		{
 			MethodName: "CancelJobs",

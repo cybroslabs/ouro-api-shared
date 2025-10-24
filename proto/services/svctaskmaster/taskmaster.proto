@@ -16,8 +16,6 @@ import "common/internal.proto";
 // Those are the gRPC services that the Taskmaster provides for other components.
 service TaskmasterService {
     rpc QueueJobs(io.clbs.openhes.models.acquisition.QueueJobsRequest) returns (io.clbs.openhes.models.acquisition.QueueJobsResponse);
-    // The method called by the RestApi to get the job status. The parameter contains the job identifier.
-    rpc GetJob(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetJobResponse);
     // The method called by the RestApi to cancel the job.
     rpc CancelJobs(io.clbs.openhes.models.common.ListOfUInt64) returns (google.protobuf.Empty);
 
