@@ -633,7 +633,7 @@ message JobStatus {
 message JobProgressStatus {
     JobStatusCode status                  = 1;  // The status of the job.
     JobErrorCode code                     = 2;  // The error code of the job.
-    repeated ActionProgressData results   = 3;  // The result data for all executed job actions.
+    repeated ActionProgressResult results = 3;  // The result data for all executed job actions.
     google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
     google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
     int32 attempts_done                   = 6;  // The number of attempts already done.
@@ -754,6 +754,14 @@ message ActionResult {
     string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relats to a register. Applicable only for results of regular bulks.
     repeated string variable_name         = 5;  // The variable names. This is a read-only value and is set only if the action data relates to one or more variables based on device template mapping. Applicable only for results of regular bulks.
     common.FormattedMessage error_message = 6;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
+}
+
+// Defines the progress result of a single action.
+message ActionProgressResult {
+    string action_id                      = 1;  // The unique action identifier.
+    ActionResultCode status               = 2;  // The status code of the action.
+    ActionProgressData data               = 3;  // The action result data.
+    common.FormattedMessage error_message = 4;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 
 // Defines the job or action progress update message sent from Taskmaster to Dataproxy.
