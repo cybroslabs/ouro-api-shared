@@ -329,7 +329,7 @@ message ActionProgressUpdate {
     string job_id                         = 1;  // The unique job identifier.
     string action_id                      = 2;  // The unique action identifier.
     ActionResultCode code                 = 3;  // The status code related to the action.
-    ActionData data                       = 4;  // The action result data. This field is empty if the code is not OK.
+    ActionProgressData data               = 4;  // The action result data. This field is empty if the code is not OK.
     common.FormattedMessage error_message = 5;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 
@@ -342,11 +342,24 @@ message JobProgressUpdate {
 }
 
 // Defines the action-based variant of data values.
-message ActionData {
+message ActionProgressData {
     oneof data {
         google.protobuf.Empty nodata             = 1;  // Indicates that no data was returned by the action.
         RegisterValues registers                 = 2;  // The set of register values.
         bytes profile                            = 3;  // The set of profile values. For efficiency, the profile values are binary-encoded, see acquisition/encoding.go.
+        IrregularProfileValues irregular_profile = 4;  // The set of irregular (non-periodical) profile values, such as daily profiles.
+        DeviceInfo device_info                   = 5;  // The device information.
+        EventRecords events                      = 6;  // The event records.
+        timeofuse.TimeOfUseTableSpec tou_table   = 7;  // The time-of-use (TOU) table.
+    }
+}
+
+// Defines the action-based variant of data values.
+message ActionData {
+    oneof data {
+        google.protobuf.Empty nodata             = 1;  // Indicates that no data was returned by the action.
+        RegisterValues registers                 = 2;  // The set of register values.
+        ProfileValues profile                    = 3;  // The set of profile values.
         IrregularProfileValues irregular_profile = 4;  // The set of irregular (non-periodical) profile values, such as daily profiles.
         DeviceInfo device_info                   = 5;  // The device information.
         EventRecords events                      = 6;  // The event records.
@@ -616,6 +629,19 @@ message JobStatus {
     common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.
 }
 
+// Defines the progress status information of a single job within a bulk.
+message JobProgressStatus {
+    JobStatusCode status                  = 1;  // The status of the job.
+    JobErrorCode code                     = 2;  // The error code of the job.
+    repeated ActionProgressData results   = 3;  // The result data for all executed job actions.
+    google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
+    google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
+    int32 attempts_done                   = 6;  // The number of attempts already done.
+    DeviceInfo device_info                = 7;  // The device informatiom from the `ACTION_TYPE_GET_DEVICE_INFO` action.
+    int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued for processing.
+    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.
+}
+
 // Defines the job start request for a single device.
 message StartJobData {
     map<string, common.FieldValue> device_attributes = 1;  // The device attributes required by the driver. For example HDLC address, password, and other driver-specific attributes.
@@ -783,8 +809,8 @@ message JobActionMapRecord {
 
 // Defines the notification sent by the Taskmaster to Dataproxy that a job has been completed.
 message JobDoneNotification {
-    JobSpec spec     = 1;  // The job specification.
-    JobStatus status = 2;  // The status of the job.
+    JobSpec spec             = 1;  // The job specification.
+    JobProgressStatus status = 2;  // The progress status of the job.
 }
 
 // Defines the driver information.

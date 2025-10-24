@@ -5371,7 +5371,7 @@ type ActionProgressUpdate struct {
 	xxx_hidden_JobId        *string                  `protobuf:"bytes,1,opt,name=job_id,json=jobId"`
 	xxx_hidden_ActionId     *string                  `protobuf:"bytes,2,opt,name=action_id,json=actionId"`
 	xxx_hidden_Code         ActionResultCode         `protobuf:"varint,3,opt,name=code,enum=io.clbs.openhes.models.acquisition.ActionResultCode"`
-	xxx_hidden_Data         *ActionData              `protobuf:"bytes,4,opt,name=data"`
+	xxx_hidden_Data         *ActionProgressData      `protobuf:"bytes,4,opt,name=data"`
 	xxx_hidden_ErrorMessage *common.FormattedMessage `protobuf:"bytes,5,opt,name=error_message,json=errorMessage"`
 	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
 	XXX_presence            [1]uint32
@@ -5433,7 +5433,7 @@ func (x *ActionProgressUpdate) GetCode() ActionResultCode {
 	return ActionResultCode_ERROR_CODE_ACTION_UNSPECIFIED
 }
 
-func (x *ActionProgressUpdate) GetData() *ActionData {
+func (x *ActionProgressUpdate) GetData() *ActionProgressData {
 	if x != nil {
 		return x.xxx_hidden_Data
 	}
@@ -5462,7 +5462,7 @@ func (x *ActionProgressUpdate) SetCode(v ActionResultCode) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
-func (x *ActionProgressUpdate) SetData(v *ActionData) {
+func (x *ActionProgressUpdate) SetData(v *ActionProgressData) {
 	x.xxx_hidden_Data = v
 }
 
@@ -5534,7 +5534,7 @@ type ActionProgressUpdate_builder struct {
 	JobId        *string
 	ActionId     *string
 	Code         *ActionResultCode
-	Data         *ActionData
+	Data         *ActionProgressData
 	ErrorMessage *common.FormattedMessage
 }
 
@@ -5721,6 +5721,397 @@ func (b0 JobProgressUpdate_builder) Build() *JobProgressUpdate {
 }
 
 // Defines the action-based variant of data values.
+type ActionProgressData struct {
+	state           protoimpl.MessageState    `protogen:"opaque.v1"`
+	xxx_hidden_Data isActionProgressData_Data `protobuf_oneof:"data"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *ActionProgressData) Reset() {
+	*x = ActionProgressData{}
+	mi := &file_acquisition_shared_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ActionProgressData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionProgressData) ProtoMessage() {}
+
+func (x *ActionProgressData) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ActionProgressData) GetNodata() *emptypb.Empty {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_Nodata); ok {
+			return x.Nodata
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) GetRegisters() *RegisterValues {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_Registers); ok {
+			return x.Registers
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) GetProfile() []byte {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_Profile); ok {
+			return x.Profile
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) GetIrregularProfile() *IrregularProfileValues {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_IrregularProfile); ok {
+			return x.IrregularProfile
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) GetDeviceInfo() *DeviceInfo {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_DeviceInfo); ok {
+			return x.DeviceInfo
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) GetEvents() *EventRecords {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_Events); ok {
+			return x.Events
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) GetTouTable() *timeofuse.TimeOfUseTableSpec {
+	if x != nil {
+		if x, ok := x.xxx_hidden_Data.(*actionProgressData_TouTable); ok {
+			return x.TouTable
+		}
+	}
+	return nil
+}
+
+func (x *ActionProgressData) SetNodata(v *emptypb.Empty) {
+	if v == nil {
+		x.xxx_hidden_Data = nil
+		return
+	}
+	x.xxx_hidden_Data = &actionProgressData_Nodata{v}
+}
+
+func (x *ActionProgressData) SetRegisters(v *RegisterValues) {
+	if v == nil {
+		x.xxx_hidden_Data = nil
+		return
+	}
+	x.xxx_hidden_Data = &actionProgressData_Registers{v}
+}
+
+func (x *ActionProgressData) SetProfile(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_Data = &actionProgressData_Profile{v}
+}
+
+func (x *ActionProgressData) SetIrregularProfile(v *IrregularProfileValues) {
+	if v == nil {
+		x.xxx_hidden_Data = nil
+		return
+	}
+	x.xxx_hidden_Data = &actionProgressData_IrregularProfile{v}
+}
+
+func (x *ActionProgressData) SetDeviceInfo(v *DeviceInfo) {
+	if v == nil {
+		x.xxx_hidden_Data = nil
+		return
+	}
+	x.xxx_hidden_Data = &actionProgressData_DeviceInfo{v}
+}
+
+func (x *ActionProgressData) SetEvents(v *EventRecords) {
+	if v == nil {
+		x.xxx_hidden_Data = nil
+		return
+	}
+	x.xxx_hidden_Data = &actionProgressData_Events{v}
+}
+
+func (x *ActionProgressData) SetTouTable(v *timeofuse.TimeOfUseTableSpec) {
+	if v == nil {
+		x.xxx_hidden_Data = nil
+		return
+	}
+	x.xxx_hidden_Data = &actionProgressData_TouTable{v}
+}
+
+func (x *ActionProgressData) HasData() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Data != nil
+}
+
+func (x *ActionProgressData) HasNodata() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_Nodata)
+	return ok
+}
+
+func (x *ActionProgressData) HasRegisters() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_Registers)
+	return ok
+}
+
+func (x *ActionProgressData) HasProfile() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_Profile)
+	return ok
+}
+
+func (x *ActionProgressData) HasIrregularProfile() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_IrregularProfile)
+	return ok
+}
+
+func (x *ActionProgressData) HasDeviceInfo() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_DeviceInfo)
+	return ok
+}
+
+func (x *ActionProgressData) HasEvents() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_Events)
+	return ok
+}
+
+func (x *ActionProgressData) HasTouTable() bool {
+	if x == nil {
+		return false
+	}
+	_, ok := x.xxx_hidden_Data.(*actionProgressData_TouTable)
+	return ok
+}
+
+func (x *ActionProgressData) ClearData() {
+	x.xxx_hidden_Data = nil
+}
+
+func (x *ActionProgressData) ClearNodata() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_Nodata); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+func (x *ActionProgressData) ClearRegisters() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_Registers); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+func (x *ActionProgressData) ClearProfile() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_Profile); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+func (x *ActionProgressData) ClearIrregularProfile() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_IrregularProfile); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+func (x *ActionProgressData) ClearDeviceInfo() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_DeviceInfo); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+func (x *ActionProgressData) ClearEvents() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_Events); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+func (x *ActionProgressData) ClearTouTable() {
+	if _, ok := x.xxx_hidden_Data.(*actionProgressData_TouTable); ok {
+		x.xxx_hidden_Data = nil
+	}
+}
+
+const ActionProgressData_Data_not_set_case case_ActionProgressData_Data = 0
+const ActionProgressData_Nodata_case case_ActionProgressData_Data = 1
+const ActionProgressData_Registers_case case_ActionProgressData_Data = 2
+const ActionProgressData_Profile_case case_ActionProgressData_Data = 3
+const ActionProgressData_IrregularProfile_case case_ActionProgressData_Data = 4
+const ActionProgressData_DeviceInfo_case case_ActionProgressData_Data = 5
+const ActionProgressData_Events_case case_ActionProgressData_Data = 6
+const ActionProgressData_TouTable_case case_ActionProgressData_Data = 7
+
+func (x *ActionProgressData) WhichData() case_ActionProgressData_Data {
+	if x == nil {
+		return ActionProgressData_Data_not_set_case
+	}
+	switch x.xxx_hidden_Data.(type) {
+	case *actionProgressData_Nodata:
+		return ActionProgressData_Nodata_case
+	case *actionProgressData_Registers:
+		return ActionProgressData_Registers_case
+	case *actionProgressData_Profile:
+		return ActionProgressData_Profile_case
+	case *actionProgressData_IrregularProfile:
+		return ActionProgressData_IrregularProfile_case
+	case *actionProgressData_DeviceInfo:
+		return ActionProgressData_DeviceInfo_case
+	case *actionProgressData_Events:
+		return ActionProgressData_Events_case
+	case *actionProgressData_TouTable:
+		return ActionProgressData_TouTable_case
+	default:
+		return ActionProgressData_Data_not_set_case
+	}
+}
+
+type ActionProgressData_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	// Fields of oneof xxx_hidden_Data:
+	Nodata           *emptypb.Empty
+	Registers        *RegisterValues
+	Profile          []byte
+	IrregularProfile *IrregularProfileValues
+	DeviceInfo       *DeviceInfo
+	Events           *EventRecords
+	TouTable         *timeofuse.TimeOfUseTableSpec
+	// -- end of xxx_hidden_Data
+}
+
+func (b0 ActionProgressData_builder) Build() *ActionProgressData {
+	m0 := &ActionProgressData{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Nodata != nil {
+		x.xxx_hidden_Data = &actionProgressData_Nodata{b.Nodata}
+	}
+	if b.Registers != nil {
+		x.xxx_hidden_Data = &actionProgressData_Registers{b.Registers}
+	}
+	if b.Profile != nil {
+		x.xxx_hidden_Data = &actionProgressData_Profile{b.Profile}
+	}
+	if b.IrregularProfile != nil {
+		x.xxx_hidden_Data = &actionProgressData_IrregularProfile{b.IrregularProfile}
+	}
+	if b.DeviceInfo != nil {
+		x.xxx_hidden_Data = &actionProgressData_DeviceInfo{b.DeviceInfo}
+	}
+	if b.Events != nil {
+		x.xxx_hidden_Data = &actionProgressData_Events{b.Events}
+	}
+	if b.TouTable != nil {
+		x.xxx_hidden_Data = &actionProgressData_TouTable{b.TouTable}
+	}
+	return m0
+}
+
+type case_ActionProgressData_Data protoreflect.FieldNumber
+
+func (x case_ActionProgressData_Data) String() string {
+	md := file_acquisition_shared_proto_msgTypes[22].Descriptor()
+	if x == 0 {
+		return "not set"
+	}
+	return protoimpl.X.MessageFieldStringOf(md, protoreflect.FieldNumber(x))
+}
+
+type isActionProgressData_Data interface {
+	isActionProgressData_Data()
+}
+
+type actionProgressData_Nodata struct {
+	Nodata *emptypb.Empty `protobuf:"bytes,1,opt,name=nodata,oneof"` // Indicates that no data was returned by the action.
+}
+
+type actionProgressData_Registers struct {
+	Registers *RegisterValues `protobuf:"bytes,2,opt,name=registers,oneof"` // The set of register values.
+}
+
+type actionProgressData_Profile struct {
+	Profile []byte `protobuf:"bytes,3,opt,name=profile,oneof"` // The set of profile values. For efficiency, the profile values are binary-encoded, see acquisition/encoding.go.
+}
+
+type actionProgressData_IrregularProfile struct {
+	IrregularProfile *IrregularProfileValues `protobuf:"bytes,4,opt,name=irregular_profile,json=irregularProfile,oneof"` // The set of irregular (non-periodical) profile values, such as daily profiles.
+}
+
+type actionProgressData_DeviceInfo struct {
+	DeviceInfo *DeviceInfo `protobuf:"bytes,5,opt,name=device_info,json=deviceInfo,oneof"` // The device information.
+}
+
+type actionProgressData_Events struct {
+	Events *EventRecords `protobuf:"bytes,6,opt,name=events,oneof"` // The event records.
+}
+
+type actionProgressData_TouTable struct {
+	TouTable *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,7,opt,name=tou_table,json=touTable,oneof"` // The time-of-use (TOU) table.
+}
+
+func (*actionProgressData_Nodata) isActionProgressData_Data() {}
+
+func (*actionProgressData_Registers) isActionProgressData_Data() {}
+
+func (*actionProgressData_Profile) isActionProgressData_Data() {}
+
+func (*actionProgressData_IrregularProfile) isActionProgressData_Data() {}
+
+func (*actionProgressData_DeviceInfo) isActionProgressData_Data() {}
+
+func (*actionProgressData_Events) isActionProgressData_Data() {}
+
+func (*actionProgressData_TouTable) isActionProgressData_Data() {}
+
+// Defines the action-based variant of data values.
 type ActionData struct {
 	state           protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Data isActionData_Data      `protobuf_oneof:"data"`
@@ -5730,7 +6121,7 @@ type ActionData struct {
 
 func (x *ActionData) Reset() {
 	*x = ActionData{}
-	mi := &file_acquisition_shared_proto_msgTypes[22]
+	mi := &file_acquisition_shared_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5742,7 +6133,7 @@ func (x *ActionData) String() string {
 func (*ActionData) ProtoMessage() {}
 
 func (x *ActionData) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[22]
+	mi := &file_acquisition_shared_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5771,7 +6162,7 @@ func (x *ActionData) GetRegisters() *RegisterValues {
 	return nil
 }
 
-func (x *ActionData) GetProfile() []byte {
+func (x *ActionData) GetProfile() *ProfileValues {
 	if x != nil {
 		if x, ok := x.xxx_hidden_Data.(*actionData_Profile); ok {
 			return x.Profile
@@ -5832,9 +6223,10 @@ func (x *ActionData) SetRegisters(v *RegisterValues) {
 	x.xxx_hidden_Data = &actionData_Registers{v}
 }
 
-func (x *ActionData) SetProfile(v []byte) {
+func (x *ActionData) SetProfile(v *ProfileValues) {
 	if v == nil {
-		v = []byte{}
+		x.xxx_hidden_Data = nil
+		return
 	}
 	x.xxx_hidden_Data = &actionData_Profile{v}
 }
@@ -6019,7 +6411,7 @@ type ActionData_builder struct {
 	// Fields of oneof xxx_hidden_Data:
 	Nodata           *emptypb.Empty
 	Registers        *RegisterValues
-	Profile          []byte
+	Profile          *ProfileValues
 	IrregularProfile *IrregularProfileValues
 	DeviceInfo       *DeviceInfo
 	Events           *EventRecords
@@ -6058,7 +6450,7 @@ func (b0 ActionData_builder) Build() *ActionData {
 type case_ActionData_Data protoreflect.FieldNumber
 
 func (x case_ActionData_Data) String() string {
-	md := file_acquisition_shared_proto_msgTypes[22].Descriptor()
+	md := file_acquisition_shared_proto_msgTypes[23].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -6078,7 +6470,7 @@ type actionData_Registers struct {
 }
 
 type actionData_Profile struct {
-	Profile []byte `protobuf:"bytes,3,opt,name=profile,oneof"` // The set of profile values. For efficiency, the profile values are binary-encoded, see acquisition/encoding.go.
+	Profile *ProfileValues `protobuf:"bytes,3,opt,name=profile,oneof"` // The set of profile values.
 }
 
 type actionData_IrregularProfile struct {
@@ -6121,7 +6513,7 @@ type EventRecords struct {
 
 func (x *EventRecords) Reset() {
 	*x = EventRecords{}
-	mi := &file_acquisition_shared_proto_msgTypes[23]
+	mi := &file_acquisition_shared_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6133,7 +6525,7 @@ func (x *EventRecords) String() string {
 func (*EventRecords) ProtoMessage() {}
 
 func (x *EventRecords) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[23]
+	mi := &file_acquisition_shared_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6187,7 +6579,7 @@ type EventRecord struct {
 
 func (x *EventRecord) Reset() {
 	*x = EventRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[24]
+	mi := &file_acquisition_shared_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6199,7 +6591,7 @@ func (x *EventRecord) String() string {
 func (*EventRecord) ProtoMessage() {}
 
 func (x *EventRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[24]
+	mi := &file_acquisition_shared_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6385,7 +6777,7 @@ type DeviceEventRecord struct {
 
 func (x *DeviceEventRecord) Reset() {
 	*x = DeviceEventRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[25]
+	mi := &file_acquisition_shared_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6397,7 +6789,7 @@ func (x *DeviceEventRecord) String() string {
 func (*DeviceEventRecord) ProtoMessage() {}
 
 func (x *DeviceEventRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[25]
+	mi := &file_acquisition_shared_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6608,7 +7000,7 @@ type DeviceEvents struct {
 
 func (x *DeviceEvents) Reset() {
 	*x = DeviceEvents{}
-	mi := &file_acquisition_shared_proto_msgTypes[26]
+	mi := &file_acquisition_shared_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6620,7 +7012,7 @@ func (x *DeviceEvents) String() string {
 func (*DeviceEvents) ProtoMessage() {}
 
 func (x *DeviceEvents) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[26]
+	mi := &file_acquisition_shared_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6679,7 +7071,7 @@ type DeviceInfo struct {
 
 func (x *DeviceInfo) Reset() {
 	*x = DeviceInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[27]
+	mi := &file_acquisition_shared_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6691,7 +7083,7 @@ func (x *DeviceInfo) String() string {
 func (*DeviceInfo) ProtoMessage() {}
 
 func (x *DeviceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[27]
+	mi := &file_acquisition_shared_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6975,7 +7367,7 @@ type ProfileValues struct {
 
 func (x *ProfileValues) Reset() {
 	*x = ProfileValues{}
-	mi := &file_acquisition_shared_proto_msgTypes[28]
+	mi := &file_acquisition_shared_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6987,7 +7379,7 @@ func (x *ProfileValues) String() string {
 func (*ProfileValues) ProtoMessage() {}
 
 func (x *ProfileValues) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[28]
+	mi := &file_acquisition_shared_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7094,7 +7486,7 @@ type IrregularProfileValues struct {
 
 func (x *IrregularProfileValues) Reset() {
 	*x = IrregularProfileValues{}
-	mi := &file_acquisition_shared_proto_msgTypes[29]
+	mi := &file_acquisition_shared_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7106,7 +7498,7 @@ func (x *IrregularProfileValues) String() string {
 func (*IrregularProfileValues) ProtoMessage() {}
 
 func (x *IrregularProfileValues) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[29]
+	mi := &file_acquisition_shared_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7187,7 +7579,7 @@ type IrregularValue struct {
 
 func (x *IrregularValue) Reset() {
 	*x = IrregularValue{}
-	mi := &file_acquisition_shared_proto_msgTypes[30]
+	mi := &file_acquisition_shared_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7199,7 +7591,7 @@ func (x *IrregularValue) String() string {
 func (*IrregularValue) ProtoMessage() {}
 
 func (x *IrregularValue) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[30]
+	mi := &file_acquisition_shared_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7281,7 +7673,7 @@ type ProfileBlock struct {
 
 func (x *ProfileBlock) Reset() {
 	*x = ProfileBlock{}
-	mi := &file_acquisition_shared_proto_msgTypes[31]
+	mi := &file_acquisition_shared_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7293,7 +7685,7 @@ func (x *ProfileBlock) String() string {
 func (*ProfileBlock) ProtoMessage() {}
 
 func (x *ProfileBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[31]
+	mi := &file_acquisition_shared_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7365,7 +7757,7 @@ type RegisterValues struct {
 
 func (x *RegisterValues) Reset() {
 	*x = RegisterValues{}
-	mi := &file_acquisition_shared_proto_msgTypes[32]
+	mi := &file_acquisition_shared_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7377,7 +7769,7 @@ func (x *RegisterValues) String() string {
 func (*RegisterValues) ProtoMessage() {}
 
 func (x *RegisterValues) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[32]
+	mi := &file_acquisition_shared_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7429,7 +7821,7 @@ type RegisterValue struct {
 
 func (x *RegisterValue) Reset() {
 	*x = RegisterValue{}
-	mi := &file_acquisition_shared_proto_msgTypes[33]
+	mi := &file_acquisition_shared_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7441,7 +7833,7 @@ func (x *RegisterValue) String() string {
 func (*RegisterValue) ProtoMessage() {}
 
 func (x *RegisterValue) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[33]
+	mi := &file_acquisition_shared_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7560,7 +7952,7 @@ type MeasuredValue struct {
 
 func (x *MeasuredValue) Reset() {
 	*x = MeasuredValue{}
-	mi := &file_acquisition_shared_proto_msgTypes[34]
+	mi := &file_acquisition_shared_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7572,7 +7964,7 @@ func (x *MeasuredValue) String() string {
 func (*MeasuredValue) ProtoMessage() {}
 
 func (x *MeasuredValue) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[34]
+	mi := &file_acquisition_shared_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7942,7 +8334,7 @@ func (b0 MeasuredValue_builder) Build() *MeasuredValue {
 type case_MeasuredValue_Kind protoreflect.FieldNumber
 
 func (x case_MeasuredValue_Kind) String() string {
-	md := file_acquisition_shared_proto_msgTypes[34].Descriptor()
+	md := file_acquisition_shared_proto_msgTypes[35].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -8002,7 +8394,7 @@ type JobActionAttributes struct {
 
 func (x *JobActionAttributes) Reset() {
 	*x = JobActionAttributes{}
-	mi := &file_acquisition_shared_proto_msgTypes[35]
+	mi := &file_acquisition_shared_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8014,7 +8406,7 @@ func (x *JobActionAttributes) String() string {
 func (*JobActionAttributes) ProtoMessage() {}
 
 func (x *JobActionAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[35]
+	mi := &file_acquisition_shared_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8096,7 +8488,7 @@ type ConnectionTypeControlledSerial struct {
 
 func (x *ConnectionTypeControlledSerial) Reset() {
 	*x = ConnectionTypeControlledSerial{}
-	mi := &file_acquisition_shared_proto_msgTypes[36]
+	mi := &file_acquisition_shared_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8108,7 +8500,7 @@ func (x *ConnectionTypeControlledSerial) String() string {
 func (*ConnectionTypeControlledSerial) ProtoMessage() {}
 
 func (x *ConnectionTypeControlledSerial) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[36]
+	mi := &file_acquisition_shared_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8299,7 +8691,7 @@ func (b0 ConnectionTypeControlledSerial_builder) Build() *ConnectionTypeControll
 type case_ConnectionTypeControlledSerial_Converter protoreflect.FieldNumber
 
 func (x case_ConnectionTypeControlledSerial_Converter) String() string {
-	md := file_acquisition_shared_proto_msgTypes[36].Descriptor()
+	md := file_acquisition_shared_proto_msgTypes[37].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -8340,7 +8732,7 @@ type ActionGetRegister struct {
 
 func (x *ActionGetRegister) Reset() {
 	*x = ActionGetRegister{}
-	mi := &file_acquisition_shared_proto_msgTypes[37]
+	mi := &file_acquisition_shared_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8352,7 +8744,7 @@ func (x *ActionGetRegister) String() string {
 func (*ActionGetRegister) ProtoMessage() {}
 
 func (x *ActionGetRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[37]
+	mi := &file_acquisition_shared_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8420,7 +8812,7 @@ type ActionGetPeriodicalProfile struct {
 
 func (x *ActionGetPeriodicalProfile) Reset() {
 	*x = ActionGetPeriodicalProfile{}
-	mi := &file_acquisition_shared_proto_msgTypes[38]
+	mi := &file_acquisition_shared_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8432,7 +8824,7 @@ func (x *ActionGetPeriodicalProfile) String() string {
 func (*ActionGetPeriodicalProfile) ProtoMessage() {}
 
 func (x *ActionGetPeriodicalProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[38]
+	mi := &file_acquisition_shared_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8548,7 +8940,7 @@ type ActionGetIrregularProfile struct {
 
 func (x *ActionGetIrregularProfile) Reset() {
 	*x = ActionGetIrregularProfile{}
-	mi := &file_acquisition_shared_proto_msgTypes[39]
+	mi := &file_acquisition_shared_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8560,7 +8952,7 @@ func (x *ActionGetIrregularProfile) String() string {
 func (*ActionGetIrregularProfile) ProtoMessage() {}
 
 func (x *ActionGetIrregularProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[39]
+	mi := &file_acquisition_shared_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8673,7 +9065,7 @@ type ActionGetEvents struct {
 
 func (x *ActionGetEvents) Reset() {
 	*x = ActionGetEvents{}
-	mi := &file_acquisition_shared_proto_msgTypes[40]
+	mi := &file_acquisition_shared_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8685,7 +9077,7 @@ func (x *ActionGetEvents) String() string {
 func (*ActionGetEvents) ProtoMessage() {}
 
 func (x *ActionGetEvents) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[40]
+	mi := &file_acquisition_shared_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8765,7 +9157,7 @@ type ActionGetDeviceInfo struct {
 
 func (x *ActionGetDeviceInfo) Reset() {
 	*x = ActionGetDeviceInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[41]
+	mi := &file_acquisition_shared_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8777,7 +9169,7 @@ func (x *ActionGetDeviceInfo) String() string {
 func (*ActionGetDeviceInfo) ProtoMessage() {}
 
 func (x *ActionGetDeviceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[41]
+	mi := &file_acquisition_shared_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8809,7 +9201,7 @@ type ActionSyncClock struct {
 
 func (x *ActionSyncClock) Reset() {
 	*x = ActionSyncClock{}
-	mi := &file_acquisition_shared_proto_msgTypes[42]
+	mi := &file_acquisition_shared_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8821,7 +9213,7 @@ func (x *ActionSyncClock) String() string {
 func (*ActionSyncClock) ProtoMessage() {}
 
 func (x *ActionSyncClock) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[42]
+	mi := &file_acquisition_shared_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8853,7 +9245,7 @@ type ActionSetRelayState struct {
 
 func (x *ActionSetRelayState) Reset() {
 	*x = ActionSetRelayState{}
-	mi := &file_acquisition_shared_proto_msgTypes[43]
+	mi := &file_acquisition_shared_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8865,7 +9257,7 @@ func (x *ActionSetRelayState) String() string {
 func (*ActionSetRelayState) ProtoMessage() {}
 
 func (x *ActionSetRelayState) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[43]
+	mi := &file_acquisition_shared_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8897,7 +9289,7 @@ type ActionSetDisconnectorState struct {
 
 func (x *ActionSetDisconnectorState) Reset() {
 	*x = ActionSetDisconnectorState{}
-	mi := &file_acquisition_shared_proto_msgTypes[44]
+	mi := &file_acquisition_shared_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8909,7 +9301,7 @@ func (x *ActionSetDisconnectorState) String() string {
 func (*ActionSetDisconnectorState) ProtoMessage() {}
 
 func (x *ActionSetDisconnectorState) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[44]
+	mi := &file_acquisition_shared_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8944,7 +9336,7 @@ type ActionGetTou struct {
 
 func (x *ActionGetTou) Reset() {
 	*x = ActionGetTou{}
-	mi := &file_acquisition_shared_proto_msgTypes[45]
+	mi := &file_acquisition_shared_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8956,7 +9348,7 @@ func (x *ActionGetTou) String() string {
 func (*ActionGetTou) ProtoMessage() {}
 
 func (x *ActionGetTou) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[45]
+	mi := &file_acquisition_shared_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9018,7 +9410,7 @@ type ActionSetTou struct {
 
 func (x *ActionSetTou) Reset() {
 	*x = ActionSetTou{}
-	mi := &file_acquisition_shared_proto_msgTypes[46]
+	mi := &file_acquisition_shared_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9030,7 +9422,7 @@ func (x *ActionSetTou) String() string {
 func (*ActionSetTou) ProtoMessage() {}
 
 func (x *ActionSetTou) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[46]
+	mi := &file_acquisition_shared_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9086,7 +9478,7 @@ type ActionSetLimiter struct {
 
 func (x *ActionSetLimiter) Reset() {
 	*x = ActionSetLimiter{}
-	mi := &file_acquisition_shared_proto_msgTypes[47]
+	mi := &file_acquisition_shared_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9098,7 +9490,7 @@ func (x *ActionSetLimiter) String() string {
 func (*ActionSetLimiter) ProtoMessage() {}
 
 func (x *ActionSetLimiter) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[47]
+	mi := &file_acquisition_shared_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9130,7 +9522,7 @@ type ActionResetBillingPeriod struct {
 
 func (x *ActionResetBillingPeriod) Reset() {
 	*x = ActionResetBillingPeriod{}
-	mi := &file_acquisition_shared_proto_msgTypes[48]
+	mi := &file_acquisition_shared_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9142,7 +9534,7 @@ func (x *ActionResetBillingPeriod) String() string {
 func (*ActionResetBillingPeriod) ProtoMessage() {}
 
 func (x *ActionResetBillingPeriod) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[48]
+	mi := &file_acquisition_shared_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9174,7 +9566,7 @@ type ActionFwUpdate struct {
 
 func (x *ActionFwUpdate) Reset() {
 	*x = ActionFwUpdate{}
-	mi := &file_acquisition_shared_proto_msgTypes[49]
+	mi := &file_acquisition_shared_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9186,7 +9578,7 @@ func (x *ActionFwUpdate) String() string {
 func (*ActionFwUpdate) ProtoMessage() {}
 
 func (x *ActionFwUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[49]
+	mi := &file_acquisition_shared_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9220,7 +9612,7 @@ type JobActionContraints struct {
 
 func (x *JobActionContraints) Reset() {
 	*x = JobActionContraints{}
-	mi := &file_acquisition_shared_proto_msgTypes[50]
+	mi := &file_acquisition_shared_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9232,7 +9624,7 @@ func (x *JobActionContraints) String() string {
 func (*JobActionContraints) ProtoMessage() {}
 
 func (x *JobActionContraints) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[50]
+	mi := &file_acquisition_shared_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9308,7 +9700,7 @@ type JobStatus struct {
 
 func (x *JobStatus) Reset() {
 	*x = JobStatus{}
-	mi := &file_acquisition_shared_proto_msgTypes[51]
+	mi := &file_acquisition_shared_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9320,7 +9712,7 @@ func (x *JobStatus) String() string {
 func (*JobStatus) ProtoMessage() {}
 
 func (x *JobStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[51]
+	mi := &file_acquisition_shared_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9574,6 +9966,292 @@ func (b0 JobStatus_builder) Build() *JobStatus {
 	return m0
 }
 
+// Defines the progress status information of a single job within a bulk.
+type JobProgressStatus struct {
+	state                   protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_Status       JobStatusCode            `protobuf:"varint,1,opt,name=status,enum=io.clbs.openhes.models.acquisition.JobStatusCode"`
+	xxx_hidden_Code         JobErrorCode             `protobuf:"varint,2,opt,name=code,enum=io.clbs.openhes.models.acquisition.JobErrorCode"`
+	xxx_hidden_Results      *[]*ActionProgressData   `protobuf:"bytes,3,rep,name=results"`
+	xxx_hidden_StartedAt    *timestamppb.Timestamp   `protobuf:"bytes,4,opt,name=started_at,json=startedAt"`
+	xxx_hidden_FinishedAt   *timestamppb.Timestamp   `protobuf:"bytes,5,opt,name=finished_at,json=finishedAt"`
+	xxx_hidden_AttemptsDone int32                    `protobuf:"varint,6,opt,name=attempts_done,json=attemptsDone"`
+	xxx_hidden_DeviceInfo   *DeviceInfo              `protobuf:"bytes,7,opt,name=device_info,json=deviceInfo"`
+	xxx_hidden_QueueId      int64                    `protobuf:"varint,8,opt,name=queue_id,json=queueId"`
+	xxx_hidden_ErrorMessage *common.FormattedMessage `protobuf:"bytes,9,opt,name=error_message,json=errorMessage"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *JobProgressStatus) Reset() {
+	*x = JobProgressStatus{}
+	mi := &file_acquisition_shared_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JobProgressStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JobProgressStatus) ProtoMessage() {}
+
+func (x *JobProgressStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_shared_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *JobProgressStatus) GetStatus() JobStatusCode {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_Status
+		}
+	}
+	return JobStatusCode_JOB_STATUS_UNSPECIFIED
+}
+
+func (x *JobProgressStatus) GetCode() JobErrorCode {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_Code
+		}
+	}
+	return JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED
+}
+
+func (x *JobProgressStatus) GetResults() []*ActionProgressData {
+	if x != nil {
+		if x.xxx_hidden_Results != nil {
+			return *x.xxx_hidden_Results
+		}
+	}
+	return nil
+}
+
+func (x *JobProgressStatus) GetStartedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartedAt
+	}
+	return nil
+}
+
+func (x *JobProgressStatus) GetFinishedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_FinishedAt
+	}
+	return nil
+}
+
+func (x *JobProgressStatus) GetAttemptsDone() int32 {
+	if x != nil {
+		return x.xxx_hidden_AttemptsDone
+	}
+	return 0
+}
+
+func (x *JobProgressStatus) GetDeviceInfo() *DeviceInfo {
+	if x != nil {
+		return x.xxx_hidden_DeviceInfo
+	}
+	return nil
+}
+
+func (x *JobProgressStatus) GetQueueId() int64 {
+	if x != nil {
+		return x.xxx_hidden_QueueId
+	}
+	return 0
+}
+
+func (x *JobProgressStatus) GetErrorMessage() *common.FormattedMessage {
+	if x != nil {
+		return x.xxx_hidden_ErrorMessage
+	}
+	return nil
+}
+
+func (x *JobProgressStatus) SetStatus(v JobStatusCode) {
+	x.xxx_hidden_Status = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
+}
+
+func (x *JobProgressStatus) SetCode(v JobErrorCode) {
+	x.xxx_hidden_Code = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
+}
+
+func (x *JobProgressStatus) SetResults(v []*ActionProgressData) {
+	x.xxx_hidden_Results = &v
+}
+
+func (x *JobProgressStatus) SetStartedAt(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartedAt = v
+}
+
+func (x *JobProgressStatus) SetFinishedAt(v *timestamppb.Timestamp) {
+	x.xxx_hidden_FinishedAt = v
+}
+
+func (x *JobProgressStatus) SetAttemptsDone(v int32) {
+	x.xxx_hidden_AttemptsDone = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
+}
+
+func (x *JobProgressStatus) SetDeviceInfo(v *DeviceInfo) {
+	x.xxx_hidden_DeviceInfo = v
+}
+
+func (x *JobProgressStatus) SetQueueId(v int64) {
+	x.xxx_hidden_QueueId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 9)
+}
+
+func (x *JobProgressStatus) SetErrorMessage(v *common.FormattedMessage) {
+	x.xxx_hidden_ErrorMessage = v
+}
+
+func (x *JobProgressStatus) HasStatus() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *JobProgressStatus) HasCode() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *JobProgressStatus) HasStartedAt() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartedAt != nil
+}
+
+func (x *JobProgressStatus) HasFinishedAt() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_FinishedAt != nil
+}
+
+func (x *JobProgressStatus) HasAttemptsDone() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
+}
+
+func (x *JobProgressStatus) HasDeviceInfo() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_DeviceInfo != nil
+}
+
+func (x *JobProgressStatus) HasQueueId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
+}
+
+func (x *JobProgressStatus) HasErrorMessage() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_ErrorMessage != nil
+}
+
+func (x *JobProgressStatus) ClearStatus() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Status = JobStatusCode_JOB_STATUS_UNSPECIFIED
+}
+
+func (x *JobProgressStatus) ClearCode() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Code = JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED
+}
+
+func (x *JobProgressStatus) ClearStartedAt() {
+	x.xxx_hidden_StartedAt = nil
+}
+
+func (x *JobProgressStatus) ClearFinishedAt() {
+	x.xxx_hidden_FinishedAt = nil
+}
+
+func (x *JobProgressStatus) ClearAttemptsDone() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_AttemptsDone = 0
+}
+
+func (x *JobProgressStatus) ClearDeviceInfo() {
+	x.xxx_hidden_DeviceInfo = nil
+}
+
+func (x *JobProgressStatus) ClearQueueId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	x.xxx_hidden_QueueId = 0
+}
+
+func (x *JobProgressStatus) ClearErrorMessage() {
+	x.xxx_hidden_ErrorMessage = nil
+}
+
+type JobProgressStatus_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Status       *JobStatusCode
+	Code         *JobErrorCode
+	Results      []*ActionProgressData
+	StartedAt    *timestamppb.Timestamp
+	FinishedAt   *timestamppb.Timestamp
+	AttemptsDone *int32
+	DeviceInfo   *DeviceInfo
+	QueueId      *int64
+	ErrorMessage *common.FormattedMessage
+}
+
+func (b0 JobProgressStatus_builder) Build() *JobProgressStatus {
+	m0 := &JobProgressStatus{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.Status != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
+		x.xxx_hidden_Status = *b.Status
+	}
+	if b.Code != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
+		x.xxx_hidden_Code = *b.Code
+	}
+	x.xxx_hidden_Results = &b.Results
+	x.xxx_hidden_StartedAt = b.StartedAt
+	x.xxx_hidden_FinishedAt = b.FinishedAt
+	if b.AttemptsDone != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
+		x.xxx_hidden_AttemptsDone = *b.AttemptsDone
+	}
+	x.xxx_hidden_DeviceInfo = b.DeviceInfo
+	if b.QueueId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 9)
+		x.xxx_hidden_QueueId = *b.QueueId
+	}
+	x.xxx_hidden_ErrorMessage = b.ErrorMessage
+	return m0
+}
+
 // Defines the job start request for a single device.
 type StartJobData struct {
 	state                       protoimpl.MessageState        `protogen:"opaque.v1"`
@@ -9591,7 +10269,7 @@ type StartJobData struct {
 
 func (x *StartJobData) Reset() {
 	*x = StartJobData{}
-	mi := &file_acquisition_shared_proto_msgTypes[52]
+	mi := &file_acquisition_shared_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9603,7 +10281,7 @@ func (x *StartJobData) String() string {
 func (*StartJobData) ProtoMessage() {}
 
 func (x *StartJobData) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[52]
+	mi := &file_acquisition_shared_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9785,7 +10463,7 @@ type CancelJobRequest struct {
 
 func (x *CancelJobRequest) Reset() {
 	*x = CancelJobRequest{}
-	mi := &file_acquisition_shared_proto_msgTypes[53]
+	mi := &file_acquisition_shared_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9797,7 +10475,7 @@ func (x *CancelJobRequest) String() string {
 func (*CancelJobRequest) ProtoMessage() {}
 
 func (x *CancelJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[53]
+	mi := &file_acquisition_shared_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9867,7 +10545,7 @@ type DeviceConfigurationRegisterSpec struct {
 
 func (x *DeviceConfigurationRegisterSpec) Reset() {
 	*x = DeviceConfigurationRegisterSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[54]
+	mi := &file_acquisition_shared_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9879,7 +10557,7 @@ func (x *DeviceConfigurationRegisterSpec) String() string {
 func (*DeviceConfigurationRegisterSpec) ProtoMessage() {}
 
 func (x *DeviceConfigurationRegisterSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[54]
+	mi := &file_acquisition_shared_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10024,7 +10702,7 @@ type DeviceRegister struct {
 
 func (x *DeviceRegister) Reset() {
 	*x = DeviceRegister{}
-	mi := &file_acquisition_shared_proto_msgTypes[55]
+	mi := &file_acquisition_shared_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10036,7 +10714,7 @@ func (x *DeviceRegister) String() string {
 func (*DeviceRegister) ProtoMessage() {}
 
 func (x *DeviceRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[55]
+	mi := &file_acquisition_shared_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10175,7 +10853,7 @@ type DeviceConnectionInfo struct {
 
 func (x *DeviceConnectionInfo) Reset() {
 	*x = DeviceConnectionInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[56]
+	mi := &file_acquisition_shared_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10187,7 +10865,7 @@ func (x *DeviceConnectionInfo) String() string {
 func (*DeviceConnectionInfo) ProtoMessage() {}
 
 func (x *DeviceConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[56]
+	mi := &file_acquisition_shared_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10402,7 +11080,7 @@ type ListOfModemInfo struct {
 
 func (x *ListOfModemInfo) Reset() {
 	*x = ListOfModemInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[57]
+	mi := &file_acquisition_shared_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10414,7 +11092,7 @@ func (x *ListOfModemInfo) String() string {
 func (*ListOfModemInfo) ProtoMessage() {}
 
 func (x *ListOfModemInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[57]
+	mi := &file_acquisition_shared_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10494,7 +11172,7 @@ type ListOfConnectionInfo struct {
 
 func (x *ListOfConnectionInfo) Reset() {
 	*x = ListOfConnectionInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[58]
+	mi := &file_acquisition_shared_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10506,7 +11184,7 @@ func (x *ListOfConnectionInfo) String() string {
 func (*ListOfConnectionInfo) ProtoMessage() {}
 
 func (x *ListOfConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[58]
+	mi := &file_acquisition_shared_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10583,7 +11261,7 @@ type FieldValuesList struct {
 
 func (x *FieldValuesList) Reset() {
 	*x = FieldValuesList{}
-	mi := &file_acquisition_shared_proto_msgTypes[59]
+	mi := &file_acquisition_shared_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10595,7 +11273,7 @@ func (x *FieldValuesList) String() string {
 func (*FieldValuesList) ProtoMessage() {}
 
 func (x *FieldValuesList) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[59]
+	mi := &file_acquisition_shared_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10652,7 +11330,7 @@ type AttributeSelector struct {
 
 func (x *AttributeSelector) Reset() {
 	*x = AttributeSelector{}
-	mi := &file_acquisition_shared_proto_msgTypes[60]
+	mi := &file_acquisition_shared_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10664,7 +11342,7 @@ func (x *AttributeSelector) String() string {
 func (*AttributeSelector) ProtoMessage() {}
 
 func (x *AttributeSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[60]
+	mi := &file_acquisition_shared_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10858,7 +11536,7 @@ type DeviceAttributeSelector struct {
 
 func (x *DeviceAttributeSelector) Reset() {
 	*x = DeviceAttributeSelector{}
-	mi := &file_acquisition_shared_proto_msgTypes[61]
+	mi := &file_acquisition_shared_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10870,7 +11548,7 @@ func (x *DeviceAttributeSelector) String() string {
 func (*DeviceAttributeSelector) ProtoMessage() {}
 
 func (x *DeviceAttributeSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[61]
+	mi := &file_acquisition_shared_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10921,7 +11599,7 @@ type CommunicationUnitAttributeSelector struct {
 
 func (x *CommunicationUnitAttributeSelector) Reset() {
 	*x = CommunicationUnitAttributeSelector{}
-	mi := &file_acquisition_shared_proto_msgTypes[62]
+	mi := &file_acquisition_shared_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10933,7 +11611,7 @@ func (x *CommunicationUnitAttributeSelector) String() string {
 func (*CommunicationUnitAttributeSelector) ProtoMessage() {}
 
 func (x *CommunicationUnitAttributeSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[62]
+	mi := &file_acquisition_shared_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11019,7 +11697,7 @@ type ActionResult struct {
 
 func (x *ActionResult) Reset() {
 	*x = ActionResult{}
-	mi := &file_acquisition_shared_proto_msgTypes[63]
+	mi := &file_acquisition_shared_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11031,7 +11709,7 @@ func (x *ActionResult) String() string {
 func (*ActionResult) ProtoMessage() {}
 
 func (x *ActionResult) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[63]
+	mi := &file_acquisition_shared_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11222,7 +11900,7 @@ type JobEventData struct {
 
 func (x *JobEventData) Reset() {
 	*x = JobEventData{}
-	mi := &file_acquisition_shared_proto_msgTypes[64]
+	mi := &file_acquisition_shared_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11234,7 +11912,7 @@ func (x *JobEventData) String() string {
 func (*JobEventData) ProtoMessage() {}
 
 func (x *JobEventData) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[64]
+	mi := &file_acquisition_shared_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11305,7 +11983,7 @@ type DeviceSpec struct {
 
 func (x *DeviceSpec) Reset() {
 	*x = DeviceSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[65]
+	mi := &file_acquisition_shared_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11317,7 +11995,7 @@ func (x *DeviceSpec) String() string {
 func (*DeviceSpec) ProtoMessage() {}
 
 func (x *DeviceSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[65]
+	mi := &file_acquisition_shared_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11480,7 +12158,7 @@ type DeviceStatus struct {
 
 func (x *DeviceStatus) Reset() {
 	*x = DeviceStatus{}
-	mi := &file_acquisition_shared_proto_msgTypes[66]
+	mi := &file_acquisition_shared_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11492,7 +12170,7 @@ func (x *DeviceStatus) String() string {
 func (*DeviceStatus) ProtoMessage() {}
 
 func (x *DeviceStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[66]
+	mi := &file_acquisition_shared_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11585,7 +12263,7 @@ type DeviceCommunicationUnit struct {
 
 func (x *DeviceCommunicationUnit) Reset() {
 	*x = DeviceCommunicationUnit{}
-	mi := &file_acquisition_shared_proto_msgTypes[67]
+	mi := &file_acquisition_shared_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11597,7 +12275,7 @@ func (x *DeviceCommunicationUnit) String() string {
 func (*DeviceCommunicationUnit) ProtoMessage() {}
 
 func (x *DeviceCommunicationUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[67]
+	mi := &file_acquisition_shared_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11709,7 +12387,7 @@ type DefaultDeviceCommunicationUnitAttributes struct {
 
 func (x *DefaultDeviceCommunicationUnitAttributes) Reset() {
 	*x = DefaultDeviceCommunicationUnitAttributes{}
-	mi := &file_acquisition_shared_proto_msgTypes[68]
+	mi := &file_acquisition_shared_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11721,7 +12399,7 @@ func (x *DefaultDeviceCommunicationUnitAttributes) String() string {
 func (*DefaultDeviceCommunicationUnitAttributes) ProtoMessage() {}
 
 func (x *DefaultDeviceCommunicationUnitAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[68]
+	mi := &file_acquisition_shared_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11804,7 +12482,7 @@ type JobSpec struct {
 
 func (x *JobSpec) Reset() {
 	*x = JobSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[69]
+	mi := &file_acquisition_shared_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11816,7 +12494,7 @@ func (x *JobSpec) String() string {
 func (*JobSpec) ProtoMessage() {}
 
 func (x *JobSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[69]
+	mi := &file_acquisition_shared_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11964,7 +12642,7 @@ type JobActionMapRecord struct {
 
 func (x *JobActionMapRecord) Reset() {
 	*x = JobActionMapRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[70]
+	mi := &file_acquisition_shared_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11976,7 +12654,7 @@ func (x *JobActionMapRecord) String() string {
 func (*JobActionMapRecord) ProtoMessage() {}
 
 func (x *JobActionMapRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[70]
+	mi := &file_acquisition_shared_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12106,14 +12784,14 @@ func (b0 JobActionMapRecord_builder) Build() *JobActionMapRecord {
 type JobDoneNotification struct {
 	state             protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec   *JobSpec               `protobuf:"bytes,1,opt,name=spec"`
-	xxx_hidden_Status *JobStatus             `protobuf:"bytes,2,opt,name=status"`
+	xxx_hidden_Status *JobProgressStatus     `protobuf:"bytes,2,opt,name=status"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *JobDoneNotification) Reset() {
 	*x = JobDoneNotification{}
-	mi := &file_acquisition_shared_proto_msgTypes[71]
+	mi := &file_acquisition_shared_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12125,7 +12803,7 @@ func (x *JobDoneNotification) String() string {
 func (*JobDoneNotification) ProtoMessage() {}
 
 func (x *JobDoneNotification) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[71]
+	mi := &file_acquisition_shared_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12143,7 +12821,7 @@ func (x *JobDoneNotification) GetSpec() *JobSpec {
 	return nil
 }
 
-func (x *JobDoneNotification) GetStatus() *JobStatus {
+func (x *JobDoneNotification) GetStatus() *JobProgressStatus {
 	if x != nil {
 		return x.xxx_hidden_Status
 	}
@@ -12154,7 +12832,7 @@ func (x *JobDoneNotification) SetSpec(v *JobSpec) {
 	x.xxx_hidden_Spec = v
 }
 
-func (x *JobDoneNotification) SetStatus(v *JobStatus) {
+func (x *JobDoneNotification) SetStatus(v *JobProgressStatus) {
 	x.xxx_hidden_Status = v
 }
 
@@ -12184,7 +12862,7 @@ type JobDoneNotification_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Spec   *JobSpec
-	Status *JobStatus
+	Status *JobProgressStatus
 }
 
 func (b0 JobDoneNotification_builder) Build() *JobDoneNotification {
@@ -12209,7 +12887,7 @@ type DriverInfo struct {
 
 func (x *DriverInfo) Reset() {
 	*x = DriverInfo{}
-	mi := &file_acquisition_shared_proto_msgTypes[72]
+	mi := &file_acquisition_shared_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12221,7 +12899,7 @@ func (x *DriverInfo) String() string {
 func (*DriverInfo) ProtoMessage() {}
 
 func (x *DriverInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[72]
+	mi := &file_acquisition_shared_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12319,7 +12997,7 @@ type CommunicationUnit struct {
 
 func (x *CommunicationUnit) Reset() {
 	*x = CommunicationUnit{}
-	mi := &file_acquisition_shared_proto_msgTypes[73]
+	mi := &file_acquisition_shared_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12331,7 +13009,7 @@ func (x *CommunicationUnit) String() string {
 func (*CommunicationUnit) ProtoMessage() {}
 
 func (x *CommunicationUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[73]
+	mi := &file_acquisition_shared_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12415,7 +13093,7 @@ type CommunicationUnitSpec struct {
 
 func (x *CommunicationUnitSpec) Reset() {
 	*x = CommunicationUnitSpec{}
-	mi := &file_acquisition_shared_proto_msgTypes[74]
+	mi := &file_acquisition_shared_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12427,7 +13105,7 @@ func (x *CommunicationUnitSpec) String() string {
 func (*CommunicationUnitSpec) ProtoMessage() {}
 
 func (x *CommunicationUnitSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[74]
+	mi := &file_acquisition_shared_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12517,7 +13195,7 @@ type CommunicationBus struct {
 
 func (x *CommunicationBus) Reset() {
 	*x = CommunicationBus{}
-	mi := &file_acquisition_shared_proto_msgTypes[75]
+	mi := &file_acquisition_shared_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12529,7 +13207,7 @@ func (x *CommunicationBus) String() string {
 func (*CommunicationBus) ProtoMessage() {}
 
 func (x *CommunicationBus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[75]
+	mi := &file_acquisition_shared_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12610,7 +13288,7 @@ type CommunicationBusStatus struct {
 
 func (x *CommunicationBusStatus) Reset() {
 	*x = CommunicationBusStatus{}
-	mi := &file_acquisition_shared_proto_msgTypes[76]
+	mi := &file_acquisition_shared_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12622,7 +13300,7 @@ func (x *CommunicationBusStatus) String() string {
 func (*CommunicationBusStatus) ProtoMessage() {}
 
 func (x *CommunicationBusStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[76]
+	mi := &file_acquisition_shared_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12672,7 +13350,7 @@ type TopologyNode struct {
 
 func (x *TopologyNode) Reset() {
 	*x = TopologyNode{}
-	mi := &file_acquisition_shared_proto_msgTypes[77]
+	mi := &file_acquisition_shared_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12684,7 +13362,7 @@ func (x *TopologyNode) String() string {
 func (*TopologyNode) ProtoMessage() {}
 
 func (x *TopologyNode) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[77]
+	mi := &file_acquisition_shared_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12805,7 +13483,7 @@ type TopologyEdge struct {
 
 func (x *TopologyEdge) Reset() {
 	*x = TopologyEdge{}
-	mi := &file_acquisition_shared_proto_msgTypes[78]
+	mi := &file_acquisition_shared_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12817,7 +13495,7 @@ func (x *TopologyEdge) String() string {
 func (*TopologyEdge) ProtoMessage() {}
 
 func (x *TopologyEdge) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[78]
+	mi := &file_acquisition_shared_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12933,7 +13611,7 @@ type NetworkMap struct {
 
 func (x *NetworkMap) Reset() {
 	*x = NetworkMap{}
-	mi := &file_acquisition_shared_proto_msgTypes[79]
+	mi := &file_acquisition_shared_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12945,7 +13623,7 @@ func (x *NetworkMap) String() string {
 func (*NetworkMap) ProtoMessage() {}
 
 func (x *NetworkMap) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[79]
+	mi := &file_acquisition_shared_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13014,7 +13692,7 @@ type CommunicationUnitLogRecord struct {
 
 func (x *CommunicationUnitLogRecord) Reset() {
 	*x = CommunicationUnitLogRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[80]
+	mi := &file_acquisition_shared_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13026,7 +13704,7 @@ func (x *CommunicationUnitLogRecord) String() string {
 func (*CommunicationUnitLogRecord) ProtoMessage() {}
 
 func (x *CommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[80]
+	mi := &file_acquisition_shared_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13213,7 +13891,7 @@ type ListOfCommunicationUnitLogRecord struct {
 
 func (x *ListOfCommunicationUnitLogRecord) Reset() {
 	*x = ListOfCommunicationUnitLogRecord{}
-	mi := &file_acquisition_shared_proto_msgTypes[81]
+	mi := &file_acquisition_shared_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13225,7 +13903,7 @@ func (x *ListOfCommunicationUnitLogRecord) String() string {
 func (*ListOfCommunicationUnitLogRecord) ProtoMessage() {}
 
 func (x *ListOfCommunicationUnitLogRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_shared_proto_msgTypes[81]
+	mi := &file_acquisition_shared_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13458,23 +14136,33 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x11action_attributes\x18\x03 \x03(\v27.io.clbs.openhes.models.acquisition.JobActionAttributesR\x10actionAttributes\x12b\n" +
 	"\x10access_templates\x18\x04 \x03(\v27.io.clbs.openhes.models.acquisition.AccessLevelTemplateR\x0faccessTemplates\x12f\n" +
 	"\x12action_constraints\x18\x05 \x01(\v27.io.clbs.openhes.models.acquisition.JobActionContraintsR\x11actionConstraints\x12j\n" +
-	"\x19uknown_device_descriptors\x18\x06 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x17uknownDeviceDescriptors\"\xae\x02\n" +
+	"\x19uknown_device_descriptors\x18\x06 \x03(\v2..io.clbs.openhes.models.common.FieldDescriptorR\x17uknownDeviceDescriptors\"\xb6\x02\n" +
 	"\x14ActionProgressUpdate\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12\x1b\n" +
 	"\taction_id\x18\x02 \x01(\tR\bactionId\x12H\n" +
-	"\x04code\x18\x03 \x01(\x0e24.io.clbs.openhes.models.acquisition.ActionResultCodeR\x04code\x12B\n" +
-	"\x04data\x18\x04 \x01(\v2..io.clbs.openhes.models.acquisition.ActionDataR\x04data\x12T\n" +
+	"\x04code\x18\x03 \x01(\x0e24.io.clbs.openhes.models.acquisition.ActionResultCodeR\x04code\x12J\n" +
+	"\x04data\x18\x04 \x01(\v26.io.clbs.openhes.models.acquisition.ActionProgressDataR\x04data\x12T\n" +
 	"\rerror_message\x18\x05 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xfd\x01\n" +
 	"\x11JobProgressUpdate\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12D\n" +
 	"\x04code\x18\x02 \x01(\x0e20.io.clbs.openhes.models.acquisition.JobErrorCodeR\x04code\x125\n" +
 	"\bduration\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\bduration\x12T\n" +
-	"\rerror_message\x18\x04 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xa1\x04\n" +
-	"\n" +
-	"ActionData\x120\n" +
+	"\rerror_message\x18\x04 \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xa9\x04\n" +
+	"\x12ActionProgressData\x120\n" +
 	"\x06nodata\x18\x01 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x06nodata\x12R\n" +
 	"\tregisters\x18\x02 \x01(\v22.io.clbs.openhes.models.acquisition.RegisterValuesH\x00R\tregisters\x12\x1a\n" +
 	"\aprofile\x18\x03 \x01(\fH\x00R\aprofile\x12i\n" +
+	"\x11irregular_profile\x18\x04 \x01(\v2:.io.clbs.openhes.models.acquisition.IrregularProfileValuesH\x00R\x10irregularProfile\x12Q\n" +
+	"\vdevice_info\x18\x05 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoH\x00R\n" +
+	"deviceInfo\x12J\n" +
+	"\x06events\x18\x06 \x01(\v20.io.clbs.openhes.models.acquisition.EventRecordsH\x00R\x06events\x12_\n" +
+	"\ttou_table\x18\a \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecH\x00R\btouTableB\x06\n" +
+	"\x04data\"\xd4\x04\n" +
+	"\n" +
+	"ActionData\x120\n" +
+	"\x06nodata\x18\x01 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x06nodata\x12R\n" +
+	"\tregisters\x18\x02 \x01(\v22.io.clbs.openhes.models.acquisition.RegisterValuesH\x00R\tregisters\x12M\n" +
+	"\aprofile\x18\x03 \x01(\v21.io.clbs.openhes.models.acquisition.ProfileValuesH\x00R\aprofile\x12i\n" +
 	"\x11irregular_profile\x18\x04 \x01(\v2:.io.clbs.openhes.models.acquisition.IrregularProfileValuesH\x00R\x10irregularProfile\x12Q\n" +
 	"\vdevice_info\x18\x05 \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoH\x00R\n" +
 	"deviceInfo\x12J\n" +
@@ -13606,6 +14294,19 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\vdevice_info\x18\a \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\n" +
 	"deviceInfo\x12\x19\n" +
 	"\bqueue_id\x18\b \x01(\x03R\aqueueId\x12T\n" +
+	"\rerror_message\x18\t \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xd5\x04\n" +
+	"\x11JobProgressStatus\x12I\n" +
+	"\x06status\x18\x01 \x01(\x0e21.io.clbs.openhes.models.acquisition.JobStatusCodeR\x06status\x12D\n" +
+	"\x04code\x18\x02 \x01(\x0e20.io.clbs.openhes.models.acquisition.JobErrorCodeR\x04code\x12P\n" +
+	"\aresults\x18\x03 \x03(\v26.io.clbs.openhes.models.acquisition.ActionProgressDataR\aresults\x129\n" +
+	"\n" +
+	"started_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartedAt\x12;\n" +
+	"\vfinished_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"finishedAt\x12#\n" +
+	"\rattempts_done\x18\x06 \x01(\x05R\fattemptsDone\x12O\n" +
+	"\vdevice_info\x18\a \x01(\v2..io.clbs.openhes.models.acquisition.DeviceInfoR\n" +
+	"deviceInfo\x12\x19\n" +
+	"\bqueue_id\x18\b \x01(\x03R\aqueueId\x12T\n" +
 	"\rerror_message\x18\t \x01(\v2/.io.clbs.openhes.models.common.FormattedMessageR\ferrorMessage\"\xa6\x04\n" +
 	"\fStartJobData\x12s\n" +
 	"\x11device_attributes\x18\x01 \x03(\v2F.io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntryR\x10deviceAttributes\x12\x15\n" +
@@ -13729,10 +14430,10 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\vregister_id\x18\x03 \x01(\x03R\n" +
 	"registerId\x12,\n" +
 	"\x12public_register_id\x18\x02 \x01(\tR\x10publicRegisterId\x12#\n" +
-	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\x9d\x01\n" +
+	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\xa5\x01\n" +
 	"\x13JobDoneNotification\x12?\n" +
-	"\x04spec\x18\x01 \x01(\v2+.io.clbs.openhes.models.acquisition.JobSpecR\x04spec\x12E\n" +
-	"\x06status\x18\x02 \x01(\v2-.io.clbs.openhes.models.acquisition.JobStatusR\x06status\"G\n" +
+	"\x04spec\x18\x01 \x01(\v2+.io.clbs.openhes.models.acquisition.JobSpecR\x04spec\x12M\n" +
+	"\x06status\x18\x02 \x01(\v25.io.clbs.openhes.models.acquisition.JobProgressStatusR\x06status\"G\n" +
 	"\n" +
 	"DriverInfo\x12\x1f\n" +
 	"\vdriver_type\x18\x01 \x01(\tR\n" +
@@ -13908,7 +14609,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x16LOG_RECORD_LEVEL_FATAL\x10\x04B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_shared_proto_enumTypes = make([]protoimpl.EnumInfo, 17)
-var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
+var file_acquisition_shared_proto_msgTypes = make([]protoimpl.MessageInfo, 94)
 var file_acquisition_shared_proto_goTypes = []any{
 	(JobPriority)(0),                                 // 0: io.clbs.openhes.models.acquisition.JobPriority
 	(ReadPathPolicy)(0),                              // 1: io.clbs.openhes.models.acquisition.ReadPathPolicy
@@ -13949,280 +14650,296 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*DriverTemplates)(nil),                          // 36: io.clbs.openhes.models.acquisition.DriverTemplates
 	(*ActionProgressUpdate)(nil),                     // 37: io.clbs.openhes.models.acquisition.ActionProgressUpdate
 	(*JobProgressUpdate)(nil),                        // 38: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionData)(nil),                               // 39: io.clbs.openhes.models.acquisition.ActionData
-	(*EventRecords)(nil),                             // 40: io.clbs.openhes.models.acquisition.EventRecords
-	(*EventRecord)(nil),                              // 41: io.clbs.openhes.models.acquisition.EventRecord
-	(*DeviceEventRecord)(nil),                        // 42: io.clbs.openhes.models.acquisition.DeviceEventRecord
-	(*DeviceEvents)(nil),                             // 43: io.clbs.openhes.models.acquisition.DeviceEvents
-	(*DeviceInfo)(nil),                               // 44: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*ProfileValues)(nil),                            // 45: io.clbs.openhes.models.acquisition.ProfileValues
-	(*IrregularProfileValues)(nil),                   // 46: io.clbs.openhes.models.acquisition.IrregularProfileValues
-	(*IrregularValue)(nil),                           // 47: io.clbs.openhes.models.acquisition.IrregularValue
-	(*ProfileBlock)(nil),                             // 48: io.clbs.openhes.models.acquisition.ProfileBlock
-	(*RegisterValues)(nil),                           // 49: io.clbs.openhes.models.acquisition.RegisterValues
-	(*RegisterValue)(nil),                            // 50: io.clbs.openhes.models.acquisition.RegisterValue
-	(*MeasuredValue)(nil),                            // 51: io.clbs.openhes.models.acquisition.MeasuredValue
-	(*JobActionAttributes)(nil),                      // 52: io.clbs.openhes.models.acquisition.JobActionAttributes
-	(*ConnectionTypeControlledSerial)(nil),           // 53: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
-	(*ActionGetRegister)(nil),                        // 54: io.clbs.openhes.models.acquisition.ActionGetRegister
-	(*ActionGetPeriodicalProfile)(nil),               // 55: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	(*ActionGetIrregularProfile)(nil),                // 56: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	(*ActionGetEvents)(nil),                          // 57: io.clbs.openhes.models.acquisition.ActionGetEvents
-	(*ActionGetDeviceInfo)(nil),                      // 58: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	(*ActionSyncClock)(nil),                          // 59: io.clbs.openhes.models.acquisition.ActionSyncClock
-	(*ActionSetRelayState)(nil),                      // 60: io.clbs.openhes.models.acquisition.ActionSetRelayState
-	(*ActionSetDisconnectorState)(nil),               // 61: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	(*ActionGetTou)(nil),                             // 62: io.clbs.openhes.models.acquisition.ActionGetTou
-	(*ActionSetTou)(nil),                             // 63: io.clbs.openhes.models.acquisition.ActionSetTou
-	(*ActionSetLimiter)(nil),                         // 64: io.clbs.openhes.models.acquisition.ActionSetLimiter
-	(*ActionResetBillingPeriod)(nil),                 // 65: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	(*ActionFwUpdate)(nil),                           // 66: io.clbs.openhes.models.acquisition.ActionFwUpdate
-	(*JobActionContraints)(nil),                      // 67: io.clbs.openhes.models.acquisition.JobActionContraints
-	(*JobStatus)(nil),                                // 68: io.clbs.openhes.models.acquisition.JobStatus
-	(*StartJobData)(nil),                             // 69: io.clbs.openhes.models.acquisition.StartJobData
-	(*CancelJobRequest)(nil),                         // 70: io.clbs.openhes.models.acquisition.CancelJobRequest
-	(*DeviceConfigurationRegisterSpec)(nil),          // 71: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	(*DeviceRegister)(nil),                           // 72: io.clbs.openhes.models.acquisition.DeviceRegister
-	(*DeviceConnectionInfo)(nil),                     // 73: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	(*ListOfModemInfo)(nil),                          // 74: io.clbs.openhes.models.acquisition.ListOfModemInfo
-	(*ListOfConnectionInfo)(nil),                     // 75: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	(*FieldValuesList)(nil),                          // 76: io.clbs.openhes.models.acquisition.FieldValuesList
-	(*AttributeSelector)(nil),                        // 77: io.clbs.openhes.models.acquisition.AttributeSelector
-	(*DeviceAttributeSelector)(nil),                  // 78: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
-	(*CommunicationUnitAttributeSelector)(nil),       // 79: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
-	(*ActionResult)(nil),                             // 80: io.clbs.openhes.models.acquisition.ActionResult
-	(*JobEventData)(nil),                             // 81: io.clbs.openhes.models.acquisition.JobEventData
-	(*DeviceSpec)(nil),                               // 82: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceStatus)(nil),                             // 83: io.clbs.openhes.models.acquisition.DeviceStatus
-	(*DeviceCommunicationUnit)(nil),                  // 84: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*DefaultDeviceCommunicationUnitAttributes)(nil), // 85: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
-	(*JobSpec)(nil),                                  // 86: io.clbs.openhes.models.acquisition.JobSpec
-	(*JobActionMapRecord)(nil),                       // 87: io.clbs.openhes.models.acquisition.JobActionMapRecord
-	(*JobDoneNotification)(nil),                      // 88: io.clbs.openhes.models.acquisition.JobDoneNotification
-	(*DriverInfo)(nil),                               // 89: io.clbs.openhes.models.acquisition.DriverInfo
-	(*CommunicationUnit)(nil),                        // 90: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*CommunicationUnitSpec)(nil),                    // 91: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*CommunicationBus)(nil),                         // 92: io.clbs.openhes.models.acquisition.CommunicationBus
-	(*CommunicationBusStatus)(nil),                   // 93: io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	(*TopologyNode)(nil),                             // 94: io.clbs.openhes.models.acquisition.TopologyNode
-	(*TopologyEdge)(nil),                             // 95: io.clbs.openhes.models.acquisition.TopologyEdge
-	(*NetworkMap)(nil),                               // 96: io.clbs.openhes.models.acquisition.NetworkMap
-	(*CommunicationUnitLogRecord)(nil),               // 97: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	(*ListOfCommunicationUnitLogRecord)(nil),         // 98: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
-	nil,                                              // 99: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
-	nil,                                              // 100: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
-	nil,                                              // 101: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
-	nil,                                              // 102: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
-	nil,                                              // 103: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
-	nil,                                              // 104: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
-	nil,                                              // 105: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
-	nil,                                              // 106: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	nil,                                              // 107: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	nil,                                              // 108: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
-	(*durationpb.Duration)(nil),                      // 109: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),                    // 110: google.protobuf.Timestamp
-	(*common.FieldDescriptor)(nil),                   // 111: io.clbs.openhes.models.common.FieldDescriptor
-	(*common.FormattedMessage)(nil),                  // 112: io.clbs.openhes.models.common.FormattedMessage
-	(*emptypb.Empty)(nil),                            // 113: google.protobuf.Empty
-	(*timeofuse.TimeOfUseTableSpec)(nil),             // 114: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	(common.FieldDataType)(0),                        // 115: io.clbs.openhes.models.common.FieldDataType
-	(*common.FieldValues)(nil),                       // 116: io.clbs.openhes.models.common.FieldValues
-	(common.FilterOperator)(0),                       // 117: io.clbs.openhes.models.common.FilterOperator
-	(*common.MetadataFields)(nil),                    // 118: io.clbs.openhes.models.common.MetadataFields
-	(*common.FieldValue)(nil),                        // 119: io.clbs.openhes.models.common.FieldValue
-	(*common.ListOfString)(nil),                      // 120: io.clbs.openhes.models.common.ListOfString
+	(*ActionProgressData)(nil),                       // 39: io.clbs.openhes.models.acquisition.ActionProgressData
+	(*ActionData)(nil),                               // 40: io.clbs.openhes.models.acquisition.ActionData
+	(*EventRecords)(nil),                             // 41: io.clbs.openhes.models.acquisition.EventRecords
+	(*EventRecord)(nil),                              // 42: io.clbs.openhes.models.acquisition.EventRecord
+	(*DeviceEventRecord)(nil),                        // 43: io.clbs.openhes.models.acquisition.DeviceEventRecord
+	(*DeviceEvents)(nil),                             // 44: io.clbs.openhes.models.acquisition.DeviceEvents
+	(*DeviceInfo)(nil),                               // 45: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*ProfileValues)(nil),                            // 46: io.clbs.openhes.models.acquisition.ProfileValues
+	(*IrregularProfileValues)(nil),                   // 47: io.clbs.openhes.models.acquisition.IrregularProfileValues
+	(*IrregularValue)(nil),                           // 48: io.clbs.openhes.models.acquisition.IrregularValue
+	(*ProfileBlock)(nil),                             // 49: io.clbs.openhes.models.acquisition.ProfileBlock
+	(*RegisterValues)(nil),                           // 50: io.clbs.openhes.models.acquisition.RegisterValues
+	(*RegisterValue)(nil),                            // 51: io.clbs.openhes.models.acquisition.RegisterValue
+	(*MeasuredValue)(nil),                            // 52: io.clbs.openhes.models.acquisition.MeasuredValue
+	(*JobActionAttributes)(nil),                      // 53: io.clbs.openhes.models.acquisition.JobActionAttributes
+	(*ConnectionTypeControlledSerial)(nil),           // 54: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	(*ActionGetRegister)(nil),                        // 55: io.clbs.openhes.models.acquisition.ActionGetRegister
+	(*ActionGetPeriodicalProfile)(nil),               // 56: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	(*ActionGetIrregularProfile)(nil),                // 57: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	(*ActionGetEvents)(nil),                          // 58: io.clbs.openhes.models.acquisition.ActionGetEvents
+	(*ActionGetDeviceInfo)(nil),                      // 59: io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	(*ActionSyncClock)(nil),                          // 60: io.clbs.openhes.models.acquisition.ActionSyncClock
+	(*ActionSetRelayState)(nil),                      // 61: io.clbs.openhes.models.acquisition.ActionSetRelayState
+	(*ActionSetDisconnectorState)(nil),               // 62: io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	(*ActionGetTou)(nil),                             // 63: io.clbs.openhes.models.acquisition.ActionGetTou
+	(*ActionSetTou)(nil),                             // 64: io.clbs.openhes.models.acquisition.ActionSetTou
+	(*ActionSetLimiter)(nil),                         // 65: io.clbs.openhes.models.acquisition.ActionSetLimiter
+	(*ActionResetBillingPeriod)(nil),                 // 66: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	(*ActionFwUpdate)(nil),                           // 67: io.clbs.openhes.models.acquisition.ActionFwUpdate
+	(*JobActionContraints)(nil),                      // 68: io.clbs.openhes.models.acquisition.JobActionContraints
+	(*JobStatus)(nil),                                // 69: io.clbs.openhes.models.acquisition.JobStatus
+	(*JobProgressStatus)(nil),                        // 70: io.clbs.openhes.models.acquisition.JobProgressStatus
+	(*StartJobData)(nil),                             // 71: io.clbs.openhes.models.acquisition.StartJobData
+	(*CancelJobRequest)(nil),                         // 72: io.clbs.openhes.models.acquisition.CancelJobRequest
+	(*DeviceConfigurationRegisterSpec)(nil),          // 73: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	(*DeviceRegister)(nil),                           // 74: io.clbs.openhes.models.acquisition.DeviceRegister
+	(*DeviceConnectionInfo)(nil),                     // 75: io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	(*ListOfModemInfo)(nil),                          // 76: io.clbs.openhes.models.acquisition.ListOfModemInfo
+	(*ListOfConnectionInfo)(nil),                     // 77: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(*FieldValuesList)(nil),                          // 78: io.clbs.openhes.models.acquisition.FieldValuesList
+	(*AttributeSelector)(nil),                        // 79: io.clbs.openhes.models.acquisition.AttributeSelector
+	(*DeviceAttributeSelector)(nil),                  // 80: io.clbs.openhes.models.acquisition.DeviceAttributeSelector
+	(*CommunicationUnitAttributeSelector)(nil),       // 81: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
+	(*ActionResult)(nil),                             // 82: io.clbs.openhes.models.acquisition.ActionResult
+	(*JobEventData)(nil),                             // 83: io.clbs.openhes.models.acquisition.JobEventData
+	(*DeviceSpec)(nil),                               // 84: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceStatus)(nil),                             // 85: io.clbs.openhes.models.acquisition.DeviceStatus
+	(*DeviceCommunicationUnit)(nil),                  // 86: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*DefaultDeviceCommunicationUnitAttributes)(nil), // 87: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
+	(*JobSpec)(nil),                                  // 88: io.clbs.openhes.models.acquisition.JobSpec
+	(*JobActionMapRecord)(nil),                       // 89: io.clbs.openhes.models.acquisition.JobActionMapRecord
+	(*JobDoneNotification)(nil),                      // 90: io.clbs.openhes.models.acquisition.JobDoneNotification
+	(*DriverInfo)(nil),                               // 91: io.clbs.openhes.models.acquisition.DriverInfo
+	(*CommunicationUnit)(nil),                        // 92: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*CommunicationUnitSpec)(nil),                    // 93: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*CommunicationBus)(nil),                         // 94: io.clbs.openhes.models.acquisition.CommunicationBus
+	(*CommunicationBusStatus)(nil),                   // 95: io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	(*TopologyNode)(nil),                             // 96: io.clbs.openhes.models.acquisition.TopologyNode
+	(*TopologyEdge)(nil),                             // 97: io.clbs.openhes.models.acquisition.TopologyEdge
+	(*NetworkMap)(nil),                               // 98: io.clbs.openhes.models.acquisition.NetworkMap
+	(*CommunicationUnitLogRecord)(nil),               // 99: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*ListOfCommunicationUnitLogRecord)(nil),         // 100: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
+	nil,                                              // 101: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
+	nil,                                              // 102: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
+	nil,                                              // 103: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
+	nil,                                              // 104: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
+	nil,                                              // 105: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
+	nil,                                              // 106: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
+	nil,                                              // 107: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
+	nil,                                              // 108: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
+	nil,                                              // 109: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	nil,                                              // 110: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
+	(*durationpb.Duration)(nil),                      // 111: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),                    // 112: google.protobuf.Timestamp
+	(*common.FieldDescriptor)(nil),                   // 113: io.clbs.openhes.models.common.FieldDescriptor
+	(*common.FormattedMessage)(nil),                  // 114: io.clbs.openhes.models.common.FormattedMessage
+	(*emptypb.Empty)(nil),                            // 115: google.protobuf.Empty
+	(*timeofuse.TimeOfUseTableSpec)(nil),             // 116: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	(common.FieldDataType)(0),                        // 117: io.clbs.openhes.models.common.FieldDataType
+	(*common.FieldValues)(nil),                       // 118: io.clbs.openhes.models.common.FieldValues
+	(common.FilterOperator)(0),                       // 119: io.clbs.openhes.models.common.FilterOperator
+	(*common.MetadataFields)(nil),                    // 120: io.clbs.openhes.models.common.MetadataFields
+	(*common.FieldValue)(nil),                        // 121: io.clbs.openhes.models.common.FieldValue
+	(*common.ListOfString)(nil),                      // 122: io.clbs.openhes.models.common.ListOfString
 }
 var file_acquisition_shared_proto_depIdxs = []int32{
-	109, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
+	111, // 0: io.clbs.openhes.models.acquisition.JobSettings.max_duration:type_name -> google.protobuf.Duration
 	0,   // 1: io.clbs.openhes.models.acquisition.JobSettings.priority:type_name -> io.clbs.openhes.models.acquisition.JobPriority
-	109, // 2: io.clbs.openhes.models.acquisition.JobSettings.retry_delay:type_name -> google.protobuf.Duration
-	109, // 3: io.clbs.openhes.models.acquisition.JobSettings.defer_start:type_name -> google.protobuf.Duration
-	110, // 4: io.clbs.openhes.models.acquisition.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
+	111, // 2: io.clbs.openhes.models.acquisition.JobSettings.retry_delay:type_name -> google.protobuf.Duration
+	111, // 3: io.clbs.openhes.models.acquisition.JobSettings.defer_start:type_name -> google.protobuf.Duration
+	112, // 4: io.clbs.openhes.models.acquisition.JobSettings.expires_at:type_name -> google.protobuf.Timestamp
 	1,   // 5: io.clbs.openhes.models.acquisition.JobSettings.read_path_policy:type_name -> io.clbs.openhes.models.acquisition.ReadPathPolicy
-	99,  // 6: io.clbs.openhes.models.acquisition.JobAction.attributes:type_name -> io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
-	54,  // 7: io.clbs.openhes.models.acquisition.JobAction.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
-	55,  // 8: io.clbs.openhes.models.acquisition.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	56,  // 9: io.clbs.openhes.models.acquisition.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	57,  // 10: io.clbs.openhes.models.acquisition.JobAction.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
-	58,  // 11: io.clbs.openhes.models.acquisition.JobAction.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	59,  // 12: io.clbs.openhes.models.acquisition.JobAction.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
-	60,  // 13: io.clbs.openhes.models.acquisition.JobAction.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
-	61,  // 14: io.clbs.openhes.models.acquisition.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	62,  // 15: io.clbs.openhes.models.acquisition.JobAction.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
-	63,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
-	64,  // 17: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
-	65,  // 18: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	66,  // 19: io.clbs.openhes.models.acquisition.JobAction.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
-	54,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
-	55,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
-	56,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
-	57,  // 23: io.clbs.openhes.models.acquisition.JobActionSet.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
-	58,  // 24: io.clbs.openhes.models.acquisition.JobActionSet.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
-	59,  // 25: io.clbs.openhes.models.acquisition.JobActionSet.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
-	60,  // 26: io.clbs.openhes.models.acquisition.JobActionSet.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
-	61,  // 27: io.clbs.openhes.models.acquisition.JobActionSet.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
-	62,  // 28: io.clbs.openhes.models.acquisition.JobActionSet.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
-	63,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
-	64,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
-	65,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	66,  // 32: io.clbs.openhes.models.acquisition.JobActionSet.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
+	101, // 6: io.clbs.openhes.models.acquisition.JobAction.attributes:type_name -> io.clbs.openhes.models.acquisition.JobAction.AttributesEntry
+	55,  // 7: io.clbs.openhes.models.acquisition.JobAction.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
+	56,  // 8: io.clbs.openhes.models.acquisition.JobAction.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	57,  // 9: io.clbs.openhes.models.acquisition.JobAction.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	58,  // 10: io.clbs.openhes.models.acquisition.JobAction.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
+	59,  // 11: io.clbs.openhes.models.acquisition.JobAction.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	60,  // 12: io.clbs.openhes.models.acquisition.JobAction.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
+	61,  // 13: io.clbs.openhes.models.acquisition.JobAction.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
+	62,  // 14: io.clbs.openhes.models.acquisition.JobAction.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	63,  // 15: io.clbs.openhes.models.acquisition.JobAction.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
+	64,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
+	65,  // 17: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
+	66,  // 18: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	67,  // 19: io.clbs.openhes.models.acquisition.JobAction.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
+	55,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
+	56,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
+	57,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
+	58,  // 23: io.clbs.openhes.models.acquisition.JobActionSet.get_events:type_name -> io.clbs.openhes.models.acquisition.ActionGetEvents
+	59,  // 24: io.clbs.openhes.models.acquisition.JobActionSet.get_device_info:type_name -> io.clbs.openhes.models.acquisition.ActionGetDeviceInfo
+	60,  // 25: io.clbs.openhes.models.acquisition.JobActionSet.sync_clock:type_name -> io.clbs.openhes.models.acquisition.ActionSyncClock
+	61,  // 26: io.clbs.openhes.models.acquisition.JobActionSet.set_relay_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetRelayState
+	62,  // 27: io.clbs.openhes.models.acquisition.JobActionSet.set_disconnector_state:type_name -> io.clbs.openhes.models.acquisition.ActionSetDisconnectorState
+	63,  // 28: io.clbs.openhes.models.acquisition.JobActionSet.get_tou:type_name -> io.clbs.openhes.models.acquisition.ActionGetTou
+	64,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
+	65,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
+	66,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
+	67,  // 32: io.clbs.openhes.models.acquisition.JobActionSet.fw_update:type_name -> io.clbs.openhes.models.acquisition.ActionFwUpdate
 	23,  // 33: io.clbs.openhes.models.acquisition.ListOfJobDevice.list:type_name -> io.clbs.openhes.models.acquisition.JobDevice
 	22,  // 34: io.clbs.openhes.models.acquisition.ListOfJobDeviceId.list:type_name -> io.clbs.openhes.models.acquisition.JobDeviceId
-	100, // 35: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
+	102, // 35: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
 	26,  // 36: io.clbs.openhes.models.acquisition.JobDevice.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
 	8,   // 37: io.clbs.openhes.models.acquisition.JobDevice.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	109, // 38: io.clbs.openhes.models.acquisition.ModemInfo.connect_timeout:type_name -> google.protobuf.Duration
-	109, // 39: io.clbs.openhes.models.acquisition.ModemInfo.command_timeout:type_name -> google.protobuf.Duration
+	111, // 38: io.clbs.openhes.models.acquisition.ModemInfo.connect_timeout:type_name -> google.protobuf.Duration
+	111, // 39: io.clbs.openhes.models.acquisition.ModemInfo.command_timeout:type_name -> google.protobuf.Duration
 	27,  // 40: io.clbs.openhes.models.acquisition.ModemInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
-	53,  // 41: io.clbs.openhes.models.acquisition.ModemInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	54,  // 41: io.clbs.openhes.models.acquisition.ModemInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 	2,   // 42: io.clbs.openhes.models.acquisition.SerialConfig.parity:type_name -> io.clbs.openhes.models.acquisition.SerialConfigParity
 	3,   // 43: io.clbs.openhes.models.acquisition.SerialConfig.data_bits:type_name -> io.clbs.openhes.models.acquisition.SerialConfigDataBits
 	4,   // 44: io.clbs.openhes.models.acquisition.SerialConfig.stop_bits:type_name -> io.clbs.openhes.models.acquisition.SerialConfigStopBits
 	5,   // 45: io.clbs.openhes.models.acquisition.SerialConfig.flow_control:type_name -> io.clbs.openhes.models.acquisition.SerialConfigFLowControler
 	27,  // 46: io.clbs.openhes.models.acquisition.ConnectionInfo.tcpip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp
 	28,  // 47: io.clbs.openhes.models.acquisition.ConnectionInfo.modem_pool:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeModemPool
-	53,  // 48: io.clbs.openhes.models.acquisition.ConnectionInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
+	54,  // 48: io.clbs.openhes.models.acquisition.ConnectionInfo.serial_over_ip:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial
 	7,   // 49: io.clbs.openhes.models.acquisition.ConnectionInfo.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	101, // 50: io.clbs.openhes.models.acquisition.ConnectionInfo.attributes:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
-	109, // 51: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp.timeout:type_name -> google.protobuf.Duration
+	103, // 50: io.clbs.openhes.models.acquisition.ConnectionInfo.attributes:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry
+	111, // 51: io.clbs.openhes.models.acquisition.ConnectionTypeDirectTcpIp.timeout:type_name -> google.protobuf.Duration
 	24,  // 52: io.clbs.openhes.models.acquisition.ConnectionTypeModemPool.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	109, // 53: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect.timeout:type_name -> google.protobuf.Duration
-	109, // 54: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.timeout:type_name -> google.protobuf.Duration
+	111, // 53: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect.timeout:type_name -> google.protobuf.Duration
+	111, // 54: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.timeout:type_name -> google.protobuf.Duration
 	25,  // 55: io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa.serial_config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
-	109, // 56: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.timeout:type_name -> google.protobuf.Duration
+	111, // 56: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.timeout:type_name -> google.protobuf.Duration
 	25,  // 57: io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217.serial_config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
 	8,   // 58: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	111, // 59: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	113, // 59: io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	7,   // 60: io.clbs.openhes.models.acquisition.DataLinkTemplate.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
 	8,   // 61: io.clbs.openhes.models.acquisition.DataLinkTemplate.app_protocol_refs:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	111, // 62: io.clbs.openhes.models.acquisition.DataLinkTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	113, // 62: io.clbs.openhes.models.acquisition.DataLinkTemplate.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	6,   // 63: io.clbs.openhes.models.acquisition.CommunicationTemplate.type:type_name -> io.clbs.openhes.models.acquisition.CommunicationType
 	33,  // 64: io.clbs.openhes.models.acquisition.CommunicationTemplate.datalinks:type_name -> io.clbs.openhes.models.acquisition.DataLinkTemplate
 	34,  // 65: io.clbs.openhes.models.acquisition.DriverTemplates.communication_templates:type_name -> io.clbs.openhes.models.acquisition.CommunicationTemplate
 	32,  // 66: io.clbs.openhes.models.acquisition.DriverTemplates.app_protocols:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocolTemplate
-	52,  // 67: io.clbs.openhes.models.acquisition.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionAttributes
+	53,  // 67: io.clbs.openhes.models.acquisition.DriverTemplates.action_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionAttributes
 	35,  // 68: io.clbs.openhes.models.acquisition.DriverTemplates.access_templates:type_name -> io.clbs.openhes.models.acquisition.AccessLevelTemplate
-	67,  // 69: io.clbs.openhes.models.acquisition.DriverTemplates.action_constraints:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints
-	111, // 70: io.clbs.openhes.models.acquisition.DriverTemplates.uknown_device_descriptors:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	68,  // 69: io.clbs.openhes.models.acquisition.DriverTemplates.action_constraints:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints
+	113, // 70: io.clbs.openhes.models.acquisition.DriverTemplates.uknown_device_descriptors:type_name -> io.clbs.openhes.models.common.FieldDescriptor
 	10,  // 71: io.clbs.openhes.models.acquisition.ActionProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	39,  // 72: io.clbs.openhes.models.acquisition.ActionProgressUpdate.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	112, // 73: io.clbs.openhes.models.acquisition.ActionProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	39,  // 72: io.clbs.openhes.models.acquisition.ActionProgressUpdate.data:type_name -> io.clbs.openhes.models.acquisition.ActionProgressData
+	114, // 73: io.clbs.openhes.models.acquisition.ActionProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
 	11,  // 74: io.clbs.openhes.models.acquisition.JobProgressUpdate.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
-	109, // 75: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
-	112, // 76: io.clbs.openhes.models.acquisition.JobProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	113, // 77: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
-	49,  // 78: io.clbs.openhes.models.acquisition.ActionData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
-	46,  // 79: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
-	44,  // 80: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	40,  // 81: io.clbs.openhes.models.acquisition.ActionData.events:type_name -> io.clbs.openhes.models.acquisition.EventRecords
-	114, // 82: io.clbs.openhes.models.acquisition.ActionData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	41,  // 83: io.clbs.openhes.models.acquisition.EventRecords.values:type_name -> io.clbs.openhes.models.acquisition.EventRecord
-	110, // 84: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
-	110, // 85: io.clbs.openhes.models.acquisition.DeviceEventRecord.timestamp:type_name -> google.protobuf.Timestamp
-	42,  // 86: io.clbs.openhes.models.acquisition.DeviceEvents.events:type_name -> io.clbs.openhes.models.acquisition.DeviceEventRecord
-	110, // 87: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
-	109, // 88: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
-	109, // 89: io.clbs.openhes.models.acquisition.ProfileValues.period:type_name -> google.protobuf.Duration
-	48,  // 90: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
-	47,  // 91: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
-	110, // 92: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
-	51,  // 93: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	110, // 94: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
-	51,  // 95: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	50,  // 96: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
-	110, // 97: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
-	51,  // 98: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	110, // 99: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
-	110, // 100: io.clbs.openhes.models.acquisition.MeasuredValue.peak_ts:type_name -> google.protobuf.Timestamp
-	9,   // 101: io.clbs.openhes.models.acquisition.JobActionAttributes.type:type_name -> io.clbs.openhes.models.acquisition.ActionType
-	111, // 102: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	29,  // 103: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.direct:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
-	30,  // 104: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.moxa:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
-	31,  // 105: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.rfc2217:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
-	25,  // 106: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
-	115, // 107: io.clbs.openhes.models.acquisition.ActionGetRegister.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 108: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_start:type_name -> google.protobuf.Timestamp
-	110, // 109: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_end:type_name -> google.protobuf.Timestamp
-	115, // 110: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 111: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_start:type_name -> google.protobuf.Timestamp
-	110, // 112: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_end:type_name -> google.protobuf.Timestamp
-	115, // 113: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 114: io.clbs.openhes.models.acquisition.ActionGetEvents.range_start:type_name -> google.protobuf.Timestamp
-	110, // 115: io.clbs.openhes.models.acquisition.ActionGetEvents.range_end:type_name -> google.protobuf.Timestamp
-	114, // 116: io.clbs.openhes.models.acquisition.ActionSetTou.table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	102, // 117: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_name:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
-	103, // 118: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
-	14,  // 119: io.clbs.openhes.models.acquisition.JobStatus.status:type_name -> io.clbs.openhes.models.acquisition.JobStatusCode
-	11,  // 120: io.clbs.openhes.models.acquisition.JobStatus.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
-	80,  // 121: io.clbs.openhes.models.acquisition.JobStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionResult
-	110, // 122: io.clbs.openhes.models.acquisition.JobStatus.started_at:type_name -> google.protobuf.Timestamp
-	110, // 123: io.clbs.openhes.models.acquisition.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
-	44,  // 124: io.clbs.openhes.models.acquisition.JobStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	112, // 125: io.clbs.openhes.models.acquisition.JobStatus.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	104, // 126: io.clbs.openhes.models.acquisition.StartJobData.device_attributes:type_name -> io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
-	17,  // 127: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	18,  // 128: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	8,   // 129: io.clbs.openhes.models.acquisition.StartJobData.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	13,  // 130: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
-	105, // 131: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
-	115, // 132: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	71,  // 133: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	26,  // 134: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.communication_unit:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	8,   // 135: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	106, // 136: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
-	72,  // 137: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
-	24,  // 138: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	73,  // 139: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	116, // 140: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	117, // 141: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
-	115, // 142: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	110, // 143: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
-	77,  // 144: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	7,   // 145: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	77,  // 146: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	10,  // 147: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	39,  // 148: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	112, // 149: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	84,  // 150: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	85,  // 151: io.clbs.openhes.models.acquisition.DeviceSpec.default_link_attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
-	44,  // 152: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	8,   // 153: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	107, // 154: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	8,   // 155: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	108, // 156: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
-	23,  // 157: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	17,  // 158: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	18,  // 159: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	87,  // 160: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
-	86,  // 161: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	68,  // 162: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	91,  // 163: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	118, // 164: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	26,  // 165: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	93,  // 166: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	118, // 167: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	15,  // 168: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
-	116, // 169: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	116, // 170: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	94,  // 171: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
-	95,  // 172: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
-	110, // 173: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
-	16,  // 174: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
-	97,  // 175: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	119, // 176: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 177: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 178: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	120, // 179: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
-	119, // 180: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 181: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 182: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 183: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	119, // 184: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	185, // [185:185] is the sub-list for method output_type
-	185, // [185:185] is the sub-list for method input_type
-	185, // [185:185] is the sub-list for extension type_name
-	185, // [185:185] is the sub-list for extension extendee
-	0,   // [0:185] is the sub-list for field type_name
+	111, // 75: io.clbs.openhes.models.acquisition.JobProgressUpdate.duration:type_name -> google.protobuf.Duration
+	114, // 76: io.clbs.openhes.models.acquisition.JobProgressUpdate.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	115, // 77: io.clbs.openhes.models.acquisition.ActionProgressData.nodata:type_name -> google.protobuf.Empty
+	50,  // 78: io.clbs.openhes.models.acquisition.ActionProgressData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
+	47,  // 79: io.clbs.openhes.models.acquisition.ActionProgressData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
+	45,  // 80: io.clbs.openhes.models.acquisition.ActionProgressData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	41,  // 81: io.clbs.openhes.models.acquisition.ActionProgressData.events:type_name -> io.clbs.openhes.models.acquisition.EventRecords
+	116, // 82: io.clbs.openhes.models.acquisition.ActionProgressData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	115, // 83: io.clbs.openhes.models.acquisition.ActionData.nodata:type_name -> google.protobuf.Empty
+	50,  // 84: io.clbs.openhes.models.acquisition.ActionData.registers:type_name -> io.clbs.openhes.models.acquisition.RegisterValues
+	46,  // 85: io.clbs.openhes.models.acquisition.ActionData.profile:type_name -> io.clbs.openhes.models.acquisition.ProfileValues
+	47,  // 86: io.clbs.openhes.models.acquisition.ActionData.irregular_profile:type_name -> io.clbs.openhes.models.acquisition.IrregularProfileValues
+	45,  // 87: io.clbs.openhes.models.acquisition.ActionData.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	41,  // 88: io.clbs.openhes.models.acquisition.ActionData.events:type_name -> io.clbs.openhes.models.acquisition.EventRecords
+	116, // 89: io.clbs.openhes.models.acquisition.ActionData.tou_table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	42,  // 90: io.clbs.openhes.models.acquisition.EventRecords.values:type_name -> io.clbs.openhes.models.acquisition.EventRecord
+	112, // 91: io.clbs.openhes.models.acquisition.EventRecord.timestamp:type_name -> google.protobuf.Timestamp
+	112, // 92: io.clbs.openhes.models.acquisition.DeviceEventRecord.timestamp:type_name -> google.protobuf.Timestamp
+	43,  // 93: io.clbs.openhes.models.acquisition.DeviceEvents.events:type_name -> io.clbs.openhes.models.acquisition.DeviceEventRecord
+	112, // 94: io.clbs.openhes.models.acquisition.DeviceInfo.info_timestamp:type_name -> google.protobuf.Timestamp
+	111, // 95: io.clbs.openhes.models.acquisition.DeviceInfo.clock_delta:type_name -> google.protobuf.Duration
+	111, // 96: io.clbs.openhes.models.acquisition.ProfileValues.period:type_name -> google.protobuf.Duration
+	49,  // 97: io.clbs.openhes.models.acquisition.ProfileValues.blocks:type_name -> io.clbs.openhes.models.acquisition.ProfileBlock
+	48,  // 98: io.clbs.openhes.models.acquisition.IrregularProfileValues.values:type_name -> io.clbs.openhes.models.acquisition.IrregularValue
+	112, // 99: io.clbs.openhes.models.acquisition.IrregularValue.timestamp:type_name -> google.protobuf.Timestamp
+	52,  // 100: io.clbs.openhes.models.acquisition.IrregularValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	112, // 101: io.clbs.openhes.models.acquisition.ProfileBlock.start_timestamp:type_name -> google.protobuf.Timestamp
+	52,  // 102: io.clbs.openhes.models.acquisition.ProfileBlock.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	51,  // 103: io.clbs.openhes.models.acquisition.RegisterValues.values:type_name -> io.clbs.openhes.models.acquisition.RegisterValue
+	112, // 104: io.clbs.openhes.models.acquisition.RegisterValue.timestamp:type_name -> google.protobuf.Timestamp
+	52,  // 105: io.clbs.openhes.models.acquisition.RegisterValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	112, // 106: io.clbs.openhes.models.acquisition.MeasuredValue.timestamp_value:type_name -> google.protobuf.Timestamp
+	112, // 107: io.clbs.openhes.models.acquisition.MeasuredValue.peak_ts:type_name -> google.protobuf.Timestamp
+	9,   // 108: io.clbs.openhes.models.acquisition.JobActionAttributes.type:type_name -> io.clbs.openhes.models.acquisition.ActionType
+	113, // 109: io.clbs.openhes.models.acquisition.JobActionAttributes.attributes:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	29,  // 110: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.direct:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect
+	30,  // 111: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.moxa:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa
+	31,  // 112: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.rfc2217:type_name -> io.clbs.openhes.models.acquisition.ConnectionTypeSerialRfc2217
+	25,  // 113: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial.config:type_name -> io.clbs.openhes.models.acquisition.SerialConfig
+	117, // 114: io.clbs.openhes.models.acquisition.ActionGetRegister.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	112, // 115: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_start:type_name -> google.protobuf.Timestamp
+	112, // 116: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.range_end:type_name -> google.protobuf.Timestamp
+	117, // 117: io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	112, // 118: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_start:type_name -> google.protobuf.Timestamp
+	112, // 119: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.range_end:type_name -> google.protobuf.Timestamp
+	117, // 120: io.clbs.openhes.models.acquisition.ActionGetIrregularProfile.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	112, // 121: io.clbs.openhes.models.acquisition.ActionGetEvents.range_start:type_name -> google.protobuf.Timestamp
+	112, // 122: io.clbs.openhes.models.acquisition.ActionGetEvents.range_end:type_name -> google.protobuf.Timestamp
+	116, // 123: io.clbs.openhes.models.acquisition.ActionSetTou.table:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	104, // 124: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_name:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntry
+	105, // 125: io.clbs.openhes.models.acquisition.JobActionContraints.get_register_type_attributes:type_name -> io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry
+	14,  // 126: io.clbs.openhes.models.acquisition.JobStatus.status:type_name -> io.clbs.openhes.models.acquisition.JobStatusCode
+	11,  // 127: io.clbs.openhes.models.acquisition.JobStatus.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
+	82,  // 128: io.clbs.openhes.models.acquisition.JobStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionResult
+	112, // 129: io.clbs.openhes.models.acquisition.JobStatus.started_at:type_name -> google.protobuf.Timestamp
+	112, // 130: io.clbs.openhes.models.acquisition.JobStatus.finished_at:type_name -> google.protobuf.Timestamp
+	45,  // 131: io.clbs.openhes.models.acquisition.JobStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	114, // 132: io.clbs.openhes.models.acquisition.JobStatus.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	14,  // 133: io.clbs.openhes.models.acquisition.JobProgressStatus.status:type_name -> io.clbs.openhes.models.acquisition.JobStatusCode
+	11,  // 134: io.clbs.openhes.models.acquisition.JobProgressStatus.code:type_name -> io.clbs.openhes.models.acquisition.JobErrorCode
+	39,  // 135: io.clbs.openhes.models.acquisition.JobProgressStatus.results:type_name -> io.clbs.openhes.models.acquisition.ActionProgressData
+	112, // 136: io.clbs.openhes.models.acquisition.JobProgressStatus.started_at:type_name -> google.protobuf.Timestamp
+	112, // 137: io.clbs.openhes.models.acquisition.JobProgressStatus.finished_at:type_name -> google.protobuf.Timestamp
+	45,  // 138: io.clbs.openhes.models.acquisition.JobProgressStatus.device_info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	114, // 139: io.clbs.openhes.models.acquisition.JobProgressStatus.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	106, // 140: io.clbs.openhes.models.acquisition.StartJobData.device_attributes:type_name -> io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry
+	17,  // 141: io.clbs.openhes.models.acquisition.StartJobData.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	18,  // 142: io.clbs.openhes.models.acquisition.StartJobData.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	8,   // 143: io.clbs.openhes.models.acquisition.StartJobData.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	13,  // 144: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.register_type:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterKind
+	107, // 145: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry
+	117, // 146: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	73,  // 147: io.clbs.openhes.models.acquisition.DeviceRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	26,  // 148: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.communication_unit:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	8,   // 149: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	108, // 150: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
+	74,  // 151: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
+	24,  // 152: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	75,  // 153: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	118, // 154: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	119, // 155: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
+	117, // 156: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	112, // 157: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
+	79,  // 158: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	7,   // 159: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
+	79,  // 160: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	10,  // 161: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
+	40,  // 162: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
+	114, // 163: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	86,  // 164: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	87,  // 165: io.clbs.openhes.models.acquisition.DeviceSpec.default_link_attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
+	45,  // 166: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	8,   // 167: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	109, // 168: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	8,   // 169: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	110, // 170: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
+	23,  // 171: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	17,  // 172: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	18,  // 173: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	89,  // 174: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
+	88,  // 175: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	70,  // 176: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobProgressStatus
+	93,  // 177: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	120, // 178: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	26,  // 179: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	95,  // 180: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	120, // 181: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	15,  // 182: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
+	118, // 183: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	118, // 184: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	96,  // 185: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
+	97,  // 186: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
+	112, // 187: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
+	16,  // 188: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
+	99,  // 189: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	121, // 190: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	121, // 191: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	121, // 192: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 193: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
+	121, // 194: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	121, // 195: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	121, // 196: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	121, // 197: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	121, // 198: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	199, // [199:199] is the sub-list for method output_type
+	199, // [199:199] is the sub-list for method input_type
+	199, // [199:199] is the sub-list for extension type_name
+	199, // [199:199] is the sub-list for extension extendee
+	0,   // [0:199] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_shared_proto_init() }
@@ -14270,6 +14987,15 @@ func file_acquisition_shared_proto_init() {
 		(*connectionInfo_SerialOverIp)(nil),
 	}
 	file_acquisition_shared_proto_msgTypes[22].OneofWrappers = []any{
+		(*actionProgressData_Nodata)(nil),
+		(*actionProgressData_Registers)(nil),
+		(*actionProgressData_Profile)(nil),
+		(*actionProgressData_IrregularProfile)(nil),
+		(*actionProgressData_DeviceInfo)(nil),
+		(*actionProgressData_Events)(nil),
+		(*actionProgressData_TouTable)(nil),
+	}
+	file_acquisition_shared_proto_msgTypes[23].OneofWrappers = []any{
 		(*actionData_Nodata)(nil),
 		(*actionData_Registers)(nil),
 		(*actionData_Profile)(nil),
@@ -14278,7 +15004,7 @@ func file_acquisition_shared_proto_init() {
 		(*actionData_Events)(nil),
 		(*actionData_TouTable)(nil),
 	}
-	file_acquisition_shared_proto_msgTypes[34].OneofWrappers = []any{
+	file_acquisition_shared_proto_msgTypes[35].OneofWrappers = []any{
 		(*measuredValue_DoubleValue)(nil),
 		(*measuredValue_IntegerValue)(nil),
 		(*measuredValue_StringValue)(nil),
@@ -14286,7 +15012,7 @@ func file_acquisition_shared_proto_init() {
 		(*measuredValue_TimestampTzValue)(nil),
 		(*measuredValue_BoolValue)(nil),
 	}
-	file_acquisition_shared_proto_msgTypes[36].OneofWrappers = []any{
+	file_acquisition_shared_proto_msgTypes[37].OneofWrappers = []any{
 		(*connectionTypeControlledSerial_Direct)(nil),
 		(*connectionTypeControlledSerial_Moxa)(nil),
 		(*connectionTypeControlledSerial_Rfc2217)(nil),
@@ -14297,7 +15023,7 @@ func file_acquisition_shared_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_shared_proto_rawDesc), len(file_acquisition_shared_proto_rawDesc)),
 			NumEnums:      17,
-			NumMessages:   92,
+			NumMessages:   94,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
