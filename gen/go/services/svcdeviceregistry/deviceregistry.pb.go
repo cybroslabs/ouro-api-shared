@@ -29,7 +29,7 @@ var File_services_svcdeviceregistry_deviceregistry_proto protoreflect.FileDescri
 
 const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\n" +
-	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\xfdG\n" +
+	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\xc1O\n" +
 	"\x15DeviceRegistryService\x12i\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x1c.google.protobuf.StringValue\x12p\n" +
 	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12Y\n" +
@@ -101,7 +101,15 @@ const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\x13ListTimeOfUseTables\x12+.io.clbs.openhes.models.common.ListSelector\x1a8.io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable\x12e\n" +
 	"\x11GetTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a2.io.clbs.openhes.models.acquisition.TimeOfUseTable\x12b\n" +
 	"\x14UpdateTimeOfUseTable\x122.io.clbs.openhes.models.acquisition.TimeOfUseTable\x1a\x16.google.protobuf.Empty\x12L\n" +
-	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12r\n" +
+	"\x14DeleteTimeOfUseTable\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12s\n" +
+	"\x13CreateFirmwareImage\x12>.io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest\x1a\x1c.google.protobuf.StringValue\x12z\n" +
+	"\x12ListFirmwareImages\x12+.io.clbs.openhes.models.common.ListSelector\x1a7.io.clbs.openhes.models.acquisition.ListOfFirmwareImage\x12c\n" +
+	"\x10GetFirmwareImage\x12\x1c.google.protobuf.StringValue\x1a1.io.clbs.openhes.models.acquisition.FirmwareImage\x12`\n" +
+	"\x13UpdateFirmwareImage\x121.io.clbs.openhes.models.acquisition.FirmwareImage\x1a\x16.google.protobuf.Empty\x12K\n" +
+	"\x13DeleteFirmwareImage\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12\x91\x01\n" +
+	"\x15GetFirmwareImageBlock\x12@.io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest\x1a6.io.clbs.openhes.models.acquisition.FirmwareImageBlock\x12\x7f\n" +
+	"\x1dStreamUploadFirmwareImageFile\x12D.io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest\x1a\x16.google.protobuf.Empty(\x01\x12\xa7\x01\n" +
+	"\x1fStreamDownloadFirmwareImageFile\x12J.io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest\x1a6.io.clbs.openhes.models.acquisition.FirmwareImageBlock0\x01\x12r\n" +
 	"\x15CreateFieldDescriptor\x12;.io.clbs.openhes.models.common.CreateFieldDescriptorRequest\x1a\x1c.google.protobuf.StringValue\x12_\n" +
 	"\x15UpdateFieldDescriptor\x12..io.clbs.openhes.models.common.FieldDescriptor\x1a\x16.google.protobuf.Empty\x12g\n" +
 	"\x15DeleteFieldDescriptor\x126.io.clbs.openhes.models.common.FieldDescriptorSelector\x1a\x16.google.protobuf.Empty\x12b\n" +
@@ -148,38 +156,45 @@ var file_services_svcdeviceregistry_deviceregistry_proto_goTypes = []any{
 	(*acquisition.SetModemRequest)(nil),                                                         // 31: io.clbs.openhes.models.acquisition.SetModemRequest
 	(*acquisition.CreateTimeOfUseTableRequest)(nil),                                             // 32: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
 	(*acquisition.TimeOfUseTable)(nil),                                                          // 33: io.clbs.openhes.models.acquisition.TimeOfUseTable
-	(*common.CreateFieldDescriptorRequest)(nil),                                                 // 34: io.clbs.openhes.models.common.CreateFieldDescriptorRequest
-	(*common.FieldDescriptor)(nil),                                                              // 35: io.clbs.openhes.models.common.FieldDescriptor
-	(*common.FieldDescriptorSelector)(nil),                                                      // 36: io.clbs.openhes.models.common.FieldDescriptorSelector
-	(*common.SetManagedFieldsRequest)(nil),                                                      // 37: io.clbs.openhes.models.common.SetManagedFieldsRequest
-	(*common.ListOfDeviceKey)(nil),                                                              // 38: io.clbs.openhes.models.common.ListOfDeviceKey
-	(*acquisition.AddCommunicationUnitLogsRequest)(nil),                                         // 39: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
-	(*acquisition.SetUnknownDevicesRequest)(nil),                                                // 40: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	(*acquisition.SetNeighboursRequest)(nil),                                                    // 41: io.clbs.openhes.models.acquisition.SetNeighboursRequest
-	(*acquisition.SetCurrentDeviceCommunicationUnitInternalRequest)(nil),                        // 42: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
-	(*common.UpdateObjectFieldsRequest)(nil),                                                    // 43: io.clbs.openhes.models.common.UpdateObjectFieldsRequest
-	(*acquisition.ListOfVariable)(nil),                                                          // 44: io.clbs.openhes.models.acquisition.ListOfVariable
-	(*acquisition.ListOfDeviceConfigurationRegister)(nil),                                       // 45: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
-	(*acquisition.DeviceConfigurationRegisterMap)(nil),                                          // 46: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap
-	(*acquisition.ListOfDeviceConfigurationTemplate)(nil),                                       // 47: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
-	(*acquisition.ListOfDriver)(nil),                                                            // 48: io.clbs.openhes.models.acquisition.ListOfDriver
-	(*acquisition.Driver)(nil),                                                                  // 49: io.clbs.openhes.models.acquisition.Driver
-	(*acquisition.ListOfCommunicationUnit)(nil),                                                 // 50: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
-	(*acquisition.NetworkMap)(nil),                                                              // 51: io.clbs.openhes.models.acquisition.NetworkMap
-	(*acquisition.ListOfCommunicationUnitLogRecord)(nil),                                        // 52: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
-	(*acquisition.ListOfCommunicationBus)(nil),                                                  // 53: io.clbs.openhes.models.acquisition.ListOfCommunicationBus
-	(*acquisition.ListOfDevice)(nil),                                                            // 54: io.clbs.openhes.models.acquisition.ListOfDevice
-	(*acquisition.StreamDevicesDriverTypesResponse)(nil),                                        // 55: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse
-	(*acquisition.ListOfDeviceCommunicationUnit)(nil),                                           // 56: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
-	(*acquisition.ListOfDeviceCommunicationUnitChange)(nil),                                     // 57: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
-	(*acquisition.MapDeviceConnectionInfo)(nil),                                                 // 58: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
-	(*acquisition.DeviceInfo)(nil),                                                              // 59: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*acquisition.ListOfDeviceGroup)(nil),                                                       // 60: io.clbs.openhes.models.acquisition.ListOfDeviceGroup
-	(*acquisition.StreamDeviceGroup)(nil),                                                       // 61: io.clbs.openhes.models.acquisition.StreamDeviceGroup
-	(*acquisition.ListOfModemPool)(nil),                                                         // 62: io.clbs.openhes.models.acquisition.ListOfModemPool
-	(*acquisition.ModemPool)(nil),                                                               // 63: io.clbs.openhes.models.acquisition.ModemPool
-	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 64: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
-	(*common.MapDeviceKeyXId)(nil),                                                              // 65: io.clbs.openhes.models.common.MapDeviceKeyXId
+	(*acquisition.CreateFirmwareImageRequest)(nil),                                              // 34: io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest
+	(*acquisition.FirmwareImage)(nil),                                                           // 35: io.clbs.openhes.models.acquisition.FirmwareImage
+	(*acquisition.GetFirmwareImageBlockRequest)(nil),                                            // 36: io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
+	(*acquisition.StreamUploadFirmwareImageRequest)(nil),                                        // 37: io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest
+	(*acquisition.StreamDownloadFirmwareImageFileRequest)(nil),                                  // 38: io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest
+	(*common.CreateFieldDescriptorRequest)(nil),                                                 // 39: io.clbs.openhes.models.common.CreateFieldDescriptorRequest
+	(*common.FieldDescriptor)(nil),                                                              // 40: io.clbs.openhes.models.common.FieldDescriptor
+	(*common.FieldDescriptorSelector)(nil),                                                      // 41: io.clbs.openhes.models.common.FieldDescriptorSelector
+	(*common.SetManagedFieldsRequest)(nil),                                                      // 42: io.clbs.openhes.models.common.SetManagedFieldsRequest
+	(*common.ListOfDeviceKey)(nil),                                                              // 43: io.clbs.openhes.models.common.ListOfDeviceKey
+	(*acquisition.AddCommunicationUnitLogsRequest)(nil),                                         // 44: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
+	(*acquisition.SetUnknownDevicesRequest)(nil),                                                // 45: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
+	(*acquisition.SetNeighboursRequest)(nil),                                                    // 46: io.clbs.openhes.models.acquisition.SetNeighboursRequest
+	(*acquisition.SetCurrentDeviceCommunicationUnitInternalRequest)(nil),                        // 47: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
+	(*common.UpdateObjectFieldsRequest)(nil),                                                    // 48: io.clbs.openhes.models.common.UpdateObjectFieldsRequest
+	(*acquisition.ListOfVariable)(nil),                                                          // 49: io.clbs.openhes.models.acquisition.ListOfVariable
+	(*acquisition.ListOfDeviceConfigurationRegister)(nil),                                       // 50: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
+	(*acquisition.DeviceConfigurationRegisterMap)(nil),                                          // 51: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap
+	(*acquisition.ListOfDeviceConfigurationTemplate)(nil),                                       // 52: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
+	(*acquisition.ListOfDriver)(nil),                                                            // 53: io.clbs.openhes.models.acquisition.ListOfDriver
+	(*acquisition.Driver)(nil),                                                                  // 54: io.clbs.openhes.models.acquisition.Driver
+	(*acquisition.ListOfCommunicationUnit)(nil),                                                 // 55: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
+	(*acquisition.NetworkMap)(nil),                                                              // 56: io.clbs.openhes.models.acquisition.NetworkMap
+	(*acquisition.ListOfCommunicationUnitLogRecord)(nil),                                        // 57: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
+	(*acquisition.ListOfCommunicationBus)(nil),                                                  // 58: io.clbs.openhes.models.acquisition.ListOfCommunicationBus
+	(*acquisition.ListOfDevice)(nil),                                                            // 59: io.clbs.openhes.models.acquisition.ListOfDevice
+	(*acquisition.StreamDevicesDriverTypesResponse)(nil),                                        // 60: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse
+	(*acquisition.ListOfDeviceCommunicationUnit)(nil),                                           // 61: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
+	(*acquisition.ListOfDeviceCommunicationUnitChange)(nil),                                     // 62: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
+	(*acquisition.MapDeviceConnectionInfo)(nil),                                                 // 63: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
+	(*acquisition.DeviceInfo)(nil),                                                              // 64: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*acquisition.ListOfDeviceGroup)(nil),                                                       // 65: io.clbs.openhes.models.acquisition.ListOfDeviceGroup
+	(*acquisition.StreamDeviceGroup)(nil),                                                       // 66: io.clbs.openhes.models.acquisition.StreamDeviceGroup
+	(*acquisition.ListOfModemPool)(nil),                                                         // 67: io.clbs.openhes.models.acquisition.ListOfModemPool
+	(*acquisition.ModemPool)(nil),                                                               // 68: io.clbs.openhes.models.acquisition.ModemPool
+	(*acquisition.ListOfTimeOfUseTable)(nil),                                                    // 69: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	(*acquisition.ListOfFirmwareImage)(nil),                                                     // 70: io.clbs.openhes.models.acquisition.ListOfFirmwareImage
+	(*acquisition.FirmwareImageBlock)(nil),                                                      // 71: io.clbs.openhes.models.acquisition.FirmwareImageBlock
+	(*common.MapDeviceKeyXId)(nil),                                                              // 72: io.clbs.openhes.models.common.MapDeviceKeyXId
 }
 var file_services_svcdeviceregistry_deviceregistry_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateVariable:input_type -> io.clbs.openhes.models.acquisition.CreateVariableRequest
@@ -253,99 +268,115 @@ var file_services_svcdeviceregistry_deviceregistry_proto_depIdxs = []int32{
 	2,  // 68: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetTimeOfUseTable:input_type -> google.protobuf.StringValue
 	33, // 69: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateTimeOfUseTable:input_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
 	2,  // 70: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteTimeOfUseTable:input_type -> google.protobuf.StringValue
-	34, // 71: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFieldDescriptor:input_type -> io.clbs.openhes.models.common.CreateFieldDescriptorRequest
-	35, // 72: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptor
-	36, // 73: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptorSelector
-	37, // 74: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
-	38, // 75: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetMapDeviceKeyXId:input_type -> io.clbs.openhes.models.common.ListOfDeviceKey
-	39, // 76: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitLogs:input_type -> io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
-	40, // 77: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetUnknownDevices:input_type -> io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	41, // 78: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetNeightbours:input_type -> io.clbs.openhes.models.acquisition.SetNeighboursRequest
-	42, // 79: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetCurrentDeviceCommunicationUnit:input_type -> io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
-	43, // 80: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateObjectFields:input_type -> io.clbs.openhes.models.common.UpdateObjectFieldsRequest
-	2,  // 81: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateVariable:output_type -> google.protobuf.StringValue
-	44, // 82: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListVariables:output_type -> io.clbs.openhes.models.acquisition.ListOfVariable
-	3,  // 83: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetVariable:output_type -> io.clbs.openhes.models.acquisition.Variable
-	8,  // 84: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateVariable:output_type -> google.protobuf.Empty
-	8,  // 85: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteVariable:output_type -> google.protobuf.Empty
-	8,  // 86: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddRegisterToVariable:output_type -> google.protobuf.Empty
-	8,  // 87: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveRegisterFromVariable:output_type -> google.protobuf.Empty
-	2,  // 88: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDeviceConfigurationRegister:output_type -> google.protobuf.StringValue
-	45, // 89: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceConfigurationRegisters:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
-	7,  // 90: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConfigurationRegister:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
-	8,  // 91: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDeviceConfigurationRegister:output_type -> google.protobuf.Empty
-	8,  // 92: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDeviceConfigurationRegister:output_type -> google.protobuf.Empty
-	46, // 93: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConfigurationRegisterMap:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap
-	2,  // 94: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDeviceConfigurationTemplate:output_type -> google.protobuf.StringValue
-	47, // 95: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceConfigurationTemplates:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
-	10, // 96: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConfigurationTemplate:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
-	8,  // 97: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	8,  // 98: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	8,  // 99: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	8,  // 100: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
-	48, // 101: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDrivers:output_type -> io.clbs.openhes.models.acquisition.ListOfDriver
-	8,  // 102: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDriver:output_type -> google.protobuf.Empty
-	49, // 103: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDriver:output_type -> io.clbs.openhes.models.acquisition.Driver
-	2,  // 104: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateCommunicationUnit:output_type -> google.protobuf.StringValue
-	8,  // 105: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateCommunicationUnit:output_type -> google.protobuf.Empty
-	50, // 106: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
-	15, // 107: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetCommunicationUnit:output_type -> io.clbs.openhes.models.acquisition.CommunicationUnit
-	8,  // 108: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteCommunicationUnit:output_type -> google.protobuf.Empty
-	51, // 109: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetCommunicationUnitNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
-	52, // 110: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationUnitLogRecords:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
-	2,  // 111: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateCommunicationBus:output_type -> google.protobuf.StringValue
-	53, // 112: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationBuses:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationBus
-	8,  // 113: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteCommunicationBus:output_type -> google.protobuf.Empty
-	8,  // 114: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitsToCommunicationBus:output_type -> google.protobuf.Empty
-	8,  // 115: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveCommunicationUnitsFromCommunicationBus:output_type -> google.protobuf.Empty
-	2,  // 116: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDevice:output_type -> google.protobuf.StringValue
-	8,  // 117: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDevice:output_type -> google.protobuf.Empty
-	54, // 118: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
-	20, // 119: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDevice:output_type -> io.clbs.openhes.models.acquisition.Device
-	8,  // 120: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDevice:output_type -> google.protobuf.Empty
-	55, // 121: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDeviceType:output_type -> io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse
-	8,  // 122: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetDeviceCommunicationUnits:output_type -> google.protobuf.Empty
-	56, // 123: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
-	57, // 124: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceCommunicationUnitChanges:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
-	58, // 125: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConnectionInfo:output_type -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
-	8,  // 126: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetDeviceInfo:output_type -> google.protobuf.Empty
-	59, // 127: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceInfo:output_type -> io.clbs.openhes.models.acquisition.DeviceInfo
-	60, // 128: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
-	51, // 129: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
-	2,  // 130: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDeviceGroup:output_type -> google.protobuf.StringValue
-	8,  // 131: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDeviceGroup:output_type -> google.protobuf.Empty
-	60, // 132: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
-	26, // 133: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceGroup:output_type -> io.clbs.openhes.models.acquisition.DeviceGroup
-	8,  // 134: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDeviceGroup:output_type -> google.protobuf.Empty
-	61, // 135: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDeviceGroup:output_type -> io.clbs.openhes.models.acquisition.StreamDeviceGroup
-	8,  // 136: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddDevicesToGroup:output_type -> google.protobuf.Empty
-	8,  // 137: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveDevicesFromGroup:output_type -> google.protobuf.Empty
-	54, // 138: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceGroupDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
-	62, // 139: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListModemPools:output_type -> io.clbs.openhes.models.acquisition.ListOfModemPool
-	63, // 140: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetModemPool:output_type -> io.clbs.openhes.models.acquisition.ModemPool
-	2,  // 141: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateModemPool:output_type -> google.protobuf.StringValue
-	8,  // 142: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateModemPool:output_type -> google.protobuf.Empty
-	8,  // 143: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteModemPool:output_type -> google.protobuf.Empty
-	2,  // 144: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateModem:output_type -> google.protobuf.StringValue
-	8,  // 145: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateModem:output_type -> google.protobuf.Empty
-	8,  // 146: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteModem:output_type -> google.protobuf.Empty
-	2,  // 147: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateTimeOfUseTable:output_type -> google.protobuf.StringValue
-	64, // 148: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
-	33, // 149: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetTimeOfUseTable:output_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
-	8,  // 150: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateTimeOfUseTable:output_type -> google.protobuf.Empty
-	8,  // 151: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteTimeOfUseTable:output_type -> google.protobuf.Empty
-	2,  // 152: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
-	8,  // 153: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
-	8,  // 154: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
-	8,  // 155: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetManagedFields:output_type -> google.protobuf.Empty
-	65, // 156: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetMapDeviceKeyXId:output_type -> io.clbs.openhes.models.common.MapDeviceKeyXId
-	8,  // 157: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitLogs:output_type -> google.protobuf.Empty
-	8,  // 158: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetUnknownDevices:output_type -> google.protobuf.Empty
-	8,  // 159: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetNeightbours:output_type -> google.protobuf.Empty
-	8,  // 160: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetCurrentDeviceCommunicationUnit:output_type -> google.protobuf.Empty
-	8,  // 161: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateObjectFields:output_type -> google.protobuf.Empty
-	81, // [81:162] is the sub-list for method output_type
-	0,  // [0:81] is the sub-list for method input_type
+	34, // 71: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFirmwareImage:input_type -> io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest
+	1,  // 72: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListFirmwareImages:input_type -> io.clbs.openhes.models.common.ListSelector
+	2,  // 73: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetFirmwareImage:input_type -> google.protobuf.StringValue
+	35, // 74: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFirmwareImage:input_type -> io.clbs.openhes.models.acquisition.FirmwareImage
+	2,  // 75: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFirmwareImage:input_type -> google.protobuf.StringValue
+	36, // 76: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetFirmwareImageBlock:input_type -> io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
+	37, // 77: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamUploadFirmwareImageFile:input_type -> io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest
+	38, // 78: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDownloadFirmwareImageFile:input_type -> io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest
+	39, // 79: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFieldDescriptor:input_type -> io.clbs.openhes.models.common.CreateFieldDescriptorRequest
+	40, // 80: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptor
+	41, // 81: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptorSelector
+	42, // 82: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
+	43, // 83: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetMapDeviceKeyXId:input_type -> io.clbs.openhes.models.common.ListOfDeviceKey
+	44, // 84: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitLogs:input_type -> io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
+	45, // 85: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetUnknownDevices:input_type -> io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
+	46, // 86: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetNeightbours:input_type -> io.clbs.openhes.models.acquisition.SetNeighboursRequest
+	47, // 87: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetCurrentDeviceCommunicationUnit:input_type -> io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
+	48, // 88: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateObjectFields:input_type -> io.clbs.openhes.models.common.UpdateObjectFieldsRequest
+	2,  // 89: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateVariable:output_type -> google.protobuf.StringValue
+	49, // 90: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListVariables:output_type -> io.clbs.openhes.models.acquisition.ListOfVariable
+	3,  // 91: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetVariable:output_type -> io.clbs.openhes.models.acquisition.Variable
+	8,  // 92: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateVariable:output_type -> google.protobuf.Empty
+	8,  // 93: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteVariable:output_type -> google.protobuf.Empty
+	8,  // 94: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddRegisterToVariable:output_type -> google.protobuf.Empty
+	8,  // 95: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveRegisterFromVariable:output_type -> google.protobuf.Empty
+	2,  // 96: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDeviceConfigurationRegister:output_type -> google.protobuf.StringValue
+	50, // 97: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceConfigurationRegisters:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister
+	7,  // 98: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConfigurationRegister:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
+	8,  // 99: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDeviceConfigurationRegister:output_type -> google.protobuf.Empty
+	8,  // 100: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDeviceConfigurationRegister:output_type -> google.protobuf.Empty
+	51, // 101: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConfigurationRegisterMap:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap
+	2,  // 102: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDeviceConfigurationTemplate:output_type -> google.protobuf.StringValue
+	52, // 103: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceConfigurationTemplates:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate
+	10, // 104: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConfigurationTemplate:output_type -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
+	8,  // 105: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	8,  // 106: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	8,  // 107: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddDeviceConfigurationRegisterToDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	8,  // 108: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate:output_type -> google.protobuf.Empty
+	53, // 109: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDrivers:output_type -> io.clbs.openhes.models.acquisition.ListOfDriver
+	8,  // 110: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDriver:output_type -> google.protobuf.Empty
+	54, // 111: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDriver:output_type -> io.clbs.openhes.models.acquisition.Driver
+	2,  // 112: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateCommunicationUnit:output_type -> google.protobuf.StringValue
+	8,  // 113: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateCommunicationUnit:output_type -> google.protobuf.Empty
+	55, // 114: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
+	15, // 115: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetCommunicationUnit:output_type -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	8,  // 116: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteCommunicationUnit:output_type -> google.protobuf.Empty
+	56, // 117: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetCommunicationUnitNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
+	57, // 118: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationUnitLogRecords:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord
+	2,  // 119: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateCommunicationBus:output_type -> google.protobuf.StringValue
+	58, // 120: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListCommunicationBuses:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationBus
+	8,  // 121: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteCommunicationBus:output_type -> google.protobuf.Empty
+	8,  // 122: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitsToCommunicationBus:output_type -> google.protobuf.Empty
+	8,  // 123: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveCommunicationUnitsFromCommunicationBus:output_type -> google.protobuf.Empty
+	2,  // 124: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDevice:output_type -> google.protobuf.StringValue
+	8,  // 125: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDevice:output_type -> google.protobuf.Empty
+	59, // 126: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
+	20, // 127: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDevice:output_type -> io.clbs.openhes.models.acquisition.Device
+	8,  // 128: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDevice:output_type -> google.protobuf.Empty
+	60, // 129: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDeviceType:output_type -> io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse
+	8,  // 130: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetDeviceCommunicationUnits:output_type -> google.protobuf.Empty
+	61, // 131: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceCommunicationUnits:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit
+	62, // 132: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceCommunicationUnitChanges:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange
+	63, // 133: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConnectionInfo:output_type -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
+	8,  // 134: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetDeviceInfo:output_type -> google.protobuf.Empty
+	64, // 135: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceInfo:output_type -> io.clbs.openhes.models.acquisition.DeviceInfo
+	65, // 136: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
+	56, // 137: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceNetworkMap:output_type -> io.clbs.openhes.models.acquisition.NetworkMap
+	2,  // 138: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateDeviceGroup:output_type -> google.protobuf.StringValue
+	8,  // 139: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateDeviceGroup:output_type -> google.protobuf.Empty
+	65, // 140: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceGroups:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceGroup
+	26, // 141: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceGroup:output_type -> io.clbs.openhes.models.acquisition.DeviceGroup
+	8,  // 142: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteDeviceGroup:output_type -> google.protobuf.Empty
+	66, // 143: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDeviceGroup:output_type -> io.clbs.openhes.models.acquisition.StreamDeviceGroup
+	8,  // 144: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddDevicesToGroup:output_type -> google.protobuf.Empty
+	8,  // 145: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.RemoveDevicesFromGroup:output_type -> google.protobuf.Empty
+	59, // 146: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceGroupDevices:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
+	67, // 147: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListModemPools:output_type -> io.clbs.openhes.models.acquisition.ListOfModemPool
+	68, // 148: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetModemPool:output_type -> io.clbs.openhes.models.acquisition.ModemPool
+	2,  // 149: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateModemPool:output_type -> google.protobuf.StringValue
+	8,  // 150: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateModemPool:output_type -> google.protobuf.Empty
+	8,  // 151: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteModemPool:output_type -> google.protobuf.Empty
+	2,  // 152: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateModem:output_type -> google.protobuf.StringValue
+	8,  // 153: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateModem:output_type -> google.protobuf.Empty
+	8,  // 154: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteModem:output_type -> google.protobuf.Empty
+	2,  // 155: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateTimeOfUseTable:output_type -> google.protobuf.StringValue
+	69, // 156: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListTimeOfUseTables:output_type -> io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	33, // 157: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetTimeOfUseTable:output_type -> io.clbs.openhes.models.acquisition.TimeOfUseTable
+	8,  // 158: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateTimeOfUseTable:output_type -> google.protobuf.Empty
+	8,  // 159: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteTimeOfUseTable:output_type -> google.protobuf.Empty
+	2,  // 160: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFirmwareImage:output_type -> google.protobuf.StringValue
+	70, // 161: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListFirmwareImages:output_type -> io.clbs.openhes.models.acquisition.ListOfFirmwareImage
+	35, // 162: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetFirmwareImage:output_type -> io.clbs.openhes.models.acquisition.FirmwareImage
+	8,  // 163: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFirmwareImage:output_type -> google.protobuf.Empty
+	8,  // 164: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFirmwareImage:output_type -> google.protobuf.Empty
+	71, // 165: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetFirmwareImageBlock:output_type -> io.clbs.openhes.models.acquisition.FirmwareImageBlock
+	8,  // 166: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamUploadFirmwareImageFile:output_type -> google.protobuf.Empty
+	71, // 167: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDownloadFirmwareImageFile:output_type -> io.clbs.openhes.models.acquisition.FirmwareImageBlock
+	2,  // 168: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
+	8,  // 169: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
+	8,  // 170: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
+	8,  // 171: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetManagedFields:output_type -> google.protobuf.Empty
+	72, // 172: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetMapDeviceKeyXId:output_type -> io.clbs.openhes.models.common.MapDeviceKeyXId
+	8,  // 173: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.AddCommunicationUnitLogs:output_type -> google.protobuf.Empty
+	8,  // 174: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetUnknownDevices:output_type -> google.protobuf.Empty
+	8,  // 175: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetNeightbours:output_type -> google.protobuf.Empty
+	8,  // 176: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetCurrentDeviceCommunicationUnit:output_type -> google.protobuf.Empty
+	8,  // 177: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateObjectFields:output_type -> google.protobuf.Empty
+	89, // [89:178] is the sub-list for method output_type
+	0,  // [0:89] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

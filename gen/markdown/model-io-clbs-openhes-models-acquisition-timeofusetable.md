@@ -1,5 +1,7 @@
 # Model: io.clbs.openhes.models.acquisition.TimeOfUseTable
 
+Defines a specification for a time-of-use table.
+
 ## Fields
 
 | Field | Information |

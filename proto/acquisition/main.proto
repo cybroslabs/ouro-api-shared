@@ -557,8 +557,71 @@ message ListOfTimeOfUseTable {
     int32 total_count             = 2;  // The total number of items in the list.
 }
 
+// Defines a specification for a time-of-use table.
 message TimeOfUseTable {
     reserved 2;
     timeofuse.TimeOfUseTableSpec spec = 1;  // The time-of-use table specification.
     common.MetadataFields metadata    = 3;  // The metadata fields.
+}
+
+// Defines a specification for creating a new firmware image.
+message CreateFirmwareImageRequest {
+    FirmwareImageSpec spec         = 1;  // The firmware image specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
+}
+
+// Defines a list of firmware images.
+message ListOfFirmwareImage {
+    repeated FirmwareImage items = 1;  // The list of firmware images.
+    int32 total_count            = 2;  // The total number of items in the list.
+}
+
+// Defines a specification for a firmware image object.
+message FirmwareImage {
+    FirmwareImageSpec spec         = 1;  // The firmware image specification.
+    common.MetadataFields metadata = 2;  // The metadata fields.
+}
+
+// Defines a firmware image specification.
+message FirmwareImageSpec {
+    string driver_type                 = 1;  // The driver type.
+    string version                     = 2;  // The firmware version.
+    repeated FirmwareImageFile content = 3;  // The list of firmware image files.
+    string description                 = 4;  // The firmware image description.
+}
+
+// Defines a file within a firmware image.
+message FirmwareImageFile {
+    string file_name = 2;  // The firmware image file name.
+    int32 file_size  = 3;  // The size of the firmware image file in bytes.
+}
+
+// Defines a request for retrieving a block of firmware image data.
+message GetFirmwareImageBlockRequest {
+    string firmware_image_id = 1;  // The unique firmware image identifier.
+    string file_name         = 2;  // The firmware image file name.
+    int32 block_size         = 3;  // The size of the block to retrieve in bytes.
+    int32 block_index        = 4;  // The index of the block to retrieve (0-based).
+}
+
+// Defines a request for retrieving a block of firmware image data for streamed upload.
+message StreamUploadFirmwareImageRequest {
+    string firmware_image_id = 1;  // The unique firmware image identifier.
+    string file_name         = 2;  // The firmware image file name.
+    int32 block_size         = 3;  // The size of the block to retrieve in bytes.
+    int32 block_index        = 4;  // The index of the block to retrieve (0-based). All blocks must be send in order.
+    bool last_block          = 5;  // Indicates whether this is the last block in the stream.
+    bytes block_data         = 6;  // The data block of firmware image.
+}
+
+// Defines a block of firmware image data.
+message FirmwareImageBlock {
+    bytes block_data = 1;  // The data block of firmware image.
+    int32 file_size  = 2;  // The total size of the firmware image in bytes.
+}
+
+// Defines a request for streaming download of a firmware image file.
+message StreamDownloadFirmwareImageFileRequest {
+    string firmware_image_id = 1;  // The unique firmware image identifier.
+    string file_name         = 2;  // The firmware image file name.
 }

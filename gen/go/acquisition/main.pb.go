@@ -8682,6 +8682,7 @@ func (b0 ListOfTimeOfUseTable_builder) Build() *ListOfTimeOfUseTable {
 	return m0
 }
 
+// Defines a specification for a time-of-use table.
 type TimeOfUseTable struct {
 	state               protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *timeofuse.TimeOfUseTableSpec `protobuf:"bytes,1,opt,name=spec"`
@@ -8772,6 +8773,1184 @@ func (b0 TimeOfUseTable_builder) Build() *TimeOfUseTable {
 	_, _ = b, x
 	x.xxx_hidden_Spec = b.Spec
 	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+// Defines a specification for creating a new firmware image.
+type CreateFirmwareImageRequest struct {
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *FirmwareImageSpec     `protobuf:"bytes,1,opt,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *CreateFirmwareImageRequest) Reset() {
+	*x = CreateFirmwareImageRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[83]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateFirmwareImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateFirmwareImageRequest) ProtoMessage() {}
+
+func (x *CreateFirmwareImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[83]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *CreateFirmwareImageRequest) GetSpec() *FirmwareImageSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *CreateFirmwareImageRequest) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *CreateFirmwareImageRequest) SetSpec(v *FirmwareImageSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *CreateFirmwareImageRequest) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *CreateFirmwareImageRequest) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *CreateFirmwareImageRequest) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *CreateFirmwareImageRequest) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *CreateFirmwareImageRequest) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type CreateFirmwareImageRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *FirmwareImageSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 CreateFirmwareImageRequest_builder) Build() *CreateFirmwareImageRequest {
+	m0 := &CreateFirmwareImageRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+// Defines a list of firmware images.
+type ListOfFirmwareImage struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items       *[]*FirmwareImage      `protobuf:"bytes,1,rep,name=items"`
+	xxx_hidden_TotalCount  int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ListOfFirmwareImage) Reset() {
+	*x = ListOfFirmwareImage{}
+	mi := &file_acquisition_main_proto_msgTypes[84]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListOfFirmwareImage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListOfFirmwareImage) ProtoMessage() {}
+
+func (x *ListOfFirmwareImage) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[84]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ListOfFirmwareImage) GetItems() []*FirmwareImage {
+	if x != nil {
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
+	}
+	return nil
+}
+
+func (x *ListOfFirmwareImage) GetTotalCount() int32 {
+	if x != nil {
+		return x.xxx_hidden_TotalCount
+	}
+	return 0
+}
+
+func (x *ListOfFirmwareImage) SetItems(v []*FirmwareImage) {
+	x.xxx_hidden_Items = &v
+}
+
+func (x *ListOfFirmwareImage) SetTotalCount(v int32) {
+	x.xxx_hidden_TotalCount = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ListOfFirmwareImage) HasTotalCount() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ListOfFirmwareImage) ClearTotalCount() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_TotalCount = 0
+}
+
+type ListOfFirmwareImage_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Items      []*FirmwareImage
+	TotalCount *int32
+}
+
+func (b0 ListOfFirmwareImage_builder) Build() *ListOfFirmwareImage {
+	m0 := &ListOfFirmwareImage{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Items = &b.Items
+	if b.TotalCount != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_TotalCount = *b.TotalCount
+	}
+	return m0
+}
+
+// Defines a specification for a firmware image object.
+type FirmwareImage struct {
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Spec     *FirmwareImageSpec     `protobuf:"bytes,1,opt,name=spec"`
+	xxx_hidden_Metadata *common.MetadataFields `protobuf:"bytes,2,opt,name=metadata"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *FirmwareImage) Reset() {
+	*x = FirmwareImage{}
+	mi := &file_acquisition_main_proto_msgTypes[85]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FirmwareImage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FirmwareImage) ProtoMessage() {}
+
+func (x *FirmwareImage) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[85]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FirmwareImage) GetSpec() *FirmwareImageSpec {
+	if x != nil {
+		return x.xxx_hidden_Spec
+	}
+	return nil
+}
+
+func (x *FirmwareImage) GetMetadata() *common.MetadataFields {
+	if x != nil {
+		return x.xxx_hidden_Metadata
+	}
+	return nil
+}
+
+func (x *FirmwareImage) SetSpec(v *FirmwareImageSpec) {
+	x.xxx_hidden_Spec = v
+}
+
+func (x *FirmwareImage) SetMetadata(v *common.MetadataFields) {
+	x.xxx_hidden_Metadata = v
+}
+
+func (x *FirmwareImage) HasSpec() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Spec != nil
+}
+
+func (x *FirmwareImage) HasMetadata() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_Metadata != nil
+}
+
+func (x *FirmwareImage) ClearSpec() {
+	x.xxx_hidden_Spec = nil
+}
+
+func (x *FirmwareImage) ClearMetadata() {
+	x.xxx_hidden_Metadata = nil
+}
+
+type FirmwareImage_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Spec     *FirmwareImageSpec
+	Metadata *common.MetadataFields
+}
+
+func (b0 FirmwareImage_builder) Build() *FirmwareImage {
+	m0 := &FirmwareImage{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Spec = b.Spec
+	x.xxx_hidden_Metadata = b.Metadata
+	return m0
+}
+
+// Defines a firmware image specification.
+type FirmwareImageSpec struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
+	xxx_hidden_Version     *string                `protobuf:"bytes,2,opt,name=version"`
+	xxx_hidden_Content     *[]*FirmwareImageFile  `protobuf:"bytes,3,rep,name=content"`
+	xxx_hidden_Description *string                `protobuf:"bytes,4,opt,name=description"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *FirmwareImageSpec) Reset() {
+	*x = FirmwareImageSpec{}
+	mi := &file_acquisition_main_proto_msgTypes[86]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FirmwareImageSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FirmwareImageSpec) ProtoMessage() {}
+
+func (x *FirmwareImageSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[86]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FirmwareImageSpec) GetDriverType() string {
+	if x != nil {
+		if x.xxx_hidden_DriverType != nil {
+			return *x.xxx_hidden_DriverType
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *FirmwareImageSpec) GetVersion() string {
+	if x != nil {
+		if x.xxx_hidden_Version != nil {
+			return *x.xxx_hidden_Version
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *FirmwareImageSpec) GetContent() []*FirmwareImageFile {
+	if x != nil {
+		if x.xxx_hidden_Content != nil {
+			return *x.xxx_hidden_Content
+		}
+	}
+	return nil
+}
+
+func (x *FirmwareImageSpec) GetDescription() string {
+	if x != nil {
+		if x.xxx_hidden_Description != nil {
+			return *x.xxx_hidden_Description
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *FirmwareImageSpec) SetDriverType(v string) {
+	x.xxx_hidden_DriverType = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+}
+
+func (x *FirmwareImageSpec) SetVersion(v string) {
+	x.xxx_hidden_Version = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+}
+
+func (x *FirmwareImageSpec) SetContent(v []*FirmwareImageFile) {
+	x.xxx_hidden_Content = &v
+}
+
+func (x *FirmwareImageSpec) SetDescription(v string) {
+	x.xxx_hidden_Description = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
+}
+
+func (x *FirmwareImageSpec) HasDriverType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *FirmwareImageSpec) HasVersion() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *FirmwareImageSpec) HasDescription() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *FirmwareImageSpec) ClearDriverType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_DriverType = nil
+}
+
+func (x *FirmwareImageSpec) ClearVersion() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Version = nil
+}
+
+func (x *FirmwareImageSpec) ClearDescription() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_Description = nil
+}
+
+type FirmwareImageSpec_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	DriverType  *string
+	Version     *string
+	Content     []*FirmwareImageFile
+	Description *string
+}
+
+func (b0 FirmwareImageSpec_builder) Build() *FirmwareImageSpec {
+	m0 := &FirmwareImageSpec{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.DriverType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		x.xxx_hidden_DriverType = b.DriverType
+	}
+	if b.Version != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		x.xxx_hidden_Version = b.Version
+	}
+	x.xxx_hidden_Content = &b.Content
+	if b.Description != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		x.xxx_hidden_Description = b.Description
+	}
+	return m0
+}
+
+// Defines a file within a firmware image.
+type FirmwareImageFile struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FileName    *string                `protobuf:"bytes,2,opt,name=file_name,json=fileName"`
+	xxx_hidden_FileSize    int32                  `protobuf:"varint,3,opt,name=file_size,json=fileSize"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *FirmwareImageFile) Reset() {
+	*x = FirmwareImageFile{}
+	mi := &file_acquisition_main_proto_msgTypes[87]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FirmwareImageFile) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FirmwareImageFile) ProtoMessage() {}
+
+func (x *FirmwareImageFile) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[87]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FirmwareImageFile) GetFileName() string {
+	if x != nil {
+		if x.xxx_hidden_FileName != nil {
+			return *x.xxx_hidden_FileName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *FirmwareImageFile) GetFileSize() int32 {
+	if x != nil {
+		return x.xxx_hidden_FileSize
+	}
+	return 0
+}
+
+func (x *FirmwareImageFile) SetFileName(v string) {
+	x.xxx_hidden_FileName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *FirmwareImageFile) SetFileSize(v int32) {
+	x.xxx_hidden_FileSize = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *FirmwareImageFile) HasFileName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *FirmwareImageFile) HasFileSize() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *FirmwareImageFile) ClearFileName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FileName = nil
+}
+
+func (x *FirmwareImageFile) ClearFileSize() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_FileSize = 0
+}
+
+type FirmwareImageFile_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	FileName *string
+	FileSize *int32
+}
+
+func (b0 FirmwareImageFile_builder) Build() *FirmwareImageFile {
+	m0 := &FirmwareImageFile{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.FileName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_FileName = b.FileName
+	}
+	if b.FileSize != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_FileSize = *b.FileSize
+	}
+	return m0
+}
+
+// Defines a request for retrieving a block of firmware image data.
+type GetFirmwareImageBlockRequest struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FirmwareImageId *string                `protobuf:"bytes,1,opt,name=firmware_image_id,json=firmwareImageId"`
+	xxx_hidden_FileName        *string                `protobuf:"bytes,2,opt,name=file_name,json=fileName"`
+	xxx_hidden_BlockSize       int32                  `protobuf:"varint,3,opt,name=block_size,json=blockSize"`
+	xxx_hidden_BlockIndex      int32                  `protobuf:"varint,4,opt,name=block_index,json=blockIndex"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *GetFirmwareImageBlockRequest) Reset() {
+	*x = GetFirmwareImageBlockRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[88]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFirmwareImageBlockRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFirmwareImageBlockRequest) ProtoMessage() {}
+
+func (x *GetFirmwareImageBlockRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[88]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *GetFirmwareImageBlockRequest) GetFirmwareImageId() string {
+	if x != nil {
+		if x.xxx_hidden_FirmwareImageId != nil {
+			return *x.xxx_hidden_FirmwareImageId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *GetFirmwareImageBlockRequest) GetFileName() string {
+	if x != nil {
+		if x.xxx_hidden_FileName != nil {
+			return *x.xxx_hidden_FileName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *GetFirmwareImageBlockRequest) GetBlockSize() int32 {
+	if x != nil {
+		return x.xxx_hidden_BlockSize
+	}
+	return 0
+}
+
+func (x *GetFirmwareImageBlockRequest) GetBlockIndex() int32 {
+	if x != nil {
+		return x.xxx_hidden_BlockIndex
+	}
+	return 0
+}
+
+func (x *GetFirmwareImageBlockRequest) SetFirmwareImageId(v string) {
+	x.xxx_hidden_FirmwareImageId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+}
+
+func (x *GetFirmwareImageBlockRequest) SetFileName(v string) {
+	x.xxx_hidden_FileName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+}
+
+func (x *GetFirmwareImageBlockRequest) SetBlockSize(v int32) {
+	x.xxx_hidden_BlockSize = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+}
+
+func (x *GetFirmwareImageBlockRequest) SetBlockIndex(v int32) {
+	x.xxx_hidden_BlockIndex = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 4)
+}
+
+func (x *GetFirmwareImageBlockRequest) HasFirmwareImageId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *GetFirmwareImageBlockRequest) HasFileName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *GetFirmwareImageBlockRequest) HasBlockSize() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *GetFirmwareImageBlockRequest) HasBlockIndex() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *GetFirmwareImageBlockRequest) ClearFirmwareImageId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FirmwareImageId = nil
+}
+
+func (x *GetFirmwareImageBlockRequest) ClearFileName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_FileName = nil
+}
+
+func (x *GetFirmwareImageBlockRequest) ClearBlockSize() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_BlockSize = 0
+}
+
+func (x *GetFirmwareImageBlockRequest) ClearBlockIndex() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_BlockIndex = 0
+}
+
+type GetFirmwareImageBlockRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	FirmwareImageId *string
+	FileName        *string
+	BlockSize       *int32
+	BlockIndex      *int32
+}
+
+func (b0 GetFirmwareImageBlockRequest_builder) Build() *GetFirmwareImageBlockRequest {
+	m0 := &GetFirmwareImageBlockRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.FirmwareImageId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		x.xxx_hidden_FirmwareImageId = b.FirmwareImageId
+	}
+	if b.FileName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		x.xxx_hidden_FileName = b.FileName
+	}
+	if b.BlockSize != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		x.xxx_hidden_BlockSize = *b.BlockSize
+	}
+	if b.BlockIndex != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 4)
+		x.xxx_hidden_BlockIndex = *b.BlockIndex
+	}
+	return m0
+}
+
+// Defines a request for retrieving a block of firmware image data for streamed upload.
+type StreamUploadFirmwareImageRequest struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FirmwareImageId *string                `protobuf:"bytes,1,opt,name=firmware_image_id,json=firmwareImageId"`
+	xxx_hidden_FileName        *string                `protobuf:"bytes,2,opt,name=file_name,json=fileName"`
+	xxx_hidden_BlockSize       int32                  `protobuf:"varint,3,opt,name=block_size,json=blockSize"`
+	xxx_hidden_BlockIndex      int32                  `protobuf:"varint,4,opt,name=block_index,json=blockIndex"`
+	xxx_hidden_LastBlock       bool                   `protobuf:"varint,5,opt,name=last_block,json=lastBlock"`
+	xxx_hidden_BlockData       []byte                 `protobuf:"bytes,6,opt,name=block_data,json=blockData"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *StreamUploadFirmwareImageRequest) Reset() {
+	*x = StreamUploadFirmwareImageRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamUploadFirmwareImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamUploadFirmwareImageRequest) ProtoMessage() {}
+
+func (x *StreamUploadFirmwareImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *StreamUploadFirmwareImageRequest) GetFirmwareImageId() string {
+	if x != nil {
+		if x.xxx_hidden_FirmwareImageId != nil {
+			return *x.xxx_hidden_FirmwareImageId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *StreamUploadFirmwareImageRequest) GetFileName() string {
+	if x != nil {
+		if x.xxx_hidden_FileName != nil {
+			return *x.xxx_hidden_FileName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *StreamUploadFirmwareImageRequest) GetBlockSize() int32 {
+	if x != nil {
+		return x.xxx_hidden_BlockSize
+	}
+	return 0
+}
+
+func (x *StreamUploadFirmwareImageRequest) GetBlockIndex() int32 {
+	if x != nil {
+		return x.xxx_hidden_BlockIndex
+	}
+	return 0
+}
+
+func (x *StreamUploadFirmwareImageRequest) GetLastBlock() bool {
+	if x != nil {
+		return x.xxx_hidden_LastBlock
+	}
+	return false
+}
+
+func (x *StreamUploadFirmwareImageRequest) GetBlockData() []byte {
+	if x != nil {
+		return x.xxx_hidden_BlockData
+	}
+	return nil
+}
+
+func (x *StreamUploadFirmwareImageRequest) SetFirmwareImageId(v string) {
+	x.xxx_hidden_FirmwareImageId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
+}
+
+func (x *StreamUploadFirmwareImageRequest) SetFileName(v string) {
+	x.xxx_hidden_FileName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
+}
+
+func (x *StreamUploadFirmwareImageRequest) SetBlockSize(v int32) {
+	x.xxx_hidden_BlockSize = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 6)
+}
+
+func (x *StreamUploadFirmwareImageRequest) SetBlockIndex(v int32) {
+	x.xxx_hidden_BlockIndex = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 6)
+}
+
+func (x *StreamUploadFirmwareImageRequest) SetLastBlock(v bool) {
+	x.xxx_hidden_LastBlock = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 6)
+}
+
+func (x *StreamUploadFirmwareImageRequest) SetBlockData(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_BlockData = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
+}
+
+func (x *StreamUploadFirmwareImageRequest) HasFirmwareImageId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *StreamUploadFirmwareImageRequest) HasFileName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *StreamUploadFirmwareImageRequest) HasBlockSize() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
+}
+
+func (x *StreamUploadFirmwareImageRequest) HasBlockIndex() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
+}
+
+func (x *StreamUploadFirmwareImageRequest) HasLastBlock() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
+}
+
+func (x *StreamUploadFirmwareImageRequest) HasBlockData() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
+}
+
+func (x *StreamUploadFirmwareImageRequest) ClearFirmwareImageId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FirmwareImageId = nil
+}
+
+func (x *StreamUploadFirmwareImageRequest) ClearFileName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_FileName = nil
+}
+
+func (x *StreamUploadFirmwareImageRequest) ClearBlockSize() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_BlockSize = 0
+}
+
+func (x *StreamUploadFirmwareImageRequest) ClearBlockIndex() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_BlockIndex = 0
+}
+
+func (x *StreamUploadFirmwareImageRequest) ClearLastBlock() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_LastBlock = false
+}
+
+func (x *StreamUploadFirmwareImageRequest) ClearBlockData() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_BlockData = nil
+}
+
+type StreamUploadFirmwareImageRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	FirmwareImageId *string
+	FileName        *string
+	BlockSize       *int32
+	BlockIndex      *int32
+	LastBlock       *bool
+	BlockData       []byte
+}
+
+func (b0 StreamUploadFirmwareImageRequest_builder) Build() *StreamUploadFirmwareImageRequest {
+	m0 := &StreamUploadFirmwareImageRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.FirmwareImageId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
+		x.xxx_hidden_FirmwareImageId = b.FirmwareImageId
+	}
+	if b.FileName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
+		x.xxx_hidden_FileName = b.FileName
+	}
+	if b.BlockSize != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 6)
+		x.xxx_hidden_BlockSize = *b.BlockSize
+	}
+	if b.BlockIndex != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 6)
+		x.xxx_hidden_BlockIndex = *b.BlockIndex
+	}
+	if b.LastBlock != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 6)
+		x.xxx_hidden_LastBlock = *b.LastBlock
+	}
+	if b.BlockData != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		x.xxx_hidden_BlockData = b.BlockData
+	}
+	return m0
+}
+
+// Defines a block of firmware image data.
+type FirmwareImageBlock struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_BlockData   []byte                 `protobuf:"bytes,1,opt,name=block_data,json=blockData"`
+	xxx_hidden_FileSize    int32                  `protobuf:"varint,2,opt,name=file_size,json=fileSize"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *FirmwareImageBlock) Reset() {
+	*x = FirmwareImageBlock{}
+	mi := &file_acquisition_main_proto_msgTypes[90]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FirmwareImageBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FirmwareImageBlock) ProtoMessage() {}
+
+func (x *FirmwareImageBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[90]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *FirmwareImageBlock) GetBlockData() []byte {
+	if x != nil {
+		return x.xxx_hidden_BlockData
+	}
+	return nil
+}
+
+func (x *FirmwareImageBlock) GetFileSize() int32 {
+	if x != nil {
+		return x.xxx_hidden_FileSize
+	}
+	return 0
+}
+
+func (x *FirmwareImageBlock) SetBlockData(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_BlockData = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *FirmwareImageBlock) SetFileSize(v int32) {
+	x.xxx_hidden_FileSize = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *FirmwareImageBlock) HasBlockData() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *FirmwareImageBlock) HasFileSize() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *FirmwareImageBlock) ClearBlockData() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_BlockData = nil
+}
+
+func (x *FirmwareImageBlock) ClearFileSize() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_FileSize = 0
+}
+
+type FirmwareImageBlock_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	BlockData []byte
+	FileSize  *int32
+}
+
+func (b0 FirmwareImageBlock_builder) Build() *FirmwareImageBlock {
+	m0 := &FirmwareImageBlock{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.BlockData != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_BlockData = b.BlockData
+	}
+	if b.FileSize != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_FileSize = *b.FileSize
+	}
+	return m0
+}
+
+// Defines a request for streaming download of a firmware image file.
+type StreamDownloadFirmwareImageFileRequest struct {
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FirmwareImageId *string                `protobuf:"bytes,1,opt,name=firmware_image_id,json=firmwareImageId"`
+	xxx_hidden_FileName        *string                `protobuf:"bytes,2,opt,name=file_name,json=fileName"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) Reset() {
+	*x = StreamDownloadFirmwareImageFileRequest{}
+	mi := &file_acquisition_main_proto_msgTypes[91]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamDownloadFirmwareImageFileRequest) ProtoMessage() {}
+
+func (x *StreamDownloadFirmwareImageFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_acquisition_main_proto_msgTypes[91]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) GetFirmwareImageId() string {
+	if x != nil {
+		if x.xxx_hidden_FirmwareImageId != nil {
+			return *x.xxx_hidden_FirmwareImageId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) GetFileName() string {
+	if x != nil {
+		if x.xxx_hidden_FileName != nil {
+			return *x.xxx_hidden_FileName
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) SetFirmwareImageId(v string) {
+	x.xxx_hidden_FirmwareImageId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) SetFileName(v string) {
+	x.xxx_hidden_FileName = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) HasFirmwareImageId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) HasFileName() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) ClearFirmwareImageId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_FirmwareImageId = nil
+}
+
+func (x *StreamDownloadFirmwareImageFileRequest) ClearFileName() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_FileName = nil
+}
+
+type StreamDownloadFirmwareImageFileRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	FirmwareImageId *string
+	FileName        *string
+}
+
+func (b0 StreamDownloadFirmwareImageFileRequest_builder) Build() *StreamDownloadFirmwareImageFileRequest {
+	m0 := &StreamDownloadFirmwareImageFileRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.FirmwareImageId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_FirmwareImageId = b.FirmwareImageId
+	}
+	if b.FileName != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_FileName = b.FileName
+	}
 	return m0
 }
 
@@ -9107,9 +10286,53 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"totalCount\"\xb7\x01\n" +
 	"\x0eTimeOfUseTable\x12T\n" +
 	"\x04spec\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x04spec\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"\xb2\x01\n" +
+	"\x1aCreateFirmwareImageRequest\x12I\n" +
+	"\x04spec\x18\x01 \x01(\v25.io.clbs.openhes.models.acquisition.FirmwareImageSpecR\x04spec\x12I\n" +
+	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\x7f\n" +
+	"\x13ListOfFirmwareImage\x12G\n" +
+	"\x05items\x18\x01 \x03(\v21.io.clbs.openhes.models.acquisition.FirmwareImageR\x05items\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\"\xa5\x01\n" +
+	"\rFirmwareImage\x12I\n" +
+	"\x04spec\x18\x01 \x01(\v25.io.clbs.openhes.models.acquisition.FirmwareImageSpecR\x04spec\x12I\n" +
+	"\bmetadata\x18\x02 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadata\"\xc1\x01\n" +
+	"\x11FirmwareImageSpec\x12\x1f\n" +
+	"\vdriver_type\x18\x01 \x01(\tR\n" +
+	"driverType\x12\x18\n" +
+	"\aversion\x18\x02 \x01(\tR\aversion\x12O\n" +
+	"\acontent\x18\x03 \x03(\v25.io.clbs.openhes.models.acquisition.FirmwareImageFileR\acontent\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\"M\n" +
+	"\x11FirmwareImageFile\x12\x1b\n" +
+	"\tfile_name\x18\x02 \x01(\tR\bfileName\x12\x1b\n" +
+	"\tfile_size\x18\x03 \x01(\x05R\bfileSize\"\xa7\x01\n" +
+	"\x1cGetFirmwareImageBlockRequest\x12*\n" +
+	"\x11firmware_image_id\x18\x01 \x01(\tR\x0ffirmwareImageId\x12\x1b\n" +
+	"\tfile_name\x18\x02 \x01(\tR\bfileName\x12\x1d\n" +
+	"\n" +
+	"block_size\x18\x03 \x01(\x05R\tblockSize\x12\x1f\n" +
+	"\vblock_index\x18\x04 \x01(\x05R\n" +
+	"blockIndex\"\xe9\x01\n" +
+	" StreamUploadFirmwareImageRequest\x12*\n" +
+	"\x11firmware_image_id\x18\x01 \x01(\tR\x0ffirmwareImageId\x12\x1b\n" +
+	"\tfile_name\x18\x02 \x01(\tR\bfileName\x12\x1d\n" +
+	"\n" +
+	"block_size\x18\x03 \x01(\x05R\tblockSize\x12\x1f\n" +
+	"\vblock_index\x18\x04 \x01(\x05R\n" +
+	"blockIndex\x12\x1d\n" +
+	"\n" +
+	"last_block\x18\x05 \x01(\bR\tlastBlock\x12\x1d\n" +
+	"\n" +
+	"block_data\x18\x06 \x01(\fR\tblockData\"P\n" +
+	"\x12FirmwareImageBlock\x12\x1d\n" +
+	"\n" +
+	"block_data\x18\x01 \x01(\fR\tblockData\x12\x1b\n" +
+	"\tfile_size\x18\x02 \x01(\x05R\bfileSize\"q\n" +
+	"&StreamDownloadFirmwareImageFileRequest\x12*\n" +
+	"\x11firmware_image_id\x18\x01 \x01(\tR\x0ffirmwareImageId\x12\x1b\n" +
+	"\tfile_name\x18\x02 \x01(\tR\bfileNameB:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
-var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 85)
+var file_acquisition_main_proto_msgTypes = make([]protoimpl.MessageInfo, 94)
 var file_acquisition_main_proto_goTypes = []any{
 	(*CreateCommunicationUnitRequest)(nil),                      // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest
 	(*ListOfCommunicationUnit)(nil),                             // 1: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
@@ -9179,162 +10402,177 @@ var file_acquisition_main_proto_goTypes = []any{
 	(*DeviceConfigurationTemplateSpec)(nil),                     // 65: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
 	(*AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest)(nil),      // 66: io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest
 	(*RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest)(nil), // 67: io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
-	(*GetDeviceDataRequest)(nil),            // 68: io.clbs.openhes.models.acquisition.GetDeviceDataRequest
-	(*GetDeviceDataSeriesSelector)(nil),     // 69: io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector
-	(*DeviceData)(nil),                      // 70: io.clbs.openhes.models.acquisition.DeviceData
-	(*DeviceDeviceData)(nil),                // 71: io.clbs.openhes.models.acquisition.DeviceDeviceData
-	(*VariableDeviceData)(nil),              // 72: io.clbs.openhes.models.acquisition.VariableDeviceData
-	(*DeviceDataInfo)(nil),                  // 73: io.clbs.openhes.models.acquisition.DeviceDataInfo
-	(*DeviceDataInfoSpec)(nil),              // 74: io.clbs.openhes.models.acquisition.DeviceDataInfoSpec
-	(*DeviceDataInfoStatus)(nil),            // 75: io.clbs.openhes.models.acquisition.DeviceDataInfoStatus
-	(*ListOfDeviceDataInfo)(nil),            // 76: io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
-	(*GetDeviceEventsRequest)(nil),          // 77: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
-	(*GetDeviceBulksRequest)(nil),           // 78: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest
-	(*DeviceBulks)(nil),                     // 79: io.clbs.openhes.models.acquisition.DeviceBulks
-	(*CreateTimeOfUseTableRequest)(nil),     // 80: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
-	(*ListOfTimeOfUseTable)(nil),            // 81: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
-	(*TimeOfUseTable)(nil),                  // 82: io.clbs.openhes.models.acquisition.TimeOfUseTable
-	nil,                                     // 83: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse.DataEntry
-	nil,                                     // 84: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
-	(*CommunicationUnitSpec)(nil),           // 85: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	(*common.MetadataFields)(nil),           // 86: io.clbs.openhes.models.common.MetadataFields
-	(*CommunicationUnit)(nil),               // 87: io.clbs.openhes.models.acquisition.CommunicationUnit
-	(*CommunicationBus)(nil),                // 88: io.clbs.openhes.models.acquisition.CommunicationBus
-	(*DeviceSpec)(nil),                      // 89: io.clbs.openhes.models.acquisition.DeviceSpec
-	(*DeviceStatus)(nil),                    // 90: io.clbs.openhes.models.acquisition.DeviceStatus
-	(*timestamppb.Timestamp)(nil),           // 91: google.protobuf.Timestamp
-	(*DeviceCommunicationUnit)(nil),         // 92: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	(*common.ListSelector)(nil),             // 93: io.clbs.openhes.models.common.ListSelector
-	(*ListOfJobDeviceId)(nil),               // 94: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	(*JobSettings)(nil),                     // 95: io.clbs.openhes.models.acquisition.JobSettings
-	(*JobActionSet)(nil),                    // 96: io.clbs.openhes.models.acquisition.JobActionSet
-	(BulkStatusCode)(0),                     // 97: io.clbs.openhes.models.acquisition.BulkStatusCode
-	(*JobStatus)(nil),                       // 98: io.clbs.openhes.models.acquisition.JobStatus
-	(*JobDevice)(nil),                       // 99: io.clbs.openhes.models.acquisition.JobDevice
-	(*ListOfJobDevice)(nil),                 // 100: io.clbs.openhes.models.acquisition.ListOfJobDevice
-	(*JobAction)(nil),                       // 101: io.clbs.openhes.models.acquisition.JobAction
-	(*ModemInfo)(nil),                       // 102: io.clbs.openhes.models.acquisition.ModemInfo
-	(*DriverTemplates)(nil),                 // 103: io.clbs.openhes.models.acquisition.DriverTemplates
-	(common.FieldDataType)(0),               // 104: io.clbs.openhes.models.common.FieldDataType
-	(*DeviceConfigurationRegisterSpec)(nil), // 105: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	(*MeasuredValue)(nil),                   // 106: io.clbs.openhes.models.acquisition.MeasuredValue
-	(*timeofuse.TimeOfUseTableSpec)(nil),    // 107: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	(*GetDeviceDataRequest)(nil),                   // 68: io.clbs.openhes.models.acquisition.GetDeviceDataRequest
+	(*GetDeviceDataSeriesSelector)(nil),            // 69: io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector
+	(*DeviceData)(nil),                             // 70: io.clbs.openhes.models.acquisition.DeviceData
+	(*DeviceDeviceData)(nil),                       // 71: io.clbs.openhes.models.acquisition.DeviceDeviceData
+	(*VariableDeviceData)(nil),                     // 72: io.clbs.openhes.models.acquisition.VariableDeviceData
+	(*DeviceDataInfo)(nil),                         // 73: io.clbs.openhes.models.acquisition.DeviceDataInfo
+	(*DeviceDataInfoSpec)(nil),                     // 74: io.clbs.openhes.models.acquisition.DeviceDataInfoSpec
+	(*DeviceDataInfoStatus)(nil),                   // 75: io.clbs.openhes.models.acquisition.DeviceDataInfoStatus
+	(*ListOfDeviceDataInfo)(nil),                   // 76: io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
+	(*GetDeviceEventsRequest)(nil),                 // 77: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest
+	(*GetDeviceBulksRequest)(nil),                  // 78: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest
+	(*DeviceBulks)(nil),                            // 79: io.clbs.openhes.models.acquisition.DeviceBulks
+	(*CreateTimeOfUseTableRequest)(nil),            // 80: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest
+	(*ListOfTimeOfUseTable)(nil),                   // 81: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable
+	(*TimeOfUseTable)(nil),                         // 82: io.clbs.openhes.models.acquisition.TimeOfUseTable
+	(*CreateFirmwareImageRequest)(nil),             // 83: io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest
+	(*ListOfFirmwareImage)(nil),                    // 84: io.clbs.openhes.models.acquisition.ListOfFirmwareImage
+	(*FirmwareImage)(nil),                          // 85: io.clbs.openhes.models.acquisition.FirmwareImage
+	(*FirmwareImageSpec)(nil),                      // 86: io.clbs.openhes.models.acquisition.FirmwareImageSpec
+	(*FirmwareImageFile)(nil),                      // 87: io.clbs.openhes.models.acquisition.FirmwareImageFile
+	(*GetFirmwareImageBlockRequest)(nil),           // 88: io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
+	(*StreamUploadFirmwareImageRequest)(nil),       // 89: io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest
+	(*FirmwareImageBlock)(nil),                     // 90: io.clbs.openhes.models.acquisition.FirmwareImageBlock
+	(*StreamDownloadFirmwareImageFileRequest)(nil), // 91: io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest
+	nil,                                     // 92: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse.DataEntry
+	nil,                                     // 93: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
+	(*CommunicationUnitSpec)(nil),           // 94: io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	(*common.MetadataFields)(nil),           // 95: io.clbs.openhes.models.common.MetadataFields
+	(*CommunicationUnit)(nil),               // 96: io.clbs.openhes.models.acquisition.CommunicationUnit
+	(*CommunicationBus)(nil),                // 97: io.clbs.openhes.models.acquisition.CommunicationBus
+	(*DeviceSpec)(nil),                      // 98: io.clbs.openhes.models.acquisition.DeviceSpec
+	(*DeviceStatus)(nil),                    // 99: io.clbs.openhes.models.acquisition.DeviceStatus
+	(*timestamppb.Timestamp)(nil),           // 100: google.protobuf.Timestamp
+	(*DeviceCommunicationUnit)(nil),         // 101: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	(*common.ListSelector)(nil),             // 102: io.clbs.openhes.models.common.ListSelector
+	(*ListOfJobDeviceId)(nil),               // 103: io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	(*JobSettings)(nil),                     // 104: io.clbs.openhes.models.acquisition.JobSettings
+	(*JobActionSet)(nil),                    // 105: io.clbs.openhes.models.acquisition.JobActionSet
+	(BulkStatusCode)(0),                     // 106: io.clbs.openhes.models.acquisition.BulkStatusCode
+	(*JobStatus)(nil),                       // 107: io.clbs.openhes.models.acquisition.JobStatus
+	(*JobDevice)(nil),                       // 108: io.clbs.openhes.models.acquisition.JobDevice
+	(*ListOfJobDevice)(nil),                 // 109: io.clbs.openhes.models.acquisition.ListOfJobDevice
+	(*JobAction)(nil),                       // 110: io.clbs.openhes.models.acquisition.JobAction
+	(*ModemInfo)(nil),                       // 111: io.clbs.openhes.models.acquisition.ModemInfo
+	(*DriverTemplates)(nil),                 // 112: io.clbs.openhes.models.acquisition.DriverTemplates
+	(common.FieldDataType)(0),               // 113: io.clbs.openhes.models.common.FieldDataType
+	(*DeviceConfigurationRegisterSpec)(nil), // 114: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	(*MeasuredValue)(nil),                   // 115: io.clbs.openhes.models.acquisition.MeasuredValue
+	(*timeofuse.TimeOfUseTableSpec)(nil),    // 116: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
 }
 var file_acquisition_main_proto_depIdxs = []int32{
-	85,  // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	86,  // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	87,  // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
-	86,  // 3: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	88,  // 4: io.clbs.openhes.models.acquisition.ListOfCommunicationBus.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationBus
-	89,  // 5: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	86,  // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	94,  // 0: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	95,  // 1: io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	96,  // 2: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnit
+	95,  // 3: io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	97,  // 4: io.clbs.openhes.models.acquisition.ListOfCommunicationBus.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationBus
+	98,  // 5: io.clbs.openhes.models.acquisition.CreateDeviceRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	95,  // 6: io.clbs.openhes.models.acquisition.CreateDeviceRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	8,   // 7: io.clbs.openhes.models.acquisition.ListOfDevice.items:type_name -> io.clbs.openhes.models.acquisition.Device
-	89,  // 8: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
-	90,  // 9: io.clbs.openhes.models.acquisition.Device.status:type_name -> io.clbs.openhes.models.acquisition.DeviceStatus
-	86,  // 10: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	83,  // 11: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse.data:type_name -> io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse.DataEntry
+	98,  // 8: io.clbs.openhes.models.acquisition.Device.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceSpec
+	99,  // 9: io.clbs.openhes.models.acquisition.Device.status:type_name -> io.clbs.openhes.models.acquisition.DeviceStatus
+	95,  // 10: io.clbs.openhes.models.acquisition.Device.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	92,  // 11: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse.data:type_name -> io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse.DataEntry
 	12,  // 12: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange
 	13,  // 13: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChange.status:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus
-	91,  // 14: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus.change_at:type_name -> google.protobuf.Timestamp
+	100, // 14: io.clbs.openhes.models.acquisition.DeviceCommunicationUnitChangeStatus.change_at:type_name -> google.protobuf.Timestamp
 	15,  // 15: io.clbs.openhes.models.acquisition.UnknownDevice.status:type_name -> io.clbs.openhes.models.acquisition.UnknownDeviceStatus
-	86,  // 16: io.clbs.openhes.models.acquisition.UnknownDevice.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 16: io.clbs.openhes.models.acquisition.UnknownDevice.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	20,  // 17: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	86,  // 18: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 18: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	19,  // 19: io.clbs.openhes.models.acquisition.ListOfDeviceGroup.items:type_name -> io.clbs.openhes.models.acquisition.DeviceGroup
 	20,  // 20: io.clbs.openhes.models.acquisition.StreamDeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
 	21,  // 21: io.clbs.openhes.models.acquisition.StreamDeviceGroup.status:type_name -> io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus
-	86,  // 22: io.clbs.openhes.models.acquisition.StreamDeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 22: io.clbs.openhes.models.acquisition.StreamDeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	20,  // 23: io.clbs.openhes.models.acquisition.DeviceGroup.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupSpec
-	86,  // 24: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	84,  // 25: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.devices:type_name -> io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
-	92,  // 26: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	92,  // 27: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	93,  // 28: io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	95,  // 24: io.clbs.openhes.models.acquisition.DeviceGroup.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	93,  // 25: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.devices:type_name -> io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry
+	101, // 26: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest.communication_units:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	101, // 27: io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit.items:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	102, // 28: io.clbs.openhes.models.acquisition.ListDeviceGroupDevicesRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
 	31,  // 29: io.clbs.openhes.models.acquisition.CreateBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
-	86,  // 30: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 30: io.clbs.openhes.models.acquisition.CreateBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	30,  // 31: io.clbs.openhes.models.acquisition.ListOfBulk.items:type_name -> io.clbs.openhes.models.acquisition.Bulk
 	31,  // 32: io.clbs.openhes.models.acquisition.Bulk.spec:type_name -> io.clbs.openhes.models.acquisition.BulkSpec
 	32,  // 33: io.clbs.openhes.models.acquisition.Bulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
-	86,  // 34: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	94,  // 35: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
-	95,  // 36: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	96,  // 37: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobActionSet
-	97,  // 38: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
-	91,  // 39: io.clbs.openhes.models.acquisition.BulkStatus.created_at:type_name -> google.protobuf.Timestamp
-	91,  // 40: io.clbs.openhes.models.acquisition.BulkStatus.started_at:type_name -> google.protobuf.Timestamp
-	91,  // 41: io.clbs.openhes.models.acquisition.BulkStatus.finished_at:type_name -> google.protobuf.Timestamp
+	95,  // 34: io.clbs.openhes.models.acquisition.Bulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	103, // 35: io.clbs.openhes.models.acquisition.BulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDeviceId
+	104, // 36: io.clbs.openhes.models.acquisition.BulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	105, // 37: io.clbs.openhes.models.acquisition.BulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobActionSet
+	106, // 38: io.clbs.openhes.models.acquisition.BulkStatus.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatusCode
+	100, // 39: io.clbs.openhes.models.acquisition.BulkStatus.created_at:type_name -> google.protobuf.Timestamp
+	100, // 40: io.clbs.openhes.models.acquisition.BulkStatus.started_at:type_name -> google.protobuf.Timestamp
+	100, // 41: io.clbs.openhes.models.acquisition.BulkStatus.finished_at:type_name -> google.protobuf.Timestamp
 	34,  // 42: io.clbs.openhes.models.acquisition.BulkJob.spec:type_name -> io.clbs.openhes.models.acquisition.BulkJobSpec
-	98,  // 43: io.clbs.openhes.models.acquisition.BulkJob.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
-	86,  // 44: io.clbs.openhes.models.acquisition.BulkJob.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	99,  // 45: io.clbs.openhes.models.acquisition.BulkJobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	93,  // 46: io.clbs.openhes.models.acquisition.ListBulkJobsRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	107, // 43: io.clbs.openhes.models.acquisition.BulkJob.status:type_name -> io.clbs.openhes.models.acquisition.JobStatus
+	95,  // 44: io.clbs.openhes.models.acquisition.BulkJob.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	108, // 45: io.clbs.openhes.models.acquisition.BulkJobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	102, // 46: io.clbs.openhes.models.acquisition.ListBulkJobsRequest.selector:type_name -> io.clbs.openhes.models.common.ListSelector
 	33,  // 47: io.clbs.openhes.models.acquisition.ListOfBulkJob.items:type_name -> io.clbs.openhes.models.acquisition.BulkJob
 	38,  // 48: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ProxyBulkSpec
-	86,  // 49: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	100, // 50: io.clbs.openhes.models.acquisition.ProxyBulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
-	95,  // 51: io.clbs.openhes.models.acquisition.ProxyBulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	101, // 52: io.clbs.openhes.models.acquisition.ProxyBulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	95,  // 49: io.clbs.openhes.models.acquisition.CreateProxyBulkRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	109, // 50: io.clbs.openhes.models.acquisition.ProxyBulkSpec.devices:type_name -> io.clbs.openhes.models.acquisition.ListOfJobDevice
+	104, // 51: io.clbs.openhes.models.acquisition.ProxyBulkSpec.settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	110, // 52: io.clbs.openhes.models.acquisition.ProxyBulkSpec.actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
 	38,  // 53: io.clbs.openhes.models.acquisition.ProxyBulk.spec:type_name -> io.clbs.openhes.models.acquisition.ProxyBulkSpec
 	32,  // 54: io.clbs.openhes.models.acquisition.ProxyBulk.status:type_name -> io.clbs.openhes.models.acquisition.BulkStatus
-	86,  // 55: io.clbs.openhes.models.acquisition.ProxyBulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 55: io.clbs.openhes.models.acquisition.ProxyBulk.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	42,  // 56: io.clbs.openhes.models.acquisition.SetModemPoolRequest.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
-	86,  // 57: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 57: io.clbs.openhes.models.acquisition.SetModemPoolRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	44,  // 58: io.clbs.openhes.models.acquisition.ListOfModemPool.items:type_name -> io.clbs.openhes.models.acquisition.ModemPool
-	102, // 59: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	111, // 59: io.clbs.openhes.models.acquisition.ModemPoolStatus.modems:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	42,  // 60: io.clbs.openhes.models.acquisition.ModemPool.spec:type_name -> io.clbs.openhes.models.acquisition.ModemPoolSpec
 	43,  // 61: io.clbs.openhes.models.acquisition.ModemPool.status:type_name -> io.clbs.openhes.models.acquisition.ModemPoolStatus
-	86,  // 62: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	102, // 63: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	95,  // 62: io.clbs.openhes.models.acquisition.ModemPool.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	111, // 63: io.clbs.openhes.models.acquisition.SetModemRequest.modem:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
 	49,  // 64: io.clbs.openhes.models.acquisition.SetDriver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
 	48,  // 65: io.clbs.openhes.models.acquisition.ListOfDriver.items:type_name -> io.clbs.openhes.models.acquisition.Driver
 	49,  // 66: io.clbs.openhes.models.acquisition.Driver.spec:type_name -> io.clbs.openhes.models.acquisition.DriverSpec
 	50,  // 67: io.clbs.openhes.models.acquisition.Driver.status:type_name -> io.clbs.openhes.models.acquisition.DriverStatus
-	103, // 68: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
+	112, // 68: io.clbs.openhes.models.acquisition.DriverSpec.templates:type_name -> io.clbs.openhes.models.acquisition.DriverTemplates
 	54,  // 69: io.clbs.openhes.models.acquisition.CreateVariableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.VariableSpec
-	86,  // 70: io.clbs.openhes.models.acquisition.CreateVariableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 70: io.clbs.openhes.models.acquisition.CreateVariableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	53,  // 71: io.clbs.openhes.models.acquisition.ListOfVariable.items:type_name -> io.clbs.openhes.models.acquisition.Variable
 	54,  // 72: io.clbs.openhes.models.acquisition.Variable.spec:type_name -> io.clbs.openhes.models.acquisition.VariableSpec
-	86,  // 73: io.clbs.openhes.models.acquisition.Variable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	104, // 74: io.clbs.openhes.models.acquisition.VariableSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	105, // 75: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	86,  // 76: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 73: io.clbs.openhes.models.acquisition.Variable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	113, // 74: io.clbs.openhes.models.acquisition.VariableSpec.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	114, // 75: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	95,  // 76: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	59,  // 77: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegister
-	105, // 78: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
-	86,  // 79: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	114, // 78: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec
+	95,  // 79: io.clbs.openhes.models.acquisition.DeviceConfigurationRegister.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	61,  // 80: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMapRecord
 	65,  // 81: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
-	86,  // 82: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	95,  // 82: io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	64,  // 83: io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate
 	65,  // 84: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec
-	86,  // 85: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	91,  // 86: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.range_start:type_name -> google.protobuf.Timestamp
-	91,  // 87: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.range_end:type_name -> google.protobuf.Timestamp
+	95,  // 85: io.clbs.openhes.models.acquisition.DeviceConfigurationTemplate.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	100, // 86: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.range_start:type_name -> google.protobuf.Timestamp
+	100, // 87: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.range_end:type_name -> google.protobuf.Timestamp
 	69,  // 88: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.series:type_name -> io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector
-	91,  // 89: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.snapshot:type_name -> google.protobuf.Timestamp
+	100, // 89: io.clbs.openhes.models.acquisition.GetDeviceDataRequest.snapshot:type_name -> google.protobuf.Timestamp
 	71,  // 90: io.clbs.openhes.models.acquisition.DeviceData.devices:type_name -> io.clbs.openhes.models.acquisition.DeviceDeviceData
 	72,  // 91: io.clbs.openhes.models.acquisition.DeviceDeviceData.data:type_name -> io.clbs.openhes.models.acquisition.VariableDeviceData
-	91,  // 92: io.clbs.openhes.models.acquisition.VariableDeviceData.timestamps:type_name -> google.protobuf.Timestamp
-	106, // 93: io.clbs.openhes.models.acquisition.VariableDeviceData.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	100, // 92: io.clbs.openhes.models.acquisition.VariableDeviceData.timestamps:type_name -> google.protobuf.Timestamp
+	115, // 93: io.clbs.openhes.models.acquisition.VariableDeviceData.values:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
 	74,  // 94: io.clbs.openhes.models.acquisition.DeviceDataInfo.spec:type_name -> io.clbs.openhes.models.acquisition.DeviceDataInfoSpec
 	75,  // 95: io.clbs.openhes.models.acquisition.DeviceDataInfo.status:type_name -> io.clbs.openhes.models.acquisition.DeviceDataInfoStatus
-	91,  // 96: io.clbs.openhes.models.acquisition.DeviceDataInfoStatus.last_value_at:type_name -> google.protobuf.Timestamp
+	100, // 96: io.clbs.openhes.models.acquisition.DeviceDataInfoStatus.last_value_at:type_name -> google.protobuf.Timestamp
 	73,  // 97: io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceDataInfo
-	91,  // 98: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.range_start:type_name -> google.protobuf.Timestamp
-	91,  // 99: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.range_end:type_name -> google.protobuf.Timestamp
-	91,  // 100: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest.range_start:type_name -> google.protobuf.Timestamp
-	91,  // 101: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest.range_end:type_name -> google.protobuf.Timestamp
+	100, // 98: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.range_start:type_name -> google.protobuf.Timestamp
+	100, // 99: io.clbs.openhes.models.acquisition.GetDeviceEventsRequest.range_end:type_name -> google.protobuf.Timestamp
+	100, // 100: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest.range_start:type_name -> google.protobuf.Timestamp
+	100, // 101: io.clbs.openhes.models.acquisition.GetDeviceBulksRequest.range_end:type_name -> google.protobuf.Timestamp
 	30,  // 102: io.clbs.openhes.models.acquisition.DeviceBulks.bulks:type_name -> io.clbs.openhes.models.acquisition.Bulk
-	107, // 103: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	86,  // 104: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	116, // 103: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	95,  // 104: io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
 	82,  // 105: io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable.items:type_name -> io.clbs.openhes.models.acquisition.TimeOfUseTable
-	107, // 106: io.clbs.openhes.models.acquisition.TimeOfUseTable.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
-	86,  // 107: io.clbs.openhes.models.acquisition.TimeOfUseTable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	22,  // 108: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
-	109, // [109:109] is the sub-list for method output_type
-	109, // [109:109] is the sub-list for method input_type
-	109, // [109:109] is the sub-list for extension type_name
-	109, // [109:109] is the sub-list for extension extendee
-	0,   // [0:109] is the sub-list for field type_name
+	116, // 106: io.clbs.openhes.models.acquisition.TimeOfUseTable.spec:type_name -> io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec
+	95,  // 107: io.clbs.openhes.models.acquisition.TimeOfUseTable.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	86,  // 108: io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest.spec:type_name -> io.clbs.openhes.models.acquisition.FirmwareImageSpec
+	95,  // 109: io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	85,  // 110: io.clbs.openhes.models.acquisition.ListOfFirmwareImage.items:type_name -> io.clbs.openhes.models.acquisition.FirmwareImage
+	86,  // 111: io.clbs.openhes.models.acquisition.FirmwareImage.spec:type_name -> io.clbs.openhes.models.acquisition.FirmwareImageSpec
+	95,  // 112: io.clbs.openhes.models.acquisition.FirmwareImage.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	87,  // 113: io.clbs.openhes.models.acquisition.FirmwareImageSpec.content:type_name -> io.clbs.openhes.models.acquisition.FirmwareImageFile
+	22,  // 114: io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.DeviceGroupStatusDevice
+	115, // [115:115] is the sub-list for method output_type
+	115, // [115:115] is the sub-list for method input_type
+	115, // [115:115] is the sub-list for extension type_name
+	115, // [115:115] is the sub-list for extension extendee
+	0,   // [0:115] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_main_proto_init() }
@@ -9358,7 +10596,7 @@ func file_acquisition_main_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_main_proto_rawDesc), len(file_acquisition_main_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   85,
+			NumMessages:   94,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

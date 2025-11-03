@@ -42,6 +42,7 @@ const (
 	ObjectType_TIME_OF_USE_TABLE             ObjectType = 11 // The time-of-use table.
 	ObjectType_DRIVER                        ObjectType = 12 // The driver.
 	ObjectType_CRON_JOB                      ObjectType = 13 // The cron job.
+	ObjectType_FIRMWARE_IMAGE                ObjectType = 17 // The firmware image.
 	// @internal: The derived object types.
 	ObjectType_DEVICE_COMMUNICATION_UNIT_CHANGE ObjectType = 14 // The device communication unit change.
 	ObjectType_DEVICE_DATA_INFO                 ObjectType = 15 // The device data info.
@@ -65,6 +66,7 @@ var (
 		11: "TIME_OF_USE_TABLE",
 		12: "DRIVER",
 		13: "CRON_JOB",
+		17: "FIRMWARE_IMAGE",
 		14: "DEVICE_COMMUNICATION_UNIT_CHANGE",
 		15: "DEVICE_DATA_INFO",
 		16: "COMMUNICATION_UNIT_LOG_RECORD",
@@ -84,6 +86,7 @@ var (
 		"TIME_OF_USE_TABLE":                11,
 		"DRIVER":                           12,
 		"CRON_JOB":                         13,
+		"FIRMWARE_IMAGE":                   17,
 		"DEVICE_COMMUNICATION_UNIT_CHANGE": 14,
 		"DEVICE_DATA_INFO":                 15,
 		"COMMUNICATION_UNIT_LOG_RECORD":    16,
@@ -116,7 +119,7 @@ var File_common_objects_proto protoreflect.FileDescriptor
 
 const file_common_objects_proto_rawDesc = "" +
 	"\n" +
-	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\x82\x03\n" +
+	"\x14common/objects.proto\x12\x1dio.clbs.openhes.models.common*\x96\x03\n" +
 	"\n" +
 	"ObjectType\x12\x1b\n" +
 	"\x17OBJECT_TYPE_UNSPECIFIED\x10\x00\x12\b\n" +
@@ -136,7 +139,8 @@ const file_common_objects_proto_rawDesc = "" +
 	"\x11TIME_OF_USE_TABLE\x10\v\x12\n" +
 	"\n" +
 	"\x06DRIVER\x10\f\x12\f\n" +
-	"\bCRON_JOB\x10\r\x12$\n" +
+	"\bCRON_JOB\x10\r\x12\x12\n" +
+	"\x0eFIRMWARE_IMAGE\x10\x11\x12$\n" +
 	" DEVICE_COMMUNICATION_UNIT_CHANGE\x10\x0e\x12\x14\n" +
 	"\x10DEVICE_DATA_INFO\x10\x0f\x12!\n" +
 	"\x1dCOMMUNICATION_UNIT_LOG_RECORD\x10\x10B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/commonb\beditionsp\xe8\a"

@@ -358,6 +358,28 @@ service ApiService {
     // Deletes the specified time-of-use table.
     rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
+    // @group: Firmware Images
+    // Creates a new firmware image. Returns the identifier of the newly created firmware image.
+    rpc CreateFirmwareImage(io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest) returns (google.protobuf.StringValue);
+    // @group: Firmware Images
+    // Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+    rpc ListFirmwareImages(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfFirmwareImage);
+    // @group: Firmware Images
+    // Retrieves the details of the specified firmware image.
+    rpc GetFirmwareImage(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.FirmwareImage);
+    // @group: Firmware Images
+    // Updates the details of an existing firmware image.
+    rpc UpdateFirmwareImage(io.clbs.openhes.models.acquisition.FirmwareImage) returns (google.protobuf.Empty);
+    // @group: Firmware Images
+    // Deletes the specified firmware image.
+    rpc DeleteFirmwareImage(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Firmware Images
+    // Starts streaming upload of a firmware image file.
+    rpc StreamUploadFirmwareImageFile(stream io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest) returns (google.protobuf.Empty);
+    // @group: Firmware Images
+    // Starts streaming download of a firmware image file.
+    rpc StreamDownloadFirmwareImageFile(io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest) returns (stream io.clbs.openhes.models.acquisition.FirmwareImageBlock);
+
     // @group: Cron Jobs
     // Creates a new cron job. Returns the identifier of the newly created cron job.
     rpc CreateCronJob(io.clbs.openhes.models.cronjobs.CreateCronJobRequest) returns (google.protobuf.StringValue);

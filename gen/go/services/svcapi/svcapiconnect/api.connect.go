@@ -294,6 +294,27 @@ const (
 	// ApiServiceDeleteTimeOfUseTableProcedure is the fully-qualified name of the ApiService's
 	// DeleteTimeOfUseTable RPC.
 	ApiServiceDeleteTimeOfUseTableProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable"
+	// ApiServiceCreateFirmwareImageProcedure is the fully-qualified name of the ApiService's
+	// CreateFirmwareImage RPC.
+	ApiServiceCreateFirmwareImageProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateFirmwareImage"
+	// ApiServiceListFirmwareImagesProcedure is the fully-qualified name of the ApiService's
+	// ListFirmwareImages RPC.
+	ApiServiceListFirmwareImagesProcedure = "/io.clbs.openhes.services.svcapi.ApiService/ListFirmwareImages"
+	// ApiServiceGetFirmwareImageProcedure is the fully-qualified name of the ApiService's
+	// GetFirmwareImage RPC.
+	ApiServiceGetFirmwareImageProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetFirmwareImage"
+	// ApiServiceUpdateFirmwareImageProcedure is the fully-qualified name of the ApiService's
+	// UpdateFirmwareImage RPC.
+	ApiServiceUpdateFirmwareImageProcedure = "/io.clbs.openhes.services.svcapi.ApiService/UpdateFirmwareImage"
+	// ApiServiceDeleteFirmwareImageProcedure is the fully-qualified name of the ApiService's
+	// DeleteFirmwareImage RPC.
+	ApiServiceDeleteFirmwareImageProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteFirmwareImage"
+	// ApiServiceStreamUploadFirmwareImageFileProcedure is the fully-qualified name of the ApiService's
+	// StreamUploadFirmwareImageFile RPC.
+	ApiServiceStreamUploadFirmwareImageFileProcedure = "/io.clbs.openhes.services.svcapi.ApiService/StreamUploadFirmwareImageFile"
+	// ApiServiceStreamDownloadFirmwareImageFileProcedure is the fully-qualified name of the
+	// ApiService's StreamDownloadFirmwareImageFile RPC.
+	ApiServiceStreamDownloadFirmwareImageFileProcedure = "/io.clbs.openhes.services.svcapi.ApiService/StreamDownloadFirmwareImageFile"
 	// ApiServiceCreateCronJobProcedure is the fully-qualified name of the ApiService's CreateCronJob
 	// RPC.
 	ApiServiceCreateCronJobProcedure = "/io.clbs.openhes.services.svcapi.ApiService/CreateCronJob"
@@ -689,6 +710,27 @@ type ApiServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
+	CreateFirmwareImage(context.Context, *connect.Request[acquisition.CreateFirmwareImageRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Firmware Images
+	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListFirmwareImages(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfFirmwareImage], error)
+	// @group: Firmware Images
+	// Retrieves the details of the specified firmware image.
+	GetFirmwareImage(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.FirmwareImage], error)
+	// @group: Firmware Images
+	// Updates the details of an existing firmware image.
+	UpdateFirmwareImage(context.Context, *connect.Request[acquisition.FirmwareImage]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Deletes the specified firmware image.
+	DeleteFirmwareImage(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Starts streaming upload of a firmware image file.
+	StreamUploadFirmwareImageFile(context.Context) *connect.ClientStreamForClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]
+	// @group: Firmware Images
+	// Starts streaming download of a firmware image file.
+	StreamDownloadFirmwareImageFile(context.Context, *connect.Request[acquisition.StreamDownloadFirmwareImageFileRequest]) (*connect.ServerStreamForClient[acquisition.FirmwareImageBlock], error)
 	// @group: Cron Jobs
 	// Creates a new cron job. Returns the identifier of the newly created cron job.
 	CreateCronJob(context.Context, *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -1317,6 +1359,48 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("DeleteTimeOfUseTable")),
 			connect.WithClientOptions(opts...),
 		),
+		createFirmwareImage: connect.NewClient[acquisition.CreateFirmwareImageRequest, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceCreateFirmwareImageProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("CreateFirmwareImage")),
+			connect.WithClientOptions(opts...),
+		),
+		listFirmwareImages: connect.NewClient[common.ListSelector, acquisition.ListOfFirmwareImage](
+			httpClient,
+			baseURL+ApiServiceListFirmwareImagesProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("ListFirmwareImages")),
+			connect.WithClientOptions(opts...),
+		),
+		getFirmwareImage: connect.NewClient[wrapperspb.StringValue, acquisition.FirmwareImage](
+			httpClient,
+			baseURL+ApiServiceGetFirmwareImageProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetFirmwareImage")),
+			connect.WithClientOptions(opts...),
+		),
+		updateFirmwareImage: connect.NewClient[acquisition.FirmwareImage, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceUpdateFirmwareImageProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("UpdateFirmwareImage")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteFirmwareImage: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceDeleteFirmwareImageProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("DeleteFirmwareImage")),
+			connect.WithClientOptions(opts...),
+		),
+		streamUploadFirmwareImageFile: connect.NewClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceStreamUploadFirmwareImageFileProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("StreamUploadFirmwareImageFile")),
+			connect.WithClientOptions(opts...),
+		),
+		streamDownloadFirmwareImageFile: connect.NewClient[acquisition.StreamDownloadFirmwareImageFileRequest, acquisition.FirmwareImageBlock](
+			httpClient,
+			baseURL+ApiServiceStreamDownloadFirmwareImageFileProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("StreamDownloadFirmwareImageFile")),
+			connect.WithClientOptions(opts...),
+		),
 		createCronJob: connect.NewClient[cronjobs.CreateCronJobRequest, wrapperspb.StringValue](
 			httpClient,
 			baseURL+ApiServiceCreateCronJobProcedure,
@@ -1568,6 +1652,13 @@ type apiServiceClient struct {
 	getTimeOfUseTable                                                *connect.Client[wrapperspb.StringValue, acquisition.TimeOfUseTable]
 	updateTimeOfUseTable                                             *connect.Client[acquisition.TimeOfUseTable, emptypb.Empty]
 	deleteTimeOfUseTable                                             *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	createFirmwareImage                                              *connect.Client[acquisition.CreateFirmwareImageRequest, wrapperspb.StringValue]
+	listFirmwareImages                                               *connect.Client[common.ListSelector, acquisition.ListOfFirmwareImage]
+	getFirmwareImage                                                 *connect.Client[wrapperspb.StringValue, acquisition.FirmwareImage]
+	updateFirmwareImage                                              *connect.Client[acquisition.FirmwareImage, emptypb.Empty]
+	deleteFirmwareImage                                              *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	streamUploadFirmwareImageFile                                    *connect.Client[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]
+	streamDownloadFirmwareImageFile                                  *connect.Client[acquisition.StreamDownloadFirmwareImageFileRequest, acquisition.FirmwareImageBlock]
 	createCronJob                                                    *connect.Client[cronjobs.CreateCronJobRequest, wrapperspb.StringValue]
 	listCronJobs                                                     *connect.Client[common.ListSelector, cronjobs.ListOfCronJob]
 	getCronJob                                                       *connect.Client[wrapperspb.StringValue, cronjobs.CronJob]
@@ -2069,6 +2160,43 @@ func (c *apiServiceClient) DeleteTimeOfUseTable(ctx context.Context, req *connec
 	return c.deleteTimeOfUseTable.CallUnary(ctx, req)
 }
 
+// CreateFirmwareImage calls io.clbs.openhes.services.svcapi.ApiService.CreateFirmwareImage.
+func (c *apiServiceClient) CreateFirmwareImage(ctx context.Context, req *connect.Request[acquisition.CreateFirmwareImageRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.createFirmwareImage.CallUnary(ctx, req)
+}
+
+// ListFirmwareImages calls io.clbs.openhes.services.svcapi.ApiService.ListFirmwareImages.
+func (c *apiServiceClient) ListFirmwareImages(ctx context.Context, req *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfFirmwareImage], error) {
+	return c.listFirmwareImages.CallUnary(ctx, req)
+}
+
+// GetFirmwareImage calls io.clbs.openhes.services.svcapi.ApiService.GetFirmwareImage.
+func (c *apiServiceClient) GetFirmwareImage(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.FirmwareImage], error) {
+	return c.getFirmwareImage.CallUnary(ctx, req)
+}
+
+// UpdateFirmwareImage calls io.clbs.openhes.services.svcapi.ApiService.UpdateFirmwareImage.
+func (c *apiServiceClient) UpdateFirmwareImage(ctx context.Context, req *connect.Request[acquisition.FirmwareImage]) (*connect.Response[emptypb.Empty], error) {
+	return c.updateFirmwareImage.CallUnary(ctx, req)
+}
+
+// DeleteFirmwareImage calls io.clbs.openhes.services.svcapi.ApiService.DeleteFirmwareImage.
+func (c *apiServiceClient) DeleteFirmwareImage(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.deleteFirmwareImage.CallUnary(ctx, req)
+}
+
+// StreamUploadFirmwareImageFile calls
+// io.clbs.openhes.services.svcapi.ApiService.StreamUploadFirmwareImageFile.
+func (c *apiServiceClient) StreamUploadFirmwareImageFile(ctx context.Context) *connect.ClientStreamForClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty] {
+	return c.streamUploadFirmwareImageFile.CallClientStream(ctx)
+}
+
+// StreamDownloadFirmwareImageFile calls
+// io.clbs.openhes.services.svcapi.ApiService.StreamDownloadFirmwareImageFile.
+func (c *apiServiceClient) StreamDownloadFirmwareImageFile(ctx context.Context, req *connect.Request[acquisition.StreamDownloadFirmwareImageFileRequest]) (*connect.ServerStreamForClient[acquisition.FirmwareImageBlock], error) {
+	return c.streamDownloadFirmwareImageFile.CallServerStream(ctx, req)
+}
+
 // CreateCronJob calls io.clbs.openhes.services.svcapi.ApiService.CreateCronJob.
 func (c *apiServiceClient) CreateCronJob(ctx context.Context, req *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error) {
 	return c.createCronJob.CallUnary(ctx, req)
@@ -2521,6 +2649,27 @@ type ApiServiceHandler interface {
 	// @group: Time-Of-Use Tables
 	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
+	CreateFirmwareImage(context.Context, *connect.Request[acquisition.CreateFirmwareImageRequest]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: Firmware Images
+	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListFirmwareImages(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfFirmwareImage], error)
+	// @group: Firmware Images
+	// Retrieves the details of the specified firmware image.
+	GetFirmwareImage(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.FirmwareImage], error)
+	// @group: Firmware Images
+	// Updates the details of an existing firmware image.
+	UpdateFirmwareImage(context.Context, *connect.Request[acquisition.FirmwareImage]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Deletes the specified firmware image.
+	DeleteFirmwareImage(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Starts streaming upload of a firmware image file.
+	StreamUploadFirmwareImageFile(context.Context, *connect.ClientStream[acquisition.StreamUploadFirmwareImageRequest]) (*connect.Response[emptypb.Empty], error)
+	// @group: Firmware Images
+	// Starts streaming download of a firmware image file.
+	StreamDownloadFirmwareImageFile(context.Context, *connect.Request[acquisition.StreamDownloadFirmwareImageFileRequest], *connect.ServerStream[acquisition.FirmwareImageBlock]) error
 	// @group: Cron Jobs
 	// Creates a new cron job. Returns the identifier of the newly created cron job.
 	CreateCronJob(context.Context, *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error)
@@ -3145,6 +3294,48 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("DeleteTimeOfUseTable")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceCreateFirmwareImageHandler := connect.NewUnaryHandler(
+		ApiServiceCreateFirmwareImageProcedure,
+		svc.CreateFirmwareImage,
+		connect.WithSchema(apiServiceMethods.ByName("CreateFirmwareImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceListFirmwareImagesHandler := connect.NewUnaryHandler(
+		ApiServiceListFirmwareImagesProcedure,
+		svc.ListFirmwareImages,
+		connect.WithSchema(apiServiceMethods.ByName("ListFirmwareImages")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetFirmwareImageHandler := connect.NewUnaryHandler(
+		ApiServiceGetFirmwareImageProcedure,
+		svc.GetFirmwareImage,
+		connect.WithSchema(apiServiceMethods.ByName("GetFirmwareImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceUpdateFirmwareImageHandler := connect.NewUnaryHandler(
+		ApiServiceUpdateFirmwareImageProcedure,
+		svc.UpdateFirmwareImage,
+		connect.WithSchema(apiServiceMethods.ByName("UpdateFirmwareImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceDeleteFirmwareImageHandler := connect.NewUnaryHandler(
+		ApiServiceDeleteFirmwareImageProcedure,
+		svc.DeleteFirmwareImage,
+		connect.WithSchema(apiServiceMethods.ByName("DeleteFirmwareImage")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceStreamUploadFirmwareImageFileHandler := connect.NewClientStreamHandler(
+		ApiServiceStreamUploadFirmwareImageFileProcedure,
+		svc.StreamUploadFirmwareImageFile,
+		connect.WithSchema(apiServiceMethods.ByName("StreamUploadFirmwareImageFile")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceStreamDownloadFirmwareImageFileHandler := connect.NewServerStreamHandler(
+		ApiServiceStreamDownloadFirmwareImageFileProcedure,
+		svc.StreamDownloadFirmwareImageFile,
+		connect.WithSchema(apiServiceMethods.ByName("StreamDownloadFirmwareImageFile")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceCreateCronJobHandler := connect.NewUnaryHandler(
 		ApiServiceCreateCronJobProcedure,
 		svc.CreateCronJob,
@@ -3483,6 +3674,20 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceUpdateTimeOfUseTableHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteTimeOfUseTableProcedure:
 			apiServiceDeleteTimeOfUseTableHandler.ServeHTTP(w, r)
+		case ApiServiceCreateFirmwareImageProcedure:
+			apiServiceCreateFirmwareImageHandler.ServeHTTP(w, r)
+		case ApiServiceListFirmwareImagesProcedure:
+			apiServiceListFirmwareImagesHandler.ServeHTTP(w, r)
+		case ApiServiceGetFirmwareImageProcedure:
+			apiServiceGetFirmwareImageHandler.ServeHTTP(w, r)
+		case ApiServiceUpdateFirmwareImageProcedure:
+			apiServiceUpdateFirmwareImageHandler.ServeHTTP(w, r)
+		case ApiServiceDeleteFirmwareImageProcedure:
+			apiServiceDeleteFirmwareImageHandler.ServeHTTP(w, r)
+		case ApiServiceStreamUploadFirmwareImageFileProcedure:
+			apiServiceStreamUploadFirmwareImageFileHandler.ServeHTTP(w, r)
+		case ApiServiceStreamDownloadFirmwareImageFileProcedure:
+			apiServiceStreamDownloadFirmwareImageFileHandler.ServeHTTP(w, r)
 		case ApiServiceCreateCronJobProcedure:
 			apiServiceCreateCronJobHandler.ServeHTTP(w, r)
 		case ApiServiceListCronJobsProcedure:
@@ -3902,6 +4107,34 @@ func (UnimplementedApiServiceHandler) UpdateTimeOfUseTable(context.Context, *con
 
 func (UnimplementedApiServiceHandler) DeleteTimeOfUseTable(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteTimeOfUseTable is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) CreateFirmwareImage(context.Context, *connect.Request[acquisition.CreateFirmwareImageRequest]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.CreateFirmwareImage is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) ListFirmwareImages(context.Context, *connect.Request[common.ListSelector]) (*connect.Response[acquisition.ListOfFirmwareImage], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.ListFirmwareImages is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetFirmwareImage(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[acquisition.FirmwareImage], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetFirmwareImage is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) UpdateFirmwareImage(context.Context, *connect.Request[acquisition.FirmwareImage]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.UpdateFirmwareImage is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) DeleteFirmwareImage(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteFirmwareImage is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) StreamUploadFirmwareImageFile(context.Context, *connect.ClientStream[acquisition.StreamUploadFirmwareImageRequest]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.StreamUploadFirmwareImageFile is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) StreamDownloadFirmwareImageFile(context.Context, *connect.Request[acquisition.StreamDownloadFirmwareImageFileRequest], *connect.ServerStream[acquisition.FirmwareImageBlock]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.StreamDownloadFirmwareImageFile is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) CreateCronJob(context.Context, *connect.Request[cronjobs.CreateCronJobRequest]) (*connect.Response[wrapperspb.StringValue], error) {

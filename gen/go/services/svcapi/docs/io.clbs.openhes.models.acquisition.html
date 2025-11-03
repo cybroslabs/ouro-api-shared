@@ -87,9 +87,9 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.ActionFwUpdate">
+        <a href="#message-io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">
           <span class="tag" style="min-width: 6em">Message</span>
-          <code>ActionFwUpdate</code> 
+          <code>ActionFirmwareUpgrade</code> 
         </a>
       </p>
       
@@ -483,6 +483,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>CreateFirmwareImageRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.CreateProxyBulkRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>CreateProxyBulkRequest</code> 
@@ -771,6 +780,42 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImage">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FirmwareImage</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImageBlock">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FirmwareImageBlock</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImageFile">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FirmwareImageFile</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImageSpec">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>FirmwareImageSpec</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulksRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>GetDeviceBulksRequest</code> 
@@ -1032,6 +1077,15 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.ListOfFirmwareImage">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ListOfFirmwareImage</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ListOfJobDevice">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ListOfJobDevice</code> 
@@ -1251,6 +1305,24 @@
         <a href="#message-io.clbs.openhes.models.acquisition.SetModemRequest">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>SetModemRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>StreamDownloadFirmwareImageFileRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>StreamUploadFirmwareImageRequest</code> 
         </a>
       </p>
       
@@ -1699,9 +1771,9 @@
       <div class="block">
         
 
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionFwUpdate">
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">
   <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.ActionFwUpdate" title="io.clbs.openhes.models.acquisition.ActionFwUpdate">message ActionFwUpdate</a>
+    <a href="#message-io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade" title="io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">message ActionFirmwareUpgrade</a>
   
   </span>
   
@@ -1722,6 +1794,21 @@
     </tr>
   </thead>
   <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        firmwareImageId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the firmware to be used for the update.</p></td>
+      
+    </tr>
     
     
   </tbody>
@@ -2403,7 +2490,22 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The TOU table to be set.</p></td>
+      <td class="content"><p>The TOU table to be set. Either <code>tou_table_id</code> or <code>table</code> must be set.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        touTableId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique identifier of the TOU table to be set. Either <code>tou_table_id</code> or <code>table</code> must be set.</p></td>
       
     </tr>
     
@@ -4875,6 +4977,73 @@
         </code>
       </td>
       <td class="content"><p>The device specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest" title="io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest">message CreateFirmwareImageRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a specification for creating a new firmware image.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.FirmwareImageSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.FirmwareImageSpec"><span title="io.clbs.openhes.models.acquisition.FirmwareImageSpec">io.clbs.openhes.models.acquisition.FirmwareImageSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The firmware image specification.</p></td>
       
     </tr>
     
@@ -7516,6 +7685,301 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.FirmwareImage">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImage" title="io.clbs.openhes.models.acquisition.FirmwareImage">message FirmwareImage</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a specification for a firmware image object.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        spec
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.FirmwareImageSpec">
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.FirmwareImageSpec"><span title="io.clbs.openhes.models.acquisition.FirmwareImageSpec">io.clbs.openhes.models.acquisition.FirmwareImageSpec</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The firmware image specification.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        metadata
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.MetadataFields">
+          
+          <a href="io.clbs.openhes.models.common.html#message-io.clbs.openhes.models.common.MetadataFields"><span title="io.clbs.openhes.models.common.MetadataFields">io.clbs.openhes.models.common.MetadataFields</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The metadata fields.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.FirmwareImageBlock">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImageBlock" title="io.clbs.openhes.models.acquisition.FirmwareImageBlock">message FirmwareImageBlock</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a block of firmware image data.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        blockData
+      </td>
+      <td>
+        <code title="bytes">
+          
+          <span>bytes</span>
+        </code>
+      </td>
+      <td class="content"><p>The data block of firmware image.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        fileSize
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total size of the firmware image in bytes.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.FirmwareImageFile">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImageFile" title="io.clbs.openhes.models.acquisition.FirmwareImageFile">message FirmwareImageFile</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a file within a firmware image.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        fileName
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The firmware image file name.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        fileSize
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The size of the firmware image file in bytes.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.FirmwareImageSpec">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.FirmwareImageSpec" title="io.clbs.openhes.models.acquisition.FirmwareImageSpec">message FirmwareImageSpec</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a firmware image specification.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        driverType
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The driver type.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        version
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The firmware version.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        content
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.FirmwareImageFile">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.FirmwareImageFile"><span title="io.clbs.openhes.models.acquisition.FirmwareImageFile">io.clbs.openhes.models.acquisition.FirmwareImageFile</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of firmware image files.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        description
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The firmware image description.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.GetDeviceBulksRequest">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.GetDeviceBulksRequest" title="io.clbs.openhes.models.acquisition.GetDeviceBulksRequest">message GetDeviceBulksRequest</a>
@@ -8317,16 +8781,16 @@ For example, if the action is <code>ActionGetRegister</code>, it specifies a sin
             18
           </td>
           <td>
-            fwUpdate
+            fwUpgrade
           </td>
           <td>
-            <code title="io.clbs.openhes.models.acquisition.ActionFwUpdate">
+            <code title="io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">
               
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionFwUpdate"><span title="io.clbs.openhes.models.acquisition.ActionFwUpdate">io.clbs.openhes.models.acquisition.ActionFwUpdate</span>
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade"><span title="io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade</span>
     </a>
             </code>
           </td>
-          <td class="content"><p>Defines the firmware update action.</p></td>
+          <td class="content"><p>Defines the FirmwareUpgrade action.</p></td>
           
         </tr>
       
@@ -8783,16 +9247,16 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
             18
           </td>
           <td>
-            fwUpdate
+            fwUpgrade
           </td>
           <td>
-            <code title="io.clbs.openhes.models.acquisition.ActionFwUpdate">
+            <code title="io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">
               
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionFwUpdate"><span title="io.clbs.openhes.models.acquisition.ActionFwUpdate">io.clbs.openhes.models.acquisition.ActionFwUpdate</span>
+              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade"><span title="io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade">io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade</span>
     </a>
             </code>
           </td>
-          <td class="content"><p>Defines the firmware update action.</p></td>
+          <td class="content"><p>Defines the FirmwareUpgrade action.</p></td>
           
         </tr>
       
@@ -10324,6 +10788,74 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
         </code>
       </td>
       <td class="content"><p>The list of drivers.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        totalCount
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The total number of items in the list.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ListOfFirmwareImage">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.ListOfFirmwareImage" title="io.clbs.openhes.models.acquisition.ListOfFirmwareImage">message ListOfFirmwareImage</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a list of firmware images.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        items
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.acquisition.FirmwareImage">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.FirmwareImage"><span title="io.clbs.openhes.models.acquisition.FirmwareImage">io.clbs.openhes.models.acquisition.FirmwareImage</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The list of firmware images.</p></td>
       
     </tr>
     
@@ -12428,6 +12960,196 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
       <div class="block">
         
 
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest" title="io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest">message StreamDownloadFirmwareImageFileRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a request for streaming download of a firmware image file.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        firmwareImageId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique firmware image identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        fileName
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The firmware image file name.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest" title="io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest">message StreamUploadFirmwareImageRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines a request for retrieving a block of firmware image data for streamed upload.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        firmwareImageId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The unique firmware image identifier.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        fileName
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>The firmware image file name.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>3</td>
+      <td>
+        blockSize
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The size of the block to retrieve in bytes.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        blockIndex
+      </td>
+      <td>
+        <code title="int32">
+          
+          <span>int32</span>
+        </code>
+      </td>
+      <td class="content"><p>The index of the block to retrieve (0-based). All blocks must be send in order.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>5</td>
+      <td>
+        lastBlock
+      </td>
+      <td>
+        <code title="bool">
+          
+          <span>bool</span>
+        </code>
+      </td>
+      <td class="content"><p>Indicates whether this is the last block in the stream.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>6</td>
+      <td>
+        blockData
+      </td>
+      <td>
+        <code title="bytes">
+          
+          <span>bytes</span>
+        </code>
+      </td>
+      <td class="content"><p>The data block of firmware image.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
 <h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.TimeOfUseTable">
   <span>
     <a href="#message-io.clbs.openhes.models.acquisition.TimeOfUseTable" title="io.clbs.openhes.models.acquisition.TimeOfUseTable">message TimeOfUseTable</a>
@@ -12437,7 +13159,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  
+  <p>Defines a specification for a time-of-use table.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">

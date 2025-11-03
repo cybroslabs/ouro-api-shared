@@ -25,6 +25,7 @@ enum ObjectType {
     TIME_OF_USE_TABLE             = 11;  // The time-of-use table.
     DRIVER                        = 12;  // The driver.
     CRON_JOB                      = 13;  // The cron job.
+    FIRMWARE_IMAGE                = 17;  // The firmware image.
 
     // @internal: The derived object types.
     DEVICE_COMMUNICATION_UNIT_CHANGE = 14;  // The device communication unit change.

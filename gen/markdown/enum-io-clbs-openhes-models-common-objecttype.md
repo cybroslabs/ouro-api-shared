@@ -19,6 +19,7 @@ Defines the possible object types within the system.
 | DEVICE_DATA_INFO | The device data info. |
 | DEVICE_GROUP | The device group. |
 | DRIVER | The driver. |
+| FIRMWARE_IMAGE | The firmware image. |
 | MODEM_POOL | The modem pool. |
 | OBJECT_TYPE_UNSPECIFIED | Unspecified object type. |
 | TIME_OF_USE_TABLE | The time-of-use table. |

@@ -219,6 +219,31 @@ service DeviceRegistryService {
     // Deletes the specified time-of-use table.
     rpc DeleteTimeOfUseTable(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
+    // @group: Firmware Images
+    // Creates a new firmware image. Returns the identifier of the newly created firmware image.
+    rpc CreateFirmwareImage(io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest) returns (google.protobuf.StringValue);
+    // @group: Firmware Images
+    // Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+    rpc ListFirmwareImages(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfFirmwareImage);
+    // @group: Firmware Images
+    // Retrieves the details of the specified firmware image.
+    rpc GetFirmwareImage(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.FirmwareImage);
+    // @group: Firmware Images
+    // Updates the details of an existing firmware image.
+    rpc UpdateFirmwareImage(io.clbs.openhes.models.acquisition.FirmwareImage) returns (google.protobuf.Empty);
+    // @group: Firmware Images
+    // Deletes the specified firmware image.
+    rpc DeleteFirmwareImage(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: Firmware Images
+    // Retrieves a block of firmware image data for the specified firmware image.
+    rpc GetFirmwareImageBlock(io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest) returns (io.clbs.openhes.models.acquisition.FirmwareImageBlock);
+    // @group: Firmware Images
+    // Starts streaming upload of a firmware image file.
+    rpc StreamUploadFirmwareImageFile(stream io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest) returns (google.protobuf.Empty);
+    // @group: Firmware Images
+    // Starts streaming download of a firmware image file.
+    rpc StreamDownloadFirmwareImageFile(io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest) returns (stream io.clbs.openhes.models.acquisition.FirmwareImageBlock);
+
     // @group: Fields
     // Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
     rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.StringValue);

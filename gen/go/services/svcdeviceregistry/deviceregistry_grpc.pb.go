@@ -95,6 +95,14 @@ const (
 	DeviceRegistryService_GetTimeOfUseTable_FullMethodName                                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetTimeOfUseTable"
 	DeviceRegistryService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateTimeOfUseTable"
 	DeviceRegistryService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteTimeOfUseTable"
+	DeviceRegistryService_CreateFirmwareImage_FullMethodName                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateFirmwareImage"
+	DeviceRegistryService_ListFirmwareImages_FullMethodName                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/ListFirmwareImages"
+	DeviceRegistryService_GetFirmwareImage_FullMethodName                                                 = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetFirmwareImage"
+	DeviceRegistryService_UpdateFirmwareImage_FullMethodName                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateFirmwareImage"
+	DeviceRegistryService_DeleteFirmwareImage_FullMethodName                                              = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteFirmwareImage"
+	DeviceRegistryService_GetFirmwareImageBlock_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetFirmwareImageBlock"
+	DeviceRegistryService_StreamUploadFirmwareImageFile_FullMethodName                                    = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamUploadFirmwareImageFile"
+	DeviceRegistryService_StreamDownloadFirmwareImageFile_FullMethodName                                  = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/StreamDownloadFirmwareImageFile"
 	DeviceRegistryService_CreateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/CreateFieldDescriptor"
 	DeviceRegistryService_UpdateFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateFieldDescriptor"
 	DeviceRegistryService_DeleteFieldDescriptor_FullMethodName                                            = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/DeleteFieldDescriptor"
@@ -306,6 +314,30 @@ type DeviceRegistryServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
+	CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Firmware Images
+	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListFirmwareImages(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfFirmwareImage, error)
+	// @group: Firmware Images
+	// Retrieves the details of the specified firmware image.
+	GetFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.FirmwareImage, error)
+	// @group: Firmware Images
+	// Updates the details of an existing firmware image.
+	UpdateFirmwareImage(ctx context.Context, in *acquisition.FirmwareImage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Deletes the specified firmware image.
+	DeleteFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Retrieves a block of firmware image data for the specified firmware image.
+	GetFirmwareImageBlock(ctx context.Context, in *acquisition.GetFirmwareImageBlockRequest, opts ...grpc.CallOption) (*acquisition.FirmwareImageBlock, error)
+	// @group: Firmware Images
+	// Starts streaming upload of a firmware image file.
+	StreamUploadFirmwareImageFile(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty], error)
+	// @group: Firmware Images
+	// Starts streaming download of a firmware image file.
+	StreamDownloadFirmwareImageFile(ctx context.Context, in *acquisition.StreamDownloadFirmwareImageFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.FirmwareImageBlock], error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
 	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -1078,6 +1110,98 @@ func (c *deviceRegistryServiceClient) DeleteTimeOfUseTable(ctx context.Context, 
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) ListFirmwareImages(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfFirmwareImage, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfFirmwareImage)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_ListFirmwareImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.FirmwareImage, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.FirmwareImage)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) UpdateFirmwareImage(ctx context.Context, in *acquisition.FirmwareImage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_UpdateFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) DeleteFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_DeleteFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) GetFirmwareImageBlock(ctx context.Context, in *acquisition.GetFirmwareImageBlockRequest, opts ...grpc.CallOption) (*acquisition.FirmwareImageBlock, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.FirmwareImageBlock)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetFirmwareImageBlock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceRegistryServiceClient) StreamUploadFirmwareImageFile(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[2], DeviceRegistryService_StreamUploadFirmwareImageFile_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceRegistryService_StreamUploadFirmwareImageFileClient = grpc.ClientStreamingClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]
+
+func (c *deviceRegistryServiceClient) StreamDownloadFirmwareImageFile(ctx context.Context, in *acquisition.StreamDownloadFirmwareImageFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.FirmwareImageBlock], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DeviceRegistryService_ServiceDesc.Streams[3], DeviceRegistryService_StreamDownloadFirmwareImageFile_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.StreamDownloadFirmwareImageFileRequest, acquisition.FirmwareImageBlock]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceRegistryService_StreamDownloadFirmwareImageFileClient = grpc.ServerStreamingClient[acquisition.FirmwareImageBlock]
+
 func (c *deviceRegistryServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -1377,6 +1501,30 @@ type DeviceRegistryServiceServer interface {
 	// @group: Time-Of-Use Tables
 	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
+	CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*wrapperspb.StringValue, error)
+	// @group: Firmware Images
+	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListFirmwareImages(context.Context, *common.ListSelector) (*acquisition.ListOfFirmwareImage, error)
+	// @group: Firmware Images
+	// Retrieves the details of the specified firmware image.
+	GetFirmwareImage(context.Context, *wrapperspb.StringValue) (*acquisition.FirmwareImage, error)
+	// @group: Firmware Images
+	// Updates the details of an existing firmware image.
+	UpdateFirmwareImage(context.Context, *acquisition.FirmwareImage) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Deletes the specified firmware image.
+	DeleteFirmwareImage(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Retrieves a block of firmware image data for the specified firmware image.
+	GetFirmwareImageBlock(context.Context, *acquisition.GetFirmwareImageBlockRequest) (*acquisition.FirmwareImageBlock, error)
+	// @group: Firmware Images
+	// Starts streaming upload of a firmware image file.
+	StreamUploadFirmwareImageFile(grpc.ClientStreamingServer[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]) error
+	// @group: Firmware Images
+	// Starts streaming download of a firmware image file.
+	StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
 	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
@@ -1639,6 +1787,30 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateTimeOfUseTable(context.Con
 }
 func (UnimplementedDeviceRegistryServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFirmwareImage not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) ListFirmwareImages(context.Context, *common.ListSelector) (*acquisition.ListOfFirmwareImage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFirmwareImages not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetFirmwareImage(context.Context, *wrapperspb.StringValue) (*acquisition.FirmwareImage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFirmwareImage not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) UpdateFirmwareImage(context.Context, *acquisition.FirmwareImage) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFirmwareImage not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) DeleteFirmwareImage(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFirmwareImage not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetFirmwareImageBlock(context.Context, *acquisition.GetFirmwareImageBlockRequest) (*acquisition.FirmwareImageBlock, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFirmwareImageBlock not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) StreamUploadFirmwareImageFile(grpc.ClientStreamingServer[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamUploadFirmwareImageFile not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamDownloadFirmwareImageFile not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
@@ -2951,6 +3123,132 @@ func _DeviceRegistryService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_CreateFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateFirmwareImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).CreateFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_CreateFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).CreateFirmwareImage(ctx, req.(*acquisition.CreateFirmwareImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_ListFirmwareImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).ListFirmwareImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_ListFirmwareImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).ListFirmwareImages(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetFirmwareImage(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_UpdateFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.FirmwareImage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).UpdateFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_UpdateFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).UpdateFirmwareImage(ctx, req.(*acquisition.FirmwareImage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_DeleteFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).DeleteFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_DeleteFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).DeleteFirmwareImage(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_GetFirmwareImageBlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.GetFirmwareImageBlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetFirmwareImageBlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetFirmwareImageBlock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetFirmwareImageBlock(ctx, req.(*acquisition.GetFirmwareImageBlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceRegistryService_StreamUploadFirmwareImageFile_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DeviceRegistryServiceServer).StreamUploadFirmwareImageFile(&grpc.GenericServerStream[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceRegistryService_StreamUploadFirmwareImageFileServer = grpc.ClientStreamingServer[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]
+
+func _DeviceRegistryService_StreamDownloadFirmwareImageFile_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.StreamDownloadFirmwareImageFileRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DeviceRegistryServiceServer).StreamDownloadFirmwareImageFile(m, &grpc.GenericServerStream[acquisition.StreamDownloadFirmwareImageFileRequest, acquisition.FirmwareImageBlock]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceRegistryService_StreamDownloadFirmwareImageFileServer = grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]
+
 func _DeviceRegistryService_CreateFieldDescriptor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(common.CreateFieldDescriptorRequest)
 	if err := dec(in); err != nil {
@@ -3415,6 +3713,30 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceRegistryService_DeleteTimeOfUseTable_Handler,
 		},
 		{
+			MethodName: "CreateFirmwareImage",
+			Handler:    _DeviceRegistryService_CreateFirmwareImage_Handler,
+		},
+		{
+			MethodName: "ListFirmwareImages",
+			Handler:    _DeviceRegistryService_ListFirmwareImages_Handler,
+		},
+		{
+			MethodName: "GetFirmwareImage",
+			Handler:    _DeviceRegistryService_GetFirmwareImage_Handler,
+		},
+		{
+			MethodName: "UpdateFirmwareImage",
+			Handler:    _DeviceRegistryService_UpdateFirmwareImage_Handler,
+		},
+		{
+			MethodName: "DeleteFirmwareImage",
+			Handler:    _DeviceRegistryService_DeleteFirmwareImage_Handler,
+		},
+		{
+			MethodName: "GetFirmwareImageBlock",
+			Handler:    _DeviceRegistryService_GetFirmwareImageBlock_Handler,
+		},
+		{
 			MethodName: "CreateFieldDescriptor",
 			Handler:    _DeviceRegistryService_CreateFieldDescriptor_Handler,
 		},
@@ -3465,6 +3787,16 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "StreamDeviceGroup",
 			Handler:       _DeviceRegistryService_StreamDeviceGroup_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "StreamUploadFirmwareImageFile",
+			Handler:       _DeviceRegistryService_StreamUploadFirmwareImageFile_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "StreamDownloadFirmwareImageFile",
+			Handler:       _DeviceRegistryService_StreamDownloadFirmwareImageFile_Handler,
 			ServerStreams: true,
 		},
 	},

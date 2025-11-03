@@ -118,6 +118,13 @@ const (
 	ApiService_GetTimeOfUseTable_FullMethodName                                                = "/io.clbs.openhes.services.svcapi.ApiService/GetTimeOfUseTable"
 	ApiService_UpdateTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTimeOfUseTable"
 	ApiService_DeleteTimeOfUseTable_FullMethodName                                             = "/io.clbs.openhes.services.svcapi.ApiService/DeleteTimeOfUseTable"
+	ApiService_CreateFirmwareImage_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/CreateFirmwareImage"
+	ApiService_ListFirmwareImages_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/ListFirmwareImages"
+	ApiService_GetFirmwareImage_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetFirmwareImage"
+	ApiService_UpdateFirmwareImage_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/UpdateFirmwareImage"
+	ApiService_DeleteFirmwareImage_FullMethodName                                              = "/io.clbs.openhes.services.svcapi.ApiService/DeleteFirmwareImage"
+	ApiService_StreamUploadFirmwareImageFile_FullMethodName                                    = "/io.clbs.openhes.services.svcapi.ApiService/StreamUploadFirmwareImageFile"
+	ApiService_StreamDownloadFirmwareImageFile_FullMethodName                                  = "/io.clbs.openhes.services.svcapi.ApiService/StreamDownloadFirmwareImageFile"
 	ApiService_CreateCronJob_FullMethodName                                                    = "/io.clbs.openhes.services.svcapi.ApiService/CreateCronJob"
 	ApiService_ListCronJobs_FullMethodName                                                     = "/io.clbs.openhes.services.svcapi.ApiService/ListCronJobs"
 	ApiService_GetCronJob_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/GetCronJob"
@@ -470,6 +477,27 @@ type ApiServiceClient interface {
 	// @group: Time-Of-Use Tables
 	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
+	CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: Firmware Images
+	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListFirmwareImages(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfFirmwareImage, error)
+	// @group: Firmware Images
+	// Retrieves the details of the specified firmware image.
+	GetFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.FirmwareImage, error)
+	// @group: Firmware Images
+	// Updates the details of an existing firmware image.
+	UpdateFirmwareImage(ctx context.Context, in *acquisition.FirmwareImage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Deletes the specified firmware image.
+	DeleteFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Starts streaming upload of a firmware image file.
+	StreamUploadFirmwareImageFile(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty], error)
+	// @group: Firmware Images
+	// Starts streaming download of a firmware image file.
+	StreamDownloadFirmwareImageFile(ctx context.Context, in *acquisition.StreamDownloadFirmwareImageFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.FirmwareImageBlock], error)
 	// @group: Cron Jobs
 	// Creates a new cron job. Returns the identifier of the newly created cron job.
 	CreateCronJob(ctx context.Context, in *cronjobs.CreateCronJobRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
@@ -1482,6 +1510,88 @@ func (c *apiServiceClient) DeleteTimeOfUseTable(ctx context.Context, in *wrapper
 	return out, nil
 }
 
+func (c *apiServiceClient) CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_CreateFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) ListFirmwareImages(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfFirmwareImage, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.ListOfFirmwareImage)
+	err := c.cc.Invoke(ctx, ApiService_ListFirmwareImages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.FirmwareImage, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(acquisition.FirmwareImage)
+	err := c.cc.Invoke(ctx, ApiService_GetFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) UpdateFirmwareImage(ctx context.Context, in *acquisition.FirmwareImage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_UpdateFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) DeleteFirmwareImage(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_DeleteFirmwareImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) StreamUploadFirmwareImageFile(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[3], ApiService_StreamUploadFirmwareImageFile_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_StreamUploadFirmwareImageFileClient = grpc.ClientStreamingClient[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]
+
+func (c *apiServiceClient) StreamDownloadFirmwareImageFile(ctx context.Context, in *acquisition.StreamDownloadFirmwareImageFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.FirmwareImageBlock], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[4], ApiService_StreamDownloadFirmwareImageFile_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[acquisition.StreamDownloadFirmwareImageFileRequest, acquisition.FirmwareImageBlock]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_StreamDownloadFirmwareImageFileClient = grpc.ServerStreamingClient[acquisition.FirmwareImageBlock]
+
 func (c *apiServiceClient) CreateCronJob(ctx context.Context, in *cronjobs.CreateCronJobRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(wrapperspb.StringValue)
@@ -1684,7 +1794,7 @@ func (c *apiServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.SetCr
 
 func (c *apiServiceClient) CreateMessagingConsumer(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[messaging.MessagingConsumerClient, messaging.MessagingConsumerServer], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[3], ApiService_CreateMessagingConsumer_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[5], ApiService_CreateMessagingConsumer_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1697,7 +1807,7 @@ type ApiService_CreateMessagingConsumerClient = grpc.BidiStreamingClient[messagi
 
 func (c *apiServiceClient) CreateMessagingPublisher(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[messaging.MessagingPublisherClient, emptypb.Empty], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[4], ApiService_CreateMessagingPublisher_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ApiService_ServiceDesc.Streams[6], ApiService_CreateMessagingPublisher_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2072,6 +2182,27 @@ type ApiServiceServer interface {
 	// @group: Time-Of-Use Tables
 	// Deletes the specified time-of-use table.
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
+	CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*wrapperspb.StringValue, error)
+	// @group: Firmware Images
+	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	ListFirmwareImages(context.Context, *common.ListSelector) (*acquisition.ListOfFirmwareImage, error)
+	// @group: Firmware Images
+	// Retrieves the details of the specified firmware image.
+	GetFirmwareImage(context.Context, *wrapperspb.StringValue) (*acquisition.FirmwareImage, error)
+	// @group: Firmware Images
+	// Updates the details of an existing firmware image.
+	UpdateFirmwareImage(context.Context, *acquisition.FirmwareImage) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Deletes the specified firmware image.
+	DeleteFirmwareImage(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: Firmware Images
+	// Starts streaming upload of a firmware image file.
+	StreamUploadFirmwareImageFile(grpc.ClientStreamingServer[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]) error
+	// @group: Firmware Images
+	// Starts streaming download of a firmware image file.
+	StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error
 	// @group: Cron Jobs
 	// Creates a new cron job. Returns the identifier of the newly created cron job.
 	CreateCronJob(context.Context, *cronjobs.CreateCronJobRequest) (*wrapperspb.StringValue, error)
@@ -2426,6 +2557,27 @@ func (UnimplementedApiServiceServer) UpdateTimeOfUseTable(context.Context, *acqu
 }
 func (UnimplementedApiServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
+}
+func (UnimplementedApiServiceServer) CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFirmwareImage not implemented")
+}
+func (UnimplementedApiServiceServer) ListFirmwareImages(context.Context, *common.ListSelector) (*acquisition.ListOfFirmwareImage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFirmwareImages not implemented")
+}
+func (UnimplementedApiServiceServer) GetFirmwareImage(context.Context, *wrapperspb.StringValue) (*acquisition.FirmwareImage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFirmwareImage not implemented")
+}
+func (UnimplementedApiServiceServer) UpdateFirmwareImage(context.Context, *acquisition.FirmwareImage) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFirmwareImage not implemented")
+}
+func (UnimplementedApiServiceServer) DeleteFirmwareImage(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFirmwareImage not implemented")
+}
+func (UnimplementedApiServiceServer) StreamUploadFirmwareImageFile(grpc.ClientStreamingServer[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamUploadFirmwareImageFile not implemented")
+}
+func (UnimplementedApiServiceServer) StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamDownloadFirmwareImageFile not implemented")
 }
 func (UnimplementedApiServiceServer) CreateCronJob(context.Context, *cronjobs.CreateCronJobRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCronJob not implemented")
@@ -4125,6 +4277,114 @@ func _ApiService_DeleteTimeOfUseTable_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_CreateFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.CreateFirmwareImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).CreateFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_CreateFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).CreateFirmwareImage(ctx, req.(*acquisition.CreateFirmwareImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_ListFirmwareImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(common.ListSelector)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).ListFirmwareImages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_ListFirmwareImages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).ListFirmwareImages(ctx, req.(*common.ListSelector))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetFirmwareImage(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_UpdateFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(acquisition.FirmwareImage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).UpdateFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_UpdateFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).UpdateFirmwareImage(ctx, req.(*acquisition.FirmwareImage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_DeleteFirmwareImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).DeleteFirmwareImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_DeleteFirmwareImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).DeleteFirmwareImage(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_StreamUploadFirmwareImageFile_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ApiServiceServer).StreamUploadFirmwareImageFile(&grpc.GenericServerStream[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_StreamUploadFirmwareImageFileServer = grpc.ClientStreamingServer[acquisition.StreamUploadFirmwareImageRequest, emptypb.Empty]
+
+func _ApiService_StreamDownloadFirmwareImageFile_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(acquisition.StreamDownloadFirmwareImageFileRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ApiServiceServer).StreamDownloadFirmwareImageFile(m, &grpc.GenericServerStream[acquisition.StreamDownloadFirmwareImageFileRequest, acquisition.FirmwareImageBlock]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ApiService_StreamDownloadFirmwareImageFileServer = grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]
+
 func _ApiService_CreateCronJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(cronjobs.CreateCronJobRequest)
 	if err := dec(in); err != nil {
@@ -4927,6 +5187,26 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiService_DeleteTimeOfUseTable_Handler,
 		},
 		{
+			MethodName: "CreateFirmwareImage",
+			Handler:    _ApiService_CreateFirmwareImage_Handler,
+		},
+		{
+			MethodName: "ListFirmwareImages",
+			Handler:    _ApiService_ListFirmwareImages_Handler,
+		},
+		{
+			MethodName: "GetFirmwareImage",
+			Handler:    _ApiService_GetFirmwareImage_Handler,
+		},
+		{
+			MethodName: "UpdateFirmwareImage",
+			Handler:    _ApiService_UpdateFirmwareImage_Handler,
+		},
+		{
+			MethodName: "DeleteFirmwareImage",
+			Handler:    _ApiService_DeleteFirmwareImage_Handler,
+		},
+		{
 			MethodName: "CreateCronJob",
 			Handler:    _ApiService_CreateCronJob_Handler,
 		},
@@ -5037,6 +5317,16 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetDeviceDataIrregularProfiles",
 			Handler:       _ApiService_GetDeviceDataIrregularProfiles_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "StreamUploadFirmwareImageFile",
+			Handler:       _ApiService_StreamUploadFirmwareImageFile_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "StreamDownloadFirmwareImageFile",
+			Handler:       _ApiService_StreamDownloadFirmwareImageFile_Handler,
 			ServerStreams: true,
 		},
 		{

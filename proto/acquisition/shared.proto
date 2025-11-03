@@ -64,7 +64,7 @@ message JobAction {
         ActionSetTou set_tou                              = 14;  // Defines the SetTou action..
         ActionSetLimiter set_limiter                      = 16;  // Defines the SetLimiter action.
         ActionResetBillingPeriod reset_billing_period     = 17;  // Defines the ResetBillingPeriod action.
-        ActionFwUpdate fw_update                          = 18;  // Defines the firmware update action.
+        ActionFirmwareUpgrade fw_upgrade                  = 18;  // Defines the FirmwareUpgrade action.
     }
 }
 
@@ -89,7 +89,7 @@ message JobActionSet {
         ActionSetTou set_tou                              = 14;  // Defines the SetTou action..
         ActionSetLimiter set_limiter                      = 16;  // Defines the SetLimiter action.
         ActionResetBillingPeriod reset_billing_period     = 17;  // Defines the ResetBillingPeriod action.
-        ActionFwUpdate fw_update                          = 18;  // Defines the firmware update action.
+        ActionFirmwareUpgrade fw_upgrade                  = 18;  // Defines the FirmwareUpgrade action.
     }
 }
 
@@ -559,7 +559,8 @@ message ActionGetTou {
 
 // Defines the set TOU action specification.
 message ActionSetTou {
-    timeofuse.TimeOfUseTableSpec table = 1;  // The TOU table to be set.
+    string tou_table_id                = 2;  // The unique identifier of the TOU table to be set. Either `tou_table_id` or `table` must be set.
+    timeofuse.TimeOfUseTableSpec table = 1;  // The TOU table to be set. Either `tou_table_id` or `table` must be set.
 }
 
 // Defines the set limiter action specification.
@@ -571,7 +572,8 @@ message ActionResetBillingPeriod {
 }
 
 // Defines the firmware update action specification.
-message ActionFwUpdate {
+message ActionFirmwareUpgrade {
+    string firmware_image_id = 1;  // The unique identifier of the firmware to be used for the update.
 }
 
 // Defines the result codes related to job actions.
