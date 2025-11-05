@@ -37,6 +37,22 @@ GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (goo
 - Input: [`io.clbs.openhes.models.system.ScreenConfigSelector`](model-io-clbs-openhes-models-system-screenconfigselector.md)
 - Output: `google.protobuf.StringValue`
 
+## SetScreenConfigs
+
+```proto
+SetScreenConfigs(google.protobuf.StringValue)
+```
+
+- Input: `google.protobuf.StringValue`
+
+## GetScreenConfigs
+
+```proto
+GetScreenConfigs() returns (google.protobuf.StringValue)
+```
+
+- Output: `google.protobuf.StringValue`
+
 ## DeleteScreenConfig
 
 ```proto

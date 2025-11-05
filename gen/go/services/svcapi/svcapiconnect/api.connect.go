@@ -349,6 +349,12 @@ const (
 	// ApiServiceGetScreenConfigProcedure is the fully-qualified name of the ApiService's
 	// GetScreenConfig RPC.
 	ApiServiceGetScreenConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfig"
+	// ApiServiceSetScreenConfigsProcedure is the fully-qualified name of the ApiService's
+	// SetScreenConfigs RPC.
+	ApiServiceSetScreenConfigsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/SetScreenConfigs"
+	// ApiServiceGetScreenConfigsProcedure is the fully-qualified name of the ApiService's
+	// GetScreenConfigs RPC.
+	ApiServiceGetScreenConfigsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfigs"
 	// ApiServiceDeleteScreenConfigProcedure is the fully-qualified name of the ApiService's
 	// DeleteScreenConfig RPC.
 	ApiServiceDeleteScreenConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
@@ -768,6 +774,10 @@ type ApiServiceClient interface {
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
 	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: System
+	SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: Globalization
@@ -1479,6 +1489,18 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetScreenConfig")),
 			connect.WithClientOptions(opts...),
 		),
+		setScreenConfigs: connect.NewClient[wrapperspb.StringValue, emptypb.Empty](
+			httpClient,
+			baseURL+ApiServiceSetScreenConfigsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("SetScreenConfigs")),
+			connect.WithClientOptions(opts...),
+		),
+		getScreenConfigs: connect.NewClient[emptypb.Empty, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceGetScreenConfigsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetScreenConfigs")),
+			connect.WithClientOptions(opts...),
+		),
 		deleteScreenConfig: connect.NewClient[system.ScreenConfigSelector, emptypb.Empty](
 			httpClient,
 			baseURL+ApiServiceDeleteScreenConfigProcedure,
@@ -1672,6 +1694,8 @@ type apiServiceClient struct {
 	setLicense                                                       *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	setScreenConfig                                                  *connect.Client[system.SetScreenConfigRequest, emptypb.Empty]
 	getScreenConfig                                                  *connect.Client[system.ScreenConfigSelector, wrapperspb.StringValue]
+	setScreenConfigs                                                 *connect.Client[wrapperspb.StringValue, emptypb.Empty]
+	getScreenConfigs                                                 *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	deleteScreenConfig                                               *connect.Client[system.ScreenConfigSelector, emptypb.Empty]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	setTranslationMissing                                            *connect.Client[localization.MissingTranslationRequest, emptypb.Empty]
@@ -2262,6 +2286,16 @@ func (c *apiServiceClient) GetScreenConfig(ctx context.Context, req *connect.Req
 	return c.getScreenConfig.CallUnary(ctx, req)
 }
 
+// SetScreenConfigs calls io.clbs.openhes.services.svcapi.ApiService.SetScreenConfigs.
+func (c *apiServiceClient) SetScreenConfigs(ctx context.Context, req *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return c.setScreenConfigs.CallUnary(ctx, req)
+}
+
+// GetScreenConfigs calls io.clbs.openhes.services.svcapi.ApiService.GetScreenConfigs.
+func (c *apiServiceClient) GetScreenConfigs(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.getScreenConfigs.CallUnary(ctx, req)
+}
+
 // DeleteScreenConfig calls io.clbs.openhes.services.svcapi.ApiService.DeleteScreenConfig.
 func (c *apiServiceClient) DeleteScreenConfig(ctx context.Context, req *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error) {
 	return c.deleteScreenConfig.CallUnary(ctx, req)
@@ -2707,6 +2741,10 @@ type ApiServiceHandler interface {
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
 	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
+	// @group: System
+	SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: Globalization
@@ -3414,6 +3452,18 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetScreenConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceSetScreenConfigsHandler := connect.NewUnaryHandler(
+		ApiServiceSetScreenConfigsProcedure,
+		svc.SetScreenConfigs,
+		connect.WithSchema(apiServiceMethods.ByName("SetScreenConfigs")),
+		connect.WithHandlerOptions(opts...),
+	)
+	apiServiceGetScreenConfigsHandler := connect.NewUnaryHandler(
+		ApiServiceGetScreenConfigsProcedure,
+		svc.GetScreenConfigs,
+		connect.WithSchema(apiServiceMethods.ByName("GetScreenConfigs")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceDeleteScreenConfigHandler := connect.NewUnaryHandler(
 		ApiServiceDeleteScreenConfigProcedure,
 		svc.DeleteScreenConfig,
@@ -3714,6 +3764,10 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceSetScreenConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetScreenConfigProcedure:
 			apiServiceGetScreenConfigHandler.ServeHTTP(w, r)
+		case ApiServiceSetScreenConfigsProcedure:
+			apiServiceSetScreenConfigsHandler.ServeHTTP(w, r)
+		case ApiServiceGetScreenConfigsProcedure:
+			apiServiceGetScreenConfigsHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteScreenConfigProcedure:
 			apiServiceDeleteScreenConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetTranslationsProcedure:
@@ -4187,6 +4241,14 @@ func (UnimplementedApiServiceHandler) SetScreenConfig(context.Context, *connect.
 
 func (UnimplementedApiServiceHandler) GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetScreenConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.SetScreenConfigs is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetScreenConfigs is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error) {

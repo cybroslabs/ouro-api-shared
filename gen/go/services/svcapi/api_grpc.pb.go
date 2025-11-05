@@ -138,6 +138,8 @@ const (
 	ApiService_SetLicense_FullMethodName                                                       = "/io.clbs.openhes.services.svcapi.ApiService/SetLicense"
 	ApiService_SetScreenConfig_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/SetScreenConfig"
 	ApiService_GetScreenConfig_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfig"
+	ApiService_SetScreenConfigs_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/SetScreenConfigs"
+	ApiService_GetScreenConfigs_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfigs"
 	ApiService_DeleteScreenConfig_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
 	ApiService_GetTranslations_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
 	ApiService_SetTranslationMissing_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/SetTranslationMissing"
@@ -535,6 +537,10 @@ type ApiServiceClient interface {
 	SetScreenConfig(ctx context.Context, in *system.SetScreenConfigRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
 	GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	// @group: System
+	SetScreenConfigs(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	GetScreenConfigs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
 	DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Globalization
@@ -1722,6 +1728,26 @@ func (c *apiServiceClient) GetScreenConfig(ctx context.Context, in *system.Scree
 	return out, nil
 }
 
+func (c *apiServiceClient) SetScreenConfigs(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, ApiService_SetScreenConfigs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiServiceClient) GetScreenConfigs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_GetScreenConfigs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -2241,6 +2267,10 @@ type ApiServiceServer interface {
 	// @group: System
 	GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*wrapperspb.StringValue, error)
 	// @group: System
+	SetScreenConfigs(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: System
+	GetScreenConfigs(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
+	// @group: System
 	DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error)
 	// @group: Globalization
 	// Retrieves the translation data.
@@ -2617,6 +2647,12 @@ func (UnimplementedApiServiceServer) SetScreenConfig(context.Context, *system.Se
 }
 func (UnimplementedApiServiceServer) GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetScreenConfig not implemented")
+}
+func (UnimplementedApiServiceServer) SetScreenConfigs(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetScreenConfigs not implemented")
+}
+func (UnimplementedApiServiceServer) GetScreenConfigs(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScreenConfigs not implemented")
 }
 func (UnimplementedApiServiceServer) DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenConfig not implemented")
@@ -4619,6 +4655,42 @@ func _ApiService_GetScreenConfig_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_SetScreenConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).SetScreenConfigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_SetScreenConfigs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).SetScreenConfigs(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiService_GetScreenConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetScreenConfigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetScreenConfigs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetScreenConfigs(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_DeleteScreenConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(system.ScreenConfigSelector)
 	if err := dec(in); err != nil {
@@ -5257,6 +5329,14 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetScreenConfig",
 			Handler:    _ApiService_GetScreenConfig_Handler,
+		},
+		{
+			MethodName: "SetScreenConfigs",
+			Handler:    _ApiService_SetScreenConfigs_Handler,
+		},
+		{
+			MethodName: "GetScreenConfigs",
+			Handler:    _ApiService_GetScreenConfigs_Handler,
 		},
 		{
 			MethodName: "DeleteScreenConfig",

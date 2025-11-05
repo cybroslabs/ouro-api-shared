@@ -420,6 +420,10 @@ service ApiService {
     // @group: System
     rpc GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.StringValue);
     // @group: System
+    rpc SetScreenConfigs(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // @group: System
+    rpc GetScreenConfigs(google.protobuf.Empty) returns (google.protobuf.StringValue);
+    // @group: System
     rpc DeleteScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.Empty);
 
     // @group: Globalization

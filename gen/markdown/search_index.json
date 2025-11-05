@@ -439,6 +439,8 @@
       "SetLicense",
       "SetScreenConfig",
       "GetScreenConfig",
+      "SetScreenConfigs",
+      "GetScreenConfigs",
       "DeleteScreenConfig",
       "GetLicenseRequestCode",
       "io.clbs.openhes.models.system.ScreenConfigSelector",
