@@ -521,21 +521,21 @@ func (x ApplicationProtocol) Number() protoreflect.EnumNumber {
 type ActionType int32
 
 const (
-	ActionType_ACTION_TYPE_UNSPECIFIED            ActionType = 0  // Unspecified action type.
-	ActionType_ACTION_TYPE_GET_REGISTER           ActionType = 1  // Get a register value, for example an instantaneous value. The action covers a specific register.
-	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE ActionType = 2  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
-	ActionType_ACTION_TYPE_GET_IRREGULAR_PROFILE  ActionType = 3  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
-	ActionType_ACTION_TYPE_GET_EVENTS             ActionType = 4  // Get an event log. The action covers a specific event log.
-	ActionType_ACTION_TYPE_GET_DEVICE_INFO        ActionType = 10 // Get device information. The action returns detailed information data about the remote device.
-	ActionType_ACTION_TYPE_SYNC_CLOCK             ActionType = 11 // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
-	ActionType_ACTION_TYPE_SET_RELAY_STATE        ActionType = 21 // Set relay state. The action covers a single relay.
-	ActionType_ACTION_TYPE_GET_DISCONNECTOR_STATE ActionType = 22 // Get the disconnector state.
-	ActionType_ACTION_TYPE_SET_DISCONNECTOR_STATE ActionType = 23 // Set the disconnector state.
-	ActionType_ACTION_TYPE_GET_TOU                ActionType = 24 // Get time-of-use table.
-	ActionType_ACTION_TYPE_SET_TOU                ActionType = 25 // Set time-of-use table.
-	ActionType_ACTION_TYPE_SET_LIMITER            ActionType = 27 // Set limiter settings. The action covers single limiter.
-	ActionType_ACTION_TYPE_RESET_BILLING_PERIOD   ActionType = 40 // Reset the billing period.
-	ActionType_ACTION_TYPE_FW_UPDATE              ActionType = 50 // Start a firmware update.
+	ActionType_ACTION_TYPE_UNSPECIFIED             ActionType = 0  // Unspecified action type.
+	ActionType_ACTION_TYPE_GET_REGISTER            ActionType = 1  // Get a register value, for example an instantaneous value. The action covers a specific register.
+	ActionType_ACTION_TYPE_GET_PERIODICAL_PROFILE  ActionType = 2  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
+	ActionType_ACTION_TYPE_GET_IRREGULAR_PROFILE   ActionType = 3  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
+	ActionType_ACTION_TYPE_GET_EVENTS              ActionType = 4  // Get an event log. The action covers a specific event log.
+	ActionType_ACTION_TYPE_GET_DEVICE_INFO         ActionType = 10 // Get device information. The action returns detailed information data about the remote device.
+	ActionType_ACTION_TYPE_SYNC_CLOCK              ActionType = 11 // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
+	ActionType_ACTION_TYPE_SET_RELAY_STATE         ActionType = 21 // Set relay state. The action covers a single relay.
+	ActionType_ACTION_TYPE_GET_DISCONNECTOR_STATE  ActionType = 22 // Get the disconnector state.
+	ActionType_ACTION_TYPE_SET_DISCONNECTOR_STATE  ActionType = 23 // Set the disconnector state.
+	ActionType_ACTION_TYPE_GET_TOU                 ActionType = 24 // Get time-of-use table.
+	ActionType_ACTION_TYPE_SET_TOU                 ActionType = 25 // Set time-of-use table.
+	ActionType_ACTION_TYPE_SET_LIMITER             ActionType = 27 // Set limiter settings. The action covers single limiter.
+	ActionType_ACTION_TYPE_RESET_BILLING_PERIOD    ActionType = 40 // Reset the billing period.
+	ActionType_ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER ActionType = 50 // Start a firmware image transfer.
 )
 
 // Enum value maps for ActionType.
@@ -555,24 +555,24 @@ var (
 		25: "ACTION_TYPE_SET_TOU",
 		27: "ACTION_TYPE_SET_LIMITER",
 		40: "ACTION_TYPE_RESET_BILLING_PERIOD",
-		50: "ACTION_TYPE_FW_UPDATE",
+		50: "ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER",
 	}
 	ActionType_value = map[string]int32{
-		"ACTION_TYPE_UNSPECIFIED":            0,
-		"ACTION_TYPE_GET_REGISTER":           1,
-		"ACTION_TYPE_GET_PERIODICAL_PROFILE": 2,
-		"ACTION_TYPE_GET_IRREGULAR_PROFILE":  3,
-		"ACTION_TYPE_GET_EVENTS":             4,
-		"ACTION_TYPE_GET_DEVICE_INFO":        10,
-		"ACTION_TYPE_SYNC_CLOCK":             11,
-		"ACTION_TYPE_SET_RELAY_STATE":        21,
-		"ACTION_TYPE_GET_DISCONNECTOR_STATE": 22,
-		"ACTION_TYPE_SET_DISCONNECTOR_STATE": 23,
-		"ACTION_TYPE_GET_TOU":                24,
-		"ACTION_TYPE_SET_TOU":                25,
-		"ACTION_TYPE_SET_LIMITER":            27,
-		"ACTION_TYPE_RESET_BILLING_PERIOD":   40,
-		"ACTION_TYPE_FW_UPDATE":              50,
+		"ACTION_TYPE_UNSPECIFIED":             0,
+		"ACTION_TYPE_GET_REGISTER":            1,
+		"ACTION_TYPE_GET_PERIODICAL_PROFILE":  2,
+		"ACTION_TYPE_GET_IRREGULAR_PROFILE":   3,
+		"ACTION_TYPE_GET_EVENTS":              4,
+		"ACTION_TYPE_GET_DEVICE_INFO":         10,
+		"ACTION_TYPE_SYNC_CLOCK":              11,
+		"ACTION_TYPE_SET_RELAY_STATE":         21,
+		"ACTION_TYPE_GET_DISCONNECTOR_STATE":  22,
+		"ACTION_TYPE_SET_DISCONNECTOR_STATE":  23,
+		"ACTION_TYPE_GET_TOU":                 24,
+		"ACTION_TYPE_SET_TOU":                 25,
+		"ACTION_TYPE_SET_LIMITER":             27,
+		"ACTION_TYPE_RESET_BILLING_PERIOD":    40,
+		"ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER": 50,
 	}
 )
 
@@ -1355,10 +1355,10 @@ func (x *JobAction) GetResetBillingPeriod() *ActionResetBillingPeriod {
 	return nil
 }
 
-func (x *JobAction) GetFwUpgrade() *ActionFirmwareUpgrade {
+func (x *JobAction) GetImageTransfer() *ActionFirmwareImageTransfer {
 	if x != nil {
-		if x, ok := x.xxx_hidden_Action.(*jobAction_FwUpgrade); ok {
-			return x.FwUpgrade
+		if x, ok := x.xxx_hidden_Action.(*jobAction_ImageTransfer); ok {
+			return x.ImageTransfer
 		}
 	}
 	return nil
@@ -1469,12 +1469,12 @@ func (x *JobAction) SetResetBillingPeriod(v *ActionResetBillingPeriod) {
 	x.xxx_hidden_Action = &jobAction_ResetBillingPeriod{v}
 }
 
-func (x *JobAction) SetFwUpgrade(v *ActionFirmwareUpgrade) {
+func (x *JobAction) SetImageTransfer(v *ActionFirmwareImageTransfer) {
 	if v == nil {
 		x.xxx_hidden_Action = nil
 		return
 	}
-	x.xxx_hidden_Action = &jobAction_FwUpgrade{v}
+	x.xxx_hidden_Action = &jobAction_ImageTransfer{v}
 }
 
 func (x *JobAction) HasActionId() bool {
@@ -1587,11 +1587,11 @@ func (x *JobAction) HasResetBillingPeriod() bool {
 	return ok
 }
 
-func (x *JobAction) HasFwUpgrade() bool {
+func (x *JobAction) HasImageTransfer() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.xxx_hidden_Action.(*jobAction_FwUpgrade)
+	_, ok := x.xxx_hidden_Action.(*jobAction_ImageTransfer)
 	return ok
 }
 
@@ -1676,8 +1676,8 @@ func (x *JobAction) ClearResetBillingPeriod() {
 	}
 }
 
-func (x *JobAction) ClearFwUpgrade() {
-	if _, ok := x.xxx_hidden_Action.(*jobAction_FwUpgrade); ok {
+func (x *JobAction) ClearImageTransfer() {
+	if _, ok := x.xxx_hidden_Action.(*jobAction_ImageTransfer); ok {
 		x.xxx_hidden_Action = nil
 	}
 }
@@ -1695,7 +1695,7 @@ const JobAction_GetTou_case case_JobAction_Action = 13
 const JobAction_SetTou_case case_JobAction_Action = 14
 const JobAction_SetLimiter_case case_JobAction_Action = 16
 const JobAction_ResetBillingPeriod_case case_JobAction_Action = 17
-const JobAction_FwUpgrade_case case_JobAction_Action = 18
+const JobAction_ImageTransfer_case case_JobAction_Action = 18
 
 func (x *JobAction) WhichAction() case_JobAction_Action {
 	if x == nil {
@@ -1726,8 +1726,8 @@ func (x *JobAction) WhichAction() case_JobAction_Action {
 		return JobAction_SetLimiter_case
 	case *jobAction_ResetBillingPeriod:
 		return JobAction_ResetBillingPeriod_case
-	case *jobAction_FwUpgrade:
-		return JobAction_FwUpgrade_case
+	case *jobAction_ImageTransfer:
+		return JobAction_ImageTransfer_case
 	default:
 		return JobAction_Action_not_set_case
 	}
@@ -1751,7 +1751,7 @@ type JobAction_builder struct {
 	SetTou               *ActionSetTou
 	SetLimiter           *ActionSetLimiter
 	ResetBillingPeriod   *ActionResetBillingPeriod
-	FwUpgrade            *ActionFirmwareUpgrade
+	ImageTransfer        *ActionFirmwareImageTransfer
 	// -- end of xxx_hidden_Action
 }
 
@@ -1800,8 +1800,8 @@ func (b0 JobAction_builder) Build() *JobAction {
 	if b.ResetBillingPeriod != nil {
 		x.xxx_hidden_Action = &jobAction_ResetBillingPeriod{b.ResetBillingPeriod}
 	}
-	if b.FwUpgrade != nil {
-		x.xxx_hidden_Action = &jobAction_FwUpgrade{b.FwUpgrade}
+	if b.ImageTransfer != nil {
+		x.xxx_hidden_Action = &jobAction_ImageTransfer{b.ImageTransfer}
 	}
 	return m0
 }
@@ -1868,8 +1868,8 @@ type jobAction_ResetBillingPeriod struct {
 	ResetBillingPeriod *ActionResetBillingPeriod `protobuf:"bytes,17,opt,name=reset_billing_period,json=resetBillingPeriod,oneof"` // Defines the ResetBillingPeriod action.
 }
 
-type jobAction_FwUpgrade struct {
-	FwUpgrade *ActionFirmwareUpgrade `protobuf:"bytes,18,opt,name=fw_upgrade,json=fwUpgrade,oneof"` // Defines the FirmwareUpgrade action.
+type jobAction_ImageTransfer struct {
+	ImageTransfer *ActionFirmwareImageTransfer `protobuf:"bytes,18,opt,name=image_transfer,json=imageTransfer,oneof"` // Defines the ActionFirmwareImageTransfer action.
 }
 
 func (*jobAction_GetRegister) isJobAction_Action() {}
@@ -1896,7 +1896,7 @@ func (*jobAction_SetLimiter) isJobAction_Action() {}
 
 func (*jobAction_ResetBillingPeriod) isJobAction_Action() {}
 
-func (*jobAction_FwUpgrade) isJobAction_Action() {}
+func (*jobAction_ImageTransfer) isJobAction_Action() {}
 
 // Defines the job action set specification.
 // Unlike a single `JobAction` that is used only once per bulk. `JobActionSet` may internally cover multiple `JobActions`.
@@ -2049,10 +2049,10 @@ func (x *JobActionSet) GetResetBillingPeriod() *ActionResetBillingPeriod {
 	return nil
 }
 
-func (x *JobActionSet) GetFwUpgrade() *ActionFirmwareUpgrade {
+func (x *JobActionSet) GetImageTransfer() *ActionFirmwareImageTransfer {
 	if x != nil {
-		if x, ok := x.xxx_hidden_Action.(*jobActionSet_FwUpgrade); ok {
-			return x.FwUpgrade
+		if x, ok := x.xxx_hidden_Action.(*jobActionSet_ImageTransfer); ok {
+			return x.ImageTransfer
 		}
 	}
 	return nil
@@ -2158,12 +2158,12 @@ func (x *JobActionSet) SetResetBillingPeriod(v *ActionResetBillingPeriod) {
 	x.xxx_hidden_Action = &jobActionSet_ResetBillingPeriod{v}
 }
 
-func (x *JobActionSet) SetFwUpgrade(v *ActionFirmwareUpgrade) {
+func (x *JobActionSet) SetImageTransfer(v *ActionFirmwareImageTransfer) {
 	if v == nil {
 		x.xxx_hidden_Action = nil
 		return
 	}
-	x.xxx_hidden_Action = &jobActionSet_FwUpgrade{v}
+	x.xxx_hidden_Action = &jobActionSet_ImageTransfer{v}
 }
 
 func (x *JobActionSet) HasAction() bool {
@@ -2269,11 +2269,11 @@ func (x *JobActionSet) HasResetBillingPeriod() bool {
 	return ok
 }
 
-func (x *JobActionSet) HasFwUpgrade() bool {
+func (x *JobActionSet) HasImageTransfer() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.xxx_hidden_Action.(*jobActionSet_FwUpgrade)
+	_, ok := x.xxx_hidden_Action.(*jobActionSet_ImageTransfer)
 	return ok
 }
 
@@ -2353,8 +2353,8 @@ func (x *JobActionSet) ClearResetBillingPeriod() {
 	}
 }
 
-func (x *JobActionSet) ClearFwUpgrade() {
-	if _, ok := x.xxx_hidden_Action.(*jobActionSet_FwUpgrade); ok {
+func (x *JobActionSet) ClearImageTransfer() {
+	if _, ok := x.xxx_hidden_Action.(*jobActionSet_ImageTransfer); ok {
 		x.xxx_hidden_Action = nil
 	}
 }
@@ -2372,7 +2372,7 @@ const JobActionSet_GetTou_case case_JobActionSet_Action = 13
 const JobActionSet_SetTou_case case_JobActionSet_Action = 14
 const JobActionSet_SetLimiter_case case_JobActionSet_Action = 16
 const JobActionSet_ResetBillingPeriod_case case_JobActionSet_Action = 17
-const JobActionSet_FwUpgrade_case case_JobActionSet_Action = 18
+const JobActionSet_ImageTransfer_case case_JobActionSet_Action = 18
 
 func (x *JobActionSet) WhichAction() case_JobActionSet_Action {
 	if x == nil {
@@ -2403,8 +2403,8 @@ func (x *JobActionSet) WhichAction() case_JobActionSet_Action {
 		return JobActionSet_SetLimiter_case
 	case *jobActionSet_ResetBillingPeriod:
 		return JobActionSet_ResetBillingPeriod_case
-	case *jobActionSet_FwUpgrade:
-		return JobActionSet_FwUpgrade_case
+	case *jobActionSet_ImageTransfer:
+		return JobActionSet_ImageTransfer_case
 	default:
 		return JobActionSet_Action_not_set_case
 	}
@@ -2431,7 +2431,7 @@ type JobActionSet_builder struct {
 	SetTou               *ActionSetTou
 	SetLimiter           *ActionSetLimiter
 	ResetBillingPeriod   *ActionResetBillingPeriod
-	FwUpgrade            *ActionFirmwareUpgrade
+	ImageTransfer        *ActionFirmwareImageTransfer
 	// -- end of xxx_hidden_Action
 }
 
@@ -2476,8 +2476,8 @@ func (b0 JobActionSet_builder) Build() *JobActionSet {
 	if b.ResetBillingPeriod != nil {
 		x.xxx_hidden_Action = &jobActionSet_ResetBillingPeriod{b.ResetBillingPeriod}
 	}
-	if b.FwUpgrade != nil {
-		x.xxx_hidden_Action = &jobActionSet_FwUpgrade{b.FwUpgrade}
+	if b.ImageTransfer != nil {
+		x.xxx_hidden_Action = &jobActionSet_ImageTransfer{b.ImageTransfer}
 	}
 	return m0
 }
@@ -2544,8 +2544,8 @@ type jobActionSet_ResetBillingPeriod struct {
 	ResetBillingPeriod *ActionResetBillingPeriod `protobuf:"bytes,17,opt,name=reset_billing_period,json=resetBillingPeriod,oneof"` // Defines the ResetBillingPeriod action.
 }
 
-type jobActionSet_FwUpgrade struct {
-	FwUpgrade *ActionFirmwareUpgrade `protobuf:"bytes,18,opt,name=fw_upgrade,json=fwUpgrade,oneof"` // Defines the FirmwareUpgrade action.
+type jobActionSet_ImageTransfer struct {
+	ImageTransfer *ActionFirmwareImageTransfer `protobuf:"bytes,18,opt,name=image_transfer,json=imageTransfer,oneof"` // Defines the ActionFirmwareImageTransfer action.
 }
 
 func (*jobActionSet_GetRegister) isJobActionSet_Action() {}
@@ -2572,7 +2572,7 @@ func (*jobActionSet_SetLimiter) isJobActionSet_Action() {}
 
 func (*jobActionSet_ResetBillingPeriod) isJobActionSet_Action() {}
 
-func (*jobActionSet_FwUpgrade) isJobActionSet_Action() {}
+func (*jobActionSet_ImageTransfer) isJobActionSet_Action() {}
 
 // Defines a list of job devices included in a bulk.
 type ListOfJobDevice struct {
@@ -9592,8 +9592,8 @@ func (b0 ActionResetBillingPeriod_builder) Build() *ActionResetBillingPeriod {
 	return m0
 }
 
-// Defines the firmware update action specification.
-type ActionFirmwareUpgrade struct {
+// Defines the image transfer action specification.
+type ActionFirmwareImageTransfer struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_FirmwareImageId *string                `protobuf:"bytes,1,opt,name=firmware_image_id,json=firmwareImageId"`
 	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
@@ -9602,20 +9602,20 @@ type ActionFirmwareUpgrade struct {
 	sizeCache                  protoimpl.SizeCache
 }
 
-func (x *ActionFirmwareUpgrade) Reset() {
-	*x = ActionFirmwareUpgrade{}
+func (x *ActionFirmwareImageTransfer) Reset() {
+	*x = ActionFirmwareImageTransfer{}
 	mi := &file_acquisition_shared_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ActionFirmwareUpgrade) String() string {
+func (x *ActionFirmwareImageTransfer) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ActionFirmwareUpgrade) ProtoMessage() {}
+func (*ActionFirmwareImageTransfer) ProtoMessage() {}
 
-func (x *ActionFirmwareUpgrade) ProtoReflect() protoreflect.Message {
+func (x *ActionFirmwareImageTransfer) ProtoReflect() protoreflect.Message {
 	mi := &file_acquisition_shared_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -9627,7 +9627,7 @@ func (x *ActionFirmwareUpgrade) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *ActionFirmwareUpgrade) GetFirmwareImageId() string {
+func (x *ActionFirmwareImageTransfer) GetFirmwareImageId() string {
 	if x != nil {
 		if x.xxx_hidden_FirmwareImageId != nil {
 			return *x.xxx_hidden_FirmwareImageId
@@ -9637,31 +9637,31 @@ func (x *ActionFirmwareUpgrade) GetFirmwareImageId() string {
 	return ""
 }
 
-func (x *ActionFirmwareUpgrade) SetFirmwareImageId(v string) {
+func (x *ActionFirmwareImageTransfer) SetFirmwareImageId(v string) {
 	x.xxx_hidden_FirmwareImageId = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
 }
 
-func (x *ActionFirmwareUpgrade) HasFirmwareImageId() bool {
+func (x *ActionFirmwareImageTransfer) HasFirmwareImageId() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *ActionFirmwareUpgrade) ClearFirmwareImageId() {
+func (x *ActionFirmwareImageTransfer) ClearFirmwareImageId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_FirmwareImageId = nil
 }
 
-type ActionFirmwareUpgrade_builder struct {
+type ActionFirmwareImageTransfer_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	FirmwareImageId *string
 }
 
-func (b0 ActionFirmwareUpgrade_builder) Build() *ActionFirmwareUpgrade {
-	m0 := &ActionFirmwareUpgrade{}
+func (b0 ActionFirmwareImageTransfer_builder) Build() *ActionFirmwareImageTransfer {
+	m0 := &ActionFirmwareImageTransfer{}
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.FirmwareImageId != nil {
@@ -14249,7 +14249,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"deferStart\x129\n" +
 	"\n" +
 	"expires_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12\\\n" +
-	"\x10read_path_policy\x18\a \x01(\x0e22.io.clbs.openhes.models.acquisition.ReadPathPolicyR\x0ereadPathPolicy\"\xef\v\n" +
+	"\x10read_path_policy\x18\a \x01(\x0e22.io.clbs.openhes.models.acquisition.ReadPathPolicyR\x0ereadPathPolicy\"\xfd\v\n" +
 	"\tJobAction\x12\x1b\n" +
 	"\taction_id\x18\x01 \x01(\tR\bactionId\x12]\n" +
 	"\n" +
@@ -14270,13 +14270,12 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\aset_tou\x18\x0e \x01(\v20.io.clbs.openhes.models.acquisition.ActionSetTouH\x00R\x06setTou\x12W\n" +
 	"\vset_limiter\x18\x10 \x01(\v24.io.clbs.openhes.models.acquisition.ActionSetLimiterH\x00R\n" +
 	"setLimiter\x12p\n" +
-	"\x14reset_billing_period\x18\x11 \x01(\v2<.io.clbs.openhes.models.acquisition.ActionResetBillingPeriodH\x00R\x12resetBillingPeriod\x12Z\n" +
-	"\n" +
-	"fw_upgrade\x18\x12 \x01(\v29.io.clbs.openhes.models.acquisition.ActionFirmwareUpgradeH\x00R\tfwUpgrade\x1ah\n" +
+	"\x14reset_billing_period\x18\x11 \x01(\v2<.io.clbs.openhes.models.acquisition.ActionResetBillingPeriodH\x00R\x12resetBillingPeriod\x12h\n" +
+	"\x0eimage_transfer\x18\x12 \x01(\v2?.io.clbs.openhes.models.acquisition.ActionFirmwareImageTransferH\x00R\rimageTransfer\x1ah\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01B\b\n" +
-	"\x06action\"\xaa\n" +
+	"\x06action\"\xb8\n" +
 	"\n" +
 	"\fJobActionSet\x12\x1c\n" +
 	"\tvariables\x18\x02 \x03(\tR\tvariables\x12Z\n" +
@@ -14295,9 +14294,8 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\aset_tou\x18\x0e \x01(\v20.io.clbs.openhes.models.acquisition.ActionSetTouH\x00R\x06setTou\x12W\n" +
 	"\vset_limiter\x18\x10 \x01(\v24.io.clbs.openhes.models.acquisition.ActionSetLimiterH\x00R\n" +
 	"setLimiter\x12p\n" +
-	"\x14reset_billing_period\x18\x11 \x01(\v2<.io.clbs.openhes.models.acquisition.ActionResetBillingPeriodH\x00R\x12resetBillingPeriod\x12Z\n" +
-	"\n" +
-	"fw_upgrade\x18\x12 \x01(\v29.io.clbs.openhes.models.acquisition.ActionFirmwareUpgradeH\x00R\tfwUpgradeB\b\n" +
+	"\x14reset_billing_period\x18\x11 \x01(\v2<.io.clbs.openhes.models.acquisition.ActionResetBillingPeriodH\x00R\x12resetBillingPeriod\x12h\n" +
+	"\x0eimage_transfer\x18\x12 \x01(\v2?.io.clbs.openhes.models.acquisition.ActionFirmwareImageTransferH\x00R\rimageTransferB\b\n" +
 	"\x06action\"u\n" +
 	"\x0fListOfJobDevice\x12A\n" +
 	"\x04list\x18\x01 \x03(\v2-.io.clbs.openhes.models.acquisition.JobDeviceR\x04list\x12\x1f\n" +
@@ -14539,8 +14537,8 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"touTableId\x12V\n" +
 	"\x05table\x18\x01 \x01(\v2@.io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpecR\x05table\"\x12\n" +
 	"\x10ActionSetLimiter\"\x1a\n" +
-	"\x18ActionResetBillingPeriod\"C\n" +
-	"\x15ActionFirmwareUpgrade\x12*\n" +
+	"\x18ActionResetBillingPeriod\"I\n" +
+	"\x1bActionFirmwareImageTransfer\x12*\n" +
 	"\x11firmware_image_id\x18\x01 \x01(\tR\x0ffirmwareImageId\"\xfa\x03\n" +
 	"\x13JobActionContraints\x12\x85\x01\n" +
 	"\x16get_register_type_name\x18\x01 \x03(\v2P.io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeNameEntryR\x13getRegisterTypeName\x12\x97\x01\n" +
@@ -14818,7 +14816,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x11APPPROTO_ANSI_C12\x10\x06\x12\x11\n" +
 	"\rAPPPROTO_MQTT\x10\a\x12\x13\n" +
 	"\x0fAPPPROTO_MODBUS\x10\b\x12\x11\n" +
-	"\rAPPPROTO_MBUS\x10\t*\xf0\x03\n" +
+	"\rAPPPROTO_MBUS\x10\t*\xfe\x03\n" +
 	"\n" +
 	"ActionType\x12\x1b\n" +
 	"\x17ACTION_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
@@ -14835,8 +14833,8 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\x13ACTION_TYPE_GET_TOU\x10\x18\x12\x17\n" +
 	"\x13ACTION_TYPE_SET_TOU\x10\x19\x12\x1b\n" +
 	"\x17ACTION_TYPE_SET_LIMITER\x10\x1b\x12$\n" +
-	" ACTION_TYPE_RESET_BILLING_PERIOD\x10(\x12\x19\n" +
-	"\x15ACTION_TYPE_FW_UPDATE\x102*\xae\x01\n" +
+	" ACTION_TYPE_RESET_BILLING_PERIOD\x10(\x12'\n" +
+	"#ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER\x102*\xae\x01\n" +
 	"\x10ActionResultCode\x12!\n" +
 	"\x1dERROR_CODE_ACTION_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14ERROR_CODE_ACTION_OK\x10\x01\x12!\n" +
@@ -14954,7 +14952,7 @@ var file_acquisition_shared_proto_goTypes = []any{
 	(*ActionSetTou)(nil),                             // 64: io.clbs.openhes.models.acquisition.ActionSetTou
 	(*ActionSetLimiter)(nil),                         // 65: io.clbs.openhes.models.acquisition.ActionSetLimiter
 	(*ActionResetBillingPeriod)(nil),                 // 66: io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	(*ActionFirmwareUpgrade)(nil),                    // 67: io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade
+	(*ActionFirmwareImageTransfer)(nil),              // 67: io.clbs.openhes.models.acquisition.ActionFirmwareImageTransfer
 	(*JobActionContraints)(nil),                      // 68: io.clbs.openhes.models.acquisition.JobActionContraints
 	(*JobStatus)(nil),                                // 69: io.clbs.openhes.models.acquisition.JobStatus
 	(*JobProgressStatus)(nil),                        // 70: io.clbs.openhes.models.acquisition.JobProgressStatus
@@ -15032,7 +15030,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	64,  // 16: io.clbs.openhes.models.acquisition.JobAction.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
 	65,  // 17: io.clbs.openhes.models.acquisition.JobAction.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
 	66,  // 18: io.clbs.openhes.models.acquisition.JobAction.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	67,  // 19: io.clbs.openhes.models.acquisition.JobAction.fw_upgrade:type_name -> io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade
+	67,  // 19: io.clbs.openhes.models.acquisition.JobAction.image_transfer:type_name -> io.clbs.openhes.models.acquisition.ActionFirmwareImageTransfer
 	55,  // 20: io.clbs.openhes.models.acquisition.JobActionSet.get_register:type_name -> io.clbs.openhes.models.acquisition.ActionGetRegister
 	56,  // 21: io.clbs.openhes.models.acquisition.JobActionSet.get_periodical_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile
 	57,  // 22: io.clbs.openhes.models.acquisition.JobActionSet.get_irregular_profile:type_name -> io.clbs.openhes.models.acquisition.ActionGetIrregularProfile
@@ -15045,7 +15043,7 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	64,  // 29: io.clbs.openhes.models.acquisition.JobActionSet.set_tou:type_name -> io.clbs.openhes.models.acquisition.ActionSetTou
 	65,  // 30: io.clbs.openhes.models.acquisition.JobActionSet.set_limiter:type_name -> io.clbs.openhes.models.acquisition.ActionSetLimiter
 	66,  // 31: io.clbs.openhes.models.acquisition.JobActionSet.reset_billing_period:type_name -> io.clbs.openhes.models.acquisition.ActionResetBillingPeriod
-	67,  // 32: io.clbs.openhes.models.acquisition.JobActionSet.fw_upgrade:type_name -> io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade
+	67,  // 32: io.clbs.openhes.models.acquisition.JobActionSet.image_transfer:type_name -> io.clbs.openhes.models.acquisition.ActionFirmwareImageTransfer
 	23,  // 33: io.clbs.openhes.models.acquisition.ListOfJobDevice.list:type_name -> io.clbs.openhes.models.acquisition.JobDevice
 	22,  // 34: io.clbs.openhes.models.acquisition.ListOfJobDeviceId.list:type_name -> io.clbs.openhes.models.acquisition.JobDeviceId
 	103, // 35: io.clbs.openhes.models.acquisition.JobDevice.device_attributes:type_name -> io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry
@@ -15240,7 +15238,7 @@ func file_acquisition_shared_proto_init() {
 		(*jobAction_SetTou)(nil),
 		(*jobAction_SetLimiter)(nil),
 		(*jobAction_ResetBillingPeriod)(nil),
-		(*jobAction_FwUpgrade)(nil),
+		(*jobAction_ImageTransfer)(nil),
 	}
 	file_acquisition_shared_proto_msgTypes[2].OneofWrappers = []any{
 		(*jobActionSet_GetRegister)(nil),
@@ -15255,7 +15253,7 @@ func file_acquisition_shared_proto_init() {
 		(*jobActionSet_SetTou)(nil),
 		(*jobActionSet_SetLimiter)(nil),
 		(*jobActionSet_ResetBillingPeriod)(nil),
-		(*jobActionSet_FwUpgrade)(nil),
+		(*jobActionSet_ImageTransfer)(nil),
 	}
 	file_acquisition_shared_proto_msgTypes[7].OneofWrappers = []any{
 		(*modemInfo_Tcpip)(nil),

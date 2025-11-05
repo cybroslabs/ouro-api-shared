@@ -1414,7 +1414,6 @@
     "tags0": [
       "ACTION_TYPE_GET_TOU",
       "ACTION_TYPE_SET_TOU",
-      "ACTION_TYPE_FW_UPDATE",
       "ACTION_TYPE_GET_EVENTS",
       "ACTION_TYPE_SYNC_CLOCK",
       "ACTION_TYPE_UNSPECIFIED",
@@ -1427,6 +1426,7 @@
       "ACTION_TYPE_GET_PERIODICAL_PROFILE",
       "ACTION_TYPE_GET_DISCONNECTOR_STATE",
       "ACTION_TYPE_SET_DISCONNECTOR_STATE",
+      "ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER",
       "Enum: io.clbs.openhes.models.acquisition.ActionType"
     ],
     "tags1": [
@@ -1437,8 +1437,9 @@
       "DEVICE",
       "DISCONNECTOR",
       "EVENTS",
-      "FW",
+      "FIRMWARE",
       "GET",
+      "IMAGE",
       "INFO",
       "IRREGULAR",
       "LIMITER",
@@ -1452,11 +1453,11 @@
       "STATE",
       "SYNC",
       "TOU",
+      "TRANSFER",
       "TYPE",
-      "UNSPECIFIED",
-      "UPDATE"
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Unspecified action type Get register value for example instantaneous value The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware update"
+    "tags2": "Defines the supported action types Each action type corresponds specific operation that can performed device Unspecified action type Get register value for example instantaneous value The action covers specific register Get periodical profile for example load profile The action covers specific profile column Get non periodical profile for example daily profile monthly billing registers The action covers specific profile column and billing register Get event log The action covers specific event log Get device information The action returns detailed information data about the remote device Synchronize the device clock The action sets the time and can forcefully update force attribute set Set relay state The action covers single relay Get the disconnector state Set the disconnector state Get time use table Set time use table Set limiter settings The action covers single limiter Reset the billing period Start firmware image transfer"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-applicationprotocol.md",
@@ -1860,16 +1861,16 @@
     "tags2": "Defines the action based variant data values Indicates that data was returned the action The set register values The set profile values The set irregular non periodical profile values such daily profiles The device information The event records The time use TOU table"
   },
   {
-    "filename": "model-io-clbs-openhes-models-acquisition-actionfirmwareupgrade.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade",
+    "filename": "model-io-clbs-openhes-models-acquisition-actionfirmwareimagetransfer.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.ActionFirmwareImageTransfer",
     "tags0": [
       "firmwareImageId",
-      "io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade"
+      "io.clbs.openhes.models.acquisition.ActionFirmwareImageTransfer"
     ],
     "tags1": [
-      "ActionFirmwareUpgrade"
+      "ActionFirmwareImageTransfer"
     ],
-    "tags2": "Defines the firmware update action specification The unique identifier the firmware used for the update"
+    "tags2": "Defines the image transfer action specification The unique identifier the image used"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetdeviceinfo.md",
@@ -3054,12 +3055,12 @@
       "actionId",
       "getEvents",
       "syncClock",
-      "fwUpgrade",
       "attributes",
       "setLimiter",
       "getRegister",
       "getDeviceInfo",
       "setRelayState",
+      "imageTransfer",
       "resetBillingPeriod",
       "getIrregularProfile",
       "getPeriodicalProfile",
@@ -3069,7 +3070,7 @@
     "tags1": [
       "JobAction"
     ],
-    "tags2": "Defines the job action specification The JobAction represents single action performed single device For example the action ActionGetRegister specifies single register read from the devices The unique identifier the action The action attributes Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the FirmwareUpgrade action"
+    "tags2": "Defines the job action specification The JobAction represents single action performed single device For example the action ActionGetRegister specifies single register read from the devices The unique identifier the action The action attributes Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the ActionFirmwareImageTransfer action"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactionattributes.md",
@@ -3106,11 +3107,11 @@
       "variables",
       "getEvents",
       "syncClock",
-      "fwUpgrade",
       "setLimiter",
       "getRegister",
       "getDeviceInfo",
       "setRelayState",
+      "imageTransfer",
       "resetBillingPeriod",
       "getIrregularProfile",
       "getPeriodicalProfile",
@@ -3120,7 +3121,7 @@
     "tags1": [
       "JobActionSet"
     ],
-    "tags2": "Defines the job action set specification Unlike single JobAction that used only once per bulk JobActionSet may internally cover multiple JobActions For example the action type GetRegister and variable filter specified the system automatically retrieves all registers defined the active device configuration template The variable filter Meaning depends the action type GetRegister GetPeriodicalProfile and GetIrregularProfile List variable names for example defined the system not set all variables the given type are read Others Not applicable ignored Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the FirmwareUpgrade action"
+    "tags2": "Defines the job action set specification Unlike single JobAction that used only once per bulk JobActionSet may internally cover multiple JobActions For example the action type GetRegister and variable filter specified the system automatically retrieves all registers defined the active device configuration template The variable filter Meaning depends the action type GetRegister GetPeriodicalProfile and GetIrregularProfile List variable names for example defined the system not set all variables the given type are read Others Not applicable ignored Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the ActionFirmwareImageTransfer action"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdevice.md",

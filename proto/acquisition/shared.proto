@@ -64,7 +64,7 @@ message JobAction {
         ActionSetTou set_tou                              = 14;  // Defines the SetTou action..
         ActionSetLimiter set_limiter                      = 16;  // Defines the SetLimiter action.
         ActionResetBillingPeriod reset_billing_period     = 17;  // Defines the ResetBillingPeriod action.
-        ActionFirmwareUpgrade fw_upgrade                  = 18;  // Defines the FirmwareUpgrade action.
+        ActionFirmwareImageTransfer image_transfer        = 18;  // Defines the ActionFirmwareImageTransfer action.
     }
 }
 
@@ -89,7 +89,7 @@ message JobActionSet {
         ActionSetTou set_tou                              = 14;  // Defines the SetTou action..
         ActionSetLimiter set_limiter                      = 16;  // Defines the SetLimiter action.
         ActionResetBillingPeriod reset_billing_period     = 17;  // Defines the ResetBillingPeriod action.
-        ActionFirmwareUpgrade fw_upgrade                  = 18;  // Defines the FirmwareUpgrade action.
+        ActionFirmwareImageTransfer image_transfer        = 18;  // Defines the ActionFirmwareImageTransfer action.
     }
 }
 
@@ -508,7 +508,7 @@ enum ActionType {
 
     ACTION_TYPE_RESET_BILLING_PERIOD = 40;  // Reset the billing period.
 
-    ACTION_TYPE_FW_UPDATE = 50;  // Start a firmware update.
+    ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER = 50;  // Start a firmware image transfer.
 }
 
 // Defines the get register action specification.
@@ -571,9 +571,9 @@ message ActionSetLimiter {
 message ActionResetBillingPeriod {
 }
 
-// Defines the firmware update action specification.
-message ActionFirmwareUpgrade {
-    string firmware_image_id = 1;  // The unique identifier of the firmware to be used for the update.
+// Defines the image transfer action specification.
+message ActionFirmwareImageTransfer {
+    string firmware_image_id = 1;  // The unique identifier of the image to be used.
 }
 
 // Defines the result codes related to job actions.

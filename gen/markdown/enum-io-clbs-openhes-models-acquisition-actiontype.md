@@ -20,4 +20,4 @@ Defines the supported action types. Each action type corresponds to a specific o
 | ACTION_TYPE_SET_TOU | Set time-of-use table. |
 | ACTION_TYPE_SET_LIMITER | Set limiter settings. The action covers single limiter. |
 | ACTION_TYPE_RESET_BILLING_PERIOD | Reset the billing period. |
-| ACTION_TYPE_FW_UPDATE | Start a firmware update. |
+| ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER | Start a firmware image transfer. |

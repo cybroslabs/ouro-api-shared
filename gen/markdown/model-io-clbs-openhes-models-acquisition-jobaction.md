@@ -22,5 +22,5 @@ Defines the job action specification.
 | setTou | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionSetTou`](model-io-clbs-openhes-models-acquisition-actionsettou.md)<br><b>Description:</b><br>Defines the SetTou action.. |
 | setLimiter | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionSetLimiter`](model-io-clbs-openhes-models-acquisition-actionsetlimiter.md)<br><b>Description:</b><br>Defines the SetLimiter action. |
 | resetBillingPeriod | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionResetBillingPeriod`](model-io-clbs-openhes-models-acquisition-actionresetbillingperiod.md)<br><b>Description:</b><br>Defines the ResetBillingPeriod action. |
-| fwUpgrade | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionFirmwareUpgrade`](model-io-clbs-openhes-models-acquisition-actionfirmwareupgrade.md)<br><b>Description:</b><br>Defines the FirmwareUpgrade action. |
+| imageTransfer | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionFirmwareImageTransfer`](model-io-clbs-openhes-models-acquisition-actionfirmwareimagetransfer.md)<br><b>Description:</b><br>Defines the ActionFirmwareImageTransfer action. |
 
