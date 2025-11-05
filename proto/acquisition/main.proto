@@ -584,10 +584,11 @@ message FirmwareImage {
 
 // Defines a firmware image specification.
 message FirmwareImageSpec {
-    string driver_type                 = 1;  // The driver type.
-    string version                     = 2;  // The firmware version.
-    repeated FirmwareImageFile content = 3;  // The list of firmware image files.
-    string description                 = 4;  // The firmware image description.
+    string driver_type                        = 1;  // The driver type.
+    string version                            = 2;  // The firmware version.
+    repeated FirmwareImageFile content        = 3;  // The list of firmware image files.
+    string description                        = 4;  // The firmware image description.
+    map<string, common.FieldValue> attributes = 5;  // The firmware attributes, depending on the driver type.
 }
 
 // Defines a file within a firmware image.

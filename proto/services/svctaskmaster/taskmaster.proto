@@ -65,6 +65,9 @@ service TaskmasterService {
     // The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
     rpc SetCurrentDeviceCommunicationUnit(io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest) returns (google.protobuf.Empty);
     // @group: Firmware Images
+    // Retrieves the details of the specified firmware image.
+    rpc GetFirmwareImage(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.FirmwareImage);
+    // @group: Firmware Images
     // Retrieves a block of firmware image data for the specified firmware image.
     rpc GetFirmwareImageBlock(io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest) returns (io.clbs.openhes.models.acquisition.FirmwareImageBlock);
 }
