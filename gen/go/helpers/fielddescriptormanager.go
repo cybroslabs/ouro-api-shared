@@ -130,6 +130,13 @@ func (fdm *fieldDescriptorManager) RefreshWithUpdate(ctx context.Context) error 
 	return fdm.refresh(ctx, true)
 }
 
+func ensureMapKey[T comparable, U any](m map[T]U, key T) map[T]U {
+	if _, ok := m[key]; !ok {
+		m[key] = *new(U)
+	}
+	return m
+}
+
 func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) error {
 	cli, closer, err := fdm.connectors.OpenApiServiceClient()
 	if err != nil {
@@ -158,8 +165,8 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) err
 	tmp := make(map[string]*common.FieldDescriptorInternal, len(data.GetItems())+len(fdm.systemDescriptors))
 
 	for _, objectType := range fdm.relatedObjectTypes {
-		fdm.fieldDescriptorPathMap[objectType] = make(map[string]string, 0)
-		fdm.fieldDescriptorGroupMap[objectType] = make(map[string]*common.FieldDescriptor, 0)
+		ensureMapKey(fdm.fieldDescriptorPathMap, objectType)
+		ensureMapKey(fdm.fieldDescriptorGroupMap, objectType)
 	}
 
 	for _, fd_wrapper := range data.GetItems() {
@@ -168,8 +175,8 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) err
 		if !slices.Contains(fdm.relatedObjectTypes, fd_object_type) {
 			continue
 		}
-		fdm.fieldDescriptorPathMap[fd_object_type][fd.GetPath()] = fd_wrapper.GetDbPath()
-		fdm.fieldDescriptorGroupMap[fd_object_type][fd.GetPath()] = fd
+		ensureMapKey(fdm.fieldDescriptorPathMap, fd_object_type)[fd_object_type][fd.GetPath()] = fd_wrapper.GetDbPath()
+		ensureMapKey(fdm.fieldDescriptorGroupMap, fd_object_type)[fd_object_type][fd.GetPath()] = fd
 		tmp[fd.GetGid()] = fd_wrapper
 	}
 
@@ -177,8 +184,8 @@ func (fdm *fieldDescriptorManager) refresh(ctx context.Context, update bool) err
 	for _, fd_wrapper := range fdm.systemDescriptors {
 		fd := fd_wrapper.GetFieldDescriptor()
 		fd_object_type := fd.GetObjectType()
-		fdm.fieldDescriptorPathMap[fd_object_type][fd.GetPath()] = fd_wrapper.GetDbPath()
-		fdm.fieldDescriptorGroupMap[fd_object_type][fd.GetPath()] = fd
+		ensureMapKey(fdm.fieldDescriptorPathMap, fd_object_type)[fd_object_type][fd.GetPath()] = fd_wrapper.GetDbPath()
+		ensureMapKey(fdm.fieldDescriptorGroupMap, fd_object_type)[fd_object_type][fd.GetPath()] = fd
 		tmp[fd.GetGid()] = fd_wrapper
 	}
 
