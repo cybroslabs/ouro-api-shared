@@ -171,16 +171,19 @@ func drainChannel(ch chan struct{}) {
 func (lm *licenseManager) run(ctx context.Context) {
 	check_period := _periodNoLicense
 	check_failed_count := 0
+	granted := false
 	for {
 		license, err := lm.fetchLicense(ctx)
 		if err != nil {
-			check_failed_count++
-			if check_failed_count == 3 {
-				// If we failed to get the license three times in a row, we will revoke current license.
-				lm.license = nil
-				drainChannel(lm.event)
-				if f := lm.onLicenseRevoked; f != nil {
-					f()
+			if granted {
+				check_failed_count++
+				if check_failed_count == 3 {
+					// If we failed to get the license three times in a row, we will revoke current license.
+					lm.license = nil
+					drainChannel(lm.event)
+					if f := lm.onLicenseRevoked; f != nil {
+						f()
+					}
 				}
 			}
 
@@ -190,6 +193,9 @@ func (lm *licenseManager) run(ctx context.Context) {
 			case <-time.After(check_period):
 				continue
 			}
+		} else {
+			check_failed_count = 0
+			granted = true
 		}
 
 		lm.license = license
