@@ -2,7 +2,7 @@ package common
 
 import "github.com/google/uuid"
 
-// Create creates a new Metadata object with a new UUID and generation 1.
+// Create creates a new Metadata object with a new UUIDv4 and generation 1.
 func (x *MetadataFields) Create() (id uuid.UUID, err error) {
 	if x == nil {
 		return uuid.Nil, nil
@@ -11,6 +11,23 @@ func (x *MetadataFields) Create() (id uuid.UUID, err error) {
 		return uuid.Nil, ErrManagedFieldsMustBeEmpty
 	}
 	id, err = uuid.NewRandom()
+	if err != nil {
+		return uuid.Nil, err
+	}
+	x.SetId(id.String())
+	x.SetGeneration(1)
+	return id, nil
+}
+
+// Create creates a new Metadata object with a new UUIDv7 and generation 1.
+func (x *MetadataFields) CreateV7() (id uuid.UUID, err error) {
+	if x == nil {
+		return uuid.Nil, nil
+	}
+	if len(x.GetManagedFields()) > 0 {
+		return uuid.Nil, ErrManagedFieldsMustBeEmpty
+	}
+	id, err = uuid.NewV7()
 	if err != nil {
 		return uuid.Nil, err
 	}
