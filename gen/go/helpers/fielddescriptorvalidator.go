@@ -107,7 +107,6 @@ func (pv *protoValidator) validateInternal(m protoreflect.Message, fieldDescript
 		if fdPrefix != "" {
 			k = fdPrefix + "." + k
 		}
-		pv.logger.Infof("Validating field: %s", k)
 		if fdv, ok := fieldDescriptors[k]; !ok {
 			continue
 		} else {
@@ -181,7 +180,53 @@ func (pv *protoValidator) validateInternal(m protoreflect.Message, fieldDescript
 			// TODO: The nested message is not set but there might be required fields in it.
 			continue
 		}
+
 		nested_m := m.Get(nested_md.FieldDescriptor)
+
+		if nested_md.FieldDescriptor.IsList() {
+			l := nested_m.List()
+			for i := l.Len() - 1; i >= 0; i-- {
+				nested_m_item := l.Get(i)
+				nested_m_item_typed, ok := nested_m_item.Interface().(protoreflect.Message)
+				if !ok {
+					pv.logger.Debugf("Field %s[%d] is not a message type in the list, skipping validation", k, i)
+					continue
+				}
+				var nested_fd_prefix string
+				if fdPrefix != "" {
+					nested_fd_prefix = fdPrefix + "." + k
+				} else {
+					nested_fd_prefix = k
+				}
+				if err := pv.validateInternal(nested_m_item_typed, fieldDescriptors, nested_fd_prefix); err != nil {
+					return errors.Join(err, errors.New("invalid property in list "+k))
+				}
+			}
+			continue
+		}
+
+		if nested_md.FieldDescriptor.IsMap() {
+			m := nested_m.Map()
+			m.Range(func(mk protoreflect.MapKey, mv protoreflect.Value) bool {
+				nested_m_item_typed, ok := mv.Interface().(protoreflect.Message)
+				if !ok {
+					pv.logger.Debugf("Field %s[%v] is not a message type in the map, skipping validation", k, mk)
+					return true
+				}
+				var nested_fd_prefix string
+				if fdPrefix != "" {
+					nested_fd_prefix = fdPrefix + "." + k
+				} else {
+					nested_fd_prefix = k
+				}
+				if err := pv.validateInternal(nested_m_item_typed, fieldDescriptors, nested_fd_prefix); err != nil {
+					return false
+				}
+				return true
+			})
+			continue
+		}
+
 		nested_m_typed, ok := nested_m.Interface().(protoreflect.Message)
 		if !ok {
 			pv.logger.Debugf("Field %s is not a message type, skipping validation", k)
