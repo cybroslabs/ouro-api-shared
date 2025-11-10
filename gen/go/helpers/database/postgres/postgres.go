@@ -64,7 +64,8 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, idColumn
 			qWhere += "))"
 		}
 		qArgs = appendFixedWhere(fixedWhere, &qWhere, qArgs)
-		// This should return single rocord, so no need for ORDER BY or LIMIT
+		qLimit = fmt.Sprintf(" LIMIT %d", cnt)
+		// This should return at most <cnt> records, so no need for ORDER BY
 		return
 	}
 
