@@ -76,3 +76,10 @@ func (s *DbSelector) GetPageSize() uint32 {
 	}
 	return 0
 }
+
+func (s *DbSelector) GetId() []uuid.UUID {
+	if s != nil {
+		return s.Id
+	}
+	return nil
+}
