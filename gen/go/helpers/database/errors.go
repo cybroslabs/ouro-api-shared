@@ -3,23 +3,37 @@ package database
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"regexp"
 
 	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
+	"google.golang.org/grpc/status"
 )
 
 var (
 	_reSqlState = regexp.MustCompile(`\(SQLSTATE\s*([^ \)]+)\)`)
 )
 
-func Translate(err error, objectName string) error {
+// Translates a database error into a common error.
+func Translate(err error) error {
+	return TranslateObject(err, "")
+}
+
+// Translates a database error into a common error, with an optional object name.
+func TranslateObject(err error, objectName string) error {
 	if err == nil {
 		return nil
 	}
 
+	// Do not translate if it's already a gRPC status error.
+	if _, ok := status.FromError(err); ok {
+		return err
+	}
+
 	if errors.Is(err, sql.ErrNoRows) {
-		return errors.Join(common.ErrOuroObjectNotFound, fmt.Errorf("%s not found", objectName))
+		if objectName == "" {
+			return common.ErrOuroObjectNotFound
+		}
+		return errors.Join(common.ErrOuroObjectNotFound, errors.New(objectName))
 	}
 
 	// Support for PostgreSQL error codes from jackc/pgx library.
