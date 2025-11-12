@@ -170,84 +170,6 @@ func (b0 SetCacheRequest_builder) Build() *SetCacheRequest {
 	return m0
 }
 
-type GetCacheRequest struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Key         *string                `protobuf:"bytes,1,opt,name=key"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
-}
-
-func (x *GetCacheRequest) Reset() {
-	*x = GetCacheRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetCacheRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetCacheRequest) ProtoMessage() {}
-
-func (x *GetCacheRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-func (x *GetCacheRequest) GetKey() string {
-	if x != nil {
-		if x.xxx_hidden_Key != nil {
-			return *x.xxx_hidden_Key
-		}
-		return ""
-	}
-	return ""
-}
-
-func (x *GetCacheRequest) SetKey(v string) {
-	x.xxx_hidden_Key = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
-}
-
-func (x *GetCacheRequest) HasKey() bool {
-	if x == nil {
-		return false
-	}
-	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
-}
-
-func (x *GetCacheRequest) ClearKey() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_Key = nil
-}
-
-type GetCacheRequest_builder struct {
-	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
-
-	Key *string
-}
-
-func (b0 GetCacheRequest_builder) Build() *GetCacheRequest {
-	m0 := &GetCacheRequest{}
-	b, x := &b0, m0
-	_, _ = b, x
-	if b.Key != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
-		x.xxx_hidden_Key = b.Key
-	}
-	return m0
-}
-
 type GetCacheResponse struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Value *common.FieldValue     `protobuf:"bytes,1,opt,name=value"`
@@ -257,7 +179,7 @@ type GetCacheResponse struct {
 
 func (x *GetCacheResponse) Reset() {
 	*x = GetCacheResponse{}
-	mi := &file_acquisition_internal_proto_msgTypes[2]
+	mi := &file_acquisition_internal_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -269,7 +191,7 @@ func (x *GetCacheResponse) String() string {
 func (*GetCacheResponse) ProtoMessage() {}
 
 func (x *GetCacheResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[2]
+	mi := &file_acquisition_internal_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -325,7 +247,7 @@ type SetConfigDefaultsRequest struct {
 
 func (x *SetConfigDefaultsRequest) Reset() {
 	*x = SetConfigDefaultsRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[3]
+	mi := &file_acquisition_internal_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -337,7 +259,7 @@ func (x *SetConfigDefaultsRequest) String() string {
 func (*SetConfigDefaultsRequest) ProtoMessage() {}
 
 func (x *SetConfigDefaultsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[3]
+	mi := &file_acquisition_internal_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -384,7 +306,7 @@ type GetDriverConfigRequest struct {
 
 func (x *GetDriverConfigRequest) Reset() {
 	*x = GetDriverConfigRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[4]
+	mi := &file_acquisition_internal_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -396,7 +318,7 @@ func (x *GetDriverConfigRequest) String() string {
 func (*GetDriverConfigRequest) ProtoMessage() {}
 
 func (x *GetDriverConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[4]
+	mi := &file_acquisition_internal_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +364,7 @@ type StartJobsRequest struct {
 
 func (x *StartJobsRequest) Reset() {
 	*x = StartJobsRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[5]
+	mi := &file_acquisition_internal_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -454,7 +376,7 @@ func (x *StartJobsRequest) String() string {
 func (*StartJobsRequest) ProtoMessage() {}
 
 func (x *StartJobsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[5]
+	mi := &file_acquisition_internal_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -526,7 +448,7 @@ type ProgressUpdate struct {
 
 func (x *ProgressUpdate) Reset() {
 	*x = ProgressUpdate{}
-	mi := &file_acquisition_internal_proto_msgTypes[6]
+	mi := &file_acquisition_internal_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -538,7 +460,7 @@ func (x *ProgressUpdate) String() string {
 func (*ProgressUpdate) ProtoMessage() {}
 
 func (x *ProgressUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[6]
+	mi := &file_acquisition_internal_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -667,7 +589,7 @@ func (b0 ProgressUpdate_builder) Build() *ProgressUpdate {
 type case_ProgressUpdate_Progress protoreflect.FieldNumber
 
 func (x case_ProgressUpdate_Progress) String() string {
-	md := file_acquisition_internal_proto_msgTypes[6].Descriptor()
+	md := file_acquisition_internal_proto_msgTypes[5].Descriptor()
 	if x == 0 {
 		return "not set"
 	}
@@ -703,7 +625,7 @@ type StartUpgradeRequest struct {
 
 func (x *StartUpgradeRequest) Reset() {
 	*x = StartUpgradeRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[7]
+	mi := &file_acquisition_internal_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -715,7 +637,7 @@ func (x *StartUpgradeRequest) String() string {
 func (*StartUpgradeRequest) ProtoMessage() {}
 
 func (x *StartUpgradeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[7]
+	mi := &file_acquisition_internal_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -843,7 +765,7 @@ type QueueJobsRequest struct {
 
 func (x *QueueJobsRequest) Reset() {
 	*x = QueueJobsRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[8]
+	mi := &file_acquisition_internal_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -855,7 +777,7 @@ func (x *QueueJobsRequest) String() string {
 func (*QueueJobsRequest) ProtoMessage() {}
 
 func (x *QueueJobsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[8]
+	mi := &file_acquisition_internal_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -902,7 +824,7 @@ type QueueJobsResponse struct {
 
 func (x *QueueJobsResponse) Reset() {
 	*x = QueueJobsResponse{}
-	mi := &file_acquisition_internal_proto_msgTypes[9]
+	mi := &file_acquisition_internal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -914,7 +836,7 @@ func (x *QueueJobsResponse) String() string {
 func (*QueueJobsResponse) ProtoMessage() {}
 
 func (x *QueueJobsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[9]
+	mi := &file_acquisition_internal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -963,7 +885,7 @@ type SetDriverScaleRequest struct {
 
 func (x *SetDriverScaleRequest) Reset() {
 	*x = SetDriverScaleRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[10]
+	mi := &file_acquisition_internal_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -975,7 +897,7 @@ func (x *SetDriverScaleRequest) String() string {
 func (*SetDriverScaleRequest) ProtoMessage() {}
 
 func (x *SetDriverScaleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[10]
+	mi := &file_acquisition_internal_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1103,7 +1025,7 @@ type GetDriverScaleRequest struct {
 
 func (x *GetDriverScaleRequest) Reset() {
 	*x = GetDriverScaleRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[11]
+	mi := &file_acquisition_internal_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1115,7 +1037,7 @@ func (x *GetDriverScaleRequest) String() string {
 func (*GetDriverScaleRequest) ProtoMessage() {}
 
 func (x *GetDriverScaleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[11]
+	mi := &file_acquisition_internal_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1211,7 +1133,7 @@ type MapDeviceConnectionInfo struct {
 
 func (x *MapDeviceConnectionInfo) Reset() {
 	*x = MapDeviceConnectionInfo{}
-	mi := &file_acquisition_internal_proto_msgTypes[12]
+	mi := &file_acquisition_internal_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1223,7 +1145,7 @@ func (x *MapDeviceConnectionInfo) String() string {
 func (*MapDeviceConnectionInfo) ProtoMessage() {}
 
 func (x *MapDeviceConnectionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[12]
+	mi := &file_acquisition_internal_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1271,7 +1193,7 @@ type SetDeviceInfoRequest struct {
 
 func (x *SetDeviceInfoRequest) Reset() {
 	*x = SetDeviceInfoRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[13]
+	mi := &file_acquisition_internal_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1283,7 +1205,7 @@ func (x *SetDeviceInfoRequest) String() string {
 func (*SetDeviceInfoRequest) ProtoMessage() {}
 
 func (x *SetDeviceInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[13]
+	mi := &file_acquisition_internal_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1374,7 +1296,7 @@ type AddCommunicationUnitLogsRequest struct {
 
 func (x *AddCommunicationUnitLogsRequest) Reset() {
 	*x = AddCommunicationUnitLogsRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[14]
+	mi := &file_acquisition_internal_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1386,7 +1308,7 @@ func (x *AddCommunicationUnitLogsRequest) String() string {
 func (*AddCommunicationUnitLogsRequest) ProtoMessage() {}
 
 func (x *AddCommunicationUnitLogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[14]
+	mi := &file_acquisition_internal_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1468,7 +1390,7 @@ type SetUnknownDevicesRequest struct {
 
 func (x *SetUnknownDevicesRequest) Reset() {
 	*x = SetUnknownDevicesRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[15]
+	mi := &file_acquisition_internal_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1480,7 +1402,7 @@ func (x *SetUnknownDevicesRequest) String() string {
 func (*SetUnknownDevicesRequest) ProtoMessage() {}
 
 func (x *SetUnknownDevicesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[15]
+	mi := &file_acquisition_internal_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1562,7 +1484,7 @@ type UnknownDevicesItem struct {
 
 func (x *UnknownDevicesItem) Reset() {
 	*x = UnknownDevicesItem{}
-	mi := &file_acquisition_internal_proto_msgTypes[16]
+	mi := &file_acquisition_internal_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1574,7 +1496,7 @@ func (x *UnknownDevicesItem) String() string {
 func (*UnknownDevicesItem) ProtoMessage() {}
 
 func (x *UnknownDevicesItem) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[16]
+	mi := &file_acquisition_internal_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1651,7 +1573,7 @@ type DirectNeightbours struct {
 
 func (x *DirectNeightbours) Reset() {
 	*x = DirectNeightbours{}
-	mi := &file_acquisition_internal_proto_msgTypes[17]
+	mi := &file_acquisition_internal_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1663,7 +1585,7 @@ func (x *DirectNeightbours) String() string {
 func (*DirectNeightbours) ProtoMessage() {}
 
 func (x *DirectNeightbours) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[17]
+	mi := &file_acquisition_internal_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1741,7 +1663,7 @@ type IndirectNeightbours struct {
 
 func (x *IndirectNeightbours) Reset() {
 	*x = IndirectNeightbours{}
-	mi := &file_acquisition_internal_proto_msgTypes[18]
+	mi := &file_acquisition_internal_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1753,7 +1675,7 @@ func (x *IndirectNeightbours) String() string {
 func (*IndirectNeightbours) ProtoMessage() {}
 
 func (x *IndirectNeightbours) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[18]
+	mi := &file_acquisition_internal_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1860,7 +1782,7 @@ type SetNeighboursRequest struct {
 
 func (x *SetNeighboursRequest) Reset() {
 	*x = SetNeighboursRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[19]
+	mi := &file_acquisition_internal_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1872,7 +1794,7 @@ func (x *SetNeighboursRequest) String() string {
 func (*SetNeighboursRequest) ProtoMessage() {}
 
 func (x *SetNeighboursRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[19]
+	mi := &file_acquisition_internal_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1969,7 +1891,7 @@ type DeviceNeightbour struct {
 
 func (x *DeviceNeightbour) Reset() {
 	*x = DeviceNeightbour{}
-	mi := &file_acquisition_internal_proto_msgTypes[20]
+	mi := &file_acquisition_internal_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1981,7 +1903,7 @@ func (x *DeviceNeightbour) String() string {
 func (*DeviceNeightbour) ProtoMessage() {}
 
 func (x *DeviceNeightbour) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[20]
+	mi := &file_acquisition_internal_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2080,7 +2002,7 @@ type SetCurrentDeviceCommunicationUnitRequest struct {
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) Reset() {
 	*x = SetCurrentDeviceCommunicationUnitRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[21]
+	mi := &file_acquisition_internal_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2092,7 +2014,7 @@ func (x *SetCurrentDeviceCommunicationUnitRequest) String() string {
 func (*SetCurrentDeviceCommunicationUnitRequest) ProtoMessage() {}
 
 func (x *SetCurrentDeviceCommunicationUnitRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[21]
+	mi := &file_acquisition_internal_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2206,7 +2128,7 @@ type SetCurrentDeviceCommunicationUnitInternalRequest struct {
 
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) Reset() {
 	*x = SetCurrentDeviceCommunicationUnitInternalRequest{}
-	mi := &file_acquisition_internal_proto_msgTypes[22]
+	mi := &file_acquisition_internal_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2218,7 +2140,7 @@ func (x *SetCurrentDeviceCommunicationUnitInternalRequest) String() string {
 func (*SetCurrentDeviceCommunicationUnitInternalRequest) ProtoMessage() {}
 
 func (x *SetCurrentDeviceCommunicationUnitInternalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[22]
+	mi := &file_acquisition_internal_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2339,7 +2261,7 @@ type PeriodicalProfileStoreObject struct {
 
 func (x *PeriodicalProfileStoreObject) Reset() {
 	*x = PeriodicalProfileStoreObject{}
-	mi := &file_acquisition_internal_proto_msgTypes[23]
+	mi := &file_acquisition_internal_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2351,7 +2273,7 @@ func (x *PeriodicalProfileStoreObject) String() string {
 func (*PeriodicalProfileStoreObject) ProtoMessage() {}
 
 func (x *PeriodicalProfileStoreObject) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[23]
+	mi := &file_acquisition_internal_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2412,7 +2334,7 @@ type StorablePeriodicalProfileAudit struct {
 
 func (x *StorablePeriodicalProfileAudit) Reset() {
 	*x = StorablePeriodicalProfileAudit{}
-	mi := &file_acquisition_internal_proto_msgTypes[24]
+	mi := &file_acquisition_internal_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2424,7 +2346,7 @@ func (x *StorablePeriodicalProfileAudit) String() string {
 func (*StorablePeriodicalProfileAudit) ProtoMessage() {}
 
 func (x *StorablePeriodicalProfileAudit) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[24]
+	mi := &file_acquisition_internal_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2476,7 +2398,7 @@ type StorablePeriodicalProfileValue struct {
 
 func (x *StorablePeriodicalProfileValue) Reset() {
 	*x = StorablePeriodicalProfileValue{}
-	mi := &file_acquisition_internal_proto_msgTypes[25]
+	mi := &file_acquisition_internal_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2488,7 +2410,7 @@ func (x *StorablePeriodicalProfileValue) String() string {
 func (*StorablePeriodicalProfileValue) ProtoMessage() {}
 
 func (x *StorablePeriodicalProfileValue) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[25]
+	mi := &file_acquisition_internal_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2604,7 +2526,7 @@ type StorablePeriodicalProfileAuditRecord struct {
 
 func (x *StorablePeriodicalProfileAuditRecord) Reset() {
 	*x = StorablePeriodicalProfileAuditRecord{}
-	mi := &file_acquisition_internal_proto_msgTypes[26]
+	mi := &file_acquisition_internal_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2616,7 +2538,7 @@ func (x *StorablePeriodicalProfileAuditRecord) String() string {
 func (*StorablePeriodicalProfileAuditRecord) ProtoMessage() {}
 
 func (x *StorablePeriodicalProfileAuditRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_acquisition_internal_proto_msgTypes[26]
+	mi := &file_acquisition_internal_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2702,9 +2624,7 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x1aacquisition/internal.proto\x12\"io.clbs.openhes.models.acquisition\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\"d\n" +
 	"\x0fSetCacheRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
-	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"#\n" +
-	"\x0fGetCacheRequest\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\"S\n" +
+	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"S\n" +
 	"\x10GetCacheResponse\x12?\n" +
 	"\x05value\x18\x01 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value\"`\n" +
 	"\x18SetConfigDefaultsRequest\x12D\n" +
@@ -2818,93 +2738,92 @@ const file_acquisition_internal_proto_rawDesc = "" +
 	"\x1cDEVICE_NEIGHBOUR_TYPE_DEVICE\x10\x02B:Z8github.com/cybroslabs/ouro-api-shared/gen/go/acquisitionb\beditionsp\xe8\a"
 
 var file_acquisition_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_acquisition_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
 var file_acquisition_internal_proto_goTypes = []any{
 	(DeviceNeighbourType)(0),                                 // 0: io.clbs.openhes.models.acquisition.DeviceNeighbourType
 	(*SetCacheRequest)(nil),                                  // 1: io.clbs.openhes.models.acquisition.SetCacheRequest
-	(*GetCacheRequest)(nil),                                  // 2: io.clbs.openhes.models.acquisition.GetCacheRequest
-	(*GetCacheResponse)(nil),                                 // 3: io.clbs.openhes.models.acquisition.GetCacheResponse
-	(*SetConfigDefaultsRequest)(nil),                         // 4: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest
-	(*GetDriverConfigRequest)(nil),                           // 5: io.clbs.openhes.models.acquisition.GetDriverConfigRequest
-	(*StartJobsRequest)(nil),                                 // 6: io.clbs.openhes.models.acquisition.StartJobsRequest
-	(*ProgressUpdate)(nil),                                   // 7: io.clbs.openhes.models.acquisition.ProgressUpdate
-	(*StartUpgradeRequest)(nil),                              // 8: io.clbs.openhes.models.acquisition.StartUpgradeRequest
-	(*QueueJobsRequest)(nil),                                 // 9: io.clbs.openhes.models.acquisition.QueueJobsRequest
-	(*QueueJobsResponse)(nil),                                // 10: io.clbs.openhes.models.acquisition.QueueJobsResponse
-	(*SetDriverScaleRequest)(nil),                            // 11: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
-	(*GetDriverScaleRequest)(nil),                            // 12: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
-	(*MapDeviceConnectionInfo)(nil),                          // 13: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
-	(*SetDeviceInfoRequest)(nil),                             // 14: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
-	(*AddCommunicationUnitLogsRequest)(nil),                  // 15: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
-	(*SetUnknownDevicesRequest)(nil),                         // 16: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	(*UnknownDevicesItem)(nil),                               // 17: io.clbs.openhes.models.acquisition.UnknownDevicesItem
-	(*DirectNeightbours)(nil),                                // 18: io.clbs.openhes.models.acquisition.DirectNeightbours
-	(*IndirectNeightbours)(nil),                              // 19: io.clbs.openhes.models.acquisition.IndirectNeightbours
-	(*SetNeighboursRequest)(nil),                             // 20: io.clbs.openhes.models.acquisition.SetNeighboursRequest
-	(*DeviceNeightbour)(nil),                                 // 21: io.clbs.openhes.models.acquisition.DeviceNeightbour
-	(*SetCurrentDeviceCommunicationUnitRequest)(nil),         // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
-	(*SetCurrentDeviceCommunicationUnitInternalRequest)(nil), // 23: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
-	(*PeriodicalProfileStoreObject)(nil),                     // 24: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject
-	(*StorablePeriodicalProfileAudit)(nil),                   // 25: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit
-	(*StorablePeriodicalProfileValue)(nil),                   // 26: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
-	(*StorablePeriodicalProfileAuditRecord)(nil),             // 27: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord
-	nil,                                // 28: io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
-	nil,                                // 29: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	nil,                                // 30: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
-	nil,                                // 31: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
-	nil,                                // 32: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
-	nil,                                // 33: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry
-	(*common.FieldValue)(nil),          // 34: io.clbs.openhes.models.common.FieldValue
-	(*common.FieldDescriptor)(nil),     // 35: io.clbs.openhes.models.common.FieldDescriptor
-	(*ConnectionInfo)(nil),             // 36: io.clbs.openhes.models.acquisition.ConnectionInfo
-	(*StartJobData)(nil),               // 37: io.clbs.openhes.models.acquisition.StartJobData
-	(*JobProgressUpdate)(nil),          // 38: io.clbs.openhes.models.acquisition.JobProgressUpdate
-	(*ActionProgressUpdate)(nil),       // 39: io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	(*JobSpec)(nil),                    // 40: io.clbs.openhes.models.acquisition.JobSpec
-	(*DeviceInfo)(nil),                 // 41: io.clbs.openhes.models.acquisition.DeviceInfo
-	(*CommunicationUnitLogRecord)(nil), // 42: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	(*AttributeSelector)(nil),          // 43: io.clbs.openhes.models.acquisition.AttributeSelector
-	(ApplicationProtocol)(0),           // 44: io.clbs.openhes.models.acquisition.ApplicationProtocol
-	(*common.ListSelector)(nil),        // 45: io.clbs.openhes.models.common.ListSelector
-	(*timestamppb.Timestamp)(nil),      // 46: google.protobuf.Timestamp
-	(*MeasuredValue)(nil),              // 47: io.clbs.openhes.models.acquisition.MeasuredValue
-	(*ListOfConnectionInfo)(nil),       // 48: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	(*GetCacheResponse)(nil),                                 // 2: io.clbs.openhes.models.acquisition.GetCacheResponse
+	(*SetConfigDefaultsRequest)(nil),                         // 3: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest
+	(*GetDriverConfigRequest)(nil),                           // 4: io.clbs.openhes.models.acquisition.GetDriverConfigRequest
+	(*StartJobsRequest)(nil),                                 // 5: io.clbs.openhes.models.acquisition.StartJobsRequest
+	(*ProgressUpdate)(nil),                                   // 6: io.clbs.openhes.models.acquisition.ProgressUpdate
+	(*StartUpgradeRequest)(nil),                              // 7: io.clbs.openhes.models.acquisition.StartUpgradeRequest
+	(*QueueJobsRequest)(nil),                                 // 8: io.clbs.openhes.models.acquisition.QueueJobsRequest
+	(*QueueJobsResponse)(nil),                                // 9: io.clbs.openhes.models.acquisition.QueueJobsResponse
+	(*SetDriverScaleRequest)(nil),                            // 10: io.clbs.openhes.models.acquisition.SetDriverScaleRequest
+	(*GetDriverScaleRequest)(nil),                            // 11: io.clbs.openhes.models.acquisition.GetDriverScaleRequest
+	(*MapDeviceConnectionInfo)(nil),                          // 12: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo
+	(*SetDeviceInfoRequest)(nil),                             // 13: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
+	(*AddCommunicationUnitLogsRequest)(nil),                  // 14: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
+	(*SetUnknownDevicesRequest)(nil),                         // 15: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
+	(*UnknownDevicesItem)(nil),                               // 16: io.clbs.openhes.models.acquisition.UnknownDevicesItem
+	(*DirectNeightbours)(nil),                                // 17: io.clbs.openhes.models.acquisition.DirectNeightbours
+	(*IndirectNeightbours)(nil),                              // 18: io.clbs.openhes.models.acquisition.IndirectNeightbours
+	(*SetNeighboursRequest)(nil),                             // 19: io.clbs.openhes.models.acquisition.SetNeighboursRequest
+	(*DeviceNeightbour)(nil),                                 // 20: io.clbs.openhes.models.acquisition.DeviceNeightbour
+	(*SetCurrentDeviceCommunicationUnitRequest)(nil),         // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
+	(*SetCurrentDeviceCommunicationUnitInternalRequest)(nil), // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest
+	(*PeriodicalProfileStoreObject)(nil),                     // 23: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject
+	(*StorablePeriodicalProfileAudit)(nil),                   // 24: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit
+	(*StorablePeriodicalProfileValue)(nil),                   // 25: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
+	(*StorablePeriodicalProfileAuditRecord)(nil),             // 26: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord
+	nil,                                // 27: io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
+	nil,                                // 28: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	nil,                                // 29: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
+	nil,                                // 30: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
+	nil,                                // 31: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
+	nil,                                // 32: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry
+	(*common.FieldValue)(nil),          // 33: io.clbs.openhes.models.common.FieldValue
+	(*common.FieldDescriptor)(nil),     // 34: io.clbs.openhes.models.common.FieldDescriptor
+	(*ConnectionInfo)(nil),             // 35: io.clbs.openhes.models.acquisition.ConnectionInfo
+	(*StartJobData)(nil),               // 36: io.clbs.openhes.models.acquisition.StartJobData
+	(*JobProgressUpdate)(nil),          // 37: io.clbs.openhes.models.acquisition.JobProgressUpdate
+	(*ActionProgressUpdate)(nil),       // 38: io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	(*JobSpec)(nil),                    // 39: io.clbs.openhes.models.acquisition.JobSpec
+	(*DeviceInfo)(nil),                 // 40: io.clbs.openhes.models.acquisition.DeviceInfo
+	(*CommunicationUnitLogRecord)(nil), // 41: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	(*AttributeSelector)(nil),          // 42: io.clbs.openhes.models.acquisition.AttributeSelector
+	(ApplicationProtocol)(0),           // 43: io.clbs.openhes.models.acquisition.ApplicationProtocol
+	(*common.ListSelector)(nil),        // 44: io.clbs.openhes.models.common.ListSelector
+	(*timestamppb.Timestamp)(nil),      // 45: google.protobuf.Timestamp
+	(*MeasuredValue)(nil),              // 46: io.clbs.openhes.models.acquisition.MeasuredValue
+	(*ListOfConnectionInfo)(nil),       // 47: io.clbs.openhes.models.acquisition.ListOfConnectionInfo
 }
 var file_acquisition_internal_proto_depIdxs = []int32{
-	34, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	34, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	35, // 2: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	36, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	37, // 4: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
-	38, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
-	39, // 6: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
-	40, // 7: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	28, // 8: io.clbs.openhes.models.acquisition.QueueJobsResponse.job_ids:type_name -> io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
-	29, // 9: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
-	41, // 10: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	42, // 11: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	17, // 12: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem
-	30, // 13: io.clbs.openhes.models.acquisition.UnknownDevicesItem.attributes:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
-	31, // 14: io.clbs.openhes.models.acquisition.DirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
-	32, // 15: io.clbs.openhes.models.acquisition.IndirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
-	18, // 16: io.clbs.openhes.models.acquisition.SetNeighboursRequest.direct_neighbours:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours
-	19, // 17: io.clbs.openhes.models.acquisition.SetNeighboursRequest.indirect_neighbours:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours
+	33, // 0: io.clbs.openhes.models.acquisition.SetCacheRequest.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	33, // 1: io.clbs.openhes.models.acquisition.GetCacheResponse.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	34, // 2: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	35, // 3: io.clbs.openhes.models.acquisition.StartJobsRequest.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	36, // 4: io.clbs.openhes.models.acquisition.StartJobsRequest.jobs:type_name -> io.clbs.openhes.models.acquisition.StartJobData
+	37, // 5: io.clbs.openhes.models.acquisition.ProgressUpdate.job:type_name -> io.clbs.openhes.models.acquisition.JobProgressUpdate
+	38, // 6: io.clbs.openhes.models.acquisition.ProgressUpdate.action:type_name -> io.clbs.openhes.models.acquisition.ActionProgressUpdate
+	39, // 7: io.clbs.openhes.models.acquisition.QueueJobsRequest.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	27, // 8: io.clbs.openhes.models.acquisition.QueueJobsResponse.job_ids:type_name -> io.clbs.openhes.models.acquisition.QueueJobsResponse.JobIdsEntry
+	28, // 9: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.devices:type_name -> io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry
+	40, // 10: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	41, // 11: io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	16, // 12: io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest.items:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem
+	29, // 13: io.clbs.openhes.models.acquisition.UnknownDevicesItem.attributes:type_name -> io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry
+	30, // 14: io.clbs.openhes.models.acquisition.DirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry
+	31, // 15: io.clbs.openhes.models.acquisition.IndirectNeightbours.attributes:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry
+	17, // 16: io.clbs.openhes.models.acquisition.SetNeighboursRequest.direct_neighbours:type_name -> io.clbs.openhes.models.acquisition.DirectNeightbours
+	18, // 17: io.clbs.openhes.models.acquisition.SetNeighboursRequest.indirect_neighbours:type_name -> io.clbs.openhes.models.acquisition.IndirectNeightbours
 	0,  // 18: io.clbs.openhes.models.acquisition.DeviceNeightbour.type:type_name -> io.clbs.openhes.models.acquisition.DeviceNeighbourType
-	43, // 19: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	44, // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	45, // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.device_selector:type_name -> io.clbs.openhes.models.common.ListSelector
-	44, // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	26, // 23: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.current:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
-	33, // 24: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.audit:type_name -> io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry
-	27, // 25: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit.items:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord
-	46, // 26: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue.timestamp:type_name -> google.protobuf.Timestamp
-	47, // 27: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
-	26, // 28: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord.value:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
-	48, // 29: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
-	34, // 30: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	34, // 31: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	34, // 32: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	25, // 33: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry.value:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit
+	42, // 19: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	43, // 20: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	44, // 21: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.device_selector:type_name -> io.clbs.openhes.models.common.ListSelector
+	43, // 22: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitInternalRequest.proposed_app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	25, // 23: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.current:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
+	32, // 24: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.audit:type_name -> io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry
+	26, // 25: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit.items:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord
+	45, // 26: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue.timestamp:type_name -> google.protobuf.Timestamp
+	46, // 27: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue.value:type_name -> io.clbs.openhes.models.acquisition.MeasuredValue
+	25, // 28: io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAuditRecord.value:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileValue
+	47, // 29: io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo.DevicesEntry.value:type_name -> io.clbs.openhes.models.acquisition.ListOfConnectionInfo
+	33, // 30: io.clbs.openhes.models.acquisition.UnknownDevicesItem.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	33, // 31: io.clbs.openhes.models.acquisition.DirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	33, // 32: io.clbs.openhes.models.acquisition.IndirectNeightbours.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	24, // 33: io.clbs.openhes.models.acquisition.PeriodicalProfileStoreObject.AuditEntry.value:type_name -> io.clbs.openhes.models.acquisition.StorablePeriodicalProfileAudit
 	34, // [34:34] is the sub-list for method output_type
 	34, // [34:34] is the sub-list for method input_type
 	34, // [34:34] is the sub-list for extension type_name
@@ -2918,7 +2837,7 @@ func file_acquisition_internal_proto_init() {
 		return
 	}
 	file_acquisition_shared_proto_init()
-	file_acquisition_internal_proto_msgTypes[6].OneofWrappers = []any{
+	file_acquisition_internal_proto_msgTypes[5].OneofWrappers = []any{
 		(*progressUpdate_Job)(nil),
 		(*progressUpdate_Action)(nil),
 	}
@@ -2928,7 +2847,7 @@ func file_acquisition_internal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_acquisition_internal_proto_rawDesc), len(file_acquisition_internal_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   33,
+			NumMessages:   32,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

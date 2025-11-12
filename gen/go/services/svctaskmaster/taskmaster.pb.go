@@ -28,14 +28,15 @@ var File_services_svctaskmaster_taskmaster_proto protoreflect.FileDescriptor
 
 const file_services_svctaskmaster_taskmaster_proto_rawDesc = "" +
 	"\n" +
-	"'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x12common/types.proto\x1a\x15common/internal.proto2\xce\x0f\n" +
+	"'services/svctaskmaster/taskmaster.proto\x12&io.clbs.openhes.services.svctaskmaster\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x12common/types.proto\x1a\x15common/internal.proto2\xfc\x0f\n" +
 	"\x11TaskmasterService\x12x\n" +
 	"\tQueueJobs\x124.io.clbs.openhes.models.acquisition.QueueJobsRequest\x1a5.io.clbs.openhes.models.acquisition.QueueJobsResponse\x12Q\n" +
 	"\n" +
 	"CancelJobs\x12+.io.clbs.openhes.models.common.ListOfUInt64\x1a\x16.google.protobuf.Empty\x12R\n" +
 	"\tSetDriver\x12-.io.clbs.openhes.models.acquisition.SetDriver\x1a\x16.google.protobuf.Empty\x12W\n" +
-	"\bSetCache\x123.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12u\n" +
-	"\bGetCache\x123.io.clbs.openhes.models.acquisition.GetCacheRequest\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponse\x12o\n" +
+	"\bSetCache\x123.io.clbs.openhes.models.acquisition.SetCacheRequest\x1a\x16.google.protobuf.Empty\x12^\n" +
+	"\bGetCache\x12\x1c.google.protobuf.StringValue\x1a4.io.clbs.openhes.models.acquisition.GetCacheResponse\x12C\n" +
+	"\vDeleteCache\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12o\n" +
 	"\x17SetDriverConfigDefaults\x12<.io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest\x1a\x16.google.protobuf.Empty\x12y\n" +
 	"\x0fGetDriverConfig\x12:.io.clbs.openhes.models.acquisition.GetDriverConfigRequest\x1a*.io.clbs.openhes.models.common.FieldValues\x12b\n" +
 	"\x10SetManagedFields\x126.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.Empty\x12t\n" +
@@ -54,7 +55,7 @@ var file_services_svctaskmaster_taskmaster_proto_goTypes = []any{
 	(*common.ListOfUInt64)(nil),                                  // 1: io.clbs.openhes.models.common.ListOfUInt64
 	(*acquisition.SetDriver)(nil),                                // 2: io.clbs.openhes.models.acquisition.SetDriver
 	(*acquisition.SetCacheRequest)(nil),                          // 3: io.clbs.openhes.models.acquisition.SetCacheRequest
-	(*acquisition.GetCacheRequest)(nil),                          // 4: io.clbs.openhes.models.acquisition.GetCacheRequest
+	(*wrapperspb.StringValue)(nil),                               // 4: google.protobuf.StringValue
 	(*acquisition.SetConfigDefaultsRequest)(nil),                 // 5: io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest
 	(*acquisition.GetDriverConfigRequest)(nil),                   // 6: io.clbs.openhes.models.acquisition.GetDriverConfigRequest
 	(*common.SetManagedFieldsRequest)(nil),                       // 7: io.clbs.openhes.models.common.SetManagedFieldsRequest
@@ -65,55 +66,56 @@ var file_services_svctaskmaster_taskmaster_proto_goTypes = []any{
 	(*acquisition.CommunicationUnitAttributeSelector)(nil),       // 12: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
 	(*acquisition.SetNeighboursRequest)(nil),                     // 13: io.clbs.openhes.models.acquisition.SetNeighboursRequest
 	(*acquisition.SetCurrentDeviceCommunicationUnitRequest)(nil), // 14: io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
-	(*wrapperspb.StringValue)(nil),                               // 15: google.protobuf.StringValue
-	(*acquisition.GetFirmwareImageBlockRequest)(nil),             // 16: io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
-	(*acquisition.QueueJobsResponse)(nil),                        // 17: io.clbs.openhes.models.acquisition.QueueJobsResponse
-	(*emptypb.Empty)(nil),                                        // 18: google.protobuf.Empty
-	(*acquisition.GetCacheResponse)(nil),                         // 19: io.clbs.openhes.models.acquisition.GetCacheResponse
-	(*common.FieldValues)(nil),                                   // 20: io.clbs.openhes.models.common.FieldValues
-	(*common.MapDeviceKeyXId)(nil),                               // 21: io.clbs.openhes.models.common.MapDeviceKeyXId
-	(*acquisition.ListOfDevice)(nil),                             // 22: io.clbs.openhes.models.acquisition.ListOfDevice
-	(*acquisition.ListOfCommunicationUnit)(nil),                  // 23: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
-	(*acquisition.FirmwareImage)(nil),                            // 24: io.clbs.openhes.models.acquisition.FirmwareImage
-	(*acquisition.FirmwareImageBlock)(nil),                       // 25: io.clbs.openhes.models.acquisition.FirmwareImageBlock
+	(*acquisition.GetFirmwareImageBlockRequest)(nil),             // 15: io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
+	(*acquisition.QueueJobsResponse)(nil),                        // 16: io.clbs.openhes.models.acquisition.QueueJobsResponse
+	(*emptypb.Empty)(nil),                                        // 17: google.protobuf.Empty
+	(*acquisition.GetCacheResponse)(nil),                         // 18: io.clbs.openhes.models.acquisition.GetCacheResponse
+	(*common.FieldValues)(nil),                                   // 19: io.clbs.openhes.models.common.FieldValues
+	(*common.MapDeviceKeyXId)(nil),                               // 20: io.clbs.openhes.models.common.MapDeviceKeyXId
+	(*acquisition.ListOfDevice)(nil),                             // 21: io.clbs.openhes.models.acquisition.ListOfDevice
+	(*acquisition.ListOfCommunicationUnit)(nil),                  // 22: io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
+	(*acquisition.FirmwareImage)(nil),                            // 23: io.clbs.openhes.models.acquisition.FirmwareImage
+	(*acquisition.FirmwareImageBlock)(nil),                       // 24: io.clbs.openhes.models.acquisition.FirmwareImageBlock
 }
 var file_services_svctaskmaster_taskmaster_proto_depIdxs = []int32{
 	0,  // 0: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:input_type -> io.clbs.openhes.models.acquisition.QueueJobsRequest
 	1,  // 1: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:input_type -> io.clbs.openhes.models.common.ListOfUInt64
 	2,  // 2: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:input_type -> io.clbs.openhes.models.acquisition.SetDriver
 	3,  // 3: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:input_type -> io.clbs.openhes.models.acquisition.SetCacheRequest
-	4,  // 4: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:input_type -> io.clbs.openhes.models.acquisition.GetCacheRequest
-	5,  // 5: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriverConfigDefaults:input_type -> io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest
-	6,  // 6: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetDriverConfig:input_type -> io.clbs.openhes.models.acquisition.GetDriverConfigRequest
-	7,  // 7: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
-	8,  // 8: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetMapDeviceKeyXId:input_type -> io.clbs.openhes.models.common.ListOfDeviceKey
-	9,  // 9: io.clbs.openhes.services.svctaskmaster.TaskmasterService.AddCommunicationUnitLogs:input_type -> io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
-	10, // 10: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetUnknownDevices:input_type -> io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
-	11, // 11: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListDevicesByAttributes:input_type -> io.clbs.openhes.models.acquisition.DeviceAttributeSelector
-	12, // 12: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListCommunicationUnitsByAttributes:input_type -> io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
-	13, // 13: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetNeightbours:input_type -> io.clbs.openhes.models.acquisition.SetNeighboursRequest
-	14, // 14: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCurrentDeviceCommunicationUnit:input_type -> io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
-	15, // 15: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImage:input_type -> google.protobuf.StringValue
-	16, // 16: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImageBlock:input_type -> io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
-	17, // 17: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:output_type -> io.clbs.openhes.models.acquisition.QueueJobsResponse
-	18, // 18: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:output_type -> google.protobuf.Empty
-	18, // 19: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:output_type -> google.protobuf.Empty
-	18, // 20: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:output_type -> google.protobuf.Empty
-	19, // 21: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:output_type -> io.clbs.openhes.models.acquisition.GetCacheResponse
-	18, // 22: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriverConfigDefaults:output_type -> google.protobuf.Empty
-	20, // 23: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetDriverConfig:output_type -> io.clbs.openhes.models.common.FieldValues
-	18, // 24: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetManagedFields:output_type -> google.protobuf.Empty
-	21, // 25: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetMapDeviceKeyXId:output_type -> io.clbs.openhes.models.common.MapDeviceKeyXId
-	18, // 26: io.clbs.openhes.services.svctaskmaster.TaskmasterService.AddCommunicationUnitLogs:output_type -> google.protobuf.Empty
-	18, // 27: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetUnknownDevices:output_type -> google.protobuf.Empty
-	22, // 28: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListDevicesByAttributes:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
-	23, // 29: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListCommunicationUnitsByAttributes:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
-	18, // 30: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetNeightbours:output_type -> google.protobuf.Empty
-	18, // 31: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCurrentDeviceCommunicationUnit:output_type -> google.protobuf.Empty
-	24, // 32: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImage:output_type -> io.clbs.openhes.models.acquisition.FirmwareImage
-	25, // 33: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImageBlock:output_type -> io.clbs.openhes.models.acquisition.FirmwareImageBlock
-	17, // [17:34] is the sub-list for method output_type
-	0,  // [0:17] is the sub-list for method input_type
+	4,  // 4: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:input_type -> google.protobuf.StringValue
+	4,  // 5: io.clbs.openhes.services.svctaskmaster.TaskmasterService.DeleteCache:input_type -> google.protobuf.StringValue
+	5,  // 6: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriverConfigDefaults:input_type -> io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest
+	6,  // 7: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetDriverConfig:input_type -> io.clbs.openhes.models.acquisition.GetDriverConfigRequest
+	7,  // 8: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
+	8,  // 9: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetMapDeviceKeyXId:input_type -> io.clbs.openhes.models.common.ListOfDeviceKey
+	9,  // 10: io.clbs.openhes.services.svctaskmaster.TaskmasterService.AddCommunicationUnitLogs:input_type -> io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest
+	10, // 11: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetUnknownDevices:input_type -> io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest
+	11, // 12: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListDevicesByAttributes:input_type -> io.clbs.openhes.models.acquisition.DeviceAttributeSelector
+	12, // 13: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListCommunicationUnitsByAttributes:input_type -> io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector
+	13, // 14: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetNeightbours:input_type -> io.clbs.openhes.models.acquisition.SetNeighboursRequest
+	14, // 15: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCurrentDeviceCommunicationUnit:input_type -> io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest
+	4,  // 16: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImage:input_type -> google.protobuf.StringValue
+	15, // 17: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImageBlock:input_type -> io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest
+	16, // 18: io.clbs.openhes.services.svctaskmaster.TaskmasterService.QueueJobs:output_type -> io.clbs.openhes.models.acquisition.QueueJobsResponse
+	17, // 19: io.clbs.openhes.services.svctaskmaster.TaskmasterService.CancelJobs:output_type -> google.protobuf.Empty
+	17, // 20: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriver:output_type -> google.protobuf.Empty
+	17, // 21: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCache:output_type -> google.protobuf.Empty
+	18, // 22: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetCache:output_type -> io.clbs.openhes.models.acquisition.GetCacheResponse
+	17, // 23: io.clbs.openhes.services.svctaskmaster.TaskmasterService.DeleteCache:output_type -> google.protobuf.Empty
+	17, // 24: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetDriverConfigDefaults:output_type -> google.protobuf.Empty
+	19, // 25: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetDriverConfig:output_type -> io.clbs.openhes.models.common.FieldValues
+	17, // 26: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetManagedFields:output_type -> google.protobuf.Empty
+	20, // 27: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetMapDeviceKeyXId:output_type -> io.clbs.openhes.models.common.MapDeviceKeyXId
+	17, // 28: io.clbs.openhes.services.svctaskmaster.TaskmasterService.AddCommunicationUnitLogs:output_type -> google.protobuf.Empty
+	17, // 29: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetUnknownDevices:output_type -> google.protobuf.Empty
+	21, // 30: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListDevicesByAttributes:output_type -> io.clbs.openhes.models.acquisition.ListOfDevice
+	22, // 31: io.clbs.openhes.services.svctaskmaster.TaskmasterService.ListCommunicationUnitsByAttributes:output_type -> io.clbs.openhes.models.acquisition.ListOfCommunicationUnit
+	17, // 32: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetNeightbours:output_type -> google.protobuf.Empty
+	17, // 33: io.clbs.openhes.services.svctaskmaster.TaskmasterService.SetCurrentDeviceCommunicationUnit:output_type -> google.protobuf.Empty
+	23, // 34: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImage:output_type -> io.clbs.openhes.models.acquisition.FirmwareImage
+	24, // 35: io.clbs.openhes.services.svctaskmaster.TaskmasterService.GetFirmwareImageBlock:output_type -> io.clbs.openhes.models.acquisition.FirmwareImageBlock
+	18, // [18:36] is the sub-list for method output_type
+	0,  // [0:18] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

@@ -4,14 +4,13 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"regexp"
+
+	"github.com/cybroslabs/ouro-api-shared/gen/go/common"
 )
 
 var (
-	ErrObjectNotFound            = errors.New("not found")
-	ErrUniqueConstraintViolation = errors.New("unique constraint violation")
-	ErrForeignKeyViolation       = errors.New("foreign key violation")
-	ErrConstraintViolation       = errors.New("referenced object does not exist or is not valid")
-	ErrGenericDatabaseError      = errors.New("generic database error")
+	_reSqlState = regexp.MustCompile(`\(SQLSTATE\s*([^ \)]+)\)`)
 )
 
 func Translate(err error, objectName string) error {
@@ -20,20 +19,22 @@ func Translate(err error, objectName string) error {
 	}
 
 	if errors.Is(err, sql.ErrNoRows) {
-		return errors.Join(ErrObjectNotFound, fmt.Errorf("%s not found", objectName))
+		return errors.Join(common.ErrOuroObjectNotFound, fmt.Errorf("%s not found", objectName))
 	}
 
-	// var pqErr *pq.Error
-	// if errors.As(err, &pqErr) {
-	// 	switch pqErr.Code {
-	// 	case "23503": // foreign key violation
-	// 		return ErrForeignKeyViolation
-	// 	case "23505": // unique violation
-	// 		return ErrUniqueConstraintViolation
-	// 	case "23514": // check constraint violation
-	// 		return ErrConstraintViolation
-	// 	}
-	// }
+	// Support for PostgreSQL error codes from jackc/pgx library.
+	// We don't want to import the library here, so we do simple regex matching on the error string.
+	err_str := err.Error()
+	if ss := _reSqlState.FindStringSubmatch(err_str); len(ss) == 2 {
+		switch ss[1] {
+		case "23503": // foreign key violation
+			return common.ErrOuroForeignKeyViolation
+		case "23505": // unique violation
+			return common.ErrOuroUniqueConstraintViolation
+		case "23514": // check constraint violation
+			return common.ErrOuroConstraintViolation
+		}
+	}
 
-	return errors.Join(ErrGenericDatabaseError, fmt.Errorf("unexpected error: %w", err))
+	return errors.Join(common.ErrOuroGenericDatabaseError, err)
 }

@@ -28,6 +28,7 @@ const (
 	TaskmasterService_SetDriver_FullMethodName                          = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriver"
 	TaskmasterService_SetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCache"
 	TaskmasterService_GetCache_FullMethodName                           = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetCache"
+	TaskmasterService_DeleteCache_FullMethodName                        = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/DeleteCache"
 	TaskmasterService_SetDriverConfigDefaults_FullMethodName            = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetDriverConfigDefaults"
 	TaskmasterService_GetDriverConfig_FullMethodName                    = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetDriverConfig"
 	TaskmasterService_SetManagedFields_FullMethodName                   = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetManagedFields"
@@ -60,7 +61,10 @@ type TaskmasterServiceClient interface {
 	SetCache(ctx context.Context, in *acquisition.SetCacheRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
-	GetCache(ctx context.Context, in *acquisition.GetCacheRequest, opts ...grpc.CallOption) (*acquisition.GetCacheResponse, error)
+	GetCache(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetCacheResponse, error)
+	// @group: Drivers
+	// The method called by the driver to delete the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+	DeleteCache(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Drivers
 	// SetDriverConfigDefaults sets the default configuration values for the driver type. It also resets the configuration caches.
 	SetDriverConfigDefaults(ctx context.Context, in *acquisition.SetConfigDefaultsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -153,10 +157,20 @@ func (c *taskmasterServiceClient) SetCache(ctx context.Context, in *acquisition.
 	return out, nil
 }
 
-func (c *taskmasterServiceClient) GetCache(ctx context.Context, in *acquisition.GetCacheRequest, opts ...grpc.CallOption) (*acquisition.GetCacheResponse, error) {
+func (c *taskmasterServiceClient) GetCache(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.GetCacheResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.GetCacheResponse)
 	err := c.cc.Invoke(ctx, TaskmasterService_GetCache_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskmasterServiceClient) DeleteCache(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TaskmasterService_DeleteCache_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -301,7 +315,10 @@ type TaskmasterServiceServer interface {
 	SetCache(context.Context, *acquisition.SetCacheRequest) (*emptypb.Empty, error)
 	// @group: Drivers
 	// The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
-	GetCache(context.Context, *acquisition.GetCacheRequest) (*acquisition.GetCacheResponse, error)
+	GetCache(context.Context, *wrapperspb.StringValue) (*acquisition.GetCacheResponse, error)
+	// @group: Drivers
+	// The method called by the driver to delete the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+	DeleteCache(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Drivers
 	// SetDriverConfigDefaults sets the default configuration values for the driver type. It also resets the configuration caches.
 	SetDriverConfigDefaults(context.Context, *acquisition.SetConfigDefaultsRequest) (*emptypb.Empty, error)
@@ -366,8 +383,11 @@ func (UnimplementedTaskmasterServiceServer) SetDriver(context.Context, *acquisit
 func (UnimplementedTaskmasterServiceServer) SetCache(context.Context, *acquisition.SetCacheRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCache not implemented")
 }
-func (UnimplementedTaskmasterServiceServer) GetCache(context.Context, *acquisition.GetCacheRequest) (*acquisition.GetCacheResponse, error) {
+func (UnimplementedTaskmasterServiceServer) GetCache(context.Context, *wrapperspb.StringValue) (*acquisition.GetCacheResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCache not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) DeleteCache(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCache not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) SetDriverConfigDefaults(context.Context, *acquisition.SetConfigDefaultsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDriverConfigDefaults not implemented")
@@ -499,7 +519,7 @@ func _TaskmasterService_SetCache_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _TaskmasterService_GetCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(acquisition.GetCacheRequest)
+	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -511,7 +531,25 @@ func _TaskmasterService_GetCache_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: TaskmasterService_GetCache_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskmasterServiceServer).GetCache(ctx, req.(*acquisition.GetCacheRequest))
+		return srv.(TaskmasterServiceServer).GetCache(ctx, req.(*wrapperspb.StringValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskmasterService_DeleteCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(wrapperspb.StringValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).DeleteCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_DeleteCache_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).DeleteCache(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -758,6 +796,10 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCache",
 			Handler:    _TaskmasterService_GetCache_Handler,
+		},
+		{
+			MethodName: "DeleteCache",
+			Handler:    _TaskmasterService_DeleteCache_Handler,
 		},
 		{
 			MethodName: "SetDriverConfigDefaults",

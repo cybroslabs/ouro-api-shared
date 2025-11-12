@@ -16,10 +16,6 @@ message SetCacheRequest {
     common.FieldValue value = 2;  // The value of the cache entry.
 }
 
-message GetCacheRequest {
-    string key = 1;  // The key of the cache entry. The key is unique within the driver type.
-}
-
 message GetCacheResponse {
     common.FieldValue value = 1;  // The value of the cache entry.
 }
