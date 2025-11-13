@@ -2,10 +2,12 @@
 // @generated from file system/main.proto (package io.clbs.openhes.models.system, edition 2023)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FieldDescriptor, FieldDescriptorJson, FieldValues, FieldValuesJson } from "../common/fields_pb";
 import { file_common_fields } from "../common/fields_pb";
+import type { ObjectType, ObjectTypeJson } from "../common/objects_pb";
+import { file_common_objects } from "../common/objects_pb";
 import type { StructJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
@@ -14,7 +16,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file system/main.proto.
  */
 export const file_system_main: GenFile = /*@__PURE__*/
-  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiawoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJEhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAQgASgJEhAKCHRpbWV6b25lGAUgASgJIocBChZTZXRTY3JlZW5Db25maWdSZXF1ZXN0EhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCRIOCgRqc29uGAMgASgJSAASJgoDcmF3GAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgAQgoKCHNldHRpbmdzIkEKFFNjcmVlbkNvbmZpZ1NlbGVjdG9yEhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9zeXN0ZW1iCGVkaXRpb25zcOgH", [file_common_fields, file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiawoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJEhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAQgASgJEhAKCHRpbWV6b25lGAUgASgJIocBChZTZXRTY3JlZW5Db25maWdSZXF1ZXN0EhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCRIOCgRqc29uGAMgASgJSAASJgoDcmF3GAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgAQgoKCHNldHRpbmdzIkEKFFNjcmVlbkNvbmZpZ1NlbGVjdG9yEhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCSJnChJPYmplY3RGbGFnc1JlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhEKCW9iamVjdF9pZBgCIAEoCSJQChNPYmplY3RGbGFnc1Jlc3BvbnNlEjkKBWZsYWdzGAQgAygOMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uT2JqZWN0RmxhZ3MqUgoLT2JqZWN0RmxhZ3MSGwoXT0JKRUNUX0ZMQUdfVU5TUEVDSUZJRUQQABImCiJPQkpFQ1RfRkxBR19DT01NVU5JQ0FUSU9OX1VOSVRfTE9HEAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * Defines a specification for application configuration.
@@ -570,4 +572,126 @@ export type ScreenConfigSelectorJson = {
  */
 export const ScreenConfigSelectorSchema: GenMessage<ScreenConfigSelector, {jsonType: ScreenConfigSelectorJson}> = /*@__PURE__*/
   messageDesc(file_system_main, 7);
+
+/**
+ * Defines the request message for retrieving object flags.
+ *
+ * @generated from message io.clbs.openhes.models.system.ObjectFlagsRequest
+ */
+export type ObjectFlagsRequest = Message<"io.clbs.openhes.models.system.ObjectFlagsRequest"> & {
+  /**
+   * The object type.
+   *
+   * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
+   */
+  objectType: ObjectType;
+
+  /**
+   * @gqltype: UUID
+   *
+   * The object ID.
+   *
+   * @generated from field: string object_id = 2;
+   */
+  objectId: string;
+};
+
+/**
+ * Defines the request message for retrieving object flags.
+ *
+ * @generated from message io.clbs.openhes.models.system.ObjectFlagsRequest
+ */
+export type ObjectFlagsRequestJson = {
+  /**
+   * The object type.
+   *
+   * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
+   */
+  objectType?: ObjectTypeJson;
+
+  /**
+   * @gqltype: UUID
+   *
+   * The object ID.
+   *
+   * @generated from field: string object_id = 2;
+   */
+  objectId?: string;
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.ObjectFlagsRequest.
+ * Use `create(ObjectFlagsRequestSchema)` to create a new message.
+ */
+export const ObjectFlagsRequestSchema: GenMessage<ObjectFlagsRequest, {jsonType: ObjectFlagsRequestJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 8);
+
+/**
+ * Defines the response message for retrieving object flags.
+ *
+ * @generated from message io.clbs.openhes.models.system.ObjectFlagsResponse
+ */
+export type ObjectFlagsResponse = Message<"io.clbs.openhes.models.system.ObjectFlagsResponse"> & {
+  /**
+   * The object flags.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.system.ObjectFlags flags = 4;
+   */
+  flags: ObjectFlags[];
+};
+
+/**
+ * Defines the response message for retrieving object flags.
+ *
+ * @generated from message io.clbs.openhes.models.system.ObjectFlagsResponse
+ */
+export type ObjectFlagsResponseJson = {
+  /**
+   * The object flags.
+   *
+   * @generated from field: repeated io.clbs.openhes.models.system.ObjectFlags flags = 4;
+   */
+  flags?: ObjectFlagsJson[];
+};
+
+/**
+ * Describes the message io.clbs.openhes.models.system.ObjectFlagsResponse.
+ * Use `create(ObjectFlagsResponseSchema)` to create a new message.
+ */
+export const ObjectFlagsResponseSchema: GenMessage<ObjectFlagsResponse, {jsonType: ObjectFlagsResponseJson}> = /*@__PURE__*/
+  messageDesc(file_system_main, 9);
+
+/**
+ * Defines the object flags.
+ *
+ * @generated from enum io.clbs.openhes.models.system.ObjectFlags
+ */
+export enum ObjectFlags {
+  /**
+   * Default value.
+   *
+   * @generated from enum value: OBJECT_FLAG_UNSPECIFIED = 0;
+   */
+  OBJECT_FLAG_UNSPECIFIED = 0,
+
+  /**
+   * Given communication unit has log feature enabled.
+   *
+   * @generated from enum value: OBJECT_FLAG_COMMUNICATION_UNIT_LOG = 1;
+   */
+  OBJECT_FLAG_COMMUNICATION_UNIT_LOG = 1,
+}
+
+/**
+ * Defines the object flags.
+ *
+ * @generated from enum io.clbs.openhes.models.system.ObjectFlags
+ */
+export type ObjectFlagsJson = "OBJECT_FLAG_UNSPECIFIED" | "OBJECT_FLAG_COMMUNICATION_UNIT_LOG";
+
+/**
+ * Describes the enum io.clbs.openhes.models.system.ObjectFlags.
+ */
+export const ObjectFlagsSchema: GenEnum<ObjectFlags, ObjectFlagsJson> = /*@__PURE__*/
+  enumDesc(file_system_main, 0);
 

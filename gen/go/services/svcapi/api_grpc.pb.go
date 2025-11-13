@@ -141,6 +141,7 @@ const (
 	ApiService_SetScreenConfigs_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/SetScreenConfigs"
 	ApiService_GetScreenConfigs_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfigs"
 	ApiService_DeleteScreenConfig_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
+	ApiService_GetObjectFlags_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetObjectFlags"
 	ApiService_GetTranslations_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
 	ApiService_SetTranslationMissing_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/SetTranslationMissing"
 	ApiService_UpdateTranslations_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTranslations"
@@ -534,15 +535,23 @@ type ApiServiceClient interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
+	// Sets the screen configuration.
 	SetScreenConfig(ctx context.Context, in *system.SetScreenConfigRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
+	// Gets the screen configuration.
 	GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
+	// Sets multiple screen configurations at once, replacing any existing configurations.
 	SetScreenConfigs(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
+	// Gets all screen configurations at once.
 	GetScreenConfigs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
+	// Deletes the specified screen configuration.
 	DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the flags associated with the specified object.
+	GetObjectFlags(ctx context.Context, in *system.ObjectFlagsRequest, opts ...grpc.CallOption) (*system.ObjectFlagsResponse, error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error)
@@ -1758,6 +1767,16 @@ func (c *apiServiceClient) DeleteScreenConfig(ctx context.Context, in *system.Sc
 	return out, nil
 }
 
+func (c *apiServiceClient) GetObjectFlags(ctx context.Context, in *system.ObjectFlagsRequest, opts ...grpc.CallOption) (*system.ObjectFlagsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(system.ObjectFlagsResponse)
+	err := c.cc.Invoke(ctx, ApiService_GetObjectFlags_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(localization.GetTranslationsResponse)
@@ -2263,15 +2282,23 @@ type ApiServiceServer interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
+	// Sets the screen configuration.
 	SetScreenConfig(context.Context, *system.SetScreenConfigRequest) (*emptypb.Empty, error)
 	// @group: System
+	// Gets the screen configuration.
 	GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*wrapperspb.StringValue, error)
 	// @group: System
+	// Sets multiple screen configurations at once, replacing any existing configurations.
 	SetScreenConfigs(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
+	// Gets all screen configurations at once.
 	GetScreenConfigs(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	// @group: System
+	// Deletes the specified screen configuration.
 	DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the flags associated with the specified object.
+	GetObjectFlags(context.Context, *system.ObjectFlagsRequest) (*system.ObjectFlagsResponse, error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error)
@@ -2656,6 +2683,9 @@ func (UnimplementedApiServiceServer) GetScreenConfigs(context.Context, *emptypb.
 }
 func (UnimplementedApiServiceServer) DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenConfig not implemented")
+}
+func (UnimplementedApiServiceServer) GetObjectFlags(context.Context, *system.ObjectFlagsRequest) (*system.ObjectFlagsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetObjectFlags not implemented")
 }
 func (UnimplementedApiServiceServer) GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranslations not implemented")
@@ -4709,6 +4739,24 @@ func _ApiService_DeleteScreenConfig_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetObjectFlags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(system.ObjectFlagsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetObjectFlags(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetObjectFlags_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetObjectFlags(ctx, req.(*system.ObjectFlagsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_GetTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(localization.GetTranslationsRequest)
 	if err := dec(in); err != nil {
@@ -5341,6 +5389,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteScreenConfig",
 			Handler:    _ApiService_DeleteScreenConfig_Handler,
+		},
+		{
+			MethodName: "GetObjectFlags",
+			Handler:    _ApiService_GetObjectFlags_Handler,
 		},
 		{
 			MethodName: "GetTranslations",

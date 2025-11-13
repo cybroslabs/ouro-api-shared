@@ -358,6 +358,9 @@ const (
 	// ApiServiceDeleteScreenConfigProcedure is the fully-qualified name of the ApiService's
 	// DeleteScreenConfig RPC.
 	ApiServiceDeleteScreenConfigProcedure = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
+	// ApiServiceGetObjectFlagsProcedure is the fully-qualified name of the ApiService's GetObjectFlags
+	// RPC.
+	ApiServiceGetObjectFlagsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetObjectFlags"
 	// ApiServiceGetTranslationsProcedure is the fully-qualified name of the ApiService's
 	// GetTranslations RPC.
 	ApiServiceGetTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
@@ -771,15 +774,23 @@ type ApiServiceClient interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	// Sets the screen configuration.
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	// Gets the screen configuration.
 	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
+	// Sets multiple screen configurations at once, replacing any existing configurations.
 	SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	// Gets all screen configurations at once.
 	GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
+	// Deletes the specified screen configuration.
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	// Retrieves the flags associated with the specified object.
+	GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
@@ -1507,6 +1518,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("DeleteScreenConfig")),
 			connect.WithClientOptions(opts...),
 		),
+		getObjectFlags: connect.NewClient[system.ObjectFlagsRequest, system.ObjectFlagsResponse](
+			httpClient,
+			baseURL+ApiServiceGetObjectFlagsProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetObjectFlags")),
+			connect.WithClientOptions(opts...),
+		),
 		getTranslations: connect.NewClient[localization.GetTranslationsRequest, localization.GetTranslationsResponse](
 			httpClient,
 			baseURL+ApiServiceGetTranslationsProcedure,
@@ -1697,6 +1714,7 @@ type apiServiceClient struct {
 	setScreenConfigs                                                 *connect.Client[wrapperspb.StringValue, emptypb.Empty]
 	getScreenConfigs                                                 *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	deleteScreenConfig                                               *connect.Client[system.ScreenConfigSelector, emptypb.Empty]
+	getObjectFlags                                                   *connect.Client[system.ObjectFlagsRequest, system.ObjectFlagsResponse]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	setTranslationMissing                                            *connect.Client[localization.MissingTranslationRequest, emptypb.Empty]
 	updateTranslations                                               *connect.Client[localization.UpdateTranslationsRequest, emptypb.Empty]
@@ -2301,6 +2319,11 @@ func (c *apiServiceClient) DeleteScreenConfig(ctx context.Context, req *connect.
 	return c.deleteScreenConfig.CallUnary(ctx, req)
 }
 
+// GetObjectFlags calls io.clbs.openhes.services.svcapi.ApiService.GetObjectFlags.
+func (c *apiServiceClient) GetObjectFlags(ctx context.Context, req *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error) {
+	return c.getObjectFlags.CallUnary(ctx, req)
+}
+
 // GetTranslations calls io.clbs.openhes.services.svcapi.ApiService.GetTranslations.
 func (c *apiServiceClient) GetTranslations(ctx context.Context, req *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {
 	return c.getTranslations.CallUnary(ctx, req)
@@ -2738,15 +2761,23 @@ type ApiServiceHandler interface {
 	// The method stored a new license key. Used only and only for air-gapped installations.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	// Sets the screen configuration.
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	// Gets the screen configuration.
 	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
+	// Sets multiple screen configurations at once, replacing any existing configurations.
 	SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
+	// Gets all screen configurations at once.
 	GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
+	// Deletes the specified screen configuration.
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
+	// @group: System
+	// Retrieves the flags associated with the specified object.
+	GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
@@ -3470,6 +3501,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("DeleteScreenConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetObjectFlagsHandler := connect.NewUnaryHandler(
+		ApiServiceGetObjectFlagsProcedure,
+		svc.GetObjectFlags,
+		connect.WithSchema(apiServiceMethods.ByName("GetObjectFlags")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetTranslationsHandler := connect.NewUnaryHandler(
 		ApiServiceGetTranslationsProcedure,
 		svc.GetTranslations,
@@ -3770,6 +3807,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceGetScreenConfigsHandler.ServeHTTP(w, r)
 		case ApiServiceDeleteScreenConfigProcedure:
 			apiServiceDeleteScreenConfigHandler.ServeHTTP(w, r)
+		case ApiServiceGetObjectFlagsProcedure:
+			apiServiceGetObjectFlagsHandler.ServeHTTP(w, r)
 		case ApiServiceGetTranslationsProcedure:
 			apiServiceGetTranslationsHandler.ServeHTTP(w, r)
 		case ApiServiceSetTranslationMissingProcedure:
@@ -4253,6 +4292,10 @@ func (UnimplementedApiServiceHandler) GetScreenConfigs(context.Context, *connect
 
 func (UnimplementedApiServiceHandler) DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.DeleteScreenConfig is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetObjectFlags is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {

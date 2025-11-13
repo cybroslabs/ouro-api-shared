@@ -105,6 +105,24 @@
     
       
       <p>
+        <a href="#message-io.clbs.openhes.models.system.ObjectFlagsRequest">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ObjectFlagsRequest</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
+        <a href="#message-io.clbs.openhes.models.system.ObjectFlagsResponse">
+          <span class="tag" style="min-width: 6em">Message</span>
+          <code>ObjectFlagsResponse</code> 
+        </a>
+      </p>
+      
+    
+      
+      <p>
         <a href="#message-io.clbs.openhes.models.system.ScreenConfigSelector">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ScreenConfigSelector</code> 
@@ -131,6 +149,13 @@
       
     
 
+    
+      <p>
+        <a href="#enum-io.clbs.openhes.models.system.ObjectFlags">
+          <span class="tag" style="min-width: 6em">Enum</span>
+          <code>ObjectFlags</code> 
+        </a>
+      </p>
     
   </div>
 
@@ -395,6 +420,126 @@
         </code>
       </td>
       <td class="content"><p>The list of component configuration field descriptors.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.system.ObjectFlagsRequest">
+  <span>
+    <a href="#message-io.clbs.openhes.models.system.ObjectFlagsRequest" title="io.clbs.openhes.models.system.ObjectFlagsRequest">message ObjectFlagsRequest</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the request message for retrieving object flags.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>1</td>
+      <td>
+        objectType
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.common.ObjectType">
+          
+          <a href="io.clbs.openhes.models.common.html#enum-io.clbs.openhes.models.common.ObjectType"><span title="io.clbs.openhes.models.common.ObjectType">io.clbs.openhes.models.common.ObjectType</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The object type.</p></td>
+      
+    </tr>
+    
+    <tr>
+      <td>2</td>
+      <td>
+        objectId
+      </td>
+      <td>
+        <code title="string">
+          
+          <span>string</span>
+        </code>
+      </td>
+      <td class="content"><p>@gqltype: UUID</p>
+<p>The object ID.</p></td>
+      
+    </tr>
+    
+    
+  </tbody>
+</table>
+ 
+      </div>
+      
+    
+      
+      <div class="block">
+        
+
+<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.system.ObjectFlagsResponse">
+  <span>
+    <a href="#message-io.clbs.openhes.models.system.ObjectFlagsResponse" title="io.clbs.openhes.models.system.ObjectFlagsResponse">message ObjectFlagsResponse</a>
+  
+  </span>
+  
+</h4>
+
+<div class="block content">
+  <p>Defines the response message for retrieving object flags.</p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>4</td>
+      <td>
+        flags
+      </td>
+      <td>
+        <code title="io.clbs.openhes.models.system.ObjectFlags">
+          
+            repeated
+          
+          <a href="io.clbs.openhes.models.system.html#enum-io.clbs.openhes.models.system.ObjectFlags"><span title="io.clbs.openhes.models.system.ObjectFlags">io.clbs.openhes.models.system.ObjectFlags</span>
+    </a>
+        </code>
+      </td>
+      <td class="content"><p>The object flags.</p></td>
       
     </tr>
     
@@ -698,6 +843,50 @@
     
 
   
+
+  
+
+    <h3 class="title is-3">
+      Enums
+    </h3>
+
+    
+    <div class="block">
+      <h4 class="title is-4 type-heading" id="enum-io.clbs.openhes.models.system.ObjectFlags">
+  <a href="#enum-io.clbs.openhes.models.system.ObjectFlags" title="io.clbs.openhes.models.system.ObjectFlags">enum ObjectFlags</a>
+  
+</h4>
+
+<div class="block content">
+  <p><p>Defines the object flags.</p></p>
+</div>
+
+<table class="table is-fullwidth is-hoverable is-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><code>OBJECT_FLAG_UNSPECIFIED</code></td>
+      <td>0</td>
+      <td class="content"><p>Default value.</p></td>
+    </tr>
+    
+    <tr>
+      <td><code>OBJECT_FLAG_COMMUNICATION_UNIT_LOG</code></td>
+      <td>1</td>
+      <td class="content"><p>Given communication unit has log feature enabled.</p></td>
+    </tr>
+    
+  </tbody>
+</table> 
+    </div>
+    
 
   
 

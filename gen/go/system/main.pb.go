@@ -23,6 +23,48 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Defines the object flags.
+type ObjectFlags int32
+
+const (
+	ObjectFlags_OBJECT_FLAG_UNSPECIFIED            ObjectFlags = 0 // Default value.
+	ObjectFlags_OBJECT_FLAG_COMMUNICATION_UNIT_LOG ObjectFlags = 1 // Given communication unit has log feature enabled.
+)
+
+// Enum value maps for ObjectFlags.
+var (
+	ObjectFlags_name = map[int32]string{
+		0: "OBJECT_FLAG_UNSPECIFIED",
+		1: "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
+	}
+	ObjectFlags_value = map[string]int32{
+		"OBJECT_FLAG_UNSPECIFIED":            0,
+		"OBJECT_FLAG_COMMUNICATION_UNIT_LOG": 1,
+	}
+)
+
+func (x ObjectFlags) Enum() *ObjectFlags {
+	p := new(ObjectFlags)
+	*p = x
+	return p
+}
+
+func (x ObjectFlags) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ObjectFlags) Descriptor() protoreflect.EnumDescriptor {
+	return file_system_main_proto_enumTypes[0].Descriptor()
+}
+
+func (ObjectFlags) Type() protoreflect.EnumType {
+	return &file_system_main_proto_enumTypes[0]
+}
+
+func (x ObjectFlags) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
 // Defines a specification for application configuration.
 type ApplicationConfig struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
@@ -1197,11 +1239,181 @@ func (b0 ScreenConfigSelector_builder) Build() *ScreenConfigSelector {
 	return m0
 }
 
+// Defines the request message for retrieving object flags.
+type ObjectFlagsRequest struct {
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ObjectType  common.ObjectType      `protobuf:"varint,1,opt,name=object_type,json=objectType,enum=io.clbs.openhes.models.common.ObjectType"`
+	xxx_hidden_ObjectId    *string                `protobuf:"bytes,2,opt,name=object_id,json=objectId"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ObjectFlagsRequest) Reset() {
+	*x = ObjectFlagsRequest{}
+	mi := &file_system_main_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjectFlagsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjectFlagsRequest) ProtoMessage() {}
+
+func (x *ObjectFlagsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ObjectFlagsRequest) GetObjectType() common.ObjectType {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_ObjectType
+		}
+	}
+	return common.ObjectType(0)
+}
+
+func (x *ObjectFlagsRequest) GetObjectId() string {
+	if x != nil {
+		if x.xxx_hidden_ObjectId != nil {
+			return *x.xxx_hidden_ObjectId
+		}
+		return ""
+	}
+	return ""
+}
+
+func (x *ObjectFlagsRequest) SetObjectType(v common.ObjectType) {
+	x.xxx_hidden_ObjectType = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *ObjectFlagsRequest) SetObjectId(v string) {
+	x.xxx_hidden_ObjectId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
+}
+
+func (x *ObjectFlagsRequest) HasObjectType() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
+}
+
+func (x *ObjectFlagsRequest) HasObjectId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
+func (x *ObjectFlagsRequest) ClearObjectType() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_ObjectType = common.ObjectType_OBJECT_TYPE_UNSPECIFIED
+}
+
+func (x *ObjectFlagsRequest) ClearObjectId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_ObjectId = nil
+}
+
+type ObjectFlagsRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	ObjectType *common.ObjectType
+	// @gqltype: UUID
+	ObjectId *string
+}
+
+func (b0 ObjectFlagsRequest_builder) Build() *ObjectFlagsRequest {
+	m0 := &ObjectFlagsRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	if b.ObjectType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		x.xxx_hidden_ObjectType = *b.ObjectType
+	}
+	if b.ObjectId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_ObjectId = b.ObjectId
+	}
+	return m0
+}
+
+// Defines the response message for retrieving object flags.
+type ObjectFlagsResponse struct {
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Flags []ObjectFlags          `protobuf:"varint,4,rep,packed,name=flags,enum=io.clbs.openhes.models.system.ObjectFlags"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ObjectFlagsResponse) Reset() {
+	*x = ObjectFlagsResponse{}
+	mi := &file_system_main_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ObjectFlagsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ObjectFlagsResponse) ProtoMessage() {}
+
+func (x *ObjectFlagsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_system_main_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *ObjectFlagsResponse) GetFlags() []ObjectFlags {
+	if x != nil {
+		return x.xxx_hidden_Flags
+	}
+	return nil
+}
+
+func (x *ObjectFlagsResponse) SetFlags(v []ObjectFlags) {
+	x.xxx_hidden_Flags = v
+}
+
+type ObjectFlagsResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Flags []ObjectFlags
+}
+
+func (b0 ObjectFlagsResponse_builder) Build() *ObjectFlagsResponse {
+	m0 := &ObjectFlagsResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Flags = b.Flags
+	return m0
+}
+
 var File_system_main_proto protoreflect.FileDescriptor
 
 const file_system_main_proto_rawDesc = "" +
 	"\n" +
-	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13common/fields.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"Y\n" +
+	"\x11system/main.proto\x12\x1dio.clbs.openhes.models.system\x1a\x13common/fields.proto\x1a\x14common/objects.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"Y\n" +
 	"\x11ApplicationConfig\x12D\n" +
 	"\x05items\x18\x02 \x03(\v2..io.clbs.openhes.models.system.ComponentConfigR\x05items\"g\n" +
 	"\x0fComponentConfig\x12\x12\n" +
@@ -1242,40 +1454,56 @@ const file_system_main_proto_rawDesc = "" +
 	"\bsettings\"Z\n" +
 	"\x14ScreenConfigSelector\x12%\n" +
 	"\x0eapplication_id\x18\x01 \x01(\tR\rapplicationId\x12\x1b\n" +
-	"\tscreen_id\x18\x02 \x01(\tR\bscreenIdB5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
+	"\tscreen_id\x18\x02 \x01(\tR\bscreenId\"}\n" +
+	"\x12ObjectFlagsRequest\x12J\n" +
+	"\vobject_type\x18\x01 \x01(\x0e2).io.clbs.openhes.models.common.ObjectTypeR\n" +
+	"objectType\x12\x1b\n" +
+	"\tobject_id\x18\x02 \x01(\tR\bobjectId\"W\n" +
+	"\x13ObjectFlagsResponse\x12@\n" +
+	"\x05flags\x18\x04 \x03(\x0e2*.io.clbs.openhes.models.system.ObjectFlagsR\x05flags*R\n" +
+	"\vObjectFlags\x12\x1b\n" +
+	"\x17OBJECT_FLAG_UNSPECIFIED\x10\x00\x12&\n" +
+	"\"OBJECT_FLAG_COMMUNICATION_UNIT_LOG\x10\x01B5Z3github.com/cybroslabs/ouro-api-shared/gen/go/systemb\beditionsp\xe8\a"
 
-var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_system_main_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_system_main_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_system_main_proto_goTypes = []any{
-	(*ApplicationConfig)(nil),           // 0: io.clbs.openhes.models.system.ApplicationConfig
-	(*ComponentConfig)(nil),             // 1: io.clbs.openhes.models.system.ComponentConfig
-	(*ComponentConfigDescriptor)(nil),   // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor
-	(*ApplicationConfigDescriptor)(nil), // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor
-	(*License)(nil),                     // 4: io.clbs.openhes.models.system.License
-	(*UserProfile)(nil),                 // 5: io.clbs.openhes.models.system.UserProfile
-	(*SetScreenConfigRequest)(nil),      // 6: io.clbs.openhes.models.system.SetScreenConfigRequest
-	(*ScreenConfigSelector)(nil),        // 7: io.clbs.openhes.models.system.ScreenConfigSelector
-	nil,                                 // 8: io.clbs.openhes.models.system.License.OptionsEntry
-	(*common.FieldValues)(nil),          // 9: io.clbs.openhes.models.common.FieldValues
-	(*common.FieldDescriptor)(nil),      // 10: io.clbs.openhes.models.common.FieldDescriptor
-	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),             // 12: google.protobuf.Struct
+	(ObjectFlags)(0),                    // 0: io.clbs.openhes.models.system.ObjectFlags
+	(*ApplicationConfig)(nil),           // 1: io.clbs.openhes.models.system.ApplicationConfig
+	(*ComponentConfig)(nil),             // 2: io.clbs.openhes.models.system.ComponentConfig
+	(*ComponentConfigDescriptor)(nil),   // 3: io.clbs.openhes.models.system.ComponentConfigDescriptor
+	(*ApplicationConfigDescriptor)(nil), // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor
+	(*License)(nil),                     // 5: io.clbs.openhes.models.system.License
+	(*UserProfile)(nil),                 // 6: io.clbs.openhes.models.system.UserProfile
+	(*SetScreenConfigRequest)(nil),      // 7: io.clbs.openhes.models.system.SetScreenConfigRequest
+	(*ScreenConfigSelector)(nil),        // 8: io.clbs.openhes.models.system.ScreenConfigSelector
+	(*ObjectFlagsRequest)(nil),          // 9: io.clbs.openhes.models.system.ObjectFlagsRequest
+	(*ObjectFlagsResponse)(nil),         // 10: io.clbs.openhes.models.system.ObjectFlagsResponse
+	nil,                                 // 11: io.clbs.openhes.models.system.License.OptionsEntry
+	(*common.FieldValues)(nil),          // 12: io.clbs.openhes.models.common.FieldValues
+	(*common.FieldDescriptor)(nil),      // 13: io.clbs.openhes.models.common.FieldDescriptor
+	(*timestamppb.Timestamp)(nil),       // 14: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),             // 15: google.protobuf.Struct
+	(common.ObjectType)(0),              // 16: io.clbs.openhes.models.common.ObjectType
 }
 var file_system_main_proto_depIdxs = []int32{
-	1,  // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	9,  // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	10, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
-	2,  // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
-	1,  // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
-	8,  // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
-	11, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
-	11, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
-	11, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
-	12, // 9: io.clbs.openhes.models.system.SetScreenConfigRequest.raw:type_name -> google.protobuf.Struct
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	2,  // 0: io.clbs.openhes.models.system.ApplicationConfig.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
+	12, // 1: io.clbs.openhes.models.system.ComponentConfig.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	13, // 2: io.clbs.openhes.models.system.ComponentConfigDescriptor.items:type_name -> io.clbs.openhes.models.common.FieldDescriptor
+	3,  // 3: io.clbs.openhes.models.system.ApplicationConfigDescriptor.descriptors:type_name -> io.clbs.openhes.models.system.ComponentConfigDescriptor
+	2,  // 4: io.clbs.openhes.models.system.ApplicationConfigDescriptor.items:type_name -> io.clbs.openhes.models.system.ComponentConfig
+	11, // 5: io.clbs.openhes.models.system.License.options:type_name -> io.clbs.openhes.models.system.License.OptionsEntry
+	14, // 6: io.clbs.openhes.models.system.License.token_expiration:type_name -> google.protobuf.Timestamp
+	14, // 7: io.clbs.openhes.models.system.License.license_expiration:type_name -> google.protobuf.Timestamp
+	14, // 8: io.clbs.openhes.models.system.License.service_expiration:type_name -> google.protobuf.Timestamp
+	15, // 9: io.clbs.openhes.models.system.SetScreenConfigRequest.raw:type_name -> google.protobuf.Struct
+	16, // 10: io.clbs.openhes.models.system.ObjectFlagsRequest.object_type:type_name -> io.clbs.openhes.models.common.ObjectType
+	0,  // 11: io.clbs.openhes.models.system.ObjectFlagsResponse.flags:type_name -> io.clbs.openhes.models.system.ObjectFlags
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_system_main_proto_init() }
@@ -1292,13 +1520,14 @@ func file_system_main_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_system_main_proto_rawDesc), len(file_system_main_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   9,
+			NumEnums:      1,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_system_main_proto_goTypes,
 		DependencyIndexes: file_system_main_proto_depIdxs,
+		EnumInfos:         file_system_main_proto_enumTypes,
 		MessageInfos:      file_system_main_proto_msgTypes,
 	}.Build()
 	File_system_main_proto = out.File

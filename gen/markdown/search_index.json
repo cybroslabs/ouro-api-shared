@@ -437,16 +437,21 @@
     "title": "ApiService - System",
     "tags0": [
       "SetLicense",
+      "GetObjectFlags",
       "SetScreenConfig",
       "GetScreenConfig",
       "SetScreenConfigs",
       "GetScreenConfigs",
       "DeleteScreenConfig",
       "GetLicenseRequestCode",
+      "io.clbs.openhes.models.system.ObjectFlagsRequest",
+      "io.clbs.openhes.models.system.ObjectFlagsResponse",
       "io.clbs.openhes.models.system.ScreenConfigSelector",
       "io.clbs.openhes.models.system.SetScreenConfigRequest"
     ],
     "tags1": [
+      "ObjectFlagsRequest",
+      "ObjectFlagsResponse",
       "ScreenConfigSelector",
       "SetScreenConfigRequest"
     ],
@@ -516,6 +521,25 @@
     "tags2": ""
   },
   {
+    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
+    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "tags0": [
+      "OBJECT_FLAG_UNSPECIFIED",
+      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
+      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+    ],
+    "tags1": [
+      "COMMUNICATION",
+      "FLAG",
+      "LOG",
+      "OBJECT",
+      "ObjectFlags",
+      "UNIT",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the object flags Default value Given communication unit has log feature enabled"
+  },
+  {
     "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
     "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
     "tags0": [
@@ -565,6 +589,31 @@
       "ComponentConfigDescriptor"
     ],
     "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
+    "tags0": [
+      "objectId",
+      "objectType",
+      "io.clbs.openhes.models.system.ObjectFlagsRequest"
+    ],
+    "tags1": [
+      "ObjectFlagsRequest"
+    ],
+    "tags2": "Defines the request message for retrieving object flags The object type The object"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
+    "tags0": [
+      "flags",
+      "io.clbs.openhes.models.system.ObjectFlagsResponse"
+    ],
+    "tags1": [
+      "ObjectFlagsResponse"
+    ],
+    "tags2": "Defines the response message for retrieving object flags The object flags"
   },
   {
     "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",

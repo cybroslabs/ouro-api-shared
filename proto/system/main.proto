@@ -5,6 +5,7 @@ package io.clbs.openhes.models.system;
 option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/system";
 
 import "common/fields.proto";
+import "common/objects.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -68,4 +69,22 @@ message SetScreenConfigRequest {
 message ScreenConfigSelector {
     string application_id = 1;  // The application or ui-plugin identifier.
     string screen_id      = 2;  // The screen identifier within the application/ui-plugin.
+}
+
+// Defines the object flags.
+enum ObjectFlags {
+    OBJECT_FLAG_UNSPECIFIED = 0;  // Default value.
+    OBJECT_FLAG_COMMUNICATION_UNIT_LOG = 1; // Given communication unit has log feature enabled.
+}
+
+// Defines the request message for retrieving object flags.
+message ObjectFlagsRequest {
+    common.ObjectType object_type = 1;  // The object type.
+    // @gqltype: UUID
+    string object_id = 2;  // The object ID.
+}
+
+// Defines the response message for retrieving object flags.
+message ObjectFlagsResponse {
+    repeated ObjectFlags flags = 4;  // The object flags.
 }

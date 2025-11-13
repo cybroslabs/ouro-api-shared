@@ -416,15 +416,23 @@ service ApiService {
     // The method stored a new license key. Used only and only for air-gapped installations.
     rpc SetLicense(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: System
+    // Sets the screen configuration.
     rpc SetScreenConfig(io.clbs.openhes.models.system.SetScreenConfigRequest) returns (google.protobuf.Empty);
     // @group: System
+    // Gets the screen configuration.
     rpc GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.StringValue);
     // @group: System
+    // Sets multiple screen configurations at once, replacing any existing configurations.
     rpc SetScreenConfigs(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: System
+    // Gets all screen configurations at once.
     rpc GetScreenConfigs(google.protobuf.Empty) returns (google.protobuf.StringValue);
     // @group: System
+    // Deletes the specified screen configuration.
     rpc DeleteScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.Empty);
+    // @group: System
+    // Retrieves the flags associated with the specified object.
+    rpc GetObjectFlags(io.clbs.openhes.models.system.ObjectFlagsRequest) returns (io.clbs.openhes.models.system.ObjectFlagsResponse);
 
     // @group: Globalization
     // Retrieves the translation data.
