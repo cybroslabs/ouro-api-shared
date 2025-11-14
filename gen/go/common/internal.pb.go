@@ -574,7 +574,7 @@ func (x *MapDeviceKeyXId) SetItems(v map[string]int64) {
 type MapDeviceKeyXId_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+	// A map where the keys are device keys (from `ListOfDeviceKey`) and the values are device IDs (`x-device-identifier`).
 	// The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
 	Items map[string]int64
 }

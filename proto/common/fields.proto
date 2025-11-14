@@ -133,6 +133,7 @@ message FieldDescriptor {
     bool sortable              = 21;  // Indicates whether the field can be used for sorting. Default is `true`.
     bool filterable            = 22;  // Indicates whether the field can be used for filtering. Default is `true`.
     int32 display_order        = 23;  // The order in which the field is displayed relative to other fields.
+    bool js_is_bigint          = 24;  // Indicates whether the field should be treated as a BigInt in JavaScript/TypeScript. Applicable only for `INTEGER` data type.
 }
 
 // Defines validation rules applied to a field.

@@ -282,7 +282,7 @@ export const ListOfDeviceKeySchema: GenMessage<ListOfDeviceKey, {jsonType: ListO
  */
 export type MapDeviceKeyXId = Message<"io.clbs.openhes.models.common.MapDeviceKeyXId"> & {
   /**
-   * A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+   * A map where the keys are device keys (from `ListOfDeviceKey`) and the values are device IDs (`x-device-identifier`).
    * The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
    *
    * @generated from field: map<string, int64> items = 1;
@@ -297,7 +297,7 @@ export type MapDeviceKeyXId = Message<"io.clbs.openhes.models.common.MapDeviceKe
  */
 export type MapDeviceKeyXIdJson = {
   /**
-   * A map where the keys are device keys (from `ListOfDeviceKyes`) and the values are device IDs (`x-device-identifier`).
+   * A map where the keys are device keys (from `ListOfDeviceKey`) and the values are device IDs (`x-device-identifier`).
    * The `x-device-identifiers` are unique within the system and can be used to identify devices in topologies, neighbours tables, unknown devices, and so on.
    *
    * @generated from field: map<string, int64> items = 1;

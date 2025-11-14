@@ -29,4 +29,5 @@ Defines the field descriptor specification.
 | sortable | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether the field can be used for sorting. Default is `true`. |
 | filterable | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether the field can be used for filtering. Default is `true`. |
 | displayOrder | <b>Type:</b> `int32`<br><b>Description:</b><br>The order in which the field is displayed relative to other fields. |
+| jsIsBigint | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether the field should be treated as a BigInt in JavaScript/TypeScript. Applicable only for `INTEGER` data type. |
 

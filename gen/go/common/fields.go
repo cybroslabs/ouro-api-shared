@@ -89,7 +89,7 @@ func MustNewFieldDescriptorInternal(dbPath string, descriptor *FieldDescriptor, 
 // The label must not be empty.
 // The jsPath is a JavaScript/TypeScript path to the field in given object type. It is a segment path like "name.first" or "address.street". Additionally, it shall contain case selector value in the brackets, like "seg.seg.holder.{option}.more".
 // The path is later automatically converted from the jsPath where holder is replaced directly with the option value.
-func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool, sortable bool, filterable bool) *FieldDescriptor {
+func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, jsIsBigInt bool, label string, groupId string, required bool, editable bool, visible bool, multiValue bool, secured bool, sortable bool, filterable bool) *FieldDescriptor {
 	if _, known := ObjectType_name[int32(objectType)]; !known {
 		panic(fmt.Sprintf("unknown objectType: %s", objectType))
 	}
@@ -118,6 +118,7 @@ func NewFieldDescriptor(objectType ObjectType, fieldId string, jsPath string, la
 		Format:     FieldDisplayFormat_DISPLAY_FORMAT_UNSPECIFIED.Enum(),
 		Sortable:   &sortable,
 		Filterable: &filterable,
+		JsIsBigint: &jsIsBigInt,
 	}.Build()
 
 	path := fd.ConvertJsPathToPath(jsPath)
