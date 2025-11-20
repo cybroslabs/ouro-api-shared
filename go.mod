@@ -16,7 +16,7 @@ require (
 	github.com/vektah/gqlparser/v2 v2.5.31
 	go.uber.org/zap v1.27.0
 	google.golang.org/genproto v0.0.0-20251111163417-95abcf5c77ba
-	google.golang.org/grpc v1.76.0
+	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	k8s.io/utils v0.0.0-20251002143259-bc988d571ff4
 )
