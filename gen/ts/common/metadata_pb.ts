@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file common/metadata.proto.
  */
 export const file_common_metadata: GenFile = /*@__PURE__*/
-  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIp4DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEaXwoSTWFuYWdlZEZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRI4CgV2YWx1ZRgCIAEoCzIpLmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkZpZWxkVmFsdWU6AjgBIl0KDlVwZGF0ZU1ldGFkYXRhEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAJKBAgCEAMiYwoZVXBkYXRlT2JqZWN0RmllbGRzUmVxdWVzdBI6CgRzcGVjGAEgASgLMiwuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uU2V0RmllbGRzU3BlY0oECAIQA0oECAMQBCKGAgoNU2V0RmllbGRzU3BlYxJICgZmaWVsZHMYASADKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5TZXRGaWVsZHNTcGVjLkZpZWxkc0VudHJ5Ej4KC29iamVjdF90eXBlGAIgASgOMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uT2JqZWN0VHlwZRIRCglvYmplY3RfaWQYAyABKAkaWAoLRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vY29tbW9uYghlZGl0aW9uc3DoBw", [file_google_protobuf_struct, file_common_fields, file_common_objects]);
+  fileDesc("ChVjb21tb24vbWV0YWRhdGEucHJvdG8SHWlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uIq8DCg5NZXRhZGF0YUZpZWxkcxIKCgJpZBgBIAEoCRISCgpnZW5lcmF0aW9uGAIgASgFEkkKBmZpZWxkcxgDIAMoCzI5LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLk1ldGFkYXRhRmllbGRzLkZpZWxkc0VudHJ5ElgKDm1hbmFnZWRfZmllbGRzGAQgAygLMkAuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMuTWFuYWdlZEZpZWxkc0VudHJ5EgwKBG5hbWUYBSABKAkSDwoHdXNlcl9pZBgGIAEoCRpYCgtGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4ARpfChJNYW5hZ2VkRmllbGRzRW50cnkSCwoDa2V5GAEgASgJEjgKBXZhbHVlGAIgASgLMikuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uRmllbGRWYWx1ZToCOAEiXQoOVXBkYXRlTWV0YWRhdGESPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAEQAkoECAIQAyJjChlVcGRhdGVPYmplY3RGaWVsZHNSZXF1ZXN0EjoKBHNwZWMYASABKAsyLC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5TZXRGaWVsZHNTcGVjSgQIAhADSgQIAxAEIoYCCg1TZXRGaWVsZHNTcGVjEkgKBmZpZWxkcxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLlNldEZpZWxkc1NwZWMuRmllbGRzRW50cnkSPgoLb2JqZWN0X3R5cGUYAiABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhEKCW9iamVjdF9pZBgDIAEoCRpYCgtGaWVsZHNFbnRyeRILCgNrZXkYASABKAkSOAoFdmFsdWUYAiABKAsyKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlOgI4AUI1WjNnaXRodWIuY29tL2N5YnJvc2xhYnMvb3Vyby1hcGktc2hhcmVkL2dlbi9nby9jb21tb25iCGVkaXRpb25zcOgH", [file_google_protobuf_struct, file_common_fields, file_common_objects]);
 
 /**
  * Defines a specification for metadata fields managed by both users and the system.
@@ -57,6 +57,13 @@ export type MetadataFields = Message<"io.clbs.openhes.models.common.MetadataFiel
    * @generated from field: string name = 5;
    */
   name: string;
+
+  /**
+   * The UUID of the user who created the resource. Immutable and typically auto-set during `Create` operations.
+   *
+   * @generated from field: string user_id = 6;
+   */
+  userId: string;
 };
 
 /**
@@ -99,6 +106,13 @@ export type MetadataFieldsJson = {
    * @generated from field: string name = 5;
    */
   name?: string;
+
+  /**
+   * The UUID of the user who created the resource. Immutable and typically auto-set during `Create` operations.
+   *
+   * @generated from field: string user_id = 6;
+   */
+  userId?: string;
 };
 
 /**

@@ -29,6 +29,7 @@ type MetadataFields struct {
 	xxx_hidden_Fields        map[string]*FieldValue `protobuf:"bytes,3,rep,name=fields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	xxx_hidden_ManagedFields map[string]*FieldValue `protobuf:"bytes,4,rep,name=managed_fields,json=managedFields" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	xxx_hidden_Name          *string                `protobuf:"bytes,5,opt,name=name"`
+	xxx_hidden_UserId        *string                `protobuf:"bytes,6,opt,name=user_id,json=userId"`
 	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
 	XXX_presence             [1]uint32
 	unknownFields            protoimpl.UnknownFields
@@ -101,14 +102,24 @@ func (x *MetadataFields) GetName() string {
 	return ""
 }
 
+func (x *MetadataFields) GetUserId() string {
+	if x != nil {
+		if x.xxx_hidden_UserId != nil {
+			return *x.xxx_hidden_UserId
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *MetadataFields) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
 }
 
 func (x *MetadataFields) SetGeneration(v int32) {
 	x.xxx_hidden_Generation = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
 }
 
 func (x *MetadataFields) SetFields(v map[string]*FieldValue) {
@@ -121,7 +132,12 @@ func (x *MetadataFields) SetManagedFields(v map[string]*FieldValue) {
 
 func (x *MetadataFields) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 6)
+}
+
+func (x *MetadataFields) SetUserId(v string) {
+	x.xxx_hidden_UserId = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
 }
 
 func (x *MetadataFields) HasId() bool {
@@ -145,6 +161,13 @@ func (x *MetadataFields) HasName() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
+func (x *MetadataFields) HasUserId() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
+}
+
 func (x *MetadataFields) ClearId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Id = nil
@@ -160,6 +183,11 @@ func (x *MetadataFields) ClearName() {
 	x.xxx_hidden_Name = nil
 }
 
+func (x *MetadataFields) ClearUserId() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_UserId = nil
+}
+
 type MetadataFields_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -168,6 +196,7 @@ type MetadataFields_builder struct {
 	Fields        map[string]*FieldValue
 	ManagedFields map[string]*FieldValue
 	Name          *string
+	UserId        *string
 }
 
 func (b0 MetadataFields_builder) Build() *MetadataFields {
@@ -175,18 +204,22 @@ func (b0 MetadataFields_builder) Build() *MetadataFields {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
 		x.xxx_hidden_Id = b.Id
 	}
 	if b.Generation != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
 		x.xxx_hidden_Generation = *b.Generation
 	}
 	x.xxx_hidden_Fields = b.Fields
 	x.xxx_hidden_ManagedFields = b.ManagedFields
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 6)
 		x.xxx_hidden_Name = b.Name
+	}
+	if b.UserId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		x.xxx_hidden_UserId = b.UserId
 	}
 	return m0
 }
@@ -458,7 +491,7 @@ var File_common_metadata_proto protoreflect.FileDescriptor
 
 const file_common_metadata_proto_rawDesc = "" +
 	"\n" +
-	"\x15common/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xe3\x03\n" +
+	"\x15common/metadata.proto\x12\x1dio.clbs.openhes.models.common\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13common/fields.proto\x1a\x14common/objects.proto\"\xfc\x03\n" +
 	"\x0eMetadataFields\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
@@ -466,7 +499,8 @@ const file_common_metadata_proto_rawDesc = "" +
 	"generation\x12Q\n" +
 	"\x06fields\x18\x03 \x03(\v29.io.clbs.openhes.models.common.MetadataFields.FieldsEntryR\x06fields\x12g\n" +
 	"\x0emanaged_fields\x18\x04 \x03(\v2@.io.clbs.openhes.models.common.MetadataFields.ManagedFieldsEntryR\rmanagedFields\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\x1ad\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12\x17\n" +
+	"\auser_id\x18\x06 \x01(\tR\x06userId\x1ad\n" +
 	"\vFieldsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\x1ak\n" +
