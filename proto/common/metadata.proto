@@ -15,6 +15,7 @@ message MetadataFields {
     map<string, FieldValue> fields         = 3;  // Additional fields managed by the user.
     map<string, FieldValue> managed_fields = 4;  // Additional fields managed by the system.
     string name                            = 5;  // The resource name. Mutable and typically set by the user. Must be set.
+    string user_id                         = 6;  // The UUID of the user who created the resource. Immutable and typically auto-set during `Create` operations.
 }
 
 // Defines a specification for updating metadata.

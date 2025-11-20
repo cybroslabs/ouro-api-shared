@@ -11,4 +11,5 @@ Defines a specification for metadata fields managed by both users and the system
 | fields | <b>Type:</b> map<`string`, [`io.clbs.openhes.models.common.FieldValue`](model-io-clbs-openhes-models-common-fieldvalue.md)><br><b>Description:</b><br>Additional fields managed by the user. |
 | managedFields | <b>Type:</b> map<`string`, [`io.clbs.openhes.models.common.FieldValue`](model-io-clbs-openhes-models-common-fieldvalue.md)><br><b>Description:</b><br>Additional fields managed by the system. |
 | name | <b>Type:</b> `string`<br><b>Description:</b><br>The resource name. Mutable and typically set by the user. Must be set. |
+| userId | <b>Type:</b> `string`<br><b>Description:</b><br>The UUID of the user who created the resource. Immutable and typically auto-set during `Create` operations. |
 
