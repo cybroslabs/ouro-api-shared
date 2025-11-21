@@ -246,7 +246,7 @@ service DeviceRegistryService {
 
     // @group: Fields
     // Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.Empty);
+    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.StringValue);
     // @group: Fields
     // Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
     rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);

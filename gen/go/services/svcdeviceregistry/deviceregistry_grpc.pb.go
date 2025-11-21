@@ -340,7 +340,7 @@ type DeviceRegistryServiceClient interface {
 	StreamDownloadFirmwareImageFile(ctx context.Context, in *acquisition.StreamDownloadFirmwareImageFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.FirmwareImageBlock], error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -1202,9 +1202,9 @@ func (c *deviceRegistryServiceClient) StreamDownloadFirmwareImageFile(ctx contex
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DeviceRegistryService_StreamDownloadFirmwareImageFileClient = grpc.ServerStreamingClient[acquisition.FirmwareImageBlock]
 
-func (c *deviceRegistryServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deviceRegistryServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1527,7 +1527,7 @@ type DeviceRegistryServiceServer interface {
 	StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error)
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
@@ -1812,7 +1812,7 @@ func (UnimplementedDeviceRegistryServiceServer) StreamUploadFirmwareImageFile(gr
 func (UnimplementedDeviceRegistryServiceServer) StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDownloadFirmwareImageFile not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {

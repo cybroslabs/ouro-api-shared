@@ -29,7 +29,7 @@ var File_services_svcdeviceregistry_deviceregistry_proto protoreflect.FileDescri
 
 const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\n" +
-	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\xf9N\n" +
+	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\xffN\n" +
 	"\x15DeviceRegistryService\x12c\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x16.google.protobuf.Empty\x12p\n" +
 	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12Y\n" +
@@ -109,8 +109,8 @@ const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\x13DeleteFirmwareImage\x12\x1c.google.protobuf.StringValue\x1a\x16.google.protobuf.Empty\x12\x91\x01\n" +
 	"\x15GetFirmwareImageBlock\x12@.io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest\x1a6.io.clbs.openhes.models.acquisition.FirmwareImageBlock\x12\x7f\n" +
 	"\x1dStreamUploadFirmwareImageFile\x12D.io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest\x1a\x16.google.protobuf.Empty(\x01\x12\xa7\x01\n" +
-	"\x1fStreamDownloadFirmwareImageFile\x12J.io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest\x1a6.io.clbs.openhes.models.acquisition.FirmwareImageBlock0\x01\x12l\n" +
-	"\x15CreateFieldDescriptor\x12;.io.clbs.openhes.models.common.CreateFieldDescriptorRequest\x1a\x16.google.protobuf.Empty\x12_\n" +
+	"\x1fStreamDownloadFirmwareImageFile\x12J.io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest\x1a6.io.clbs.openhes.models.acquisition.FirmwareImageBlock0\x01\x12r\n" +
+	"\x15CreateFieldDescriptor\x12;.io.clbs.openhes.models.common.CreateFieldDescriptorRequest\x1a\x1c.google.protobuf.StringValue\x12_\n" +
 	"\x15UpdateFieldDescriptor\x12..io.clbs.openhes.models.common.FieldDescriptor\x1a\x16.google.protobuf.Empty\x12g\n" +
 	"\x15DeleteFieldDescriptor\x126.io.clbs.openhes.models.common.FieldDescriptorSelector\x1a\x16.google.protobuf.Empty\x12b\n" +
 	"\x10SetManagedFields\x126.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.Empty\x12t\n" +
@@ -365,7 +365,7 @@ var file_services_svcdeviceregistry_deviceregistry_proto_depIdxs = []int32{
 	71, // 165: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetFirmwareImageBlock:output_type -> io.clbs.openhes.models.acquisition.FirmwareImageBlock
 	8,  // 166: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamUploadFirmwareImageFile:output_type -> google.protobuf.Empty
 	71, // 167: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.StreamDownloadFirmwareImageFile:output_type -> io.clbs.openhes.models.acquisition.FirmwareImageBlock
-	8,  // 168: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFieldDescriptor:output_type -> google.protobuf.Empty
+	2,  // 168: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
 	8,  // 169: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
 	8,  // 170: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
 	8,  // 171: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetManagedFields:output_type -> google.protobuf.Empty

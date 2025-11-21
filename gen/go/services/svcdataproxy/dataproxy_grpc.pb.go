@@ -108,7 +108,7 @@ type DataproxyServiceClient interface {
 	GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (*acquisition.DeviceEvents, error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -328,9 +328,9 @@ func (c *dataproxyServiceClient) GetDeviceEvents(ctx context.Context, in *acquis
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(wrapperspb.StringValue)
 	err := c.cc.Invoke(ctx, DataproxyService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -439,7 +439,7 @@ type DataproxyServiceServer interface {
 	GetDeviceEvents(context.Context, *acquisition.GetDeviceEventsRequest) (*acquisition.DeviceEvents, error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error)
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
@@ -513,7 +513,7 @@ func (UnimplementedDataproxyServiceServer) GetDeviceDataIrregularProfiles(*acqui
 func (UnimplementedDataproxyServiceServer) GetDeviceEvents(context.Context, *acquisition.GetDeviceEventsRequest) (*acquisition.DeviceEvents, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceEvents not implemented")
 }
-func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error) {
+func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
 }
 func (UnimplementedDataproxyServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
