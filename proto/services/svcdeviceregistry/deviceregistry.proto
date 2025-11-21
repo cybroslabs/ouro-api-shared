@@ -17,7 +17,7 @@ import "common/metadata.proto";
 // The Deviceregistry service definition.
 service DeviceRegistryService {
     // Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
-    rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.StringValue);
+    rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.Empty);
     // Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
     // Retrieves the details of the specified variable.
@@ -32,7 +32,7 @@ service DeviceRegistryService {
     rpc RemoveRegisterFromVariable(io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest) returns (google.protobuf.Empty);
 
     // Creates a new device configuration register. Returns the identifier of the newly created register.
-    rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.StringValue);
+    rpc CreateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationRegisterRequest) returns (google.protobuf.Empty);
     // Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
     rpc ListDeviceConfigurationRegisters(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationRegister);
     // Retrieves the details of the specified device configuration register.
@@ -44,7 +44,7 @@ service DeviceRegistryService {
     rpc GetDeviceConfigurationRegisterMap(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap);
 
     // Creates a new device configuration template. Returns the identifier of the newly created template.
-    rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.StringValue);
+    rpc CreateDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.CreateDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
     // Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceConfigurationTemplates(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceConfigurationTemplate);
     // Retrieves the details of the specified device configuration template.
@@ -68,7 +68,7 @@ service DeviceRegistryService {
     // @group: Devices
     // @tag: communicationunit
     // Creates a new communication unit. Returns the identifier of the newly created register.
-    rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.StringValue);
+    rpc CreateCommunicationUnit(io.clbs.openhes.models.acquisition.CreateCommunicationUnitRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationunit
     // Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
@@ -97,7 +97,7 @@ service DeviceRegistryService {
     // @group: Devices
     // @tag: communicationbus
     // Creates a new communication bus. Returns the identifier of the newly created communication bus.
-    rpc CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest) returns (google.protobuf.StringValue);
+    rpc CreateCommunicationBus(io.clbs.openhes.models.acquisition.CreateCommunicationBusRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: communicationbus
     // Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
@@ -117,7 +117,7 @@ service DeviceRegistryService {
     // @group: Devices
     // @tag: device
     // Creates a new device. Returns the identifier of the newly created device.
-    rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.StringValue);
+    rpc CreateDevice(io.clbs.openhes.models.acquisition.CreateDeviceRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
     // Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
@@ -162,7 +162,7 @@ service DeviceRegistryService {
     rpc GetDeviceNetworkMap(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.NetworkMap);
 
     // Creates a new device group. Returns the identifier of the newly created device group.
-    rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.StringValue);
+    rpc CreateDeviceGroup(io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest) returns (google.protobuf.Empty);
     // Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
     rpc UpdateDeviceGroup(io.clbs.openhes.models.acquisition.DeviceGroup) returns (google.protobuf.Empty);
     // Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
@@ -191,13 +191,13 @@ service DeviceRegistryService {
     // Retrieves the details of the specified modem pool.
     rpc GetModemPool(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ModemPool);
     // Creates a new modem pool. Returns the identifier of the newly created modem pool.
-    rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.StringValue);
+    rpc CreateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
     // Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
     rpc UpdateModemPool(io.clbs.openhes.models.acquisition.SetModemPoolRequest) returns (google.protobuf.Empty);
     // Deletes the specified modem pool.
     rpc DeleteModemPool(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
-    rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.StringValue);
+    rpc CreateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
     // Updates the details of an existing modem within the specified modem pool.
     rpc UpdateModem(io.clbs.openhes.models.acquisition.SetModemRequest) returns (google.protobuf.Empty);
     // Deletes th specified modem.
@@ -205,7 +205,7 @@ service DeviceRegistryService {
 
     // @group: Time-Of-Use Tables
     // Creates a new time-of-use table. Returns the identifier of the newly created table.
-    rpc CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest) returns (google.protobuf.StringValue);
+    rpc CreateTimeOfUseTable(io.clbs.openhes.models.acquisition.CreateTimeOfUseTableRequest) returns (google.protobuf.Empty);
     // @group: Time-Of-Use Tables
     // Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListTimeOfUseTables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfTimeOfUseTable);
@@ -221,7 +221,7 @@ service DeviceRegistryService {
 
     // @group: Firmware Images
     // Creates a new firmware image. Returns the identifier of the newly created firmware image.
-    rpc CreateFirmwareImage(io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest) returns (google.protobuf.StringValue);
+    rpc CreateFirmwareImage(io.clbs.openhes.models.acquisition.CreateFirmwareImageRequest) returns (google.protobuf.Empty);
     // @group: Firmware Images
     // Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListFirmwareImages(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfFirmwareImage);
@@ -246,7 +246,7 @@ service DeviceRegistryService {
 
     // @group: Fields
     // Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.StringValue);
+    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.Empty);
     // @group: Fields
     // Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
     rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);

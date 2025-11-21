@@ -75,13 +75,13 @@ type DataproxyServiceClient interface {
 	GetDeviceBulks(ctx context.Context, in *acquisition.GetDeviceBulksRequest, opts ...grpc.CallOption) (*acquisition.DeviceBulks, error)
 	// @group: Bulks
 	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
-	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
 	// Retrieves the details of the specified proxy bulk.
 	GetProxyBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
 	// Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
-	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Bulks
 	// Retrieves the the details of the specified bulk.
 	GetBulk(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Bulk, error)
@@ -108,7 +108,7 @@ type DataproxyServiceClient interface {
 	GetDeviceEvents(ctx context.Context, in *acquisition.GetDeviceEventsRequest, opts ...grpc.CallOption) (*acquisition.DeviceEvents, error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -191,9 +191,9 @@ func (c *dataproxyServiceClient) GetDeviceBulks(ctx context.Context, in *acquisi
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *dataproxyServiceClient) CreateProxyBulk(ctx context.Context, in *acquisition.CreateProxyBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_CreateProxyBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -211,9 +211,9 @@ func (c *dataproxyServiceClient) GetProxyBulk(ctx context.Context, in *wrappersp
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *dataproxyServiceClient) CreateBulk(ctx context.Context, in *acquisition.CreateBulkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_CreateBulk_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -328,9 +328,9 @@ func (c *dataproxyServiceClient) GetDeviceEvents(ctx context.Context, in *acquis
 	return out, nil
 }
 
-func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *dataproxyServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DataproxyService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -406,13 +406,13 @@ type DataproxyServiceServer interface {
 	GetDeviceBulks(context.Context, *acquisition.GetDeviceBulksRequest) (*acquisition.DeviceBulks, error)
 	// @group: Bulks
 	// Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
-	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error)
+	CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*emptypb.Empty, error)
 	// @group: Bulks
 	// Retrieves the details of the specified proxy bulk.
 	GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error)
 	// @group: Bulks
 	// Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
-	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error)
+	CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*emptypb.Empty, error)
 	// @group: Bulks
 	// Retrieves the the details of the specified bulk.
 	GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error)
@@ -439,7 +439,7 @@ type DataproxyServiceServer interface {
 	GetDeviceEvents(context.Context, *acquisition.GetDeviceEventsRequest) (*acquisition.DeviceEvents, error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
@@ -480,13 +480,13 @@ func (UnimplementedDataproxyServiceServer) CancelBulk(context.Context, *wrappers
 func (UnimplementedDataproxyServiceServer) GetDeviceBulks(context.Context, *acquisition.GetDeviceBulksRequest) (*acquisition.DeviceBulks, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceBulks not implemented")
 }
-func (UnimplementedDataproxyServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDataproxyServiceServer) CreateProxyBulk(context.Context, *acquisition.CreateProxyBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateProxyBulk not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetProxyBulk(context.Context, *wrapperspb.StringValue) (*acquisition.ProxyBulk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProxyBulk not implemented")
 }
-func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDataproxyServiceServer) CreateBulk(context.Context, *acquisition.CreateBulkRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBulk not implemented")
 }
 func (UnimplementedDataproxyServiceServer) GetBulk(context.Context, *wrapperspb.StringValue) (*acquisition.Bulk, error) {
@@ -513,7 +513,7 @@ func (UnimplementedDataproxyServiceServer) GetDeviceDataIrregularProfiles(*acqui
 func (UnimplementedDataproxyServiceServer) GetDeviceEvents(context.Context, *acquisition.GetDeviceEventsRequest) (*acquisition.DeviceEvents, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceEvents not implemented")
 }
-func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDataproxyServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
 }
 func (UnimplementedDataproxyServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {

@@ -37,14 +37,14 @@ service DataproxyService {
 
     // @group: Bulks
     // Creates a new proxy bulk. The proxy bulk is a collection of jobs where each job represents a single device. Devices must be fully defined in the request.
-    rpc CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.StringValue);
+    rpc CreateProxyBulk(io.clbs.openhes.models.acquisition.CreateProxyBulkRequest) returns (google.protobuf.Empty);
     // @group: Bulks
     // Retrieves the details of the specified proxy bulk.
     rpc GetProxyBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ProxyBulk);
 
     // @group: Bulks
     // Creates a new bulk. The bulk is a collection of jobs where each job represents a single device. Devices that are part of the bulk are identified either as a list of registered device identifiers or as a group identifier.
-    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.StringValue);
+    rpc CreateBulk(io.clbs.openhes.models.acquisition.CreateBulkRequest) returns (google.protobuf.Empty);
     // @group: Bulks
     // Retrieves the the details of the specified bulk.
     rpc GetBulk(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Bulk);
@@ -78,7 +78,7 @@ service DataproxyService {
 
     // @group: Fields
     // Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.StringValue);
+    rpc CreateFieldDescriptor(io.clbs.openhes.models.common.CreateFieldDescriptorRequest) returns (google.protobuf.Empty);
     // @group: Fields
     // Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
     rpc UpdateFieldDescriptor(io.clbs.openhes.models.common.FieldDescriptor) returns (google.protobuf.Empty);

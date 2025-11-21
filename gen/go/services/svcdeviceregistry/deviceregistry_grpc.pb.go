@@ -122,7 +122,7 @@ const (
 // The Deviceregistry service definition.
 type DeviceRegistryServiceClient interface {
 	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
-	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
 	// Retrieves the details of the specified variable.
@@ -136,7 +136,7 @@ type DeviceRegistryServiceClient interface {
 	// Removes a specified register from a variable.
 	RemoveRegisterFromVariable(ctx context.Context, in *acquisition.RemoveRegisterFromVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new device configuration register. Returns the identifier of the newly created register.
-	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListDeviceConfigurationRegisters(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationRegister, error)
 	// Retrieves the details of the specified device configuration register.
@@ -147,7 +147,7 @@ type DeviceRegistryServiceClient interface {
 	DeleteDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetDeviceConfigurationRegisterMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationRegisterMap, error)
 	// Creates a new device configuration template. Returns the identifier of the newly created template.
-	CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceConfigurationTemplates(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceConfigurationTemplate, error)
 	// Retrieves the details of the specified device configuration template.
@@ -169,7 +169,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// Creates a new communication unit. Returns the identifier of the newly created register.
-	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
@@ -197,7 +197,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: communicationbus
 	// Creates a new communication bus. Returns the identifier of the newly created communication bus.
-	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
 	// Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
@@ -217,7 +217,7 @@ type DeviceRegistryServiceClient interface {
 	// @group: Devices
 	// @tag: device
 	// Creates a new device. Returns the identifier of the newly created device.
-	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
@@ -261,7 +261,7 @@ type DeviceRegistryServiceClient interface {
 	// Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
 	GetDeviceNetworkMap(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.NetworkMap, error)
 	// Creates a new device group. Returns the identifier of the newly created device group.
-	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceGroup(ctx context.Context, in *acquisition.DeviceGroup, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
@@ -288,20 +288,20 @@ type DeviceRegistryServiceClient interface {
 	// Retrieves the details of the specified modem pool.
 	GetModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ModemPool, error)
 	// Creates a new modem pool. Returns the identifier of the newly created modem pool.
-	CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
 	UpdateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Deletes the specified modem pool.
 	DeleteModemPool(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
-	CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Updates the details of an existing modem within the specified modem pool.
 	UpdateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Deletes th specified modem.
 	DeleteModem(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Time-Of-Use Tables
 	// Creates a new time-of-use table. Returns the identifier of the newly created table.
-	CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Time-Of-Use Tables
 	// Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListTimeOfUseTables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfTimeOfUseTable, error)
@@ -316,7 +316,7 @@ type DeviceRegistryServiceClient interface {
 	DeleteTimeOfUseTable(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Firmware Images
 	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
-	CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Firmware Images
 	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFirmwareImages(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfFirmwareImage, error)
@@ -340,7 +340,7 @@ type DeviceRegistryServiceClient interface {
 	StreamDownloadFirmwareImageFile(ctx context.Context, in *acquisition.StreamDownloadFirmwareImageFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.FirmwareImageBlock], error)
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
+	CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(ctx context.Context, in *common.FieldDescriptor, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -388,9 +388,9 @@ func NewDeviceRegistryServiceClient(cc grpc.ClientConnInterface) DeviceRegistryS
 	return &deviceRegistryServiceClient{cc}
 }
 
-func (c *deviceRegistryServiceClient) CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateVariable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -458,9 +458,9 @@ func (c *deviceRegistryServiceClient) RemoveRegisterFromVariable(ctx context.Con
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateDeviceConfigurationRegister(ctx context.Context, in *acquisition.CreateDeviceConfigurationRegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDeviceConfigurationRegister_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -518,9 +518,9 @@ func (c *deviceRegistryServiceClient) GetDeviceConfigurationRegisterMap(ctx cont
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDeviceConfigurationTemplate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -618,9 +618,9 @@ func (c *deviceRegistryServiceClient) GetDriver(ctx context.Context, in *wrapper
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateCommunicationUnit(ctx context.Context, in *acquisition.CreateCommunicationUnitRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateCommunicationUnit_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -688,9 +688,9 @@ func (c *deviceRegistryServiceClient) ListCommunicationUnitLogRecords(ctx contex
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateCommunicationBus(ctx context.Context, in *acquisition.CreateCommunicationBusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateCommunicationBus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -738,9 +738,9 @@ func (c *deviceRegistryServiceClient) RemoveCommunicationUnitsFromCommunicationB
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateDevice(ctx context.Context, in *acquisition.CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDevice_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -881,9 +881,9 @@ func (c *deviceRegistryServiceClient) GetDeviceNetworkMap(ctx context.Context, i
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateDeviceGroup(ctx context.Context, in *acquisition.CreateDeviceGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateDeviceGroup_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1000,9 +1000,9 @@ func (c *deviceRegistryServiceClient) GetModemPool(ctx context.Context, in *wrap
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateModemPool(ctx context.Context, in *acquisition.SetModemPoolRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateModemPool_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1030,9 +1030,9 @@ func (c *deviceRegistryServiceClient) DeleteModemPool(ctx context.Context, in *w
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateModem(ctx context.Context, in *acquisition.SetModemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateModem_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1060,9 +1060,9 @@ func (c *deviceRegistryServiceClient) DeleteModem(ctx context.Context, in *wrapp
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateTimeOfUseTable(ctx context.Context, in *acquisition.CreateTimeOfUseTableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateTimeOfUseTable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1110,9 +1110,9 @@ func (c *deviceRegistryServiceClient) DeleteTimeOfUseTable(ctx context.Context, 
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateFirmwareImage(ctx context.Context, in *acquisition.CreateFirmwareImageRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateFirmwareImage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1202,9 +1202,9 @@ func (c *deviceRegistryServiceClient) StreamDownloadFirmwareImageFile(ctx contex
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type DeviceRegistryService_StreamDownloadFirmwareImageFileClient = grpc.ServerStreamingClient[acquisition.FirmwareImageBlock]
 
-func (c *deviceRegistryServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+func (c *deviceRegistryServiceClient) CreateFieldDescriptor(ctx context.Context, in *common.CreateFieldDescriptorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(wrapperspb.StringValue)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_CreateFieldDescriptor_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1309,7 +1309,7 @@ func (c *deviceRegistryServiceClient) UpdateObjectFields(ctx context.Context, in
 // The Deviceregistry service definition.
 type DeviceRegistryServiceServer interface {
 	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
-	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*wrapperspb.StringValue, error)
+	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*emptypb.Empty, error)
 	// Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
 	// Retrieves the details of the specified variable.
@@ -1323,7 +1323,7 @@ type DeviceRegistryServiceServer interface {
 	// Removes a specified register from a variable.
 	RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error)
 	// Creates a new device configuration register. Returns the identifier of the newly created register.
-	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error)
+	CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*emptypb.Empty, error)
 	// Retrieves a paginated list of configuration registers based on the specified criteria. The page size and page number (zero-based) are defined in the request.
 	ListDeviceConfigurationRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationRegister, error)
 	// Retrieves the details of the specified device configuration register.
@@ -1334,7 +1334,7 @@ type DeviceRegistryServiceServer interface {
 	DeleteDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	GetDeviceConfigurationRegisterMap(context.Context, *emptypb.Empty) (*acquisition.DeviceConfigurationRegisterMap, error)
 	// Creates a new device configuration template. Returns the identifier of the newly created template.
-	CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error)
+	CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// Retrieves a paginated list of device configuration templates based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceConfigurationTemplates(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationTemplate, error)
 	// Retrieves the details of the specified device configuration template.
@@ -1356,7 +1356,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationunit
 	// Creates a new communication unit. Returns the identifier of the newly created register.
-	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error)
+	CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationunit
 	// Updates an exiting communication unit. Requires the full unit specification; partial updates are not supported.
@@ -1384,7 +1384,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: communicationbus
 	// Creates a new communication bus. Returns the identifier of the newly created communication bus.
-	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error)
+	CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: communicationbus
 	// Retrieves a paginated list of communication buses. The page size and page number (zero-based) can be defined in the request.
@@ -1404,7 +1404,7 @@ type DeviceRegistryServiceServer interface {
 	// @group: Devices
 	// @tag: device
 	// Creates a new device. Returns the identifier of the newly created device.
-	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error)
+	CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
 	// Updates the details of an existing device. Fields that are omitted from the request will be left unchanged.
@@ -1448,7 +1448,7 @@ type DeviceRegistryServiceServer interface {
 	// Retrieves the network map (topology) reported by the data concentrator reports for the specified  device.
 	GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error)
 	// Creates a new device group. Returns the identifier of the newly created device group.
-	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error)
+	CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*emptypb.Empty, error)
 	// Updates the details of an existing device group. Fields that are omitted from the request will be left unchanged.
 	UpdateDeviceGroup(context.Context, *acquisition.DeviceGroup) (*emptypb.Empty, error)
 	// Retrieves a paginated list of devices groups based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
@@ -1475,20 +1475,20 @@ type DeviceRegistryServiceServer interface {
 	// Retrieves the details of the specified modem pool.
 	GetModemPool(context.Context, *wrapperspb.StringValue) (*acquisition.ModemPool, error)
 	// Creates a new modem pool. Returns the identifier of the newly created modem pool.
-	CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*wrapperspb.StringValue, error)
+	CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error)
 	// Updates the details of an existing modem pool. Fields that are omitted from the request will be left unchanged.
 	UpdateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error)
 	// Deletes the specified modem pool.
 	DeleteModemPool(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// Creates a new modem within an existing modem pool. Returns the identifier of the newly created modem.
-	CreateModem(context.Context, *acquisition.SetModemRequest) (*wrapperspb.StringValue, error)
+	CreateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error)
 	// Updates the details of an existing modem within the specified modem pool.
 	UpdateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error)
 	// Deletes th specified modem.
 	DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Time-Of-Use Tables
 	// Creates a new time-of-use table. Returns the identifier of the newly created table.
-	CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error)
+	CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*emptypb.Empty, error)
 	// @group: Time-Of-Use Tables
 	// Retrieves a paginated list of time-of-use tables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error)
@@ -1503,7 +1503,7 @@ type DeviceRegistryServiceServer interface {
 	DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Firmware Images
 	// Creates a new firmware image. Returns the identifier of the newly created firmware image.
-	CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*wrapperspb.StringValue, error)
+	CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*emptypb.Empty, error)
 	// @group: Firmware Images
 	// Retrieves a paginated list of firmware images based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListFirmwareImages(context.Context, *common.ListSelector) (*acquisition.ListOfFirmwareImage, error)
@@ -1527,7 +1527,7 @@ type DeviceRegistryServiceServer interface {
 	StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error
 	// @group: Fields
 	// Creates a new field descriptor. Returns the identifier of the newly created field descriptor.
-	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error)
+	CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error)
 	// @group: Fields
 	// Updates the details of an existing field descriptor. Fields that are omitted from the request will be left unchanged.
 	UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error)
@@ -1575,7 +1575,7 @@ type DeviceRegistryServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDeviceRegistryServiceServer struct{}
 
-func (UnimplementedDeviceRegistryServiceServer) CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateVariable not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error) {
@@ -1596,7 +1596,7 @@ func (UnimplementedDeviceRegistryServiceServer) AddRegisterToVariable(context.Co
 func (UnimplementedDeviceRegistryServiceServer) RemoveRegisterFromVariable(context.Context, *acquisition.RemoveRegisterFromVariableRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveRegisterFromVariable not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationRegister(context.Context, *acquisition.CreateDeviceConfigurationRegisterRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationRegister not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListDeviceConfigurationRegisters(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationRegister, error) {
@@ -1614,7 +1614,7 @@ func (UnimplementedDeviceRegistryServiceServer) DeleteDeviceConfigurationRegiste
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceConfigurationRegisterMap(context.Context, *emptypb.Empty) (*acquisition.DeviceConfigurationRegisterMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceConfigurationRegisterMap not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceConfigurationTemplate not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListDeviceConfigurationTemplates(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceConfigurationTemplate, error) {
@@ -1644,7 +1644,7 @@ func (UnimplementedDeviceRegistryServiceServer) CreateDriver(context.Context, *a
 func (UnimplementedDeviceRegistryServiceServer) GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriver not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationUnit(context.Context, *acquisition.CreateCommunicationUnitRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationUnit not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateCommunicationUnit(context.Context, *acquisition.CommunicationUnit) (*emptypb.Empty, error) {
@@ -1665,7 +1665,7 @@ func (UnimplementedDeviceRegistryServiceServer) GetCommunicationUnitNetworkMap(c
 func (UnimplementedDeviceRegistryServiceServer) ListCommunicationUnitLogRecords(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationUnitLogRecord, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCommunicationUnitLogRecords not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateCommunicationBus(context.Context, *acquisition.CreateCommunicationBusRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommunicationBus not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListCommunicationBuses(context.Context, *common.ListSelector) (*acquisition.ListOfCommunicationBus, error) {
@@ -1680,7 +1680,7 @@ func (UnimplementedDeviceRegistryServiceServer) AddCommunicationUnitsToCommunica
 func (UnimplementedDeviceRegistryServiceServer) RemoveCommunicationUnitsFromCommunicationBus(context.Context, *acquisition.RemoveCommunicationUnitsFromCommunicationBusRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveCommunicationUnitsFromCommunicationBus not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDevice(context.Context, *acquisition.CreateDeviceRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateDevice(context.Context, *acquisition.Device) (*emptypb.Empty, error) {
@@ -1722,7 +1722,7 @@ func (UnimplementedDeviceRegistryServiceServer) GetDeviceDeviceGroups(context.Co
 func (UnimplementedDeviceRegistryServiceServer) GetDeviceNetworkMap(context.Context, *wrapperspb.StringValue) (*acquisition.NetworkMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceNetworkMap not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateDeviceGroup(context.Context, *acquisition.CreateDeviceGroupRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceGroup not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateDeviceGroup(context.Context, *acquisition.DeviceGroup) (*emptypb.Empty, error) {
@@ -1755,7 +1755,7 @@ func (UnimplementedDeviceRegistryServiceServer) ListModemPools(context.Context, 
 func (UnimplementedDeviceRegistryServiceServer) GetModemPool(context.Context, *wrapperspb.StringValue) (*acquisition.ModemPool, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetModemPool not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModemPool not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateModemPool(context.Context, *acquisition.SetModemPoolRequest) (*emptypb.Empty, error) {
@@ -1764,7 +1764,7 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateModemPool(context.Context,
 func (UnimplementedDeviceRegistryServiceServer) DeleteModemPool(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModemPool not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateModem(context.Context, *acquisition.SetModemRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModem not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateModem(context.Context, *acquisition.SetModemRequest) (*emptypb.Empty, error) {
@@ -1773,7 +1773,7 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateModem(context.Context, *ac
 func (UnimplementedDeviceRegistryServiceServer) DeleteModem(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteModem not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateTimeOfUseTable(context.Context, *acquisition.CreateTimeOfUseTableRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTimeOfUseTable not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListTimeOfUseTables(context.Context, *common.ListSelector) (*acquisition.ListOfTimeOfUseTable, error) {
@@ -1788,7 +1788,7 @@ func (UnimplementedDeviceRegistryServiceServer) UpdateTimeOfUseTable(context.Con
 func (UnimplementedDeviceRegistryServiceServer) DeleteTimeOfUseTable(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTimeOfUseTable not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateFirmwareImage(context.Context, *acquisition.CreateFirmwareImageRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFirmwareImage not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) ListFirmwareImages(context.Context, *common.ListSelector) (*acquisition.ListOfFirmwareImage, error) {
@@ -1812,7 +1812,7 @@ func (UnimplementedDeviceRegistryServiceServer) StreamUploadFirmwareImageFile(gr
 func (UnimplementedDeviceRegistryServiceServer) StreamDownloadFirmwareImageFile(*acquisition.StreamDownloadFirmwareImageFileRequest, grpc.ServerStreamingServer[acquisition.FirmwareImageBlock]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDownloadFirmwareImageFile not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*wrapperspb.StringValue, error) {
+func (UnimplementedDeviceRegistryServiceServer) CreateFieldDescriptor(context.Context, *common.CreateFieldDescriptorRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFieldDescriptor not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateFieldDescriptor(context.Context, *common.FieldDescriptor) (*emptypb.Empty, error) {
