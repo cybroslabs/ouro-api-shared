@@ -125,16 +125,22 @@ message DeviceNeightbour {
     string id                = 2;  // The unique identifier of the neighbour. It is either a communication unit identifier or a device identifier.
 }
 
+message CurrentDeviceCommunicationUnit {
+    repeated AttributeSelector attributes          = 1;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
+    google.protobuf.Timestamp device_registered_at = 2;  // The timestamp when the device was registered with this communication unit.
+}
+
 message SetCurrentDeviceCommunicationUnitRequest {
-    string communication_unit_id              = 1;  // The unique identifier of the communication unit.
-    repeated AttributeSelector attributes     = 2;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
-    ApplicationProtocol proposed_app_protocol = 3;  // The application protocol to be used as a default.
+    string communication_unit_id                    = 1;  // The unique identifier of the communication unit.
+    repeated CurrentDeviceCommunicationUnit devices = 2;  // The selectors for one or more devices, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
+    ApplicationProtocol proposed_app_protocol       = 3;  // The application protocol to be used as a default.
 }
 
 message SetCurrentDeviceCommunicationUnitInternalRequest {
-    string communication_unit_id              = 1;  // The unique identifier of the communication unit.
-    common.ListSelector device_selector       = 2;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
-    ApplicationProtocol proposed_app_protocol = 3;  // The application protocol to be used as a default.
+    string communication_unit_id                   = 1;  // The unique identifier of the communication unit.
+    common.ListSelector device_selector            = 2;  // The device selector, using attributes. It is used to select the device for which the device the communication unit is being set as primary.
+    ApplicationProtocol proposed_app_protocol      = 3;  // The application protocol to be used as a default.
+    google.protobuf.Timestamp device_registered_at = 4;  // The timestamp when the device was registered with this communication unit.
 }
 
 // Defines a stable object for periodical profile storage.
