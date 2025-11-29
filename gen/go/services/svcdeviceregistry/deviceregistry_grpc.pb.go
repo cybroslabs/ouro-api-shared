@@ -113,6 +113,7 @@ const (
 	DeviceRegistryService_SetNeightbours_FullMethodName                                                   = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetNeightbours"
 	DeviceRegistryService_SetCurrentDeviceCommunicationUnit_FullMethodName                                = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/SetCurrentDeviceCommunicationUnit"
 	DeviceRegistryService_UpdateObjectFields_FullMethodName                                               = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/UpdateObjectFields"
+	DeviceRegistryService_GetSbom_FullMethodName                                                          = "/io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService/GetSbom"
 )
 
 // DeviceRegistryServiceClient is the client API for DeviceRegistryService service.
@@ -378,6 +379,9 @@ type DeviceRegistryServiceClient interface {
 	// @group: Metadata
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
 type deviceRegistryServiceClient struct {
@@ -1302,6 +1306,16 @@ func (c *deviceRegistryServiceClient) UpdateObjectFields(ctx context.Context, in
 	return out, nil
 }
 
+func (c *deviceRegistryServiceClient) GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DeviceRegistryService_GetSbom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeviceRegistryServiceServer is the server API for DeviceRegistryService service.
 // All implementations must embed UnimplementedDeviceRegistryServiceServer
 // for forward compatibility.
@@ -1565,6 +1579,9 @@ type DeviceRegistryServiceServer interface {
 	// @group: Metadata
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	mustEmbedUnimplementedDeviceRegistryServiceServer()
 }
 
@@ -1841,6 +1858,9 @@ func (UnimplementedDeviceRegistryServiceServer) SetCurrentDeviceCommunicationUni
 }
 func (UnimplementedDeviceRegistryServiceServer) UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateObjectFields not implemented")
+}
+func (UnimplementedDeviceRegistryServiceServer) GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSbom not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) mustEmbedUnimplementedDeviceRegistryServiceServer() {}
 func (UnimplementedDeviceRegistryServiceServer) testEmbeddedByValue()                               {}
@@ -3429,6 +3449,24 @@ func _DeviceRegistryService_UpdateObjectFields_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceRegistryService_GetSbom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceRegistryServiceServer).GetSbom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceRegistryService_GetSbom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceRegistryServiceServer).GetSbom(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeviceRegistryService_ServiceDesc is the grpc.ServiceDesc for DeviceRegistryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3775,6 +3813,10 @@ var DeviceRegistryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateObjectFields",
 			Handler:    _DeviceRegistryService_UpdateObjectFields_Handler,
+		},
+		{
+			MethodName: "GetSbom",
+			Handler:    _DeviceRegistryService_GetSbom_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

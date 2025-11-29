@@ -436,6 +436,7 @@
     "filename": "service-system-apiservice.md",
     "title": "ApiService - System",
     "tags0": [
+      "GetSbom",
       "SetLicense",
       "GetObjectFlags",
       "SetScreenConfig",

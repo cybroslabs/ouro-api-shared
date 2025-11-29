@@ -142,6 +142,7 @@ const (
 	ApiService_GetScreenConfigs_FullMethodName                                                 = "/io.clbs.openhes.services.svcapi.ApiService/GetScreenConfigs"
 	ApiService_DeleteScreenConfig_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/DeleteScreenConfig"
 	ApiService_GetObjectFlags_FullMethodName                                                   = "/io.clbs.openhes.services.svcapi.ApiService/GetObjectFlags"
+	ApiService_GetSbom_FullMethodName                                                          = "/io.clbs.openhes.services.svcapi.ApiService/GetSbom"
 	ApiService_GetTranslations_FullMethodName                                                  = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
 	ApiService_SetTranslationMissing_FullMethodName                                            = "/io.clbs.openhes.services.svcapi.ApiService/SetTranslationMissing"
 	ApiService_UpdateTranslations_FullMethodName                                               = "/io.clbs.openhes.services.svcapi.ApiService/UpdateTranslations"
@@ -552,6 +553,9 @@ type ApiServiceClient interface {
 	// @group: System
 	// Retrieves the flags associated with the specified object.
 	GetObjectFlags(ctx context.Context, in *system.ObjectFlagsRequest, opts ...grpc.CallOption) (*system.ObjectFlagsResponse, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error)
@@ -1777,6 +1781,16 @@ func (c *apiServiceClient) GetObjectFlags(ctx context.Context, in *system.Object
 	return out, nil
 }
 
+func (c *apiServiceClient) GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, ApiService_GetSbom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiServiceClient) GetTranslations(ctx context.Context, in *localization.GetTranslationsRequest, opts ...grpc.CallOption) (*localization.GetTranslationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(localization.GetTranslationsResponse)
@@ -2299,6 +2313,9 @@ type ApiServiceServer interface {
 	// @group: System
 	// Retrieves the flags associated with the specified object.
 	GetObjectFlags(context.Context, *system.ObjectFlagsRequest) (*system.ObjectFlagsResponse, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error)
@@ -2686,6 +2703,9 @@ func (UnimplementedApiServiceServer) DeleteScreenConfig(context.Context, *system
 }
 func (UnimplementedApiServiceServer) GetObjectFlags(context.Context, *system.ObjectFlagsRequest) (*system.ObjectFlagsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetObjectFlags not implemented")
+}
+func (UnimplementedApiServiceServer) GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSbom not implemented")
 }
 func (UnimplementedApiServiceServer) GetTranslations(context.Context, *localization.GetTranslationsRequest) (*localization.GetTranslationsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTranslations not implemented")
@@ -4757,6 +4777,24 @@ func _ApiService_GetObjectFlags_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiService_GetSbom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServiceServer).GetSbom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiService_GetSbom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServiceServer).GetSbom(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiService_GetTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(localization.GetTranslationsRequest)
 	if err := dec(in); err != nil {
@@ -5393,6 +5431,10 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObjectFlags",
 			Handler:    _ApiService_GetObjectFlags_Handler,
+		},
+		{
+			MethodName: "GetSbom",
+			Handler:    _ApiService_GetSbom_Handler,
 		},
 		{
 			MethodName: "GetTranslations",

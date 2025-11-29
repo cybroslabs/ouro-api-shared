@@ -41,6 +41,7 @@ const (
 	TaskmasterService_SetCurrentDeviceCommunicationUnit_FullMethodName  = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/SetCurrentDeviceCommunicationUnit"
 	TaskmasterService_GetFirmwareImage_FullMethodName                   = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetFirmwareImage"
 	TaskmasterService_GetFirmwareImageBlock_FullMethodName              = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetFirmwareImageBlock"
+	TaskmasterService_GetSbom_FullMethodName                            = "/io.clbs.openhes.services.svctaskmaster.TaskmasterService/GetSbom"
 )
 
 // TaskmasterServiceClient is the client API for TaskmasterService service.
@@ -107,6 +108,9 @@ type TaskmasterServiceClient interface {
 	// @group: Firmware Images
 	// Retrieves a block of firmware image data for the specified firmware image.
 	GetFirmwareImageBlock(ctx context.Context, in *acquisition.GetFirmwareImageBlockRequest, opts ...grpc.CallOption) (*acquisition.FirmwareImageBlock, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
 type taskmasterServiceClient struct {
@@ -297,6 +301,16 @@ func (c *taskmasterServiceClient) GetFirmwareImageBlock(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *taskmasterServiceClient) GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, TaskmasterService_GetSbom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TaskmasterServiceServer is the server API for TaskmasterService service.
 // All implementations must embed UnimplementedTaskmasterServiceServer
 // for forward compatibility.
@@ -361,6 +375,9 @@ type TaskmasterServiceServer interface {
 	// @group: Firmware Images
 	// Retrieves a block of firmware image data for the specified firmware image.
 	GetFirmwareImageBlock(context.Context, *acquisition.GetFirmwareImageBlockRequest) (*acquisition.FirmwareImageBlock, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	mustEmbedUnimplementedTaskmasterServiceServer()
 }
 
@@ -424,6 +441,9 @@ func (UnimplementedTaskmasterServiceServer) GetFirmwareImage(context.Context, *w
 }
 func (UnimplementedTaskmasterServiceServer) GetFirmwareImageBlock(context.Context, *acquisition.GetFirmwareImageBlockRequest) (*acquisition.FirmwareImageBlock, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFirmwareImageBlock not implemented")
+}
+func (UnimplementedTaskmasterServiceServer) GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSbom not implemented")
 }
 func (UnimplementedTaskmasterServiceServer) mustEmbedUnimplementedTaskmasterServiceServer() {}
 func (UnimplementedTaskmasterServiceServer) testEmbeddedByValue()                           {}
@@ -770,6 +790,24 @@ func _TaskmasterService_GetFirmwareImageBlock_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TaskmasterService_GetSbom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskmasterServiceServer).GetSbom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskmasterService_GetSbom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskmasterServiceServer).GetSbom(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TaskmasterService_ServiceDesc is the grpc.ServiceDesc for TaskmasterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -848,6 +886,10 @@ var TaskmasterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFirmwareImageBlock",
 			Handler:    _TaskmasterService_GetFirmwareImageBlock_Handler,
+		},
+		{
+			MethodName: "GetSbom",
+			Handler:    _TaskmasterService_GetSbom_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

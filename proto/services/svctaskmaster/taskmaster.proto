@@ -73,4 +73,8 @@ service TaskmasterService {
     // @group: Firmware Images
     // Retrieves a block of firmware image data for the specified firmware image.
     rpc GetFirmwareImageBlock(io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest) returns (io.clbs.openhes.models.acquisition.FirmwareImageBlock);
+
+    // @group: System
+    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+    rpc GetSbom(google.protobuf.Empty) returns (google.protobuf.StringValue);
 }

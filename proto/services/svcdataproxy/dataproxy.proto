@@ -92,4 +92,8 @@ service DataproxyService {
     // @group: Metadata
     // Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
     rpc UpdateObjectFields(io.clbs.openhes.models.common.UpdateObjectFieldsRequest) returns (google.protobuf.Empty);
+
+    // @group: System
+    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+    rpc GetSbom(google.protobuf.Empty) returns (google.protobuf.StringValue);
 }

@@ -45,6 +45,7 @@ const (
 	DataproxyService_DeleteFieldDescriptor_FullMethodName          = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/DeleteFieldDescriptor"
 	DataproxyService_SetManagedFields_FullMethodName               = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/SetManagedFields"
 	DataproxyService_UpdateObjectFields_FullMethodName             = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/UpdateObjectFields"
+	DataproxyService_GetSbom_FullMethodName                        = "/io.clbs.openhes.services.svcdataproxy.DataproxyService/GetSbom"
 )
 
 // DataproxyServiceClient is the client API for DataproxyService service.
@@ -121,6 +122,9 @@ type DataproxyServiceClient interface {
 	// @group: Metadata
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
 type dataproxyServiceClient struct {
@@ -378,6 +382,16 @@ func (c *dataproxyServiceClient) UpdateObjectFields(ctx context.Context, in *com
 	return out, nil
 }
 
+func (c *dataproxyServiceClient) GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, DataproxyService_GetSbom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataproxyServiceServer is the server API for DataproxyService service.
 // All implementations must embed UnimplementedDataproxyServiceServer
 // for forward compatibility.
@@ -452,6 +466,9 @@ type DataproxyServiceServer interface {
 	// @group: Metadata
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	mustEmbedUnimplementedDataproxyServiceServer()
 }
 
@@ -527,6 +544,9 @@ func (UnimplementedDataproxyServiceServer) SetManagedFields(context.Context, *co
 }
 func (UnimplementedDataproxyServiceServer) UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateObjectFields not implemented")
+}
+func (UnimplementedDataproxyServiceServer) GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSbom not implemented")
 }
 func (UnimplementedDataproxyServiceServer) mustEmbedUnimplementedDataproxyServiceServer() {}
 func (UnimplementedDataproxyServiceServer) testEmbeddedByValue()                          {}
@@ -924,6 +944,24 @@ func _DataproxyService_UpdateObjectFields_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataproxyService_GetSbom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataproxyServiceServer).GetSbom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataproxyService_GetSbom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataproxyServiceServer).GetSbom(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataproxyService_ServiceDesc is the grpc.ServiceDesc for DataproxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1006,6 +1044,10 @@ var DataproxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateObjectFields",
 			Handler:    _DataproxyService_UpdateObjectFields_Handler,
+		},
+		{
+			MethodName: "GetSbom",
+			Handler:    _DataproxyService_GetSbom_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

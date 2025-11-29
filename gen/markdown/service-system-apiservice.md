@@ -82,3 +82,13 @@ GetObjectFlags(io.clbs.openhes.models.system.ObjectFlagsRequest) returns (io.clb
 - Input: [`io.clbs.openhes.models.system.ObjectFlagsRequest`](model-io-clbs-openhes-models-system-objectflagsrequest.md)
 - Output: [`io.clbs.openhes.models.system.ObjectFlagsResponse`](model-io-clbs-openhes-models-system-objectflagsresponse.md)
 
+## GetSbom
+
+Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+
+```proto
+GetSbom() returns (google.protobuf.StringValue)
+```
+
+- Output: `google.protobuf.StringValue`
+

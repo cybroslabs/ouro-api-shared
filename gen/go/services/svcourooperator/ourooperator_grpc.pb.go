@@ -35,6 +35,7 @@ const (
 	OuroOperatorService_GetLicense_FullMethodName                 = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicense"
 	OuroOperatorService_GetLicenseRequestCode_FullMethodName      = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetLicenseRequestCode"
 	OuroOperatorService_SetLicense_FullMethodName                 = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/SetLicense"
+	OuroOperatorService_GetSbom_FullMethodName                    = "/io.clbs.openhes.services.svcourooperator.OuroOperatorService/GetSbom"
 )
 
 // OuroOperatorServiceClient is the client API for OuroOperatorService service.
@@ -72,6 +73,9 @@ type OuroOperatorServiceClient interface {
 	GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// Creates a new license key. Used only for air-gapped installations.
 	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
 type ouroOperatorServiceClient struct {
@@ -202,6 +206,16 @@ func (c *ouroOperatorServiceClient) SetLicense(ctx context.Context, in *wrappers
 	return out, nil
 }
 
+func (c *ouroOperatorServiceClient) GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, OuroOperatorService_GetSbom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OuroOperatorServiceServer is the server API for OuroOperatorService service.
 // All implementations must embed UnimplementedOuroOperatorServiceServer
 // for forward compatibility.
@@ -237,6 +251,9 @@ type OuroOperatorServiceServer interface {
 	GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	// Creates a new license key. Used only for air-gapped installations.
 	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	mustEmbedUnimplementedOuroOperatorServiceServer()
 }
 
@@ -282,6 +299,9 @@ func (UnimplementedOuroOperatorServiceServer) GetLicenseRequestCode(context.Cont
 }
 func (UnimplementedOuroOperatorServiceServer) SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetLicense not implemented")
+}
+func (UnimplementedOuroOperatorServiceServer) GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSbom not implemented")
 }
 func (UnimplementedOuroOperatorServiceServer) mustEmbedUnimplementedOuroOperatorServiceServer() {}
 func (UnimplementedOuroOperatorServiceServer) testEmbeddedByValue()                             {}
@@ -520,6 +540,24 @@ func _OuroOperatorService_SetLicense_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OuroOperatorService_GetSbom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OuroOperatorServiceServer).GetSbom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OuroOperatorService_GetSbom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OuroOperatorServiceServer).GetSbom(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OuroOperatorService_ServiceDesc is the grpc.ServiceDesc for OuroOperatorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,6 +612,10 @@ var OuroOperatorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetLicense",
 			Handler:    _OuroOperatorService_SetLicense_Handler,
+		},
+		{
+			MethodName: "GetSbom",
+			Handler:    _OuroOperatorService_GetSbom_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

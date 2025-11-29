@@ -13,6 +13,7 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,6 +25,7 @@ const (
 	CryptoService_Dlms_FullMethodName            = "/io.clbs.openhes.services.svccrypto.CryptoService/Dlms"
 	CryptoService_GetCryptoSecret_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryptoService/GetCryptoSecret"
 	CryptoService_SetCryptoSecret_FullMethodName = "/io.clbs.openhes.services.svccrypto.CryptoService/SetCryptoSecret"
+	CryptoService_GetSbom_FullMethodName         = "/io.clbs.openhes.services.svccrypto.CryptoService/GetSbom"
 )
 
 // CryptoServiceClient is the client API for CryptoService service.
@@ -41,6 +43,9 @@ type CryptoServiceClient interface {
 	// @group: Cryptography
 	// Creates or updates a cryptographic secret. If a secret with the same identifier already exists, it is replaced.
 	SetCryptoSecret(ctx context.Context, in *crypto.SetCryptoSecretRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
 type cryptoServiceClient struct {
@@ -84,6 +89,16 @@ func (c *cryptoServiceClient) SetCryptoSecret(ctx context.Context, in *crypto.Se
 	return out, nil
 }
 
+func (c *cryptoServiceClient) GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, CryptoService_GetSbom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CryptoServiceServer is the server API for CryptoService service.
 // All implementations must embed UnimplementedCryptoServiceServer
 // for forward compatibility.
@@ -99,6 +114,9 @@ type CryptoServiceServer interface {
 	// @group: Cryptography
 	// Creates or updates a cryptographic secret. If a secret with the same identifier already exists, it is replaced.
 	SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	mustEmbedUnimplementedCryptoServiceServer()
 }
 
@@ -117,6 +135,9 @@ func (UnimplementedCryptoServiceServer) GetCryptoSecret(context.Context, *crypto
 }
 func (UnimplementedCryptoServiceServer) SetCryptoSecret(context.Context, *crypto.SetCryptoSecretRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetCryptoSecret not implemented")
+}
+func (UnimplementedCryptoServiceServer) GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSbom not implemented")
 }
 func (UnimplementedCryptoServiceServer) mustEmbedUnimplementedCryptoServiceServer() {}
 func (UnimplementedCryptoServiceServer) testEmbeddedByValue()                       {}
@@ -182,6 +203,24 @@ func _CryptoService_SetCryptoSecret_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CryptoService_GetSbom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CryptoServiceServer).GetSbom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CryptoService_GetSbom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CryptoServiceServer).GetSbom(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CryptoService_ServiceDesc is the grpc.ServiceDesc for CryptoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +235,10 @@ var CryptoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetCryptoSecret",
 			Handler:    _CryptoService_SetCryptoSecret_Handler,
+		},
+		{
+			MethodName: "GetSbom",
+			Handler:    _CryptoService_GetSbom_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

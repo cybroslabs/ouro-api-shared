@@ -361,6 +361,8 @@ const (
 	// ApiServiceGetObjectFlagsProcedure is the fully-qualified name of the ApiService's GetObjectFlags
 	// RPC.
 	ApiServiceGetObjectFlagsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetObjectFlags"
+	// ApiServiceGetSbomProcedure is the fully-qualified name of the ApiService's GetSbom RPC.
+	ApiServiceGetSbomProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetSbom"
 	// ApiServiceGetTranslationsProcedure is the fully-qualified name of the ApiService's
 	// GetTranslations RPC.
 	ApiServiceGetTranslationsProcedure = "/io.clbs.openhes.services.svcapi.ApiService/GetTranslations"
@@ -791,6 +793,9 @@ type ApiServiceClient interface {
 	// @group: System
 	// Retrieves the flags associated with the specified object.
 	GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
@@ -1524,6 +1529,12 @@ func NewApiServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(apiServiceMethods.ByName("GetObjectFlags")),
 			connect.WithClientOptions(opts...),
 		),
+		getSbom: connect.NewClient[emptypb.Empty, wrapperspb.StringValue](
+			httpClient,
+			baseURL+ApiServiceGetSbomProcedure,
+			connect.WithSchema(apiServiceMethods.ByName("GetSbom")),
+			connect.WithClientOptions(opts...),
+		),
 		getTranslations: connect.NewClient[localization.GetTranslationsRequest, localization.GetTranslationsResponse](
 			httpClient,
 			baseURL+ApiServiceGetTranslationsProcedure,
@@ -1715,6 +1726,7 @@ type apiServiceClient struct {
 	getScreenConfigs                                                 *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	deleteScreenConfig                                               *connect.Client[system.ScreenConfigSelector, emptypb.Empty]
 	getObjectFlags                                                   *connect.Client[system.ObjectFlagsRequest, system.ObjectFlagsResponse]
+	getSbom                                                          *connect.Client[emptypb.Empty, wrapperspb.StringValue]
 	getTranslations                                                  *connect.Client[localization.GetTranslationsRequest, localization.GetTranslationsResponse]
 	setTranslationMissing                                            *connect.Client[localization.MissingTranslationRequest, emptypb.Empty]
 	updateTranslations                                               *connect.Client[localization.UpdateTranslationsRequest, emptypb.Empty]
@@ -2324,6 +2336,11 @@ func (c *apiServiceClient) GetObjectFlags(ctx context.Context, req *connect.Requ
 	return c.getObjectFlags.CallUnary(ctx, req)
 }
 
+// GetSbom calls io.clbs.openhes.services.svcapi.ApiService.GetSbom.
+func (c *apiServiceClient) GetSbom(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
+	return c.getSbom.CallUnary(ctx, req)
+}
+
 // GetTranslations calls io.clbs.openhes.services.svcapi.ApiService.GetTranslations.
 func (c *apiServiceClient) GetTranslations(ctx context.Context, req *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {
 	return c.getTranslations.CallUnary(ctx, req)
@@ -2778,6 +2795,9 @@ type ApiServiceHandler interface {
 	// @group: System
 	// Retrieves the flags associated with the specified object.
 	GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error)
+	// @group: System
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	GetSbom(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: Globalization
 	// Retrieves the translation data.
 	GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error)
@@ -3507,6 +3527,12 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(apiServiceMethods.ByName("GetObjectFlags")),
 		connect.WithHandlerOptions(opts...),
 	)
+	apiServiceGetSbomHandler := connect.NewUnaryHandler(
+		ApiServiceGetSbomProcedure,
+		svc.GetSbom,
+		connect.WithSchema(apiServiceMethods.ByName("GetSbom")),
+		connect.WithHandlerOptions(opts...),
+	)
 	apiServiceGetTranslationsHandler := connect.NewUnaryHandler(
 		ApiServiceGetTranslationsProcedure,
 		svc.GetTranslations,
@@ -3809,6 +3835,8 @@ func NewApiServiceHandler(svc ApiServiceHandler, opts ...connect.HandlerOption) 
 			apiServiceDeleteScreenConfigHandler.ServeHTTP(w, r)
 		case ApiServiceGetObjectFlagsProcedure:
 			apiServiceGetObjectFlagsHandler.ServeHTTP(w, r)
+		case ApiServiceGetSbomProcedure:
+			apiServiceGetSbomHandler.ServeHTTP(w, r)
 		case ApiServiceGetTranslationsProcedure:
 			apiServiceGetTranslationsHandler.ServeHTTP(w, r)
 		case ApiServiceSetTranslationMissingProcedure:
@@ -4296,6 +4324,10 @@ func (UnimplementedApiServiceHandler) DeleteScreenConfig(context.Context, *conne
 
 func (UnimplementedApiServiceHandler) GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetObjectFlags is not implemented"))
+}
+
+func (UnimplementedApiServiceHandler) GetSbom(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("io.clbs.openhes.services.svcapi.ApiService.GetSbom is not implemented"))
 }
 
 func (UnimplementedApiServiceHandler) GetTranslations(context.Context, *connect.Request[localization.GetTranslationsRequest]) (*connect.Response[localization.GetTranslationsResponse], error) {

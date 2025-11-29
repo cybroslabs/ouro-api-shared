@@ -28,7 +28,7 @@ var File_services_svcdataproxy_dataproxy_proto protoreflect.FileDescriptor
 
 const file_services_svcdataproxy_dataproxy_proto_rawDesc = "" +
 	"\n" +
-	"%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto2\xe6\x12\n" +
+	"%services/svcdataproxy/dataproxy.proto\x12%io.clbs.openhes.services.svcdataproxy\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto\x1a\x12common/types.proto2\xa7\x13\n" +
 	"\x10DataproxyService\x12h\n" +
 	"\tListBulks\x12+.io.clbs.openhes.models.common.ListSelector\x1a..io.clbs.openhes.models.acquisition.ListOfBulk\x12z\n" +
 	"\fListBulkJobs\x127.io.clbs.openhes.models.acquisition.ListBulkJobsRequest\x1a1.io.clbs.openhes.models.acquisition.ListOfBulkJob\x12W\n" +
@@ -55,7 +55,8 @@ const file_services_svcdataproxy_dataproxy_proto_rawDesc = "" +
 	"\x15UpdateFieldDescriptor\x12..io.clbs.openhes.models.common.FieldDescriptor\x1a\x16.google.protobuf.Empty\x12g\n" +
 	"\x15DeleteFieldDescriptor\x126.io.clbs.openhes.models.common.FieldDescriptorSelector\x1a\x16.google.protobuf.Empty\x12b\n" +
 	"\x10SetManagedFields\x126.io.clbs.openhes.models.common.SetManagedFieldsRequest\x1a\x16.google.protobuf.Empty\x12f\n" +
-	"\x12UpdateObjectFields\x128.io.clbs.openhes.models.common.UpdateObjectFieldsRequest\x1a\x16.google.protobuf.EmptyBDZBgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcdataproxyb\beditionsp\xe8\a"
+	"\x12UpdateObjectFields\x128.io.clbs.openhes.models.common.UpdateObjectFieldsRequest\x1a\x16.google.protobuf.Empty\x12?\n" +
+	"\aGetSbom\x12\x16.google.protobuf.Empty\x1a\x1c.google.protobuf.StringValueBDZBgithub.com/cybroslabs/ouro-api-shared/gen/go/services/svcdataproxyb\beditionsp\xe8\a"
 
 var file_services_svcdataproxy_dataproxy_proto_goTypes = []any{
 	(*common.ListSelector)(nil),                 // 0: io.clbs.openhes.models.common.ListSelector
@@ -72,10 +73,10 @@ var file_services_svcdataproxy_dataproxy_proto_goTypes = []any{
 	(*common.FieldDescriptorSelector)(nil),      // 11: io.clbs.openhes.models.common.FieldDescriptorSelector
 	(*common.SetManagedFieldsRequest)(nil),      // 12: io.clbs.openhes.models.common.SetManagedFieldsRequest
 	(*common.UpdateObjectFieldsRequest)(nil),    // 13: io.clbs.openhes.models.common.UpdateObjectFieldsRequest
-	(*acquisition.ListOfBulk)(nil),              // 14: io.clbs.openhes.models.acquisition.ListOfBulk
-	(*acquisition.ListOfBulkJob)(nil),           // 15: io.clbs.openhes.models.acquisition.ListOfBulkJob
-	(*acquisition.BulkJob)(nil),                 // 16: io.clbs.openhes.models.acquisition.BulkJob
-	(*emptypb.Empty)(nil),                       // 17: google.protobuf.Empty
+	(*emptypb.Empty)(nil),                       // 14: google.protobuf.Empty
+	(*acquisition.ListOfBulk)(nil),              // 15: io.clbs.openhes.models.acquisition.ListOfBulk
+	(*acquisition.ListOfBulkJob)(nil),           // 16: io.clbs.openhes.models.acquisition.ListOfBulkJob
+	(*acquisition.BulkJob)(nil),                 // 17: io.clbs.openhes.models.acquisition.BulkJob
 	(*acquisition.DeviceBulks)(nil),             // 18: io.clbs.openhes.models.acquisition.DeviceBulks
 	(*acquisition.ProxyBulk)(nil),               // 19: io.clbs.openhes.models.acquisition.ProxyBulk
 	(*acquisition.Bulk)(nil),                    // 20: io.clbs.openhes.models.acquisition.Bulk
@@ -109,30 +110,32 @@ var file_services_svcdataproxy_dataproxy_proto_depIdxs = []int32{
 	11, // 19: io.clbs.openhes.services.svcdataproxy.DataproxyService.DeleteFieldDescriptor:input_type -> io.clbs.openhes.models.common.FieldDescriptorSelector
 	12, // 20: io.clbs.openhes.services.svcdataproxy.DataproxyService.SetManagedFields:input_type -> io.clbs.openhes.models.common.SetManagedFieldsRequest
 	13, // 21: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateObjectFields:input_type -> io.clbs.openhes.models.common.UpdateObjectFieldsRequest
-	14, // 22: io.clbs.openhes.services.svcdataproxy.DataproxyService.ListBulks:output_type -> io.clbs.openhes.models.acquisition.ListOfBulk
-	15, // 23: io.clbs.openhes.services.svcdataproxy.DataproxyService.ListBulkJobs:output_type -> io.clbs.openhes.models.acquisition.ListOfBulkJob
-	16, // 24: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetBulkJob:output_type -> io.clbs.openhes.models.acquisition.BulkJob
-	17, // 25: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateBulkJob:output_type -> google.protobuf.Empty
-	17, // 26: io.clbs.openhes.services.svcdataproxy.DataproxyService.CancelBulk:output_type -> google.protobuf.Empty
-	18, // 27: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceBulks:output_type -> io.clbs.openhes.models.acquisition.DeviceBulks
-	17, // 28: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateProxyBulk:output_type -> google.protobuf.Empty
-	19, // 29: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetProxyBulk:output_type -> io.clbs.openhes.models.acquisition.ProxyBulk
-	17, // 30: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateBulk:output_type -> google.protobuf.Empty
-	20, // 31: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetBulk:output_type -> io.clbs.openhes.models.acquisition.Bulk
-	17, // 32: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateBulk:output_type -> google.protobuf.Empty
-	21, // 33: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceData:output_type -> io.clbs.openhes.models.acquisition.DeviceData
-	22, // 34: io.clbs.openhes.services.svcdataproxy.DataproxyService.ListDeviceDataInfo:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
-	23, // 35: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
-	24, // 36: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
-	25, // 37: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
-	26, // 38: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceEvents:output_type -> io.clbs.openhes.models.acquisition.DeviceEvents
-	2,  // 39: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
-	17, // 40: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
-	17, // 41: io.clbs.openhes.services.svcdataproxy.DataproxyService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
-	17, // 42: io.clbs.openhes.services.svcdataproxy.DataproxyService.SetManagedFields:output_type -> google.protobuf.Empty
-	17, // 43: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateObjectFields:output_type -> google.protobuf.Empty
-	22, // [22:44] is the sub-list for method output_type
-	0,  // [0:22] is the sub-list for method input_type
+	14, // 22: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetSbom:input_type -> google.protobuf.Empty
+	15, // 23: io.clbs.openhes.services.svcdataproxy.DataproxyService.ListBulks:output_type -> io.clbs.openhes.models.acquisition.ListOfBulk
+	16, // 24: io.clbs.openhes.services.svcdataproxy.DataproxyService.ListBulkJobs:output_type -> io.clbs.openhes.models.acquisition.ListOfBulkJob
+	17, // 25: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetBulkJob:output_type -> io.clbs.openhes.models.acquisition.BulkJob
+	14, // 26: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateBulkJob:output_type -> google.protobuf.Empty
+	14, // 27: io.clbs.openhes.services.svcdataproxy.DataproxyService.CancelBulk:output_type -> google.protobuf.Empty
+	18, // 28: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceBulks:output_type -> io.clbs.openhes.models.acquisition.DeviceBulks
+	14, // 29: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateProxyBulk:output_type -> google.protobuf.Empty
+	19, // 30: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetProxyBulk:output_type -> io.clbs.openhes.models.acquisition.ProxyBulk
+	14, // 31: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateBulk:output_type -> google.protobuf.Empty
+	20, // 32: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetBulk:output_type -> io.clbs.openhes.models.acquisition.Bulk
+	14, // 33: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateBulk:output_type -> google.protobuf.Empty
+	21, // 34: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceData:output_type -> io.clbs.openhes.models.acquisition.DeviceData
+	22, // 35: io.clbs.openhes.services.svcdataproxy.DataproxyService.ListDeviceDataInfo:output_type -> io.clbs.openhes.models.acquisition.ListOfDeviceDataInfo
+	23, // 36: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataRegisters:output_type -> io.clbs.openhes.models.acquisition.RegisterValues
+	24, // 37: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataProfiles:output_type -> io.clbs.openhes.models.acquisition.ProfileValues
+	25, // 38: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceDataIrregularProfiles:output_type -> io.clbs.openhes.models.acquisition.IrregularProfileValues
+	26, // 39: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetDeviceEvents:output_type -> io.clbs.openhes.models.acquisition.DeviceEvents
+	2,  // 40: io.clbs.openhes.services.svcdataproxy.DataproxyService.CreateFieldDescriptor:output_type -> google.protobuf.StringValue
+	14, // 41: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateFieldDescriptor:output_type -> google.protobuf.Empty
+	14, // 42: io.clbs.openhes.services.svcdataproxy.DataproxyService.DeleteFieldDescriptor:output_type -> google.protobuf.Empty
+	14, // 43: io.clbs.openhes.services.svcdataproxy.DataproxyService.SetManagedFields:output_type -> google.protobuf.Empty
+	14, // 44: io.clbs.openhes.services.svcdataproxy.DataproxyService.UpdateObjectFields:output_type -> google.protobuf.Empty
+	2,  // 45: io.clbs.openhes.services.svcdataproxy.DataproxyService.GetSbom:output_type -> google.protobuf.StringValue
+	23, // [23:46] is the sub-list for method output_type
+	0,  // [0:23] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

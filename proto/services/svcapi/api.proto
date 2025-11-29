@@ -433,6 +433,9 @@ service ApiService {
     // @group: System
     // Retrieves the flags associated with the specified object.
     rpc GetObjectFlags(io.clbs.openhes.models.system.ObjectFlagsRequest) returns (io.clbs.openhes.models.system.ObjectFlagsResponse);
+    // @group: System
+    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+    rpc GetSbom(google.protobuf.Empty) returns (google.protobuf.StringValue);
 
     // @group: Globalization
     // Retrieves the translation data.

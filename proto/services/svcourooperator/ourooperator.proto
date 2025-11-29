@@ -45,4 +45,8 @@ service OuroOperatorService {
     rpc GetLicenseRequestCode(google.protobuf.Empty) returns (google.protobuf.StringValue);
     // Creates a new license key. Used only for air-gapped installations.
     rpc SetLicense(google.protobuf.StringValue) returns (google.protobuf.Empty);
+
+    // @group: System
+    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+    rpc GetSbom(google.protobuf.Empty) returns (google.protobuf.StringValue);
 }
