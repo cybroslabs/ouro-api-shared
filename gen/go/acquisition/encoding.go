@@ -465,7 +465,7 @@ func (pd *ProfileValuesDecoder) GetFirstTimeStamp() (ts time.Time, err error) {
 	return
 }
 
-func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
+func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, itemcount int, err error) {
 	var tmp [14]byte
 	var lt time.Time
 
@@ -490,6 +490,7 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, err error) {
 			err = fmt.Errorf("data error, invalid block size in bytes")
 			return
 		}
+		itemcount += int(tmp[12]) + 1
 		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
 		if lt.Before(ts) {
 			lt = ts
