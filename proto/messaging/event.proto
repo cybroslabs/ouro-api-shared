@@ -1,0 +1,28 @@
+// Editions version of proto3 file
+edition = "2023";
+package io.clbs.openhes.models.messaging;
+
+option go_package = "github.com/cybroslabs/ouro-api-shared/gen/go/messaging";
+
+import "google/protobuf/wrappers.proto";
+import "common/fields.proto";
+import "common/metadata.proto";
+
+// Defines the types of Ouro events.
+enum OuroEventType {
+    // Default value, should not be used.
+    OURO_EVENT_TYPE_UNSPECIFIED = 0;
+
+    // Event indicating that device data has been modified, such as register values or profile data.
+    // The event carries metadata that provides context about the modification:
+    // - metadata.deviceId: The unique identifier of the device whose data was modified.
+    // - metadata.registerId: The identifier of the specific register that was changed, if applicable.
+    // - metadata.period: The period of the data, if relevant.
+    // - metadata.tfrom and metadata.tto: The time range during which the data modification occurred.
+    OURO_EVENT_TYPE_DEVICE_DATA_MODIFIED = 1;
+}
+
+message OuroEvent {
+    OuroEventType event_type              = 1;  // The type of the event.
+    repeated common.MetadataFields events = 2;  // The one or more event metadata associated with this event. One event represents one occurrence of the event, e.g., one device data modification.
+}
