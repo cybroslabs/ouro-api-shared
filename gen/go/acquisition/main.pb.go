@@ -2048,12 +2048,13 @@ func (b0 DeviceGroup_builder) Build() *DeviceGroup {
 
 // Defines a device group sepcification.
 type DeviceGroupSpec struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ExternalId  *string                `protobuf:"bytes,1,opt,name=external_id,json=externalId"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ExternalId   *string                `protobuf:"bytes,1,opt,name=external_id,json=externalId"`
+	xxx_hidden_IsScadaGroup bool                   `protobuf:"varint,2,opt,name=is_scada_group,json=isScadaGroup"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *DeviceGroupSpec) Reset() {
@@ -2091,9 +2092,21 @@ func (x *DeviceGroupSpec) GetExternalId() string {
 	return ""
 }
 
+func (x *DeviceGroupSpec) GetIsScadaGroup() bool {
+	if x != nil {
+		return x.xxx_hidden_IsScadaGroup
+	}
+	return false
+}
+
 func (x *DeviceGroupSpec) SetExternalId(v string) {
 	x.xxx_hidden_ExternalId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+}
+
+func (x *DeviceGroupSpec) SetIsScadaGroup(v bool) {
+	x.xxx_hidden_IsScadaGroup = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DeviceGroupSpec) HasExternalId() bool {
@@ -2103,15 +2116,28 @@ func (x *DeviceGroupSpec) HasExternalId() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
+func (x *DeviceGroupSpec) HasIsScadaGroup() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
+}
+
 func (x *DeviceGroupSpec) ClearExternalId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_ExternalId = nil
 }
 
+func (x *DeviceGroupSpec) ClearIsScadaGroup() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_IsScadaGroup = false
+}
+
 type DeviceGroupSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ExternalId *string
+	ExternalId   *string
+	IsScadaGroup *bool
 }
 
 func (b0 DeviceGroupSpec_builder) Build() *DeviceGroupSpec {
@@ -2119,8 +2145,12 @@ func (b0 DeviceGroupSpec_builder) Build() *DeviceGroupSpec {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.ExternalId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_ExternalId = b.ExternalId
+	}
+	if b.IsScadaGroup != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_IsScadaGroup = *b.IsScadaGroup
 	}
 	return m0
 }
@@ -10086,10 +10116,11 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"\x05parts\"\xa7\x01\n" +
 	"\vDeviceGroup\x12G\n" +
 	"\x04spec\x18\x01 \x01(\v23.io.clbs.openhes.models.acquisition.DeviceGroupSpecR\x04spec\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"2\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"X\n" +
 	"\x0fDeviceGroupSpec\x12\x1f\n" +
 	"\vexternal_id\x18\x01 \x01(\tR\n" +
-	"externalId\"\xf6\x01\n" +
+	"externalId\x12$\n" +
+	"\x0eis_scada_group\x18\x02 \x01(\bR\fisScadaGroup\"\xf6\x01\n" +
 	"\x17StreamDeviceGroupStatus\x12b\n" +
 	"\adevices\x18\x04 \x03(\v2H.io.clbs.openhes.models.acquisition.StreamDeviceGroupStatus.DevicesEntryR\adevices\x1aw\n" +
 	"\fDevicesEntry\x12\x10\n" +

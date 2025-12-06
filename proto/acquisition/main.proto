@@ -141,7 +141,8 @@ message DeviceGroup {
 
 // Defines a device group sepcification.
 message DeviceGroupSpec {
-    string external_id = 1;  // The external identifier of the communication unit.
+    string external_id  = 1;  // The external identifier of the communication unit.
+    bool is_scada_group = 2;  // Indicates whether the device group is a SCADA group.
 }
 
 // Defines a partial representation of a device group status.
