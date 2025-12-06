@@ -6880,13 +6880,14 @@ func (b0 DeviceConfigurationTemplate_builder) Build() *DeviceConfigurationTempla
 
 // Defines a device configuration template specification.
 type DeviceConfigurationTemplateSpec struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DriverType  *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
-	xxx_hidden_RegisterId  []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DriverType      *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
+	xxx_hidden_RegisterId      []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
+	xxx_hidden_ScadaRegisterId []string               `protobuf:"bytes,3,rep,name=scada_register_id,json=scadaRegisterId"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *DeviceConfigurationTemplateSpec) Reset() {
@@ -6931,13 +6932,24 @@ func (x *DeviceConfigurationTemplateSpec) GetRegisterId() []string {
 	return nil
 }
 
+func (x *DeviceConfigurationTemplateSpec) GetScadaRegisterId() []string {
+	if x != nil {
+		return x.xxx_hidden_ScadaRegisterId
+	}
+	return nil
+}
+
 func (x *DeviceConfigurationTemplateSpec) SetDriverType(v string) {
 	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *DeviceConfigurationTemplateSpec) SetRegisterId(v []string) {
 	x.xxx_hidden_RegisterId = v
+}
+
+func (x *DeviceConfigurationTemplateSpec) SetScadaRegisterId(v []string) {
+	x.xxx_hidden_ScadaRegisterId = v
 }
 
 func (x *DeviceConfigurationTemplateSpec) HasDriverType() bool {
@@ -6955,8 +6967,9 @@ func (x *DeviceConfigurationTemplateSpec) ClearDriverType() {
 type DeviceConfigurationTemplateSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DriverType *string
-	RegisterId []string
+	DriverType      *string
+	RegisterId      []string
+	ScadaRegisterId []string
 }
 
 func (b0 DeviceConfigurationTemplateSpec_builder) Build() *DeviceConfigurationTemplateSpec {
@@ -6964,22 +6977,24 @@ func (b0 DeviceConfigurationTemplateSpec_builder) Build() *DeviceConfigurationTe
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_DriverType = b.DriverType
 	}
 	x.xxx_hidden_RegisterId = b.RegisterId
+	x.xxx_hidden_ScadaRegisterId = b.ScadaRegisterId
 	return m0
 }
 
 // Defines the specification for adding device configuration registers to device configuration templates.
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DctId       *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
-	xxx_hidden_RegisterId  []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DctId           *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
+	xxx_hidden_RegisterId      []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
+	xxx_hidden_ScadaRegisterId []string               `protobuf:"bytes,3,rep,name=scada_register_id,json=scadaRegisterId"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Reset() {
@@ -7024,13 +7039,24 @@ func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Get
 	return nil
 }
 
+func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) GetScadaRegisterId() []string {
+	if x != nil {
+		return x.xxx_hidden_ScadaRegisterId
+	}
+	return nil
+}
+
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) SetDctId(v string) {
 	x.xxx_hidden_DctId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) SetRegisterId(v []string) {
 	x.xxx_hidden_RegisterId = v
+}
+
+func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) SetScadaRegisterId(v []string) {
+	x.xxx_hidden_ScadaRegisterId = v
 }
 
 func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) HasDctId() bool {
@@ -7048,8 +7074,9 @@ func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Cle
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DctId      *string
-	RegisterId []string
+	DctId           *string
+	RegisterId      []string
+	ScadaRegisterId []string
 }
 
 func (b0 AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_builder) Build() *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
@@ -7057,22 +7084,24 @@ func (b0 AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_buil
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.DctId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_DctId = b.DctId
 	}
 	x.xxx_hidden_RegisterId = b.RegisterId
+	x.xxx_hidden_ScadaRegisterId = b.ScadaRegisterId
 	return m0
 }
 
 // Defines the specification for removing device configuration registers to device configuration templates.
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest struct {
-	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_DctId       *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
-	xxx_hidden_RegisterId  []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
-	XXX_raceDetectHookData protoimpl.RaceDetectHookData
-	XXX_presence           [1]uint32
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DctId           *string                `protobuf:"bytes,1,opt,name=dct_id,json=dctId"`
+	xxx_hidden_RegisterId      []string               `protobuf:"bytes,2,rep,name=register_id,json=registerId"`
+	xxx_hidden_ScadaRegisterId []string               `protobuf:"bytes,3,rep,name=scada_register_id,json=scadaRegisterId"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) Reset() {
@@ -7117,13 +7146,24 @@ func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	return nil
 }
 
+func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) GetScadaRegisterId() []string {
+	if x != nil {
+		return x.xxx_hidden_ScadaRegisterId
+	}
+	return nil
+}
+
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) SetDctId(v string) {
 	x.xxx_hidden_DctId = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) SetRegisterId(v []string) {
 	x.xxx_hidden_RegisterId = v
+}
+
+func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) SetScadaRegisterId(v []string) {
+	x.xxx_hidden_ScadaRegisterId = v
 }
 
 func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) HasDctId() bool {
@@ -7141,8 +7181,9 @@ func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DctId      *string
-	RegisterId []string
+	DctId           *string
+	RegisterId      []string
+	ScadaRegisterId []string
 }
 
 func (b0 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_builder) Build() *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
@@ -7150,10 +7191,11 @@ func (b0 RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.DctId != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
 		x.xxx_hidden_DctId = b.DctId
 	}
 	x.xxx_hidden_RegisterId = b.RegisterId
+	x.xxx_hidden_ScadaRegisterId = b.ScadaRegisterId
 	return m0
 }
 
@@ -10224,20 +10266,23 @@ const file_acquisition_main_proto_rawDesc = "" +
 	"totalCount\"\xc7\x01\n" +
 	"\x1bDeviceConfigurationTemplate\x12W\n" +
 	"\x04spec\x18\x01 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpecR\x04spec\x12I\n" +
-	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"c\n" +
+	"\bmetadata\x18\x03 \x01(\v2-.io.clbs.openhes.models.common.MetadataFieldsR\bmetadataJ\x04\b\x02\x10\x03\"\x8f\x01\n" +
 	"\x1fDeviceConfigurationTemplateSpec\x12\x1f\n" +
 	"\vdriver_type\x18\x01 \x01(\tR\n" +
 	"driverType\x12\x1f\n" +
 	"\vregister_id\x18\x02 \x03(\tR\n" +
-	"registerId\"|\n" +
+	"registerId\x12*\n" +
+	"\x11scada_register_id\x18\x03 \x03(\tR\x0fscadaRegisterId\"\xa8\x01\n" +
 	"BAddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest\x12\x15\n" +
 	"\x06dct_id\x18\x01 \x01(\tR\x05dctId\x12\x1f\n" +
 	"\vregister_id\x18\x02 \x03(\tR\n" +
-	"registerId\"\x81\x01\n" +
+	"registerId\x12*\n" +
+	"\x11scada_register_id\x18\x03 \x03(\tR\x0fscadaRegisterId\"\xad\x01\n" +
 	"GRemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest\x12\x15\n" +
 	"\x06dct_id\x18\x01 \x01(\tR\x05dctId\x12\x1f\n" +
 	"\vregister_id\x18\x02 \x03(\tR\n" +
-	"registerId\"\x85\x03\n" +
+	"registerId\x12*\n" +
+	"\x11scada_register_id\x18\x03 \x03(\tR\x0fscadaRegisterId\"\x85\x03\n" +
 	"\x14GetDeviceDataRequest\x12;\n" +
 	"\vrange_start\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"rangeStart\x127\n" +

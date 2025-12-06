@@ -449,20 +449,23 @@ message DeviceConfigurationTemplate {
 
 // Defines a device configuration template specification.
 message DeviceConfigurationTemplateSpec {
-    string driver_type          = 1;  // The driver type.
-    repeated string register_id = 2;  // A list of device configuration register identifiers.
+    string driver_type                = 1;  // The driver type.
+    repeated string register_id       = 2;  // A list of device configuration register identifiers.
+    repeated string scada_register_id = 3;  // A list of SCADA register identifiers.
 }
 
 // Defines the specification for adding device configuration registers to device configuration templates.
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
-    string dct_id               = 1;  // The unique device configuration template identifier.
-    repeated string register_id = 2;  // A list of device configuration register identifiers.
+    string dct_id                     = 1;  // The unique device configuration template identifier.
+    repeated string register_id       = 2;  // A list of device configuration register identifiers.
+    repeated string scada_register_id = 3;  // A list of SCADA register identifiers.
 }
 
 // Defines the specification for removing device configuration registers to device configuration templates.
 message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
-    string dct_id               = 1;  // The unique device configuration template identifier.
-    repeated string register_id = 2;  // A list of device configuration register identifiers.
+    string dct_id                     = 1;  // The unique device configuration template identifier.
+    repeated string register_id       = 2;  // A list of device configuration register identifiers.
+    repeated string scada_register_id = 3;  // A list of SCADA register identifiers.
 }
 
 // Defines a specification for retrieving device data.

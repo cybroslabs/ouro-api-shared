@@ -8,4 +8,5 @@ Defines the specification for adding device configuration registers to device co
 | --- | --- |
 | dctId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique device configuration template identifier. |
 | registerId | <b>Type:</b> `string`<br><b>Description:</b><br>A list of device configuration register identifiers. |
+| scadaRegisterId | <b>Type:</b> `string`<br><b>Description:</b><br>A list of SCADA register identifiers. |
 
