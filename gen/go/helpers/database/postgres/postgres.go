@@ -3,6 +3,7 @@ package postgres
 import (
 	"errors"
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -91,7 +92,10 @@ func escapeForRegex(s string) string {
 	if s == "" {
 		return s
 	}
-	s = strings.ReplaceAll(s, `\`, `\\`) // escape backslash first
+	// Escape all regex special characters
+	s = regexp.QuoteMeta(s)
+	// Escape for PostgreSQL JSONPath strings, see https://www.postgresql.org/docs/current/functions-json.html#JSONPATH-REGULAR-EXPRESSIONS
+	s = strings.ReplaceAll(s, `\`, `\\`) // escape backslash
 	s = strings.ReplaceAll(s, `"`, `\"`) // then escape double quote
 	return s
 }
