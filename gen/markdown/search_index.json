@@ -522,364 +522,95 @@
     "tags2": ""
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
+    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
     "tags0": [
-      "keys",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.GetTranslationsRequest"
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_UNSPECIFIED",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
     ],
     "tags1": [
-      "GetTranslationsRequest"
+      "BULK",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
+      "PROXY",
+      "START",
+      "TYPE",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the request for retrieving translations based language and keys The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
     "tags0": [
-      "translations",
-      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+      "spec",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
     ],
     "tags1": [
-      "GetTranslationsResponse"
+      "CreateCronJobRequest"
     ],
-    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
+    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-missingtranslationrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
-    "tags0": [
-      "key",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.MissingTranslationRequest"
-    ],
-    "tags1": [
-      "MissingTranslationRequest"
-    ],
-    "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
-    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
-    "tags0": [
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.TranslationInfo"
-    ],
-    "tags1": [
-      "TranslationInfo"
-    ],
-    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
-    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
-    "tags0": [
-      "applications",
-      "io.clbs.openhes.models.localization.TranslationList"
-    ],
-    "tags1": [
-      "TranslationList"
-    ],
-    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
-    "tags0": [
-      "version",
-      "translations",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
-    ],
-    "tags1": [
-      "UpdateTranslationsRequest"
-    ],
-    "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
-    "title": "Model: io.clbs.openhes.models.messaging.ListOfMessagingComponent",
-    "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.messaging.ListOfMessagingComponent"
-    ],
-    "tags1": [
-      "ListOfMessagingComponent"
-    ],
-    "tags2": "Defines list messaging components The list messaging components known the system The total number items the list"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponent.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponent",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
     "tags0": [
       "spec",
       "status",
       "metadata",
-      "io.clbs.openhes.models.messaging.MessagingComponent"
+      "io.clbs.openhes.models.cronjobs.CronJob"
     ],
     "tags1": [
-      "MessagingComponent"
+      "CronJob"
     ],
-    "tags2": "Defines specification the messaging component The specification the messaging component The status the messaging component The metadata fields"
+    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentconsumersettings.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
     "tags0": [
-      "subjects",
-      "consumerId",
-      "maxInFlightMessages",
-      "io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"
-    ],
-    "tags1": [
-      "MessagingComponentConsumerSettings"
-    ],
-    "tags2": "Defines specification messaging component settings for specified consumer The unique UUID identifier for the consumer Must unique across all consumers the same component The maximum number flight unacknowledged messages allowed value allows multiple consumers receive messages concurrently without preserving order Value allows only single flight message any time and preserves the message order The list non empty subjects the consumer interested least one subject must set Changes affect all instances the same component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentspec.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentSpec",
-    "tags0": [
-      "enabled",
-      "consumers",
-      "io.clbs.openhes.models.messaging.MessagingComponentSpec"
-    ],
-    "tags1": [
-      "MessagingComponentSpec"
-    ],
-    "tags2": "Defines specification messaging component Indicates whether the component enabled disabled the component does not receive any messages The consumer settings for the component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentstatus.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentStatus",
-    "tags0": [
-      "io.clbs.openhes.models.messaging.MessagingComponentStatus"
-    ],
-    "tags1": [
-      "MessagingComponentStatus"
-    ],
-    "tags2": "Defines the status messaging component FIXME Add status fields needed"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerclient.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerClient",
-    "tags0": [
-      "ack",
-      "nak",
-      "setup",
-      "io.clbs.openhes.models.messaging.MessagingConsumerClient"
-    ],
-    "tags1": [
-      "MessagingConsumerClient"
-    ],
-    "tags2": "Defines the specification for consumer messages Setup action initialize the consumer Must the first message sent Any subsequent setup messages are rejected Acknowledgement action confirm the message with the given message Negative acknowledgement action reject and requeue the message with the given message"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerserver.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerServer",
-    "tags0": [
-      "receive",
-      "io.clbs.openhes.models.messaging.MessagingConsumerServer"
-    ],
-    "tags1": [
-      "MessagingConsumerServer"
-    ],
-    "tags2": "Defines the specification for server messages Receive action deliver message the consumer"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumersetup.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerSetup",
-    "tags0": [
-      "settings",
-      "metadata",
-      "io.clbs.openhes.models.messaging.MessagingConsumerSetup"
-    ],
-    "tags1": [
-      "MessagingConsumerSetup"
-    ],
-    "tags2": "Defines specification for messages initialize consumer The consumer specific message settings The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishmessage.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublishMessage",
-    "tags0": [
+      "type",
       "data",
-      "subject",
-      "io.clbs.openhes.models.messaging.MessagingPublishMessage"
+      "suspend",
+      "schedule",
+      "timezone",
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
     ],
     "tags1": [
-      "MessagingPublishMessage"
+      "CronJobSpec"
     ],
-    "tags2": "Defines publish action for sending messages The subject the message The message data"
+    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingpublisherclient.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherClient",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
     "tags0": [
-      "setup",
-      "publish",
-      "io.clbs.openhes.models.messaging.MessagingPublisherClient"
+      "error",
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
     ],
     "tags1": [
-      "MessagingPublisherClient"
+      "CronJobStatus"
     ],
-    "tags2": "Defines the specification for published messages Setup action initialize the publisher Must the first message sent Any subsequent setup messages are rejected Publish action send message"
+    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishersetup.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherSetup",
+    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
     "tags0": [
-      "metadata",
-      "io.clbs.openhes.models.messaging.MessagingPublisherSetup"
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
     ],
     "tags1": [
-      "MessagingPublisherSetup"
+      "ListOfCronJob"
     ],
-    "tags2": "Defines specification for messages initialize publisher The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingreceivemessage.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingReceiveMessage",
-    "tags0": [
-      "data",
-      "subject",
-      "messageId",
-      "io.clbs.openhes.models.messaging.MessagingReceiveMessage"
-    ],
-    "tags1": [
-      "MessagingReceiveMessage"
-    ],
-    "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
-    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
-    "tags0": [
-      "RELAY_STATE_CONNECT",
-      "RELAY_STATE_DISCONNECT",
-      "RELAY_STATE_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
-    ],
-    "tags1": [
-      "CONNECT",
-      "DISCONNECT",
-      "RELAY",
-      "RelayState",
-      "STATE",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
-    "tags0": [
-      "dayId",
-      "switching",
-      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
-    ],
-    "tags1": [
-      "DayProfile"
-    ],
-    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
-    "tags0": [
-      "state",
-      "relayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
-    ],
-    "tags1": [
-      "RelayStateRecord"
-    ],
-    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
-    "tags0": [
-      "id",
-      "name",
-      "weekId",
-      "startDay",
-      "startYear",
-      "startMonth",
-      "io.clbs.openhes.models.acquisition.timeofuse.Season"
-    ],
-    "tags1": [
-      "Season"
-    ],
-    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
-    "tags0": [
-      "day",
-      "year",
-      "month",
-      "dayId",
-      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
-    ],
-    "tags1": [
-      "SpecialDay"
-    ],
-    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
-    "tags0": [
-      "hour",
-      "minute",
-      "tariff",
-      "relays",
-      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
-    ],
-    "tags1": [
-      "Switching"
-    ],
-    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
-    "tags0": [
-      "weeks",
-      "seasons",
-      "expiesAt",
-      "hdoGroupId",
-      "activateAt",
-      "dayProfiles",
-      "specialDays",
-      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
-    ],
-    "tags1": [
-      "TimeOfUseTableSpec"
-    ],
-    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
-    "tags0": [
-      "weekId",
-      "dayIds",
-      "weekName",
-      "io.clbs.openhes.models.acquisition.timeofuse.Week"
-    ],
-    "tags1": [
-      "Week"
-    ],
-    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
+    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -1308,234 +1039,284 @@
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
+    "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",
+    "title": "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState",
     "tags0": [
-      "CRON_JOB_TYPE_START_BULK",
-      "CRON_JOB_TYPE_UNSPECIFIED",
-      "CRON_JOB_TYPE_START_PROXY_BULK",
-      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+      "RELAY_STATE_CONNECT",
+      "RELAY_STATE_DISCONNECT",
+      "RELAY_STATE_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.acquisition.timeofuse.RelayState"
     ],
     "tags1": [
-      "BULK",
-      "CRON",
-      "CronJobTypeEnum",
-      "JOB",
-      "PROXY",
-      "START",
-      "TYPE",
+      "CONNECT",
+      "DISCONNECT",
+      "RELAY",
+      "RelayState",
+      "STATE",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the cron job types that can scheduled Unspecified cron job type The cron job that starts acquistion bulk The cron job that starts proxy bulk"
+    "tags2": "Defines the possible relay states Unspecified relay state The relay state ignored action The relay connects The relay disconnects"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-dayprofile.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.DayProfile",
     "tags0": [
-      "spec",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
+      "dayId",
+      "switching",
+      "io.clbs.openhes.models.acquisition.timeofuse.DayProfile"
     ],
     "tags1": [
-      "CreateCronJobRequest"
+      "DayProfile"
     ],
-    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
+    "tags2": "Defines single day profile containing multiple switching times The unique day profile identifier The list switching events Each event specifies the time and relay states"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-relaystaterecord.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord",
+    "tags0": [
+      "state",
+      "relayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.RelayStateRecord"
+    ],
+    "tags1": [
+      "RelayStateRecord"
+    ],
+    "tags2": "Defines the state relay specific time Each record contains the relay and its associated state CONNECT DISCONNECT The relay must unique within the list relays The unique relay identifier The state the relay CONNECT DISCONNECT"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-season.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Season",
+    "tags0": [
+      "id",
+      "name",
+      "weekId",
+      "startDay",
+      "startYear",
+      "startMonth",
+      "io.clbs.openhes.models.acquisition.timeofuse.Season"
+    ],
+    "tags1": [
+      "Season"
+    ],
+    "tags2": "Defines season that starts specific date and linked week profile The unique season identifier The name the season The start year the season The start month the season The start day the season The reference week that applies this season"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-specialday.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.SpecialDay",
+    "tags0": [
+      "day",
+      "year",
+      "month",
+      "dayId",
+      "io.clbs.openhes.models.acquisition.timeofuse.SpecialDay"
+    ],
+    "tags1": [
+      "SpecialDay"
+    ],
+    "tags2": "Defines special days such holidays other exceptions year the special day The month the special day The day the special day The unique special day identifier"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-switching.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Switching",
+    "tags0": [
+      "hour",
+      "minute",
+      "tariff",
+      "relays",
+      "io.clbs.openhes.models.acquisition.timeofuse.Switching"
+    ],
+    "tags1": [
+      "Switching"
+    ],
+    "tags2": "Defines the switching configuration including tariffs and relay states for specific times The hour the switching event The minute the switching event The tariff map relay IDs their corresponding relay states Duplicate IDs are not allowed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-timeofusetablespec.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec",
+    "tags0": [
+      "weeks",
+      "seasons",
+      "expiesAt",
+      "hdoGroupId",
+      "activateAt",
+      "dayProfiles",
+      "specialDays",
+      "io.clbs.openhes.models.acquisition.timeofuse.TimeOfUseTableSpec"
+    ],
+    "tags1": [
+      "TimeOfUseTableSpec"
+    ],
+    "tags2": "Defines the main Time Use TOU table that contains all relevant definitions The expiration date the TOU table HDO High Demand Option Group The activation date the TOU table The list seasons defined the TOU table The list week profiles defined the TOU table The list day profiles each defining multiple switching events The list special days such holidays other exceptions"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-acquisition-timeofuse-week.md",
+    "title": "Model: io.clbs.openhes.models.acquisition.timeofuse.Week",
+    "tags0": [
+      "weekId",
+      "dayIds",
+      "weekName",
+      "io.clbs.openhes.models.acquisition.timeofuse.Week"
+    ],
+    "tags1": [
+      "Week"
+    ],
+    "tags2": "Defines week the year containing list day IDs and week name The unique week identifier The name the week The list day IDs assigned the week"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
+    "title": "Model: io.clbs.openhes.models.messaging.ListOfMessagingComponent",
+    "tags0": [
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.messaging.ListOfMessagingComponent"
+    ],
+    "tags1": [
+      "ListOfMessagingComponent"
+    ],
+    "tags2": "Defines list messaging components The list messaging components known the system The total number items the list"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponent.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponent",
     "tags0": [
       "spec",
       "status",
       "metadata",
-      "io.clbs.openhes.models.cronjobs.CronJob"
+      "io.clbs.openhes.models.messaging.MessagingComponent"
     ],
     "tags1": [
-      "CronJob"
+      "MessagingComponent"
     ],
-    "tags2": "Defines the cron job specification The specification the cron job The current status the cron job The metadata fields"
+    "tags2": "Defines specification the messaging component The specification the messaging component The status the messaging component The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentconsumersettings.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings",
     "tags0": [
-      "type",
+      "subjects",
+      "consumerId",
+      "maxInFlightMessages",
+      "io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"
+    ],
+    "tags1": [
+      "MessagingComponentConsumerSettings"
+    ],
+    "tags2": "Defines specification messaging component settings for specified consumer The unique UUID identifier for the consumer Must unique across all consumers the same component The maximum number flight unacknowledged messages allowed value allows multiple consumers receive messages concurrently without preserving order Value allows only single flight message any time and preserves the message order The list non empty subjects the consumer interested least one subject must set Changes affect all instances the same component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentspec.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentSpec",
+    "tags0": [
+      "enabled",
+      "consumers",
+      "io.clbs.openhes.models.messaging.MessagingComponentSpec"
+    ],
+    "tags1": [
+      "MessagingComponentSpec"
+    ],
+    "tags2": "Defines specification messaging component Indicates whether the component enabled disabled the component does not receive any messages The consumer settings for the component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentstatus.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentStatus",
+    "tags0": [
+      "io.clbs.openhes.models.messaging.MessagingComponentStatus"
+    ],
+    "tags1": [
+      "MessagingComponentStatus"
+    ],
+    "tags2": "Defines the status messaging component FIXME Add status fields needed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerclient.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerClient",
+    "tags0": [
+      "ack",
+      "nak",
+      "setup",
+      "io.clbs.openhes.models.messaging.MessagingConsumerClient"
+    ],
+    "tags1": [
+      "MessagingConsumerClient"
+    ],
+    "tags2": "Defines the specification for consumer messages Setup action initialize the consumer Must the first message sent Any subsequent setup messages are rejected Acknowledgement action confirm the message with the given message Negative acknowledgement action reject and requeue the message with the given message"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerserver.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerServer",
+    "tags0": [
+      "receive",
+      "io.clbs.openhes.models.messaging.MessagingConsumerServer"
+    ],
+    "tags1": [
+      "MessagingConsumerServer"
+    ],
+    "tags2": "Defines the specification for server messages Receive action deliver message the consumer"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumersetup.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerSetup",
+    "tags0": [
+      "settings",
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingConsumerSetup"
+    ],
+    "tags1": [
+      "MessagingConsumerSetup"
+    ],
+    "tags2": "Defines specification for messages initialize consumer The consumer specific message settings The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishmessage.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublishMessage",
+    "tags0": [
       "data",
-      "suspend",
-      "schedule",
-      "timezone",
-      "io.clbs.openhes.models.cronjobs.CronJobSpec"
+      "subject",
+      "io.clbs.openhes.models.messaging.MessagingPublishMessage"
     ],
     "tags1": [
-      "CronJobSpec"
+      "MessagingPublishMessage"
     ],
-    "tags2": "Defines the cron job specification The type the cron job For example CRON JOB TYPE START BULK CRON JOB TYPE START PROXY BULK The cron job definition For example for every hour The timezone associated with the cron job For example America New York Europe Prague CET GMT Etc GMT America New York Europe Prague CET GMT Etc GMT Indicates whether the cron job suspended Default false not suspended The payload sent when the cron job runs"
+    "tags2": "Defines publish action for sending messages The subject the message The message data"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublisherclient.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherClient",
     "tags0": [
-      "error",
-      "lastRunAt",
-      "nextRunAt",
-      "io.clbs.openhes.models.cronjobs.CronJobStatus"
+      "setup",
+      "publish",
+      "io.clbs.openhes.models.messaging.MessagingPublisherClient"
     ],
     "tags1": [
-      "CronJobStatus"
+      "MessagingPublisherClient"
     ],
-    "tags2": "Defines the current status cron job The timestamp the last run the cron job The timestamp the next run the cron job The error message the cron job schedule invalid"
+    "tags2": "Defines the specification for published messages Setup action initialize the publisher Must the first message sent Any subsequent setup messages are rejected Publish action send message"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishersetup.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherSetup",
     "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingPublisherSetup"
     ],
     "tags1": [
-      "ListOfCronJob"
+      "MessagingPublisherSetup"
     ],
-    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
+    "tags2": "Defines specification for messages initialize publisher The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
-    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingreceivemessage.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingReceiveMessage",
     "tags0": [
-      "OBJECT_FLAG_UNSPECIFIED",
-      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
-      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+      "data",
+      "subject",
+      "messageId",
+      "io.clbs.openhes.models.messaging.MessagingReceiveMessage"
     ],
     "tags1": [
-      "COMMUNICATION",
-      "FLAG",
-      "LOG",
-      "OBJECT",
-      "ObjectFlags",
-      "UNIT",
-      "UNSPECIFIED"
+      "MessagingReceiveMessage"
     ],
-    "tags2": "Defines the object flags Default value Given communication unit has log feature enabled"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
-    "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
-    ],
-    "tags1": [
-      "ApplicationConfig"
-    ],
-    "tags2": "Defines specification for application configuration The default values for the application configuration"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
-    "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
-    ],
-    "tags1": [
-      "ApplicationConfigDescriptor"
-    ],
-    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
-    ],
-    "tags1": [
-      "ComponentConfig"
-    ],
-    "tags2": "Defines specification for single component configuration The component name The component configuration values"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
-    "tags0": [
-      "objectId",
-      "objectType",
-      "io.clbs.openhes.models.system.ObjectFlagsRequest"
-    ],
-    "tags1": [
-      "ObjectFlagsRequest"
-    ],
-    "tags2": "Defines the request message for retrieving object flags The object type The object"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
-    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
-    "tags0": [
-      "flags",
-      "io.clbs.openhes.models.system.ObjectFlagsResponse"
-    ],
-    "tags1": [
-      "ObjectFlagsResponse"
-    ],
-    "tags2": "Defines the response message for retrieving object flags The object flags"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
-    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
-    "tags0": [
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.ScreenConfigSelector"
-    ],
-    "tags1": [
-      "ScreenConfigSelector"
-    ],
-    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
-    "tags0": [
-      "raw",
-      "json",
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.SetScreenConfigRequest"
-    ],
-    "tags1": [
-      "SetScreenConfigRequest"
-    ],
-    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic JSON encoded data model holding data related for the screen Generic data model holding data related for the screen"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
-    "title": "Model: io.clbs.openhes.models.system.UserProfile",
-    "tags0": [
-      "id",
-      "roles",
-      "timezone",
-      "displayName",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.system.UserProfile"
-    ],
-    "tags1": [
-      "UserProfile"
-    ],
-    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
+    "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
@@ -1640,6 +1421,86 @@
       "SetCryptoSecretRequest"
     ],
     "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
+    "tags0": [
+      "keys",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest"
+    ],
+    "tags1": [
+      "GetTranslationsRequest"
+    ],
+    "tags2": "Defines the request for retrieving translations based language and keys The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "tags0": [
+      "translations",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+    ],
+    "tags1": [
+      "GetTranslationsResponse"
+    ],
+    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-missingtranslationrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
+    "tags0": [
+      "key",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.MissingTranslationRequest"
+    ],
+    "tags1": [
+      "MissingTranslationRequest"
+    ],
+    "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
+    "tags0": [
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.TranslationInfo"
+    ],
+    "tags1": [
+      "TranslationInfo"
+    ],
+    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
+    "tags0": [
+      "applications",
+      "io.clbs.openhes.models.localization.TranslationList"
+    ],
+    "tags1": [
+      "TranslationList"
+    ],
+    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
+    "tags0": [
+      "version",
+      "translations",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
+    ],
+    "tags1": [
+      "UpdateTranslationsRequest"
+    ],
+    "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
@@ -4119,5 +3980,144 @@
       "VariableSpec"
     ],
     "tags2": "Defines variable specification The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable Indicates whether the returned data for this variabe should exclude values from timestamp set true the returned device data returned for this variable dos not include values from timestamp Default value false"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
+    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "tags0": [
+      "OBJECT_FLAG_UNSPECIFIED",
+      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
+      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+    ],
+    "tags1": [
+      "COMMUNICATION",
+      "FLAG",
+      "LOG",
+      "OBJECT",
+      "ObjectFlags",
+      "UNIT",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines the object flags Default value Given communication unit has log feature enabled"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Defines specification for application configuration The default values for the application configuration"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines specification for application configuration descriptors The list component configuration descriptors The list default configuration values for the application component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines specification for single component configuration The component name The component configuration values"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines specification for component configuration descriptors The component name The list component configuration field descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
+    "tags0": [
+      "objectId",
+      "objectType",
+      "io.clbs.openhes.models.system.ObjectFlagsRequest"
+    ],
+    "tags1": [
+      "ObjectFlagsRequest"
+    ],
+    "tags2": "Defines the request message for retrieving object flags The object type The object"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
+    "tags0": [
+      "flags",
+      "io.clbs.openhes.models.system.ObjectFlagsResponse"
+    ],
+    "tags1": [
+      "ObjectFlagsResponse"
+    ],
+    "tags2": "Defines the response message for retrieving object flags The object flags"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
+    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "tags0": [
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.ScreenConfigSelector"
+    ],
+    "tags1": [
+      "ScreenConfigSelector"
+    ],
+    "tags2": "Defines the selection criteria for screen configuration The application plugin identifier The screen identifier within the application plugin"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
+    "tags0": [
+      "raw",
+      "json",
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
+    ],
+    "tags1": [
+      "SetScreenConfigRequest"
+    ],
+    "tags2": "Defines the The application plugin identifier The screen identifier within the application plugin Generic JSON encoded data model holding data related for the screen Generic data model holding data related for the screen"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
+    "title": "Model: io.clbs.openhes.models.system.UserProfile",
+    "tags0": [
+      "id",
+      "roles",
+      "timezone",
+      "displayName",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": "Defines the user information structure The UUID the user The display name the user The list user roles This read only and managed the system The preferred user interface language The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
   }
 ]

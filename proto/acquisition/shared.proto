@@ -693,6 +693,7 @@ message DeviceConnectionInfo {
     string driver_type                               = 5;  // The driver type identifier.
     string driver_version                            = 7;  // The driver version.
     repeated DeviceRegister registers                = 8;  // The list of registers defined for device according to its configuration template.
+    repeated DeviceRegister scada_registers          = 9;  // The list of registers defined for device according to its SCADA configuartion template.
 }
 
 // [ADDON for DB] Defines a list of modem information.

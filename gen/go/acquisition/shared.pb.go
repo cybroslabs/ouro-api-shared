@@ -10915,6 +10915,7 @@ type DeviceConnectionInfo struct {
 	xxx_hidden_DriverType        *string                       `protobuf:"bytes,5,opt,name=driver_type,json=driverType"`
 	xxx_hidden_DriverVersion     *string                       `protobuf:"bytes,7,opt,name=driver_version,json=driverVersion"`
 	xxx_hidden_Registers         *[]*DeviceRegister            `protobuf:"bytes,8,rep,name=registers"`
+	xxx_hidden_ScadaRegisters    *[]*DeviceRegister            `protobuf:"bytes,9,rep,name=scada_registers,json=scadaRegisters"`
 	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
 	XXX_presence                 [1]uint32
 	unknownFields                protoimpl.UnknownFields
@@ -11008,13 +11009,22 @@ func (x *DeviceConnectionInfo) GetRegisters() []*DeviceRegister {
 	return nil
 }
 
+func (x *DeviceConnectionInfo) GetScadaRegisters() []*DeviceRegister {
+	if x != nil {
+		if x.xxx_hidden_ScadaRegisters != nil {
+			return *x.xxx_hidden_ScadaRegisters
+		}
+	}
+	return nil
+}
+
 func (x *DeviceConnectionInfo) SetCommunicationUnit(v *ConnectionInfo) {
 	x.xxx_hidden_CommunicationUnit = v
 }
 
 func (x *DeviceConnectionInfo) SetAppProtocol(v ApplicationProtocol) {
 	x.xxx_hidden_AppProtocol = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
 }
 
 func (x *DeviceConnectionInfo) SetDeviceAttributes(v map[string]*common.FieldValue) {
@@ -11023,21 +11033,25 @@ func (x *DeviceConnectionInfo) SetDeviceAttributes(v map[string]*common.FieldVal
 
 func (x *DeviceConnectionInfo) SetTimezone(v string) {
 	x.xxx_hidden_Timezone = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
 }
 
 func (x *DeviceConnectionInfo) SetDriverType(v string) {
 	x.xxx_hidden_DriverType = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
 }
 
 func (x *DeviceConnectionInfo) SetDriverVersion(v string) {
 	x.xxx_hidden_DriverVersion = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
 }
 
 func (x *DeviceConnectionInfo) SetRegisters(v []*DeviceRegister) {
 	x.xxx_hidden_Registers = &v
+}
+
+func (x *DeviceConnectionInfo) SetScadaRegisters(v []*DeviceRegister) {
+	x.xxx_hidden_ScadaRegisters = &v
 }
 
 func (x *DeviceConnectionInfo) HasCommunicationUnit() bool {
@@ -11109,6 +11123,7 @@ type DeviceConnectionInfo_builder struct {
 	DriverType        *string
 	DriverVersion     *string
 	Registers         []*DeviceRegister
+	ScadaRegisters    []*DeviceRegister
 }
 
 func (b0 DeviceConnectionInfo_builder) Build() *DeviceConnectionInfo {
@@ -11117,23 +11132,24 @@ func (b0 DeviceConnectionInfo_builder) Build() *DeviceConnectionInfo {
 	_, _ = b, x
 	x.xxx_hidden_CommunicationUnit = b.CommunicationUnit
 	if b.AppProtocol != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
 		x.xxx_hidden_AppProtocol = *b.AppProtocol
 	}
 	x.xxx_hidden_DeviceAttributes = b.DeviceAttributes
 	if b.Timezone != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
 		x.xxx_hidden_Timezone = b.Timezone
 	}
 	if b.DriverType != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
 		x.xxx_hidden_DriverType = b.DriverType
 	}
 	if b.DriverVersion != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
 		x.xxx_hidden_DriverVersion = b.DriverVersion
 	}
 	x.xxx_hidden_Registers = &b.Registers
+	x.xxx_hidden_ScadaRegisters = &b.ScadaRegisters
 	return m0
 }
 
@@ -14604,7 +14620,7 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"registerId\x12,\n" +
 	"\x12public_register_id\x18\x02 \x01(\tR\x10publicRegisterId\x12W\n" +
 	"\x04spec\x18\x03 \x01(\v2C.io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpecR\x04spec\x12#\n" +
-	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\xf8\x04\n" +
+	"\rvariable_name\x18\x04 \x03(\tR\fvariableName\"\xd5\x05\n" +
 	"\x14DeviceConnectionInfo\x12a\n" +
 	"\x12communication_unit\x18\x01 \x01(\v22.io.clbs.openhes.models.acquisition.ConnectionInfoR\x11communicationUnit\x12Z\n" +
 	"\fapp_protocol\x18\x02 \x01(\x0e27.io.clbs.openhes.models.acquisition.ApplicationProtocolR\vappProtocol\x12{\n" +
@@ -14613,7 +14629,8 @@ const file_acquisition_shared_proto_rawDesc = "" +
 	"\vdriver_type\x18\x05 \x01(\tR\n" +
 	"driverType\x12%\n" +
 	"\x0edriver_version\x18\a \x01(\tR\rdriverVersion\x12P\n" +
-	"\tregisters\x18\b \x03(\v22.io.clbs.openhes.models.acquisition.DeviceRegisterR\tregisters\x1an\n" +
+	"\tregisters\x18\b \x03(\v22.io.clbs.openhes.models.acquisition.DeviceRegisterR\tregisters\x12[\n" +
+	"\x0fscada_registers\x18\t \x03(\v22.io.clbs.openhes.models.acquisition.DeviceRegisterR\x0escadaRegisters\x1an\n" +
 	"\x15DeviceAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12?\n" +
 	"\x05value\x18\x02 \x01(\v2).io.clbs.openhes.models.common.FieldValueR\x05value:\x028\x01\"w\n" +
@@ -15163,61 +15180,62 @@ var file_acquisition_shared_proto_depIdxs = []int32{
 	8,   // 149: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
 	109, // 150: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.device_attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry
 	74,  // 151: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
-	24,  // 152: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
-	75,  // 153: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
-	119, // 154: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
-	120, // 155: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
-	118, // 156: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
-	113, // 157: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
-	79,  // 158: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	7,   // 159: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
-	79,  // 160: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
-	10,  // 161: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	40,  // 162: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
-	115, // 163: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	10,  // 164: io.clbs.openhes.models.acquisition.ActionProgressResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
-	39,  // 165: io.clbs.openhes.models.acquisition.ActionProgressResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionProgressData
-	115, // 166: io.clbs.openhes.models.acquisition.ActionProgressResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
-	87,  // 167: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
-	88,  // 168: io.clbs.openhes.models.acquisition.DeviceSpec.default_link_attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
-	45,  // 169: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
-	8,   // 170: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	110, // 171: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
-	8,   // 172: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
-	111, // 173: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
-	23,  // 174: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
-	17,  // 175: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
-	18,  // 176: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
-	90,  // 177: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
-	89,  // 178: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
-	70,  // 179: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobProgressStatus
-	94,  // 180: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
-	121, // 181: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	26,  // 182: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
-	96,  // 183: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
-	121, // 184: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
-	15,  // 185: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
-	119, // 186: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	119, // 187: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
-	97,  // 188: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
-	98,  // 189: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
-	113, // 190: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
-	16,  // 191: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
-	100, // 192: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
-	122, // 193: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	122, // 194: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	122, // 195: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	123, // 196: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
-	122, // 197: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	122, // 198: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	122, // 199: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	122, // 200: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	122, // 201: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
-	202, // [202:202] is the sub-list for method output_type
-	202, // [202:202] is the sub-list for method input_type
-	202, // [202:202] is the sub-list for extension type_name
-	202, // [202:202] is the sub-list for extension extendee
-	0,   // [0:202] is the sub-list for field type_name
+	74,  // 152: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.scada_registers:type_name -> io.clbs.openhes.models.acquisition.DeviceRegister
+	24,  // 153: io.clbs.openhes.models.acquisition.ListOfModemInfo.items:type_name -> io.clbs.openhes.models.acquisition.ModemInfo
+	75,  // 154: io.clbs.openhes.models.acquisition.ListOfConnectionInfo.items:type_name -> io.clbs.openhes.models.acquisition.DeviceConnectionInfo
+	119, // 155: io.clbs.openhes.models.acquisition.FieldValuesList.items:type_name -> io.clbs.openhes.models.common.FieldValues
+	120, // 156: io.clbs.openhes.models.acquisition.AttributeSelector.operator:type_name -> io.clbs.openhes.models.common.FilterOperator
+	118, // 157: io.clbs.openhes.models.acquisition.AttributeSelector.data_type:type_name -> io.clbs.openhes.models.common.FieldDataType
+	113, // 158: io.clbs.openhes.models.acquisition.AttributeSelector.date:type_name -> google.protobuf.Timestamp
+	79,  // 159: io.clbs.openhes.models.acquisition.DeviceAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	7,   // 160: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.link_protocol:type_name -> io.clbs.openhes.models.acquisition.DataLinkProtocol
+	79,  // 161: io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector.attributes:type_name -> io.clbs.openhes.models.acquisition.AttributeSelector
+	10,  // 162: io.clbs.openhes.models.acquisition.ActionResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
+	40,  // 163: io.clbs.openhes.models.acquisition.ActionResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionData
+	115, // 164: io.clbs.openhes.models.acquisition.ActionResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	10,  // 165: io.clbs.openhes.models.acquisition.ActionProgressResult.status:type_name -> io.clbs.openhes.models.acquisition.ActionResultCode
+	39,  // 166: io.clbs.openhes.models.acquisition.ActionProgressResult.data:type_name -> io.clbs.openhes.models.acquisition.ActionProgressData
+	115, // 167: io.clbs.openhes.models.acquisition.ActionProgressResult.error_message:type_name -> io.clbs.openhes.models.common.FormattedMessage
+	87,  // 168: io.clbs.openhes.models.acquisition.DeviceSpec.communication_unit_link:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit
+	88,  // 169: io.clbs.openhes.models.acquisition.DeviceSpec.default_link_attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes
+	45,  // 170: io.clbs.openhes.models.acquisition.DeviceStatus.info:type_name -> io.clbs.openhes.models.acquisition.DeviceInfo
+	8,   // 171: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	110, // 172: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.attributes:type_name -> io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry
+	8,   // 173: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.app_protocol:type_name -> io.clbs.openhes.models.acquisition.ApplicationProtocol
+	111, // 174: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.attributes:type_name -> io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry
+	23,  // 175: io.clbs.openhes.models.acquisition.JobSpec.device:type_name -> io.clbs.openhes.models.acquisition.JobDevice
+	17,  // 176: io.clbs.openhes.models.acquisition.JobSpec.job_settings:type_name -> io.clbs.openhes.models.acquisition.JobSettings
+	18,  // 177: io.clbs.openhes.models.acquisition.JobSpec.job_actions:type_name -> io.clbs.openhes.models.acquisition.JobAction
+	90,  // 178: io.clbs.openhes.models.acquisition.JobSpec.job_action_info:type_name -> io.clbs.openhes.models.acquisition.JobActionMapRecord
+	89,  // 179: io.clbs.openhes.models.acquisition.JobDoneNotification.spec:type_name -> io.clbs.openhes.models.acquisition.JobSpec
+	70,  // 180: io.clbs.openhes.models.acquisition.JobDoneNotification.status:type_name -> io.clbs.openhes.models.acquisition.JobProgressStatus
+	94,  // 181: io.clbs.openhes.models.acquisition.CommunicationUnit.spec:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitSpec
+	121, // 182: io.clbs.openhes.models.acquisition.CommunicationUnit.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	26,  // 183: io.clbs.openhes.models.acquisition.CommunicationUnitSpec.connection_info:type_name -> io.clbs.openhes.models.acquisition.ConnectionInfo
+	96,  // 184: io.clbs.openhes.models.acquisition.CommunicationBus.status:type_name -> io.clbs.openhes.models.acquisition.CommunicationBusStatus
+	121, // 185: io.clbs.openhes.models.acquisition.CommunicationBus.metadata:type_name -> io.clbs.openhes.models.common.MetadataFields
+	15,  // 186: io.clbs.openhes.models.acquisition.TopologyNode.type:type_name -> io.clbs.openhes.models.acquisition.TopologyNodeType
+	119, // 187: io.clbs.openhes.models.acquisition.TopologyNode.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	119, // 188: io.clbs.openhes.models.acquisition.TopologyEdge.attributes:type_name -> io.clbs.openhes.models.common.FieldValues
+	97,  // 189: io.clbs.openhes.models.acquisition.NetworkMap.nodes:type_name -> io.clbs.openhes.models.acquisition.TopologyNode
+	98,  // 190: io.clbs.openhes.models.acquisition.NetworkMap.edges:type_name -> io.clbs.openhes.models.acquisition.TopologyEdge
+	113, // 191: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.timestamp:type_name -> google.protobuf.Timestamp
+	16,  // 192: io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord.level:type_name -> io.clbs.openhes.models.acquisition.LogRecordLevel
+	100, // 193: io.clbs.openhes.models.acquisition.ListOfCommunicationUnitLogRecord.items:type_name -> io.clbs.openhes.models.acquisition.CommunicationUnitLogRecord
+	122, // 194: io.clbs.openhes.models.acquisition.JobAction.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 195: io.clbs.openhes.models.acquisition.JobDevice.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 196: io.clbs.openhes.models.acquisition.ConnectionInfo.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	123, // 197: io.clbs.openhes.models.acquisition.JobActionContraints.GetRegisterTypeAttributesEntry.value:type_name -> io.clbs.openhes.models.common.ListOfString
+	122, // 198: io.clbs.openhes.models.acquisition.StartJobData.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 199: io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterSpec.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 200: io.clbs.openhes.models.acquisition.DeviceConnectionInfo.DeviceAttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 201: io.clbs.openhes.models.acquisition.DeviceCommunicationUnit.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	122, // 202: io.clbs.openhes.models.acquisition.DefaultDeviceCommunicationUnitAttributes.AttributesEntry.value:type_name -> io.clbs.openhes.models.common.FieldValue
+	203, // [203:203] is the sub-list for method output_type
+	203, // [203:203] is the sub-list for method input_type
+	203, // [203:203] is the sub-list for extension type_name
+	203, // [203:203] is the sub-list for extension extendee
+	0,   // [0:203] is the sub-list for field type_name
 }
 
 func init() { file_acquisition_shared_proto_init() }
