@@ -146,7 +146,7 @@ service DeviceRegistryService {
     // Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange);
     // The method called by the DataProxy to resolve connection info for given device(s).
-    rpc GetDeviceConnectionInfo(google.protobuf.ListValue) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
+    rpc GetDeviceConnectionInfo(io.clbs.openhes.models.acquisition.GetDeviceConnectionInfoRequest) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
     // Sets the device information.
     rpc SetDeviceInfo(io.clbs.openhes.models.acquisition.SetDeviceInfoRequest) returns (google.protobuf.Empty);
     // @group: Devices

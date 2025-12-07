@@ -12,7 +12,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	structpb "google.golang.org/protobuf/types/known/structpb"
+	_ "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	unsafe "unsafe"
@@ -29,7 +29,7 @@ var File_services_svcdeviceregistry_deviceregistry_proto protoreflect.FileDescri
 
 const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\n" +
-	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\xc0O\n" +
+	"/services/svcdeviceregistry/deviceregistry.proto\x12*io.clbs.openhes.services.svcdeviceregistry\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x16acquisition/main.proto\x1a\x1aacquisition/internal.proto\x1a\x18acquisition/shared.proto\x1a\x13common/fields.proto\x1a\x15common/internal.proto\x1a\x15common/metadata.proto2\xe9O\n" +
 	"\x15DeviceRegistryService\x12c\n" +
 	"\x0eCreateVariable\x129.io.clbs.openhes.models.acquisition.CreateVariableRequest\x1a\x16.google.protobuf.Empty\x12p\n" +
 	"\rListVariables\x12+.io.clbs.openhes.models.common.ListSelector\x1a2.io.clbs.openhes.models.acquisition.ListOfVariable\x12Y\n" +
@@ -74,8 +74,8 @@ const file_services_svcdeviceregistry_deviceregistry_proto_rawDesc = "" +
 	"\x10StreamDeviceType\x12C.io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest\x1aD.io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse(\x010\x01\x12}\n" +
 	"\x1bSetDeviceCommunicationUnits\x12F.io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest\x1a\x16.google.protobuf.Empty\x12~\n" +
 	"\x1bGetDeviceCommunicationUnits\x12\x1c.google.protobuf.StringValue\x1aA.io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit\x12\x9a\x01\n" +
-	"\"ListDeviceCommunicationUnitChanges\x12+.io.clbs.openhes.models.common.ListSelector\x1aG.io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange\x12r\n" +
-	"\x17GetDeviceConnectionInfo\x12\x1a.google.protobuf.ListValue\x1a;.io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo\x12a\n" +
+	"\"ListDeviceCommunicationUnitChanges\x12+.io.clbs.openhes.models.common.ListSelector\x1aG.io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange\x12\x9a\x01\n" +
+	"\x17GetDeviceConnectionInfo\x12B.io.clbs.openhes.models.acquisition.GetDeviceConnectionInfoRequest\x1a;.io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo\x12a\n" +
 	"\rSetDeviceInfo\x128.io.clbs.openhes.models.acquisition.SetDeviceInfoRequest\x1a\x16.google.protobuf.Empty\x12]\n" +
 	"\rGetDeviceInfo\x12\x1c.google.protobuf.StringValue\x1a..io.clbs.openhes.models.acquisition.DeviceInfo\x12l\n" +
 	"\x15GetDeviceDeviceGroups\x12\x1c.google.protobuf.StringValue\x1a5.io.clbs.openhes.models.acquisition.ListOfDeviceGroup\x12c\n" +
@@ -146,7 +146,7 @@ var file_services_svcdeviceregistry_deviceregistry_proto_goTypes = []any{
 	(*acquisition.Device)(nil),                                                                  // 20: io.clbs.openhes.models.acquisition.Device
 	(*acquisition.StreamDevicesDriverTypesRequest)(nil),                                         // 21: io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest
 	(*acquisition.SetDeviceCommunicationUnitsRequest)(nil),                                      // 22: io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
-	(*structpb.ListValue)(nil),                                                                  // 23: google.protobuf.ListValue
+	(*acquisition.GetDeviceConnectionInfoRequest)(nil),                                          // 23: io.clbs.openhes.models.acquisition.GetDeviceConnectionInfoRequest
 	(*acquisition.SetDeviceInfoRequest)(nil),                                                    // 24: io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
 	(*acquisition.CreateDeviceGroupRequest)(nil),                                                // 25: io.clbs.openhes.models.acquisition.CreateDeviceGroupRequest
 	(*acquisition.DeviceGroup)(nil),                                                             // 26: io.clbs.openhes.models.acquisition.DeviceGroup
@@ -242,7 +242,7 @@ var file_services_svcdeviceregistry_deviceregistry_proto_depIdxs = []int32{
 	22, // 41: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetDeviceCommunicationUnits:input_type -> io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest
 	2,  // 42: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceCommunicationUnits:input_type -> google.protobuf.StringValue
 	1,  // 43: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.ListDeviceCommunicationUnitChanges:input_type -> io.clbs.openhes.models.common.ListSelector
-	23, // 44: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConnectionInfo:input_type -> google.protobuf.ListValue
+	23, // 44: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceConnectionInfo:input_type -> io.clbs.openhes.models.acquisition.GetDeviceConnectionInfoRequest
 	24, // 45: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.SetDeviceInfo:input_type -> io.clbs.openhes.models.acquisition.SetDeviceInfoRequest
 	2,  // 46: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceInfo:input_type -> google.protobuf.StringValue
 	2,  // 47: io.clbs.openhes.services.svcdeviceregistry.DeviceRegistryService.GetDeviceDeviceGroups:input_type -> google.protobuf.StringValue

@@ -14,7 +14,6 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	structpb "google.golang.org/protobuf/types/known/structpb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -247,7 +246,7 @@ type DeviceRegistryServiceClient interface {
 	// Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceCommunicationUnitChanges(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
 	// The method called by the DataProxy to resolve connection info for given device(s).
-	GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error)
+	GetDeviceConnectionInfo(ctx context.Context, in *acquisition.GetDeviceConnectionInfoRequest, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error)
 	// Sets the device information.
 	SetDeviceInfo(ctx context.Context, in *acquisition.SetDeviceInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
@@ -835,7 +834,7 @@ func (c *deviceRegistryServiceClient) ListDeviceCommunicationUnitChanges(ctx con
 	return out, nil
 }
 
-func (c *deviceRegistryServiceClient) GetDeviceConnectionInfo(ctx context.Context, in *structpb.ListValue, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error) {
+func (c *deviceRegistryServiceClient) GetDeviceConnectionInfo(ctx context.Context, in *acquisition.GetDeviceConnectionInfoRequest, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(acquisition.MapDeviceConnectionInfo)
 	err := c.cc.Invoke(ctx, DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName, in, out, cOpts...)
@@ -1447,7 +1446,7 @@ type DeviceRegistryServiceServer interface {
 	// Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceCommunicationUnitChanges(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
 	// The method called by the DataProxy to resolve connection info for given device(s).
-	GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error)
+	GetDeviceConnectionInfo(context.Context, *acquisition.GetDeviceConnectionInfoRequest) (*acquisition.MapDeviceConnectionInfo, error)
 	// Sets the device information.
 	SetDeviceInfo(context.Context, *acquisition.SetDeviceInfoRequest) (*emptypb.Empty, error)
 	// @group: Devices
@@ -1724,7 +1723,7 @@ func (UnimplementedDeviceRegistryServiceServer) GetDeviceCommunicationUnits(cont
 func (UnimplementedDeviceRegistryServiceServer) ListDeviceCommunicationUnitChanges(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceCommunicationUnitChange, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListDeviceCommunicationUnitChanges not implemented")
 }
-func (UnimplementedDeviceRegistryServiceServer) GetDeviceConnectionInfo(context.Context, *structpb.ListValue) (*acquisition.MapDeviceConnectionInfo, error) {
+func (UnimplementedDeviceRegistryServiceServer) GetDeviceConnectionInfo(context.Context, *acquisition.GetDeviceConnectionInfoRequest) (*acquisition.MapDeviceConnectionInfo, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDeviceConnectionInfo not implemented")
 }
 func (UnimplementedDeviceRegistryServiceServer) SetDeviceInfo(context.Context, *acquisition.SetDeviceInfoRequest) (*emptypb.Empty, error) {
@@ -2665,7 +2664,7 @@ func _DeviceRegistryService_ListDeviceCommunicationUnitChanges_Handler(srv inter
 }
 
 func _DeviceRegistryService_GetDeviceConnectionInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(structpb.ListValue)
+	in := new(acquisition.GetDeviceConnectionInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2677,7 +2676,7 @@ func _DeviceRegistryService_GetDeviceConnectionInfo_Handler(srv interface{}, ctx
 		FullMethod: DeviceRegistryService_GetDeviceConnectionInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceRegistryServiceServer).GetDeviceConnectionInfo(ctx, req.(*structpb.ListValue))
+		return srv.(DeviceRegistryServiceServer).GetDeviceConnectionInfo(ctx, req.(*acquisition.GetDeviceConnectionInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

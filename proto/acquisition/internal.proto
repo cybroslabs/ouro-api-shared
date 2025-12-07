@@ -77,6 +77,11 @@ message MapDeviceConnectionInfo {
     map<string, ListOfConnectionInfo> devices = 1;  // The communication units definitions linked to the device(s).
 }
 
+message GetDeviceConnectionInfoRequest {
+    bool scada_registers       = 1;  // Whether to use SCADA registers or standard registers when determining connection info.
+    repeated string device_ids = 2;  // The list of device identifiers for which the connection info is being requested.
+}
+
 message SetDeviceInfoRequest {
     string device_id            = 1;  // The device identifier.
     acquisition.DeviceInfo info = 2;  // The device information.
