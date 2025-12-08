@@ -8,27 +8,30 @@ import "google/protobuf/wrappers.proto";
 import "common/fields.proto";
 import "common/metadata.proto";
 
-// Defines the specification for consumer messages.
+// Defines messages sent from a consumer client to the messaging server in a bidirectional stream.
+// Consumers use this to establish a connection, acknowledge processed messages, or reject failed messages.
 message MessagingConsumerClient {
     oneof kind {
-        MessagingConsumerSetup setup    = 1;  // Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
-        google.protobuf.StringValue ack = 2;  // Acknowledgement action to confirm the message with the given message ID.
-        google.protobuf.StringValue nak = 3;  // Negative acknowledgement action to reject and requeue the message with the given message ID.
+        MessagingConsumerSetup setup    = 1;  // Setup message to initialize the consumer connection. Must be the first message sent. Subsequent setup messages are rejected.
+        google.protobuf.StringValue ack = 2;  // Acknowledgement confirming successful processing of a message. The message is removed from the queue.
+        google.protobuf.StringValue nak = 3;  // Negative acknowledgement indicating processing failure. The message is requeued for redelivery.
     }
 }
 
-// Defines the specification for server messages.
+// Defines messages sent from the messaging server to a consumer client in a bidirectional stream.
+// The server delivers messages that match the consumer's subscribed subjects.
 message MessagingConsumerServer {
     oneof kine {
-        MessagingReceiveMessage receive = 1;  // Receive action to deliver a message to the consumer.
+        MessagingReceiveMessage receive = 1;  // Delivers a message to the consumer for processing. The consumer must ack or nak this message.
     }
 }
 
-// Defines the specification for published messages.
+// Defines messages sent from a publisher client to the messaging server in a client stream.
+// Publishers use this to establish a connection and send messages to specific subjects.
 message MessagingPublisherClient {
     oneof kind {
-        MessagingPublisherSetup setup   = 1;  // Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
-        MessagingPublishMessage publish = 2;  // Publish action to send a message.
+        MessagingPublisherSetup setup   = 1;  // Setup message to initialize the publisher connection. Must be the first message sent. Subsequent setup messages are rejected.
+        MessagingPublishMessage publish = 2;  // Publishes a message to a subject. All consumers subscribed to this subject will receive it.
     }
 }
 
@@ -71,17 +74,19 @@ message MessagingComponent {
     common.MetadataFields metadata  = 3;  // The metadata fields.
 }
 
-// Defines a specification of messaging component settings for a specified consumer.
+// Defines configuration settings for a specific consumer within a messaging component.
+// Each consumer represents a logical queue handler that processes messages from subscribed subjects.
 message MessagingComponentConsumerSettings {
-    string consumer_id           = 1;  // The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.
-    int32 max_in_flight_messages = 2;  // The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order.
-    repeated string subjects     = 3;  // The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!
+    string consumer_id           = 1;  // The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
+    int32 max_in_flight_messages = 2;  // The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
+    repeated string subjects     = 3;  // The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.
 }
 
-// Defines a specification of a messaging component.
+// Defines the configuration specification for a messaging component.
+// Components represent microservices or system modules that publish and/or consume messages.
 message MessagingComponentSpec {
-    bool enabled                                          = 1;  // Indicates whether the component is enabled. If disabled, the component does not receive any messages.
-    repeated MessagingComponentConsumerSettings consumers = 2;  // The consumer settings for the component.
+    bool enabled                                          = 1;  // When false, the component cannot publish or consume messages. Useful for maintenance or debugging.
+    repeated MessagingComponentConsumerSettings consumers = 2;  // The list of consumer configurations for this component. Each consumer handles specific message subjects.
 }
 
 // Defines the status of a messaging component.

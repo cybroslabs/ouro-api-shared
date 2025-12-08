@@ -8,11 +8,12 @@ import "common/metadata.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 
-// Defines the cron job types that can be scheduled.
+// Defines the cron job types that can be scheduled for automated recurring operations.
+// Cron jobs enable scheduled data collection, configuration synchronization, and other periodic tasks.
 enum CronJobTypeEnum {
-    CRON_JOB_TYPE_UNSPECIFIED      = 0;  // Unspecified cron job type.
-    CRON_JOB_TYPE_START_BULK       = 1;  // The cron job that starts an acquistion bulk.
-    CRON_JOB_TYPE_START_PROXY_BULK = 2;  // The cron job that starts a proxy bulk.
+    CRON_JOB_TYPE_UNSPECIFIED      = 0;  // Unspecified cron job type (invalid, should not be used).
+    CRON_JOB_TYPE_START_BULK       = 1;  // Schedules recurring acquisition bulks for automated data collection from devices.
+    CRON_JOB_TYPE_START_PROXY_BULK = 2;  // Schedules recurring proxy bulks for data collection operations initiated through the DataProxy.
 }
 
 // Defines the specification for creating a new cron job.
@@ -21,27 +22,28 @@ message CreateCronJobRequest {
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
-// Defines the cron job specification.
+// Defines the cron job model representing a scheduled recurring task.
+// Cron jobs are persistent scheduled operations that execute automatically according to their schedule definition.
 message CronJob {
-    CronJobSpec spec               = 1;  // The specification of the cron job.
-    CronJobStatus status           = 2;  // The current status of the cron job.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    CronJobSpec spec               = 1;  // The configuration defining when and what to execute.
+    CronJobStatus status           = 2;  // The runtime status including last/next execution times and errors.
+    common.MetadataFields metadata = 3;  // Metadata including id, name, generation, user-managed fields, and system-managed fields.
 }
 
-// Defines the cron job specification.
+// Defines the cron job specification containing scheduling and execution details.
 message CronJobSpec {
-    CronJobTypeEnum type        = 1;  // The type of the cron job. For example, `CRON_JOB_TYPE_START_BULK`, `CRON_JOB_TYPE_START_PROXY_BULK`.
-    string schedule             = 2;  // The cron job definition. For example, `"0 * * * *"` for every hour.
-    string timezone             = 3;  // The timezone associated with the cron job. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
-    bool suspend                = 4;  // Indicates whether the cron job is suspended. Default is `false` (not suspended).
-    google.protobuf.Struct data = 5;  // The payload to be sent when the cron job runs.
+    CronJobTypeEnum type        = 1;  // The type of operation to execute (e.g., START_BULK, START_PROXY_BULK).
+    string schedule             = 2;  // The cron schedule expression in standard format (e.g., "0 * * * *" for hourly, "0 0 * * *" for daily at midnight).
+    string timezone             = 3;  // The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").
+    bool suspend                = 4;  // When true, the cron job is paused and will not execute until resumed. Default is false.
+    google.protobuf.Struct data = 5;  // The type-specific payload passed to the operation when it executes (e.g., bulk specification for START_BULK type).
 }
 
-// Defines the current status of a cron job.
+// Defines the current runtime status of a cron job including execution history and schedule validation.
 message CronJobStatus {
-    google.protobuf.Timestamp last_run_at = 1;  // The timestamp of the last run of the cron job.
-    google.protobuf.Timestamp next_run_at = 2;  // The timestamp of the next run of the cron job.
-    string error                          = 3;  // The error message if the cron job schedule is invalid.
+    google.protobuf.Timestamp last_run_at = 1;  // The timestamp when the cron job last executed successfully or attempted to execute.
+    google.protobuf.Timestamp next_run_at = 2;  // The calculated timestamp for the next scheduled execution based on the cron schedule and timezone.
+    string error                          = 3;  // An error message if the cron schedule is invalid or if the last execution failed.
 }
 
 // Defines a list cron jobs.

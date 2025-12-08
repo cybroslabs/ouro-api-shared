@@ -18,7 +18,8 @@ export const file_messaging_messaging: GenFile = /*@__PURE__*/
   fileDesc("ChltZXNzYWdpbmcvbWVzc2FnaW5nLnByb3RvEiBpby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZyLGAQoXTWVzc2FnaW5nQ29uc3VtZXJDbGllbnQSSQoFc2V0dXAYASABKAsyOC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb25zdW1lclNldHVwSAASKwoDYWNrGAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSAASKwoDbmFrGAMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSABCBgoEa2luZCJvChdNZXNzYWdpbmdDb25zdW1lclNlcnZlchJMCgdyZWNlaXZlGAEgASgLMjkuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2VIAEIGCgRraW5lIrwBChhNZXNzYWdpbmdQdWJsaXNoZXJDbGllbnQSSgoFc2V0dXAYASABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoZXJTZXR1cEgAEkwKB3B1Ymxpc2gYAiABKAsyOS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdQdWJsaXNoTWVzc2FnZUgAQgYKBGtpbmQiZgoXTWVzc2FnaW5nUHVibGlzaGVyU2V0dXASPwoIbWV0YWRhdGEYAyABKAsyLS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5NZXRhZGF0YUZpZWxkc0oECAEQAkoECAIQAyI4ChdNZXNzYWdpbmdQdWJsaXNoTWVzc2FnZRIPCgdzdWJqZWN0GAEgASgJEgwKBGRhdGEYAiABKAwitwEKFk1lc3NhZ2luZ0NvbnN1bWVyU2V0dXASVgoIc2V0dGluZ3MYAiABKAsyRC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLm1lc3NhZ2luZy5NZXNzYWdpbmdDb21wb25lbnRDb25zdW1lclNldHRpbmdzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHNKBAgBEAIiTAoXTWVzc2FnaW5nUmVjZWl2ZU1lc3NhZ2USEgoKbWVzc2FnZV9pZBgBIAEoCRIPCgdzdWJqZWN0GAIgASgJEgwKBGRhdGEYAyABKAwidAoYTGlzdE9mTWVzc2FnaW5nQ29tcG9uZW50EkMKBWl0ZW1zGAEgAygLMjQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50EhMKC3RvdGFsX2NvdW50GAIgASgFIukBChJNZXNzYWdpbmdDb21wb25lbnQSRgoEc3BlYxgBIAEoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMubWVzc2FnaW5nLk1lc3NhZ2luZ0NvbXBvbmVudFNwZWMSSgoGc3RhdHVzGAIgASgLMjouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50U3RhdHVzEj8KCG1ldGFkYXRhGAMgASgLMi0uaW8uY2xicy5vcGVuaGVzLm1vZGVscy5jb21tb24uTWV0YWRhdGFGaWVsZHMiawoiTWVzc2FnaW5nQ29tcG9uZW50Q29uc3VtZXJTZXR0aW5ncxITCgtjb25zdW1lcl9pZBgBIAEoCRIeChZtYXhfaW5fZmxpZ2h0X21lc3NhZ2VzGAIgASgFEhAKCHN1YmplY3RzGAMgAygJIoIBChZNZXNzYWdpbmdDb21wb25lbnRTcGVjEg8KB2VuYWJsZWQYASABKAgSVwoJY29uc3VtZXJzGAIgAygLMkQuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5tZXNzYWdpbmcuTWVzc2FnaW5nQ29tcG9uZW50Q29uc3VtZXJTZXR0aW5ncyIaChhNZXNzYWdpbmdDb21wb25lbnRTdGF0dXNCOFo2Z2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vbWVzc2FnaW5nYghlZGl0aW9uc3DoBw", [file_google_protobuf_wrappers, file_common_fields, file_common_metadata]);
 
 /**
- * Defines the specification for consumer messages.
+ * Defines messages sent from a consumer client to the messaging server in a bidirectional stream.
+ * Consumers use this to establish a connection, acknowledge processed messages, or reject failed messages.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerClient
  */
@@ -28,7 +29,7 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
    */
   kind: {
     /**
-     * Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
+     * Setup message to initialize the consumer connection. Must be the first message sent. Subsequent setup messages are rejected.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingConsumerSetup setup = 1;
      */
@@ -36,7 +37,7 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
     case: "setup";
   } | {
     /**
-     * Acknowledgement action to confirm the message with the given message ID.
+     * Acknowledgement confirming successful processing of a message. The message is removed from the queue.
      *
      * @generated from field: google.protobuf.StringValue ack = 2;
      */
@@ -44,7 +45,7 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
     case: "ack";
   } | {
     /**
-     * Negative acknowledgement action to reject and requeue the message with the given message ID.
+     * Negative acknowledgement indicating processing failure. The message is requeued for redelivery.
      *
      * @generated from field: google.protobuf.StringValue nak = 3;
      */
@@ -54,27 +55,28 @@ export type MessagingConsumerClient = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
- * Defines the specification for consumer messages.
+ * Defines messages sent from a consumer client to the messaging server in a bidirectional stream.
+ * Consumers use this to establish a connection, acknowledge processed messages, or reject failed messages.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerClient
  */
 export type MessagingConsumerClientJson = {
   /**
-   * Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
+   * Setup message to initialize the consumer connection. Must be the first message sent. Subsequent setup messages are rejected.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingConsumerSetup setup = 1;
    */
   setup?: MessagingConsumerSetupJson;
 
   /**
-   * Acknowledgement action to confirm the message with the given message ID.
+   * Acknowledgement confirming successful processing of a message. The message is removed from the queue.
    *
    * @generated from field: google.protobuf.StringValue ack = 2;
    */
   ack?: StringValueJson;
 
   /**
-   * Negative acknowledgement action to reject and requeue the message with the given message ID.
+   * Negative acknowledgement indicating processing failure. The message is requeued for redelivery.
    *
    * @generated from field: google.protobuf.StringValue nak = 3;
    */
@@ -89,7 +91,8 @@ export const MessagingConsumerClientSchema: GenMessage<MessagingConsumerClient, 
   messageDesc(file_messaging_messaging, 0);
 
 /**
- * Defines the specification for server messages.
+ * Defines messages sent from the messaging server to a consumer client in a bidirectional stream.
+ * The server delivers messages that match the consumer's subscribed subjects.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerServer
  */
@@ -99,7 +102,7 @@ export type MessagingConsumerServer = Message<"io.clbs.openhes.models.messaging.
    */
   kine: {
     /**
-     * Receive action to deliver a message to the consumer.
+     * Delivers a message to the consumer for processing. The consumer must ack or nak this message.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingReceiveMessage receive = 1;
      */
@@ -109,13 +112,14 @@ export type MessagingConsumerServer = Message<"io.clbs.openhes.models.messaging.
 };
 
 /**
- * Defines the specification for server messages.
+ * Defines messages sent from the messaging server to a consumer client in a bidirectional stream.
+ * The server delivers messages that match the consumer's subscribed subjects.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingConsumerServer
  */
 export type MessagingConsumerServerJson = {
   /**
-   * Receive action to deliver a message to the consumer.
+   * Delivers a message to the consumer for processing. The consumer must ack or nak this message.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingReceiveMessage receive = 1;
    */
@@ -130,7 +134,8 @@ export const MessagingConsumerServerSchema: GenMessage<MessagingConsumerServer, 
   messageDesc(file_messaging_messaging, 1);
 
 /**
- * Defines the specification for published messages.
+ * Defines messages sent from a publisher client to the messaging server in a client stream.
+ * Publishers use this to establish a connection and send messages to specific subjects.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublisherClient
  */
@@ -140,7 +145,7 @@ export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging
    */
   kind: {
     /**
-     * Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
+     * Setup message to initialize the publisher connection. Must be the first message sent. Subsequent setup messages are rejected.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingPublisherSetup setup = 1;
      */
@@ -148,7 +153,7 @@ export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging
     case: "setup";
   } | {
     /**
-     * Publish action to send a message.
+     * Publishes a message to a subject. All consumers subscribed to this subject will receive it.
      *
      * @generated from field: io.clbs.openhes.models.messaging.MessagingPublishMessage publish = 2;
      */
@@ -158,20 +163,21 @@ export type MessagingPublisherClient = Message<"io.clbs.openhes.models.messaging
 };
 
 /**
- * Defines the specification for published messages.
+ * Defines messages sent from a publisher client to the messaging server in a client stream.
+ * Publishers use this to establish a connection and send messages to specific subjects.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingPublisherClient
  */
 export type MessagingPublisherClientJson = {
   /**
-   * Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
+   * Setup message to initialize the publisher connection. Must be the first message sent. Subsequent setup messages are rejected.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingPublisherSetup setup = 1;
    */
   setup?: MessagingPublisherSetupJson;
 
   /**
-   * Publish action to send a message.
+   * Publishes a message to a subject. All consumers subscribed to this subject will receive it.
    *
    * @generated from field: io.clbs.openhes.models.messaging.MessagingPublishMessage publish = 2;
    */
@@ -494,27 +500,28 @@ export const MessagingComponentSchema: GenMessage<MessagingComponent, {jsonType:
   messageDesc(file_messaging_messaging, 8);
 
 /**
- * Defines a specification of messaging component settings for a specified consumer.
+ * Defines configuration settings for a specific consumer within a messaging component.
+ * Each consumer represents a logical queue handler that processes messages from subscribed subjects.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
  */
 export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"> & {
   /**
-   * The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.
+   * The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
    *
    * @generated from field: string consumer_id = 1;
    */
   consumerId: string;
 
   /**
-   * The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order.
+   * The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
    *
    * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages: number;
 
   /**
-   * The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!
+   * The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.
    *
    * @generated from field: repeated string subjects = 3;
    */
@@ -522,27 +529,28 @@ export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models
 };
 
 /**
- * Defines a specification of messaging component settings for a specified consumer.
+ * Defines configuration settings for a specific consumer within a messaging component.
+ * Each consumer represents a logical queue handler that processes messages from subscribed subjects.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
  */
 export type MessagingComponentConsumerSettingsJson = {
   /**
-   * The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.
+   * The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
    *
    * @generated from field: string consumer_id = 1;
    */
   consumerId?: string;
 
   /**
-   * The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order.
+   * The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
    *
    * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages?: number;
 
   /**
-   * The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!
+   * The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.
    *
    * @generated from field: repeated string subjects = 3;
    */
@@ -557,20 +565,21 @@ export const MessagingComponentConsumerSettingsSchema: GenMessage<MessagingCompo
   messageDesc(file_messaging_messaging, 9);
 
 /**
- * Defines a specification of a messaging component.
+ * Defines the configuration specification for a messaging component.
+ * Components represent microservices or system modules that publish and/or consume messages.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentSpec
  */
 export type MessagingComponentSpec = Message<"io.clbs.openhes.models.messaging.MessagingComponentSpec"> & {
   /**
-   * Indicates whether the component is enabled. If disabled, the component does not receive any messages.
+   * When false, the component cannot publish or consume messages. Useful for maintenance or debugging.
    *
    * @generated from field: bool enabled = 1;
    */
   enabled: boolean;
 
   /**
-   * The consumer settings for the component.
+   * The list of consumer configurations for this component. Each consumer handles specific message subjects.
    *
    * @generated from field: repeated io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings consumers = 2;
    */
@@ -578,20 +587,21 @@ export type MessagingComponentSpec = Message<"io.clbs.openhes.models.messaging.M
 };
 
 /**
- * Defines a specification of a messaging component.
+ * Defines the configuration specification for a messaging component.
+ * Components represent microservices or system modules that publish and/or consume messages.
  *
  * @generated from message io.clbs.openhes.models.messaging.MessagingComponentSpec
  */
 export type MessagingComponentSpecJson = {
   /**
-   * Indicates whether the component is enabled. If disabled, the component does not receive any messages.
+   * When false, the component cannot publish or consume messages. Useful for maintenance or debugging.
    *
    * @generated from field: bool enabled = 1;
    */
   enabled?: boolean;
 
   /**
-   * The consumer settings for the component.
+   * The list of consumer configurations for this component. Each consumer handles specific message subjects.
    *
    * @generated from field: repeated io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings consumers = 2;
    */

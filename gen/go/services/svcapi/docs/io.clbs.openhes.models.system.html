@@ -185,7 +185,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification for application configuration.</p>
+  <p>Defines the application-wide configuration containing settings for all system components.
+This model stores the actual configuration values that control system behavior.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -214,7 +215,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The default values for the application configuration.</p></td>
+      <td class="content"><p>The configuration values for each registered component in the system.</p></td>
       
     </tr>
     
@@ -238,7 +239,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification for application configuration descriptors.</p>
+  <p>Defines the complete application configuration schema and current values.
+This combines both the field definitions (descriptors) and the actual configuration values for all components.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -267,7 +269,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of component configuration descriptors.</p></td>
+      <td class="content"><p>The schema definitions for all registered components.</p></td>
       
     </tr>
     
@@ -285,7 +287,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of default configuration values for the application component.</p></td>
+      <td class="content"><p>The current configuration values for all components.</p></td>
       
     </tr>
     
@@ -309,7 +311,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification for a single component configuration.</p>
+  <p>Defines the configuration for a single system component or microservice.
+Each component can define its own configuration fields through field descriptors.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -335,7 +338,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The component name.</p></td>
+      <td class="content"><p>The unique component name (e.g., "taskmaster", "dataproxy", "api").</p></td>
       
     </tr>
     
@@ -351,7 +354,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The component configuration values.</p></td>
+      <td class="content"><p>The configuration values as field-value pairs. Fields are defined by the component's descriptors.</p></td>
       
     </tr>
     
@@ -375,7 +378,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification for component configuration descriptors.</p>
+  <p>Defines the configuration schema for a component, declaring what fields are available.
+Components register their configuration schema at startup to enable dynamic configuration.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -401,7 +405,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The component name.</p></td>
+      <td class="content"><p>The unique component name.</p></td>
       
     </tr>
     
@@ -419,7 +423,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of component configuration field descriptors.</p></td>
+      <td class="content"><p>The field descriptors defining available configuration options including types, defaults, and validation rules.</p></td>
       
     </tr>
     
@@ -563,7 +567,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the selection criteria for UI screen configuration.</p>
+  <p>Defines the selection criteria for retrieving a specific UI screen configuration.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -589,7 +593,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The application or ui-plugin identifier.</p></td>
+      <td class="content"><p>The application or UI plugin identifier.</p></td>
       
     </tr>
     
@@ -604,7 +608,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The screen identifier within the application/ui-plugin.</p></td>
+      <td class="content"><p>The screen identifier within the application.</p></td>
       
     </tr>
     
@@ -628,7 +632,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the</p>
+  <p>Defines a request for setting or updating UI screen configuration.
+Screen configurations store user-specific or system-wide UI layout and settings for different application screens.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -654,7 +659,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The application or ui-plugin identifier.</p></td>
+      <td class="content"><p>The application or UI plugin identifier (e.g., "core", "scada-plugin").</p></td>
       
     </tr>
     
@@ -669,7 +674,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The screen identifier within the application/ui-plugin.</p></td>
+      <td class="content"><p>The screen identifier within the application (e.g., "device-list", "dashboard").</p></td>
       
     </tr>
     
@@ -699,7 +704,7 @@
               <span>string</span>
             </code>
           </td>
-          <td class="content"><p>Generic JSON-encoded data model holding data related for the screen.</p></td>
+          <td class="content"><p>Configuration as a JSON-encoded string. Useful for direct storage from frontend.</p></td>
           
         </tr>
       
@@ -718,7 +723,7 @@
               <span>google.protobuf.Struct</span>
             </code>
           </td>
-          <td class="content"><p>Generic data model holding data related for the screen.</p></td>
+          <td class="content"><p>Configuration as a structured protobuf Struct. Used for programmatic access.</p></td>
           
         </tr>
       
@@ -742,7 +747,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the user information structure.</p>
+  <p>Defines the user profile containing identity and preferences for authenticated users.
+User profiles store both read-only attributes managed by the authentication system and user-controlled preferences.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -768,7 +774,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The UUID of the user.</p></td>
+      <td class="content"><p>The unique UUID of the user assigned by the authentication system (read-only).</p></td>
       
     </tr>
     
@@ -783,7 +789,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The display name of the user.</p></td>
+      <td class="content"><p>The user's full name or preferred display name shown in the UI.</p></td>
       
     </tr>
     
@@ -800,7 +806,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of user roles. This is read-only and managed by the system.</p></td>
+      <td class="content"><p>The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.</p></td>
       
     </tr>
     
@@ -815,7 +821,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The preferred user interface language.</p></td>
+      <td class="content"><p>The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").</p></td>
       
     </tr>
     
@@ -830,7 +836,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The timezone associated with the device. For example, <code>"America/New_York"</code>, <code>"Europe/Prague"</code>, <code>"CET"</code>, <code>"GMT"</code>, <code>"Etc/GMT+2"</code>.</p></td>
+      <td class="content"><p>The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").</p></td>
       
     </tr>
     
@@ -858,7 +864,8 @@
 </h4>
 
 <div class="block content">
-  <p><p>Defines the object flags.</p></p>
+  <p><p>Defines feature flags and capability indicators for system objects.
+These flags control what operations are available or enabled for specific objects.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -874,13 +881,13 @@
     <tr>
       <td><code>OBJECT_FLAG_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Default value.</p></td>
+      <td class="content"><p>Default/unspecified flag (no special behavior).</p></td>
     </tr>
     
     <tr>
       <td><code>OBJECT_FLAG_COMMUNICATION_UNIT_LOG</code></td>
       <td>1</td>
-      <td class="content"><p>Given communication unit has log feature enabled.</p></td>
+      <td class="content"><p>The communication unit has detailed logging enabled for diagnostics and troubleshooting.</p></td>
     </tr>
     
   </tbody>

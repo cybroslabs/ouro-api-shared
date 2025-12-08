@@ -22,13 +22,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Defines the supported DLMS decryption methods.
+// Defines the supported decryption methods for cryptographic secret data.
+// These methods are used to decrypt device authentication keys and other sensitive credentials.
 type SecretDataDecryptionMethod int32
 
 const (
-	SecretDataDecryptionMethod_SECRET_DATA_UNSPECIFIED SecretDataDecryptionMethod = 0 // Unspecified decryption method.
-	SecretDataDecryptionMethod_SECRET_DATA_PLAIN       SecretDataDecryptionMethod = 1 // Plain data. No decryption required.
-	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC   SecretDataDecryptionMethod = 2 // AES-256-CBC dencryption method.
+	SecretDataDecryptionMethod_SECRET_DATA_UNSPECIFIED SecretDataDecryptionMethod = 0 // Unspecified decryption method (invalid, should not be used).
+	SecretDataDecryptionMethod_SECRET_DATA_PLAIN       SecretDataDecryptionMethod = 1 // Data is stored in plain text without encryption (not recommended for production).
+	SecretDataDecryptionMethod_SECRET_DATA_AES256CBC   SecretDataDecryptionMethod = 2 // Data is encrypted using AES-256 in CBC mode. Requires an initialization vector.
 )
 
 // Enum value maps for SecretDataDecryptionMethod.
@@ -67,13 +68,14 @@ func (x SecretDataDecryptionMethod) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Defines the supported decryption methods for session keys.
+// Defines the supported decryption methods for session keys used in key wrapping scenarios.
+// Session keys provide an additional layer of security for protecting cryptographic secrets.
 type SecretSessionKeyDecryptionMethod int32
 
 const (
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED    SecretSessionKeyDecryptionMethod = 0 // No session key decryption method. Used when the session key is not set or not used.
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_PLAIN          SecretSessionKeyDecryptionMethod = 1 // Plain session key. No session-key decryption required.
-	SecretSessionKeyDecryptionMethod_SECRET_SESSION_RSA_OAEPM_GF1P SecretSessionKeyDecryptionMethod = 2 // RSA-OAEP-MGF1P decryption method. Used for session keys.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_UNSPECIFIED    SecretSessionKeyDecryptionMethod = 0 // No session key is used. The secret data is encrypted directly with the master key.
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_PLAIN          SecretSessionKeyDecryptionMethod = 1 // Session key is stored in plain text (used when the session key itself is not sensitive).
+	SecretSessionKeyDecryptionMethod_SECRET_SESSION_RSA_OAEPM_GF1P SecretSessionKeyDecryptionMethod = 2 // Session key is encrypted using RSA-OAEP with MGF1 and SHA-1. Used for secure key transport.
 )
 
 // Enum value maps for SecretSessionKeyDecryptionMethod.
@@ -316,7 +318,8 @@ func (b0 CryptoSecrets_builder) Build() *CryptoSecrets {
 	return m0
 }
 
-// Defines a specification of crypto secrets.
+// Defines a cryptographic secret containing sensitive credentials for device communication.
+// Secrets include authentication keys, encryption keys, and passwords used to establish secure connections with devices.
 type CryptoSecret struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_AccessLevel *string                `protobuf:"bytes,1,opt,name=access_level,json=accessLevel"`

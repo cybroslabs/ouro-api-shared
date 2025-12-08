@@ -1,12 +1,13 @@
 # Model: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings
 
-Defines a specification of messaging component settings for a specified consumer.
+Defines configuration settings for a specific consumer within a messaging component.
+ Each consumer represents a logical queue handler that processes messages from subscribed subjects.
 
 ## Fields
 
 | Field | Information |
 | --- | --- |
-| consumerId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique UUID identifier for the consumer. Must be unique across all consumers of the same component. |
-| maxInFlightMessages | <b>Type:</b> `int32`<br><b>Description:</b><br>The maximum number of in-flight (unacknowledged) messages allowed. A value `>1` allows multiple consumers to receive messages concurrently without preserving order. Value `1` allows only a single in-flight message at any time and preserves the message order. |
-| subjects | <b>Type:</b> `string`<br><b>Description:</b><br>The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component! |
+| consumerId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component. |
+| maxInFlightMessages | <b>Type:</b> `int32`<br><b>Description:</b><br>The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing. |
+| subjects | <b>Type:</b> `string`<br><b>Description:</b><br>The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component. |
 

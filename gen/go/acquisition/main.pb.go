@@ -743,7 +743,9 @@ func (b0 ListOfDevice_builder) Build() *ListOfDevice {
 	return m0
 }
 
-// Defines a device model.
+// Defines a device model representing an energy meter or IoT device in the system.
+// A device is a physical or logical entity that can be communicated with via one or more communication units,
+// has a specific driver type for protocol handling, and belongs to device groups for organizational purposes.
 type Device struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceSpec            `protobuf:"bytes,1,opt,name=spec"`
@@ -1342,7 +1344,9 @@ func (b0 DeviceCommunicationUnitChangeStatus_builder) Build() *DeviceCommunicati
 	return m0
 }
 
-// Defines an unknown device model.
+// Defines an unknown device model representing devices discovered during network scanning but not yet registered in the system.
+// Unknown devices are typically found by data concentrators or gateway devices during topology discovery.
+// They can be promoted to registered devices once their configuration is verified.
 type UnknownDevice struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Status   *UnknownDeviceStatus   `protobuf:"bytes,2,opt,name=status"`
@@ -1436,7 +1440,7 @@ func (b0 UnknownDevice_builder) Build() *UnknownDevice {
 	return m0
 }
 
-// Defines the status of an unknown device.
+// Defines the status of an unknown device discovered during network scanning.
 type UnknownDeviceStatus struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_DriverType          *string                `protobuf:"bytes,1,opt,name=driver_type,json=driverType"`
@@ -1952,7 +1956,9 @@ func (*streamDeviceGroup_Status) isStreamDeviceGroup_Parts() {}
 
 func (*streamDeviceGroup_Metadata) isStreamDeviceGroup_Parts() {}
 
-// Defines a device group model.
+// Defines a device group model for organizing devices into logical collections.
+// Device groups are used to perform bulk operations, apply common configurations, and organize devices
+// by location, type, or any other business logic. Devices can belong to multiple groups simultaneously.
 type DeviceGroup struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *DeviceGroupSpec       `protobuf:"bytes,1,opt,name=spec"`
@@ -2046,7 +2052,7 @@ func (b0 DeviceGroup_builder) Build() *DeviceGroup {
 	return m0
 }
 
-// Defines a device group sepcification.
+// Defines a device group specification containing the basic attributes and type information.
 type DeviceGroupSpec struct {
 	state                   protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ExternalId   *string                `protobuf:"bytes,1,opt,name=external_id,json=externalId"`
@@ -2955,7 +2961,9 @@ func (b0 ListOfBulk_builder) Build() *ListOfBulk {
 	return m0
 }
 
-// Defines a bulk model.
+// Defines a bulk operation model for executing actions across multiple devices concurrently.
+// Bulks enable efficient mass operations such as data collection, firmware updates, or configuration changes
+// across hundreds or thousands of devices. Each bulk creates individual jobs per device.
 type Bulk struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *BulkSpec              `protobuf:"bytes,1,opt,name=spec"`
@@ -3074,7 +3082,7 @@ func (b0 Bulk_builder) Build() *Bulk {
 	return m0
 }
 
-// Defines a bulk specification.
+// Defines a bulk specification containing the configuration for a mass operation.
 type BulkSpec struct {
 	state                         protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CorrelationId      *string                `protobuf:"bytes,1,opt,name=correlation_id,json=correlationId"`
@@ -3338,11 +3346,11 @@ type isBulkSpec_Device interface {
 }
 
 type bulkSpec_Devices struct {
-	Devices *ListOfJobDeviceId `protobuf:"bytes,2,opt,name=devices,oneof"` // The list of devices in the bulk.
+	Devices *ListOfJobDeviceId `protobuf:"bytes,2,opt,name=devices,oneof"` // An explicit list of device identifiers to target.
 }
 
 type bulkSpec_DeviceGroupId struct {
-	DeviceGroupId string `protobuf:"bytes,3,opt,name=device_group_id,json=deviceGroupId,oneof"` // The unique device group identifier.
+	DeviceGroupId string `protobuf:"bytes,3,opt,name=device_group_id,json=deviceGroupId,oneof"` // A device group identifier to target all devices in the group.
 }
 
 func (*bulkSpec_Devices) isBulkSpec_Device() {}
@@ -4070,7 +4078,8 @@ func (b0 CreateProxyBulkRequest_builder) Build() *CreateProxyBulkRequest {
 	return m0
 }
 
-// Defines a proxy bulk specification.
+// Defines a proxy bulk specification for operations forwarded from the DataProxy to the main API.
+// Proxy bulks are used when data collection is initiated externally and needs to be tracked in the main system.
 type ProxyBulkSpec struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_CorrelationId *string                `protobuf:"bytes,1,opt,name=correlation_id,json=correlationId"`

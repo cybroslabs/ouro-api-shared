@@ -66,27 +66,28 @@ export const CreateCronJobRequestSchema: GenMessage<CreateCronJobRequest, {jsonT
   messageDesc(file_cronjobs_cronjobs, 0);
 
 /**
- * Defines the cron job specification.
+ * Defines the cron job model representing a scheduled recurring task.
+ * Cron jobs are persistent scheduled operations that execute automatically according to their schedule definition.
  *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJob
  */
 export type CronJob = Message<"io.clbs.openhes.models.cronjobs.CronJob"> & {
   /**
-   * The specification of the cron job.
+   * The configuration defining when and what to execute.
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobSpec spec = 1;
    */
   spec?: CronJobSpec;
 
   /**
-   * The current status of the cron job.
+   * The runtime status including last/next execution times and errors.
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobStatus status = 2;
    */
   status?: CronJobStatus;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -94,27 +95,28 @@ export type CronJob = Message<"io.clbs.openhes.models.cronjobs.CronJob"> & {
 };
 
 /**
- * Defines the cron job specification.
+ * Defines the cron job model representing a scheduled recurring task.
+ * Cron jobs are persistent scheduled operations that execute automatically according to their schedule definition.
  *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJob
  */
 export type CronJobJson = {
   /**
-   * The specification of the cron job.
+   * The configuration defining when and what to execute.
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobSpec spec = 1;
    */
   spec?: CronJobSpecJson;
 
   /**
-   * The current status of the cron job.
+   * The runtime status including last/next execution times and errors.
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobStatus status = 2;
    */
   status?: CronJobStatusJson;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -129,41 +131,41 @@ export const CronJobSchema: GenMessage<CronJob, {jsonType: CronJobJson}> = /*@__
   messageDesc(file_cronjobs_cronjobs, 1);
 
 /**
- * Defines the cron job specification.
+ * Defines the cron job specification containing scheduling and execution details.
  *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobSpec
  */
 export type CronJobSpec = Message<"io.clbs.openhes.models.cronjobs.CronJobSpec"> & {
   /**
-   * The type of the cron job. For example, `CRON_JOB_TYPE_START_BULK`, `CRON_JOB_TYPE_START_PROXY_BULK`.
+   * The type of operation to execute (e.g., START_BULK, START_PROXY_BULK).
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobTypeEnum type = 1;
    */
   type: CronJobTypeEnum;
 
   /**
-   * The cron job definition. For example, `"0 * * * *"` for every hour.
+   * The cron schedule expression in standard format (e.g., "0 * * * *" for hourly, "0 0 * * *" for daily at midnight).
    *
    * @generated from field: string schedule = 2;
    */
   schedule: string;
 
   /**
-   * The timezone associated with the cron job. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").
    *
    * @generated from field: string timezone = 3;
    */
   timezone: string;
 
   /**
-   * Indicates whether the cron job is suspended. Default is `false` (not suspended).
+   * When true, the cron job is paused and will not execute until resumed. Default is false.
    *
    * @generated from field: bool suspend = 4;
    */
   suspend: boolean;
 
   /**
-   * The payload to be sent when the cron job runs.
+   * The type-specific payload passed to the operation when it executes (e.g., bulk specification for START_BULK type).
    *
    * @generated from field: google.protobuf.Struct data = 5;
    */
@@ -171,41 +173,41 @@ export type CronJobSpec = Message<"io.clbs.openhes.models.cronjobs.CronJobSpec">
 };
 
 /**
- * Defines the cron job specification.
+ * Defines the cron job specification containing scheduling and execution details.
  *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobSpec
  */
 export type CronJobSpecJson = {
   /**
-   * The type of the cron job. For example, `CRON_JOB_TYPE_START_BULK`, `CRON_JOB_TYPE_START_PROXY_BULK`.
+   * The type of operation to execute (e.g., START_BULK, START_PROXY_BULK).
    *
    * @generated from field: io.clbs.openhes.models.cronjobs.CronJobTypeEnum type = 1;
    */
   type?: CronJobTypeEnumJson;
 
   /**
-   * The cron job definition. For example, `"0 * * * *"` for every hour.
+   * The cron schedule expression in standard format (e.g., "0 * * * *" for hourly, "0 0 * * *" for daily at midnight).
    *
    * @generated from field: string schedule = 2;
    */
   schedule?: string;
 
   /**
-   * The timezone associated with the cron job. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".
+   * The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").
    *
    * @generated from field: string timezone = 3;
    */
   timezone?: string;
 
   /**
-   * Indicates whether the cron job is suspended. Default is `false` (not suspended).
+   * When true, the cron job is paused and will not execute until resumed. Default is false.
    *
    * @generated from field: bool suspend = 4;
    */
   suspend?: boolean;
 
   /**
-   * The payload to be sent when the cron job runs.
+   * The type-specific payload passed to the operation when it executes (e.g., bulk specification for START_BULK type).
    *
    * @generated from field: google.protobuf.Struct data = 5;
    */
@@ -220,27 +222,27 @@ export const CronJobSpecSchema: GenMessage<CronJobSpec, {jsonType: CronJobSpecJs
   messageDesc(file_cronjobs_cronjobs, 2);
 
 /**
- * Defines the current status of a cron job.
+ * Defines the current runtime status of a cron job including execution history and schedule validation.
  *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobStatus
  */
 export type CronJobStatus = Message<"io.clbs.openhes.models.cronjobs.CronJobStatus"> & {
   /**
-   * The timestamp of the last run of the cron job.
+   * The timestamp when the cron job last executed successfully or attempted to execute.
    *
    * @generated from field: google.protobuf.Timestamp last_run_at = 1;
    */
   lastRunAt?: Timestamp;
 
   /**
-   * The timestamp of the next run of the cron job.
+   * The calculated timestamp for the next scheduled execution based on the cron schedule and timezone.
    *
    * @generated from field: google.protobuf.Timestamp next_run_at = 2;
    */
   nextRunAt?: Timestamp;
 
   /**
-   * The error message if the cron job schedule is invalid.
+   * An error message if the cron schedule is invalid or if the last execution failed.
    *
    * @generated from field: string error = 3;
    */
@@ -248,27 +250,27 @@ export type CronJobStatus = Message<"io.clbs.openhes.models.cronjobs.CronJobStat
 };
 
 /**
- * Defines the current status of a cron job.
+ * Defines the current runtime status of a cron job including execution history and schedule validation.
  *
  * @generated from message io.clbs.openhes.models.cronjobs.CronJobStatus
  */
 export type CronJobStatusJson = {
   /**
-   * The timestamp of the last run of the cron job.
+   * The timestamp when the cron job last executed successfully or attempted to execute.
    *
    * @generated from field: google.protobuf.Timestamp last_run_at = 1;
    */
   lastRunAt?: TimestampJson;
 
   /**
-   * The timestamp of the next run of the cron job.
+   * The calculated timestamp for the next scheduled execution based on the cron schedule and timezone.
    *
    * @generated from field: google.protobuf.Timestamp next_run_at = 2;
    */
   nextRunAt?: TimestampJson;
 
   /**
-   * The error message if the cron job schedule is invalid.
+   * An error message if the cron schedule is invalid or if the last execution failed.
    *
    * @generated from field: string error = 3;
    */
@@ -332,27 +334,28 @@ export const ListOfCronJobSchema: GenMessage<ListOfCronJob, {jsonType: ListOfCro
   messageDesc(file_cronjobs_cronjobs, 4);
 
 /**
- * Defines the cron job types that can be scheduled.
+ * Defines the cron job types that can be scheduled for automated recurring operations.
+ * Cron jobs enable scheduled data collection, configuration synchronization, and other periodic tasks.
  *
  * @generated from enum io.clbs.openhes.models.cronjobs.CronJobTypeEnum
  */
 export enum CronJobTypeEnum {
   /**
-   * Unspecified cron job type.
+   * Unspecified cron job type (invalid, should not be used).
    *
    * @generated from enum value: CRON_JOB_TYPE_UNSPECIFIED = 0;
    */
   CRON_JOB_TYPE_UNSPECIFIED = 0,
 
   /**
-   * The cron job that starts an acquistion bulk.
+   * Schedules recurring acquisition bulks for automated data collection from devices.
    *
    * @generated from enum value: CRON_JOB_TYPE_START_BULK = 1;
    */
   CRON_JOB_TYPE_START_BULK = 1,
 
   /**
-   * The cron job that starts a proxy bulk.
+   * Schedules recurring proxy bulks for data collection operations initiated through the DataProxy.
    *
    * @generated from enum value: CRON_JOB_TYPE_START_PROXY_BULK = 2;
    */
@@ -360,7 +363,8 @@ export enum CronJobTypeEnum {
 }
 
 /**
- * Defines the cron job types that can be scheduled.
+ * Defines the cron job types that can be scheduled for automated recurring operations.
+ * Cron jobs enable scheduled data collection, configuration synchronization, and other periodic tasks.
  *
  * @generated from enum io.clbs.openhes.models.cronjobs.CronJobTypeEnum
  */

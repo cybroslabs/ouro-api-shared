@@ -59,11 +59,13 @@ message ListOfDevice {
     int32 total_count     = 2;  // The total number of items.
 }
 
-// Defines a device model.
+// Defines a device model representing an energy meter or IoT device in the system.
+// A device is a physical or logical entity that can be communicated with via one or more communication units,
+// has a specific driver type for protocol handling, and belongs to device groups for organizational purposes.
 message Device {
-    DeviceSpec spec                = 1;  // The device specification.
-    DeviceStatus status            = 2;  // The device status.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    DeviceSpec spec                = 1;  // The device specification containing configuration and identification details.
+    DeviceStatus status            = 2;  // The current operational status including connection state and statistics.
+    common.MetadataFields metadata = 3;  // Metadata including id, name, generation, user-managed fields, and system-managed fields.
 }
 
 // Defines a partial representation of driver types for a list of devices.
@@ -97,17 +99,19 @@ message DeviceCommunicationUnitChangeStatus {
     string device_name                  = 5;  // The device name.
 }
 
-// Defines an unknown device model.
+// Defines an unknown device model representing devices discovered during network scanning but not yet registered in the system.
+// Unknown devices are typically found by data concentrators or gateway devices during topology discovery.
+// They can be promoted to registered devices once their configuration is verified.
 message UnknownDevice {
     reserved 1;
-    UnknownDeviceStatus status     = 2;  // The unknown device status.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    UnknownDeviceStatus status     = 2;  // The status information about the discovered device.
+    common.MetadataFields metadata = 3;  // Metadata including id, name, generation, user-managed fields, and system-managed fields.
 }
 
-// Defines the status of an unknown device.
+// Defines the status of an unknown device discovered during network scanning.
 message UnknownDeviceStatus {
-    string driver_type           = 1;  // The device driver type.
-    string communication_unit_id = 2;  // The unique communication unit identifier of the device.
+    string driver_type           = 1;  // The driver type that discovered this device, indicating the communication protocol.
+    string communication_unit_id = 2;  // The identifier of the communication unit (gateway/concentrator) that discovered this device.
 }
 
 // Defines the specification for creating a new device group.
@@ -132,17 +136,19 @@ message StreamDeviceGroup {
     }
 }
 
-// Defines a device group model.
+// Defines a device group model for organizing devices into logical collections.
+// Device groups are used to perform bulk operations, apply common configurations, and organize devices
+// by location, type, or any other business logic. Devices can belong to multiple groups simultaneously.
 message DeviceGroup {
     reserved 2;
-    DeviceGroupSpec spec           = 1;  // The device group specification.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    DeviceGroupSpec spec           = 1;  // The device group specification defining identification and type.
+    common.MetadataFields metadata = 3;  // Metadata including id, name, generation, user-managed fields, and system-managed fields.
 }
 
-// Defines a device group sepcification.
+// Defines a device group specification containing the basic attributes and type information.
 message DeviceGroupSpec {
-    string external_id  = 1;  // The external identifier of the communication unit.
-    bool is_scada_group = 2;  // Indicates whether the device group is a SCADA group.
+    string external_id  = 1;  // An external identifier for integration with third-party systems or legacy identifiers.
+    bool is_scada_group = 2;  // Indicates whether this is a SCADA group used for supervisory control and data acquisition systems.
 }
 
 // Defines a partial representation of a device group status.
@@ -197,24 +203,26 @@ message ListOfBulk {
     int32 total_count   = 2;  // The total number of items in the list.
 }
 
-// Defines a bulk model.
+// Defines a bulk operation model for executing actions across multiple devices concurrently.
+// Bulks enable efficient mass operations such as data collection, firmware updates, or configuration changes
+// across hundreds or thousands of devices. Each bulk creates individual jobs per device.
 message Bulk {
-    BulkSpec spec                  = 1;  // The bulk specification.
-    BulkStatus status              = 2;  // The bulk status.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    BulkSpec spec                  = 1;  // The bulk specification defining target devices and actions.
+    BulkStatus status              = 2;  // The current status tracking job counts and completion state.
+    common.MetadataFields metadata = 3;  // Metadata including id, name, generation, user-managed fields, and system-managed fields.
 }
 
-// Defines a bulk specification.
+// Defines a bulk specification containing the configuration for a mass operation.
 message BulkSpec {
     // @gqltype: UUID
-    string correlation_id = 1;  // The correlation identifier that represents a non-homogenous group with various device types.
+    string correlation_id = 1;  // A correlation identifier for grouping related bulks across different driver types.
     oneof device {
-        ListOfJobDeviceId devices = 2;  // The list of devices in the bulk.
-        string device_group_id    = 3;  // The unique device group identifier.
+        ListOfJobDeviceId devices = 2;  // An explicit list of device identifiers to target.
+        string device_group_id    = 3;  // A device group identifier to target all devices in the group.
     }
-    JobSettings settings          = 4;  // The job settings shared across all jobs in the bulk.
-    repeated JobActionSet actions = 5;  // The list of actions to be executed on each device in the bulk.
-    bool skip_data_processing     = 6;  // Indicates whether data processing should be skipped for this job. Default value is `false`.
+    JobSettings settings          = 4;  // Execution settings including priority, retry logic, and timeout values.
+    repeated JobActionSet actions = 5;  // The sequence of actions to execute on each device (e.g., read registers, update firmware).
+    bool skip_data_processing     = 6;  // When true, collected data bypasses normal processing pipelines (useful for testing). Default is false.
 }
 
 // Defines the status of a bulk.
@@ -258,14 +266,15 @@ message CreateProxyBulkRequest {
     common.MetadataFields metadata = 2;  // The metadata fields.
 }
 
-// Defines a proxy bulk specification.
+// Defines a proxy bulk specification for operations forwarded from the DataProxy to the main API.
+// Proxy bulks are used when data collection is initiated externally and needs to be tracked in the main system.
 message ProxyBulkSpec {
     // @gqltype: UUID
-    string correlation_id      = 1;  // The correlation identifier that represents a non-homogenous group with various device types.
-    string driver_type         = 2;  // The driver type.
-    ListOfJobDevice devices    = 3;  // The list of devices in the proxy bulk.
-    JobSettings settings       = 4;  // The job settings shared across the bulk.
-    repeated JobAction actions = 5;  // The list of actions to be executed.
+    string correlation_id      = 1;  // A correlation identifier linking this proxy bulk to the originating bulk in the DataProxy.
+    string driver_type         = 2;  // The driver type that will execute the jobs (e.g., "dlms", "mbus").
+    ListOfJobDevice devices    = 3;  // The list of devices with their connection information for the proxy bulk.
+    JobSettings settings       = 4;  // Execution settings including priority, retry logic, and timeout values.
+    repeated JobAction actions = 5;  // The sequence of driver-specific actions to execute on each device.
 }
 
 // Defines a proxy bulk model.

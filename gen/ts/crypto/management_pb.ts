@@ -115,41 +115,42 @@ export const CryptoSecretsSchema: GenMessage<CryptoSecrets, {jsonType: CryptoSec
   messageDesc(file_crypto_management, 1);
 
 /**
- * Defines a specification of crypto secrets.
+ * Defines a cryptographic secret containing sensitive credentials for device communication.
+ * Secrets include authentication keys, encryption keys, and passwords used to establish secure connections with devices.
  *
  * @generated from message io.clbs.openhes.models.crypto.CryptoSecret
  */
 export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret"> & {
   /**
-   * The access level for the secret (for example, `admin`, `user`).
+   * The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.
    *
    * @generated from field: string access_level = 1;
    */
   accessLevel: string;
 
   /**
-   * The unique secret key identifier.
+   * The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.
    *
    * @generated from field: string key_id = 2;
    */
   keyId: string;
 
   /**
-   * The timestamp when the secret was created.
+   * The timestamp when this secret was initially created in the system.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: Timestamp;
 
   /**
-   * The timestamp when the secret was last updated.
+   * The timestamp when this secret was last modified or rotated.
    *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
   updatedAt?: Timestamp;
 
   /**
-   * The secret data.
+   * The actual secret data (e.g., encryption key, password). This field contains the decrypted value ready for use.
    *
    * @generated from field: bytes data = 15;
    */
@@ -157,41 +158,42 @@ export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret">
 };
 
 /**
- * Defines a specification of crypto secrets.
+ * Defines a cryptographic secret containing sensitive credentials for device communication.
+ * Secrets include authentication keys, encryption keys, and passwords used to establish secure connections with devices.
  *
  * @generated from message io.clbs.openhes.models.crypto.CryptoSecret
  */
 export type CryptoSecretJson = {
   /**
-   * The access level for the secret (for example, `admin`, `user`).
+   * The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.
    *
    * @generated from field: string access_level = 1;
    */
   accessLevel?: string;
 
   /**
-   * The unique secret key identifier.
+   * The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.
    *
    * @generated from field: string key_id = 2;
    */
   keyId?: string;
 
   /**
-   * The timestamp when the secret was created.
+   * The timestamp when this secret was initially created in the system.
    *
    * @generated from field: google.protobuf.Timestamp created_at = 3;
    */
   createdAt?: TimestampJson;
 
   /**
-   * The timestamp when the secret was last updated.
+   * The timestamp when this secret was last modified or rotated.
    *
    * @generated from field: google.protobuf.Timestamp updated_at = 4;
    */
   updatedAt?: TimestampJson;
 
   /**
-   * The secret data.
+   * The actual secret data (e.g., encryption key, password). This field contains the decrypted value ready for use.
    *
    * @generated from field: bytes data = 15;
    */
@@ -381,27 +383,28 @@ export const SetCryptoSecretRequestSchema: GenMessage<SetCryptoSecretRequest, {j
   messageDesc(file_crypto_management, 3);
 
 /**
- * Defines the supported DLMS decryption methods.
+ * Defines the supported decryption methods for cryptographic secret data.
+ * These methods are used to decrypt device authentication keys and other sensitive credentials.
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
  */
 export enum SecretDataDecryptionMethod {
   /**
-   * Unspecified decryption method.
+   * Unspecified decryption method (invalid, should not be used).
    *
    * @generated from enum value: SECRET_DATA_UNSPECIFIED = 0;
    */
   SECRET_DATA_UNSPECIFIED = 0,
 
   /**
-   * Plain data. No decryption required.
+   * Data is stored in plain text without encryption (not recommended for production).
    *
    * @generated from enum value: SECRET_DATA_PLAIN = 1;
    */
   SECRET_DATA_PLAIN = 1,
 
   /**
-   * AES-256-CBC dencryption method.
+   * Data is encrypted using AES-256 in CBC mode. Requires an initialization vector.
    *
    * @generated from enum value: SECRET_DATA_AES256CBC = 2;
    */
@@ -409,7 +412,8 @@ export enum SecretDataDecryptionMethod {
 }
 
 /**
- * Defines the supported DLMS decryption methods.
+ * Defines the supported decryption methods for cryptographic secret data.
+ * These methods are used to decrypt device authentication keys and other sensitive credentials.
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretDataDecryptionMethod
  */
@@ -422,27 +426,28 @@ export const SecretDataDecryptionMethodSchema: GenEnum<SecretDataDecryptionMetho
   enumDesc(file_crypto_management, 0);
 
 /**
- * Defines the supported decryption methods for session keys.
+ * Defines the supported decryption methods for session keys used in key wrapping scenarios.
+ * Session keys provide an additional layer of security for protecting cryptographic secrets.
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
  */
 export enum SecretSessionKeyDecryptionMethod {
   /**
-   * No session key decryption method. Used when the session key is not set or not used.
+   * No session key is used. The secret data is encrypted directly with the master key.
    *
    * @generated from enum value: SECRET_SESSION_UNSPECIFIED = 0;
    */
   SECRET_SESSION_UNSPECIFIED = 0,
 
   /**
-   * Plain session key. No session-key decryption required.
+   * Session key is stored in plain text (used when the session key itself is not sensitive).
    *
    * @generated from enum value: SECRET_SESSION_PLAIN = 1;
    */
   SECRET_SESSION_PLAIN = 1,
 
   /**
-   * RSA-OAEP-MGF1P decryption method. Used for session keys.
+   * Session key is encrypted using RSA-OAEP with MGF1 and SHA-1. Used for secure key transport.
    *
    * @generated from enum value: SECRET_SESSION_RSA_OAEPM_GF1P = 2;
    */
@@ -450,7 +455,8 @@ export enum SecretSessionKeyDecryptionMethod {
 }
 
 /**
- * Defines the supported decryption methods for session keys.
+ * Defines the supported decryption methods for session keys used in key wrapping scenarios.
+ * Session keys provide an additional layer of security for protecting cryptographic secrets.
  *
  * @generated from enum io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod
  */

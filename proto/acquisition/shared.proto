@@ -13,18 +13,20 @@ import "common/metadata.proto";
 import "common/types.proto";
 import "acquisition/timeofuse/timeofuse.proto";
 
-// Defines the available job priority levels.
+// Defines the available job priority levels for controlling execution order.
+// Higher priority jobs are executed before lower priority jobs when resources are constrained.
+// Use higher priorities for time-sensitive operations like remote disconnect/connect commands.
 enum JobPriority {
-    JOB_PRIORITY_UNSPECIFIED = 0;  // Unspecified priority.
-    JOB_PRIORITY_0           = 1;  // Lowest priority.
-    JOB_PRIORITY_1           = 2;  // Priority 1.
-    JOB_PRIORITY_2           = 3;  // Priority 2.
-    JOB_PRIORITY_3           = 4;  // Priority 3.
-    JOB_PRIORITY_4           = 5;  // Priority 4.
-    JOB_PRIORITY_5           = 6;  // Priority 5.
-    JOB_PRIORITY_6           = 7;  // Priority 6.
-    JOB_PRIORITY_7           = 8;  // Priority 7.
-    JOB_PRIORITY_8           = 9;  // Highest priority.
+    JOB_PRIORITY_UNSPECIFIED = 0;  // Unspecified priority (treated as default/medium priority).
+    JOB_PRIORITY_0           = 1;  // Lowest priority - for bulk data collection and non-urgent tasks.
+    JOB_PRIORITY_1           = 2;  // Very low priority.
+    JOB_PRIORITY_2           = 3;  // Low priority.
+    JOB_PRIORITY_3           = 4;  // Below-medium priority.
+    JOB_PRIORITY_4           = 5;  // Medium priority - default for regular data collection.
+    JOB_PRIORITY_5           = 6;  // Above-medium priority.
+    JOB_PRIORITY_6           = 7;  // High priority - for important configuration changes.
+    JOB_PRIORITY_7           = 8;  // Very high priority - for urgent operations.
+    JOB_PRIORITY_8           = 9;  // Highest priority - for critical operations like emergency disconnects.
 }
 
 // Defines the read path policies for retrieving data from devices.
@@ -35,14 +37,15 @@ enum ReadPathPolicy {
 }
 
 // Defines the parameters and execution rules that control how a job is processed.
+// These settings apply to individual jobs or entire bulks and determine retry logic, timeouts, and scheduling.
 message JobSettings {
-    google.protobuf.Duration max_duration = 1;  // The maximum duration allowed for a job attempt. This value defines the real- time window for the driver to execute the job.
-    JobPriority priority                  = 2;  // The execution priority assigned to the job.
-    repeated int32 attempts               = 3;  // The maximum number of allowed job attempts. Must be at least `1`.
-    google.protobuf.Duration retry_delay  = 4;  // The delay between two attempts.
-    google.protobuf.Duration defer_start  = 5;  // The time offset to wait before starting the job.
-    google.protobuf.Timestamp expires_at  = 6;  // The timestamp that specifies when the job expires and should no longer not be executed.
-    ReadPathPolicy read_path_policy       = 7;  // The policy that determines how data is read from devices.  It can be red directly from devices (meters) or via the data concentrator.
+    google.protobuf.Duration max_duration = 1;  // The maximum real-time duration allowed for a single job attempt before it's terminated.
+    JobPriority priority                  = 2;  // The execution priority determining queue position relative to other jobs.
+    repeated int32 attempts               = 3;  // The maximum number of retry attempts if the job fails. Must be at least 1. Each attempt index can have different settings.
+    google.protobuf.Duration retry_delay  = 4;  // The delay to wait between retry attempts after a failure.
+    google.protobuf.Duration defer_start  = 5;  // The initial delay before the job becomes eligible for execution (useful for scheduling).
+    google.protobuf.Timestamp expires_at  = 6;  // The expiration timestamp after which the job will not be executed, even if still queued.
+    ReadPathPolicy read_path_policy       = 7;  // The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.
 }
 
 // Defines the job action specification.

@@ -26,54 +26,55 @@ export const file_acquisition_shared: GenFile = /*@__PURE__*/
 
 /**
  * Defines the parameters and execution rules that control how a job is processed.
+ * These settings apply to individual jobs or entire bulks and determine retry logic, timeouts, and scheduling.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobSettings
  */
 export type JobSettings = Message<"io.clbs.openhes.models.acquisition.JobSettings"> & {
   /**
-   * The maximum duration allowed for a job attempt. This value defines the real- time window for the driver to execute the job.
+   * The maximum real-time duration allowed for a single job attempt before it's terminated.
    *
    * @generated from field: google.protobuf.Duration max_duration = 1;
    */
   maxDuration?: Duration;
 
   /**
-   * The execution priority assigned to the job.
+   * The execution priority determining queue position relative to other jobs.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobPriority priority = 2;
    */
   priority: JobPriority;
 
   /**
-   * The maximum number of allowed job attempts. Must be at least `1`.
+   * The maximum number of retry attempts if the job fails. Must be at least 1. Each attempt index can have different settings.
    *
    * @generated from field: repeated int32 attempts = 3;
    */
   attempts: number[];
 
   /**
-   * The delay between two attempts.
+   * The delay to wait between retry attempts after a failure.
    *
    * @generated from field: google.protobuf.Duration retry_delay = 4;
    */
   retryDelay?: Duration;
 
   /**
-   * The time offset to wait before starting the job.
+   * The initial delay before the job becomes eligible for execution (useful for scheduling).
    *
    * @generated from field: google.protobuf.Duration defer_start = 5;
    */
   deferStart?: Duration;
 
   /**
-   * The timestamp that specifies when the job expires and should no longer not be executed.
+   * The expiration timestamp after which the job will not be executed, even if still queued.
    *
    * @generated from field: google.protobuf.Timestamp expires_at = 6;
    */
   expiresAt?: Timestamp;
 
   /**
-   * The policy that determines how data is read from devices.  It can be red directly from devices (meters) or via the data concentrator.
+   * The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ReadPathPolicy read_path_policy = 7;
    */
@@ -82,54 +83,55 @@ export type JobSettings = Message<"io.clbs.openhes.models.acquisition.JobSetting
 
 /**
  * Defines the parameters and execution rules that control how a job is processed.
+ * These settings apply to individual jobs or entire bulks and determine retry logic, timeouts, and scheduling.
  *
  * @generated from message io.clbs.openhes.models.acquisition.JobSettings
  */
 export type JobSettingsJson = {
   /**
-   * The maximum duration allowed for a job attempt. This value defines the real- time window for the driver to execute the job.
+   * The maximum real-time duration allowed for a single job attempt before it's terminated.
    *
    * @generated from field: google.protobuf.Duration max_duration = 1;
    */
   maxDuration?: DurationJson;
 
   /**
-   * The execution priority assigned to the job.
+   * The execution priority determining queue position relative to other jobs.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobPriority priority = 2;
    */
   priority?: JobPriorityJson;
 
   /**
-   * The maximum number of allowed job attempts. Must be at least `1`.
+   * The maximum number of retry attempts if the job fails. Must be at least 1. Each attempt index can have different settings.
    *
    * @generated from field: repeated int32 attempts = 3;
    */
   attempts?: number[];
 
   /**
-   * The delay between two attempts.
+   * The delay to wait between retry attempts after a failure.
    *
    * @generated from field: google.protobuf.Duration retry_delay = 4;
    */
   retryDelay?: DurationJson;
 
   /**
-   * The time offset to wait before starting the job.
+   * The initial delay before the job becomes eligible for execution (useful for scheduling).
    *
    * @generated from field: google.protobuf.Duration defer_start = 5;
    */
   deferStart?: DurationJson;
 
   /**
-   * The timestamp that specifies when the job expires and should no longer not be executed.
+   * The expiration timestamp after which the job will not be executed, even if still queued.
    *
    * @generated from field: google.protobuf.Timestamp expires_at = 6;
    */
   expiresAt?: TimestampJson;
 
   /**
-   * The policy that determines how data is read from devices.  It can be red directly from devices (meters) or via the data concentrator.
+   * The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ReadPathPolicy read_path_policy = 7;
    */
@@ -6250,76 +6252,78 @@ export const ListOfCommunicationUnitLogRecordSchema: GenMessage<ListOfCommunicat
   messageDesc(file_acquisition_shared, 84);
 
 /**
- * Defines the available job priority levels.
+ * Defines the available job priority levels for controlling execution order.
+ * Higher priority jobs are executed before lower priority jobs when resources are constrained.
+ * Use higher priorities for time-sensitive operations like remote disconnect/connect commands.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.JobPriority
  */
 export enum JobPriority {
   /**
-   * Unspecified priority.
+   * Unspecified priority (treated as default/medium priority).
    *
    * @generated from enum value: JOB_PRIORITY_UNSPECIFIED = 0;
    */
   JOB_PRIORITY_UNSPECIFIED = 0,
 
   /**
-   * Lowest priority.
+   * Lowest priority - for bulk data collection and non-urgent tasks.
    *
    * @generated from enum value: JOB_PRIORITY_0 = 1;
    */
   JOB_PRIORITY_0 = 1,
 
   /**
-   * Priority 1.
+   * Very low priority.
    *
    * @generated from enum value: JOB_PRIORITY_1 = 2;
    */
   JOB_PRIORITY_1 = 2,
 
   /**
-   * Priority 2.
+   * Low priority.
    *
    * @generated from enum value: JOB_PRIORITY_2 = 3;
    */
   JOB_PRIORITY_2 = 3,
 
   /**
-   * Priority 3.
+   * Below-medium priority.
    *
    * @generated from enum value: JOB_PRIORITY_3 = 4;
    */
   JOB_PRIORITY_3 = 4,
 
   /**
-   * Priority 4.
+   * Medium priority - default for regular data collection.
    *
    * @generated from enum value: JOB_PRIORITY_4 = 5;
    */
   JOB_PRIORITY_4 = 5,
 
   /**
-   * Priority 5.
+   * Above-medium priority.
    *
    * @generated from enum value: JOB_PRIORITY_5 = 6;
    */
   JOB_PRIORITY_5 = 6,
 
   /**
-   * Priority 6.
+   * High priority - for important configuration changes.
    *
    * @generated from enum value: JOB_PRIORITY_6 = 7;
    */
   JOB_PRIORITY_6 = 7,
 
   /**
-   * Priority 7.
+   * Very high priority - for urgent operations.
    *
    * @generated from enum value: JOB_PRIORITY_7 = 8;
    */
   JOB_PRIORITY_7 = 8,
 
   /**
-   * Highest priority.
+   * Highest priority - for critical operations like emergency disconnects.
    *
    * @generated from enum value: JOB_PRIORITY_8 = 9;
    */
@@ -6327,7 +6331,9 @@ export enum JobPriority {
 }
 
 /**
- * Defines the available job priority levels.
+ * Defines the available job priority levels for controlling execution order.
+ * Higher priority jobs are executed before lower priority jobs when resources are constrained.
+ * Use higher priorities for time-sensitive operations like remote disconnect/connect commands.
  *
  * @generated from enum io.clbs.openhes.models.acquisition.JobPriority
  */

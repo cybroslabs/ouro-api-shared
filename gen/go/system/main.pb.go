@@ -23,12 +23,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Defines the object flags.
+// Defines feature flags and capability indicators for system objects.
+// These flags control what operations are available or enabled for specific objects.
 type ObjectFlags int32
 
 const (
-	ObjectFlags_OBJECT_FLAG_UNSPECIFIED            ObjectFlags = 0 // Default value.
-	ObjectFlags_OBJECT_FLAG_COMMUNICATION_UNIT_LOG ObjectFlags = 1 // Given communication unit has log feature enabled.
+	ObjectFlags_OBJECT_FLAG_UNSPECIFIED            ObjectFlags = 0 // Default/unspecified flag (no special behavior).
+	ObjectFlags_OBJECT_FLAG_COMMUNICATION_UNIT_LOG ObjectFlags = 1 // The communication unit has detailed logging enabled for diagnostics and troubleshooting.
 )
 
 // Enum value maps for ObjectFlags.
@@ -65,7 +66,8 @@ func (x ObjectFlags) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Defines a specification for application configuration.
+// Defines the application-wide configuration containing settings for all system components.
+// This model stores the actual configuration values that control system behavior.
 type ApplicationConfig struct {
 	state            protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Items *[]*ComponentConfig    `protobuf:"bytes,2,rep,name=items"`
@@ -125,7 +127,8 @@ func (b0 ApplicationConfig_builder) Build() *ApplicationConfig {
 	return m0
 }
 
-// Defines a specification for a single component configuration.
+// Defines the configuration for a single system component or microservice.
+// Each component can define its own configuration fields through field descriptors.
 type ComponentConfig struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Name        *string                `protobuf:"bytes,1,opt,name=name"`
@@ -229,7 +232,8 @@ func (b0 ComponentConfig_builder) Build() *ComponentConfig {
 	return m0
 }
 
-// Defines a specification for component configuration descriptors.
+// Defines the configuration schema for a component, declaring what fields are available.
+// Components register their configuration schema at startup to enable dynamic configuration.
 type ComponentConfigDescriptor struct {
 	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_Name        *string                    `protobuf:"bytes,1,opt,name=name"`
@@ -324,7 +328,8 @@ func (b0 ComponentConfigDescriptor_builder) Build() *ComponentConfigDescriptor {
 	return m0
 }
 
-// Defines a specification for application configuration descriptors.
+// Defines the complete application configuration schema and current values.
+// This combines both the field definitions (descriptors) and the actual configuration values for all components.
 type ApplicationConfigDescriptor struct {
 	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_Descriptors *[]*ComponentConfigDescriptor `protobuf:"bytes,1,rep,name=descriptors"`
@@ -400,7 +405,8 @@ func (b0 ApplicationConfigDescriptor_builder) Build() *ApplicationConfigDescript
 	return m0
 }
 
-// Defines the license information for the application.
+// Defines the license information controlling system features, capacity, and validity.
+// Licenses are validated against Cybroslabs licensing servers or installed manually for air-gapped deployments.
 type License struct {
 	state                        protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Token             *string                `protobuf:"bytes,1,opt,name=token"`
@@ -697,7 +703,8 @@ func (b0 License_builder) Build() *License {
 	return m0
 }
 
-// Defines the user information structure.
+// Defines the user profile containing identity and preferences for authenticated users.
+// User profiles store both read-only attributes managed by the authentication system and user-controlled preferences.
 type UserProfile struct {
 	state                      protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Id              *string                `protobuf:"bytes,1,opt,name=id"`
@@ -889,7 +896,8 @@ func (b0 UserProfile_builder) Build() *UserProfile {
 	return m0
 }
 
-// Defines the
+// Defines a request for setting or updating UI screen configuration.
+// Screen configurations store user-specific or system-wide UI layout and settings for different application screens.
 type SetScreenConfigRequest struct {
 	state                    protoimpl.MessageState            `protogen:"opaque.v1"`
 	xxx_hidden_ApplicationId *string                           `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`
@@ -1072,7 +1080,7 @@ type SetScreenConfigRequest_builder struct {
 
 	ApplicationId *string
 	ScreenId      *string
-	// The screen configuration settings.
+	// The screen configuration settings in one of the supported formats.
 
 	// Fields of oneof xxx_hidden_Settings:
 	Json *string
@@ -1116,18 +1124,18 @@ type isSetScreenConfigRequest_Settings interface {
 }
 
 type setScreenConfigRequest_Json struct {
-	Json string `protobuf:"bytes,3,opt,name=json,oneof"` // Generic JSON-encoded data model holding data related for the screen.
+	Json string `protobuf:"bytes,3,opt,name=json,oneof"` // Configuration as a JSON-encoded string. Useful for direct storage from frontend.
 }
 
 type setScreenConfigRequest_Raw struct {
-	Raw *structpb.Struct `protobuf:"bytes,4,opt,name=raw,oneof"` // Generic data model holding data related for the screen.
+	Raw *structpb.Struct `protobuf:"bytes,4,opt,name=raw,oneof"` // Configuration as a structured protobuf Struct. Used for programmatic access.
 }
 
 func (*setScreenConfigRequest_Json) isSetScreenConfigRequest_Settings() {}
 
 func (*setScreenConfigRequest_Raw) isSetScreenConfigRequest_Settings() {}
 
-// Defines the selection criteria for UI screen configuration.
+// Defines the selection criteria for retrieving a specific UI screen configuration.
 type ScreenConfigSelector struct {
 	state                    protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ApplicationId *string                `protobuf:"bytes,1,opt,name=application_id,json=applicationId"`

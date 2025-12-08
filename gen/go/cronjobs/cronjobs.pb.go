@@ -23,13 +23,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Defines the cron job types that can be scheduled.
+// Defines the cron job types that can be scheduled for automated recurring operations.
+// Cron jobs enable scheduled data collection, configuration synchronization, and other periodic tasks.
 type CronJobTypeEnum int32
 
 const (
-	CronJobTypeEnum_CRON_JOB_TYPE_UNSPECIFIED      CronJobTypeEnum = 0 // Unspecified cron job type.
-	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 1 // The cron job that starts an acquistion bulk.
-	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 2 // The cron job that starts a proxy bulk.
+	CronJobTypeEnum_CRON_JOB_TYPE_UNSPECIFIED      CronJobTypeEnum = 0 // Unspecified cron job type (invalid, should not be used).
+	CronJobTypeEnum_CRON_JOB_TYPE_START_BULK       CronJobTypeEnum = 1 // Schedules recurring acquisition bulks for automated data collection from devices.
+	CronJobTypeEnum_CRON_JOB_TYPE_START_PROXY_BULK CronJobTypeEnum = 2 // Schedules recurring proxy bulks for data collection operations initiated through the DataProxy.
 )
 
 // Enum value maps for CronJobTypeEnum.
@@ -162,7 +163,8 @@ func (b0 CreateCronJobRequest_builder) Build() *CreateCronJobRequest {
 	return m0
 }
 
-// Defines the cron job specification.
+// Defines the cron job model representing a scheduled recurring task.
+// Cron jobs are persistent scheduled operations that execute automatically according to their schedule definition.
 type CronJob struct {
 	state               protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Spec     *CronJobSpec           `protobuf:"bytes,1,opt,name=spec"`
@@ -281,7 +283,7 @@ func (b0 CronJob_builder) Build() *CronJob {
 	return m0
 }
 
-// Defines the cron job specification.
+// Defines the cron job specification containing scheduling and execution details.
 type CronJobSpec struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Type        CronJobTypeEnum        `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.cronjobs.CronJobTypeEnum"`
@@ -480,7 +482,7 @@ func (b0 CronJobSpec_builder) Build() *CronJobSpec {
 	return m0
 }
 
-// Defines the current status of a cron job.
+// Defines the current runtime status of a cron job including execution history and schedule validation.
 type CronJobStatus struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_LastRunAt   *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=last_run_at,json=lastRunAt"`

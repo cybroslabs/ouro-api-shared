@@ -2918,7 +2918,9 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a bulk model.</p>
+  <p>Defines a bulk operation model for executing actions across multiple devices concurrently.
+Bulks enable efficient mass operations such as data collection, firmware updates, or configuration changes
+across hundreds or thousands of devices. Each bulk creates individual jobs per device.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2945,7 +2947,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk specification.</p></td>
+      <td class="content"><p>The bulk specification defining target devices and actions.</p></td>
       
     </tr>
     
@@ -2961,7 +2963,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The bulk status.</p></td>
+      <td class="content"><p>The current status tracking job counts and completion state.</p></td>
       
     </tr>
     
@@ -2977,7 +2979,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The metadata fields.</p></td>
+      <td class="content"><p>Metadata including id, name, generation, user-managed fields, and system-managed fields.</p></td>
       
     </tr>
     
@@ -3135,7 +3137,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a bulk specification.</p>
+  <p>Defines a bulk specification containing the configuration for a mass operation.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3162,7 +3164,7 @@
         </code>
       </td>
       <td class="content"><p>@gqltype: UUID</p>
-<p>The correlation identifier that represents a non-homogenous group with various device types.</p></td>
+<p>A correlation identifier for grouping related bulks across different driver types.</p></td>
       
     </tr>
     
@@ -3178,7 +3180,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The job settings shared across all jobs in the bulk.</p></td>
+      <td class="content"><p>Execution settings including priority, retry logic, and timeout values.</p></td>
       
     </tr>
     
@@ -3196,7 +3198,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of actions to be executed on each device in the bulk.</p></td>
+      <td class="content"><p>The sequence of actions to execute on each device (e.g., read registers, update firmware).</p></td>
       
     </tr>
     
@@ -3211,7 +3213,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Indicates whether data processing should be skipped for this job. Default value is <code>false</code>.</p></td>
+      <td class="content"><p>When true, collected data bypasses normal processing pipelines (useful for testing). Default is false.</p></td>
       
     </tr>
     
@@ -3242,7 +3244,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>The list of devices in the bulk.</p></td>
+          <td class="content"><p>An explicit list of device identifiers to target.</p></td>
           
         </tr>
       
@@ -3261,7 +3263,7 @@
               <span>string</span>
             </code>
           </td>
-          <td class="content"><p>The unique device group identifier.</p></td>
+          <td class="content"><p>A device group identifier to target all devices in the group.</p></td>
           
         </tr>
       
@@ -5454,7 +5456,9 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a device model.</p>
+  <p>Defines a device model representing an energy meter or IoT device in the system.
+A device is a physical or logical entity that can be communicated with via one or more communication units,
+has a specific driver type for protocol handling, and belongs to device groups for organizational purposes.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5481,7 +5485,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The device specification.</p></td>
+      <td class="content"><p>The device specification containing configuration and identification details.</p></td>
       
     </tr>
     
@@ -5497,7 +5501,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The device status.</p></td>
+      <td class="content"><p>The current operational status including connection state and statistics.</p></td>
       
     </tr>
     
@@ -5513,7 +5517,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The metadata fields.</p></td>
+      <td class="content"><p>Metadata including id, name, generation, user-managed fields, and system-managed fields.</p></td>
       
     </tr>
     
@@ -6658,7 +6662,9 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a device group model.</p>
+  <p>Defines a device group model for organizing devices into logical collections.
+Device groups are used to perform bulk operations, apply common configurations, and organize devices
+by location, type, or any other business logic. Devices can belong to multiple groups simultaneously.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6685,7 +6691,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The device group specification.</p></td>
+      <td class="content"><p>The device group specification defining identification and type.</p></td>
       
     </tr>
     
@@ -6701,7 +6707,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The metadata fields.</p></td>
+      <td class="content"><p>Metadata including id, name, generation, user-managed fields, and system-managed fields.</p></td>
       
     </tr>
     
@@ -6725,7 +6731,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a device group sepcification.</p>
+  <p>Defines a device group specification containing the basic attributes and type information.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -6751,7 +6757,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The external identifier of the communication unit.</p></td>
+      <td class="content"><p>An external identifier for integration with third-party systems or legacy identifiers.</p></td>
       
     </tr>
     
@@ -6766,7 +6772,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Indicates whether the device group is a SCADA group.</p></td>
+      <td class="content"><p>Indicates whether this is a SCADA group used for supervisory control and data acquisition systems.</p></td>
       
     </tr>
     
@@ -9553,7 +9559,8 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  <p>Defines the parameters and execution rules that control how a job is processed.</p>
+  <p>Defines the parameters and execution rules that control how a job is processed.
+These settings apply to individual jobs or entire bulks and determine retry logic, timeouts, and scheduling.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9579,7 +9586,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The maximum duration allowed for a job attempt. This value defines the real- time window for the driver to execute the job.</p></td>
+      <td class="content"><p>The maximum real-time duration allowed for a single job attempt before it's terminated.</p></td>
       
     </tr>
     
@@ -9595,7 +9602,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The execution priority assigned to the job.</p></td>
+      <td class="content"><p>The execution priority determining queue position relative to other jobs.</p></td>
       
     </tr>
     
@@ -9612,7 +9619,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of allowed job attempts. Must be at least <code>1</code>.</p></td>
+      <td class="content"><p>The maximum number of retry attempts if the job fails. Must be at least 1. Each attempt index can have different settings.</p></td>
       
     </tr>
     
@@ -9627,7 +9634,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The delay between two attempts.</p></td>
+      <td class="content"><p>The delay to wait between retry attempts after a failure.</p></td>
       
     </tr>
     
@@ -9642,7 +9649,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>google.protobuf.Duration</span>
         </code>
       </td>
-      <td class="content"><p>The time offset to wait before starting the job.</p></td>
+      <td class="content"><p>The initial delay before the job becomes eligible for execution (useful for scheduling).</p></td>
       
     </tr>
     
@@ -9657,7 +9664,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp that specifies when the job expires and should no longer not be executed.</p></td>
+      <td class="content"><p>The expiration timestamp after which the job will not be executed, even if still queued.</p></td>
       
     </tr>
     
@@ -9673,7 +9680,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The policy that determines how data is read from devices.  It can be red directly from devices (meters) or via the data concentrator.</p></td>
+      <td class="content"><p>The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.</p></td>
       
     </tr>
     
@@ -12200,7 +12207,8 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  <p>Defines a proxy bulk specification.</p>
+  <p>Defines a proxy bulk specification for operations forwarded from the DataProxy to the main API.
+Proxy bulks are used when data collection is initiated externally and needs to be tracked in the main system.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -12227,7 +12235,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
         </code>
       </td>
       <td class="content"><p>@gqltype: UUID</p>
-<p>The correlation identifier that represents a non-homogenous group with various device types.</p></td>
+<p>A correlation identifier linking this proxy bulk to the originating bulk in the DataProxy.</p></td>
       
     </tr>
     
@@ -12242,7 +12250,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type.</p></td>
+      <td class="content"><p>The driver type that will execute the jobs (e.g., "dlms", "mbus").</p></td>
       
     </tr>
     
@@ -12258,7 +12266,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of devices in the proxy bulk.</p></td>
+      <td class="content"><p>The list of devices with their connection information for the proxy bulk.</p></td>
       
     </tr>
     
@@ -12274,7 +12282,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The job settings shared across the bulk.</p></td>
+      <td class="content"><p>Execution settings including priority, retry logic, and timeout values.</p></td>
       
     </tr>
     
@@ -12292,7 +12300,7 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of actions to be executed.</p></td>
+      <td class="content"><p>The sequence of driver-specific actions to execute on each device.</p></td>
       
     </tr>
     
@@ -14284,7 +14292,9 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
 </h4>
 
 <div class="block content">
-  <p><p>Defines the available job priority levels.</p></p>
+  <p><p>Defines the available job priority levels for controlling execution order.
+Higher priority jobs are executed before lower priority jobs when resources are constrained.
+Use higher priorities for time-sensitive operations like remote disconnect/connect commands.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -14300,61 +14310,61 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
     <tr>
       <td><code>JOB_PRIORITY_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Unspecified priority.</p></td>
+      <td class="content"><p>Unspecified priority (treated as default/medium priority).</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_0</code></td>
       <td>1</td>
-      <td class="content"><p>Lowest priority.</p></td>
+      <td class="content"><p>Lowest priority - for bulk data collection and non-urgent tasks.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_1</code></td>
       <td>2</td>
-      <td class="content"><p>Priority 1.</p></td>
+      <td class="content"><p>Very low priority.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_2</code></td>
       <td>3</td>
-      <td class="content"><p>Priority 2.</p></td>
+      <td class="content"><p>Low priority.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_3</code></td>
       <td>4</td>
-      <td class="content"><p>Priority 3.</p></td>
+      <td class="content"><p>Below-medium priority.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_4</code></td>
       <td>5</td>
-      <td class="content"><p>Priority 4.</p></td>
+      <td class="content"><p>Medium priority - default for regular data collection.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_5</code></td>
       <td>6</td>
-      <td class="content"><p>Priority 5.</p></td>
+      <td class="content"><p>Above-medium priority.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_6</code></td>
       <td>7</td>
-      <td class="content"><p>Priority 6.</p></td>
+      <td class="content"><p>High priority - for important configuration changes.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_7</code></td>
       <td>8</td>
-      <td class="content"><p>Priority 7.</p></td>
+      <td class="content"><p>Very high priority - for urgent operations.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_PRIORITY_8</code></td>
       <td>9</td>
-      <td class="content"><p>Highest priority.</p></td>
+      <td class="content"><p>Highest priority - for critical operations like emergency disconnects.</p></td>
     </tr>
     
   </tbody>

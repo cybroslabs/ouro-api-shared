@@ -1,15 +1,15 @@
 # Model: io.clbs.openhes.models.acquisition.BulkSpec
 
-Defines a bulk specification.
+Defines a bulk specification containing the configuration for a mass operation.
 
 ## Fields
 
 | Field | Information |
 | --- | --- |
-| correlationId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The correlation identifier that represents a non-homogenous group with various device types. |
-| devices | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ListOfJobDeviceId`](model-io-clbs-openhes-models-acquisition-listofjobdeviceid.md)<br><b>Description:</b><br>The list of devices in the bulk. |
-| deviceGroupId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique device group identifier. |
-| settings | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobSettings`](model-io-clbs-openhes-models-acquisition-jobsettings.md)<br><b>Description:</b><br>The job settings shared across all jobs in the bulk. |
-| actions | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobActionSet`](model-io-clbs-openhes-models-acquisition-jobactionset.md)<br><b>Description:</b><br>The list of actions to be executed on each device in the bulk. |
-| skipDataProcessing | <b>Type:</b> `bool`<br><b>Description:</b><br>Indicates whether data processing should be skipped for this job. Default value is `false`. |
+| correlationId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>A correlation identifier for grouping related bulks across different driver types. |
+| devices | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ListOfJobDeviceId`](model-io-clbs-openhes-models-acquisition-listofjobdeviceid.md)<br><b>Description:</b><br>An explicit list of device identifiers to target. |
+| deviceGroupId | <b>Type:</b> `string`<br><b>Description:</b><br>A device group identifier to target all devices in the group. |
+| settings | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobSettings`](model-io-clbs-openhes-models-acquisition-jobsettings.md)<br><b>Description:</b><br>Execution settings including priority, retry logic, and timeout values. |
+| actions | <b>Type:</b> [`io.clbs.openhes.models.acquisition.JobActionSet`](model-io-clbs-openhes-models-acquisition-jobactionset.md)<br><b>Description:</b><br>The sequence of actions to execute on each device (e.g., read registers, update firmware). |
+| skipDataProcessing | <b>Type:</b> `bool`<br><b>Description:</b><br>When true, collected data bypasses normal processing pipelines (useful for testing). Default is false. |
 

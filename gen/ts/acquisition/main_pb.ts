@@ -401,27 +401,29 @@ export const ListOfDeviceSchema: GenMessage<ListOfDevice, {jsonType: ListOfDevic
   messageDesc(file_acquisition_main, 7);
 
 /**
- * Defines a device model.
+ * Defines a device model representing an energy meter or IoT device in the system.
+ * A device is a physical or logical entity that can be communicated with via one or more communication units,
+ * has a specific driver type for protocol handling, and belongs to device groups for organizational purposes.
  *
  * @generated from message io.clbs.openhes.models.acquisition.Device
  */
 export type Device = Message<"io.clbs.openhes.models.acquisition.Device"> & {
   /**
-   * The device specification.
+   * The device specification containing configuration and identification details.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceSpec spec = 1;
    */
   spec?: DeviceSpec;
 
   /**
-   * The device status.
+   * The current operational status including connection state and statistics.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceStatus status = 2;
    */
   status?: DeviceStatus;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -429,27 +431,29 @@ export type Device = Message<"io.clbs.openhes.models.acquisition.Device"> & {
 };
 
 /**
- * Defines a device model.
+ * Defines a device model representing an energy meter or IoT device in the system.
+ * A device is a physical or logical entity that can be communicated with via one or more communication units,
+ * has a specific driver type for protocol handling, and belongs to device groups for organizational purposes.
  *
  * @generated from message io.clbs.openhes.models.acquisition.Device
  */
 export type DeviceJson = {
   /**
-   * The device specification.
+   * The device specification containing configuration and identification details.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceSpec spec = 1;
    */
   spec?: DeviceSpecJson;
 
   /**
-   * The device status.
+   * The current operational status including connection state and statistics.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceStatus status = 2;
    */
   status?: DeviceStatusJson;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -709,20 +713,22 @@ export const DeviceCommunicationUnitChangeStatusSchema: GenMessage<DeviceCommuni
   messageDesc(file_acquisition_main, 13);
 
 /**
- * Defines an unknown device model.
+ * Defines an unknown device model representing devices discovered during network scanning but not yet registered in the system.
+ * Unknown devices are typically found by data concentrators or gateway devices during topology discovery.
+ * They can be promoted to registered devices once their configuration is verified.
  *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDevice
  */
 export type UnknownDevice = Message<"io.clbs.openhes.models.acquisition.UnknownDevice"> & {
   /**
-   * The unknown device status.
+   * The status information about the discovered device.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.UnknownDeviceStatus status = 2;
    */
   status?: UnknownDeviceStatus;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -730,20 +736,22 @@ export type UnknownDevice = Message<"io.clbs.openhes.models.acquisition.UnknownD
 };
 
 /**
- * Defines an unknown device model.
+ * Defines an unknown device model representing devices discovered during network scanning but not yet registered in the system.
+ * Unknown devices are typically found by data concentrators or gateway devices during topology discovery.
+ * They can be promoted to registered devices once their configuration is verified.
  *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDevice
  */
 export type UnknownDeviceJson = {
   /**
-   * The unknown device status.
+   * The status information about the discovered device.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.UnknownDeviceStatus status = 2;
    */
   status?: UnknownDeviceStatusJson;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -758,20 +766,20 @@ export const UnknownDeviceSchema: GenMessage<UnknownDevice, {jsonType: UnknownDe
   messageDesc(file_acquisition_main, 14);
 
 /**
- * Defines the status of an unknown device.
+ * Defines the status of an unknown device discovered during network scanning.
  *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDeviceStatus
  */
 export type UnknownDeviceStatus = Message<"io.clbs.openhes.models.acquisition.UnknownDeviceStatus"> & {
   /**
-   * The device driver type.
+   * The driver type that discovered this device, indicating the communication protocol.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType: string;
 
   /**
-   * The unique communication unit identifier of the device.
+   * The identifier of the communication unit (gateway/concentrator) that discovered this device.
    *
    * @generated from field: string communication_unit_id = 2;
    */
@@ -779,20 +787,20 @@ export type UnknownDeviceStatus = Message<"io.clbs.openhes.models.acquisition.Un
 };
 
 /**
- * Defines the status of an unknown device.
+ * Defines the status of an unknown device discovered during network scanning.
  *
  * @generated from message io.clbs.openhes.models.acquisition.UnknownDeviceStatus
  */
 export type UnknownDeviceStatusJson = {
   /**
-   * The device driver type.
+   * The driver type that discovered this device, indicating the communication protocol.
    *
    * @generated from field: string driver_type = 1;
    */
   driverType?: string;
 
   /**
-   * The unique communication unit identifier of the device.
+   * The identifier of the communication unit (gateway/concentrator) that discovered this device.
    *
    * @generated from field: string communication_unit_id = 2;
    */
@@ -978,20 +986,22 @@ export const StreamDeviceGroupSchema: GenMessage<StreamDeviceGroup, {jsonType: S
   messageDesc(file_acquisition_main, 18);
 
 /**
- * Defines a device group model.
+ * Defines a device group model for organizing devices into logical collections.
+ * Device groups are used to perform bulk operations, apply common configurations, and organize devices
+ * by location, type, or any other business logic. Devices can belong to multiple groups simultaneously.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroup
  */
 export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGroup"> & {
   /**
-   * The device group specification.
+   * The device group specification defining identification and type.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1;
    */
   spec?: DeviceGroupSpec;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -999,20 +1009,22 @@ export type DeviceGroup = Message<"io.clbs.openhes.models.acquisition.DeviceGrou
 };
 
 /**
- * Defines a device group model.
+ * Defines a device group model for organizing devices into logical collections.
+ * Device groups are used to perform bulk operations, apply common configurations, and organize devices
+ * by location, type, or any other business logic. Devices can belong to multiple groups simultaneously.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroup
  */
 export type DeviceGroupJson = {
   /**
-   * The device group specification.
+   * The device group specification defining identification and type.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.DeviceGroupSpec spec = 1;
    */
   spec?: DeviceGroupSpecJson;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -1027,20 +1039,20 @@ export const DeviceGroupSchema: GenMessage<DeviceGroup, {jsonType: DeviceGroupJs
   messageDesc(file_acquisition_main, 19);
 
 /**
- * Defines a device group sepcification.
+ * Defines a device group specification containing the basic attributes and type information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupSpec
  */
 export type DeviceGroupSpec = Message<"io.clbs.openhes.models.acquisition.DeviceGroupSpec"> & {
   /**
-   * The external identifier of the communication unit.
+   * An external identifier for integration with third-party systems or legacy identifiers.
    *
    * @generated from field: string external_id = 1;
    */
   externalId: string;
 
   /**
-   * Indicates whether the device group is a SCADA group.
+   * Indicates whether this is a SCADA group used for supervisory control and data acquisition systems.
    *
    * @generated from field: bool is_scada_group = 2;
    */
@@ -1048,20 +1060,20 @@ export type DeviceGroupSpec = Message<"io.clbs.openhes.models.acquisition.Device
 };
 
 /**
- * Defines a device group sepcification.
+ * Defines a device group specification containing the basic attributes and type information.
  *
  * @generated from message io.clbs.openhes.models.acquisition.DeviceGroupSpec
  */
 export type DeviceGroupSpecJson = {
   /**
-   * The external identifier of the communication unit.
+   * An external identifier for integration with third-party systems or legacy identifiers.
    *
    * @generated from field: string external_id = 1;
    */
   externalId?: string;
 
   /**
-   * Indicates whether the device group is a SCADA group.
+   * Indicates whether this is a SCADA group used for supervisory control and data acquisition systems.
    *
    * @generated from field: bool is_scada_group = 2;
    */
@@ -1489,27 +1501,29 @@ export const ListOfBulkSchema: GenMessage<ListOfBulk, {jsonType: ListOfBulkJson}
   messageDesc(file_acquisition_main, 29);
 
 /**
- * Defines a bulk model.
+ * Defines a bulk operation model for executing actions across multiple devices concurrently.
+ * Bulks enable efficient mass operations such as data collection, firmware updates, or configuration changes
+ * across hundreds or thousands of devices. Each bulk creates individual jobs per device.
  *
  * @generated from message io.clbs.openhes.models.acquisition.Bulk
  */
 export type Bulk = Message<"io.clbs.openhes.models.acquisition.Bulk"> & {
   /**
-   * The bulk specification.
+   * The bulk specification defining target devices and actions.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
    */
   spec?: BulkSpec;
 
   /**
-   * The bulk status.
+   * The current status tracking job counts and completion state.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatus status = 2;
    */
   status?: BulkStatus;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -1517,27 +1531,29 @@ export type Bulk = Message<"io.clbs.openhes.models.acquisition.Bulk"> & {
 };
 
 /**
- * Defines a bulk model.
+ * Defines a bulk operation model for executing actions across multiple devices concurrently.
+ * Bulks enable efficient mass operations such as data collection, firmware updates, or configuration changes
+ * across hundreds or thousands of devices. Each bulk creates individual jobs per device.
  *
  * @generated from message io.clbs.openhes.models.acquisition.Bulk
  */
 export type BulkJson = {
   /**
-   * The bulk specification.
+   * The bulk specification defining target devices and actions.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkSpec spec = 1;
    */
   spec?: BulkSpecJson;
 
   /**
-   * The bulk status.
+   * The current status tracking job counts and completion state.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.BulkStatus status = 2;
    */
   status?: BulkStatusJson;
 
   /**
-   * The metadata fields.
+   * Metadata including id, name, generation, user-managed fields, and system-managed fields.
    *
    * @generated from field: io.clbs.openhes.models.common.MetadataFields metadata = 3;
    */
@@ -1552,7 +1568,7 @@ export const BulkSchema: GenMessage<Bulk, {jsonType: BulkJson}> = /*@__PURE__*/
   messageDesc(file_acquisition_main, 30);
 
 /**
- * Defines a bulk specification.
+ * Defines a bulk specification containing the configuration for a mass operation.
  *
  * @generated from message io.clbs.openhes.models.acquisition.BulkSpec
  */
@@ -1560,7 +1576,7 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier that represents a non-homogenous group with various device types.
+   * A correlation identifier for grouping related bulks across different driver types.
    *
    * @generated from field: string correlation_id = 1;
    */
@@ -1571,7 +1587,7 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
    */
   device: {
     /**
-     * The list of devices in the bulk.
+     * An explicit list of device identifiers to target.
      *
      * @generated from field: io.clbs.openhes.models.acquisition.ListOfJobDeviceId devices = 2;
      */
@@ -1579,7 +1595,7 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
     case: "devices";
   } | {
     /**
-     * The unique device group identifier.
+     * A device group identifier to target all devices in the group.
      *
      * @generated from field: string device_group_id = 3;
      */
@@ -1588,21 +1604,21 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
   } | { case: undefined; value?: undefined };
 
   /**
-   * The job settings shared across all jobs in the bulk.
+   * Execution settings including priority, retry logic, and timeout values.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettings;
 
   /**
-   * The list of actions to be executed on each device in the bulk.
+   * The sequence of actions to execute on each device (e.g., read registers, update firmware).
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobActionSet actions = 5;
    */
   actions: JobActionSet[];
 
   /**
-   * Indicates whether data processing should be skipped for this job. Default value is `false`.
+   * When true, collected data bypasses normal processing pipelines (useful for testing). Default is false.
    *
    * @generated from field: bool skip_data_processing = 6;
    */
@@ -1610,7 +1626,7 @@ export type BulkSpec = Message<"io.clbs.openhes.models.acquisition.BulkSpec"> & 
 };
 
 /**
- * Defines a bulk specification.
+ * Defines a bulk specification containing the configuration for a mass operation.
  *
  * @generated from message io.clbs.openhes.models.acquisition.BulkSpec
  */
@@ -1618,42 +1634,42 @@ export type BulkSpecJson = {
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier that represents a non-homogenous group with various device types.
+   * A correlation identifier for grouping related bulks across different driver types.
    *
    * @generated from field: string correlation_id = 1;
    */
   correlationId?: string;
 
   /**
-   * The list of devices in the bulk.
+   * An explicit list of device identifiers to target.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ListOfJobDeviceId devices = 2;
    */
   devices?: ListOfJobDeviceIdJson;
 
   /**
-   * The unique device group identifier.
+   * A device group identifier to target all devices in the group.
    *
    * @generated from field: string device_group_id = 3;
    */
   deviceGroupId?: string;
 
   /**
-   * The job settings shared across all jobs in the bulk.
+   * Execution settings including priority, retry logic, and timeout values.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettingsJson;
 
   /**
-   * The list of actions to be executed on each device in the bulk.
+   * The sequence of actions to execute on each device (e.g., read registers, update firmware).
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobActionSet actions = 5;
    */
   actions?: JobActionSetJson[];
 
   /**
-   * Indicates whether data processing should be skipped for this job. Default value is `false`.
+   * When true, collected data bypasses normal processing pipelines (useful for testing). Default is false.
    *
    * @generated from field: bool skip_data_processing = 6;
    */
@@ -2032,7 +2048,8 @@ export const CreateProxyBulkRequestSchema: GenMessage<CreateProxyBulkRequest, {j
   messageDesc(file_acquisition_main, 37);
 
 /**
- * Defines a proxy bulk specification.
+ * Defines a proxy bulk specification for operations forwarded from the DataProxy to the main API.
+ * Proxy bulks are used when data collection is initiated externally and needs to be tracked in the main system.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ProxyBulkSpec
  */
@@ -2040,35 +2057,35 @@ export type ProxyBulkSpec = Message<"io.clbs.openhes.models.acquisition.ProxyBul
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier that represents a non-homogenous group with various device types.
+   * A correlation identifier linking this proxy bulk to the originating bulk in the DataProxy.
    *
    * @generated from field: string correlation_id = 1;
    */
   correlationId: string;
 
   /**
-   * The driver type.
+   * The driver type that will execute the jobs (e.g., "dlms", "mbus").
    *
    * @generated from field: string driver_type = 2;
    */
   driverType: string;
 
   /**
-   * The list of devices in the proxy bulk.
+   * The list of devices with their connection information for the proxy bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ListOfJobDevice devices = 3;
    */
   devices?: ListOfJobDevice;
 
   /**
-   * The job settings shared across the bulk.
+   * Execution settings including priority, retry logic, and timeout values.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettings;
 
   /**
-   * The list of actions to be executed.
+   * The sequence of driver-specific actions to execute on each device.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction actions = 5;
    */
@@ -2076,7 +2093,8 @@ export type ProxyBulkSpec = Message<"io.clbs.openhes.models.acquisition.ProxyBul
 };
 
 /**
- * Defines a proxy bulk specification.
+ * Defines a proxy bulk specification for operations forwarded from the DataProxy to the main API.
+ * Proxy bulks are used when data collection is initiated externally and needs to be tracked in the main system.
  *
  * @generated from message io.clbs.openhes.models.acquisition.ProxyBulkSpec
  */
@@ -2084,35 +2102,35 @@ export type ProxyBulkSpecJson = {
   /**
    * @gqltype: UUID
    *
-   * The correlation identifier that represents a non-homogenous group with various device types.
+   * A correlation identifier linking this proxy bulk to the originating bulk in the DataProxy.
    *
    * @generated from field: string correlation_id = 1;
    */
   correlationId?: string;
 
   /**
-   * The driver type.
+   * The driver type that will execute the jobs (e.g., "dlms", "mbus").
    *
    * @generated from field: string driver_type = 2;
    */
   driverType?: string;
 
   /**
-   * The list of devices in the proxy bulk.
+   * The list of devices with their connection information for the proxy bulk.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.ListOfJobDevice devices = 3;
    */
   devices?: ListOfJobDeviceJson;
 
   /**
-   * The job settings shared across the bulk.
+   * Execution settings including priority, retry logic, and timeout values.
    *
    * @generated from field: io.clbs.openhes.models.acquisition.JobSettings settings = 4;
    */
   settings?: JobSettingsJson;
 
   /**
-   * The list of actions to be executed.
+   * The sequence of driver-specific actions to execute on each device.
    *
    * @generated from field: repeated io.clbs.openhes.models.acquisition.JobAction actions = 5;
    */

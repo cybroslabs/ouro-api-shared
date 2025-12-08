@@ -356,7 +356,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification of messaging component settings for a specified consumer.</p>
+  <p>Defines configuration settings for a specific consumer within a messaging component.
+Each consumer represents a logical queue handler that processes messages from subscribed subjects.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -382,7 +383,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique UUID identifier for the consumer. Must be unique across all consumers of the same component.</p></td>
+      <td class="content"><p>The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.</p></td>
       
     </tr>
     
@@ -397,7 +398,7 @@
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of in-flight (unacknowledged) messages allowed. A value <code>&gt;1</code> allows multiple consumers to receive messages concurrently without preserving order. Value <code>1</code> allows only a single in-flight message at any time and preserves the message order.</p></td>
+      <td class="content"><p>The maximum number of unacknowledged messages this consumer can have. Values &gt;1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.</p></td>
       
     </tr>
     
@@ -414,7 +415,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The list of non-empty subjects the consumer is interested in. At least one subject must be set. Changes affect all instances of the same component!</p></td>
+      <td class="content"><p>The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.</p></td>
       
     </tr>
     
@@ -438,7 +439,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification of a messaging component.</p>
+  <p>Defines the configuration specification for a messaging component.
+Components represent microservices or system modules that publish and/or consume messages.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -464,7 +466,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Indicates whether the component is enabled. If disabled, the component does not receive any messages.</p></td>
+      <td class="content"><p>When false, the component cannot publish or consume messages. Useful for maintenance or debugging.</p></td>
       
     </tr>
     
@@ -482,7 +484,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The consumer settings for the component.</p></td>
+      <td class="content"><p>The list of consumer configurations for this component. Each consumer handles specific message subjects.</p></td>
       
     </tr>
     
@@ -542,7 +544,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the specification for consumer messages.</p>
+  <p>Defines messages sent from a consumer client to the messaging server in a bidirectional stream.
+Consumers use this to establish a connection, acknowledge processed messages, or reject failed messages.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -584,7 +587,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.</p></td>
+          <td class="content"><p>Setup message to initialize the consumer connection. Must be the first message sent. Subsequent setup messages are rejected.</p></td>
           
         </tr>
       
@@ -603,7 +606,7 @@
               <span>google.protobuf.StringValue</span>
             </code>
           </td>
-          <td class="content"><p>Acknowledgement action to confirm the message with the given message ID.</p></td>
+          <td class="content"><p>Acknowledgement confirming successful processing of a message. The message is removed from the queue.</p></td>
           
         </tr>
       
@@ -622,7 +625,7 @@
               <span>google.protobuf.StringValue</span>
             </code>
           </td>
-          <td class="content"><p>Negative acknowledgement action to reject and requeue the message with the given message ID.</p></td>
+          <td class="content"><p>Negative acknowledgement indicating processing failure. The message is requeued for redelivery.</p></td>
           
         </tr>
       
@@ -646,7 +649,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the specification for server messages.</p>
+  <p>Defines messages sent from the messaging server to a consumer client in a bidirectional stream.
+The server delivers messages that match the consumer's subscribed subjects.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -688,7 +692,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Receive action to deliver a message to the consumer.</p></td>
+          <td class="content"><p>Delivers a message to the consumer for processing. The consumer must ack or nak this message.</p></td>
           
         </tr>
       
@@ -844,7 +848,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the specification for published messages.</p>
+  <p>Defines messages sent from a publisher client to the messaging server in a client stream.
+Publishers use this to establish a connection and send messages to specific subjects.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -886,7 +891,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.</p></td>
+          <td class="content"><p>Setup message to initialize the publisher connection. Must be the first message sent. Subsequent setup messages are rejected.</p></td>
           
         </tr>
       
@@ -906,7 +911,7 @@
     </a>
             </code>
           </td>
-          <td class="content"><p>Publish action to send a message.</p></td>
+          <td class="content"><p>Publishes a message to a subject. All consumers subscribed to this subject will receive it.</p></td>
           
         </tr>
       

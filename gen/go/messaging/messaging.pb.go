@@ -22,7 +22,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Defines the specification for consumer messages.
+// Defines messages sent from a consumer client to the messaging server in a bidirectional stream.
+// Consumers use this to establish a connection, acknowledge processed messages, or reject failed messages.
 type MessagingConsumerClient struct {
 	state           protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Kind isMessagingConsumerClient_Kind `protobuf_oneof:"kind"`
@@ -221,15 +222,15 @@ type isMessagingConsumerClient_Kind interface {
 }
 
 type messagingConsumerClient_Setup struct {
-	Setup *MessagingConsumerSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup action to initialize the consumer. Must be the first message sent. Any subsequent setup messages are rejected.
+	Setup *MessagingConsumerSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup message to initialize the consumer connection. Must be the first message sent. Subsequent setup messages are rejected.
 }
 
 type messagingConsumerClient_Ack struct {
-	Ack *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=ack,oneof"` // Acknowledgement action to confirm the message with the given message ID.
+	Ack *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=ack,oneof"` // Acknowledgement confirming successful processing of a message. The message is removed from the queue.
 }
 
 type messagingConsumerClient_Nak struct {
-	Nak *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=nak,oneof"` // Negative acknowledgement action to reject and requeue the message with the given message ID.
+	Nak *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=nak,oneof"` // Negative acknowledgement indicating processing failure. The message is requeued for redelivery.
 }
 
 func (*messagingConsumerClient_Setup) isMessagingConsumerClient_Kind() {}
@@ -238,7 +239,8 @@ func (*messagingConsumerClient_Ack) isMessagingConsumerClient_Kind() {}
 
 func (*messagingConsumerClient_Nak) isMessagingConsumerClient_Kind() {}
 
-// Defines the specification for server messages.
+// Defines messages sent from the messaging server to a consumer client in a bidirectional stream.
+// The server delivers messages that match the consumer's subscribed subjects.
 type MessagingConsumerServer struct {
 	state           protoimpl.MessageState         `protogen:"opaque.v1"`
 	xxx_hidden_Kine isMessagingConsumerServer_Kine `protobuf_oneof:"kine"`
@@ -361,12 +363,13 @@ type isMessagingConsumerServer_Kine interface {
 }
 
 type messagingConsumerServer_Receive struct {
-	Receive *MessagingReceiveMessage `protobuf:"bytes,1,opt,name=receive,oneof"` // Receive action to deliver a message to the consumer.
+	Receive *MessagingReceiveMessage `protobuf:"bytes,1,opt,name=receive,oneof"` // Delivers a message to the consumer for processing. The consumer must ack or nak this message.
 }
 
 func (*messagingConsumerServer_Receive) isMessagingConsumerServer_Kine() {}
 
-// Defines the specification for published messages.
+// Defines messages sent from a publisher client to the messaging server in a client stream.
+// Publishers use this to establish a connection and send messages to specific subjects.
 type MessagingPublisherClient struct {
 	state           protoimpl.MessageState          `protogen:"opaque.v1"`
 	xxx_hidden_Kind isMessagingPublisherClient_Kind `protobuf_oneof:"kind"`
@@ -527,11 +530,11 @@ type isMessagingPublisherClient_Kind interface {
 }
 
 type messagingPublisherClient_Setup struct {
-	Setup *MessagingPublisherSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup action to initialize the publisher. Must be the first message sent. Any subsequent setup messages are rejected.
+	Setup *MessagingPublisherSetup `protobuf:"bytes,1,opt,name=setup,oneof"` // Setup message to initialize the publisher connection. Must be the first message sent. Subsequent setup messages are rejected.
 }
 
 type messagingPublisherClient_Publish struct {
-	Publish *MessagingPublishMessage `protobuf:"bytes,2,opt,name=publish,oneof"` // Publish action to send a message.
+	Publish *MessagingPublishMessage `protobuf:"bytes,2,opt,name=publish,oneof"` // Publishes a message to a subject. All consumers subscribed to this subject will receive it.
 }
 
 func (*messagingPublisherClient_Setup) isMessagingPublisherClient_Kind() {}
@@ -1169,7 +1172,8 @@ func (b0 MessagingComponent_builder) Build() *MessagingComponent {
 	return m0
 }
 
-// Defines a specification of messaging component settings for a specified consumer.
+// Defines configuration settings for a specific consumer within a messaging component.
+// Each consumer represents a logical queue handler that processes messages from subscribed subjects.
 type MessagingComponentConsumerSettings struct {
 	state                          protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ConsumerId          *string                `protobuf:"bytes,1,opt,name=consumer_id,json=consumerId"`
@@ -1292,7 +1296,8 @@ func (b0 MessagingComponentConsumerSettings_builder) Build() *MessagingComponent
 	return m0
 }
 
-// Defines a specification of a messaging component.
+// Defines the configuration specification for a messaging component.
+// Components represent microservices or system modules that publish and/or consume messages.
 type MessagingComponentSpec struct {
 	state                  protoimpl.MessageState                 `protogen:"opaque.v1"`
 	xxx_hidden_Enabled     bool                                   `protobuf:"varint,1,opt,name=enabled"`

@@ -216,7 +216,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the cron job specification.</p>
+  <p>Defines the cron job model representing a scheduled recurring task.
+Cron jobs are persistent scheduled operations that execute automatically according to their schedule definition.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -243,7 +244,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The specification of the cron job.</p></td>
+      <td class="content"><p>The configuration defining when and what to execute.</p></td>
       
     </tr>
     
@@ -259,7 +260,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The current status of the cron job.</p></td>
+      <td class="content"><p>The runtime status including last/next execution times and errors.</p></td>
       
     </tr>
     
@@ -275,7 +276,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The metadata fields.</p></td>
+      <td class="content"><p>Metadata including id, name, generation, user-managed fields, and system-managed fields.</p></td>
       
     </tr>
     
@@ -299,7 +300,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the cron job specification.</p>
+  <p>Defines the cron job specification containing scheduling and execution details.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -326,7 +327,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The type of the cron job. For example, <code>CRON_JOB_TYPE_START_BULK</code>, <code>CRON_JOB_TYPE_START_PROXY_BULK</code>.</p></td>
+      <td class="content"><p>The type of operation to execute (e.g., START_BULK, START_PROXY_BULK).</p></td>
       
     </tr>
     
@@ -341,7 +342,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The cron job definition. For example, <code>"0 * * * *"</code> for every hour.</p></td>
+      <td class="content"><p>The cron schedule expression in standard format (e.g., "0 * * * <em>" for hourly, "0 0 * * </em>" for daily at midnight).</p></td>
       
     </tr>
     
@@ -356,7 +357,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The timezone associated with the cron job. For example, <code>"America/New_York"</code>, <code>"Europe/Prague"</code>, <code>"CET"</code>, <code>"GMT"</code>, <code>"Etc/GMT+2"</code>. e.g. "America/New_York", "Europe/Prague", "CET", "GMT", "Etc/GMT+2".</p></td>
+      <td class="content"><p>The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").</p></td>
       
     </tr>
     
@@ -371,7 +372,7 @@
           <span>bool</span>
         </code>
       </td>
-      <td class="content"><p>Indicates whether the cron job is suspended. Default is <code>false</code> (not suspended).</p></td>
+      <td class="content"><p>When true, the cron job is paused and will not execute until resumed. Default is false.</p></td>
       
     </tr>
     
@@ -386,7 +387,7 @@
           <span>google.protobuf.Struct</span>
         </code>
       </td>
-      <td class="content"><p>The payload to be sent when the cron job runs.</p></td>
+      <td class="content"><p>The type-specific payload passed to the operation when it executes (e.g., bulk specification for START_BULK type).</p></td>
       
     </tr>
     
@@ -410,7 +411,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the current status of a cron job.</p>
+  <p>Defines the current runtime status of a cron job including execution history and schedule validation.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -436,7 +437,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp of the last run of the cron job.</p></td>
+      <td class="content"><p>The timestamp when the cron job last executed successfully or attempted to execute.</p></td>
       
     </tr>
     
@@ -451,7 +452,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp of the next run of the cron job.</p></td>
+      <td class="content"><p>The calculated timestamp for the next scheduled execution based on the cron schedule and timezone.</p></td>
       
     </tr>
     
@@ -466,7 +467,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The error message if the cron job schedule is invalid.</p></td>
+      <td class="content"><p>An error message if the cron schedule is invalid or if the last execution failed.</p></td>
       
     </tr>
     
@@ -562,7 +563,8 @@
 </h4>
 
 <div class="block content">
-  <p><p>Defines the cron job types that can be scheduled.</p></p>
+  <p><p>Defines the cron job types that can be scheduled for automated recurring operations.
+Cron jobs enable scheduled data collection, configuration synchronization, and other periodic tasks.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -578,19 +580,19 @@
     <tr>
       <td><code>CRON_JOB_TYPE_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Unspecified cron job type.</p></td>
+      <td class="content"><p>Unspecified cron job type (invalid, should not be used).</p></td>
     </tr>
     
     <tr>
       <td><code>CRON_JOB_TYPE_START_BULK</code></td>
       <td>1</td>
-      <td class="content"><p>The cron job that starts an acquistion bulk.</p></td>
+      <td class="content"><p>Schedules recurring acquisition bulks for automated data collection from devices.</p></td>
     </tr>
     
     <tr>
       <td><code>CRON_JOB_TYPE_START_PROXY_BULK</code></td>
       <td>2</td>
-      <td class="content"><p>The cron job that starts a proxy bulk.</p></td>
+      <td class="content"><p>Schedules recurring proxy bulks for data collection operations initiated through the DataProxy.</p></td>
     </tr>
     
   </tbody>

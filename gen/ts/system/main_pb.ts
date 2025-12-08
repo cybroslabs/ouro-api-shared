@@ -19,13 +19,14 @@ export const file_system_main: GenFile = /*@__PURE__*/
   fileDesc("ChFzeXN0ZW0vbWFpbi5wcm90bxIdaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0iUgoRQXBwbGljYXRpb25Db25maWcSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWciWgoPQ29tcG9uZW50Q29uZmlnEgwKBG5hbWUYASABKAkSOQoFaXRlbXMYAiABKAsyKi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZFZhbHVlcyJoChlDb21wb25lbnRDb25maWdEZXNjcmlwdG9yEgwKBG5hbWUYASABKAkSPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5GaWVsZERlc2NyaXB0b3IiqwEKG0FwcGxpY2F0aW9uQ29uZmlnRGVzY3JpcHRvchJNCgtkZXNjcmlwdG9ycxgBIAMoCzI4LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuc3lzdGVtLkNvbXBvbmVudENvbmZpZ0Rlc2NyaXB0b3ISPQoFaXRlbXMYAiADKAsyLi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLnN5c3RlbS5Db21wb25lbnRDb25maWci9AIKB0xpY2Vuc2USDQoFdG9rZW4YASABKAkSCgoCaWQYAiABKAkSDAoEbmFtZRgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCRJECgdvcHRpb25zGAUgAygLMjMuaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uTGljZW5zZS5PcHRpb25zRW50cnkSDwoHdmVyc2lvbhgGIAEoBRI0ChB0b2tlbl9leHBpcmF0aW9uGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI2ChJsaWNlbnNlX2V4cGlyYXRpb24YCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjYKEnNlcnZpY2VfZXhwaXJhdGlvbhgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaLgoMT3B0aW9uc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiawoLVXNlclByb2ZpbGUSCgoCaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEg0KBXJvbGVzGAMgAygJEhkKEWlldGZfbGFuZ3VhZ2VfdGFnGAQgASgJEhAKCHRpbWV6b25lGAUgASgJIocBChZTZXRTY3JlZW5Db25maWdSZXF1ZXN0EhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCRIOCgRqc29uGAMgASgJSAASJgoDcmF3GAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgAQgoKCHNldHRpbmdzIkEKFFNjcmVlbkNvbmZpZ1NlbGVjdG9yEhYKDmFwcGxpY2F0aW9uX2lkGAEgASgJEhEKCXNjcmVlbl9pZBgCIAEoCSJnChJPYmplY3RGbGFnc1JlcXVlc3QSPgoLb2JqZWN0X3R5cGUYASABKA4yKS5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5PYmplY3RUeXBlEhEKCW9iamVjdF9pZBgCIAEoCSJQChNPYmplY3RGbGFnc1Jlc3BvbnNlEjkKBWZsYWdzGAQgAygOMiouaW8uY2xicy5vcGVuaGVzLm1vZGVscy5zeXN0ZW0uT2JqZWN0RmxhZ3MqUgoLT2JqZWN0RmxhZ3MSGwoXT0JKRUNUX0ZMQUdfVU5TUEVDSUZJRUQQABImCiJPQkpFQ1RfRkxBR19DT01NVU5JQ0FUSU9OX1VOSVRfTE9HEAFCNVozZ2l0aHViLmNvbS9jeWJyb3NsYWJzL291cm8tYXBpLXNoYXJlZC9nZW4vZ28vc3lzdGVtYghlZGl0aW9uc3DoBw", [file_common_fields, file_common_objects, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
- * Defines a specification for application configuration.
+ * Defines the application-wide configuration containing settings for all system components.
+ * This model stores the actual configuration values that control system behavior.
  *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfig
  */
 export type ApplicationConfig = Message<"io.clbs.openhes.models.system.ApplicationConfig"> & {
   /**
-   * The default values for the application configuration.
+   * The configuration values for each registered component in the system.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
@@ -33,13 +34,14 @@ export type ApplicationConfig = Message<"io.clbs.openhes.models.system.Applicati
 };
 
 /**
- * Defines a specification for application configuration.
+ * Defines the application-wide configuration containing settings for all system components.
+ * This model stores the actual configuration values that control system behavior.
  *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfig
  */
 export type ApplicationConfigJson = {
   /**
-   * The default values for the application configuration.
+   * The configuration values for each registered component in the system.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
@@ -54,20 +56,21 @@ export const ApplicationConfigSchema: GenMessage<ApplicationConfig, {jsonType: A
   messageDesc(file_system_main, 0);
 
 /**
- * Defines a specification for a single component configuration.
+ * Defines the configuration for a single system component or microservice.
+ * Each component can define its own configuration fields through field descriptors.
  *
  * @generated from message io.clbs.openhes.models.system.ComponentConfig
  */
 export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentConfig"> & {
   /**
-   * The component name.
+   * The unique component name (e.g., "taskmaster", "dataproxy", "api").
    *
    * @generated from field: string name = 1;
    */
   name: string;
 
   /**
-   * The component configuration values.
+   * The configuration values as field-value pairs. Fields are defined by the component's descriptors.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValues items = 2;
    */
@@ -75,20 +78,21 @@ export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentCo
 };
 
 /**
- * Defines a specification for a single component configuration.
+ * Defines the configuration for a single system component or microservice.
+ * Each component can define its own configuration fields through field descriptors.
  *
  * @generated from message io.clbs.openhes.models.system.ComponentConfig
  */
 export type ComponentConfigJson = {
   /**
-   * The component name.
+   * The unique component name (e.g., "taskmaster", "dataproxy", "api").
    *
    * @generated from field: string name = 1;
    */
   name?: string;
 
   /**
-   * The component configuration values.
+   * The configuration values as field-value pairs. Fields are defined by the component's descriptors.
    *
    * @generated from field: io.clbs.openhes.models.common.FieldValues items = 2;
    */
@@ -103,20 +107,21 @@ export const ComponentConfigSchema: GenMessage<ComponentConfig, {jsonType: Compo
   messageDesc(file_system_main, 1);
 
 /**
- * Defines a specification for component configuration descriptors.
+ * Defines the configuration schema for a component, declaring what fields are available.
+ * Components register their configuration schema at startup to enable dynamic configuration.
  *
  * @generated from message io.clbs.openhes.models.system.ComponentConfigDescriptor
  */
 export type ComponentConfigDescriptor = Message<"io.clbs.openhes.models.system.ComponentConfigDescriptor"> & {
   /**
-   * The component name.
+   * The unique component name.
    *
    * @generated from field: string name = 1;
    */
   name: string;
 
   /**
-   * The list of component configuration field descriptors.
+   * The field descriptors defining available configuration options including types, defaults, and validation rules.
    *
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 2;
    */
@@ -124,20 +129,21 @@ export type ComponentConfigDescriptor = Message<"io.clbs.openhes.models.system.C
 };
 
 /**
- * Defines a specification for component configuration descriptors.
+ * Defines the configuration schema for a component, declaring what fields are available.
+ * Components register their configuration schema at startup to enable dynamic configuration.
  *
  * @generated from message io.clbs.openhes.models.system.ComponentConfigDescriptor
  */
 export type ComponentConfigDescriptorJson = {
   /**
-   * The component name.
+   * The unique component name.
    *
    * @generated from field: string name = 1;
    */
   name?: string;
 
   /**
-   * The list of component configuration field descriptors.
+   * The field descriptors defining available configuration options including types, defaults, and validation rules.
    *
    * @generated from field: repeated io.clbs.openhes.models.common.FieldDescriptor items = 2;
    */
@@ -152,20 +158,21 @@ export const ComponentConfigDescriptorSchema: GenMessage<ComponentConfigDescript
   messageDesc(file_system_main, 2);
 
 /**
- * Defines a specification for application configuration descriptors.
+ * Defines the complete application configuration schema and current values.
+ * This combines both the field definitions (descriptors) and the actual configuration values for all components.
  *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfigDescriptor
  */
 export type ApplicationConfigDescriptor = Message<"io.clbs.openhes.models.system.ApplicationConfigDescriptor"> & {
   /**
-   * The list of component configuration descriptors.
+   * The schema definitions for all registered components.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfigDescriptor descriptors = 1;
    */
   descriptors: ComponentConfigDescriptor[];
 
   /**
-   * The list of default configuration values for the application component.
+   * The current configuration values for all components.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
@@ -173,20 +180,21 @@ export type ApplicationConfigDescriptor = Message<"io.clbs.openhes.models.system
 };
 
 /**
- * Defines a specification for application configuration descriptors.
+ * Defines the complete application configuration schema and current values.
+ * This combines both the field definitions (descriptors) and the actual configuration values for all components.
  *
  * @generated from message io.clbs.openhes.models.system.ApplicationConfigDescriptor
  */
 export type ApplicationConfigDescriptorJson = {
   /**
-   * The list of component configuration descriptors.
+   * The schema definitions for all registered components.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfigDescriptor descriptors = 1;
    */
   descriptors?: ComponentConfigDescriptorJson[];
 
   /**
-   * The list of default configuration values for the application component.
+   * The current configuration values for all components.
    *
    * @generated from field: repeated io.clbs.openhes.models.system.ComponentConfig items = 2;
    */
@@ -201,69 +209,70 @@ export const ApplicationConfigDescriptorSchema: GenMessage<ApplicationConfigDesc
   messageDesc(file_system_main, 3);
 
 /**
- * Defines the license information for the application.
+ * Defines the license information controlling system features, capacity, and validity.
+ * Licenses are validated against Cybroslabs licensing servers or installed manually for air-gapped deployments.
  *
  * @generated from message io.clbs.openhes.models.system.License
  */
 export type License = Message<"io.clbs.openhes.models.system.License"> & {
   /**
-   * The license token.
+   * The JWT license token containing encoded license claims and signature.
    *
    * @generated from field: string token = 1;
    */
   token: string;
 
   /**
-   * The license ID.
+   * The unique license identifier assigned by Cybroslabs.
    *
    * @generated from field: string id = 2;
    */
   id: string;
 
   /**
-   * The license name.
+   * The customer or organization name associated with this license.
    *
    * @generated from field: string name = 3;
    */
   name: string;
 
   /**
-   * The license description.
+   * A human-readable description of the license type or tier (e.g., "Enterprise", "Trial").
    *
    * @generated from field: string description = 4;
    */
   description: string;
 
   /**
-   * The licensed options.
+   * Feature flags and capacity limits (e.g., "max_devices": "10000", "module_scada": "enabled").
    *
    * @generated from field: map<string, string> options = 5;
    */
   options: { [key: string]: string };
 
   /**
-   * The license options structure version.
+   * The license structure version for backwards compatibility handling.
    *
    * @generated from field: int32 version = 6;
    */
   version: number;
 
   /**
-   * The license token expiration date. This does not necessarily reflect the actual license expiry date but the date when the license token is no longer valid. For air-gapped systems at this point the license key must be renewed. The value is taken from the 'exp' claim in the license token.
+   * The JWT token expiration requiring renewal for air-gapped systems. This is when the token itself expires, not necessarily the license.
    *
    * @generated from field: google.protobuf.Timestamp token_expiration = 7;
    */
   tokenExpiration?: Timestamp;
 
   /**
-   * The actual license expiration date. This can be any date or unset for perpetual licenses.
+   * The actual license validity end date. Unset for perpetual licenses.
    *
    * @generated from field: google.protobuf.Timestamp license_expiration = 9;
    */
   licenseExpiration?: Timestamp;
 
   /**
-   * The service expiration date. This is the date until when the license entitles to free updates and support.
+   * The support and updates entitlement end date. After this date, updates require license renewal.
    *
    * @generated from field: google.protobuf.Timestamp service_expiration = 10;
    */
@@ -271,69 +280,70 @@ export type License = Message<"io.clbs.openhes.models.system.License"> & {
 };
 
 /**
- * Defines the license information for the application.
+ * Defines the license information controlling system features, capacity, and validity.
+ * Licenses are validated against Cybroslabs licensing servers or installed manually for air-gapped deployments.
  *
  * @generated from message io.clbs.openhes.models.system.License
  */
 export type LicenseJson = {
   /**
-   * The license token.
+   * The JWT license token containing encoded license claims and signature.
    *
    * @generated from field: string token = 1;
    */
   token?: string;
 
   /**
-   * The license ID.
+   * The unique license identifier assigned by Cybroslabs.
    *
    * @generated from field: string id = 2;
    */
   id?: string;
 
   /**
-   * The license name.
+   * The customer or organization name associated with this license.
    *
    * @generated from field: string name = 3;
    */
   name?: string;
 
   /**
-   * The license description.
+   * A human-readable description of the license type or tier (e.g., "Enterprise", "Trial").
    *
    * @generated from field: string description = 4;
    */
   description?: string;
 
   /**
-   * The licensed options.
+   * Feature flags and capacity limits (e.g., "max_devices": "10000", "module_scada": "enabled").
    *
    * @generated from field: map<string, string> options = 5;
    */
   options?: { [key: string]: string };
 
   /**
-   * The license options structure version.
+   * The license structure version for backwards compatibility handling.
    *
    * @generated from field: int32 version = 6;
    */
   version?: number;
 
   /**
-   * The license token expiration date. This does not necessarily reflect the actual license expiry date but the date when the license token is no longer valid. For air-gapped systems at this point the license key must be renewed. The value is taken from the 'exp' claim in the license token.
+   * The JWT token expiration requiring renewal for air-gapped systems. This is when the token itself expires, not necessarily the license.
    *
    * @generated from field: google.protobuf.Timestamp token_expiration = 7;
    */
   tokenExpiration?: TimestampJson;
 
   /**
-   * The actual license expiration date. This can be any date or unset for perpetual licenses.
+   * The actual license validity end date. Unset for perpetual licenses.
    *
    * @generated from field: google.protobuf.Timestamp license_expiration = 9;
    */
   licenseExpiration?: TimestampJson;
 
   /**
-   * The service expiration date. This is the date until when the license entitles to free updates and support.
+   * The support and updates entitlement end date. After this date, updates require license renewal.
    *
    * @generated from field: google.protobuf.Timestamp service_expiration = 10;
    */
@@ -348,41 +358,42 @@ export const LicenseSchema: GenMessage<License, {jsonType: LicenseJson}> = /*@__
   messageDesc(file_system_main, 4);
 
 /**
- * Defines the user information structure.
+ * Defines the user profile containing identity and preferences for authenticated users.
+ * User profiles store both read-only attributes managed by the authentication system and user-controlled preferences.
  *
  * @generated from message io.clbs.openhes.models.system.UserProfile
  */
 export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> & {
   /**
-   * The UUID of the user.
+   * The unique UUID of the user assigned by the authentication system (read-only).
    *
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
-   * The display name of the user.
+   * The user's full name or preferred display name shown in the UI.
    *
    * @generated from field: string display_name = 2;
    */
   displayName: string;
 
   /**
-   * The list of user roles. This is read-only and managed by the system.
+   * The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.
    *
    * @generated from field: repeated string roles = 3;
    */
   roles: string[];
 
   /**
-   * The preferred user interface language.
+   * The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").
    *
    * @generated from field: string ietf_language_tag = 4;
    */
   ietfLanguageTag: string;
 
   /**
-   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+   * The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").
    *
    * @generated from field: string timezone = 5;
    */
@@ -390,41 +401,42 @@ export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> &
 };
 
 /**
- * Defines the user information structure.
+ * Defines the user profile containing identity and preferences for authenticated users.
+ * User profiles store both read-only attributes managed by the authentication system and user-controlled preferences.
  *
  * @generated from message io.clbs.openhes.models.system.UserProfile
  */
 export type UserProfileJson = {
   /**
-   * The UUID of the user.
+   * The unique UUID of the user assigned by the authentication system (read-only).
    *
    * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * The display name of the user.
+   * The user's full name or preferred display name shown in the UI.
    *
    * @generated from field: string display_name = 2;
    */
   displayName?: string;
 
   /**
-   * The list of user roles. This is read-only and managed by the system.
+   * The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.
    *
    * @generated from field: repeated string roles = 3;
    */
   roles?: string[];
 
   /**
-   * The preferred user interface language.
+   * The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").
    *
    * @generated from field: string ietf_language_tag = 4;
    */
   ietfLanguageTag?: string;
 
   /**
-   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+   * The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").
    *
    * @generated from field: string timezone = 5;
    */
@@ -439,33 +451,34 @@ export const UserProfileSchema: GenMessage<UserProfile, {jsonType: UserProfileJs
   messageDesc(file_system_main, 5);
 
 /**
- * Defines the
+ * Defines a request for setting or updating UI screen configuration.
+ * Screen configurations store user-specific or system-wide UI layout and settings for different application screens.
  *
  * @generated from message io.clbs.openhes.models.system.SetScreenConfigRequest
  */
 export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetScreenConfigRequest"> & {
   /**
-   * The application or ui-plugin identifier.
+   * The application or UI plugin identifier (e.g., "core", "scada-plugin").
    *
    * @generated from field: string application_id = 1;
    */
   applicationId: string;
 
   /**
-   * The screen identifier within the application/ui-plugin.
+   * The screen identifier within the application (e.g., "device-list", "dashboard").
    *
    * @generated from field: string screen_id = 2;
    */
   screenId: string;
 
   /**
-   * The screen configuration settings.
+   * The screen configuration settings in one of the supported formats.
    *
    * @generated from oneof io.clbs.openhes.models.system.SetScreenConfigRequest.settings
    */
   settings: {
     /**
-     * Generic JSON-encoded data model holding data related for the screen.
+     * Configuration as a JSON-encoded string. Useful for direct storage from frontend.
      *
      * @generated from field: string json = 3;
      */
@@ -473,7 +486,7 @@ export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetS
     case: "json";
   } | {
     /**
-     * Generic data model holding data related for the screen.
+     * Configuration as a structured protobuf Struct. Used for programmatic access.
      *
      * @generated from field: google.protobuf.Struct raw = 4;
      */
@@ -483,34 +496,35 @@ export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetS
 };
 
 /**
- * Defines the
+ * Defines a request for setting or updating UI screen configuration.
+ * Screen configurations store user-specific or system-wide UI layout and settings for different application screens.
  *
  * @generated from message io.clbs.openhes.models.system.SetScreenConfigRequest
  */
 export type SetScreenConfigRequestJson = {
   /**
-   * The application or ui-plugin identifier.
+   * The application or UI plugin identifier (e.g., "core", "scada-plugin").
    *
    * @generated from field: string application_id = 1;
    */
   applicationId?: string;
 
   /**
-   * The screen identifier within the application/ui-plugin.
+   * The screen identifier within the application (e.g., "device-list", "dashboard").
    *
    * @generated from field: string screen_id = 2;
    */
   screenId?: string;
 
   /**
-   * Generic JSON-encoded data model holding data related for the screen.
+   * Configuration as a JSON-encoded string. Useful for direct storage from frontend.
    *
    * @generated from field: string json = 3;
    */
   json?: string;
 
   /**
-   * Generic data model holding data related for the screen.
+   * Configuration as a structured protobuf Struct. Used for programmatic access.
    *
    * @generated from field: google.protobuf.Struct raw = 4;
    */
@@ -525,20 +539,20 @@ export const SetScreenConfigRequestSchema: GenMessage<SetScreenConfigRequest, {j
   messageDesc(file_system_main, 6);
 
 /**
- * Defines the selection criteria for UI screen configuration.
+ * Defines the selection criteria for retrieving a specific UI screen configuration.
  *
  * @generated from message io.clbs.openhes.models.system.ScreenConfigSelector
  */
 export type ScreenConfigSelector = Message<"io.clbs.openhes.models.system.ScreenConfigSelector"> & {
   /**
-   * The application or ui-plugin identifier.
+   * The application or UI plugin identifier.
    *
    * @generated from field: string application_id = 1;
    */
   applicationId: string;
 
   /**
-   * The screen identifier within the application/ui-plugin.
+   * The screen identifier within the application.
    *
    * @generated from field: string screen_id = 2;
    */
@@ -546,20 +560,20 @@ export type ScreenConfigSelector = Message<"io.clbs.openhes.models.system.Screen
 };
 
 /**
- * Defines the selection criteria for UI screen configuration.
+ * Defines the selection criteria for retrieving a specific UI screen configuration.
  *
  * @generated from message io.clbs.openhes.models.system.ScreenConfigSelector
  */
 export type ScreenConfigSelectorJson = {
   /**
-   * The application or ui-plugin identifier.
+   * The application or UI plugin identifier.
    *
    * @generated from field: string application_id = 1;
    */
   applicationId?: string;
 
   /**
-   * The screen identifier within the application/ui-plugin.
+   * The screen identifier within the application.
    *
    * @generated from field: string screen_id = 2;
    */
@@ -662,20 +676,21 @@ export const ObjectFlagsResponseSchema: GenMessage<ObjectFlagsResponse, {jsonTyp
   messageDesc(file_system_main, 9);
 
 /**
- * Defines the object flags.
+ * Defines feature flags and capability indicators for system objects.
+ * These flags control what operations are available or enabled for specific objects.
  *
  * @generated from enum io.clbs.openhes.models.system.ObjectFlags
  */
 export enum ObjectFlags {
   /**
-   * Default value.
+   * Default/unspecified flag (no special behavior).
    *
    * @generated from enum value: OBJECT_FLAG_UNSPECIFIED = 0;
    */
   OBJECT_FLAG_UNSPECIFIED = 0,
 
   /**
-   * Given communication unit has log feature enabled.
+   * The communication unit has detailed logging enabled for diagnostics and troubleshooting.
    *
    * @generated from enum value: OBJECT_FLAG_COMMUNICATION_UNIT_LOG = 1;
    */
@@ -683,7 +698,8 @@ export enum ObjectFlags {
 }
 
 /**
- * Defines the object flags.
+ * Defines feature flags and capability indicators for system objects.
+ * These flags control what operations are available or enabled for specific objects.
  *
  * @generated from enum io.clbs.openhes.models.system.ObjectFlags
  */

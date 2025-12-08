@@ -147,7 +147,8 @@
 </h4>
 
 <div class="block content">
-  <p>Defines a specification of crypto secrets.</p>
+  <p>Defines a cryptographic secret containing sensitive credentials for device communication.
+Secrets include authentication keys, encryption keys, and passwords used to establish secure connections with devices.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -173,7 +174,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The access level for the secret (for example, <code>admin</code>, <code>user</code>).</p></td>
+      <td class="content"><p>The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.</p></td>
       
     </tr>
     
@@ -188,7 +189,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique secret key identifier.</p></td>
+      <td class="content"><p>The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.</p></td>
       
     </tr>
     
@@ -203,7 +204,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp when the secret was created.</p></td>
+      <td class="content"><p>The timestamp when this secret was initially created in the system.</p></td>
       
     </tr>
     
@@ -218,7 +219,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The timestamp when the secret was last updated.</p></td>
+      <td class="content"><p>The timestamp when this secret was last modified or rotated.</p></td>
       
     </tr>
     
@@ -233,7 +234,7 @@
           <span>bytes</span>
         </code>
       </td>
-      <td class="content"><p>The secret data.</p></td>
+      <td class="content"><p>The actual secret data (e.g., encryption key, password). This field contains the decrypted value ready for use.</p></td>
       
     </tr>
     
@@ -598,7 +599,8 @@
 </h4>
 
 <div class="block content">
-  <p><p>Defines the supported DLMS decryption methods.</p></p>
+  <p><p>Defines the supported decryption methods for cryptographic secret data.
+These methods are used to decrypt device authentication keys and other sensitive credentials.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -614,19 +616,19 @@
     <tr>
       <td><code>SECRET_DATA_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>Unspecified decryption method.</p></td>
+      <td class="content"><p>Unspecified decryption method (invalid, should not be used).</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_DATA_PLAIN</code></td>
       <td>1</td>
-      <td class="content"><p>Plain data. No decryption required.</p></td>
+      <td class="content"><p>Data is stored in plain text without encryption (not recommended for production).</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_DATA_AES256CBC</code></td>
       <td>2</td>
-      <td class="content"><p>AES-256-CBC dencryption method.</p></td>
+      <td class="content"><p>Data is encrypted using AES-256 in CBC mode. Requires an initialization vector.</p></td>
     </tr>
     
   </tbody>
@@ -640,7 +642,8 @@
 </h4>
 
 <div class="block content">
-  <p><p>Defines the supported decryption methods for session keys.</p></p>
+  <p><p>Defines the supported decryption methods for session keys used in key wrapping scenarios.
+Session keys provide an additional layer of security for protecting cryptographic secrets.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -656,19 +659,19 @@
     <tr>
       <td><code>SECRET_SESSION_UNSPECIFIED</code></td>
       <td>0</td>
-      <td class="content"><p>No session key decryption method. Used when the session key is not set or not used.</p></td>
+      <td class="content"><p>No session key is used. The secret data is encrypted directly with the master key.</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_SESSION_PLAIN</code></td>
       <td>1</td>
-      <td class="content"><p>Plain session key. No session-key decryption required.</p></td>
+      <td class="content"><p>Session key is stored in plain text (used when the session key itself is not sensitive).</p></td>
     </tr>
     
     <tr>
       <td><code>SECRET_SESSION_RSA_OAEPM_GF1P</code></td>
       <td>2</td>
-      <td class="content"><p>RSA-OAEP-MGF1P decryption method. Used for session keys.</p></td>
+      <td class="content"><p>Session key is encrypted using RSA-OAEP with MGF1 and SHA-1. Used for secure key transport.</p></td>
     </tr>
     
   </tbody>
