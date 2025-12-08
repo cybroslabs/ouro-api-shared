@@ -119,9 +119,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// The Deviceregistry service definition.
+// The DeviceRegistry service definition.
+// This internal service manages the persistent storage and retrieval of all device-related entities including devices, communication units, configuration templates, drivers, and metadata.
 type DeviceRegistryServiceClient interface {
-	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+	// Creates a new variable. Variables provide a named abstraction layer over device configuration registers, allowing consistent access to device settings across different device types and drivers.
 	CreateVariable(ctx context.Context, in *acquisition.CreateVariableRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListVariables(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfVariable, error)
@@ -145,6 +146,7 @@ type DeviceRegistryServiceClient interface {
 	UpdateDeviceConfigurationRegister(ctx context.Context, in *acquisition.DeviceConfigurationRegister, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Deletes the specified device configuration register.
 	DeleteDeviceConfigurationRegister(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Retrieves a complete map of all device configuration registers indexed by their identifiers. This method provides efficient bulk access to register definitions without pagination.
 	GetDeviceConfigurationRegisterMap(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.DeviceConfigurationRegisterMap, error)
 	// Creates a new device configuration template. Returns the identifier of the newly created template.
 	CreateDeviceConfigurationTemplate(ctx context.Context, in *acquisition.CreateDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -160,11 +162,11 @@ type DeviceRegistryServiceClient interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(ctx context.Context, in *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Removes a specified device configuration register from a device configuration template.
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(ctx context.Context, in *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a paginated list of drivers based on the specified criteria including filtering and sorting options. The page size and page number (zero-based) can be defined in the request.
 	ListDrivers(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
-	// The method called by the Ouro Operator to set the driver templates. The parameter contains the driver templates.
+	// Creates or updates a driver definition in the registry. Called by the Ouro Operator during driver registration to store driver metadata, capabilities, and templates. This is an internal operation used during driver deployment.
 	CreateDriver(ctx context.Context, in *acquisition.SetDriver, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieves the details of the specified driver.
+	// Retrieves the complete driver definition including metadata, capabilities, connection templates, and action definitions for the specified driver.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
 	// @group: Devices
 	// @tag: communicationunit
@@ -236,18 +238,19 @@ type DeviceRegistryServiceClient interface {
 	DeleteDevice(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
+	// Streams device type information for multiple devices. This bidirectional streaming RPC allows querying driver types for batches of devices efficiently. Clients send device identifiers and receive corresponding driver type information in real-time.
 	StreamDeviceType(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse], error)
-	// The method called by the RestAPI to replace ordered set of linked communication units.
+	// Sets or replaces the ordered list of communication units associated with a device. The order determines the priority in which communication paths are attempted when connecting to the device. All previously associated communication units are replaced.
 	SetDeviceCommunicationUnits(ctx context.Context, in *acquisition.SetDeviceCommunicationUnitsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieves a list of communication units linked to the specified device.
+	// Retrieves the ordered list of communication units linked to the specified device. The order indicates the priority of communication paths.
 	GetDeviceCommunicationUnits(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
 	// @tag: device
 	// Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceCommunicationUnitChanges(ctx context.Context, in *common.ListSelector, opts ...grpc.CallOption) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
-	// The method called by the DataProxy to resolve connection info for given device(s).
+	// Resolves connection information for the specified device(s). Called by DataProxy to determine how to connect to devices, including communication unit details, driver assignments, and connection parameters. Returns a map of device identifiers to their connection configurations.
 	GetDeviceConnectionInfo(ctx context.Context, in *acquisition.GetDeviceConnectionInfoRequest, opts ...grpc.CallOption) (*acquisition.MapDeviceConnectionInfo, error)
-	// Sets the device information.
+	// Updates device information including profile data and metadata. Drivers use this method to store device-specific information discovered during communication such as firmware version, device capabilities, or configuration details.
 	SetDeviceInfo(ctx context.Context, in *acquisition.SetDeviceInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Devices
 	// Retrieves the profile-typed info of the specified device.
@@ -274,8 +277,7 @@ type DeviceRegistryServiceClient interface {
 	// @tag: devicegroup
 	// Deletes the specified device group.
 	DeleteDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// The method returns stream of devices from the device group.
-	// @param The device group identifier.
+	// Streams all devices from the specified device group. This server-side streaming RPC efficiently delivers large device groups by streaming device information incrementally rather than loading all devices at once. Useful for bulk operations on device groups.
 	StreamDeviceGroup(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (grpc.ServerStreamingClient[acquisition.StreamDeviceGroup], error)
 	// Adds the specified devices to an existing device group.
 	AddDevicesToGroup(ctx context.Context, in *acquisition.AddDevicesToGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -1319,9 +1321,10 @@ func (c *deviceRegistryServiceClient) GetSbom(ctx context.Context, in *emptypb.E
 // All implementations must embed UnimplementedDeviceRegistryServiceServer
 // for forward compatibility.
 //
-// The Deviceregistry service definition.
+// The DeviceRegistry service definition.
+// This internal service manages the persistent storage and retrieval of all device-related entities including devices, communication units, configuration templates, drivers, and metadata.
 type DeviceRegistryServiceServer interface {
-	// Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+	// Creates a new variable. Variables provide a named abstraction layer over device configuration registers, allowing consistent access to device settings across different device types and drivers.
 	CreateVariable(context.Context, *acquisition.CreateVariableRequest) (*emptypb.Empty, error)
 	// Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListVariables(context.Context, *common.ListSelector) (*acquisition.ListOfVariable, error)
@@ -1345,6 +1348,7 @@ type DeviceRegistryServiceServer interface {
 	UpdateDeviceConfigurationRegister(context.Context, *acquisition.DeviceConfigurationRegister) (*emptypb.Empty, error)
 	// Deletes the specified device configuration register.
 	DeleteDeviceConfigurationRegister(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
+	// Retrieves a complete map of all device configuration registers indexed by their identifiers. This method provides efficient bulk access to register definitions without pagination.
 	GetDeviceConfigurationRegisterMap(context.Context, *emptypb.Empty) (*acquisition.DeviceConfigurationRegisterMap, error)
 	// Creates a new device configuration template. Returns the identifier of the newly created template.
 	CreateDeviceConfigurationTemplate(context.Context, *acquisition.CreateDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
@@ -1360,11 +1364,11 @@ type DeviceRegistryServiceServer interface {
 	AddDeviceConfigurationRegisterToDeviceConfigurationTemplate(context.Context, *acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
 	// Removes a specified device configuration register from a device configuration template.
 	RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(context.Context, *acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) (*emptypb.Empty, error)
-	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a paginated list of drivers based on the specified criteria including filtering and sorting options. The page size and page number (zero-based) can be defined in the request.
 	ListDrivers(context.Context, *common.ListSelector) (*acquisition.ListOfDriver, error)
-	// The method called by the Ouro Operator to set the driver templates. The parameter contains the driver templates.
+	// Creates or updates a driver definition in the registry. Called by the Ouro Operator during driver registration to store driver metadata, capabilities, and templates. This is an internal operation used during driver deployment.
 	CreateDriver(context.Context, *acquisition.SetDriver) (*emptypb.Empty, error)
-	// Retrieves the details of the specified driver.
+	// Retrieves the complete driver definition including metadata, capabilities, connection templates, and action definitions for the specified driver.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
 	// @group: Devices
 	// @tag: communicationunit
@@ -1436,18 +1440,19 @@ type DeviceRegistryServiceServer interface {
 	DeleteDevice(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: Devices
 	// @tag: device
+	// Streams device type information for multiple devices. This bidirectional streaming RPC allows querying driver types for batches of devices efficiently. Clients send device identifiers and receive corresponding driver type information in real-time.
 	StreamDeviceType(grpc.BidiStreamingServer[acquisition.StreamDevicesDriverTypesRequest, acquisition.StreamDevicesDriverTypesResponse]) error
-	// The method called by the RestAPI to replace ordered set of linked communication units.
+	// Sets or replaces the ordered list of communication units associated with a device. The order determines the priority in which communication paths are attempted when connecting to the device. All previously associated communication units are replaced.
 	SetDeviceCommunicationUnits(context.Context, *acquisition.SetDeviceCommunicationUnitsRequest) (*emptypb.Empty, error)
-	// Retrieves a list of communication units linked to the specified device.
+	// Retrieves the ordered list of communication units linked to the specified device. The order indicates the priority of communication paths.
 	GetDeviceCommunicationUnits(context.Context, *wrapperspb.StringValue) (*acquisition.ListOfDeviceCommunicationUnit, error)
 	// @group: Devices
 	// @tag: device
 	// Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
 	ListDeviceCommunicationUnitChanges(context.Context, *common.ListSelector) (*acquisition.ListOfDeviceCommunicationUnitChange, error)
-	// The method called by the DataProxy to resolve connection info for given device(s).
+	// Resolves connection information for the specified device(s). Called by DataProxy to determine how to connect to devices, including communication unit details, driver assignments, and connection parameters. Returns a map of device identifiers to their connection configurations.
 	GetDeviceConnectionInfo(context.Context, *acquisition.GetDeviceConnectionInfoRequest) (*acquisition.MapDeviceConnectionInfo, error)
-	// Sets the device information.
+	// Updates device information including profile data and metadata. Drivers use this method to store device-specific information discovered during communication such as firmware version, device capabilities, or configuration details.
 	SetDeviceInfo(context.Context, *acquisition.SetDeviceInfoRequest) (*emptypb.Empty, error)
 	// @group: Devices
 	// Retrieves the profile-typed info of the specified device.
@@ -1474,8 +1479,7 @@ type DeviceRegistryServiceServer interface {
 	// @tag: devicegroup
 	// Deletes the specified device group.
 	DeleteDeviceGroup(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
-	// The method returns stream of devices from the device group.
-	// @param The device group identifier.
+	// Streams all devices from the specified device group. This server-side streaming RPC efficiently delivers large device groups by streaming device information incrementally rather than loading all devices at once. Useful for bulk operations on device groups.
 	StreamDeviceGroup(*wrapperspb.StringValue, grpc.ServerStreamingServer[acquisition.StreamDeviceGroup]) error
 	// Adds the specified devices to an existing device group.
 	AddDevicesToGroup(context.Context, *acquisition.AddDevicesToGroupRequest) (*emptypb.Empty, error)

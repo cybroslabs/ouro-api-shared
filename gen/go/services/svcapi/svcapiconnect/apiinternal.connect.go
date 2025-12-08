@@ -51,13 +51,13 @@ const (
 // service.
 type ApiInternalServiceClient interface {
 	// @group: Fields
-	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a complete list of field descriptors with internal metadata. This method returns all field descriptors including system-defined and user-defined fields with their internal properties like database paths and group identifiers.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error)
 	// @group: Fields
-	// The method to get the list of fields.
+	// Updates or synchronizes field descriptors in the system. This method allows services to register or update their field descriptors and optionally clean up missing descriptors that are no longer needed.
 	UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Globalization
-	// Updates the translations
+	// Updates translations for a specific language. This method replaces existing translations for the specified language with the new ones provided in the request, allowing services to contribute their localization strings.
 	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 
@@ -122,13 +122,13 @@ func (c *apiInternalServiceClient) UpdateTranslations(ctx context.Context, req *
 // io.clbs.openhes.services.svcapi.ApiInternalService service.
 type ApiInternalServiceHandler interface {
 	// @group: Fields
-	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a complete list of field descriptors with internal metadata. This method returns all field descriptors including system-defined and user-defined fields with their internal properties like database paths and group identifiers.
 	ListFieldDescriptors(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[common.ListOfFieldDescriptorInternal], error)
 	// @group: Fields
-	// The method to get the list of fields.
+	// Updates or synchronizes field descriptors in the system. This method allows services to register or update their field descriptors and optionally clean up missing descriptors that are no longer needed.
 	UpdateFieldDescriptors(context.Context, *connect.Request[common.UpdateFieldDescriptorsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: Globalization
-	// Updates the translations
+	// Updates translations for a specific language. This method replaces existing translations for the specified language with the new ones provided in the request, allowing services to contribute their localization strings.
 	UpdateTranslations(context.Context, *connect.Request[localization.UpdateTranslationsRequest]) (*connect.Response[emptypb.Empty], error)
 }
 

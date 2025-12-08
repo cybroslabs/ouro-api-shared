@@ -2,7 +2,7 @@
 
 ## GetLicenseRequestCode
 
-The method returns the license request code if the license is not set. Otherwise it returns empty string.
+Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 
 ```proto
 GetLicenseRequestCode() returns (google.protobuf.StringValue)
@@ -12,7 +12,7 @@ GetLicenseRequestCode() returns (google.protobuf.StringValue)
 
 ## SetLicense
 
-The method stored a new license key. Used only and only for air-gapped installations.
+Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 
 ```proto
 SetLicense(google.protobuf.StringValue)
@@ -22,7 +22,7 @@ SetLicense(google.protobuf.StringValue)
 
 ## SetScreenConfig
 
-Sets the screen configuration.
+Sets or updates a screen configuration. Screen configurations store UI-specific settings and layouts for different screens or views in the application.
 
 ```proto
 SetScreenConfig(io.clbs.openhes.models.system.SetScreenConfigRequest)
@@ -32,7 +32,7 @@ SetScreenConfig(io.clbs.openhes.models.system.SetScreenConfigRequest)
 
 ## GetScreenConfig
 
-Gets the screen configuration.
+Retrieves a specific screen configuration based on the selector. Returns the configuration as a JSON string.
 
 ```proto
 GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (google.protobuf.StringValue)
@@ -43,7 +43,7 @@ GetScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector) returns (goo
 
 ## SetScreenConfigs
 
-Sets multiple screen configurations at once, replacing any existing configurations.
+Sets multiple screen configurations at once, replacing all existing configurations. This is useful for bulk updates or restoring configurations from backup.
 
 ```proto
 SetScreenConfigs(google.protobuf.StringValue)
@@ -53,7 +53,7 @@ SetScreenConfigs(google.protobuf.StringValue)
 
 ## GetScreenConfigs
 
-Gets all screen configurations at once.
+Retrieves all screen configurations at once as a JSON string. This is useful for exporting or backing up configurations.
 
 ```proto
 GetScreenConfigs() returns (google.protobuf.StringValue)
@@ -63,7 +63,7 @@ GetScreenConfigs() returns (google.protobuf.StringValue)
 
 ## DeleteScreenConfig
 
-Deletes the specified screen configuration.
+Deletes a specific screen configuration identified by the selector.
 
 ```proto
 DeleteScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector)
@@ -73,7 +73,7 @@ DeleteScreenConfig(io.clbs.openhes.models.system.ScreenConfigSelector)
 
 ## GetObjectFlags
 
-Retrieves the flags associated with the specified object.
+Retrieves feature flags and capability indicators associated with the specified object. These flags control what operations or features are available for the object.
 
 ```proto
 GetObjectFlags(io.clbs.openhes.models.system.ObjectFlagsRequest) returns (io.clbs.openhes.models.system.ObjectFlagsResponse)

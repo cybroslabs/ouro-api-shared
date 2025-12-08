@@ -18,14 +18,15 @@ export const file_services_svcapi_apiinternal: GenFile = /*@__PURE__*/
   fileDesc("CiFzZXJ2aWNlcy9zdmNhcGkvYXBpaW50ZXJuYWwucHJvdG8SH2lvLmNsYnMub3Blbmhlcy5zZXJ2aWNlcy5zdmNhcGky4AIKEkFwaUludGVybmFsU2VydmljZRJsChRMaXN0RmllbGREZXNjcmlwdG9ycxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRo8LmlvLmNsYnMub3Blbmhlcy5tb2RlbHMuY29tbW9uLkxpc3RPZkZpZWxkRGVzY3JpcHRvckludGVybmFsEm4KFlVwZGF0ZUZpZWxkRGVzY3JpcHRvcnMSPC5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmNvbW1vbi5VcGRhdGVGaWVsZERlc2NyaXB0b3JzUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRJsChJVcGRhdGVUcmFuc2xhdGlvbnMSPi5pby5jbGJzLm9wZW5oZXMubW9kZWxzLmxvY2FsaXphdGlvbi5VcGRhdGVUcmFuc2xhdGlvbnNSZXF1ZXN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Qj5aPGdpdGh1Yi5jb20vY3licm9zbGFicy9vdXJvLWFwaS1zaGFyZWQvZ2VuL2dvL3NlcnZpY2VzL3N2Y2FwaWIIZWRpdGlvbnNw6Ac", [file_google_protobuf_empty, file_common_internal, file_localization_localization]);
 
 /**
- * The Dataproxy related service definition.
+ * Internal API service for system components.
+ * This service provides internal APIs used by other services within the system for field descriptor management and translations.
  *
  * @generated from service io.clbs.openhes.services.svcapi.ApiInternalService
  */
 export const ApiInternalService: GenService<{
   /**
    * @group: Fields
-   * Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+   * Retrieves a complete list of field descriptors with internal metadata. This method returns all field descriptors including system-defined and user-defined fields with their internal properties like database paths and group identifiers.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiInternalService.ListFieldDescriptors
    */
@@ -36,7 +37,7 @@ export const ApiInternalService: GenService<{
   },
   /**
    * @group: Fields
-   * The method to get the list of fields.
+   * Updates or synchronizes field descriptors in the system. This method allows services to register or update their field descriptors and optionally clean up missing descriptors that are no longer needed.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiInternalService.UpdateFieldDescriptors
    */
@@ -47,7 +48,7 @@ export const ApiInternalService: GenService<{
   },
   /**
    * @group: Globalization
-   * Updates the translations
+   * Updates translations for a specific language. This method replaces existing translations for the specified language with the new ones provided in the request, allowing services to contribute their localization strings.
    *
    * @generated from rpc io.clbs.openhes.services.svcapi.ApiInternalService.UpdateTranslations
    */

@@ -13,68 +13,63 @@ import "common/types.proto";
 import "common/internal.proto";
 
 // The Taskmaster service definition.
-// Those are the gRPC services that the Taskmaster provides for other components.
+// This service orchestrates job execution across drivers and provides APIs for job management, driver coordination, and device data synchronization.
 service TaskmasterService {
+    // Queues jobs for execution by the Taskmaster. This method accepts a list of jobs with their configurations, priorities, and constraints, and returns the identifiers of the queued jobs.
     rpc QueueJobs(io.clbs.openhes.models.acquisition.QueueJobsRequest) returns (io.clbs.openhes.models.acquisition.QueueJobsResponse);
-    // The method called by the RestApi to cancel the job.
+    // Cancels the specified jobs. This method attempts to cancel jobs that are queued or in progress, preventing further execution.
     rpc CancelJobs(io.clbs.openhes.models.common.ListOfUInt64) returns (google.protobuf.Empty);
 
     // @group: Drivers
-    // The method called by the driver to inform Taskmaster about the instance existence. The parameter contains the driver version, the listening port, the meter type, the maximum number of concurrent jobs, the typical memory usage, the connection attributes template, and the job action templates.
+    // Registers a driver instance with the Taskmaster. Called by drivers during initialization to report their capabilities including version, listening port, supported meter types, concurrency limits, memory requirements, connection attribute templates, and available job action templates.
     rpc SetDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
     // @group: Drivers
-    // The method called by the driver to store the cache entry. The parameter contains the cache key and the cache value. The key is unique within the driver type.
+    // Stores a cache entry for the driver. Drivers use this method to persist state information across restarts. The cache key must be unique within the driver type.
     rpc SetCache(io.clbs.openhes.models.acquisition.SetCacheRequest) returns (google.protobuf.Empty);
     // @group: Drivers
-    // The method called by the driver to retrieve the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+    // Retrieves a cache entry for the driver. Drivers use this method to restore previously persisted state information. The cache key must be unique within the driver type.
     rpc GetCache(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.GetCacheResponse);
     // @group: Drivers
-    // The method called by the driver to delete the cache entry. The parameter contains the cache key. The key is unique within the driver type.
+    // Deletes a cache entry for the driver. The cache key must be unique within the driver type.
     rpc DeleteCache(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Drivers
-    // SetDriverConfigDefaults sets the default configuration values for the driver type. It also resets the configuration caches.
+    // Sets the default configuration values for a driver type. This method also resets any cached configuration to ensure the new defaults are applied.
     rpc SetDriverConfigDefaults(io.clbs.openhes.models.acquisition.SetConfigDefaultsRequest) returns (google.protobuf.Empty);
     // @group: Drivers
-    // GetDriverConfig returns the driver configuration for the given driver type.
-    // The parameter contains the driver type.
+    // Retrieves the configuration for a specific driver type. Returns the merged configuration including defaults and any overrides specific to the driver type.
     rpc GetDriverConfig(io.clbs.openhes.models.acquisition.GetDriverConfigRequest) returns (io.clbs.openhes.models.common.FieldValues);
     // @group: Drivers
-    // The method sets the managed fields for entities.
+    // Sets managed fields for entities. Drivers use this method to update dynamic field values that are managed automatically by the driver rather than user-defined.
     rpc SetManagedFields(io.clbs.openhes.models.common.SetManagedFieldsRequest) returns (google.protobuf.Empty);
     // @group: Drivers
-    // The method returns the list of x-device-identifiers that match the given device-type specific key.
-    // The key can be any byte-array like unique physical identifier of the device (e.g. system-title, MAC address, etc.) which must be unique for give driver type.
-    // If the key is not yet registered, the method creates a new entry in the database. It always returns the list of all x-device-identifiers that match the given key or error.
+    // Maps device-specific keys to cross-device identifiers. The key can be any unique physical identifier (e.g. system-title, MAC address, serial number) specific to the device type. If the key is not yet registered, a new mapping entry is created. Returns all cross-device identifiers that match the given keys.
     rpc GetMapDeviceKeyXId(io.clbs.openhes.models.common.ListOfDeviceKey) returns (io.clbs.openhes.models.common.MapDeviceKeyXId);
     // @group: Drivers
-    // Adds a new log records to the communication unit. Duplicit records are ignored.
+    // Adds log records to a communication unit. Drivers call this method to report communication events, errors, or other diagnostic information. Duplicate records are automatically ignored.
     rpc AddCommunicationUnitLogs(io.clbs.openhes.models.acquisition.AddCommunicationUnitLogsRequest) returns (google.protobuf.Empty);
     // @group: Drivers
-    // The method sets currently known unknown devices visible by the communication unit.
+    // Updates the list of unknown devices visible by a communication unit. This method allows drivers to report devices discovered during network scanning that are not yet registered in the system.
     rpc SetUnknownDevices(io.clbs.openhes.models.acquisition.SetUnknownDevicesRequest) returns (google.protobuf.Empty);
     // @group: Drivers
-    // The method returns the list of device identifiers that match the given attributes.
+    // Retrieves devices that match the specified attributes. Drivers use this method to query devices based on criteria such as device type, attributes, or other properties.
     rpc ListDevicesByAttributes(io.clbs.openhes.models.acquisition.DeviceAttributeSelector) returns (io.clbs.openhes.models.acquisition.ListOfDevice);
     // @group: Drivers
-    // The method returns the list of communication unit identifiers that match the given attributes.
+    // Retrieves communication units that match the specified attributes. Drivers use this method to query communication units based on criteria such as type, attributes, or other properties.
     rpc ListCommunicationUnitsByAttributes(io.clbs.openhes.models.acquisition.CommunicationUnitAttributeSelector) returns (io.clbs.openhes.models.acquisition.ListOfCommunicationUnit);
     // @group: Drivers
-    // The method sets the communication unit neighbours. The parameter contains the communication unit identifier and the list of neighbour identifiers which can be either communication units or devices.
-    // If there were other neighbours not listed within the request, they are removed from the neighbours list.
+    // Updates the network topology by setting the neighbors of a communication unit. The neighbors list can include both communication units and devices. Any previously registered neighbors not included in the request are removed from the topology.
     rpc SetNeightbours(io.clbs.openhes.models.acquisition.SetNeighboursRequest) returns (google.protobuf.Empty);
     // @group: Drivers
-    // The method sets the current device communication unit. The parameter contains the device selector and the communication unit selector.
-    // The device selector is used to select the device for which the communication unit is being set. Be ware that all matching devices are updated, from none up to many.
-    // The communication unit selector is used to select the communication unit for the device. Be ware that the first matching communication unit is used. If none is found, the method silently ignores the request.
+    // Sets the current communication unit for device(s). The device selector may match multiple devices, and all matching devices are updated. The communication unit selector identifies which communication unit to associate; if no matching communication unit is found, the request is silently ignored.
     rpc SetCurrentDeviceCommunicationUnit(io.clbs.openhes.models.acquisition.SetCurrentDeviceCommunicationUnitRequest) returns (google.protobuf.Empty);
     // @group: Firmware Images
-    // Retrieves the details of the specified firmware image.
+    // Retrieves the metadata of the specified firmware image. Drivers use this method to obtain firmware information including version, size, checksum, and target device types before downloading the firmware blocks.
     rpc GetFirmwareImage(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.FirmwareImage);
     // @group: Firmware Images
-    // Retrieves a block of firmware image data for the specified firmware image.
+    // Retrieves a specific block of firmware image data. Drivers use this method to download firmware in chunks during device firmware update operations. The block size and offset are specified in the request.
     rpc GetFirmwareImageBlock(io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest) returns (io.clbs.openhes.models.acquisition.FirmwareImageBlock);
 
     // @group: System
-    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format. This provides a comprehensive inventory of all software components and their dependencies used by the Taskmaster service.
     rpc GetSbom(google.protobuf.Empty) returns (google.protobuf.StringValue);
 }

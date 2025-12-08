@@ -161,7 +161,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// The Dataproxy related service definition.
+// The main public API service definition.
+// This service provides the primary external API for the Ouro platform, exposing all functionality for device management,
+// data acquisition, configuration, bulk operations, user management, and system administration.
 type ApiServiceClient interface {
 	// @group: Variables
 	// Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
@@ -530,28 +532,28 @@ type ApiServiceClient interface {
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(ctx context.Context, in *common.UpdateObjectFieldsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	// Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 	GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
-	// The method stored a new license key. Used only and only for air-gapped installations.
+	// Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// Sets the screen configuration.
+	// Sets or updates a screen configuration. Screen configurations store UI-specific settings and layouts for different screens or views in the application.
 	SetScreenConfig(ctx context.Context, in *system.SetScreenConfigRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// Gets the screen configuration.
+	// Retrieves a specific screen configuration based on the selector. Returns the configuration as a JSON string.
 	GetScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
-	// Sets multiple screen configurations at once, replacing any existing configurations.
+	// Sets multiple screen configurations at once, replacing all existing configurations. This is useful for bulk updates or restoring configurations from backup.
 	SetScreenConfigs(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// Gets all screen configurations at once.
+	// Retrieves all screen configurations at once as a JSON string. This is useful for exporting or backing up configurations.
 	GetScreenConfigs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 	// @group: System
-	// Deletes the specified screen configuration.
+	// Deletes a specific screen configuration identified by the selector.
 	DeleteScreenConfig(ctx context.Context, in *system.ScreenConfigSelector, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// Retrieves the flags associated with the specified object.
+	// Retrieves feature flags and capability indicators associated with the specified object. These flags control what operations or features are available for the object.
 	GetObjectFlags(ctx context.Context, in *system.ObjectFlagsRequest, opts ...grpc.CallOption) (*system.ObjectFlagsResponse, error)
 	// @group: System
 	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
@@ -1921,7 +1923,9 @@ func (c *apiServiceClient) UpdateUserProfile(ctx context.Context, in *system.Use
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility.
 //
-// The Dataproxy related service definition.
+// The main public API service definition.
+// This service provides the primary external API for the Ouro platform, exposing all functionality for device management,
+// data acquisition, configuration, bulk operations, user management, and system administration.
 type ApiServiceServer interface {
 	// @group: Variables
 	// Creates a new variable. A variable is a named abstraction for device configuration registers. Returns the identifier of the newly created variable.
@@ -2290,28 +2294,28 @@ type ApiServiceServer interface {
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *common.UpdateObjectFieldsRequest) (*emptypb.Empty, error)
 	// @group: System
-	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	// Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 	GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	// @group: System
-	// The method stored a new license key. Used only and only for air-gapped installations.
+	// Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
-	// Sets the screen configuration.
+	// Sets or updates a screen configuration. Screen configurations store UI-specific settings and layouts for different screens or views in the application.
 	SetScreenConfig(context.Context, *system.SetScreenConfigRequest) (*emptypb.Empty, error)
 	// @group: System
-	// Gets the screen configuration.
+	// Retrieves a specific screen configuration based on the selector. Returns the configuration as a JSON string.
 	GetScreenConfig(context.Context, *system.ScreenConfigSelector) (*wrapperspb.StringValue, error)
 	// @group: System
-	// Sets multiple screen configurations at once, replacing any existing configurations.
+	// Sets multiple screen configurations at once, replacing all existing configurations. This is useful for bulk updates or restoring configurations from backup.
 	SetScreenConfigs(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
-	// Gets all screen configurations at once.
+	// Retrieves all screen configurations at once as a JSON string. This is useful for exporting or backing up configurations.
 	GetScreenConfigs(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	// @group: System
-	// Deletes the specified screen configuration.
+	// Deletes a specific screen configuration identified by the selector.
 	DeleteScreenConfig(context.Context, *system.ScreenConfigSelector) (*emptypb.Empty, error)
 	// @group: System
-	// Retrieves the flags associated with the specified object.
+	// Retrieves feature flags and capability indicators associated with the specified object. These flags control what operations or features are available for the object.
 	GetObjectFlags(context.Context, *system.ObjectFlagsRequest) (*system.ObjectFlagsResponse, error)
 	// @group: System
 	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.

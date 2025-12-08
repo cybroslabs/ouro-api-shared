@@ -11,42 +11,38 @@ import "acquisition/main.proto";
 import "system/main.proto";
 
 // Defines a specification for the Ouro Operator service.
-// The Ouro Operator provides these gRPC services to other components.
+// The Ouro Operator manages the Kubernetes infrastructure for the Ouro platform, handling driver lifecycle, scaling, configuration, licensing, and system upgrades.
 service OuroOperatorService {
-    // Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+    // Retrieves a complete list of all registered drivers. Returns driver metadata including versions, capabilities, connection templates, and action definitions.
     rpc ListDrivers(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
-    // Creates or updates a driver template. The parameter contains the driver templates.
+    // Creates or updates a driver template. This method allows administrators to define or modify driver configurations that determine how driver instances are deployed in the Kubernetes cluster.
     rpc SetDriver(io.clbs.openhes.models.acquisition.Driver) returns (google.protobuf.Empty);
-    // Retrieves the details of the specified driver.
+    // Retrieves the template configuration of the specified driver including its deployment specifications, resource requirements, and connection templates.
     rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
 
-    // Sets the driver scale (number of repllicas) for Taskmaster.
+    // Sets the number of replicas (instances) for a specific driver type. This controls horizontal scaling of driver pods in the Kubernetes cluster to handle varying workloads.
     rpc SetDriverScale(io.clbs.openhes.models.acquisition.SetDriverScaleRequest) returns (google.protobuf.Empty);
-    // Retrieves the details of the specified the driver scale.
+    // Retrieves the current number of replicas for the specified driver type, indicating how many instances are currently deployed.
     rpc GetDriverScale(io.clbs.openhes.models.acquisition.GetDriverScaleRequest) returns (google.protobuf.UInt32Value);
 
-    // Retrieves the current application configuration settings.
+    // Retrieves the current application configuration including all component-specific settings and their descriptors. Returns both the configuration values and their field definitions.
     rpc GetApplicationConfig(google.protobuf.Empty) returns (io.clbs.openhes.models.system.ApplicationConfigDescriptor);
-    // Updates the details of an existing application configuration. Fields omitted from the request remain unchanged.
+    // Updates the application configuration. Only the fields provided in the request are modified; omitted fields retain their current values. This allows partial configuration updates without affecting other settings.
     rpc UpdateApplicationConfig(io.clbs.openhes.models.system.ApplicationConfig) returns (google.protobuf.Empty);
-    // Synchronizes the application configuration.
-    // Input must contain all default values and known keys (including `null` values).
-    // Output contains the current values, including details that are not set.
-    // Values missing from defaults are deleted if previously set.
+    // Synchronizes component-specific configuration with the system. Components should provide all their default values and known configuration keys (including null values). The method merges defaults with existing values and removes any settings not declared in the defaults. Returns the current effective configuration for the component.
     rpc SynchronizeComponentConfig(io.clbs.openhes.models.system.ComponentConfigDescriptor) returns (io.clbs.openhes.models.system.ComponentConfig);
 
-    // Starts a driver in upgrade mode and provides a structure upgrade between driver versions, controlled by the `DeviceRegistry`.
-    // The driver runs as a Kubernetes job and ends after completing structure upgrades.
+    // Initiates a driver upgrade process. Starts a driver in upgrade mode as a Kubernetes job to perform schema migrations and data structure upgrades between driver versions. The upgrade job is coordinated by the DeviceRegistry and automatically terminates after completion.
     rpc StartUpgrade(io.clbs.openhes.models.acquisition.StartUpgradeRequest) returns (google.protobuf.Empty);
 
-    // Retrieves the current license key.
+    // Retrieves the currently installed license information including expiration date, feature flags, and capacity limits.
     rpc GetLicense(google.protobuf.Empty) returns (io.clbs.openhes.models.system.License);
-    // Retrieves the license request code if no license is set. Returns an empty string otherwise.
+    // Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
     rpc GetLicenseRequestCode(google.protobuf.Empty) returns (google.protobuf.StringValue);
-    // Creates a new license key. Used only for air-gapped installations.
+    // Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
     rpc SetLicense(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
     // @group: System
-    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+    // Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format. This provides a comprehensive inventory of all software components and their dependencies used by the Ouro Operator service.
     rpc GetSbom(google.protobuf.Empty) returns (google.protobuf.StringValue);
 }

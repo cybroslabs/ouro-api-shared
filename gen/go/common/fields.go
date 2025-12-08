@@ -189,6 +189,9 @@ func (fd *FieldDescriptor) WithDouble(precision int32, unit string, displayForma
 	return fd
 }
 
+// WithInteger sets the field to an integer type with optional unit and display format.
+// The unit parameter specifies the unit of measurement (e.g., "W" for watts, "V" for volts).
+// The displayFormat can be MONEY, TIMEOFDAY, or COMBO for specialized integer rendering.
 func (fd *FieldDescriptor) WithInteger(unit string, displayFormat *FieldDisplayFormat) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_INTEGER)
 	fd.ClearPrecision()
@@ -207,6 +210,8 @@ func (fd *FieldDescriptor) WithInteger(unit string, displayFormat *FieldDisplayF
 	return fd
 }
 
+// WithTimestamp sets the field to a timestamp type with optional display format.
+// The displayFormat can be DATE_ONLY, UTC_DATETIME, or UTC_DATE_ONLY for different timestamp presentations.
 func (fd *FieldDescriptor) WithTimestamp(displayFormat *FieldDisplayFormat) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_TIMESTAMP)
 	fd.ClearPrecision()
@@ -215,6 +220,8 @@ func (fd *FieldDescriptor) WithTimestamp(displayFormat *FieldDisplayFormat) *Fie
 	return fd
 }
 
+// WithString sets the field to a text/string type with optional display format.
+// The displayFormat can be MULTILINE, PASSWORD, or COMBO for specialized text rendering.
 func (fd *FieldDescriptor) WithString(displayFormat *FieldDisplayFormat) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_TEXT)
 	fd.ClearPrecision()
@@ -223,6 +230,7 @@ func (fd *FieldDescriptor) WithString(displayFormat *FieldDisplayFormat) *FieldD
 	return fd
 }
 
+// WithBool sets the field to a boolean type. Boolean fields have no units or display format options.
 func (fd *FieldDescriptor) WithBool() *FieldDescriptor {
 	fd.SetDataType(FieldDataType_BOOLEAN)
 	fd.ClearPrecision()
@@ -231,6 +239,8 @@ func (fd *FieldDescriptor) WithBool() *FieldDescriptor {
 	return fd
 }
 
+// WithDateTime sets the field to a timestamp/datetime type with optional display format.
+// This is an alias for WithTimestamp for improved code readability.
 func (fd *FieldDescriptor) WithDateTime(displayFormat *FieldDisplayFormat) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_TIMESTAMP)
 	fd.ClearPrecision()
@@ -239,6 +249,8 @@ func (fd *FieldDescriptor) WithDateTime(displayFormat *FieldDisplayFormat) *Fiel
 	return fd
 }
 
+// WithDuration sets the field to a duration type with optional display format.
+// Duration fields represent time spans rather than specific points in time.
 func (fd *FieldDescriptor) WithDuration(displayFormat *FieldDisplayFormat) *FieldDescriptor {
 	fd.SetDataType(FieldDataType_DURATION)
 	fd.ClearPrecision()
@@ -257,6 +269,8 @@ func (fd *FieldDescriptor) ensureValidation() *FieldValidation {
 	return v
 }
 
+// WithRe sets a regular expression validation pattern for the field.
+// The pattern is used to validate field values. An empty string clears any existing pattern.
 func (fd *FieldDescriptor) WithRe(re string) *FieldDescriptor {
 	if len(re) == 0 {
 		fd.ensureValidation().ClearRe()
@@ -266,6 +280,8 @@ func (fd *FieldDescriptor) WithRe(re string) *FieldDescriptor {
 	return fd
 }
 
+// WithMin sets the minimum value constraint for integer or double fields.
+// This method automatically determines the appropriate constraint type based on the field's data type.
 func (fd *FieldDescriptor) WithMin(min int) *FieldDescriptor {
 	if fd.GetDataType() == FieldDataType_INTEGER {
 		fd.ensureValidation().SetMinInteger(int64(min))
@@ -277,6 +293,8 @@ func (fd *FieldDescriptor) WithMin(min int) *FieldDescriptor {
 	return fd
 }
 
+// WithMax sets the maximum value constraint for integer or double fields.
+// This method automatically determines the appropriate constraint type based on the field's data type.
 func (fd *FieldDescriptor) WithMax(max int) *FieldDescriptor {
 	if fd.GetDataType() == FieldDataType_INTEGER {
 		fd.ensureValidation().SetMaxInteger(int64(max))
@@ -288,6 +306,8 @@ func (fd *FieldDescriptor) WithMax(max int) *FieldDescriptor {
 	return fd
 }
 
+// WithMinNumber sets the minimum value constraint specifically for double/floating-point fields.
+// This method panics if the field is not of type DOUBLE.
 func (fd *FieldDescriptor) WithMinNumber(min float64) *FieldDescriptor {
 	if fd.GetDataType() != FieldDataType_DOUBLE {
 		panic("FieldDataType is not DOUBLE")
@@ -296,6 +316,8 @@ func (fd *FieldDescriptor) WithMinNumber(min float64) *FieldDescriptor {
 	return fd
 }
 
+// WithMaxNumber sets the maximum value constraint specifically for double/floating-point fields.
+// This method panics if the field is not of type DOUBLE.
 func (fd *FieldDescriptor) WithMaxNumber(max float64) *FieldDescriptor {
 	if fd.GetDataType() != FieldDataType_DOUBLE {
 		panic("FieldDataType is not DOUBLE")
@@ -304,6 +326,8 @@ func (fd *FieldDescriptor) WithMaxNumber(max float64) *FieldDescriptor {
 	return fd
 }
 
+// WithMaxLength sets the maximum length constraint for text fields.
+// A value of 0 clears any existing maximum length constraint.
 func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
 	if maxLength == 0 {
 		fd.ensureValidation().ClearMaxLength()
@@ -313,6 +337,10 @@ func (fd *FieldDescriptor) WithMaxLength(maxLength int) *FieldDescriptor {
 	return fd
 }
 
+// WithOptions sets a predefined list of valid options for the field as a dropdown/combo box.
+// For INTEGER fields, keys must be string representations of integers.
+// For TEXT fields, keys can be any string value.
+// Setting options automatically sets the display format to COMBO and clears any options source.
 func (fd *FieldDescriptor) WithOptions(options map[string]string) *FieldDescriptor {
 	if options == nil {
 		fd.ClearFormat()
@@ -460,6 +488,10 @@ func CreateOptions[T EnumWithString](enumMap map[int32]string) map[string]string
 	return result
 }
 
+// WithOptionsSource sets a dynamic options source for TEXT fields.
+// The source is a reference to an external data provider that supplies valid options at runtime.
+// This is useful when options need to be loaded dynamically from a database or external service.
+// An empty string clears any existing options source.
 func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	if source == "" {
 		fd.ClearFormat()
@@ -478,6 +510,9 @@ func (fd *FieldDescriptor) WithOptionsSource(source string) *FieldDescriptor {
 	return fd
 }
 
+// WithDefaultValue sets the default value for the field.
+// The default value is validated against the field's constraints and type.
+// Setting nil clears any existing default value.
 func (fd *FieldDescriptor) WithDefaultValue(value *FieldValue) *FieldDescriptor {
 	if value == nil {
 		fd.ClearDefaultValue()
@@ -492,6 +527,8 @@ func (fd *FieldDescriptor) WithDefaultValue(value *FieldValue) *FieldDescriptor 
 	return fd
 }
 
+// WithValidation sets the complete validation rules for the field.
+// This replaces any existing validation. Setting nil clears all validation rules.
 func (fd *FieldDescriptor) WithValidation(validation *FieldValidation) *FieldDescriptor {
 	if validation == nil {
 		fd.ClearValidation()
@@ -502,6 +539,9 @@ func (fd *FieldDescriptor) WithValidation(validation *FieldValidation) *FieldDes
 	return fd
 }
 
+// Validate validates a field value against the field descriptor's type and validation rules.
+// Returns an error if the value doesn't match the expected type or violates any constraints
+// such as min/max values, length limits, or regular expression patterns.
 func (fd *FieldDescriptor) Validate(value *FieldValue) error {
 	if fd == nil {
 		return nil

@@ -770,28 +770,28 @@ type ApiServiceClient interface {
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	// Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 	GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
-	// The method stored a new license key. Used only and only for air-gapped installations.
+	// Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Sets the screen configuration.
+	// Sets or updates a screen configuration. Screen configurations store UI-specific settings and layouts for different screens or views in the application.
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Gets the screen configuration.
+	// Retrieves a specific screen configuration based on the selector. Returns the configuration as a JSON string.
 	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
-	// Sets multiple screen configurations at once, replacing any existing configurations.
+	// Sets multiple screen configurations at once, replacing all existing configurations. This is useful for bulk updates or restoring configurations from backup.
 	SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Gets all screen configurations at once.
+	// Retrieves all screen configurations at once as a JSON string. This is useful for exporting or backing up configurations.
 	GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
-	// Deletes the specified screen configuration.
+	// Deletes a specific screen configuration identified by the selector.
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Retrieves the flags associated with the specified object.
+	// Retrieves feature flags and capability indicators associated with the specified object. These flags control what operations or features are available for the object.
 	GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error)
 	// @group: System
 	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
@@ -2772,28 +2772,28 @@ type ApiServiceHandler interface {
 	// Updates the fields of the specified object. Field values provided in the request are merged with existing fields, preserving any fields not included in the update.
 	UpdateObjectFields(context.Context, *connect.Request[common.UpdateObjectFieldsRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// The method returns the license request code if the license is not set. Otherwise it returns empty string.
+	// Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 	GetLicenseRequestCode(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
-	// The method stored a new license key. Used only and only for air-gapped installations.
+	// Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 	SetLicense(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Sets the screen configuration.
+	// Sets or updates a screen configuration. Screen configurations store UI-specific settings and layouts for different screens or views in the application.
 	SetScreenConfig(context.Context, *connect.Request[system.SetScreenConfigRequest]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Gets the screen configuration.
+	// Retrieves a specific screen configuration based on the selector. Returns the configuration as a JSON string.
 	GetScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
-	// Sets multiple screen configurations at once, replacing any existing configurations.
+	// Sets multiple screen configurations at once, replacing all existing configurations. This is useful for bulk updates or restoring configurations from backup.
 	SetScreenConfigs(context.Context, *connect.Request[wrapperspb.StringValue]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Gets all screen configurations at once.
+	// Retrieves all screen configurations at once as a JSON string. This is useful for exporting or backing up configurations.
 	GetScreenConfigs(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[wrapperspb.StringValue], error)
 	// @group: System
-	// Deletes the specified screen configuration.
+	// Deletes a specific screen configuration identified by the selector.
 	DeleteScreenConfig(context.Context, *connect.Request[system.ScreenConfigSelector]) (*connect.Response[emptypb.Empty], error)
 	// @group: System
-	// Retrieves the flags associated with the specified object.
+	// Retrieves feature flags and capability indicators associated with the specified object. These flags control what operations or features are available for the object.
 	GetObjectFlags(context.Context, *connect.Request[system.ObjectFlagsRequest]) (*connect.Response[system.ObjectFlagsResponse], error)
 	// @group: System
 	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.

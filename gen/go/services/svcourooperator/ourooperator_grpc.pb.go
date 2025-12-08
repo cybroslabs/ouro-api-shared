@@ -43,38 +43,34 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // Defines a specification for the Ouro Operator service.
-// The Ouro Operator provides these gRPC services to other components.
+// The Ouro Operator manages the Kubernetes infrastructure for the Ouro platform, handling driver lifecycle, scaling, configuration, licensing, and system upgrades.
 type OuroOperatorServiceClient interface {
-	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a complete list of all registered drivers. Returns driver metadata including versions, capabilities, connection templates, and action definitions.
 	ListDrivers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*acquisition.ListOfDriver, error)
-	// Creates or updates a driver template. The parameter contains the driver templates.
+	// Creates or updates a driver template. This method allows administrators to define or modify driver configurations that determine how driver instances are deployed in the Kubernetes cluster.
 	SetDriver(ctx context.Context, in *acquisition.Driver, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieves the details of the specified driver.
+	// Retrieves the template configuration of the specified driver including its deployment specifications, resource requirements, and connection templates.
 	GetDriver(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*acquisition.Driver, error)
-	// Sets the driver scale (number of repllicas) for Taskmaster.
+	// Sets the number of replicas (instances) for a specific driver type. This controls horizontal scaling of driver pods in the Kubernetes cluster to handle varying workloads.
 	SetDriverScale(ctx context.Context, in *acquisition.SetDriverScaleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieves the details of the specified the driver scale.
+	// Retrieves the current number of replicas for the specified driver type, indicating how many instances are currently deployed.
 	GetDriverScale(ctx context.Context, in *acquisition.GetDriverScaleRequest, opts ...grpc.CallOption) (*wrapperspb.UInt32Value, error)
-	// Retrieves the current application configuration settings.
+	// Retrieves the current application configuration including all component-specific settings and their descriptors. Returns both the configuration values and their field definitions.
 	GetApplicationConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.ApplicationConfigDescriptor, error)
-	// Updates the details of an existing application configuration. Fields omitted from the request remain unchanged.
+	// Updates the application configuration. Only the fields provided in the request are modified; omitted fields retain their current values. This allows partial configuration updates without affecting other settings.
 	UpdateApplicationConfig(ctx context.Context, in *system.ApplicationConfig, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Synchronizes the application configuration.
-	// Input must contain all default values and known keys (including `null` values).
-	// Output contains the current values, including details that are not set.
-	// Values missing from defaults are deleted if previously set.
+	// Synchronizes component-specific configuration with the system. Components should provide all their default values and known configuration keys (including null values). The method merges defaults with existing values and removes any settings not declared in the defaults. Returns the current effective configuration for the component.
 	SynchronizeComponentConfig(ctx context.Context, in *system.ComponentConfigDescriptor, opts ...grpc.CallOption) (*system.ComponentConfig, error)
-	// Starts a driver in upgrade mode and provides a structure upgrade between driver versions, controlled by the `DeviceRegistry`.
-	// The driver runs as a Kubernetes job and ends after completing structure upgrades.
+	// Initiates a driver upgrade process. Starts a driver in upgrade mode as a Kubernetes job to perform schema migrations and data structure upgrades between driver versions. The upgrade job is coordinated by the DeviceRegistry and automatically terminates after completion.
 	StartUpgrade(ctx context.Context, in *acquisition.StartUpgradeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieves the current license key.
+	// Retrieves the currently installed license information including expiration date, feature flags, and capacity limits.
 	GetLicense(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*system.License, error)
-	// Retrieves the license request code if no license is set. Returns an empty string otherwise.
+	// Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 	GetLicenseRequestCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
-	// Creates a new license key. Used only for air-gapped installations.
+	// Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 	SetLicense(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: System
-	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format. This provides a comprehensive inventory of all software components and their dependencies used by the Ouro Operator service.
 	GetSbom(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
@@ -221,38 +217,34 @@ func (c *ouroOperatorServiceClient) GetSbom(ctx context.Context, in *emptypb.Emp
 // for forward compatibility.
 //
 // Defines a specification for the Ouro Operator service.
-// The Ouro Operator provides these gRPC services to other components.
+// The Ouro Operator manages the Kubernetes infrastructure for the Ouro platform, handling driver lifecycle, scaling, configuration, licensing, and system upgrades.
 type OuroOperatorServiceServer interface {
-	// Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a complete list of all registered drivers. Returns driver metadata including versions, capabilities, connection templates, and action definitions.
 	ListDrivers(context.Context, *emptypb.Empty) (*acquisition.ListOfDriver, error)
-	// Creates or updates a driver template. The parameter contains the driver templates.
+	// Creates or updates a driver template. This method allows administrators to define or modify driver configurations that determine how driver instances are deployed in the Kubernetes cluster.
 	SetDriver(context.Context, *acquisition.Driver) (*emptypb.Empty, error)
-	// Retrieves the details of the specified driver.
+	// Retrieves the template configuration of the specified driver including its deployment specifications, resource requirements, and connection templates.
 	GetDriver(context.Context, *wrapperspb.StringValue) (*acquisition.Driver, error)
-	// Sets the driver scale (number of repllicas) for Taskmaster.
+	// Sets the number of replicas (instances) for a specific driver type. This controls horizontal scaling of driver pods in the Kubernetes cluster to handle varying workloads.
 	SetDriverScale(context.Context, *acquisition.SetDriverScaleRequest) (*emptypb.Empty, error)
-	// Retrieves the details of the specified the driver scale.
+	// Retrieves the current number of replicas for the specified driver type, indicating how many instances are currently deployed.
 	GetDriverScale(context.Context, *acquisition.GetDriverScaleRequest) (*wrapperspb.UInt32Value, error)
-	// Retrieves the current application configuration settings.
+	// Retrieves the current application configuration including all component-specific settings and their descriptors. Returns both the configuration values and their field definitions.
 	GetApplicationConfig(context.Context, *emptypb.Empty) (*system.ApplicationConfigDescriptor, error)
-	// Updates the details of an existing application configuration. Fields omitted from the request remain unchanged.
+	// Updates the application configuration. Only the fields provided in the request are modified; omitted fields retain their current values. This allows partial configuration updates without affecting other settings.
 	UpdateApplicationConfig(context.Context, *system.ApplicationConfig) (*emptypb.Empty, error)
-	// Synchronizes the application configuration.
-	// Input must contain all default values and known keys (including `null` values).
-	// Output contains the current values, including details that are not set.
-	// Values missing from defaults are deleted if previously set.
+	// Synchronizes component-specific configuration with the system. Components should provide all their default values and known configuration keys (including null values). The method merges defaults with existing values and removes any settings not declared in the defaults. Returns the current effective configuration for the component.
 	SynchronizeComponentConfig(context.Context, *system.ComponentConfigDescriptor) (*system.ComponentConfig, error)
-	// Starts a driver in upgrade mode and provides a structure upgrade between driver versions, controlled by the `DeviceRegistry`.
-	// The driver runs as a Kubernetes job and ends after completing structure upgrades.
+	// Initiates a driver upgrade process. Starts a driver in upgrade mode as a Kubernetes job to perform schema migrations and data structure upgrades between driver versions. The upgrade job is coordinated by the DeviceRegistry and automatically terminates after completion.
 	StartUpgrade(context.Context, *acquisition.StartUpgradeRequest) (*emptypb.Empty, error)
-	// Retrieves the current license key.
+	// Retrieves the currently installed license information including expiration date, feature flags, and capacity limits.
 	GetLicense(context.Context, *emptypb.Empty) (*system.License, error)
-	// Retrieves the license request code if no license is set. Returns an empty string otherwise.
+	// Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.
 	GetLicenseRequestCode(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
-	// Creates a new license key. Used only for air-gapped installations.
+	// Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.
 	SetLicense(context.Context, *wrapperspb.StringValue) (*emptypb.Empty, error)
 	// @group: System
-	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format.
+	// Retrieves the software bill of materials (SBOM) information in CycloneDX JSON format. This provides a comprehensive inventory of all software components and their dependencies used by the Ouro Operator service.
 	GetSbom(context.Context, *emptypb.Empty) (*wrapperspb.StringValue, error)
 	mustEmbedUnimplementedOuroOperatorServiceServer()
 }

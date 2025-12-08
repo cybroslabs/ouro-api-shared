@@ -5,6 +5,9 @@ import (
 	"k8s.io/utils/ptr"
 )
 
+// GetDataLinkFields returns the field descriptors for the specified data link protocol.
+// Each data link protocol (HDLC, COSEM Wrapper, Viktor) has its own set of configuration parameters
+// that are required for communication with devices using that protocol.
 func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescriptor {
 	switch dataLinkProtocol {
 	case DataLinkProtocol_LINKPROTO_HDLC:
@@ -158,6 +161,9 @@ func GetDataLinkFields(dataLinkProtocol DataLinkProtocol) []*common.FieldDescrip
 	}
 }
 
+// GetReservedManagedFields returns the list of reserved managed field descriptors.
+// These fields are automatically managed by the system and drivers, such as crypto IDs for devices and communication units.
+// Managed fields are not directly editable by users but are set programmatically during device operations.
 func GetReservedManagedFields() []*common.FieldDescriptor {
 	return []*common.FieldDescriptor{
 		// Communication Unit

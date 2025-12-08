@@ -31,16 +31,17 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// The Dataproxy related service definition.
+// Internal API service for system components.
+// This service provides internal APIs used by other services within the system for field descriptor management and translations.
 type ApiInternalServiceClient interface {
 	// @group: Fields
-	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a complete list of field descriptors with internal metadata. This method returns all field descriptors including system-defined and user-defined fields with their internal properties like database paths and group identifiers.
 	ListFieldDescriptors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*common.ListOfFieldDescriptorInternal, error)
 	// @group: Fields
-	// The method to get the list of fields.
+	// Updates or synchronizes field descriptors in the system. This method allows services to register or update their field descriptors and optionally clean up missing descriptors that are no longer needed.
 	UpdateFieldDescriptors(ctx context.Context, in *common.UpdateFieldDescriptorsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// @group: Globalization
-	// Updates the translations
+	// Updates translations for a specific language. This method replaces existing translations for the specified language with the new ones provided in the request, allowing services to contribute their localization strings.
 	UpdateTranslations(ctx context.Context, in *localization.UpdateTranslationsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -86,16 +87,17 @@ func (c *apiInternalServiceClient) UpdateTranslations(ctx context.Context, in *l
 // All implementations must embed UnimplementedApiInternalServiceServer
 // for forward compatibility.
 //
-// The Dataproxy related service definition.
+// Internal API service for system components.
+// This service provides internal APIs used by other services within the system for field descriptor management and translations.
 type ApiInternalServiceServer interface {
 	// @group: Fields
-	// Retrieves a paginated list of field descriptors based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+	// Retrieves a complete list of field descriptors with internal metadata. This method returns all field descriptors including system-defined and user-defined fields with their internal properties like database paths and group identifiers.
 	ListFieldDescriptors(context.Context, *emptypb.Empty) (*common.ListOfFieldDescriptorInternal, error)
 	// @group: Fields
-	// The method to get the list of fields.
+	// Updates or synchronizes field descriptors in the system. This method allows services to register or update their field descriptors and optionally clean up missing descriptors that are no longer needed.
 	UpdateFieldDescriptors(context.Context, *common.UpdateFieldDescriptorsRequest) (*emptypb.Empty, error)
 	// @group: Globalization
-	// Updates the translations
+	// Updates translations for a specific language. This method replaces existing translations for the specified language with the new ones provided in the request, allowing services to contribute their localization strings.
 	UpdateTranslations(context.Context, *localization.UpdateTranslationsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedApiInternalServiceServer()
 }

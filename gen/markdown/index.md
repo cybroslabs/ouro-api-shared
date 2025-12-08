@@ -4,7 +4,9 @@ This page lists all the services and models available in the API. Each service h
 
 # ApiService
 
-The Dataproxy related service definition.
+The main public API service definition.
+ This service provides the primary external API for the Ouro platform, exposing all functionality for device management,
+ data acquisition, configuration, bulk operations, user management, and system administration.
 
 - [Bulks](service-bulks-apiservice.md)
 - [Configuration](service-configuration-apiservice.md)

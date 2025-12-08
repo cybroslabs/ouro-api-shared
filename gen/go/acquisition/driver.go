@@ -17,7 +17,9 @@ type driverDescriptor struct {
 	Descriptor string `json:"driver"`
 }
 
-// Encodes the driver descriptor to a string.
+// EncodeDriverDescriptor encodes the driver descriptor to a JSON string.
+// The driver descriptor is serialized as a protobuf message, base64-encoded, and wrapped in a JSON object.
+// This format is used when drivers report their capabilities during initialization.
 func EncodeDriverDescriptor(descriptor *Driver) (string, error) {
 	if descriptor == nil {
 		return "", errors.New("descriptor is nil")
@@ -33,7 +35,9 @@ func EncodeDriverDescriptor(descriptor *Driver) (string, error) {
 	return string(json), err
 }
 
-// Decodes the driver descriptor from an io reader. Returns the decoded descriptor, encoded base64 proto buf form of a descriptor and an error.
+// DecodeDriverDescriptor decodes the driver descriptor from an io.Reader.
+// It parses the JSON wrapper, extracts the base64-encoded protobuf, and deserializes it into a Driver object.
+// Returns the decoded descriptor, the original base64-encoded string, and any error encountered.
 func DecodeDriverDescriptor(data io.ReadCloser) (*Driver, string, error) {
 	var descriptor_holder driverDescriptor
 	err := json.NewDecoder(data).Decode(&descriptor_holder)
@@ -50,7 +54,9 @@ func DecodeDriverDescriptor(data io.ReadCloser) (*Driver, string, error) {
 	return descriptor, descriptor_holder.Descriptor, nil
 }
 
-// Decodes the driver descriptor from a string. Returns the decoded descriptor and an error.
+// DecodeDriverDescriptorFromString decodes the driver descriptor from a base64-encoded string.
+// It decodes the base64 string and deserializes the protobuf message into a Driver object.
+// Returns the decoded descriptor and any error encountered during decoding or deserialization.
 func DecodeDriverDescriptorFromString(descriptor string) (*Driver, error) {
 	bin, err := base64.URLEncoding.DecodeString(descriptor)
 	if err != nil {

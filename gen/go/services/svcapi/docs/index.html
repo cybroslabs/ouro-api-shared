@@ -79,7 +79,9 @@
 </h4>
 
 <div class="block content">
-  <p><p>The Dataproxy related service definition.</p></p>
+  <p><p>The main public API service definition.
+This service provides the primary external API for the Ouro platform, exposing all functionality for device management,
+data acquisition, configuration, bulk operations, user management, and system administration.</p></p>
 </div>
 
 
@@ -2643,7 +2645,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>The method returns the license request code if the license is not set. Otherwise it returns empty string.</p></p>
+        <p><p>Retrieves the license request code for the system. This code is used to generate a license for air-gapped installations. Returns an empty string if a valid license is already installed.</p></p>
       </div>
       
     </div>
@@ -2664,7 +2666,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>The method stored a new license key. Used only and only for air-gapped installations.</p></p>
+        <p><p>Installs a new license key. This method is intended for air-gapped installations where the license cannot be activated through online channels. The license key must be obtained from Cybroslabs using the license request code.</p></p>
       </div>
       
     </div>
@@ -2685,7 +2687,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>Sets the screen configuration.</p></p>
+        <p><p>Sets or updates a screen configuration. Screen configurations store UI-specific settings and layouts for different screens or views in the application.</p></p>
       </div>
       
     </div>
@@ -2706,7 +2708,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>Gets the screen configuration.</p></p>
+        <p><p>Retrieves a specific screen configuration based on the selector. Returns the configuration as a JSON string.</p></p>
       </div>
       
     </div>
@@ -2727,7 +2729,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>Sets multiple screen configurations at once, replacing any existing configurations.</p></p>
+        <p><p>Sets multiple screen configurations at once, replacing all existing configurations. This is useful for bulk updates or restoring configurations from backup.</p></p>
       </div>
       
     </div>
@@ -2748,7 +2750,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>Gets all screen configurations at once.</p></p>
+        <p><p>Retrieves all screen configurations at once as a JSON string. This is useful for exporting or backing up configurations.</p></p>
       </div>
       
     </div>
@@ -2769,7 +2771,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>Deletes the specified screen configuration.</p></p>
+        <p><p>Deletes a specific screen configuration identified by the selector.</p></p>
       </div>
       
     </div>
@@ -2790,7 +2792,7 @@ Values missing from the defaults will be deleted if they were previously set in 
 
       
       <div class="block">
-        <p><p>Retrieves the flags associated with the specified object.</p></p>
+        <p><p>Retrieves feature flags and capability indicators associated with the specified object. These flags control what operations or features are available for the object.</p></p>
       </div>
       
     </div>

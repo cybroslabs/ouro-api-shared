@@ -14,9 +14,10 @@ import "common/fields.proto";
 import "common/internal.proto";
 import "common/metadata.proto";
 
-// The Deviceregistry service definition.
+// The DeviceRegistry service definition.
+// This internal service manages the persistent storage and retrieval of all device-related entities including devices, communication units, configuration templates, drivers, and metadata.
 service DeviceRegistryService {
-    // Creates a new variable. The variable object defines named variable that provides abstraction for device configuration registers.
+    // Creates a new variable. Variables provide a named abstraction layer over device configuration registers, allowing consistent access to device settings across different device types and drivers.
     rpc CreateVariable(io.clbs.openhes.models.acquisition.CreateVariableRequest) returns (google.protobuf.Empty);
     // Retrieves a paginated list of variables based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListVariables(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfVariable);
@@ -41,6 +42,7 @@ service DeviceRegistryService {
     rpc UpdateDeviceConfigurationRegister(io.clbs.openhes.models.acquisition.DeviceConfigurationRegister) returns (google.protobuf.Empty);
     // Deletes the specified device configuration register.
     rpc DeleteDeviceConfigurationRegister(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    // Retrieves a complete map of all device configuration registers indexed by their identifiers. This method provides efficient bulk access to register definitions without pagination.
     rpc GetDeviceConfigurationRegisterMap(google.protobuf.Empty) returns (io.clbs.openhes.models.acquisition.DeviceConfigurationRegisterMap);
 
     // Creates a new device configuration template. Returns the identifier of the newly created template.
@@ -58,11 +60,11 @@ service DeviceRegistryService {
     // Removes a specified device configuration register from a device configuration template.
     rpc RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplate(io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest) returns (google.protobuf.Empty);
 
-    // Retrieves a paginated list of drivers based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
+    // Retrieves a paginated list of drivers based on the specified criteria including filtering and sorting options. The page size and page number (zero-based) can be defined in the request.
     rpc ListDrivers(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDriver);
-    // The method called by the Ouro Operator to set the driver templates. The parameter contains the driver templates.
+    // Creates or updates a driver definition in the registry. Called by the Ouro Operator during driver registration to store driver metadata, capabilities, and templates. This is an internal operation used during driver deployment.
     rpc CreateDriver(io.clbs.openhes.models.acquisition.SetDriver) returns (google.protobuf.Empty);
-    // Retrieves the details of the specified driver.
+    // Retrieves the complete driver definition including metadata, capabilities, connection templates, and action definitions for the specified driver.
     rpc GetDriver(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.Driver);
 
     // @group: Devices
@@ -136,18 +138,19 @@ service DeviceRegistryService {
     rpc DeleteDevice(google.protobuf.StringValue) returns (google.protobuf.Empty);
     // @group: Devices
     // @tag: device
+    // Streams device type information for multiple devices. This bidirectional streaming RPC allows querying driver types for batches of devices efficiently. Clients send device identifiers and receive corresponding driver type information in real-time.
     rpc StreamDeviceType(stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesRequest) returns (stream io.clbs.openhes.models.acquisition.StreamDevicesDriverTypesResponse);
-    // The method called by the RestAPI to replace ordered set of linked communication units.
+    // Sets or replaces the ordered list of communication units associated with a device. The order determines the priority in which communication paths are attempted when connecting to the device. All previously associated communication units are replaced.
     rpc SetDeviceCommunicationUnits(io.clbs.openhes.models.acquisition.SetDeviceCommunicationUnitsRequest) returns (google.protobuf.Empty);
-    // Retrieves a list of communication units linked to the specified device.
+    // Retrieves the ordered list of communication units linked to the specified device. The order indicates the priority of communication paths.
     rpc GetDeviceCommunicationUnits(google.protobuf.StringValue) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnit);
     // @group: Devices
     // @tag: device
     // Retrieves a paginated list of changes to device communication units based on the specified criteria. The page size and page number (zero-based) can be defined in the request.
     rpc ListDeviceCommunicationUnitChanges(io.clbs.openhes.models.common.ListSelector) returns (io.clbs.openhes.models.acquisition.ListOfDeviceCommunicationUnitChange);
-    // The method called by the DataProxy to resolve connection info for given device(s).
+    // Resolves connection information for the specified device(s). Called by DataProxy to determine how to connect to devices, including communication unit details, driver assignments, and connection parameters. Returns a map of device identifiers to their connection configurations.
     rpc GetDeviceConnectionInfo(io.clbs.openhes.models.acquisition.GetDeviceConnectionInfoRequest) returns (io.clbs.openhes.models.acquisition.MapDeviceConnectionInfo);
-    // Sets the device information.
+    // Updates device information including profile data and metadata. Drivers use this method to store device-specific information discovered during communication such as firmware version, device capabilities, or configuration details.
     rpc SetDeviceInfo(io.clbs.openhes.models.acquisition.SetDeviceInfoRequest) returns (google.protobuf.Empty);
     // @group: Devices
     // Retrieves the profile-typed info of the specified device.
@@ -176,8 +179,7 @@ service DeviceRegistryService {
     // Deletes the specified device group.
     rpc DeleteDeviceGroup(google.protobuf.StringValue) returns (google.protobuf.Empty);
 
-    // The method returns stream of devices from the device group.
-    // @param The device group identifier.
+    // Streams all devices from the specified device group. This server-side streaming RPC efficiently delivers large device groups by streaming device information incrementally rather than loading all devices at once. Useful for bulk operations on device groups.
     rpc StreamDeviceGroup(google.protobuf.StringValue) returns (stream io.clbs.openhes.models.acquisition.StreamDeviceGroup);
     // Adds the specified devices to an existing device group.
     rpc AddDevicesToGroup(io.clbs.openhes.models.acquisition.AddDevicesToGroupRequest) returns (google.protobuf.Empty);
