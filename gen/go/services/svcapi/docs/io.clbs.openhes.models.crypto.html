@@ -174,7 +174,11 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.</p></td>
+      <td class="content"><p>The security access level this secret relates to. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+@example: "1"
+@example: "2"
+@example: "G"
+@example: "cert"</p></td>
       
     </tr>
     
@@ -189,7 +193,11 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.</p></td>
+      <td class="content"><p>The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+@example: "AK"
+@example: "EK"
+@example: "PW"
+@example: "CERT"</p></td>
       
     </tr>
     
@@ -338,7 +346,9 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
     </a>
         </code>
       </td>
-      <td class="content"><p>Thehe resource type for which the secret is defined (for example, <code>BULK</code>, <code>DEVICE</code>).</p></td>
+      <td class="content"><p>The resource type for which the secret is defined.
+@example: OBJECT_TYPE_BULK
+@example: OBJECT_TYPE_DEVICE</p></td>
       
     </tr>
     
@@ -353,7 +363,9 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type for which the secret is requested (for example, <code>METERCONTROL_ST402D_DLMS</code>).</p></td>
+      <td class="content"><p>The driver type for which the secret is requested.
+@example: "METERCONTROL_ST402D_DLMS"
+@example: "LANDISGYR_E650_DLMS_SN"</p></td>
       
     </tr>
     
@@ -368,7 +380,8 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The crypto identifier of the secret to retrieve.</p></td>
+      <td class="content"><p>The crypto identifier of the secret to retrieve.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -419,7 +432,9 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
     </a>
         </code>
       </td>
-      <td class="content"><p>Thehe resource type for which the secret is defined (for example, <code>BULK</code>, <code>DEVICE</code>).</p></td>
+      <td class="content"><p>The resource type for which the secret is defined.
+@example: OBJECT_TYPE_BULK
+@example: OBJECT_TYPE_DEVICE</p></td>
       
     </tr>
     
@@ -434,7 +449,9 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type for which the secret is requested (for example, <code>METERCONTROL_ST402D_DLMS</code>).</p></td>
+      <td class="content"><p>The driver type for which the secret is created or updated.
+@example: "METERCONTROL_ST402D_DLMS"
+@example: "LANDISGYR_E650_DLMS_SN"</p></td>
       
     </tr>
     
@@ -449,7 +466,8 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The crypto identifier of the secret to retrieve.</p></td>
+      <td class="content"><p>The crypto identifier of the secret to create or update.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -464,7 +482,11 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The access level for the secret (for example, <code>admin</code>, <code>user</code>).</p></td>
+      <td class="content"><p>The security access level for this secret value. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+@example: "1"
+@example: "2"
+@example: "G"
+@example: "cert"</p></td>
       
     </tr>
     
@@ -479,7 +501,11 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique secret key identifier.</p></td>
+      <td class="content"><p>The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+@example: "AK"
+@example: "EK"
+@example: "PW"
+@example: "CERT"</p></td>
       
     </tr>
     
@@ -494,7 +520,8 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The uniqie identifier for the key used to decrypt either the session key or the data directly.</p></td>
+      <td class="content"><p>The unique identifier for the key used to decrypt either the session key or the data directly.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -510,7 +537,7 @@ Secrets include authentication keys, encryption keys, and passwords used to esta
     </a>
         </code>
       </td>
-      <td class="content"><p>the method used to decrypt the session key. May be unset if the session key is not set or not used.</p></td>
+      <td class="content"><p>The method used to decrypt the session key. May be unset if the session key is not set or not used.</p></td>
       
     </tr>
     

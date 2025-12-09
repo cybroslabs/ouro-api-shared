@@ -23,14 +23,18 @@ export const file_crypto_management: GenFile = /*@__PURE__*/
  */
 export type GetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.GetCryptoSecretRequest"> & {
   /**
-   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
+   * The resource type for which the secret is defined.
+   * @example: OBJECT_TYPE_BULK
+   * @example: OBJECT_TYPE_DEVICE
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType: ObjectType;
 
   /**
-   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
+   * The driver type for which the secret is requested.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 2;
    */
@@ -38,6 +42,7 @@ export type GetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.GetC
 
   /**
    * The crypto identifier of the secret to retrieve.
+   * @gqltype: UUID
    *
    * @generated from field: string crypto_id = 3;
    */
@@ -51,14 +56,18 @@ export type GetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.GetC
  */
 export type GetCryptoSecretRequestJson = {
   /**
-   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
+   * The resource type for which the secret is defined.
+   * @example: OBJECT_TYPE_BULK
+   * @example: OBJECT_TYPE_DEVICE
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
+   * The driver type for which the secret is requested.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 2;
    */
@@ -66,6 +75,7 @@ export type GetCryptoSecretRequestJson = {
 
   /**
    * The crypto identifier of the secret to retrieve.
+   * @gqltype: UUID
    *
    * @generated from field: string crypto_id = 3;
    */
@@ -122,14 +132,22 @@ export const CryptoSecretsSchema: GenMessage<CryptoSecrets, {jsonType: CryptoSec
  */
 export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret"> & {
   /**
-   * The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.
+   * The security access level this secret relates to. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+   * @example: "1"
+   * @example: "2"
+   * @example: "G"
+   * @example: "cert"
    *
    * @generated from field: string access_level = 1;
    */
   accessLevel: string;
 
   /**
-   * The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.
+   * The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+   * @example: "AK"
+   * @example: "EK"
+   * @example: "PW"
+   * @example: "CERT"
    *
    * @generated from field: string key_id = 2;
    */
@@ -165,14 +183,22 @@ export type CryptoSecret = Message<"io.clbs.openhes.models.crypto.CryptoSecret">
  */
 export type CryptoSecretJson = {
   /**
-   * The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.
+   * The security access level this secret relates to. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+   * @example: "1"
+   * @example: "2"
+   * @example: "G"
+   * @example: "cert"
    *
    * @generated from field: string access_level = 1;
    */
   accessLevel?: string;
 
   /**
-   * The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.
+   * The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+   * @example: "AK"
+   * @example: "EK"
+   * @example: "PW"
+   * @example: "CERT"
    *
    * @generated from field: string key_id = 2;
    */
@@ -214,49 +240,63 @@ export const CryptoSecretSchema: GenMessage<CryptoSecret, {jsonType: CryptoSecre
  */
 export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetCryptoSecretRequest"> & {
   /**
-   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
+   * The resource type for which the secret is defined.
+   * @example: OBJECT_TYPE_BULK
+   * @example: OBJECT_TYPE_DEVICE
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType: ObjectType;
 
   /**
-   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
+   * The driver type for which the secret is created or updated.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 2;
    */
   driverType: string;
 
   /**
-   * The crypto identifier of the secret to retrieve.
+   * The crypto identifier of the secret to create or update.
+   * @gqltype: UUID
    *
    * @generated from field: string crypto_id = 3;
    */
   cryptoId: string;
 
   /**
-   * The access level for the secret (for example, `admin`, `user`).
+   * The security access level for this secret value. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+   * @example: "1"
+   * @example: "2"
+   * @example: "G"
+   * @example: "cert"
    *
    * @generated from field: string access_level = 4;
    */
   accessLevel: string;
 
   /**
-   * The unique secret key identifier.
+   * The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+   * @example: "AK"
+   * @example: "EK"
+   * @example: "PW"
+   * @example: "CERT"
    *
    * @generated from field: string key_id = 5;
    */
   keyId: string;
 
   /**
-   * The uniqie identifier for the key used to decrypt either the session key or the data directly.
+   * The unique identifier for the key used to decrypt either the session key or the data directly.
+   * @gqltype: UUID
    *
    * @generated from field: string decryption_secret_id = 6;
    */
   decryptionSecretId: string;
 
   /**
-   * the method used to decrypt the session key. May be unset if the session key is not set or not used.
+   * The method used to decrypt the session key. May be unset if the session key is not set or not used.
    *
    * @generated from field: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;
    */
@@ -298,49 +338,63 @@ export type SetCryptoSecretRequest = Message<"io.clbs.openhes.models.crypto.SetC
  */
 export type SetCryptoSecretRequestJson = {
   /**
-   * Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
+   * The resource type for which the secret is defined.
+   * @example: OBJECT_TYPE_BULK
+   * @example: OBJECT_TYPE_DEVICE
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
+   * The driver type for which the secret is created or updated.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 2;
    */
   driverType?: string;
 
   /**
-   * The crypto identifier of the secret to retrieve.
+   * The crypto identifier of the secret to create or update.
+   * @gqltype: UUID
    *
    * @generated from field: string crypto_id = 3;
    */
   cryptoId?: string;
 
   /**
-   * The access level for the secret (for example, `admin`, `user`).
+   * The security access level for this secret value. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+   * @example: "1"
+   * @example: "2"
+   * @example: "G"
+   * @example: "cert"
    *
    * @generated from field: string access_level = 4;
    */
   accessLevel?: string;
 
   /**
-   * The unique secret key identifier.
+   * The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+   * @example: "AK"
+   * @example: "EK"
+   * @example: "PW"
+   * @example: "CERT"
    *
    * @generated from field: string key_id = 5;
    */
   keyId?: string;
 
   /**
-   * The uniqie identifier for the key used to decrypt either the session key or the data directly.
+   * The unique identifier for the key used to decrypt either the session key or the data directly.
+   * @gqltype: UUID
    *
    * @generated from field: string decryption_secret_id = 6;
    */
   decryptionSecretId?: string;
 
   /**
-   * the method used to decrypt the session key. May be unset if the session key is not set or not used.
+   * The method used to decrypt the session key. May be unset if the session key is not set or not used.
    *
    * @generated from field: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;
    */

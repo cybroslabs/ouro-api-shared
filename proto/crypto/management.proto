@@ -25,9 +25,17 @@ enum SecretSessionKeyDecryptionMethod {
 
 // Defines a specification for retrieving crypto secrets.
 message GetCryptoSecretRequest {
-    common.ObjectType object_type = 1;  // Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
-    string driver_type            = 2;  // The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
-    string crypto_id              = 3;  // The crypto identifier of the secret to retrieve.
+    // The resource type for which the secret is defined.
+    // @example: OBJECT_TYPE_BULK
+    // @example: OBJECT_TYPE_DEVICE
+    common.ObjectType object_type = 1;
+    // The driver type for which the secret is requested.
+    // @example: "METERCONTROL_ST402D_DLMS"
+    // @example: "LANDISGYR_E650_DLMS_SN"
+    string driver_type            = 2;
+    // The crypto identifier of the secret to retrieve.
+    // @gqltype: UUID
+    string crypto_id              = 3;
 }
 
 // Defines a list of crypto secrets.
@@ -39,8 +47,18 @@ message CryptoSecrets {
 // Secrets include authentication keys, encryption keys, and passwords used to establish secure connections with devices.
 message CryptoSecret {
     reserved 5, 6, 7, 8, 9, 10, 11, 12, 13, 14;
-    string access_level                  = 1;   // The security access level this secret provides (e.g., "admin", "user", "read-only"). Maps to DLMS/COSEM association levels.
-    string key_id                        = 2;   // The unique identifier for this secret key. Used to distinguish between multiple keys for the same device.
+    // The security access level this secret relates to. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+    // @example: "1"
+    // @example: "2"
+    // @example: "G"
+    // @example: "cert"
+    string access_level                  = 1;
+    // The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+    // @example: "AK"
+    // @example: "EK"
+    // @example: "PW"
+    // @example: "CERT"
+    string key_id                        = 2;
     google.protobuf.Timestamp created_at = 3;   // The timestamp when this secret was initially created in the system.
     google.protobuf.Timestamp updated_at = 4;   // The timestamp when this secret was last modified or rotated.
     bytes data                           = 15;  // The actual secret data (e.g., encryption key, password). This field contains the decrypted value ready for use.
@@ -49,14 +67,34 @@ message CryptoSecret {
 // Defines a specification for creating or updating crypto secrets.
 message SetCryptoSecretRequest {
     reserved 11, 12, 13, 14;
-    common.ObjectType object_type = 1;  // Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`).
-    string driver_type            = 2;  // The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`).
-    string crypto_id              = 3;  // The crypto identifier of the secret to retrieve.
-    string access_level           = 4;  // The access level for the secret (for example, `admin`, `user`).
-    string key_id                 = 5;  // The unique secret key identifier.
+    // The resource type for which the secret is defined.
+    // @example: OBJECT_TYPE_BULK
+    // @example: OBJECT_TYPE_DEVICE
+    common.ObjectType object_type = 1;
+    // The driver type for which the secret is created or updated.
+    // @example: "METERCONTROL_ST402D_DLMS"
+    // @example: "LANDISGYR_E650_DLMS_SN"
+    string driver_type            = 2;
+    // The crypto identifier of the secret to create or update.
+    // @gqltype: UUID
+    string crypto_id              = 3;
+    // The security access level for this secret value. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+    // @example: "1"
+    // @example: "2"
+    // @example: "G"
+    // @example: "cert"
+    string access_level           = 4;
+    // The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+    // @example: "AK"
+    // @example: "EK"
+    // @example: "PW"
+    // @example: "CERT"
+    string key_id                 = 5;
 
-    string decryption_secret_id                                    = 6;   // The uniqie identifier for the key used to decrypt either the session key or the data directly.
-    SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;   // the method used to decrypt the session key. May be unset if the session key is not set or not used.
+    // The unique identifier for the key used to decrypt either the session key or the data directly.
+    // @gqltype: UUID
+    string decryption_secret_id                                    = 6;
+    SecretSessionKeyDecryptionMethod session_key_decryption_method = 7;   // The method used to decrypt the session key. May be unset if the session key is not set or not used.
     bytes session_key                                              = 8;   // The session key (usually encrypted) used to decrypt the data.
     SecretDataDecryptionMethod data_decryption_method              = 9;   // The method used to decrypt the secret data. May be unset if the data is not encrypted.
     bytes data_decryption_iv                                       = 10;  // The initialization vector for the decryption method, if applicable.

@@ -396,14 +396,22 @@ message VariableSpec {
 
 // Defines a specification for adding registers to a variable.
 message AddRegisterToVariableRequest {
-    string variable_id          = 1;  // The unique variable identifier.
-    repeated string register_id = 2;  // A list of register identifiers.
+    // The unique variable identifier.
+    // @gqltype: UUID
+    string variable_id          = 1;
+    // A list of register identifiers.
+    // @gqltype: UUID
+    repeated string register_id = 2;
 }
 
 // Defines a specification for removing registers from a variable.
 message RemoveRegisterFromVariableRequest {
-    string variable_id          = 1;  // The unique identifier of the variable.
-    repeated string register_id = 2;  // A list of register identifiers.
+    // The unique identifier of the variable.
+    // @gqltype: UUID
+    string variable_id          = 1;
+    // A list of register identifiers.
+    // @gqltype: UUID
+    repeated string register_id = 2;
 }
 
 // Defines the specification for creating a new device configuration register.
@@ -433,9 +441,16 @@ message DeviceConfigurationRegisterMap {
 // Defines a single record in the device configuration register map.
 message DeviceConfigurationRegisterMapRecord {
     int64 register_id             = 1;  // The unique register identifier.
-    string public_register_id     = 2;  // The public register identifier.
-    string register_name          = 3;  // The register name.
-    repeated string variable_name = 4;  // Variable names, if the register is assigned to any.
+    // The public register identifier.
+    // @gqltype: UUID
+    string public_register_id     = 2;
+    // The register name.
+    // @example: "L+G E570 Active Energy Import (Total)"
+    // @example: "L+G E570 Active Energy Export (Total)"
+    string register_name          = 3;
+    // Variable names, if the register is assigned to any.
+    // @example: ["A+", "Energy Import"]
+    repeated string variable_name = 4;
 }
 
 // Defines a specification for creating a new device configuration template.
@@ -459,23 +474,42 @@ message DeviceConfigurationTemplate {
 
 // Defines a device configuration template specification.
 message DeviceConfigurationTemplateSpec {
-    string driver_type                = 1;  // The driver type.
-    repeated string register_id       = 2;  // A list of device configuration register identifiers.
-    repeated string scada_register_id = 3;  // A list of SCADA register identifiers.
+    // The driver type.
+    // @example: "METERCONTROL_ST402D_DLMS"
+    // @example: "LANDISGYR_E650_DLMS_SN"
+    string driver_type                = 1;
+    // A list of device configuration register identifiers used by standard readout.
+    // @gqltype: UUID
+    repeated string register_id       = 2;
+    // A list of device configuration register identifiers used by SCADA readout.
+    // @gqltype: UUID
+    repeated string scada_register_id = 3;
 }
 
 // Defines the specification for adding device configuration registers to device configuration templates.
 message AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest {
-    string dct_id                     = 1;  // The unique device configuration template identifier.
-    repeated string register_id       = 2;  // A list of device configuration register identifiers.
-    repeated string scada_register_id = 3;  // A list of SCADA register identifiers.
+    // The unique device configuration template identifier.
+    // @gqltype: UUID
+    string dct_id                     = 1;
+    // A list of device configuration register identifiers used by standard readout.
+    // @gqltype: UUID
+    repeated string register_id       = 2;
+    // A list of device configuration register identifiers used by SCADA readout.
+    // @gqltype: UUID
+    repeated string scada_register_id = 3;
 }
 
 // Defines the specification for removing device configuration registers to device configuration templates.
 message RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest {
-    string dct_id                     = 1;  // The unique device configuration template identifier.
-    repeated string register_id       = 2;  // A list of device configuration register identifiers.
-    repeated string scada_register_id = 3;  // A list of SCADA register identifiers.
+    // The unique device configuration template identifier.
+    // @gqltype: UUID
+    string dct_id                     = 1;
+    // A list of device configuration register identifiers used by standard readout.
+    // @gqltype: UUID
+    repeated string register_id       = 2;
+    // A list of device configuration register identifiers used by SCADA readout.
+    // @gqltype: UUID
+    repeated string scada_register_id = 3;
 }
 
 // Defines a specification for retrieving device data.
@@ -490,8 +524,12 @@ message GetDeviceDataRequest {
 
 // Defines a selector for identifying device and variable pairs.
 message GetDeviceDataSeriesSelector {
-    string device_id   = 1;  // The unique device identifier.
-    string variable_id = 2;  // The unique variable identifier.
+    // The unique device identifier.
+    // @gqltype: UUID
+    string device_id   = 1;
+    // The unique variable identifier.
+    // @gqltype: UUID
+    string variable_id = 2;
 }
 
 // Defines a list of data items.
@@ -501,15 +539,22 @@ message DeviceData {
 
 // Defines data items for a specific device.
 message DeviceDeviceData {
-    string device_id                 = 1;  // The unique device identifier.
+    // The unique device identifier.
+    // @gqltype: UUID
+    string device_id                 = 1;
     repeated VariableDeviceData data = 2;  // A list of variable data items.
 }
 
 // Defines data for a specific variable within a device.
 message VariableDeviceData {
-    string variable_id                            = 1;  // The unique variable identifier.
+    // The unique variable identifier.
+    // @gqltype: UUID
+    string variable_id                            = 1;
     repeated google.protobuf.Timestamp timestamps = 2;  // A list of timestamps for the variable data.
-    repeated string units                         = 3;  // A list of units for the variable data.
+    // A list of units for the variable data.
+    // @example: ["kWh", "kWh", "kWh"]
+    // @example: ["V", "V", "V"]
+    repeated string units                         = 3;
     repeated MeasuredValue values                 = 4;  // A list of measured values for the variable data.
 }
 
@@ -522,14 +567,24 @@ message DeviceDataInfo {
 
 // Defines the device data information specification.
 message DeviceDataInfoSpec {
-    string device_id   = 1;  // The unique device identifier.
-    string register_id = 2;  // The unique register identifier.
+    // The unique device identifier.
+    // @gqltype: UUID
+    string device_id   = 1;
+    // The unique register identifier.
+    // @gqltype: UUID
+    string register_id = 2;
 }
 
 // Defines the device data information status.
 message DeviceDataInfoStatus {
-    string register_name                    = 1;  // The register name.
-    int32 period                            = 2;  // The period of the regular profile values, if applicable.
+    // The register name.
+    // @example: "L+G E570 Active Energy Import (Total)"
+    // @example: "L+G E570 Voltage L1"
+    string register_name                    = 1;
+    // The period of the regular profile values, if applicable (in minutes).
+    // @example: 15
+    // @example: 60
+    int32 period                            = 2;
     google.protobuf.Timestamp last_value_at = 3;  // The timestamp of the last stored value.
 }
 
@@ -543,14 +598,18 @@ message ListOfDeviceDataInfo {
 message GetDeviceEventsRequest {
     google.protobuf.Timestamp range_start = 1;  // The start timestamp of the device events selection. It is inclusive.
     google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the device events selection. It is inclusive.
-    string device_id                      = 3;  // The unique identifier of the device.
+    // The unique identifier of the device.
+    // @gqltype: UUID
+    string device_id                      = 3;
 }
 
 // Defines a specification for retrieving device bulks from a specified time range.
 message GetDeviceBulksRequest {
     google.protobuf.Timestamp range_start = 1;  // The start timestamp of the bulks selection. It is inclusive.
     google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the bulks selection. It is inclusive.
-    string device_id                      = 3;  // The unique identifier of the device.
+    // The unique identifier of the device.
+    // @gqltype: UUID
+    string device_id                      = 3;
 }
 
 // Defines a list of device bulks.
@@ -597,31 +656,50 @@ message FirmwareImage {
 
 // Defines a firmware image specification.
 message FirmwareImageSpec {
-    string driver_type                        = 1;  // The driver type.
-    string version                            = 2;  // The firmware version.
+    // The driver type.
+    // @example: "METERCONTROL_ST402D_DLMS"
+    // @example: "LANDISGYR_E650_DLMS_SN"
+    string driver_type                        = 1;
+    // The firmware version.
+    // @example: "1.2.3"
+    // @example: "v2.0.1"
+    string version                            = 2;
     repeated FirmwareImageFile content        = 3;  // The list of firmware image files.
-    string description                        = 4;  // The firmware image description.
+    // The firmware image description.
+    // @example: "Firmware update for ST402D meters - bug fixes and performance improvements"
+    string description                        = 4;
     map<string, common.FieldValue> attributes = 5;  // The firmware attributes, depending on the driver type.
 }
 
 // Defines a file within a firmware image.
 message FirmwareImageFile {
-    string file_name = 2;  // The firmware image file name.
+    // The firmware image file name.
+    // @example: "firmware.bin"
+    // @example: "bootloader.hex"
+    string file_name = 2;
     int32 file_size  = 3;  // The size of the firmware image file in bytes.
 }
 
 // Defines a request for retrieving a block of firmware image data.
 message GetFirmwareImageBlockRequest {
-    string firmware_image_id = 1;  // The unique firmware image identifier.
-    string file_name         = 2;  // The firmware image file name.
+    // The unique firmware image identifier.
+    // @gqltype: UUID
+    string firmware_image_id = 1;
+    // The firmware image file name.
+    // @example: "firmware.bin"
+    string file_name         = 2;
     int32 block_size         = 3;  // The size of the block to retrieve in bytes.
     int32 block_index        = 4;  // The index of the block to retrieve (0-based).
 }
 
 // Defines a request for retrieving a block of firmware image data for streamed upload.
 message StreamUploadFirmwareImageRequest {
-    string firmware_image_id = 1;  // The unique firmware image identifier.
-    string file_name         = 2;  // The firmware image file name.
+    // The unique firmware image identifier.
+    // @gqltype: UUID
+    string firmware_image_id = 1;
+    // The firmware image file name.
+    // @example: "firmware.bin"
+    string file_name         = 2;
     int32 block_size         = 3;  // The size of the block to retrieve in bytes.
     int32 block_index        = 4;  // The index of the block to retrieve (0-based). All blocks must be send in order.
     bool last_block          = 5;  // Indicates whether this is the last block in the stream.
@@ -636,6 +714,10 @@ message FirmwareImageBlock {
 
 // Defines a request for streaming download of a firmware image file.
 message StreamDownloadFirmwareImageFileRequest {
-    string firmware_image_id = 1;  // The unique firmware image identifier.
-    string file_name         = 2;  // The firmware image file name.
+    // The unique firmware image identifier.
+    // @gqltype: UUID
+    string firmware_image_id = 1;
+    // The firmware image file name.
+    // @example: "firmware.bin"
+    string file_name         = 2;
 }

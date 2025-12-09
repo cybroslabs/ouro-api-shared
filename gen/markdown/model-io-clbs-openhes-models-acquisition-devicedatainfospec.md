@@ -6,6 +6,6 @@ Defines the device data information specification.
 
 | Field | Information |
 | --- | --- |
-| deviceId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique device identifier. |
-| registerId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique register identifier. |
+| deviceId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The unique device identifier. |
+| registerId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The unique register identifier. |
 

@@ -383,7 +383,8 @@ Each consumer represents a logical queue handler that processes messages from su
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.</p></td>
+      <td class="content"><p>The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -398,7 +399,10 @@ Each consumer represents a logical queue handler that processes messages from su
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The maximum number of unacknowledged messages this consumer can have. Values &gt;1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.</p></td>
+      <td class="content"><p>The maximum number of unacknowledged messages this consumer can have. Values &gt;1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
+@example: 1
+@example: 10
+@example: 100</p></td>
       
     </tr>
     
@@ -415,7 +419,9 @@ Each consumer represents a logical queue handler that processes messages from su
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.</p></td>
+      <td class="content"><p>The message subjects this consumer subscribes to. At least one subject is required. Changes apply to all instances of the component.
+@example: ["events.public.acquisition.jobdone", "events.public.something.else"]
+@example: ["events.custom.sapmessage"]</p></td>
       
     </tr>
     
@@ -809,7 +815,8 @@ The server delivers messages that match the consumer's subscribed subjects.</p>
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The subject of the message.</p></td>
+      <td class="content"><p>The subject of the message. The subject must start with the 'events.custom.' prefix.
+@example: "events.custom.sapmessage"</p></td>
       
     </tr>
     
@@ -1012,7 +1019,8 @@ Publishers use this to establish a connection and send messages to specific subj
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique message identifier.</p></td>
+      <td class="content"><p>The unique message identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -1027,7 +1035,8 @@ Publishers use this to establish a connection and send messages to specific subj
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The subjects of the message.</p></td>
+      <td class="content"><p>The subjects of the message.
+@example: "events.public.acquisition.jobdone"</p></td>
       
     </tr>
     

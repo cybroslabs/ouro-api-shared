@@ -6,6 +6,6 @@ Defines a specification for adding registers to a variable.
 
 | Field | Information |
 | --- | --- |
-| variableId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique variable identifier. |
-| registerId | <b>Type:</b> `string`<br><b>Description:</b><br>A list of register identifiers. |
+| variableId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The unique variable identifier. |
+| registerId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>A list of register identifiers. |
 

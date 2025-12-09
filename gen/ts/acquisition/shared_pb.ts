@@ -747,6 +747,7 @@ export const ListOfJobDeviceIdSchema: GenMessage<ListOfJobDeviceId, {jsonType: L
 export type JobDeviceId = Message<"io.clbs.openhes.models.acquisition.JobDeviceId"> & {
   /**
    * The identifier of the device's job within the parent bulk.
+   * @gqltype: UUID
    *
    * @generated from field: string job_id = 1;
    */
@@ -754,6 +755,7 @@ export type JobDeviceId = Message<"io.clbs.openhes.models.acquisition.JobDeviceI
 
   /**
    * The unique identifier of the device.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 2;
    */
@@ -768,6 +770,7 @@ export type JobDeviceId = Message<"io.clbs.openhes.models.acquisition.JobDeviceI
 export type JobDeviceIdJson = {
   /**
    * The identifier of the device's job within the parent bulk.
+   * @gqltype: UUID
    *
    * @generated from field: string job_id = 1;
    */
@@ -775,6 +778,7 @@ export type JobDeviceIdJson = {
 
   /**
    * The unique identifier of the device.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 2;
    */
@@ -796,6 +800,7 @@ export const JobDeviceIdSchema: GenMessage<JobDeviceId, {jsonType: JobDeviceIdJs
 export type JobDevice = Message<"io.clbs.openhes.models.acquisition.JobDevice"> & {
   /**
    * The unique job identifier within the parent bulk.
+   * @gqltype: UUID
    *
    * @generated from field: string job_id = 1;
    */
@@ -803,6 +808,7 @@ export type JobDevice = Message<"io.clbs.openhes.models.acquisition.JobDevice"> 
 
   /**
    * The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 2;
    */
@@ -810,6 +816,8 @@ export type JobDevice = Message<"io.clbs.openhes.models.acquisition.JobDevice"> 
 
   /**
    * The external device identifier.
+   * @example: "METER-12345"
+   * @example: "EXT-001"
    *
    * @generated from field: string external_id = 3;
    */
@@ -837,7 +845,11 @@ export type JobDevice = Message<"io.clbs.openhes.models.acquisition.JobDevice"> 
   appProtocol: ApplicationProtocol;
 
   /**
-   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+   * The timezone associated with the device.
+   * @example: "America/New_York"
+   * @example: "Europe/Prague"
+   * @example: "CET"
+   * @example: "Etc/GMT+2"
    *
    * @generated from field: string timezone = 7;
    */
@@ -852,6 +864,7 @@ export type JobDevice = Message<"io.clbs.openhes.models.acquisition.JobDevice"> 
 export type JobDeviceJson = {
   /**
    * The unique job identifier within the parent bulk.
+   * @gqltype: UUID
    *
    * @generated from field: string job_id = 1;
    */
@@ -859,6 +872,7 @@ export type JobDeviceJson = {
 
   /**
    * The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 2;
    */
@@ -866,6 +880,8 @@ export type JobDeviceJson = {
 
   /**
    * The external device identifier.
+   * @example: "METER-12345"
+   * @example: "EXT-001"
    *
    * @generated from field: string external_id = 3;
    */
@@ -893,7 +909,11 @@ export type JobDeviceJson = {
   appProtocol?: ApplicationProtocolJson;
 
   /**
-   * The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+   * The timezone associated with the device.
+   * @example: "America/New_York"
+   * @example: "Europe/Prague"
+   * @example: "CET"
+   * @example: "Etc/GMT+2"
    *
    * @generated from field: string timezone = 7;
    */
@@ -915,6 +935,7 @@ export const JobDeviceSchema: GenMessage<JobDevice, {jsonType: JobDeviceJson}> =
 export type ModemInfo = Message<"io.clbs.openhes.models.acquisition.ModemInfo"> & {
   /**
    * The unique identifier of the modem. It is automatically generated during creation.
+   * @gqltype: UUID
    *
    * @generated from field: string modem_id = 1;
    */
@@ -922,34 +943,43 @@ export type ModemInfo = Message<"io.clbs.openhes.models.acquisition.ModemInfo"> 
 
   /**
    * The name of the modem.
+   * @example: "Modem-01"
+   * @example: "GSM-Gateway-Main"
    *
    * @generated from field: string name = 2;
    */
   name: string;
 
   /**
-   * The modem initialization command. For example, `AT&FE0X3`.
+   * The modem initialization command.
+   * @example: "AT&FE0X3"
+   * @example: "ATZ"
    *
    * @generated from field: string at_init = 3;
    */
   atInit: string;
 
   /**
-   * The modem dial command. For example, `ATD`.
+   * The modem dial command.
+   * @example: "ATD"
+   * @example: "ATDT"
    *
    * @generated from field: string at_dial = 4;
    */
   atDial: string;
 
   /**
-   * The modem hangup command. For example, `ATH`.
+   * The modem hangup command.
+   * @example: "ATH"
+   * @example: "ATH0"
    *
    * @generated from field: string at_hangup = 5;
    */
   atHangup: string;
 
   /**
-   * The modem escape command. For exampl, `+++`.
+   * The modem escape command.
+   * @example: "+++"
    *
    * @generated from field: string at_escape = 6;
    */
@@ -1001,6 +1031,7 @@ export type ModemInfo = Message<"io.clbs.openhes.models.acquisition.ModemInfo"> 
 export type ModemInfoJson = {
   /**
    * The unique identifier of the modem. It is automatically generated during creation.
+   * @gqltype: UUID
    *
    * @generated from field: string modem_id = 1;
    */
@@ -1008,34 +1039,43 @@ export type ModemInfoJson = {
 
   /**
    * The name of the modem.
+   * @example: "Modem-01"
+   * @example: "GSM-Gateway-Main"
    *
    * @generated from field: string name = 2;
    */
   name?: string;
 
   /**
-   * The modem initialization command. For example, `AT&FE0X3`.
+   * The modem initialization command.
+   * @example: "AT&FE0X3"
+   * @example: "ATZ"
    *
    * @generated from field: string at_init = 3;
    */
   atInit?: string;
 
   /**
-   * The modem dial command. For example, `ATD`.
+   * The modem dial command.
+   * @example: "ATD"
+   * @example: "ATDT"
    *
    * @generated from field: string at_dial = 4;
    */
   atDial?: string;
 
   /**
-   * The modem hangup command. For example, `ATH`.
+   * The modem hangup command.
+   * @example: "ATH"
+   * @example: "ATH0"
    *
    * @generated from field: string at_hangup = 5;
    */
   atHangup?: string;
 
   /**
-   * The modem escape command. For exampl, `+++`.
+   * The modem escape command.
+   * @example: "+++"
    *
    * @generated from field: string at_escape = 6;
    */
@@ -1085,6 +1125,9 @@ export const ModemInfoSchema: GenMessage<ModemInfo, {jsonType: ModemInfoJson}> =
 export type SerialConfig = Message<"io.clbs.openhes.models.acquisition.SerialConfig"> & {
   /**
    * The baud rate.
+   * @example: 9600
+   * @example: 19200
+   * @example: 115200
    *
    * @generated from field: int32 baud_rate = 1;
    */
@@ -1127,6 +1170,9 @@ export type SerialConfig = Message<"io.clbs.openhes.models.acquisition.SerialCon
 export type SerialConfigJson = {
   /**
    * The baud rate.
+   * @example: 9600
+   * @example: 19200
+   * @example: 115200
    *
    * @generated from field: int32 baud_rate = 1;
    */

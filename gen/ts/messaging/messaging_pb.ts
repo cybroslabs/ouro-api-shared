@@ -233,7 +233,8 @@ export const MessagingPublisherSetupSchema: GenMessage<MessagingPublisherSetup, 
  */
 export type MessagingPublishMessage = Message<"io.clbs.openhes.models.messaging.MessagingPublishMessage"> & {
   /**
-   * The subject of the message.
+   * The subject of the message. The subject must start with the 'events.custom.' prefix.
+   * @example: "events.custom.sapmessage"
    *
    * @generated from field: string subject = 1;
    */
@@ -254,7 +255,8 @@ export type MessagingPublishMessage = Message<"io.clbs.openhes.models.messaging.
  */
 export type MessagingPublishMessageJson = {
   /**
-   * The subject of the message.
+   * The subject of the message. The subject must start with the 'events.custom.' prefix.
+   * @example: "events.custom.sapmessage"
    *
    * @generated from field: string subject = 1;
    */
@@ -332,6 +334,7 @@ export const MessagingConsumerSetupSchema: GenMessage<MessagingConsumerSetup, {j
 export type MessagingReceiveMessage = Message<"io.clbs.openhes.models.messaging.MessagingReceiveMessage"> & {
   /**
    * The unique message identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string message_id = 1;
    */
@@ -339,6 +342,7 @@ export type MessagingReceiveMessage = Message<"io.clbs.openhes.models.messaging.
 
   /**
    * The subjects of the message.
+   * @example: "events.public.acquisition.jobdone"
    *
    * @generated from field: string subject = 2;
    */
@@ -360,6 +364,7 @@ export type MessagingReceiveMessage = Message<"io.clbs.openhes.models.messaging.
 export type MessagingReceiveMessageJson = {
   /**
    * The unique message identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string message_id = 1;
    */
@@ -367,6 +372,7 @@ export type MessagingReceiveMessageJson = {
 
   /**
    * The subjects of the message.
+   * @example: "events.public.acquisition.jobdone"
    *
    * @generated from field: string subject = 2;
    */
@@ -508,6 +514,7 @@ export const MessagingComponentSchema: GenMessage<MessagingComponent, {jsonType:
 export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"> & {
   /**
    * The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
+   * @gqltype: UUID
    *
    * @generated from field: string consumer_id = 1;
    */
@@ -515,13 +522,18 @@ export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models
 
   /**
    * The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
+   * @example: 1
+   * @example: 10
+   * @example: 100
    *
    * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages: number;
 
   /**
-   * The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.
+   * The message subjects this consumer subscribes to. At least one subject is required. Changes apply to all instances of the component.
+   * @example: ["events.public.acquisition.jobdone", "events.public.something.else"]
+   * @example: ["events.custom.sapmessage"]
    *
    * @generated from field: repeated string subjects = 3;
    */
@@ -537,6 +549,7 @@ export type MessagingComponentConsumerSettings = Message<"io.clbs.openhes.models
 export type MessagingComponentConsumerSettingsJson = {
   /**
    * The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
+   * @gqltype: UUID
    *
    * @generated from field: string consumer_id = 1;
    */
@@ -544,13 +557,18 @@ export type MessagingComponentConsumerSettingsJson = {
 
   /**
    * The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
+   * @example: 1
+   * @example: 10
+   * @example: 100
    *
    * @generated from field: int32 max_in_flight_messages = 2;
    */
   maxInFlightMessages?: number;
 
   /**
-   * The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.
+   * The message subjects this consumer subscribes to. At least one subject is required. Changes apply to all instances of the component.
+   * @example: ["events.public.acquisition.jobdone", "events.public.something.else"]
+   * @example: ["events.custom.sapmessage"]
    *
    * @generated from field: repeated string subjects = 3;
    */

@@ -583,7 +583,7 @@
     "tags1": [
       "CronJobSpec"
     ],
-    "tags2": "Defines the cron job specification containing scheduling and execution details The type operation execute START BULK START PROXY BULK The cron schedule expression standard format for hourly for daily midnight The timezone for schedule interpretation using IANA time zone database names America New York Europe Prague UTC When true the cron job paused and will not execute until resumed Default false The type specific payload passed the operation when executes bulk specification for START BULK type"
+    "tags2": "Defines the cron job specification containing scheduling and execution details The type operation execute START BULK START PROXY BULK The cron schedule expression standard format The timezone for schedule interpretation using IANA time zone database names When true the cron job paused and will not execute until resumed Default false The type specific payload passed the operation when executes bulk specification for START BULK type"
   },
   {
     "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
@@ -611,110 +611,6 @@
       "ListOfCronJob"
     ],
     "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
-    "tags0": [
-      "SECRET_DATA_PLAIN",
-      "SECRET_DATA_AES256CBC",
-      "SECRET_DATA_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
-    ],
-    "tags1": [
-      "AES256CBC",
-      "DATA",
-      "PLAIN",
-      "SECRET",
-      "SecretDataDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the supported decryption methods for cryptographic secret data These methods are used decrypt device authentication keys and other sensitive credentials Unspecified decryption method invalid should not used Data stored plain text without encryption not recommended for production Data encrypted using AES CBC mode Requires initialization vector"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
-    "tags0": [
-      "SECRET_SESSION_PLAIN",
-      "SECRET_SESSION_UNSPECIFIED",
-      "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
-    ],
-    "tags1": [
-      "GF1P",
-      "OAEPM",
-      "PLAIN",
-      "RSA",
-      "SECRET",
-      "SESSION",
-      "SecretSessionKeyDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the supported decryption methods for session keys used key wrapping scenarios Session keys provide additional layer security for protecting cryptographic secrets session key used The secret data encrypted directly with the master key Session key stored plain text used when the session key itself not sensitive Session key encrypted using RSA OAEP with MGF1 and SHA Used for secure key transport"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
-    "tags0": [
-      "data",
-      "keyId",
-      "createdAt",
-      "updatedAt",
-      "accessLevel",
-      "io.clbs.openhes.models.crypto.CryptoSecret"
-    ],
-    "tags1": [
-      "CryptoSecret"
-    ],
-    "tags2": "Defines cryptographic secret containing sensitive credentials for device communication Secrets include authentication keys encryption keys and passwords used establish secure connections with devices The security access level this secret provides admin user read only Maps DLMS COSEM association levels The unique identifier for this secret key Used distinguish between multiple keys for the same device The timestamp when this secret was initially created the system The timestamp when this secret was last modified rotated The actual secret data encryption key password This field contains the decrypted value ready for use"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
-    "tags0": [
-      "secrets",
-      "io.clbs.openhes.models.crypto.CryptoSecrets"
-    ],
-    "tags1": [
-      "CryptoSecrets"
-    ],
-    "tags2": "Defines list crypto secrets list crypto secrets"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
-    "tags0": [
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "GetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for retrieving crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
-    "tags0": [
-      "data",
-      "keyId",
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "sessionKey",
-      "accessLevel",
-      "dataDecryptionIv",
-      "decryptionSecretId",
-      "dataDecryptionMethod",
-      "sessionKeyDecryptionMethod",
-      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "SetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for creating updating crypto secrets Thehe resource type for which the secret defined for example BULK DEVICE The driver type for which the secret requested for example METERCONTROL ST402D DLMS The crypto identifier the secret retrieve The access level for the secret for example admin user The unique secret key identifier The uniqie identifier for the key used decrypt either the session key the data directly the method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
   },
   {
     "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
@@ -755,7 +651,7 @@
     "tags1": [
       "MessagingComponentConsumerSettings"
     ],
-    "tags2": "Defines configuration settings for specific consumer within messaging component Each consumer represents logical queue handler that processes messages from subscribed subjects The unique UUID identifier for this consumer instance Must unique across all consumers the same component The maximum number unacknowledged messages this consumer can have Values enable concurrent processing but may lose order Value guarantees ordered processing The message subjects this consumer subscribes device events bulk completed least one subject required Changes apply all instances the component"
+    "tags2": "Defines configuration settings for specific consumer within messaging component Each consumer represents logical queue handler that processes messages from subscribed subjects The unique UUID identifier for this consumer instance Must unique across all consumers the same component The maximum number unacknowledged messages this consumer can have Values enable concurrent processing but may lose order Value guarantees ordered processing The message subjects this consumer subscribes least one subject required Changes apply all instances the component"
   },
   {
     "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentspec.md",
@@ -831,7 +727,7 @@
     "tags1": [
       "MessagingPublishMessage"
     ],
-    "tags2": "Defines publish action for sending messages The subject the message The message data"
+    "tags2": "Defines publish action for sending messages The subject the message The subject must start with the events custom prefix The message data"
   },
   {
     "filename": "model-io-clbs-openhes-models-messaging-messagingpublisherclient.md",
@@ -871,86 +767,6 @@
       "MessagingReceiveMessage"
     ],
     "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
-    "tags0": [
-      "keys",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.GetTranslationsRequest"
-    ],
-    "tags1": [
-      "GetTranslationsRequest"
-    ],
-    "tags2": "Defines the request for retrieving translations based language and keys The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
-    "tags0": [
-      "translations",
-      "io.clbs.openhes.models.localization.GetTranslationsResponse"
-    ],
-    "tags1": [
-      "GetTranslationsResponse"
-    ],
-    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-missingtranslationrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
-    "tags0": [
-      "key",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.MissingTranslationRequest"
-    ],
-    "tags1": [
-      "MissingTranslationRequest"
-    ],
-    "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
-    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
-    "tags0": [
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.TranslationInfo"
-    ],
-    "tags1": [
-      "TranslationInfo"
-    ],
-    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
-    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
-    "tags0": [
-      "applications",
-      "io.clbs.openhes.models.localization.TranslationList"
-    ],
-    "tags1": [
-      "TranslationList"
-    ],
-    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
-    "tags0": [
-      "version",
-      "translations",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
-    ],
-    "tags1": [
-      "UpdateTranslationsRequest"
-    ],
-    "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
@@ -1625,7 +1441,7 @@
     "tags1": [
       "AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest"
     ],
-    "tags2": "Defines the specification for adding device configuration registers device configuration templates The unique device configuration template identifier list device configuration register identifiers list SCADA register identifiers"
+    "tags2": "Defines the specification for adding device configuration registers device configuration templates The unique device configuration template identifier list device configuration register identifiers used standard readout list device configuration register identifiers used SCADA readout"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-adddevicestogrouprequest.md",
@@ -2216,7 +2032,7 @@
     "tags1": [
       "DeviceConfigurationTemplateSpec"
     ],
-    "tags2": "Defines device configuration template specification The driver type list device configuration register identifiers list SCADA register identifiers"
+    "tags2": "Defines device configuration template specification The driver type list device configuration register identifiers used standard readout list device configuration register identifiers used SCADA readout"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedata.md",
@@ -2268,7 +2084,7 @@
     "tags1": [
       "DeviceDataInfoStatus"
     ],
-    "tags2": "Defines the device data information status The register name The period the regular profile values applicable The timestamp the last stored value"
+    "tags2": "Defines the device data information status The register name The period the regular profile values applicable minutes The timestamp the last stored value"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-devicedevicedata.md",
@@ -2709,7 +2525,7 @@
     "tags1": [
       "JobDevice"
     ],
-    "tags2": "Defines the information for device job The unique job identifier within the parent bulk The unique device identifier set all subsequent details are loaded automatically from the device registry The external device identifier The connection attributes for the device The options depend the ApplicationProtocolTemplate the given application protocol see the app protocol property The device connection parameters The application protocol used communicate with the device The timezone associated with the device For example America New York Europe Prague CET GMT Etc GMT"
+    "tags2": "Defines the information for device job The unique job identifier within the parent bulk The unique device identifier set all subsequent details are loaded automatically from the device registry The external device identifier The connection attributes for the device The options depend the ApplicationProtocolTemplate the given application protocol see the app protocol property The device connection parameters The application protocol used communicate with the device The timezone associated with the device"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdeviceid.md",
@@ -3075,7 +2891,7 @@
     "tags1": [
       "ModemInfo"
     ],
-    "tags2": "Defines modem connection information The unique identifier the modem automatically generated during creation The name the modem The modem initialization command For example FE0X3 The modem dial command For example ATD The modem hangup command For example ATH The modem escape command For exampl The modem connection timeout applicable the modem connection field The modem command timeout applicable given the modem connection field The TCP connection type The modem either supports TCP directly serial converter used that handles the serial configuration The serial over connection type Used when the modem connected via serial converter and requires specific handling"
+    "tags2": "Defines modem connection information The unique identifier the modem automatically generated during creation The name the modem The modem initialization command The modem dial command The modem hangup command The modem escape command The modem connection timeout applicable the modem connection field The modem command timeout applicable given the modem connection field The TCP connection type The modem either supports TCP directly serial converter used that handles the serial configuration The serial over connection type Used when the modem connected via serial converter and requires specific handling"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-modempool.md",
@@ -3235,7 +3051,7 @@
     "tags1": [
       "RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"
     ],
-    "tags2": "Defines the specification for removing device configuration registers device configuration templates The unique device configuration template identifier list device configuration register identifiers list SCADA register identifiers"
+    "tags2": "Defines the specification for removing device configuration registers device configuration templates The unique device configuration template identifier list device configuration register identifiers used standard readout list device configuration register identifiers used SCADA readout"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-removedevicesfromgrouprequest.md",
@@ -3430,6 +3246,145 @@
       "VariableSpec"
     ],
     "tags2": "Defines variable specification The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable Indicates whether the returned data for this variabe should exclude values from timestamp set true the returned device data returned for this variable dos not include values from timestamp Default value false"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
+    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "tags0": [
+      "OBJECT_FLAG_UNSPECIFIED",
+      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
+      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+    ],
+    "tags1": [
+      "COMMUNICATION",
+      "FLAG",
+      "LOG",
+      "OBJECT",
+      "ObjectFlags",
+      "UNIT",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines feature flags and capability indicators for system objects These flags control what operations are available enabled for specific objects Default unspecified flag special behavior The communication unit has detailed logging enabled for diagnostics and troubleshooting"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Defines the application wide configuration containing settings for all system components This model stores the actual configuration values that control system behavior The configuration values for each registered component the system"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines the complete application configuration schema and current values This combines both the field definitions descriptors and the actual configuration values for all components The schema definitions for all registered components The current configuration values for all components"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines the configuration for single system component microservice Each component can define its own configuration fields through field descriptors The unique component name The configuration values field value pairs Fields are defined the component descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines the configuration schema for component declaring what fields are available Components register their configuration schema startup enable dynamic configuration The unique component name The field descriptors defining available configuration options including types defaults and validation rules"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
+    "tags0": [
+      "objectId",
+      "objectType",
+      "io.clbs.openhes.models.system.ObjectFlagsRequest"
+    ],
+    "tags1": [
+      "ObjectFlagsRequest"
+    ],
+    "tags2": "Defines the request message for retrieving object flags The object type The object"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
+    "tags0": [
+      "flags",
+      "io.clbs.openhes.models.system.ObjectFlagsResponse"
+    ],
+    "tags1": [
+      "ObjectFlagsResponse"
+    ],
+    "tags2": "Defines the response message for retrieving object flags The object flags"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
+    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "tags0": [
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.ScreenConfigSelector"
+    ],
+    "tags1": [
+      "ScreenConfigSelector"
+    ],
+    "tags2": "Defines the selection criteria for retrieving specific screen configuration The application plugin identifier The screen identifier within the application"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
+    "tags0": [
+      "raw",
+      "json",
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
+    ],
+    "tags1": [
+      "SetScreenConfigRequest"
+    ],
+    "tags2": "Defines request for setting updating screen configuration Screen configurations store user specific system wide layout and settings for different application screens The application plugin identifier The screen identifier within the application Configuration JSON encoded string Useful for direct storage from frontend Configuration structured protobuf Struct Used for programmatic access"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
+    "title": "Model: io.clbs.openhes.models.system.UserProfile",
+    "tags0": [
+      "id",
+      "roles",
+      "timezone",
+      "displayName",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": "Defines the user profile containing identity and preferences for authenticated users User profiles store both read only attributes managed the authentication system and user controlled preferences The unique UUID the user assigned the authentication system read only The user full name preferred display name shown the The authorization roles assigned this user Read only managed the authentication system The user preferred language using IETF language tags The user timezone for displaying dates and times using IANA timezone names"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -3858,143 +3813,188 @@
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
-    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
     "tags0": [
-      "OBJECT_FLAG_UNSPECIFIED",
-      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
-      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
     ],
     "tags1": [
-      "COMMUNICATION",
-      "FLAG",
-      "LOG",
-      "OBJECT",
-      "ObjectFlags",
-      "UNIT",
+      "AES256CBC",
+      "DATA",
+      "PLAIN",
+      "SECRET",
+      "SecretDataDecryptionMethod",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines feature flags and capability indicators for system objects These flags control what operations are available enabled for specific objects Default unspecified flag special behavior The communication unit has detailed logging enabled for diagnostics and troubleshooting"
+    "tags2": "Defines the supported decryption methods for cryptographic secret data These methods are used decrypt device authentication keys and other sensitive credentials Unspecified decryption method invalid should not used Data stored plain text without encryption not recommended for production Data encrypted using AES CBC mode Requires initialization vector"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
     "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
     ],
     "tags1": [
-      "ApplicationConfig"
+      "GF1P",
+      "OAEPM",
+      "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the application wide configuration containing settings for all system components This model stores the actual configuration values that control system behavior The configuration values for each registered component the system"
+    "tags2": "Defines the supported decryption methods for session keys used key wrapping scenarios Session keys provide additional layer security for protecting cryptographic secrets session key used The secret data encrypted directly with the master key Session key stored plain text used when the session key itself not sensitive Session key encrypted using RSA OAEP with MGF1 and SHA Used for secure key transport"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
     "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+      "data",
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
     ],
     "tags1": [
-      "ApplicationConfigDescriptor"
+      "CryptoSecret"
     ],
-    "tags2": "Defines the complete application configuration schema and current values This combines both the field definitions descriptors and the actual configuration values for all components The schema definitions for all registered components The current configuration values for all components"
+    "tags2": "Defines cryptographic secret containing sensitive credentials for device communication Secrets include authentication keys encryption keys and passwords used establish secure connections with devices The security access level this secret relates Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The timestamp when this secret was initially created the system The timestamp when this secret was last modified rotated The actual secret data encryption key password This field contains the decrypted value ready for use"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
     ],
     "tags1": [
-      "ComponentConfig"
+      "CryptoSecrets"
     ],
-    "tags2": "Defines the configuration for single system component microservice Each component can define its own configuration fields through field descriptors The unique component name taskmaster dataproxy api The configuration values field value pairs Fields are defined the component descriptors"
+    "tags2": "Defines list crypto secrets list crypto secrets"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "Defines the configuration schema for component declaring what fields are available Components register their configuration schema startup enable dynamic configuration The unique component name The field descriptors defining available configuration options including types defaults and validation rules"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
-    "tags0": [
-      "objectId",
+      "cryptoId",
       "objectType",
-      "io.clbs.openhes.models.system.ObjectFlagsRequest"
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
     ],
     "tags1": [
-      "ObjectFlagsRequest"
+      "GetCryptoSecretRequest"
     ],
-    "tags2": "Defines the request message for retrieving object flags The object type The object"
+    "tags2": "Defines specification for retrieving crypto secrets The resource type for which the secret defined The driver type for which the secret requested The crypto identifier the secret retrieve"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
-    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
+    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
     "tags0": [
-      "flags",
-      "io.clbs.openhes.models.system.ObjectFlagsResponse"
+      "data",
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
     ],
     "tags1": [
-      "ObjectFlagsResponse"
+      "SetCryptoSecretRequest"
     ],
-    "tags2": "Defines the response message for retrieving object flags The object flags"
+    "tags2": "Defines specification for creating updating crypto secrets The resource type for which the secret defined The driver type for which the secret created updated The crypto identifier the secret create update The security access level for this secret value Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The unique identifier for the key used decrypt either the session key the data directly The method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
-    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
     "tags0": [
-      "screenId",
+      "keys",
       "applicationId",
-      "io.clbs.openhes.models.system.ScreenConfigSelector"
-    ],
-    "tags1": [
-      "ScreenConfigSelector"
-    ],
-    "tags2": "Defines the selection criteria for retrieving specific screen configuration The application plugin identifier The screen identifier within the application"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
-    "tags0": [
-      "raw",
-      "json",
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.SetScreenConfigRequest"
-    ],
-    "tags1": [
-      "SetScreenConfigRequest"
-    ],
-    "tags2": "Defines request for setting updating screen configuration Screen configurations store user specific system wide layout and settings for different application screens The application plugin identifier core scada plugin The screen identifier within the application device list dashboard Configuration JSON encoded string Useful for direct storage from frontend Configuration structured protobuf Struct Used for programmatic access"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
-    "title": "Model: io.clbs.openhes.models.system.UserProfile",
-    "tags0": [
-      "id",
-      "roles",
-      "timezone",
-      "displayName",
       "ietfLanguageTag",
-      "io.clbs.openhes.models.system.UserProfile"
+      "io.clbs.openhes.models.localization.GetTranslationsRequest"
     ],
     "tags1": [
-      "UserProfile"
+      "GetTranslationsRequest"
     ],
-    "tags2": "Defines the user profile containing identity and preferences for authenticated users User profiles store both read only attributes managed the authentication system and user controlled preferences The unique UUID the user assigned the authentication system read only The user full name preferred display name shown the The authorization roles assigned this user admin operator Read only managed the authentication system The user preferred language using IETF language tags The user timezone for displaying dates and times using IANA timezone names America New York Europe Prague"
+    "tags2": "Defines the request for retrieving translations based language and keys The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "tags0": [
+      "translations",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+    ],
+    "tags1": [
+      "GetTranslationsResponse"
+    ],
+    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-missingtranslationrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
+    "tags0": [
+      "key",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.MissingTranslationRequest"
+    ],
+    "tags1": [
+      "MissingTranslationRequest"
+    ],
+    "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
+    "tags0": [
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.TranslationInfo"
+    ],
+    "tags1": [
+      "TranslationInfo"
+    ],
+    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
+    "tags0": [
+      "applications",
+      "io.clbs.openhes.models.localization.TranslationList"
+    ],
+    "tags1": [
+      "TranslationList"
+    ],
+    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
+    "tags0": [
+      "version",
+      "translations",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
+    ],
+    "tags1": [
+      "UpdateTranslationsRequest"
+    ],
+    "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",

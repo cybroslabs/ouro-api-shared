@@ -342,7 +342,10 @@ Cron jobs are persistent scheduled operations that execute automatically accordi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The cron schedule expression in standard format (e.g., "0 * * * <em>" for hourly, "0 0 * * </em>" for daily at midnight).</p></td>
+      <td class="content"><p>The cron schedule expression in standard format.
+@example: "0 * * * <em>"
+@example: "0 0 * * </em>"
+@example: "<em>/15 * * * </em>"</p></td>
       
     </tr>
     
@@ -357,7 +360,10 @@ Cron jobs are persistent scheduled operations that execute automatically accordi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").</p></td>
+      <td class="content"><p>The timezone for schedule interpretation using IANA time zone database names.
+@example: "America/New_York"
+@example: "Europe/Prague"
+@example: "UTC"</p></td>
       
     </tr>
     

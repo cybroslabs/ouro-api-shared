@@ -6,6 +6,6 @@ Defines a selector for identifying device and variable pairs.
 
 | Field | Information |
 | --- | --- |
-| deviceId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique device identifier. |
-| variableId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique variable identifier. |
+| deviceId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The unique device identifier. |
+| variableId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The unique variable identifier. |
 

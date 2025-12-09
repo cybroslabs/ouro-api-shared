@@ -6,7 +6,7 @@ Defines a specification for retrieving crypto secrets.
 
 | Field | Information |
 | --- | --- |
-| objectType | <b>Type:</b> [`io.clbs.openhes.models.common.ObjectType`](enum-io-clbs-openhes-models-common-objecttype.md)<br><b>Description:</b><br>Thehe resource type for which the secret is defined (for example, `BULK`, `DEVICE`). |
-| driverType | <b>Type:</b> `string`<br><b>Description:</b><br>The driver type for which the secret is requested (for example, `METERCONTROL_ST402D_DLMS`). |
-| cryptoId | <b>Type:</b> `string`<br><b>Description:</b><br>The crypto identifier of the secret to retrieve. |
+| objectType | <b>Type:</b> [`io.clbs.openhes.models.common.ObjectType`](enum-io-clbs-openhes-models-common-objecttype.md)<br><b>Description:</b><br>The resource type for which the secret is defined.<br><b>Example:</b> OBJECT_TYPE_DEVICE |
+| driverType | <b>Type:</b> `string`<br><b>Description:</b><br>The driver type for which the secret is requested.<br><b>Example:</b> "LANDISGYR_E650_DLMS_SN" |
+| cryptoId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The crypto identifier of the secret to retrieve. |
 

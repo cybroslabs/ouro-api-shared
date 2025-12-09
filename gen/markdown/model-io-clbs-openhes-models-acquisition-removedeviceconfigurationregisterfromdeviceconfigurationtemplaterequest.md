@@ -6,7 +6,7 @@ Defines the specification for removing device configuration registers to device 
 
 | Field | Information |
 | --- | --- |
-| dctId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique device configuration template identifier. |
-| registerId | <b>Type:</b> `string`<br><b>Description:</b><br>A list of device configuration register identifiers. |
-| scadaRegisterId | <b>Type:</b> `string`<br><b>Description:</b><br>A list of SCADA register identifiers. |
+| dctId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>The unique device configuration template identifier. |
+| registerId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>A list of device configuration register identifiers used by standard readout. |
+| scadaRegisterId | <b>Type:</b> `string - UUID`<br><b>Description:</b><br>A list of device configuration register identifiers used by SCADA readout. |
 

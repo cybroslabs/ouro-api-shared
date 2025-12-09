@@ -33,8 +33,16 @@ message CronJob {
 // Defines the cron job specification containing scheduling and execution details.
 message CronJobSpec {
     CronJobTypeEnum type        = 1;  // The type of operation to execute (e.g., START_BULK, START_PROXY_BULK).
-    string schedule             = 2;  // The cron schedule expression in standard format (e.g., "0 * * * *" for hourly, "0 0 * * *" for daily at midnight).
-    string timezone             = 3;  // The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").
+    // The cron schedule expression in standard format.
+    // @example: "0 * * * *"
+    // @example: "0 0 * * *"
+    // @example: "*/15 * * * *"
+    string schedule             = 2;
+    // The timezone for schedule interpretation using IANA time zone database names.
+    // @example: "America/New_York"
+    // @example: "Europe/Prague"
+    // @example: "UTC"
+    string timezone             = 3;
     bool suspend                = 4;  // When true, the cron job is paused and will not execute until resumed. Default is false.
     google.protobuf.Struct data = 5;  // The type-specific payload passed to the operation when it executes (e.g., bulk specification for START_BULK type).
 }

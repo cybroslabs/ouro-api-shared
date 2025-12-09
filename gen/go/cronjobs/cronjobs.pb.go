@@ -451,8 +451,16 @@ func (x *CronJobSpec) ClearData() {
 type CronJobSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Type     *CronJobTypeEnum
+	Type *CronJobTypeEnum
+	// The cron schedule expression in standard format.
+	// @example: "0 * * * *"
+	// @example: "0 0 * * *"
+	// @example: "*/15 * * * *"
 	Schedule *string
+	// The timezone for schedule interpretation using IANA time zone database names.
+	// @example: "America/New_York"
+	// @example: "Europe/Prague"
+	// @example: "UTC"
 	Timezone *string
 	Suspend  *bool
 	Data     *structpb.Struct

@@ -63,7 +63,10 @@ export const ApplicationConfigSchema: GenMessage<ApplicationConfig, {jsonType: A
  */
 export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentConfig"> & {
   /**
-   * The unique component name (e.g., "taskmaster", "dataproxy", "api").
+   * The unique component name.
+   * @example: "ouro-core-taskmaster"
+   * @example: "ouro-core-dataproxy"
+   * @example: "ouro-api"
    *
    * @generated from field: string name = 1;
    */
@@ -85,7 +88,10 @@ export type ComponentConfig = Message<"io.clbs.openhes.models.system.ComponentCo
  */
 export type ComponentConfigJson = {
   /**
-   * The unique component name (e.g., "taskmaster", "dataproxy", "api").
+   * The unique component name.
+   * @example: "ouro-core-taskmaster"
+   * @example: "ouro-core-dataproxy"
+   * @example: "ouro-api"
    *
    * @generated from field: string name = 1;
    */
@@ -366,6 +372,7 @@ export const LicenseSchema: GenMessage<License, {jsonType: LicenseJson}> = /*@__
 export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> & {
   /**
    * The unique UUID of the user assigned by the authentication system (read-only).
+   * @gqltype: UUID
    *
    * @generated from field: string id = 1;
    */
@@ -373,27 +380,37 @@ export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> &
 
   /**
    * The user's full name or preferred display name shown in the UI.
+   * @example: "John Doe"
+   * @example: "Jane Smith"
    *
    * @generated from field: string display_name = 2;
    */
   displayName: string;
 
   /**
-   * The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.
+   * The authorization roles assigned to this user. Read-only, managed by the authentication system.
+   * @example: ["admin", "operator"]
+   * @example: ["viewer"]
    *
    * @generated from field: repeated string roles = 3;
    */
   roles: string[];
 
   /**
-   * The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").
+   * The user's preferred UI language using IETF language tags.
+   * @example: "en-US"
+   * @example: "cs-CZ"
+   * @example: "de-DE"
    *
    * @generated from field: string ietf_language_tag = 4;
    */
   ietfLanguageTag: string;
 
   /**
-   * The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").
+   * The user's timezone for displaying dates and times using IANA timezone names.
+   * @example: "America/New_York"
+   * @example: "Europe/Prague"
+   * @example: "Asia/Tokyo"
    *
    * @generated from field: string timezone = 5;
    */
@@ -409,6 +426,7 @@ export type UserProfile = Message<"io.clbs.openhes.models.system.UserProfile"> &
 export type UserProfileJson = {
   /**
    * The unique UUID of the user assigned by the authentication system (read-only).
+   * @gqltype: UUID
    *
    * @generated from field: string id = 1;
    */
@@ -416,27 +434,37 @@ export type UserProfileJson = {
 
   /**
    * The user's full name or preferred display name shown in the UI.
+   * @example: "John Doe"
+   * @example: "Jane Smith"
    *
    * @generated from field: string display_name = 2;
    */
   displayName?: string;
 
   /**
-   * The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.
+   * The authorization roles assigned to this user. Read-only, managed by the authentication system.
+   * @example: ["admin", "operator"]
+   * @example: ["viewer"]
    *
    * @generated from field: repeated string roles = 3;
    */
   roles?: string[];
 
   /**
-   * The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").
+   * The user's preferred UI language using IETF language tags.
+   * @example: "en-US"
+   * @example: "cs-CZ"
+   * @example: "de-DE"
    *
    * @generated from field: string ietf_language_tag = 4;
    */
   ietfLanguageTag?: string;
 
   /**
-   * The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").
+   * The user's timezone for displaying dates and times using IANA timezone names.
+   * @example: "America/New_York"
+   * @example: "Europe/Prague"
+   * @example: "Asia/Tokyo"
    *
    * @generated from field: string timezone = 5;
    */
@@ -458,14 +486,19 @@ export const UserProfileSchema: GenMessage<UserProfile, {jsonType: UserProfileJs
  */
 export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetScreenConfigRequest"> & {
   /**
-   * The application or UI plugin identifier (e.g., "core", "scada-plugin").
+   * The application or UI plugin identifier.
+   * @example: "core"
+   * @example: "scada-plugin"
    *
    * @generated from field: string application_id = 1;
    */
   applicationId: string;
 
   /**
-   * The screen identifier within the application (e.g., "device-list", "dashboard").
+   * The screen identifier within the application.
+   * @example: "device-list"
+   * @example: "dashboard"
+   * @example: "bulk-overview"
    *
    * @generated from field: string screen_id = 2;
    */
@@ -503,14 +536,19 @@ export type SetScreenConfigRequest = Message<"io.clbs.openhes.models.system.SetS
  */
 export type SetScreenConfigRequestJson = {
   /**
-   * The application or UI plugin identifier (e.g., "core", "scada-plugin").
+   * The application or UI plugin identifier.
+   * @example: "core"
+   * @example: "scada-plugin"
    *
    * @generated from field: string application_id = 1;
    */
   applicationId?: string;
 
   /**
-   * The screen identifier within the application (e.g., "device-list", "dashboard").
+   * The screen identifier within the application.
+   * @example: "device-list"
+   * @example: "dashboard"
+   * @example: "bulk-overview"
    *
    * @generated from field: string screen_id = 2;
    */
@@ -595,15 +633,16 @@ export const ScreenConfigSelectorSchema: GenMessage<ScreenConfigSelector, {jsonT
 export type ObjectFlagsRequest = Message<"io.clbs.openhes.models.system.ObjectFlagsRequest"> & {
   /**
    * The object type.
+   * @example: OBJECT_TYPE_DEVICE
+   * @example: OBJECT_TYPE_COMMUNICATION_UNIT
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType: ObjectType;
 
   /**
-   * @gqltype: UUID
-   *
    * The object ID.
+   * @gqltype: UUID
    *
    * @generated from field: string object_id = 2;
    */
@@ -618,15 +657,16 @@ export type ObjectFlagsRequest = Message<"io.clbs.openhes.models.system.ObjectFl
 export type ObjectFlagsRequestJson = {
   /**
    * The object type.
+   * @example: OBJECT_TYPE_DEVICE
+   * @example: OBJECT_TYPE_COMMUNICATION_UNIT
    *
    * @generated from field: io.clbs.openhes.models.common.ObjectType object_type = 1;
    */
   objectType?: ObjectTypeJson;
 
   /**
-   * @gqltype: UUID
-   *
    * The object ID.
+   * @gqltype: UUID
    *
    * @generated from field: string object_id = 2;
    */

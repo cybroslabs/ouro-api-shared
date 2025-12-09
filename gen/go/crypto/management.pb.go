@@ -234,9 +234,17 @@ func (x *GetCryptoSecretRequest) ClearCryptoId() {
 type GetCryptoSecretRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The resource type for which the secret is defined.
+	// @example: OBJECT_TYPE_BULK
+	// @example: OBJECT_TYPE_DEVICE
 	ObjectType *common.ObjectType
+	// The driver type for which the secret is requested.
+	// @example: "METERCONTROL_ST402D_DLMS"
+	// @example: "LANDISGYR_E650_DLMS_SN"
 	DriverType *string
-	CryptoId   *string
+	// The crypto identifier of the secret to retrieve.
+	// @gqltype: UUID
+	CryptoId *string
 }
 
 func (b0 GetCryptoSecretRequest_builder) Build() *GetCryptoSecretRequest {
@@ -486,11 +494,21 @@ func (x *CryptoSecret) ClearData() {
 type CryptoSecret_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The security access level this secret relates to. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+	// @example: "1"
+	// @example: "2"
+	// @example: "G"
+	// @example: "cert"
 	AccessLevel *string
-	KeyId       *string
-	CreatedAt   *timestamppb.Timestamp
-	UpdatedAt   *timestamppb.Timestamp
-	Data        []byte
+	// The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+	// @example: "AK"
+	// @example: "EK"
+	// @example: "PW"
+	// @example: "CERT"
+	KeyId     *string
+	CreatedAt *timestamppb.Timestamp
+	UpdatedAt *timestamppb.Timestamp
+	Data      []byte
 }
 
 func (b0 CryptoSecret_builder) Build() *CryptoSecret {
@@ -856,11 +874,31 @@ func (x *SetCryptoSecretRequest) ClearData() {
 type SetCryptoSecretRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ObjectType                 *common.ObjectType
-	DriverType                 *string
-	CryptoId                   *string
-	AccessLevel                *string
-	KeyId                      *string
+	// The resource type for which the secret is defined.
+	// @example: OBJECT_TYPE_BULK
+	// @example: OBJECT_TYPE_DEVICE
+	ObjectType *common.ObjectType
+	// The driver type for which the secret is created or updated.
+	// @example: "METERCONTROL_ST402D_DLMS"
+	// @example: "LANDISGYR_E650_DLMS_SN"
+	DriverType *string
+	// The crypto identifier of the secret to create or update.
+	// @gqltype: UUID
+	CryptoId *string
+	// The security access level for this secret value. Maps to DLMS/COSEM association levels or similar concepts in other protocols.
+	// @example: "1"
+	// @example: "2"
+	// @example: "G"
+	// @example: "cert"
+	AccessLevel *string
+	// The unique identifier for this secret value. Used to distinguish between multiple crypto secrets within the same device.
+	// @example: "AK"
+	// @example: "EK"
+	// @example: "PW"
+	// @example: "CERT"
+	KeyId *string
+	// The unique identifier for the key used to decrypt either the session key or the data directly.
+	// @gqltype: UUID
 	DecryptionSecretId         *string
 	SessionKeyDecryptionMethod *SecretSessionKeyDecryptionMethod
 	SessionKey                 []byte

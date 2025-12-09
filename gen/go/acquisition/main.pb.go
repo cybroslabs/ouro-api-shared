@@ -6032,7 +6032,11 @@ func (x *AddRegisterToVariableRequest) ClearVariableId() {
 type AddRegisterToVariableRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique variable identifier.
+	// @gqltype: UUID
 	VariableId *string
+	// A list of register identifiers.
+	// @gqltype: UUID
 	RegisterId []string
 }
 
@@ -6125,7 +6129,11 @@ func (x *RemoveRegisterFromVariableRequest) ClearVariableId() {
 type RemoveRegisterFromVariableRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique identifier of the variable.
+	// @gqltype: UUID
 	VariableId *string
+	// A list of register identifiers.
+	// @gqltype: UUID
 	RegisterId []string
 }
 
@@ -6611,10 +6619,17 @@ func (x *DeviceConfigurationRegisterMapRecord) ClearRegisterName() {
 type DeviceConfigurationRegisterMapRecord_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	RegisterId       *int64
+	RegisterId *int64
+	// The public register identifier.
+	// @gqltype: UUID
 	PublicRegisterId *string
-	RegisterName     *string
-	VariableName     []string
+	// The register name.
+	// @example: "L+G E570 Active Energy Import (Total)"
+	// @example: "L+G E570 Active Energy Export (Total)"
+	RegisterName *string
+	// Variable names, if the register is assigned to any.
+	// @example: ["A+", "Energy Import"]
+	VariableName []string
 }
 
 func (b0 DeviceConfigurationRegisterMapRecord_builder) Build() *DeviceConfigurationRegisterMapRecord {
@@ -7006,8 +7021,15 @@ func (x *DeviceConfigurationTemplateSpec) ClearDriverType() {
 type DeviceConfigurationTemplateSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DriverType      *string
-	RegisterId      []string
+	// The driver type.
+	// @example: "METERCONTROL_ST402D_DLMS"
+	// @example: "LANDISGYR_E650_DLMS_SN"
+	DriverType *string
+	// A list of device configuration register identifiers used by standard readout.
+	// @gqltype: UUID
+	RegisterId []string
+	// A list of device configuration register identifiers used by SCADA readout.
+	// @gqltype: UUID
 	ScadaRegisterId []string
 }
 
@@ -7113,8 +7135,14 @@ func (x *AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest) Cle
 type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DctId           *string
-	RegisterId      []string
+	// The unique device configuration template identifier.
+	// @gqltype: UUID
+	DctId *string
+	// A list of device configuration register identifiers used by standard readout.
+	// @gqltype: UUID
+	RegisterId []string
+	// A list of device configuration register identifiers used by SCADA readout.
+	// @gqltype: UUID
 	ScadaRegisterId []string
 }
 
@@ -7220,8 +7248,14 @@ func (x *RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest
 type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DctId           *string
-	RegisterId      []string
+	// The unique device configuration template identifier.
+	// @gqltype: UUID
+	DctId *string
+	// A list of device configuration register identifiers used by standard readout.
+	// @gqltype: UUID
+	RegisterId []string
+	// A list of device configuration register identifiers used by SCADA readout.
+	// @gqltype: UUID
 	ScadaRegisterId []string
 }
 
@@ -7528,7 +7562,11 @@ func (x *GetDeviceDataSeriesSelector) ClearVariableId() {
 type GetDeviceDataSeriesSelector_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DeviceId   *string
+	// The unique device identifier.
+	// @gqltype: UUID
+	DeviceId *string
+	// The unique variable identifier.
+	// @gqltype: UUID
 	VariableId *string
 }
 
@@ -7686,6 +7724,8 @@ func (x *DeviceDeviceData) ClearDeviceId() {
 type DeviceDeviceData_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique device identifier.
+	// @gqltype: UUID
 	DeviceId *string
 	Data     []*VariableDeviceData
 }
@@ -7807,10 +7847,15 @@ func (x *VariableDeviceData) ClearVariableId() {
 type VariableDeviceData_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique variable identifier.
+	// @gqltype: UUID
 	VariableId *string
 	Timestamps []*timestamppb.Timestamp
-	Units      []string
-	Values     []*MeasuredValue
+	// A list of units for the variable data.
+	// @example: ["kWh", "kWh", "kWh"]
+	// @example: ["V", "V", "V"]
+	Units  []string
+	Values []*MeasuredValue
 }
 
 func (b0 VariableDeviceData_builder) Build() *VariableDeviceData {
@@ -8014,7 +8059,11 @@ func (x *DeviceDataInfoSpec) ClearRegisterId() {
 type DeviceDataInfoSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DeviceId   *string
+	// The unique device identifier.
+	// @gqltype: UUID
+	DeviceId *string
+	// The unique register identifier.
+	// @gqltype: UUID
 	RegisterId *string
 }
 
@@ -8146,9 +8195,15 @@ func (x *DeviceDataInfoStatus) ClearLastValueAt() {
 type DeviceDataInfoStatus_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The register name.
+	// @example: "L+G E570 Active Energy Import (Total)"
+	// @example: "L+G E570 Voltage L1"
 	RegisterName *string
-	Period       *int32
-	LastValueAt  *timestamppb.Timestamp
+	// The period of the regular profile values, if applicable (in minutes).
+	// @example: 15
+	// @example: 60
+	Period      *int32
+	LastValueAt *timestamppb.Timestamp
 }
 
 func (b0 DeviceDataInfoStatus_builder) Build() *DeviceDataInfoStatus {
@@ -8372,7 +8427,9 @@ type GetDeviceEventsRequest_builder struct {
 
 	RangeStart *timestamppb.Timestamp
 	RangeEnd   *timestamppb.Timestamp
-	DeviceId   *string
+	// The unique identifier of the device.
+	// @gqltype: UUID
+	DeviceId *string
 }
 
 func (b0 GetDeviceEventsRequest_builder) Build() *GetDeviceEventsRequest {
@@ -8501,7 +8558,9 @@ type GetDeviceBulksRequest_builder struct {
 
 	RangeStart *timestamppb.Timestamp
 	RangeEnd   *timestamppb.Timestamp
-	DeviceId   *string
+	// The unique identifier of the device.
+	// @gqltype: UUID
+	DeviceId *string
 }
 
 func (b0 GetDeviceBulksRequest_builder) Build() *GetDeviceBulksRequest {
@@ -9284,9 +9343,17 @@ func (x *FirmwareImageSpec) ClearDescription() {
 type FirmwareImageSpec_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	DriverType  *string
-	Version     *string
-	Content     []*FirmwareImageFile
+	// The driver type.
+	// @example: "METERCONTROL_ST402D_DLMS"
+	// @example: "LANDISGYR_E650_DLMS_SN"
+	DriverType *string
+	// The firmware version.
+	// @example: "1.2.3"
+	// @example: "v2.0.1"
+	Version *string
+	Content []*FirmwareImageFile
+	// The firmware image description.
+	// @example: "Firmware update for ST402D meters - bug fixes and performance improvements"
 	Description *string
 	Attributes  map[string]*common.FieldValue
 }
@@ -9402,6 +9469,9 @@ func (x *FirmwareImageFile) ClearFileSize() {
 type FirmwareImageFile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The firmware image file name.
+	// @example: "firmware.bin"
+	// @example: "bootloader.hex"
 	FileName *string
 	FileSize *int32
 }
@@ -9564,10 +9634,14 @@ func (x *GetFirmwareImageBlockRequest) ClearBlockIndex() {
 type GetFirmwareImageBlockRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique firmware image identifier.
+	// @gqltype: UUID
 	FirmwareImageId *string
-	FileName        *string
-	BlockSize       *int32
-	BlockIndex      *int32
+	// The firmware image file name.
+	// @example: "firmware.bin"
+	FileName   *string
+	BlockSize  *int32
+	BlockIndex *int32
 }
 
 func (b0 GetFirmwareImageBlockRequest_builder) Build() *GetFirmwareImageBlockRequest {
@@ -9789,12 +9863,16 @@ func (x *StreamUploadFirmwareImageRequest) ClearBlockData() {
 type StreamUploadFirmwareImageRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique firmware image identifier.
+	// @gqltype: UUID
 	FirmwareImageId *string
-	FileName        *string
-	BlockSize       *int32
-	BlockIndex      *int32
-	LastBlock       *bool
-	BlockData       []byte
+	// The firmware image file name.
+	// @example: "firmware.bin"
+	FileName   *string
+	BlockSize  *int32
+	BlockIndex *int32
+	LastBlock  *bool
+	BlockData  []byte
 }
 
 func (b0 StreamUploadFirmwareImageRequest_builder) Build() *StreamUploadFirmwareImageRequest {
@@ -10030,8 +10108,12 @@ func (x *StreamDownloadFirmwareImageFileRequest) ClearFileName() {
 type StreamDownloadFirmwareImageFileRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique firmware image identifier.
+	// @gqltype: UUID
 	FirmwareImageId *string
-	FileName        *string
+	// The firmware image file name.
+	// @example: "firmware.bin"
+	FileName *string
 }
 
 func (b0 StreamDownloadFirmwareImageFileRequest_builder) Build() *StreamDownloadFirmwareImageFileRequest {

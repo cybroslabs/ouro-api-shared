@@ -338,7 +338,10 @@ Each component can define its own configuration fields through field descriptors
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique component name (e.g., "taskmaster", "dataproxy", "api").</p></td>
+      <td class="content"><p>The unique component name.
+@example: "ouro-core-taskmaster"
+@example: "ouro-core-dataproxy"
+@example: "ouro-api"</p></td>
       
     </tr>
     
@@ -474,7 +477,9 @@ Components register their configuration schema at startup to enable dynamic conf
     </a>
         </code>
       </td>
-      <td class="content"><p>The object type.</p></td>
+      <td class="content"><p>The object type.
+@example: OBJECT_TYPE_DEVICE
+@example: OBJECT_TYPE_COMMUNICATION_UNIT</p></td>
       
     </tr>
     
@@ -489,8 +494,8 @@ Components register their configuration schema at startup to enable dynamic conf
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>@gqltype: UUID</p>
-<p>The object ID.</p></td>
+      <td class="content"><p>The object ID.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -659,7 +664,9 @@ Screen configurations store user-specific or system-wide UI layout and settings 
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The application or UI plugin identifier (e.g., "core", "scada-plugin").</p></td>
+      <td class="content"><p>The application or UI plugin identifier.
+@example: "core"
+@example: "scada-plugin"</p></td>
       
     </tr>
     
@@ -674,7 +681,10 @@ Screen configurations store user-specific or system-wide UI layout and settings 
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The screen identifier within the application (e.g., "device-list", "dashboard").</p></td>
+      <td class="content"><p>The screen identifier within the application.
+@example: "device-list"
+@example: "dashboard"
+@example: "bulk-overview"</p></td>
       
     </tr>
     
@@ -774,7 +784,8 @@ User profiles store both read-only attributes managed by the authentication syst
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique UUID of the user assigned by the authentication system (read-only).</p></td>
+      <td class="content"><p>The unique UUID of the user assigned by the authentication system (read-only).
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -789,7 +800,9 @@ User profiles store both read-only attributes managed by the authentication syst
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The user's full name or preferred display name shown in the UI.</p></td>
+      <td class="content"><p>The user's full name or preferred display name shown in the UI.
+@example: "John Doe"
+@example: "Jane Smith"</p></td>
       
     </tr>
     
@@ -806,7 +819,9 @@ User profiles store both read-only attributes managed by the authentication syst
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.</p></td>
+      <td class="content"><p>The authorization roles assigned to this user. Read-only, managed by the authentication system.
+@example: ["admin", "operator"]
+@example: ["viewer"]</p></td>
       
     </tr>
     
@@ -821,7 +836,10 @@ User profiles store both read-only attributes managed by the authentication syst
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").</p></td>
+      <td class="content"><p>The user's preferred UI language using IETF language tags.
+@example: "en-US"
+@example: "cs-CZ"
+@example: "de-DE"</p></td>
       
     </tr>
     
@@ -836,7 +854,10 @@ User profiles store both read-only attributes managed by the authentication syst
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").</p></td>
+      <td class="content"><p>The user's timezone for displaying dates and times using IANA timezone names.
+@example: "America/New_York"
+@example: "Europe/Prague"
+@example: "Asia/Tokyo"</p></td>
       
     </tr>
     

@@ -3016,6 +3016,7 @@ export const VariableSpecSchema: GenMessage<VariableSpec, {jsonType: VariableSpe
 export type AddRegisterToVariableRequest = Message<"io.clbs.openhes.models.acquisition.AddRegisterToVariableRequest"> & {
   /**
    * The unique variable identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 1;
    */
@@ -3023,6 +3024,7 @@ export type AddRegisterToVariableRequest = Message<"io.clbs.openhes.models.acqui
 
   /**
    * A list of register identifiers.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3037,6 +3039,7 @@ export type AddRegisterToVariableRequest = Message<"io.clbs.openhes.models.acqui
 export type AddRegisterToVariableRequestJson = {
   /**
    * The unique variable identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 1;
    */
@@ -3044,6 +3047,7 @@ export type AddRegisterToVariableRequestJson = {
 
   /**
    * A list of register identifiers.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3065,6 +3069,7 @@ export const AddRegisterToVariableRequestSchema: GenMessage<AddRegisterToVariabl
 export type RemoveRegisterFromVariableRequest = Message<"io.clbs.openhes.models.acquisition.RemoveRegisterFromVariableRequest"> & {
   /**
    * The unique identifier of the variable.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 1;
    */
@@ -3072,6 +3077,7 @@ export type RemoveRegisterFromVariableRequest = Message<"io.clbs.openhes.models.
 
   /**
    * A list of register identifiers.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3086,6 +3092,7 @@ export type RemoveRegisterFromVariableRequest = Message<"io.clbs.openhes.models.
 export type RemoveRegisterFromVariableRequestJson = {
   /**
    * The unique identifier of the variable.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 1;
    */
@@ -3093,6 +3100,7 @@ export type RemoveRegisterFromVariableRequestJson = {
 
   /**
    * A list of register identifiers.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
@@ -3303,6 +3311,7 @@ export type DeviceConfigurationRegisterMapRecord = Message<"io.clbs.openhes.mode
 
   /**
    * The public register identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string public_register_id = 2;
    */
@@ -3310,6 +3319,8 @@ export type DeviceConfigurationRegisterMapRecord = Message<"io.clbs.openhes.mode
 
   /**
    * The register name.
+   * @example: "L+G E570 Active Energy Import (Total)"
+   * @example: "L+G E570 Active Energy Export (Total)"
    *
    * @generated from field: string register_name = 3;
    */
@@ -3317,6 +3328,7 @@ export type DeviceConfigurationRegisterMapRecord = Message<"io.clbs.openhes.mode
 
   /**
    * Variable names, if the register is assigned to any.
+   * @example: ["A+", "Energy Import"]
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -3338,6 +3350,7 @@ export type DeviceConfigurationRegisterMapRecordJson = {
 
   /**
    * The public register identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string public_register_id = 2;
    */
@@ -3345,6 +3358,8 @@ export type DeviceConfigurationRegisterMapRecordJson = {
 
   /**
    * The register name.
+   * @example: "L+G E570 Active Energy Import (Total)"
+   * @example: "L+G E570 Active Energy Export (Total)"
    *
    * @generated from field: string register_name = 3;
    */
@@ -3352,6 +3367,7 @@ export type DeviceConfigurationRegisterMapRecordJson = {
 
   /**
    * Variable names, if the register is assigned to any.
+   * @example: ["A+", "Energy Import"]
    *
    * @generated from field: repeated string variable_name = 4;
    */
@@ -3520,20 +3536,24 @@ export const DeviceConfigurationTemplateSchema: GenMessage<DeviceConfigurationTe
 export type DeviceConfigurationTemplateSpec = Message<"io.clbs.openhes.models.acquisition.DeviceConfigurationTemplateSpec"> & {
   /**
    * The driver type.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 1;
    */
   driverType: string;
 
   /**
-   * A list of device configuration register identifiers.
+   * A list of device configuration register identifiers used by standard readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
   registerId: string[];
 
   /**
-   * A list of SCADA register identifiers.
+   * A list of device configuration register identifiers used by SCADA readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string scada_register_id = 3;
    */
@@ -3548,20 +3568,24 @@ export type DeviceConfigurationTemplateSpec = Message<"io.clbs.openhes.models.ac
 export type DeviceConfigurationTemplateSpecJson = {
   /**
    * The driver type.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 1;
    */
   driverType?: string;
 
   /**
-   * A list of device configuration register identifiers.
+   * A list of device configuration register identifiers used by standard readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
   registerId?: string[];
 
   /**
-   * A list of SCADA register identifiers.
+   * A list of device configuration register identifiers used by SCADA readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string scada_register_id = 3;
    */
@@ -3583,20 +3607,23 @@ export const DeviceConfigurationTemplateSpecSchema: GenMessage<DeviceConfigurati
 export type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest = Message<"io.clbs.openhes.models.acquisition.AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest"> & {
   /**
    * The unique device configuration template identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string dct_id = 1;
    */
   dctId: string;
 
   /**
-   * A list of device configuration register identifiers.
+   * A list of device configuration register identifiers used by standard readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
   registerId: string[];
 
   /**
-   * A list of SCADA register identifiers.
+   * A list of device configuration register identifiers used by SCADA readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string scada_register_id = 3;
    */
@@ -3611,20 +3638,23 @@ export type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequest =
 export type AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequestJson = {
   /**
    * The unique device configuration template identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string dct_id = 1;
    */
   dctId?: string;
 
   /**
-   * A list of device configuration register identifiers.
+   * A list of device configuration register identifiers used by standard readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
   registerId?: string[];
 
   /**
-   * A list of SCADA register identifiers.
+   * A list of device configuration register identifiers used by SCADA readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string scada_register_id = 3;
    */
@@ -3646,20 +3676,23 @@ export const AddDeviceConfigurationRegisterToDeviceConfigurationTemplateRequestS
 export type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest = Message<"io.clbs.openhes.models.acquisition.RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequest"> & {
   /**
    * The unique device configuration template identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string dct_id = 1;
    */
   dctId: string;
 
   /**
-   * A list of device configuration register identifiers.
+   * A list of device configuration register identifiers used by standard readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
   registerId: string[];
 
   /**
-   * A list of SCADA register identifiers.
+   * A list of device configuration register identifiers used by SCADA readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string scada_register_id = 3;
    */
@@ -3674,20 +3707,23 @@ export type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequ
 export type RemoveDeviceConfigurationRegisterFromDeviceConfigurationTemplateRequestJson = {
   /**
    * The unique device configuration template identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string dct_id = 1;
    */
   dctId?: string;
 
   /**
-   * A list of device configuration register identifiers.
+   * A list of device configuration register identifiers used by standard readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string register_id = 2;
    */
   registerId?: string[];
 
   /**
-   * A list of SCADA register identifiers.
+   * A list of device configuration register identifiers used by SCADA readout.
+   * @gqltype: UUID
    *
    * @generated from field: repeated string scada_register_id = 3;
    */
@@ -3814,6 +3850,7 @@ export const GetDeviceDataRequestSchema: GenMessage<GetDeviceDataRequest, {jsonT
 export type GetDeviceDataSeriesSelector = Message<"io.clbs.openhes.models.acquisition.GetDeviceDataSeriesSelector"> & {
   /**
    * The unique device identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 1;
    */
@@ -3821,6 +3858,7 @@ export type GetDeviceDataSeriesSelector = Message<"io.clbs.openhes.models.acquis
 
   /**
    * The unique variable identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 2;
    */
@@ -3835,6 +3873,7 @@ export type GetDeviceDataSeriesSelector = Message<"io.clbs.openhes.models.acquis
 export type GetDeviceDataSeriesSelectorJson = {
   /**
    * The unique device identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 1;
    */
@@ -3842,6 +3881,7 @@ export type GetDeviceDataSeriesSelectorJson = {
 
   /**
    * The unique variable identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 2;
    */
@@ -3898,6 +3938,7 @@ export const DeviceDataSchema: GenMessage<DeviceData, {jsonType: DeviceDataJson}
 export type DeviceDeviceData = Message<"io.clbs.openhes.models.acquisition.DeviceDeviceData"> & {
   /**
    * The unique device identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 1;
    */
@@ -3919,6 +3960,7 @@ export type DeviceDeviceData = Message<"io.clbs.openhes.models.acquisition.Devic
 export type DeviceDeviceDataJson = {
   /**
    * The unique device identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 1;
    */
@@ -3947,6 +3989,7 @@ export const DeviceDeviceDataSchema: GenMessage<DeviceDeviceData, {jsonType: Dev
 export type VariableDeviceData = Message<"io.clbs.openhes.models.acquisition.VariableDeviceData"> & {
   /**
    * The unique variable identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 1;
    */
@@ -3961,6 +4004,8 @@ export type VariableDeviceData = Message<"io.clbs.openhes.models.acquisition.Var
 
   /**
    * A list of units for the variable data.
+   * @example: ["kWh", "kWh", "kWh"]
+   * @example: ["V", "V", "V"]
    *
    * @generated from field: repeated string units = 3;
    */
@@ -3982,6 +4027,7 @@ export type VariableDeviceData = Message<"io.clbs.openhes.models.acquisition.Var
 export type VariableDeviceDataJson = {
   /**
    * The unique variable identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string variable_id = 1;
    */
@@ -3996,6 +4042,8 @@ export type VariableDeviceDataJson = {
 
   /**
    * A list of units for the variable data.
+   * @example: ["kWh", "kWh", "kWh"]
+   * @example: ["V", "V", "V"]
    *
    * @generated from field: repeated string units = 3;
    */
@@ -4073,6 +4121,7 @@ export const DeviceDataInfoSchema: GenMessage<DeviceDataInfo, {jsonType: DeviceD
 export type DeviceDataInfoSpec = Message<"io.clbs.openhes.models.acquisition.DeviceDataInfoSpec"> & {
   /**
    * The unique device identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 1;
    */
@@ -4080,6 +4129,7 @@ export type DeviceDataInfoSpec = Message<"io.clbs.openhes.models.acquisition.Dev
 
   /**
    * The unique register identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string register_id = 2;
    */
@@ -4094,6 +4144,7 @@ export type DeviceDataInfoSpec = Message<"io.clbs.openhes.models.acquisition.Dev
 export type DeviceDataInfoSpecJson = {
   /**
    * The unique device identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 1;
    */
@@ -4101,6 +4152,7 @@ export type DeviceDataInfoSpecJson = {
 
   /**
    * The unique register identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string register_id = 2;
    */
@@ -4122,13 +4174,17 @@ export const DeviceDataInfoSpecSchema: GenMessage<DeviceDataInfoSpec, {jsonType:
 export type DeviceDataInfoStatus = Message<"io.clbs.openhes.models.acquisition.DeviceDataInfoStatus"> & {
   /**
    * The register name.
+   * @example: "L+G E570 Active Energy Import (Total)"
+   * @example: "L+G E570 Voltage L1"
    *
    * @generated from field: string register_name = 1;
    */
   registerName: string;
 
   /**
-   * The period of the regular profile values, if applicable.
+   * The period of the regular profile values, if applicable (in minutes).
+   * @example: 15
+   * @example: 60
    *
    * @generated from field: int32 period = 2;
    */
@@ -4150,13 +4206,17 @@ export type DeviceDataInfoStatus = Message<"io.clbs.openhes.models.acquisition.D
 export type DeviceDataInfoStatusJson = {
   /**
    * The register name.
+   * @example: "L+G E570 Active Energy Import (Total)"
+   * @example: "L+G E570 Voltage L1"
    *
    * @generated from field: string register_name = 1;
    */
   registerName?: string;
 
   /**
-   * The period of the regular profile values, if applicable.
+   * The period of the regular profile values, if applicable (in minutes).
+   * @example: 15
+   * @example: 60
    *
    * @generated from field: int32 period = 2;
    */
@@ -4248,6 +4308,7 @@ export type GetDeviceEventsRequest = Message<"io.clbs.openhes.models.acquisition
 
   /**
    * The unique identifier of the device.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 3;
    */
@@ -4276,6 +4337,7 @@ export type GetDeviceEventsRequestJson = {
 
   /**
    * The unique identifier of the device.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 3;
    */
@@ -4311,6 +4373,7 @@ export type GetDeviceBulksRequest = Message<"io.clbs.openhes.models.acquisition.
 
   /**
    * The unique identifier of the device.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 3;
    */
@@ -4339,6 +4402,7 @@ export type GetDeviceBulksRequestJson = {
 
   /**
    * The unique identifier of the device.
+   * @gqltype: UUID
    *
    * @generated from field: string device_id = 3;
    */
@@ -4689,6 +4753,8 @@ export const FirmwareImageSchema: GenMessage<FirmwareImage, {jsonType: FirmwareI
 export type FirmwareImageSpec = Message<"io.clbs.openhes.models.acquisition.FirmwareImageSpec"> & {
   /**
    * The driver type.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 1;
    */
@@ -4696,6 +4762,8 @@ export type FirmwareImageSpec = Message<"io.clbs.openhes.models.acquisition.Firm
 
   /**
    * The firmware version.
+   * @example: "1.2.3"
+   * @example: "v2.0.1"
    *
    * @generated from field: string version = 2;
    */
@@ -4710,6 +4778,7 @@ export type FirmwareImageSpec = Message<"io.clbs.openhes.models.acquisition.Firm
 
   /**
    * The firmware image description.
+   * @example: "Firmware update for ST402D meters - bug fixes and performance improvements"
    *
    * @generated from field: string description = 4;
    */
@@ -4731,6 +4800,8 @@ export type FirmwareImageSpec = Message<"io.clbs.openhes.models.acquisition.Firm
 export type FirmwareImageSpecJson = {
   /**
    * The driver type.
+   * @example: "METERCONTROL_ST402D_DLMS"
+   * @example: "LANDISGYR_E650_DLMS_SN"
    *
    * @generated from field: string driver_type = 1;
    */
@@ -4738,6 +4809,8 @@ export type FirmwareImageSpecJson = {
 
   /**
    * The firmware version.
+   * @example: "1.2.3"
+   * @example: "v2.0.1"
    *
    * @generated from field: string version = 2;
    */
@@ -4752,6 +4825,7 @@ export type FirmwareImageSpecJson = {
 
   /**
    * The firmware image description.
+   * @example: "Firmware update for ST402D meters - bug fixes and performance improvements"
    *
    * @generated from field: string description = 4;
    */
@@ -4780,6 +4854,8 @@ export const FirmwareImageSpecSchema: GenMessage<FirmwareImageSpec, {jsonType: F
 export type FirmwareImageFile = Message<"io.clbs.openhes.models.acquisition.FirmwareImageFile"> & {
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
+   * @example: "bootloader.hex"
    *
    * @generated from field: string file_name = 2;
    */
@@ -4801,6 +4877,8 @@ export type FirmwareImageFile = Message<"io.clbs.openhes.models.acquisition.Firm
 export type FirmwareImageFileJson = {
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
+   * @example: "bootloader.hex"
    *
    * @generated from field: string file_name = 2;
    */
@@ -4829,6 +4907,7 @@ export const FirmwareImageFileSchema: GenMessage<FirmwareImageFile, {jsonType: F
 export type GetFirmwareImageBlockRequest = Message<"io.clbs.openhes.models.acquisition.GetFirmwareImageBlockRequest"> & {
   /**
    * The unique firmware image identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string firmware_image_id = 1;
    */
@@ -4836,6 +4915,7 @@ export type GetFirmwareImageBlockRequest = Message<"io.clbs.openhes.models.acqui
 
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
    *
    * @generated from field: string file_name = 2;
    */
@@ -4864,6 +4944,7 @@ export type GetFirmwareImageBlockRequest = Message<"io.clbs.openhes.models.acqui
 export type GetFirmwareImageBlockRequestJson = {
   /**
    * The unique firmware image identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string firmware_image_id = 1;
    */
@@ -4871,6 +4952,7 @@ export type GetFirmwareImageBlockRequestJson = {
 
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
    *
    * @generated from field: string file_name = 2;
    */
@@ -4906,6 +4988,7 @@ export const GetFirmwareImageBlockRequestSchema: GenMessage<GetFirmwareImageBloc
 export type StreamUploadFirmwareImageRequest = Message<"io.clbs.openhes.models.acquisition.StreamUploadFirmwareImageRequest"> & {
   /**
    * The unique firmware image identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string firmware_image_id = 1;
    */
@@ -4913,6 +4996,7 @@ export type StreamUploadFirmwareImageRequest = Message<"io.clbs.openhes.models.a
 
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
    *
    * @generated from field: string file_name = 2;
    */
@@ -4955,6 +5039,7 @@ export type StreamUploadFirmwareImageRequest = Message<"io.clbs.openhes.models.a
 export type StreamUploadFirmwareImageRequestJson = {
   /**
    * The unique firmware image identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string firmware_image_id = 1;
    */
@@ -4962,6 +5047,7 @@ export type StreamUploadFirmwareImageRequestJson = {
 
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
    *
    * @generated from field: string file_name = 2;
    */
@@ -5060,6 +5146,7 @@ export const FirmwareImageBlockSchema: GenMessage<FirmwareImageBlock, {jsonType:
 export type StreamDownloadFirmwareImageFileRequest = Message<"io.clbs.openhes.models.acquisition.StreamDownloadFirmwareImageFileRequest"> & {
   /**
    * The unique firmware image identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string firmware_image_id = 1;
    */
@@ -5067,6 +5154,7 @@ export type StreamDownloadFirmwareImageFileRequest = Message<"io.clbs.openhes.mo
 
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
    *
    * @generated from field: string file_name = 2;
    */
@@ -5081,6 +5169,7 @@ export type StreamDownloadFirmwareImageFileRequest = Message<"io.clbs.openhes.mo
 export type StreamDownloadFirmwareImageFileRequestJson = {
   /**
    * The unique firmware image identifier.
+   * @gqltype: UUID
    *
    * @generated from field: string firmware_image_id = 1;
    */
@@ -5088,6 +5177,7 @@ export type StreamDownloadFirmwareImageFileRequestJson = {
 
   /**
    * The firmware image file name.
+   * @example: "firmware.bin"
    *
    * @generated from field: string file_name = 2;
    */

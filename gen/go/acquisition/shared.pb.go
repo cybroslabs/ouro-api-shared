@@ -2854,7 +2854,11 @@ func (x *JobDeviceId) ClearDeviceId() {
 type JobDeviceId_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	JobId    *string
+	// The identifier of the device's job within the parent bulk.
+	// @gqltype: UUID
+	JobId *string
+	// The unique identifier of the device.
+	// @gqltype: UUID
 	DeviceId *string
 }
 
@@ -3075,13 +3079,25 @@ func (x *JobDevice) ClearTimezone() {
 type JobDevice_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	JobId            *string
-	DeviceId         *string
+	// The unique job identifier within the parent bulk.
+	// @gqltype: UUID
+	JobId *string
+	// The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
+	// @gqltype: UUID
+	DeviceId *string
+	// The external device identifier.
+	// @example: "METER-12345"
+	// @example: "EXT-001"
 	ExternalId       *string
 	DeviceAttributes map[string]*common.FieldValue
 	ConnectionInfo   []*ConnectionInfo
 	AppProtocol      *ApplicationProtocol
-	Timezone         *string
+	// The timezone associated with the device.
+	// @example: "America/New_York"
+	// @example: "Europe/Prague"
+	// @example: "CET"
+	// @example: "Etc/GMT+2"
+	Timezone *string
 }
 
 func (b0 JobDevice_builder) Build() *JobDevice {
@@ -3456,11 +3472,27 @@ func (x *ModemInfo) WhichModemConnection() case_ModemInfo_ModemConnection {
 type ModemInfo_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ModemId        *string
-	Name           *string
-	AtInit         *string
-	AtDial         *string
-	AtHangup       *string
+	// The unique identifier of the modem. It is automatically generated during creation.
+	// @gqltype: UUID
+	ModemId *string
+	// The name of the modem.
+	// @example: "Modem-01"
+	// @example: "GSM-Gateway-Main"
+	Name *string
+	// The modem initialization command.
+	// @example: "AT&FE0X3"
+	// @example: "ATZ"
+	AtInit *string
+	// The modem dial command.
+	// @example: "ATD"
+	// @example: "ATDT"
+	AtDial *string
+	// The modem hangup command.
+	// @example: "ATH"
+	// @example: "ATH0"
+	AtHangup *string
+	// The modem escape command.
+	// @example: "+++"
 	AtEscape       *string
 	ConnectTimeout *durationpb.Duration
 	CommandTimeout *durationpb.Duration
@@ -3707,6 +3739,10 @@ func (x *SerialConfig) ClearFlowControl() {
 type SerialConfig_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The baud rate.
+	// @example: 9600
+	// @example: 19200
+	// @example: 115200
 	BaudRate    *int32
 	Parity      *SerialConfigParity
 	DataBits    *SerialConfigDataBits

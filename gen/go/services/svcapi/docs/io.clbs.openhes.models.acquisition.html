@@ -2657,7 +2657,8 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique device configuration template identifier.</p></td>
+      <td class="content"><p>The unique device configuration template identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -2674,7 +2675,8 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of device configuration register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers used by standard readout.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -2691,7 +2693,8 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of SCADA register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers used by SCADA readout.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -2808,7 +2811,8 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique variable identifier.</p></td>
+      <td class="content"><p>The unique variable identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -2825,7 +2829,8 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of register identifiers.</p></td>
+      <td class="content"><p>A list of register identifiers.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -6093,7 +6098,9 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type.</p></td>
+      <td class="content"><p>The driver type.
+@example: "METERCONTROL_ST402D_DLMS"
+@example: "LANDISGYR_E650_DLMS_SN"</p></td>
       
     </tr>
     
@@ -6110,7 +6117,8 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of device configuration register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers used by standard readout.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -6127,7 +6135,8 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of SCADA register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers used by SCADA readout.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -6297,7 +6306,8 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique device identifier.</p></td>
+      <td class="content"><p>The unique device identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -6312,7 +6322,8 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique register identifier.</p></td>
+      <td class="content"><p>The unique register identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -6362,7 +6373,9 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The register name.</p></td>
+      <td class="content"><p>The register name.
+@example: "L+G E570 Active Energy Import (Total)"
+@example: "L+G E570 Voltage L1"</p></td>
       
     </tr>
     
@@ -6377,7 +6390,9 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The period of the regular profile values, if applicable.</p></td>
+      <td class="content"><p>The period of the regular profile values, if applicable (in minutes).
+@example: 15
+@example: 60</p></td>
       
     </tr>
     
@@ -6442,7 +6457,8 @@ has a specific driver type for protocol handling, and belongs to device groups f
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique device identifier.</p></td>
+      <td class="content"><p>The unique device identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -7907,7 +7923,9 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The firmware image file name.</p></td>
+      <td class="content"><p>The firmware image file name.
+@example: "firmware.bin"
+@example: "bootloader.hex"</p></td>
       
     </tr>
     
@@ -7972,7 +7990,9 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The driver type.</p></td>
+      <td class="content"><p>The driver type.
+@example: "METERCONTROL_ST402D_DLMS"
+@example: "LANDISGYR_E650_DLMS_SN"</p></td>
       
     </tr>
     
@@ -7987,7 +8007,9 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The firmware version.</p></td>
+      <td class="content"><p>The firmware version.
+@example: "1.2.3"
+@example: "v2.0.1"</p></td>
       
     </tr>
     
@@ -8020,7 +8042,8 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The firmware image description.</p></td>
+      <td class="content"><p>The firmware image description.
+@example: "Firmware update for ST402D meters - bug fixes and performance improvements"</p></td>
       
     </tr>
     
@@ -8115,7 +8138,8 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique identifier of the device.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -8293,7 +8317,8 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique device identifier.</p></td>
+      <td class="content"><p>The unique device identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -8308,7 +8333,8 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique variable identifier.</p></td>
+      <td class="content"><p>The unique variable identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -8388,7 +8414,8 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique identifier of the device.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -9376,7 +9403,8 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique job identifier within the parent bulk.</p></td>
+      <td class="content"><p>The unique job identifier within the parent bulk.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -9391,7 +9419,8 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.</p></td>
+      <td class="content"><p>The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -9406,7 +9435,9 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The external device identifier.</p></td>
+      <td class="content"><p>The external device identifier.
+@example: "METER-12345"
+@example: "EXT-001"</p></td>
       
     </tr>
     
@@ -9470,7 +9501,11 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The timezone associated with the device. For example, <code>"America/New_York"</code>, <code>"Europe/Prague"</code>, <code>"CET"</code>, <code>"GMT"</code>, <code>"Etc/GMT+2"</code>.</p></td>
+      <td class="content"><p>The timezone associated with the device.
+@example: "America/New_York"
+@example: "Europe/Prague"
+@example: "CET"
+@example: "Etc/GMT+2"</p></td>
       
     </tr>
     
@@ -9520,7 +9555,8 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The identifier of the device's job within the parent bulk.</p></td>
+      <td class="content"><p>The identifier of the device's job within the parent bulk.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -9535,7 +9571,8 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the device.</p></td>
+      <td class="content"><p>The unique identifier of the device.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -11551,7 +11588,8 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the modem. It is automatically generated during creation.</p></td>
+      <td class="content"><p>The unique identifier of the modem. It is automatically generated during creation.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -11566,7 +11604,9 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The name of the modem.</p></td>
+      <td class="content"><p>The name of the modem.
+@example: "Modem-01"
+@example: "GSM-Gateway-Main"</p></td>
       
     </tr>
     
@@ -11581,7 +11621,9 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem initialization command. For example, <code>AT&amp;FE0X3</code>.</p></td>
+      <td class="content"><p>The modem initialization command.
+@example: "AT&amp;FE0X3"
+@example: "ATZ"</p></td>
       
     </tr>
     
@@ -11596,7 +11638,9 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem dial command. For example, <code>ATD</code>.</p></td>
+      <td class="content"><p>The modem dial command.
+@example: "ATD"
+@example: "ATDT"</p></td>
       
     </tr>
     
@@ -11611,7 +11655,9 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem hangup command. For example, <code>ATH</code>.</p></td>
+      <td class="content"><p>The modem hangup command.
+@example: "ATH"
+@example: "ATH0"</p></td>
       
     </tr>
     
@@ -11626,7 +11672,8 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The modem escape command. For exampl, <code>+++</code>.</p></td>
+      <td class="content"><p>The modem escape command.
+@example: "+++"</p></td>
       
     </tr>
     
@@ -12551,7 +12598,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique device configuration template identifier.</p></td>
+      <td class="content"><p>The unique device configuration template identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -12568,7 +12616,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of device configuration register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers used by standard readout.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -12585,7 +12634,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of SCADA register identifiers.</p></td>
+      <td class="content"><p>A list of device configuration register identifiers used by SCADA readout.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -12702,7 +12752,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the variable.</p></td>
+      <td class="content"><p>The unique identifier of the variable.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -12719,7 +12770,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of register identifiers.</p></td>
+      <td class="content"><p>A list of register identifiers.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -12769,7 +12821,10 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The baud rate.</p></td>
+      <td class="content"><p>The baud rate.
+@example: 9600
+@example: 19200
+@example: 115200</p></td>
       
     </tr>
     
@@ -13084,7 +13139,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique firmware image identifier.</p></td>
+      <td class="content"><p>The unique firmware image identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -13099,7 +13155,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The firmware image file name.</p></td>
+      <td class="content"><p>The firmware image file name.
+@example: "firmware.bin"</p></td>
       
     </tr>
     
@@ -13149,7 +13206,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique firmware image identifier.</p></td>
+      <td class="content"><p>The unique firmware image identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -13164,7 +13222,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The firmware image file name.</p></td>
+      <td class="content"><p>The firmware image file name.
+@example: "firmware.bin"</p></td>
       
     </tr>
     
@@ -13571,7 +13630,8 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique variable identifier.</p></td>
+      <td class="content"><p>The unique variable identifier.
+@gqltype: UUID</p></td>
       
     </tr>
     
@@ -13605,7 +13665,9 @@ Proxy bulks are used when data collection is initiated externally and needs to b
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>A list of units for the variable data.</p></td>
+      <td class="content"><p>A list of units for the variable data.
+@example: ["kWh", "kWh", "kWh"]
+@example: ["V", "V", "V"]</p></td>
       
     </tr>
     

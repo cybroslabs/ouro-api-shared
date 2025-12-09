@@ -703,6 +703,8 @@ func (x *MessagingPublishMessage) ClearData() {
 type MessagingPublishMessage_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The subject of the message. The subject must start with the 'events.custom.' prefix.
+	// @example: "events.custom.sapmessage"
 	Subject *string
 	Data    []byte
 }
@@ -937,9 +939,13 @@ func (x *MessagingReceiveMessage) ClearData() {
 type MessagingReceiveMessage_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique message identifier.
+	// @gqltype: UUID
 	MessageId *string
-	Subject   *string
-	Data      []byte
+	// The subjects of the message.
+	// @example: "events.public.acquisition.jobdone"
+	Subject *string
+	Data    []byte
 }
 
 func (b0 MessagingReceiveMessage_builder) Build() *MessagingReceiveMessage {
@@ -1275,9 +1281,18 @@ func (x *MessagingComponentConsumerSettings) ClearMaxInFlightMessages() {
 type MessagingComponentConsumerSettings_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ConsumerId          *string
+	// The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
+	// @gqltype: UUID
+	ConsumerId *string
+	// The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
+	// @example: 1
+	// @example: 10
+	// @example: 100
 	MaxInFlightMessages *int32
-	Subjects            []string
+	// The message subjects this consumer subscribes to. At least one subject is required. Changes apply to all instances of the component.
+	// @example: ["events.public.acquisition.jobdone", "events.public.something.else"]
+	// @example: ["events.custom.sapmessage"]
+	Subjects []string
 }
 
 func (b0 MessagingComponentConsumerSettings_builder) Build() *MessagingComponentConsumerSettings {

@@ -144,14 +144,20 @@ export type CronJobSpec = Message<"io.clbs.openhes.models.cronjobs.CronJobSpec">
   type: CronJobTypeEnum;
 
   /**
-   * The cron schedule expression in standard format (e.g., "0 * * * *" for hourly, "0 0 * * *" for daily at midnight).
+   * The cron schedule expression in standard format.
+   * @example: "0 * * * *"
+   * @example: "0 0 * * *"
+   * @example: "*\/15 * * * *"
    *
    * @generated from field: string schedule = 2;
    */
   schedule: string;
 
   /**
-   * The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").
+   * The timezone for schedule interpretation using IANA time zone database names.
+   * @example: "America/New_York"
+   * @example: "Europe/Prague"
+   * @example: "UTC"
    *
    * @generated from field: string timezone = 3;
    */
@@ -186,14 +192,20 @@ export type CronJobSpecJson = {
   type?: CronJobTypeEnumJson;
 
   /**
-   * The cron schedule expression in standard format (e.g., "0 * * * *" for hourly, "0 0 * * *" for daily at midnight).
+   * The cron schedule expression in standard format.
+   * @example: "0 * * * *"
+   * @example: "0 0 * * *"
+   * @example: "*\/15 * * * *"
    *
    * @generated from field: string schedule = 2;
    */
   schedule?: string;
 
   /**
-   * The timezone for schedule interpretation using IANA time zone database names (e.g., "America/New_York", "Europe/Prague", "UTC").
+   * The timezone for schedule interpretation using IANA time zone database names.
+   * @example: "America/New_York"
+   * @example: "Europe/Prague"
+   * @example: "UTC"
    *
    * @generated from field: string timezone = 3;
    */

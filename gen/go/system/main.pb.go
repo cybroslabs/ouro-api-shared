@@ -216,6 +216,10 @@ func (x *ComponentConfig) ClearItems() {
 type ComponentConfig_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The unique component name.
+	// @example: "ouro-core-taskmaster"
+	// @example: "ouro-core-dataproxy"
+	// @example: "ouro-api"
 	Name  *string
 	Items *common.FieldValues
 }
@@ -865,11 +869,27 @@ func (x *UserProfile) ClearTimezone() {
 type UserProfile_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	Id              *string
-	DisplayName     *string
-	Roles           []string
+	// The unique UUID of the user assigned by the authentication system (read-only).
+	// @gqltype: UUID
+	Id *string
+	// The user's full name or preferred display name shown in the UI.
+	// @example: "John Doe"
+	// @example: "Jane Smith"
+	DisplayName *string
+	// The authorization roles assigned to this user. Read-only, managed by the authentication system.
+	// @example: ["admin", "operator"]
+	// @example: ["viewer"]
+	Roles []string
+	// The user's preferred UI language using IETF language tags.
+	// @example: "en-US"
+	// @example: "cs-CZ"
+	// @example: "de-DE"
 	IetfLanguageTag *string
-	Timezone        *string
+	// The user's timezone for displaying dates and times using IANA timezone names.
+	// @example: "America/New_York"
+	// @example: "Europe/Prague"
+	// @example: "Asia/Tokyo"
+	Timezone *string
 }
 
 func (b0 UserProfile_builder) Build() *UserProfile {
@@ -1078,8 +1098,15 @@ func (x *SetScreenConfigRequest) WhichSettings() case_SetScreenConfigRequest_Set
 type SetScreenConfigRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The application or UI plugin identifier.
+	// @example: "core"
+	// @example: "scada-plugin"
 	ApplicationId *string
-	ScreenId      *string
+	// The screen identifier within the application.
+	// @example: "device-list"
+	// @example: "dashboard"
+	// @example: "bulk-overview"
+	ScreenId *string
 	// The screen configuration settings in one of the supported formats.
 
 	// Fields of oneof xxx_hidden_Settings:
@@ -1339,7 +1366,11 @@ func (x *ObjectFlagsRequest) ClearObjectId() {
 type ObjectFlagsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
+	// The object type.
+	// @example: OBJECT_TYPE_DEVICE
+	// @example: OBJECT_TYPE_COMMUNICATION_UNIT
 	ObjectType *common.ObjectType
+	// The object ID.
 	// @gqltype: UUID
 	ObjectId *string
 }

@@ -110,29 +110,61 @@ message ListOfJobDeviceId {
 
 // Defines the association between bulk jobs and individual devices.
 message JobDeviceId {
-    string job_id    = 1;  // The identifier of the device's job within the parent bulk.
-    string device_id = 2;  // The unique identifier of the device.
+    // The identifier of the device's job within the parent bulk.
+    // @gqltype: UUID
+    string job_id    = 1;
+    // The unique identifier of the device.
+    // @gqltype: UUID
+    string device_id = 2;
 }
 
 // Defines the information for a device job.
 message JobDevice {
-    string job_id                                    = 1;  // The unique job identifier within the parent bulk.
-    string device_id                                 = 2;  // The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
-    string external_id                               = 3;  // The external device identifier.
+    // The unique job identifier within the parent bulk.
+    // @gqltype: UUID
+    string job_id                                    = 1;
+    // The unique device identifier. If set, all subsequent details are loaded automatically from the device registry.
+    // @gqltype: UUID
+    string device_id                                 = 2;
+    // The external device identifier.
+    // @example: "METER-12345"
+    // @example: "EXT-001"
+    string external_id                               = 3;
     map<string, common.FieldValue> device_attributes = 4;  // The connection attributes for the device. The options depend on the `ApplicationProtocolTemplate` of the given application protocol (see the `app_protocol` property).
     repeated ConnectionInfo connection_info          = 5;  // The device connection parameters.
     ApplicationProtocol app_protocol                 = 6;  // The application protocol used to communicate with the device.
-    string timezone                                  = 7;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+    // The timezone associated with the device.
+    // @example: "America/New_York"
+    // @example: "Europe/Prague"
+    // @example: "CET"
+    // @example: "Etc/GMT+2"
+    string timezone                                  = 7;
 }
 
 // Defines modem connection information.
 message ModemInfo {
-    string modem_id                          = 1;  // The unique identifier of the modem. It is automatically generated during creation.
-    string name                              = 2;  // The name of the modem.
-    string at_init                           = 3;  // The modem initialization command. For example, `AT&FE0X3`.
-    string at_dial                           = 4;  // The modem dial command. For example, `ATD`.
-    string at_hangup                         = 5;  // The modem hangup command. For example, `ATH`.
-    string at_escape                         = 6;  // The modem escape command. For exampl, `+++`.
+    // The unique identifier of the modem. It is automatically generated during creation.
+    // @gqltype: UUID
+    string modem_id                          = 1;
+    // The name of the modem.
+    // @example: "Modem-01"
+    // @example: "GSM-Gateway-Main"
+    string name                              = 2;
+    // The modem initialization command.
+    // @example: "AT&FE0X3"
+    // @example: "ATZ"
+    string at_init                           = 3;
+    // The modem dial command.
+    // @example: "ATD"
+    // @example: "ATDT"
+    string at_dial                           = 4;
+    // The modem hangup command.
+    // @example: "ATH"
+    // @example: "ATH0"
+    string at_hangup                         = 5;
+    // The modem escape command.
+    // @example: "+++"
+    string at_escape                         = 6;
     google.protobuf.Duration connect_timeout = 7;  // The modem connection timeout, if applicable by the `modem_connection` field.
     google.protobuf.Duration command_timeout = 8;  // The modem command timeout, if applicable given by the modem_connection field.
     // The modem connection description.
@@ -179,7 +211,11 @@ enum SerialConfigFLowControler {
 
 // Defines the parameters for serial port configuration.
 message SerialConfig {
-    int32 baud_rate                        = 1;  // The baud rate.
+    // The baud rate.
+    // @example: 9600
+    // @example: 19200
+    // @example: 115200
+    int32 baud_rate                        = 1;
     SerialConfigParity parity              = 2;  // The parity.
     SerialConfigDataBits data_bits         = 3;  // The data bits.
     SerialConfigStopBits stop_bits         = 4;  // The stop bits.

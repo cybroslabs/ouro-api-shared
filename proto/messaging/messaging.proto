@@ -43,7 +43,9 @@ message MessagingPublisherSetup {
 
 // Defines a publish action for sending messages.
 message MessagingPublishMessage {
-    string subject = 1;  // The subject of the message.
+    // The subject of the message. The subject must start with the 'events.custom.' prefix.
+    // @example: "events.custom.sapmessage"
+    string subject = 1;
     bytes data     = 2;  // The message data.
 }
 
@@ -56,8 +58,12 @@ message MessagingConsumerSetup {
 
 // Defines a specification for messages delivered from server to a consumer.
 message MessagingReceiveMessage {
-    string message_id = 1;  // The unique message identifier.
-    string subject    = 2;  // The subjects of the message.
+    // The unique message identifier.
+    // @gqltype: UUID
+    string message_id = 1;
+    // The subjects of the message.
+    // @example: "events.public.acquisition.jobdone"
+    string subject    = 2;
     bytes data        = 3;  // The message data.
 }
 
@@ -77,9 +83,18 @@ message MessagingComponent {
 // Defines configuration settings for a specific consumer within a messaging component.
 // Each consumer represents a logical queue handler that processes messages from subscribed subjects.
 message MessagingComponentConsumerSettings {
-    string consumer_id           = 1;  // The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
-    int32 max_in_flight_messages = 2;  // The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
-    repeated string subjects     = 3;  // The message subjects this consumer subscribes to (e.g., "device.events", "bulk.completed"). At least one subject is required. Changes apply to all instances of the component.
+    // The unique UUID identifier for this consumer instance. Must be unique across all consumers of the same component.
+    // @gqltype: UUID
+    string consumer_id           = 1;
+    // The maximum number of unacknowledged messages this consumer can have. Values >1 enable concurrent processing but may lose order. Value 1 guarantees ordered processing.
+    // @example: 1
+    // @example: 10
+    // @example: 100
+    int32 max_in_flight_messages = 2;
+    // The message subjects this consumer subscribes to. At least one subject is required. Changes apply to all instances of the component.
+    // @example: ["events.public.acquisition.jobdone", "events.public.something.else"]
+    // @example: ["events.custom.sapmessage"]
+    repeated string subjects     = 3;
 }
 
 // Defines the configuration specification for a messaging component.

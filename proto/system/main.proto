@@ -18,7 +18,11 @@ message ApplicationConfig {
 // Defines the configuration for a single system component or microservice.
 // Each component can define its own configuration fields through field descriptors.
 message ComponentConfig {
-    string name              = 1;  // The unique component name (e.g., "taskmaster", "dataproxy", "api").
+    // The unique component name.
+    // @example: "ouro-core-taskmaster"
+    // @example: "ouro-core-dataproxy"
+    // @example: "ouro-api"
+    string name              = 1;
     common.FieldValues items = 2;  // The configuration values as field-value pairs. Fields are defined by the component's descriptors.
 }
 
@@ -53,18 +57,41 @@ message License {
 // Defines the user profile containing identity and preferences for authenticated users.
 // User profiles store both read-only attributes managed by the authentication system and user-controlled preferences.
 message UserProfile {
-    string id                = 1;  // The unique UUID of the user assigned by the authentication system (read-only).
-    string display_name      = 2;  // The user's full name or preferred display name shown in the UI.
-    repeated string roles    = 3;  // The authorization roles assigned to this user (e.g., "admin", "operator"). Read-only, managed by the authentication system.
-    string ietf_language_tag = 4;  // The user's preferred UI language using IETF language tags (e.g., "en-US", "cs-CZ").
-    string timezone          = 5;  // The user's timezone for displaying dates and times using IANA timezone names (e.g., "America/New_York", "Europe/Prague").
+    // The unique UUID of the user assigned by the authentication system (read-only).
+    // @gqltype: UUID
+    string id                = 1;
+    // The user's full name or preferred display name shown in the UI.
+    // @example: "John Doe"
+    // @example: "Jane Smith"
+    string display_name      = 2;
+    // The authorization roles assigned to this user. Read-only, managed by the authentication system.
+    // @example: ["admin", "operator"]
+    // @example: ["viewer"]
+    repeated string roles    = 3;
+    // The user's preferred UI language using IETF language tags.
+    // @example: "en-US"
+    // @example: "cs-CZ"
+    // @example: "de-DE"
+    string ietf_language_tag = 4;
+    // The user's timezone for displaying dates and times using IANA timezone names.
+    // @example: "America/New_York"
+    // @example: "Europe/Prague"
+    // @example: "Asia/Tokyo"
+    string timezone          = 5;
 }
 
 // Defines a request for setting or updating UI screen configuration.
 // Screen configurations store user-specific or system-wide UI layout and settings for different application screens.
 message SetScreenConfigRequest {
-    string application_id = 1;  // The application or UI plugin identifier (e.g., "core", "scada-plugin").
-    string screen_id      = 2;  // The screen identifier within the application (e.g., "device-list", "dashboard").
+    // The application or UI plugin identifier.
+    // @example: "core"
+    // @example: "scada-plugin"
+    string application_id = 1;
+    // The screen identifier within the application.
+    // @example: "device-list"
+    // @example: "dashboard"
+    // @example: "bulk-overview"
+    string screen_id      = 2;
     // The screen configuration settings in one of the supported formats.
     oneof settings {
         string json                = 3;  // Configuration as a JSON-encoded string. Useful for direct storage from frontend.
@@ -87,9 +114,13 @@ enum ObjectFlags {
 
 // Defines the request message for retrieving object flags.
 message ObjectFlagsRequest {
-    common.ObjectType object_type = 1;  // The object type.
+    // The object type.
+    // @example: OBJECT_TYPE_DEVICE
+    // @example: OBJECT_TYPE_COMMUNICATION_UNIT
+    common.ObjectType object_type = 1;
+    // The object ID.
     // @gqltype: UUID
-    string object_id = 2;  // The object ID.
+    string object_id = 2;
 }
 
 // Defines the response message for retrieving object flags.
