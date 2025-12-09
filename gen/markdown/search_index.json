@@ -522,95 +522,108 @@
     "tags2": ""
   },
   {
-    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
     "tags0": [
-      "CRON_JOB_TYPE_START_BULK",
-      "CRON_JOB_TYPE_UNSPECIFIED",
-      "CRON_JOB_TYPE_START_PROXY_BULK",
-      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
     ],
     "tags1": [
-      "BULK",
-      "CRON",
-      "CronJobTypeEnum",
-      "JOB",
-      "PROXY",
-      "START",
-      "TYPE",
+      "AES256CBC",
+      "DATA",
+      "PLAIN",
+      "SECRET",
+      "SecretDataDecryptionMethod",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the cron job types that can scheduled for automated recurring operations Cron jobs enable scheduled data collection configuration synchronization and other periodic tasks Unspecified cron job type invalid should not used Schedules recurring acquisition bulks for automated data collection from devices Schedules recurring proxy bulks for data collection operations initiated through the DataProxy"
+    "tags2": "Defines the supported decryption methods for cryptographic secret data These methods are used decrypt device authentication keys and other sensitive credentials Unspecified decryption method invalid should not used Data stored plain text without encryption not recommended for production Data encrypted using AES CBC mode Requires initialization vector"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
     "tags0": [
-      "spec",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
     ],
     "tags1": [
-      "CreateCronJobRequest"
+      "GF1P",
+      "OAEPM",
+      "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
+    "tags2": "Defines the supported decryption methods for session keys used key wrapping scenarios Session keys provide additional layer security for protecting cryptographic secrets session key used The secret data encrypted directly with the master key Session key stored plain text used when the session key itself not sensitive Session key encrypted using RSA OAEP with MGF1 and SHA Used for secure key transport"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
     "tags0": [
-      "spec",
-      "status",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CronJob"
-    ],
-    "tags1": [
-      "CronJob"
-    ],
-    "tags2": "Defines the cron job model representing scheduled recurring task Cron jobs are persistent scheduled operations that execute automatically according their schedule definition The configuration defining when and what execute The runtime status including last next execution times and errors Metadata including name generation user managed fields and system managed fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
-    "tags0": [
-      "type",
       "data",
-      "suspend",
-      "schedule",
-      "timezone",
-      "io.clbs.openhes.models.cronjobs.CronJobSpec"
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
     ],
     "tags1": [
-      "CronJobSpec"
+      "CryptoSecret"
     ],
-    "tags2": "Defines the cron job specification containing scheduling and execution details The type operation execute START BULK START PROXY BULK The cron schedule expression standard format The timezone for schedule interpretation using IANA time zone database names When true the cron job paused and will not execute until resumed Default false The type specific payload passed the operation when executes bulk specification for START BULK type"
+    "tags2": "Defines cryptographic secret containing sensitive credentials for device communication Secrets include authentication keys encryption keys and passwords used establish secure connections with devices The security access level this secret relates Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The timestamp when this secret was initially created the system The timestamp when this secret was last modified rotated The actual secret data encryption key password This field contains the decrypted value ready for use"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
     "tags0": [
-      "error",
-      "lastRunAt",
-      "nextRunAt",
-      "io.clbs.openhes.models.cronjobs.CronJobStatus"
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
     ],
     "tags1": [
-      "CronJobStatus"
+      "CryptoSecrets"
     ],
-    "tags2": "Defines the current runtime status cron job including execution history and schedule validation The timestamp when the cron job last executed successfully attempted execute The calculated timestamp for the next scheduled execution based the cron schedule and timezone error message the cron schedule invalid the last execution failed"
+    "tags2": "Defines list crypto secrets list crypto secrets"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
     "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
     ],
     "tags1": [
-      "ListOfCronJob"
+      "GetCryptoSecretRequest"
     ],
-    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
+    "tags2": "Defines specification for retrieving crypto secrets The resource type for which the secret defined The driver type for which the secret requested The crypto identifier the secret retrieve"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
+    "tags0": [
+      "data",
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
+    ],
+    "tags1": [
+      "SetCryptoSecretRequest"
+    ],
+    "tags2": "Defines specification for creating updating crypto secrets The resource type for which the secret defined The driver type for which the secret created updated The crypto identifier the secret create update The security access level for this secret value Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The unique identifier for the key used decrypt either the session key the data directly The method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
   },
   {
     "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
@@ -767,6 +780,145 @@
       "MessagingReceiveMessage"
     ],
     "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
+  },
+  {
+    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
+    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "tags0": [
+      "OBJECT_FLAG_UNSPECIFIED",
+      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
+      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+    ],
+    "tags1": [
+      "COMMUNICATION",
+      "FLAG",
+      "LOG",
+      "OBJECT",
+      "ObjectFlags",
+      "UNIT",
+      "UNSPECIFIED"
+    ],
+    "tags2": "Defines feature flags and capability indicators for system objects These flags control what operations are available enabled for specific objects Default unspecified flag special behavior The communication unit has detailed logging enabled for diagnostics and troubleshooting"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "tags0": [
+      "items",
+      "io.clbs.openhes.models.system.ApplicationConfig"
+    ],
+    "tags1": [
+      "ApplicationConfig"
+    ],
+    "tags2": "Defines the application wide configuration containing settings for all system components This model stores the actual configuration values that control system behavior The configuration values for each registered component the system"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "tags0": [
+      "items",
+      "descriptors",
+      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+    ],
+    "tags1": [
+      "ApplicationConfigDescriptor"
+    ],
+    "tags2": "Defines the complete application configuration schema and current values This combines both the field definitions descriptors and the actual configuration values for all components The schema definitions for all registered components The current configuration values for all components"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfig"
+    ],
+    "tags1": [
+      "ComponentConfig"
+    ],
+    "tags2": "Defines the configuration for single system component microservice Each component can define its own configuration fields through field descriptors The unique component name The configuration values field value pairs Fields are defined the component descriptors"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
+    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
+    "tags0": [
+      "name",
+      "items",
+      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
+    ],
+    "tags1": [
+      "ComponentConfigDescriptor"
+    ],
+    "tags2": "Defines the configuration schema for component declaring what fields are available Components register their configuration schema startup enable dynamic configuration The unique component name The field descriptors defining available configuration options including types defaults and validation rules"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
+    "tags0": [
+      "objectId",
+      "objectType",
+      "io.clbs.openhes.models.system.ObjectFlagsRequest"
+    ],
+    "tags1": [
+      "ObjectFlagsRequest"
+    ],
+    "tags2": "Defines the request message for retrieving object flags The object type The object"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
+    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
+    "tags0": [
+      "flags",
+      "io.clbs.openhes.models.system.ObjectFlagsResponse"
+    ],
+    "tags1": [
+      "ObjectFlagsResponse"
+    ],
+    "tags2": "Defines the response message for retrieving object flags The object flags"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
+    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
+    "tags0": [
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.ScreenConfigSelector"
+    ],
+    "tags1": [
+      "ScreenConfigSelector"
+    ],
+    "tags2": "Defines the selection criteria for retrieving specific screen configuration The application plugin identifier The screen identifier within the application"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
+    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
+    "tags0": [
+      "raw",
+      "json",
+      "screenId",
+      "applicationId",
+      "io.clbs.openhes.models.system.SetScreenConfigRequest"
+    ],
+    "tags1": [
+      "SetScreenConfigRequest"
+    ],
+    "tags2": "Defines request for setting updating screen configuration Screen configurations store user specific system wide layout and settings for different application screens The application plugin identifier The screen identifier within the application Configuration JSON encoded string Useful for direct storage from frontend Configuration structured protobuf Struct Used for programmatic access"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
+    "title": "Model: io.clbs.openhes.models.system.UserProfile",
+    "tags0": [
+      "id",
+      "roles",
+      "timezone",
+      "displayName",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.system.UserProfile"
+    ],
+    "tags1": [
+      "UserProfile"
+    ],
+    "tags2": "Defines the user profile containing identity and preferences for authenticated users User profiles store both read only attributes managed the authentication system and user controlled preferences The unique UUID the user assigned the authentication system read only The user full name preferred display name shown the The authorization roles assigned this user Read only managed the authentication system The user preferred language using IETF language tags The user timezone for displaying dates and times using IANA timezone names"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-actionresultcode.md",
@@ -1007,7 +1159,7 @@
       "NONE",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the error codes related jobs Unspecified job error code The job has been completed successfully There free slot the driver handle the job the job shall send again later The job has failed retry will attempted This should never happen indicates that the same job currently being processed the driver and was sent multiple times the driver which would point bug The job failed not retry will attempted"
+    "tags2": "Defines the error codes related jobs Unspecified job error code The job has been completed successfully There free slot the driver handle the job the job shall sent again later The job has failed retry will attempted This should never happen indicates that the same job currently being processed the driver and was sent multiple times which would point bug The job failed retry will attempted"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-jobpriority.md",
@@ -1148,7 +1300,7 @@
       "SerialConfigFLowControler",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the available serial port parity types Unspecified flow control flow control Hardware flow control RTS CTS Software flow control XON XOFF"
+    "tags2": "Defines the available serial port flow control types Unspecified flow control flow control Hardware flow control using RTS CTS signals Software flow control using XON XOFF characters"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-serialconfigparity.md",
@@ -1277,7 +1429,7 @@
     "tags1": [
       "ActionGetEvents"
     ],
-    "tags2": "Defines the get events action specification The start timestamp the event readout The end timestamp the event readout"
+    "tags2": "Defines the get events action specification The start timestamp the event readout inclusive The end timestamp the event readout inclusive"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md",
@@ -1291,7 +1443,7 @@
     "tags1": [
       "ActionGetIrregularProfile"
     ],
-    "tags2": "Defines the get irregular profile action The start timestamp the profile readout The end timestamp the profile readout The data type the target register for example integer double string timestamp For proxy bulks this value can explicitely specified For regular bulks automatically taken from the register definition the system"
+    "tags2": "Defines the get irregular profile action specification The start timestamp the profile readout inclusive The end timestamp the profile readout inclusive The data type the target register for example INTEGER DOUBLE TEXT TIMESTAMP For proxy bulks this value can explicitly specified For regular bulks automatically taken from the register definition the system"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md",
@@ -1305,7 +1457,7 @@
     "tags1": [
       "ActionGetPeriodicalProfile"
     ],
-    "tags2": "Defines the get periodical profile action specification The start timestamp the profile readout The end timestamp the profile readout The data type the target register for example integer double string timestamp For proxy bulks this value can explicitely specified For regular bulks automatically taken from the register definition the system"
+    "tags2": "Defines the get periodical profile action specification The start timestamp the profile readout The end timestamp the profile readout inclusive The data type the target register for example INTEGER DOUBLE TEXT TIMESTAMP For proxy bulks this value can explicitly specified For regular bulks automatically taken from the register definition the system"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongetregister.md",
@@ -1317,7 +1469,7 @@
     "tags1": [
       "ActionGetRegister"
     ],
-    "tags2": "Defines the get register action specification The data type the target register for example integer double string timestamp For proxy bulks this value can explicitely specified For regular bulks automatically taken from the register definition the system"
+    "tags2": "Defines the get register action specification The data type the target register for example INTEGER DOUBLE TEXT TIMESTAMP For proxy bulks this value can explicitly specified For regular bulks automatically taken from the register definition the system"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actiongettou.md",
@@ -1357,7 +1509,7 @@
     "tags1": [
       "ActionResult"
     ],
-    "tags2": "Defines the result single action The unique action identifier The status code the action The action result data The unique register identifier This read only value and set only the action data relats register Applicable only for results regular bulks The variable names This read only value and set only the action data relates one more variables based device template mapping Applicable only for results regular bulks The user facing error message provided when the action ends with ERROR CODE ACTION ERROR The message provides details about the failure can multiline and should English"
+    "tags2": "Defines the result single action The unique action identifier The status code the action indicating success failure The action result data containing the retrieved processed information The unique register identifier This read only value and set only the action data relates register Applicable only for results regular bulks The variable names This read only value and set only the action data relates one more variables based device template mapping Applicable only for results regular bulks The user facing error message provided when the action ends with ERROR CODE ACTION ERROR The message provides details about the failure can multiline and should English"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-actionsetdisconnectorstate.md",
@@ -1480,7 +1632,7 @@
     "tags1": [
       "ApplicationProtocolTemplate"
     ],
-    "tags2": "Defines the destription for one application protocol for example DLMS The application protocol The list attribute definitions for the selected application protocol These attributes are instantiated for each device and communication unit pair"
+    "tags2": "Defines the template description for application protocol for example DLMS The application protocol type The list attribute definitions for the selected application protocol These attributes are instantiated for each device and communication unit pair"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-bulk.md",
@@ -1593,7 +1745,7 @@
     "tags1": [
       "CommunicationTemplate"
     ],
-    "tags2": "Defines the destription single communication type for example TCP The communication type The list supprted data link protocols and their application protocols supported the driver"
+    "tags2": "Defines the template description single communication type for example TCP The communication type The list supported data link protocols and their application protocols supported the driver"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-communicationunit.md",
@@ -1652,7 +1804,7 @@
     "tags1": [
       "ConnectionInfo"
     ],
-    "tags2": "Defines the configuration parameters for device connection The TCP connection type The phone based modem pool connection type The serial over connection type The data link protocol communication bus identifier Works custom grouping key link jobs across multiple communication units when multiple entry points share single communication bus foe example multi master withprimary and backup masters not set jobs are grouped the default group key based the connection type The connection attributes See GetDataLinkFields the acquisition package"
+    "tags2": "Defines the configuration parameters for device connection The direct TCP connection type The phone based modem pool connection type The serial over connection type using serial converter The data link protocol used for communication The communication bus identifier Works custom grouping key link jobs across multiple communication units when multiple entry points share single communication bus for example multi master with primary and backup masters not set jobs are grouped the default group key based the connection type The connection attributes specific the data link protocol See GetDataLinkFields the acquisition package for available attributes"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypecontrolledserial.md",
@@ -1667,7 +1819,7 @@
     "tags1": [
       "ConnectionTypeControlledSerial"
     ],
-    "tags2": "Defines the connection infoformation for controlled serial line over for example Moxa The simple direct serial connection type The Moxa connection type The RFC connection type The serial port configuration"
+    "tags2": "Defines the connection information for controlled serial line over for example Moxa The simple direct serial connection type The Moxa serial converter connection type The RFC protocol based connection type The serial port configuration"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypedirecttcpip.md",
@@ -1695,7 +1847,7 @@
     "tags1": [
       "ConnectionTypeModemPool"
     ],
-    "tags2": "Defines the connection information for phone line modem connection type The phone number the device connect The unique modem pool identifier modem pool group modems that can used connect the device The final modem selected the Taskmaster the job start The modem device assigned the job This field filled only when the connection type modem The value assigned the Taskmaster the start the job and the driver must use this modem exclusively for this job"
+    "tags2": "Defines the connection information for phone line modem connection type The phone number the device connect The unique modem pool identifier modem pool group modems that can used connect devices The final modem selected the Taskmaster job start time The modem device assigned the job This field filled only when the connection type modem The value assigned the Taskmaster the start the job and the driver must use this modem exclusively for this job"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialdirect.md",
@@ -1896,7 +2048,7 @@
     "tags1": [
       "DataLinkTemplate"
     ],
-    "tags2": "Defines the destription single data link protocol for example HDLC The data link protocol The list application protocol identifiers supported the driver The list attribute definitions related the selected data link type see ink protocol property These field definitions are provided the system and drivers must leave this field empty"
+    "tags2": "Defines the template description single data link protocol for example HDLC The data link protocol type The list application protocol identifiers supported the driver for this data link The list attribute definitions related the selected data link type see link protocol property These field definitions are provided the system and drivers must leave this field empty"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-defaultdevicecommunicationunitattributes.md",
@@ -2263,7 +2415,7 @@
     "tags1": [
       "DriverTemplates"
     ],
-    "tags2": "Defines the driver templates exchanged during driver negotiation The supported communication options templates Each template represents one communication method driver can support multiple communication templates The supported application protocol templates The job action templates all supported action types Each supported action type must appear onbly once The supported access level templates The supported templates the job actions constraints The list descriptors for uknown devices detected the communication unit This applies only drivers that communicate with devices like data concentrators that can provide information for unknown devices The descriptors must cover all data attributes used the SetUnknownDevicesRequest message"
+    "tags2": "Defines the driver templates exchanged during driver negotiation The supported communication options templates Each template represents one communication method driver can support multiple communication templates The supported application protocol templates The job action templates for all supported action types Each supported action type must appear only once The supported access level templates The supported templates the job action constraints The list field descriptors for unknown devices detected the communication unit This applies only drivers that communicate with devices like data concentrators that can provide information for unknown devices The descriptors must cover all data attributes used the SetUnknownDevicesRequest message"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-eventrecord.md",
@@ -2456,7 +2608,7 @@
     "tags1": [
       "JobAction"
     ],
-    "tags2": "Defines the job action specification The JobAction represents single action performed single device For example the action ActionGetRegister specifies single register read from the devices The unique identifier the action The action attributes Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the ActionFirmwareImageTransfer action"
+    "tags2": "Defines single job action specification representing discrete operation device Each JobAction represents one atomic operation reading specific register syncing the clock For bulk operations spanning multiple registers use JobActionSet instead The unique identifier the action within the job context The action specific attributes Available attributes depend the action type and driver capabilities Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the ActionFirmwareImageTransfer action"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactionattributes.md",
@@ -2469,7 +2621,7 @@
     "tags1": [
       "JobActionAttributes"
     ],
-    "tags2": "Defines the template for job action attributes The type action for which this template template defined TThe list attribute definitions for the action attributes template"
+    "tags2": "Defines the template for job action attributes The type action for which this template defined The list attribute definitions for the action attributes template"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobactioncontraints.md",
@@ -2507,7 +2659,7 @@
     "tags1": [
       "JobActionSet"
     ],
-    "tags2": "Defines the job action set specification Unlike single JobAction that used only once per bulk JobActionSet may internally cover multiple JobActions For example the action type GetRegister and variable filter specified the system automatically retrieves all registers defined the active device configuration template The variable filter Meaning depends the action type GetRegister GetPeriodicalProfile and GetIrregularProfile List variable names for example defined the system not set all variables the given type are read Others Not applicable ignored Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the ActionFirmwareImageTransfer action"
+    "tags2": "Defines job action set specification that can expand into multiple individual job actions Unlike JobAction which represents single operation JobActionSet allows bulk specification For example specifying ActionGetRegister without variable filters automatically creates actions for all registers the device configuration template The variable filter specifying which variables target Behavior varies action type GetRegister GetPeriodicalProfile GetIrregularProfile List variable names read empty reads all variables the given type from the device template Other actions Not applicable ignored Defines the GetRegister action Defines the GetPeriodicalProfile action Defines the GetIrregularProfile action Defines the GetEvents action Defines the GetDeviceInfo action Defines the SyncClock action Defines the SetRelayState action Defines the SetDisconnectorState action Defines the GetTou action Defines the SetTou action Defines the SetLimiter action Defines the ResetBillingPeriod action Defines the ActionFirmwareImageTransfer action"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-jobdevice.md",
@@ -2576,7 +2728,7 @@
     "tags1": [
       "JobStatus"
     ],
-    "tags2": "Defines the status information single job within bulk The status the job The error code the job The result data for all executed job actions The start timestamp the job The finish timestamp the job The number attempts already done The device informatiom from the ACTION TYPE GET DEVICE INFO action The internal queue identifier set the Taskmaster when the job queued for processing The user facing error message related the whole job This used especially relevant when action was executed allowing log non action related errors"
+    "tags2": "Defines the status information single job within bulk The current status the job The error code the job indicating success failure reason The result data for all executed job actions The start timestamp the job The finish timestamp the job The number attempts already completed The device information from the ACTION TYPE GET DEVICE INFO action executed The internal queue identifier set the Taskmaster when the job queued for processing The user facing error message related the whole job This especially relevant when action was executed allowing non action related errors logged"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-listbulkjobsrequest.md",
@@ -3248,143 +3400,95 @@
     "tags2": "Defines variable specification The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable Indicates whether the returned data for this variabe should exclude values from timestamp set true the returned device data returned for this variable dos not include values from timestamp Default value false"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
-    "title": "Enum: io.clbs.openhes.models.system.ObjectFlags",
+    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
     "tags0": [
-      "OBJECT_FLAG_UNSPECIFIED",
-      "OBJECT_FLAG_COMMUNICATION_UNIT_LOG",
-      "Enum: io.clbs.openhes.models.system.ObjectFlags"
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_UNSPECIFIED",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
     ],
     "tags1": [
-      "COMMUNICATION",
-      "FLAG",
-      "LOG",
-      "OBJECT",
-      "ObjectFlags",
-      "UNIT",
+      "BULK",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
+      "PROXY",
+      "START",
+      "TYPE",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines feature flags and capability indicators for system objects These flags control what operations are available enabled for specific objects Default unspecified flag special behavior The communication unit has detailed logging enabled for diagnostics and troubleshooting"
+    "tags2": "Defines the cron job types that can scheduled for automated recurring operations Cron jobs enable scheduled data collection configuration synchronization and other periodic tasks Unspecified cron job type invalid should not used Schedules recurring acquisition bulks for automated data collection from devices Schedules recurring proxy bulks for data collection operations initiated through the DataProxy"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfig",
+    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
     "tags0": [
-      "items",
-      "io.clbs.openhes.models.system.ApplicationConfig"
+      "spec",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
     ],
     "tags1": [
-      "ApplicationConfig"
+      "CreateCronJobRequest"
     ],
-    "tags2": "Defines the application wide configuration containing settings for all system components This model stores the actual configuration values that control system behavior The configuration values for each registered component the system"
+    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-applicationconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ApplicationConfigDescriptor",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
     "tags0": [
-      "items",
-      "descriptors",
-      "io.clbs.openhes.models.system.ApplicationConfigDescriptor"
+      "spec",
+      "status",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CronJob"
     ],
     "tags1": [
-      "ApplicationConfigDescriptor"
+      "CronJob"
     ],
-    "tags2": "Defines the complete application configuration schema and current values This combines both the field definitions descriptors and the actual configuration values for all components The schema definitions for all registered components The current configuration values for all components"
+    "tags2": "Defines the cron job model representing scheduled recurring task Cron jobs are persistent scheduled operations that execute automatically according their schedule definition The configuration defining when and what execute The runtime status including last next execution times and errors Metadata including name generation user managed fields and system managed fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-system-componentconfig.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfig",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
     "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfig"
-    ],
-    "tags1": [
-      "ComponentConfig"
-    ],
-    "tags2": "Defines the configuration for single system component microservice Each component can define its own configuration fields through field descriptors The unique component name The configuration values field value pairs Fields are defined the component descriptors"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-componentconfigdescriptor.md",
-    "title": "Model: io.clbs.openhes.models.system.ComponentConfigDescriptor",
-    "tags0": [
-      "name",
-      "items",
-      "io.clbs.openhes.models.system.ComponentConfigDescriptor"
-    ],
-    "tags1": [
-      "ComponentConfigDescriptor"
-    ],
-    "tags2": "Defines the configuration schema for component declaring what fields are available Components register their configuration schema startup enable dynamic configuration The unique component name The field descriptors defining available configuration options including types defaults and validation rules"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-objectflagsrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsRequest",
-    "tags0": [
-      "objectId",
-      "objectType",
-      "io.clbs.openhes.models.system.ObjectFlagsRequest"
-    ],
-    "tags1": [
-      "ObjectFlagsRequest"
-    ],
-    "tags2": "Defines the request message for retrieving object flags The object type The object"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-objectflagsresponse.md",
-    "title": "Model: io.clbs.openhes.models.system.ObjectFlagsResponse",
-    "tags0": [
-      "flags",
-      "io.clbs.openhes.models.system.ObjectFlagsResponse"
-    ],
-    "tags1": [
-      "ObjectFlagsResponse"
-    ],
-    "tags2": "Defines the response message for retrieving object flags The object flags"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-screenconfigselector.md",
-    "title": "Model: io.clbs.openhes.models.system.ScreenConfigSelector",
-    "tags0": [
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.ScreenConfigSelector"
-    ],
-    "tags1": [
-      "ScreenConfigSelector"
-    ],
-    "tags2": "Defines the selection criteria for retrieving specific screen configuration The application plugin identifier The screen identifier within the application"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-setscreenconfigrequest.md",
-    "title": "Model: io.clbs.openhes.models.system.SetScreenConfigRequest",
-    "tags0": [
-      "raw",
-      "json",
-      "screenId",
-      "applicationId",
-      "io.clbs.openhes.models.system.SetScreenConfigRequest"
-    ],
-    "tags1": [
-      "SetScreenConfigRequest"
-    ],
-    "tags2": "Defines request for setting updating screen configuration Screen configurations store user specific system wide layout and settings for different application screens The application plugin identifier The screen identifier within the application Configuration JSON encoded string Useful for direct storage from frontend Configuration structured protobuf Struct Used for programmatic access"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-system-userprofile.md",
-    "title": "Model: io.clbs.openhes.models.system.UserProfile",
-    "tags0": [
-      "id",
-      "roles",
+      "type",
+      "data",
+      "suspend",
+      "schedule",
       "timezone",
-      "displayName",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.system.UserProfile"
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
     ],
     "tags1": [
-      "UserProfile"
+      "CronJobSpec"
     ],
-    "tags2": "Defines the user profile containing identity and preferences for authenticated users User profiles store both read only attributes managed the authentication system and user controlled preferences The unique UUID the user assigned the authentication system read only The user full name preferred display name shown the The authorization roles assigned this user Read only managed the authentication system The user preferred language using IETF language tags The user timezone for displaying dates and times using IANA timezone names"
+    "tags2": "Defines the cron job specification containing scheduling and execution details The type operation execute START BULK START PROXY BULK The cron schedule expression standard format The timezone for schedule interpretation using IANA time zone database names When true the cron job paused and will not execute until resumed Default false The type specific payload passed the operation when executes bulk specification for START BULK type"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
+    "tags0": [
+      "error",
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
+    ],
+    "tags1": [
+      "CronJobStatus"
+    ],
+    "tags2": "Defines the current runtime status cron job including execution history and schedule validation The timestamp when the cron job last executed successfully attempted execute The calculated timestamp for the next scheduled execution based the cron schedule and timezone error message the cron schedule invalid the last execution failed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "tags0": [
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+    ],
+    "tags1": [
+      "ListOfCronJob"
+    ],
+    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -3811,110 +3915,6 @@
       "UpdateObjectFieldsRequest"
     ],
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
-    "tags0": [
-      "SECRET_DATA_PLAIN",
-      "SECRET_DATA_AES256CBC",
-      "SECRET_DATA_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
-    ],
-    "tags1": [
-      "AES256CBC",
-      "DATA",
-      "PLAIN",
-      "SECRET",
-      "SecretDataDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the supported decryption methods for cryptographic secret data These methods are used decrypt device authentication keys and other sensitive credentials Unspecified decryption method invalid should not used Data stored plain text without encryption not recommended for production Data encrypted using AES CBC mode Requires initialization vector"
-  },
-  {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
-    "tags0": [
-      "SECRET_SESSION_PLAIN",
-      "SECRET_SESSION_UNSPECIFIED",
-      "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
-    ],
-    "tags1": [
-      "GF1P",
-      "OAEPM",
-      "PLAIN",
-      "RSA",
-      "SECRET",
-      "SESSION",
-      "SecretSessionKeyDecryptionMethod",
-      "UNSPECIFIED"
-    ],
-    "tags2": "Defines the supported decryption methods for session keys used key wrapping scenarios Session keys provide additional layer security for protecting cryptographic secrets session key used The secret data encrypted directly with the master key Session key stored plain text used when the session key itself not sensitive Session key encrypted using RSA OAEP with MGF1 and SHA Used for secure key transport"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
-    "tags0": [
-      "data",
-      "keyId",
-      "createdAt",
-      "updatedAt",
-      "accessLevel",
-      "io.clbs.openhes.models.crypto.CryptoSecret"
-    ],
-    "tags1": [
-      "CryptoSecret"
-    ],
-    "tags2": "Defines cryptographic secret containing sensitive credentials for device communication Secrets include authentication keys encryption keys and passwords used establish secure connections with devices The security access level this secret relates Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The timestamp when this secret was initially created the system The timestamp when this secret was last modified rotated The actual secret data encryption key password This field contains the decrypted value ready for use"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
-    "tags0": [
-      "secrets",
-      "io.clbs.openhes.models.crypto.CryptoSecrets"
-    ],
-    "tags1": [
-      "CryptoSecrets"
-    ],
-    "tags2": "Defines list crypto secrets list crypto secrets"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
-    "tags0": [
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "GetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for retrieving crypto secrets The resource type for which the secret defined The driver type for which the secret requested The crypto identifier the secret retrieve"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
-    "tags0": [
-      "data",
-      "keyId",
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "sessionKey",
-      "accessLevel",
-      "dataDecryptionIv",
-      "decryptionSecretId",
-      "dataDecryptionMethod",
-      "sessionKeyDecryptionMethod",
-      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "SetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for creating updating crypto secrets The resource type for which the secret defined The driver type for which the secret created updated The crypto identifier the secret create update The security access level for this secret value Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The unique identifier for the key used decrypt either the session key the data directly The method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
   },
   {
     "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",

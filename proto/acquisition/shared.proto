@@ -48,12 +48,12 @@ message JobSettings {
     ReadPathPolicy read_path_policy       = 7;  // The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.
 }
 
-// Defines the job action specification.
-// The `JobAction` represents a single action to be performed on a single device.
-// For example, if the action is `ActionGetRegister`, it specifies a single register to be read from the devices.
+// Defines a single job action specification representing a discrete operation on a device.
+// Each JobAction represents one atomic operation (e.g., reading a specific register, syncing the clock).
+// For bulk operations spanning multiple registers, use JobActionSet instead.
 message JobAction {
-    string action_id                          = 1;  // The unique identifier of the action.
-    map<string, common.FieldValue> attributes = 2;  // The action attributes.
+    string action_id                          = 1;  // The unique identifier of the action within the job context.
+    map<string, common.FieldValue> attributes = 2;  // The action-specific attributes. Available attributes depend on the action type and driver capabilities.
     oneof action {
         ActionGetRegister get_register                    = 3;   // Defines the GetRegister action.
         ActionGetPeriodicalProfile get_periodical_profile = 4;   // Defines the GetPeriodicalProfile action.
@@ -71,13 +71,13 @@ message JobAction {
     }
 }
 
-// Defines the job action set specification.
-// Unlike a single `JobAction` that is used only once per bulk. `JobActionSet` may internally cover multiple `JobActions`.
-// For example, if the action type is `GetRegister` and no variable filter is specified, the system automatically retrieves all registers defined in the active device configuration template.
+// Defines a job action set specification that can expand into multiple individual job actions.
+// Unlike JobAction which represents a single operation, JobActionSet allows bulk specification.
+// For example, specifying ActionGetRegister without variable filters automatically creates actions for all registers in the device's configuration template.
 message JobActionSet {
-    // The variable filter. Meaning depends on the action type:
-    //  - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.
-    // - Others: Not applicable (ignored).
+    // The variable filter specifying which variables to target. Behavior varies by action type:
+    // - **GetRegister, GetPeriodicalProfile, GetIrregularProfile**: List of variable names (e.g., "A+", "V1") to read. If empty, reads all variables of the given type from the device template.
+    // - **Other actions**: Not applicable (ignored).
     repeated string variables = 2;
     oneof action {
         ActionGetRegister get_register                    = 3;   // Defines the GetRegister action.
@@ -201,12 +201,12 @@ enum SerialConfigStopBits {
     STOP_BITS_2           = 3;  // 2 stop bits.
 }
 
-// Defines the available serial port parity types.
+// Defines the available serial port flow control types.
 enum SerialConfigFLowControler {
     FLOW_CONTROL_UNSPECIFIED = 0;  // Unspecified flow control.
     FLOW_CONTROL_NONE        = 1;  // No flow control.
-    FLOW_CONTROL_HARDWARE    = 2;  // Hardware flow control (RTS/CTS).
-    FLOW_CONTROL_SOFTWARE    = 3;  // Software flow control (XON/XOFF).
+    FLOW_CONTROL_HARDWARE    = 2;  // Hardware flow control using RTS/CTS signals.
+    FLOW_CONTROL_SOFTWARE    = 3;  // Software flow control using XON/XOFF characters.
 }
 
 // Defines the parameters for serial port configuration.
@@ -224,15 +224,15 @@ message SerialConfig {
 
 // Defines the configuration parameters for device connection.
 message ConnectionInfo {
-    // The entrypoint connection description. The connection can be either direct TCP, a modem from a pool, or a direct serial line over IP (via an using IP-to-serial converter).
+    // The entry point connection description. The connection can be either direct TCP/IP, a modem from a pool, or a serial line over IP (via an IP-to-serial converter).
     oneof connection {
-        ConnectionTypeDirectTcpIp tcpip               = 1;  // The TCP/IP connection type.
-        ConnectionTypeModemPool modem_pool            = 2;  // The phone-based (modem pool) connection type..
-        ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial-over-IP connection type.
+        ConnectionTypeDirectTcpIp tcpip               = 1;  // The direct TCP/IP connection type.
+        ConnectionTypeModemPool modem_pool            = 2;  // The phone-based modem pool connection type.
+        ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial-over-IP connection type using an IP-to-serial converter.
     }
-    DataLinkProtocol link_protocol            = 4;  // The data link protocol.
-    string communication_bus_id               = 5;  // he communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (foe example, multi-master RS-485 withprimary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.
-    map<string, common.FieldValue> attributes = 6;  // The connection attributes. See `GetDataLinkFields` in the acquisition package.
+    DataLinkProtocol link_protocol            = 4;  // The data link protocol used for communication.
+    string communication_bus_id               = 5;  // The communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (for example, multi-master RS-485 with primary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.
+    map<string, common.FieldValue> attributes = 6;  // The connection attributes specific to the data link protocol. See `GetDataLinkFields` in the acquisition package for available attributes.
 }
 
 // Defines the connection information for direct TCP/IP connection type.
@@ -246,9 +246,9 @@ message ConnectionTypeDirectTcpIp {
 message ConnectionTypeModemPool {
     // The phone number of the device to connect to.
     string number = 1;
-    // The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to the device. The final modem is selected by the Taskmaster at the job start.
+    // The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to devices. The final modem is selected by the Taskmaster at job start time.
     string pool_id = 2;
-    // The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job!
+    // The modem device assigned to the job. This field is filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job.
     ModemInfo modem = 4;
 }
 
@@ -313,29 +313,29 @@ enum ApplicationProtocol {
     APPPROTO_MBUS         = 9;  // The MBUS protocol.
 }
 
-// Defines the destription for one application protocol, for example DLMS_SN.
+// Defines the template description for an application protocol, for example DLMS_SN.
 message ApplicationProtocolTemplate {
-    // The application protocol.
+    // The application protocol type.
     ApplicationProtocol protocol = 1;
     // The list of attribute definitions for the selected application protocol. These attributes are instantiated for each device and communication unit pair.
     repeated common.FieldDescriptor attributes = 2;
 }
 
-// Defines the destription of a single data link protocol, for example `HDLC`.
+// Defines the template description of a single data link protocol, for example HDLC.
 message DataLinkTemplate {
-    // The data link protocol.
+    // The data link protocol type.
     DataLinkProtocol link_protocol = 1;
-    // The list of application protocol identifiers supported by the driver.
+    // The list of application protocol identifiers supported by the driver for this data link.
     repeated ApplicationProtocol app_protocol_refs = 2;
-    // The list of attribute definitions related to the selected data link type (see l`ink_protocol` property). These field definitions are provided by the system and drivers must leave this field empty.
+    // The list of attribute definitions related to the selected data link type (see `link_protocol` property). These field definitions are provided by the system and drivers must leave this field empty.
     repeated common.FieldDescriptor attributes = 3;
 }
 
-// Defines the destription of a single communication type, for example `TCP/IP`.
+// Defines the template description of a single communication type, for example TCP/IP.
 message CommunicationTemplate {
     // The communication type.
     CommunicationType type = 1;
-    // The list of supprted data link protocols and their application protocols supported by the driver.
+    // The list of supported data link protocols and their application protocols supported by the driver.
     repeated DataLinkTemplate datalinks = 2;
 }
 
@@ -351,13 +351,13 @@ message DriverTemplates {
     repeated CommunicationTemplate communication_templates = 1;
     // The supported application protocol templates.
     repeated ApplicationProtocolTemplate app_protocols = 2;
-    // The job action templates all supported action types. Each supported action type must appear onbly once.
+    // The job action templates for all supported action types. Each supported action type must appear only once.
     repeated JobActionAttributes action_attributes = 3;
     // The supported access level templates.
     repeated AccessLevelTemplate access_templates = 4;
-    // The supported templates of the job actions constraints.
+    // The supported templates of the job action constraints.
     JobActionContraints action_constraints = 5;
-    // The list of descriptors for uknown devices detected by the communication unit.
+    // The list of field descriptors for unknown devices detected by the communication unit.
     // This applies only to drivers that communicate with devices like data concentrators that can provide information for unknown devices.
     // The descriptors must cover all data attributes used in the `SetUnknownDevicesRequest` message.
     repeated common.FieldDescriptor uknown_device_descriptors = 6;
@@ -504,20 +504,20 @@ message MeasuredValue {
 
 // Defines the template for job action attributes.
 message JobActionAttributes {
-    // The type of action for which this template template is defined.
+    // The type of action for which this template is defined.
     ActionType type = 1;
-    // TThe list attribute definitions for the action attributes template.
+    // The list of attribute definitions for the action attributes template.
     repeated common.FieldDescriptor attributes = 2;
 }
 
-// Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).
+// Defines the connection information for a controlled serial line over IP (for example, Moxa).
 message ConnectionTypeControlledSerial {
-    // IP-to-serial converter description.
+    // The IP-to-serial converter description.
     oneof converter {
         ConnectionTypeSerialDirect direct   = 1;  // The simple direct serial connection type.
-        ConnectionTypeSerialMoxa moxa       = 2;  // The Moxa connection type.
-        ConnectionTypeSerialRfc2217 rfc2217 = 3;  // The RFC 2217 connection type.
-        // TBA: Add Advanctech and other IP-to-serial converters.
+        ConnectionTypeSerialMoxa moxa       = 2;  // The Moxa IP-to-serial converter connection type.
+        ConnectionTypeSerialRfc2217 rfc2217 = 3;  // The RFC 2217 protocol-based connection type.
+        // TBA: Add Advantech and other IP-to-serial converters.
     }
     SerialConfig config = 4;  // The serial port configuration.
 }
@@ -552,27 +552,27 @@ enum ActionType {
 
 // Defines the get register action specification.
 message ActionGetRegister {
-    common.FieldDataType data_type = 1;  // The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
+    common.FieldDataType data_type = 1;  // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
 }
 
 // Defines the get periodical profile action specification.
 message ActionGetPeriodicalProfile {
     google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout.
-    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout.
-    common.FieldDataType data_type        = 3;  // The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout (inclusive).
+    common.FieldDataType data_type        = 3;  // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
 }
 
-// Defines the get irregular profile action.
+// Defines the get irregular profile action specification.
 message ActionGetIrregularProfile {
-    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout.
-    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout.
-    common.FieldDataType data_type        = 3;  // The data type of the target register, for example `integer`, `double`, `string`, `timestamp`. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout (inclusive).
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout (inclusive).
+    common.FieldDataType data_type        = 3;  // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
 }
 
 // Defines the get events action specification.
 message ActionGetEvents {
-    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the event readout.
-    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the event readout.
+    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the event readout (inclusive).
+    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the event readout (inclusive).
 }
 
 // Defines the get device info action specification.
@@ -628,10 +628,10 @@ enum ActionResultCode {
 enum JobErrorCode {
     JOB_ERROR_CODE_UNSPECIFIED    = 0;  // Unspecified job error code.
     JOB_ERROR_CODE_NONE           = 1;  // The job has been completed successfully.
-    JOB_ERROR_CODE_BUSY           = 2;  // There is no free slot in the driver to handle the job; the job shall be send again later.
+    JOB_ERROR_CODE_BUSY           = 2;  // There is no free slot in the driver to handle the job; the job shall be sent again later.
     JOB_ERROR_CODE_ERROR          = 5;  // The job has failed; a retry will be attempted.
-    JOB_ERROR_CODE_ALREADY_EXISTS = 8;  // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
-    JOB_ERROR_CODE_FATAL          = 9;  // The job failed, not retry will be attempted.
+    JOB_ERROR_CODE_ALREADY_EXISTS = 8;  // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times, which would point to a bug.
+    JOB_ERROR_CODE_FATAL          = 9;  // The job failed; no retry will be attempted.
 }
 
 // Defines the constraints for job actions.
@@ -659,28 +659,28 @@ enum BulkStatusCode {
 
 // Defines the status information of a single job within a bulk.
 message JobStatus {
-    JobStatusCode status                  = 1;  // The status of the job.
-    JobErrorCode code                     = 2;  // The error code of the job.
+    JobStatusCode status                  = 1;  // The current status of the job.
+    JobErrorCode code                     = 2;  // The error code of the job indicating success or failure reason.
     repeated ActionResult results         = 3;  // The result data for all executed job actions.
     google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
     google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
-    int32 attempts_done                   = 6;  // The number of attempts already done.
-    DeviceInfo device_info                = 7;  // The device informatiom from the `ACTION_TYPE_GET_DEVICE_INFO` action.
+    int32 attempts_done                   = 6;  // The number of attempts already completed.
+    DeviceInfo device_info                = 7;  // The device information from the `ACTION_TYPE_GET_DEVICE_INFO` action if executed.
     int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued for processing.
-    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.
+    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.
 }
 
 // Defines the progress status information of a single job within a bulk.
 message JobProgressStatus {
-    JobStatusCode status                  = 1;  // The status of the job.
-    JobErrorCode code                     = 2;  // The error code of the job.
+    JobStatusCode status                  = 1;  // The current status of the job.
+    JobErrorCode code                     = 2;  // The error code of the job indicating success or failure reason.
     repeated ActionProgressResult results = 3;  // The result data for all executed job actions.
     google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
     google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
-    int32 attempts_done                   = 6;  // The number of attempts already done.
-    DeviceInfo device_info                = 7;  // The device informatiom from the `ACTION_TYPE_GET_DEVICE_INFO` action.
+    int32 attempts_done                   = 6;  // The number of attempts already completed.
+    DeviceInfo device_info                = 7;  // The device information from the `ACTION_TYPE_GET_DEVICE_INFO` action if executed.
     int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued for processing.
-    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.
+    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.
 }
 
 // Defines the job start request for a single device.
@@ -790,9 +790,9 @@ enum JobStatusCode {
 // Defines the result of a single action.
 message ActionResult {
     string action_id                      = 1;  // The unique action identifier.
-    ActionResultCode status               = 2;  // The status code of the action.
-    ActionData data                       = 3;  // The action result data.
-    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relats to a register. Applicable only for results of regular bulks.
+    ActionResultCode status               = 2;  // The status code of the action indicating success or failure.
+    ActionData data                       = 3;  // The action result data containing the retrieved or processed information.
+    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.
     repeated string variable_name         = 5;  // The variable names. This is a read-only value and is set only if the action data relates to one or more variables based on device template mapping. Applicable only for results of regular bulks.
     common.FormattedMessage error_message = 6;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
@@ -800,9 +800,9 @@ message ActionResult {
 // Defines the progress result of a single action.
 message ActionProgressResult {
     string action_id                      = 1;  // The unique action identifier.
-    ActionResultCode status               = 2;  // The status code of the action.
-    ActionProgressData data               = 3;  // The action result data.
-    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relats to a register. Applicable only for results of regular bulks.
+    ActionResultCode status               = 2;  // The status code of the action indicating success or failure.
+    ActionProgressData data               = 3;  // The action result data containing progress information.
+    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.
     common.FormattedMessage error_message = 5;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 

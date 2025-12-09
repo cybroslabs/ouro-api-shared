@@ -1,14 +1,14 @@
 # Model: io.clbs.openhes.models.acquisition.JobActionSet
 
-Defines the job action set specification.
- Unlike a single `JobAction` that is used only once per bulk. `JobActionSet` may internally cover multiple `JobActions`.
- For example, if the action type is `GetRegister` and no variable filter is specified, the system automatically retrieves all registers defined in the active device configuration template.
+Defines a job action set specification that can expand into multiple individual job actions.
+ Unlike JobAction which represents a single operation, JobActionSet allows bulk specification.
+ For example, specifying ActionGetRegister without variable filters automatically creates actions for all registers in the device's configuration template.
 
 ## Fields
 
 | Field | Information |
 | --- | --- |
-| variables | <b>Type:</b> `string`<br><b>Description:</b><br>The variable filter. Meaning depends on the action type:<br> - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.<br>- Others: Not applicable (ignored). |
+| variables | <b>Type:</b> `string`<br><b>Description:</b><br>The variable filter specifying which variables to target. Behavior varies by action type:<br>- **GetRegister, GetPeriodicalProfile, GetIrregularProfile**: List of variable names (e.g., "A+", "V1") to read. If empty, reads all variables of the given type from the device template.<br>- **Other actions**: Not applicable (ignored). |
 | getRegister | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetRegister`](model-io-clbs-openhes-models-acquisition-actiongetregister.md)<br><b>Description:</b><br>Defines the GetRegister action. |
 | getPeriodicalProfile | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile`](model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md)<br><b>Description:</b><br>Defines the GetPeriodicalProfile action. |
 | getIrregularProfile | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetIrregularProfile`](model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md)<br><b>Description:</b><br>Defines the GetIrregularProfile action. |

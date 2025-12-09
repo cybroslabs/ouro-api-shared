@@ -1891,7 +1891,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The start timestamp of the event readout.</p></td>
+      <td class="content"><p>The start timestamp of the event readout (inclusive).</p></td>
       
     </tr>
     
@@ -1906,7 +1906,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The end timestamp of the event readout.</p></td>
+      <td class="content"><p>The end timestamp of the event readout (inclusive).</p></td>
       
     </tr>
     
@@ -1930,7 +1930,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the get irregular profile action.</p>
+  <p>Defines the get irregular profile action specification.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -1956,7 +1956,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The start timestamp of the profile readout.</p></td>
+      <td class="content"><p>The start timestamp of the profile readout (inclusive).</p></td>
       
     </tr>
     
@@ -1971,7 +1971,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The end timestamp of the profile readout.</p></td>
+      <td class="content"><p>The end timestamp of the profile readout (inclusive).</p></td>
       
     </tr>
     
@@ -1987,7 +1987,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The data type of the target register, for example <code>integer</code>, <code>double</code>, <code>string</code>, <code>timestamp</code>. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.</p></td>
+      <td class="content"><p>The data type of the target register, for example <code>INTEGER</code>, <code>DOUBLE</code>, <code>TEXT</code>, <code>TIMESTAMP</code>. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.</p></td>
       
     </tr>
     
@@ -2052,7 +2052,7 @@
           <span>google.protobuf.Timestamp</span>
         </code>
       </td>
-      <td class="content"><p>The end timestamp of the profile readout.</p></td>
+      <td class="content"><p>The end timestamp of the profile readout (inclusive).</p></td>
       
     </tr>
     
@@ -2068,7 +2068,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The data type of the target register, for example <code>integer</code>, <code>double</code>, <code>string</code>, <code>timestamp</code>. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.</p></td>
+      <td class="content"><p>The data type of the target register, for example <code>INTEGER</code>, <code>DOUBLE</code>, <code>TEXT</code>, <code>TIMESTAMP</code>. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.</p></td>
       
     </tr>
     
@@ -2119,7 +2119,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The data type of the target register, for example <code>integer</code>, <code>double</code>, <code>string</code>, <code>timestamp</code>. For proxy bulks, this value can be explicitely specified. For regular bulks, it is automatically taken from the register definition in the system.</p></td>
+      <td class="content"><p>The data type of the target register, for example <code>INTEGER</code>, <code>DOUBLE</code>, <code>TEXT</code>, <code>TIMESTAMP</code>. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.</p></td>
       
     </tr>
     
@@ -2270,7 +2270,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The status code of the action.</p></td>
+      <td class="content"><p>The status code of the action indicating success or failure.</p></td>
       
     </tr>
     
@@ -2286,7 +2286,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The action result data.</p></td>
+      <td class="content"><p>The action result data containing the retrieved or processed information.</p></td>
       
     </tr>
     
@@ -2301,7 +2301,7 @@
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique register identifier. This is a read-only value and is set only if the action data relats to a register. Applicable only for results of regular bulks.</p></td>
+      <td class="content"><p>The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.</p></td>
       
     </tr>
     
@@ -2854,7 +2854,7 @@
 </h4>
 
 <div class="block content">
-  <p>Defines the destription for one application protocol, for example DLMS_SN.</p>
+  <p>Defines the template description for an application protocol, for example DLMS_SN.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -2881,7 +2881,7 @@
     </a>
         </code>
       </td>
-      <td class="content"><p>The application protocol.</p></td>
+      <td class="content"><p>The application protocol type.</p></td>
       
     </tr>
     
@@ -3552,7 +3552,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
 </h4>
 
 <div class="block content">
-  <p>Defines the destription of a single communication type, for example <code>TCP/IP</code>.</p>
+  <p>Defines the template description of a single communication type, for example TCP/IP.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -3597,7 +3597,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of supprted data link protocols and their application protocols supported by the driver.</p></td>
+      <td class="content"><p>The list of supported data link protocols and their application protocols supported by the driver.</p></td>
       
     </tr>
     
@@ -3892,7 +3892,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
         </code>
       </td>
-      <td class="content"><p>The data link protocol.</p></td>
+      <td class="content"><p>The data link protocol used for communication.</p></td>
       
     </tr>
     
@@ -3907,7 +3907,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>he communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (foe example, multi-master RS-485 withprimary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.</p></td>
+      <td class="content"><p>The communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (for example, multi-master RS-485 with primary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.</p></td>
       
     </tr>
     
@@ -3922,7 +3922,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The connection attributes. See <code>GetDataLinkFields</code> in the acquisition package.</p></td>
+      <td class="content"><p>The connection attributes specific to the data link protocol. See <code>GetDataLinkFields</code> in the acquisition package for available attributes.</p></td>
       
     </tr>
     
@@ -3953,7 +3953,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
             </code>
           </td>
-          <td class="content"><p>The TCP/IP connection type.</p></td>
+          <td class="content"><p>The direct TCP/IP connection type.</p></td>
           
         </tr>
       
@@ -3973,7 +3973,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
             </code>
           </td>
-          <td class="content"><p>The phone-based (modem pool) connection type..</p></td>
+          <td class="content"><p>The phone-based modem pool connection type.</p></td>
           
         </tr>
       
@@ -3993,7 +3993,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
             </code>
           </td>
-          <td class="content"><p>The serial-over-IP connection type.</p></td>
+          <td class="content"><p>The serial-over-IP connection type using an IP-to-serial converter.</p></td>
           
         </tr>
       
@@ -4017,7 +4017,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
 </h4>
 
 <div class="block content">
-  <p>Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).</p>
+  <p>Defines the connection information for a controlled serial line over IP (for example, Moxa).</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -4095,7 +4095,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
             </code>
           </td>
-          <td class="content"><p>The Moxa connection type.</p></td>
+          <td class="content"><p>The Moxa IP-to-serial converter connection type.</p></td>
           
         </tr>
       
@@ -4115,7 +4115,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
             </code>
           </td>
-          <td class="content"><p>The RFC 2217 connection type.</p></td>
+          <td class="content"><p>The RFC 2217 protocol-based connection type.</p></td>
           
         </tr>
       
@@ -4260,7 +4260,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to the device. The final modem is selected by the Taskmaster at the job start.</p></td>
+      <td class="content"><p>The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to devices. The final modem is selected by the Taskmaster at job start time.</p></td>
       
     </tr>
     
@@ -4276,7 +4276,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
         </code>
       </td>
-      <td class="content"><p>The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job!</p></td>
+      <td class="content"><p>The modem device assigned to the job. This field is filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job.</p></td>
       
     </tr>
     
@@ -5308,7 +5308,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
 </h4>
 
 <div class="block content">
-  <p>Defines the destription of a single data link protocol, for example <code>HDLC</code>.</p>
+  <p>Defines the template description of a single data link protocol, for example HDLC.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -5335,7 +5335,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
         </code>
       </td>
-      <td class="content"><p>The data link protocol.</p></td>
+      <td class="content"><p>The data link protocol type.</p></td>
       
     </tr>
     
@@ -5353,7 +5353,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of application protocol identifiers supported by the driver.</p></td>
+      <td class="content"><p>The list of application protocol identifiers supported by the driver for this data link.</p></td>
       
     </tr>
     
@@ -5371,7 +5371,7 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of attribute definitions related to the selected data link type (see l<code>ink_protocol</code> property). These field definitions are provided by the system and drivers must leave this field empty.</p></td>
+      <td class="content"><p>The list of attribute definitions related to the selected data link type (see <code>link_protocol</code> property). These field definitions are provided by the system and drivers must leave this field empty.</p></td>
       
     </tr>
     
@@ -7524,7 +7524,7 @@ Generic drivers, such as <code>cybros labs generic</code>, must be in the follow
     </a>
         </code>
       </td>
-      <td class="content"><p>The job action templates all supported action types. Each supported action type must appear onbly once.</p></td>
+      <td class="content"><p>The job action templates for all supported action types. Each supported action type must appear only once.</p></td>
       
     </tr>
     
@@ -7558,7 +7558,7 @@ Generic drivers, such as <code>cybros labs generic</code>, must be in the follow
     </a>
         </code>
       </td>
-      <td class="content"><p>The supported templates of the job actions constraints.</p></td>
+      <td class="content"><p>The supported templates of the job action constraints.</p></td>
       
     </tr>
     
@@ -7576,7 +7576,7 @@ Generic drivers, such as <code>cybros labs generic</code>, must be in the follow
     </a>
         </code>
       </td>
-      <td class="content"><p>The list of descriptors for uknown devices detected by the communication unit.
+      <td class="content"><p>The list of field descriptors for unknown devices detected by the communication unit.
 This applies only to drivers that communicate with devices like data concentrators that can provide information for unknown devices.
 The descriptors must cover all data attributes used in the <code>SetUnknownDevicesRequest</code> message.</p></td>
       
@@ -8573,9 +8573,9 @@ The descriptors must cover all data attributes used in the <code>SetUnknownDevic
 </h4>
 
 <div class="block content">
-  <p>Defines the job action specification.
-The <code>JobAction</code> represents a single action to be performed on a single device.
-For example, if the action is <code>ActionGetRegister</code>, it specifies a single register to be read from the devices.</p>
+  <p>Defines a single job action specification representing a discrete operation on a device.
+Each JobAction represents one atomic operation (e.g., reading a specific register, syncing the clock).
+For bulk operations spanning multiple registers, use JobActionSet instead.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -8601,7 +8601,7 @@ For example, if the action is <code>ActionGetRegister</code>, it specifies a sin
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The unique identifier of the action.</p></td>
+      <td class="content"><p>The unique identifier of the action within the job context.</p></td>
       
     </tr>
     
@@ -8616,7 +8616,7 @@ For example, if the action is <code>ActionGetRegister</code>, it specifies a sin
           <span>map&lt;string, io.clbs.openhes.models.common.FieldValue&gt;</span>
         </code>
       </td>
-      <td class="content"><p>The action attributes.</p></td>
+      <td class="content"><p>The action-specific attributes. Available attributes depend on the action type and driver capabilities.</p></td>
       
     </tr>
     
@@ -8938,7 +8938,7 @@ For example, if the action is <code>ActionGetRegister</code>, it specifies a sin
     </a>
         </code>
       </td>
-      <td class="content"><p>The type of action for which this template template is defined.</p></td>
+      <td class="content"><p>The type of action for which this template is defined.</p></td>
       
     </tr>
     
@@ -8956,7 +8956,7 @@ For example, if the action is <code>ActionGetRegister</code>, it specifies a sin
     </a>
         </code>
       </td>
-      <td class="content"><p>TThe list attribute definitions for the action attributes template.</p></td>
+      <td class="content"><p>The list of attribute definitions for the action attributes template.</p></td>
       
     </tr>
     
@@ -9050,9 +9050,9 @@ Action: ACTION_TYPE_GET_REGISTER</p></td>
 </h4>
 
 <div class="block content">
-  <p>Defines the job action set specification.
-Unlike a single <code>JobAction</code> that is used only once per bulk. <code>JobActionSet</code> may internally cover multiple <code>JobActions</code>.
-For example, if the action type is <code>GetRegister</code> and no variable filter is specified, the system automatically retrieves all registers defined in the active device configuration template.</p>
+  <p>Defines a job action set specification that can expand into multiple individual job actions.
+Unlike JobAction which represents a single operation, JobActionSet allows bulk specification.
+For example, specifying ActionGetRegister without variable filters automatically creates actions for all registers in the device's configuration template.</p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -9080,9 +9080,9 @@ For example, if the action type is <code>GetRegister</code> and no variable filt
           <span>string</span>
         </code>
       </td>
-      <td class="content"><p>The variable filter. Meaning depends on the action type:
- - <code>GetRegister</code>, <code>GetPeriodicalProfile</code> and <code>GetIrregularProfile</code>: List of variable names (for example, <code>"A+"</code>) defined in the system. If not set, all variables of the given type are read.
-- Others: Not applicable (ignored).</p></td>
+      <td class="content"><p>The variable filter specifying which variables to target. Behavior varies by action type:
+- <strong>GetRegister, GetPeriodicalProfile, GetIrregularProfile</strong>: List of variable names (e.g., "A+", "V1") to read. If empty, reads all variables of the given type from the device template.
+- <strong>Other actions</strong>: Not applicable (ignored).</p></td>
       
     </tr>
     
@@ -9768,7 +9768,7 @@ These settings apply to individual jobs or entire bulks and determine retry logi
     </a>
         </code>
       </td>
-      <td class="content"><p>The status of the job.</p></td>
+      <td class="content"><p>The current status of the job.</p></td>
       
     </tr>
     
@@ -9784,7 +9784,7 @@ These settings apply to individual jobs or entire bulks and determine retry logi
     </a>
         </code>
       </td>
-      <td class="content"><p>The error code of the job.</p></td>
+      <td class="content"><p>The error code of the job indicating success or failure reason.</p></td>
       
     </tr>
     
@@ -9847,7 +9847,7 @@ These settings apply to individual jobs or entire bulks and determine retry logi
           <span>int32</span>
         </code>
       </td>
-      <td class="content"><p>The number of attempts already done.</p></td>
+      <td class="content"><p>The number of attempts already completed.</p></td>
       
     </tr>
     
@@ -9863,7 +9863,7 @@ These settings apply to individual jobs or entire bulks and determine retry logi
     </a>
         </code>
       </td>
-      <td class="content"><p>The device informatiom from the <code>ACTION_TYPE_GET_DEVICE_INFO</code> action.</p></td>
+      <td class="content"><p>The device information from the <code>ACTION_TYPE_GET_DEVICE_INFO</code> action if executed.</p></td>
       
     </tr>
     
@@ -9894,7 +9894,7 @@ These settings apply to individual jobs or entire bulks and determine retry logi
     </a>
         </code>
       </td>
-      <td class="content"><p>The user-facing error message related to the whole job. This is used especially relevant when no action was executed, allowing to log non-action-related errors.</p></td>
+      <td class="content"><p>The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.</p></td>
       
     </tr>
     
@@ -14322,7 +14322,7 @@ Proxy bulks are used when data collection is initiated externally and needs to b
     <tr>
       <td><code>JOB_ERROR_CODE_BUSY</code></td>
       <td>2</td>
-      <td class="content"><p>There is no free slot in the driver to handle the job; the job shall be send again later.</p></td>
+      <td class="content"><p>There is no free slot in the driver to handle the job; the job shall be sent again later.</p></td>
     </tr>
     
     <tr>
@@ -14334,13 +14334,13 @@ Proxy bulks are used when data collection is initiated externally and needs to b
     <tr>
       <td><code>JOB_ERROR_CODE_ALREADY_EXISTS</code></td>
       <td>8</td>
-      <td class="content"><p>This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.</p></td>
+      <td class="content"><p>This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times, which would point to a bug.</p></td>
     </tr>
     
     <tr>
       <td><code>JOB_ERROR_CODE_FATAL</code></td>
       <td>9</td>
-      <td class="content"><p>The job failed, not retry will be attempted.</p></td>
+      <td class="content"><p>The job failed; no retry will be attempted.</p></td>
     </tr>
     
   </tbody>
@@ -14668,7 +14668,7 @@ Use higher priorities for time-sensitive operations like remote disconnect/conne
 </h4>
 
 <div class="block content">
-  <p><p>Defines the available serial port parity types.</p></p>
+  <p><p>Defines the available serial port flow control types.</p></p>
 </div>
 
 <table class="table is-fullwidth is-hoverable is-bordered">
@@ -14696,13 +14696,13 @@ Use higher priorities for time-sensitive operations like remote disconnect/conne
     <tr>
       <td><code>FLOW_CONTROL_HARDWARE</code></td>
       <td>2</td>
-      <td class="content"><p>Hardware flow control (RTS/CTS).</p></td>
+      <td class="content"><p>Hardware flow control using RTS/CTS signals.</p></td>
     </tr>
     
     <tr>
       <td><code>FLOW_CONTROL_SOFTWARE</code></td>
       <td>3</td>
-      <td class="content"><p>Software flow control (XON/XOFF).</p></td>
+      <td class="content"><p>Software flow control using XON/XOFF characters.</p></td>
     </tr>
     
   </tbody>

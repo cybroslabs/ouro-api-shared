@@ -1,15 +1,15 @@
 # Model: io.clbs.openhes.models.acquisition.JobAction
 
-Defines the job action specification.
- The `JobAction` represents a single action to be performed on a single device.
- For example, if the action is `ActionGetRegister`, it specifies a single register to be read from the devices.
+Defines a single job action specification representing a discrete operation on a device.
+ Each JobAction represents one atomic operation (e.g., reading a specific register, syncing the clock).
+ For bulk operations spanning multiple registers, use JobActionSet instead.
 
 ## Fields
 
 | Field | Information |
 | --- | --- |
-| actionId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique identifier of the action. |
-| attributes | <b>Type:</b> map<`string`, [`io.clbs.openhes.models.common.FieldValue`](model-io-clbs-openhes-models-common-fieldvalue.md)><br><b>Description:</b><br>The action attributes. |
+| actionId | <b>Type:</b> `string`<br><b>Description:</b><br>The unique identifier of the action within the job context. |
+| attributes | <b>Type:</b> map<`string`, [`io.clbs.openhes.models.common.FieldValue`](model-io-clbs-openhes-models-common-fieldvalue.md)><br><b>Description:</b><br>The action-specific attributes. Available attributes depend on the action type and driver capabilities. |
 | getRegister | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetRegister`](model-io-clbs-openhes-models-acquisition-actiongetregister.md)<br><b>Description:</b><br>Defines the GetRegister action. |
 | getPeriodicalProfile | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetPeriodicalProfile`](model-io-clbs-openhes-models-acquisition-actiongetperiodicalprofile.md)<br><b>Description:</b><br>Defines the GetPeriodicalProfile action. |
 | getIrregularProfile | <b>Type:</b> [`io.clbs.openhes.models.acquisition.ActionGetIrregularProfile`](model-io-clbs-openhes-models-acquisition-actiongetirregularprofile.md)<br><b>Description:</b><br>Defines the GetIrregularProfile action. |

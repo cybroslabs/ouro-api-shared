@@ -291,14 +291,14 @@ func (x SerialConfigStopBits) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Defines the available serial port parity types.
+// Defines the available serial port flow control types.
 type SerialConfigFLowControler int32
 
 const (
 	SerialConfigFLowControler_FLOW_CONTROL_UNSPECIFIED SerialConfigFLowControler = 0 // Unspecified flow control.
 	SerialConfigFLowControler_FLOW_CONTROL_NONE        SerialConfigFLowControler = 1 // No flow control.
-	SerialConfigFLowControler_FLOW_CONTROL_HARDWARE    SerialConfigFLowControler = 2 // Hardware flow control (RTS/CTS).
-	SerialConfigFLowControler_FLOW_CONTROL_SOFTWARE    SerialConfigFLowControler = 3 // Software flow control (XON/XOFF).
+	SerialConfigFLowControler_FLOW_CONTROL_HARDWARE    SerialConfigFLowControler = 2 // Hardware flow control using RTS/CTS signals.
+	SerialConfigFLowControler_FLOW_CONTROL_SOFTWARE    SerialConfigFLowControler = 3 // Software flow control using XON/XOFF characters.
 )
 
 // Enum value maps for SerialConfigFLowControler.
@@ -657,10 +657,10 @@ type JobErrorCode int32
 const (
 	JobErrorCode_JOB_ERROR_CODE_UNSPECIFIED    JobErrorCode = 0 // Unspecified job error code.
 	JobErrorCode_JOB_ERROR_CODE_NONE           JobErrorCode = 1 // The job has been completed successfully.
-	JobErrorCode_JOB_ERROR_CODE_BUSY           JobErrorCode = 2 // There is no free slot in the driver to handle the job; the job shall be send again later.
+	JobErrorCode_JOB_ERROR_CODE_BUSY           JobErrorCode = 2 // There is no free slot in the driver to handle the job; the job shall be sent again later.
 	JobErrorCode_JOB_ERROR_CODE_ERROR          JobErrorCode = 5 // The job has failed; a retry will be attempted.
-	JobErrorCode_JOB_ERROR_CODE_ALREADY_EXISTS JobErrorCode = 8 // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times to the driver, which would point to a bug.
-	JobErrorCode_JOB_ERROR_CODE_FATAL          JobErrorCode = 9 // The job failed, not retry will be attempted.
+	JobErrorCode_JOB_ERROR_CODE_ALREADY_EXISTS JobErrorCode = 8 // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times, which would point to a bug.
+	JobErrorCode_JOB_ERROR_CODE_FATAL          JobErrorCode = 9 // The job failed; no retry will be attempted.
 )
 
 // Enum value maps for JobErrorCode.
@@ -1194,9 +1194,9 @@ func (b0 JobSettings_builder) Build() *JobSettings {
 	return m0
 }
 
-// Defines the job action specification.
-// The `JobAction` represents a single action to be performed on a single device.
-// For example, if the action is `ActionGetRegister`, it specifies a single register to be read from the devices.
+// Defines a single job action specification representing a discrete operation on a device.
+// Each JobAction represents one atomic operation (e.g., reading a specific register, syncing the clock).
+// For bulk operations spanning multiple registers, use JobActionSet instead.
 type JobAction struct {
 	state                  protoimpl.MessageState        `protogen:"opaque.v1"`
 	xxx_hidden_ActionId    *string                       `protobuf:"bytes,1,opt,name=action_id,json=actionId"`
@@ -1901,9 +1901,9 @@ func (*jobAction_ResetBillingPeriod) isJobAction_Action() {}
 
 func (*jobAction_ImageTransfer) isJobAction_Action() {}
 
-// Defines the job action set specification.
-// Unlike a single `JobAction` that is used only once per bulk. `JobActionSet` may internally cover multiple `JobActions`.
-// For example, if the action type is `GetRegister` and no variable filter is specified, the system automatically retrieves all registers defined in the active device configuration template.
+// Defines a job action set specification that can expand into multiple individual job actions.
+// Unlike JobAction which represents a single operation, JobActionSet allows bulk specification.
+// For example, specifying ActionGetRegister without variable filters automatically creates actions for all registers in the device's configuration template.
 type JobActionSet struct {
 	state                protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Variables []string               `protobuf:"bytes,2,rep,name=variables"`
@@ -2416,10 +2416,9 @@ func (x *JobActionSet) WhichAction() case_JobActionSet_Action {
 type JobActionSet_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The variable filter. Meaning depends on the action type:
-	//   - `GetRegister`, `GetPeriodicalProfile` and `GetIrregularProfile`: List of variable names (for example, `"A+"`) defined in the system. If not set, all variables of the given type are read.
-	//
-	// - Others: Not applicable (ignored).
+	// The variable filter specifying which variables to target. Behavior varies by action type:
+	// - **GetRegister, GetPeriodicalProfile, GetIrregularProfile**: List of variable names (e.g., "A+", "V1") to read. If empty, reads all variables of the given type from the device template.
+	// - **Other actions**: Not applicable (ignored).
 	Variables []string
 	// Fields of oneof xxx_hidden_Action:
 	GetRegister          *ActionGetRegister
@@ -4007,7 +4006,7 @@ func (x *ConnectionInfo) WhichConnection() case_ConnectionInfo_Connection {
 type ConnectionInfo_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The entrypoint connection description. The connection can be either direct TCP, a modem from a pool, or a direct serial line over IP (via an using IP-to-serial converter).
+	// The entry point connection description. The connection can be either direct TCP/IP, a modem from a pool, or a serial line over IP (via an IP-to-serial converter).
 
 	// Fields of oneof xxx_hidden_Connection:
 	Tcpip        *ConnectionTypeDirectTcpIp
@@ -4059,15 +4058,15 @@ type isConnectionInfo_Connection interface {
 }
 
 type connectionInfo_Tcpip struct {
-	Tcpip *ConnectionTypeDirectTcpIp `protobuf:"bytes,1,opt,name=tcpip,oneof"` // The TCP/IP connection type.
+	Tcpip *ConnectionTypeDirectTcpIp `protobuf:"bytes,1,opt,name=tcpip,oneof"` // The direct TCP/IP connection type.
 }
 
 type connectionInfo_ModemPool struct {
-	ModemPool *ConnectionTypeModemPool `protobuf:"bytes,2,opt,name=modem_pool,json=modemPool,oneof"` // The phone-based (modem pool) connection type..
+	ModemPool *ConnectionTypeModemPool `protobuf:"bytes,2,opt,name=modem_pool,json=modemPool,oneof"` // The phone-based modem pool connection type.
 }
 
 type connectionInfo_SerialOverIp struct {
-	SerialOverIp *ConnectionTypeControlledSerial `protobuf:"bytes,3,opt,name=serial_over_ip,json=serialOverIp,oneof"` // The serial-over-IP connection type.
+	SerialOverIp *ConnectionTypeControlledSerial `protobuf:"bytes,3,opt,name=serial_over_ip,json=serialOverIp,oneof"` // The serial-over-IP connection type using an IP-to-serial converter.
 }
 
 func (*connectionInfo_Tcpip) isConnectionInfo_Connection() {}
@@ -4328,9 +4327,9 @@ type ConnectionTypeModemPool_builder struct {
 
 	// The phone number of the device to connect to.
 	Number *string
-	// The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to the device. The final modem is selected by the Taskmaster at the job start.
+	// The unique modem pool identifier. A modem pool is a group of modems that can be used to connect to devices. The final modem is selected by the Taskmaster at job start time.
 	PoolId *string
-	// The modem device assigned to the job. This field filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job!
+	// The modem device assigned to the job. This field is filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job.
 	Modem *ModemInfo
 }
 
@@ -4832,7 +4831,7 @@ func (b0 ConnectionTypeSerialRfc2217_builder) Build() *ConnectionTypeSerialRfc22
 	return m0
 }
 
-// Defines the destription for one application protocol, for example DLMS_SN.
+// Defines the template description for an application protocol, for example DLMS_SN.
 type ApplicationProtocolTemplate struct {
 	state                  protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_Protocol    ApplicationProtocol        `protobuf:"varint,1,opt,name=protocol,enum=io.clbs.openhes.models.acquisition.ApplicationProtocol"`
@@ -4910,7 +4909,7 @@ func (x *ApplicationProtocolTemplate) ClearProtocol() {
 type ApplicationProtocolTemplate_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The application protocol.
+	// The application protocol type.
 	Protocol *ApplicationProtocol
 	// The list of attribute definitions for the selected application protocol. These attributes are instantiated for each device and communication unit pair.
 	Attributes []*common.FieldDescriptor
@@ -4928,7 +4927,7 @@ func (b0 ApplicationProtocolTemplate_builder) Build() *ApplicationProtocolTempla
 	return m0
 }
 
-// Defines the destription of a single data link protocol, for example `HDLC`.
+// Defines the template description of a single data link protocol, for example HDLC.
 type DataLinkTemplate struct {
 	state                      protoimpl.MessageState     `protogen:"opaque.v1"`
 	xxx_hidden_LinkProtocol    DataLinkProtocol           `protobuf:"varint,1,opt,name=link_protocol,json=linkProtocol,enum=io.clbs.openhes.models.acquisition.DataLinkProtocol"`
@@ -5018,11 +5017,11 @@ func (x *DataLinkTemplate) ClearLinkProtocol() {
 type DataLinkTemplate_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The data link protocol.
+	// The data link protocol type.
 	LinkProtocol *DataLinkProtocol
-	// The list of application protocol identifiers supported by the driver.
+	// The list of application protocol identifiers supported by the driver for this data link.
 	AppProtocolRefs []ApplicationProtocol
-	// The list of attribute definitions related to the selected data link type (see l`ink_protocol` property). These field definitions are provided by the system and drivers must leave this field empty.
+	// The list of attribute definitions related to the selected data link type (see `link_protocol` property). These field definitions are provided by the system and drivers must leave this field empty.
 	Attributes []*common.FieldDescriptor
 }
 
@@ -5039,7 +5038,7 @@ func (b0 DataLinkTemplate_builder) Build() *DataLinkTemplate {
 	return m0
 }
 
-// Defines the destription of a single communication type, for example `TCP/IP`.
+// Defines the template description of a single communication type, for example TCP/IP.
 type CommunicationTemplate struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Type        CommunicationType      `protobuf:"varint,1,opt,name=type,enum=io.clbs.openhes.models.acquisition.CommunicationType"`
@@ -5119,7 +5118,7 @@ type CommunicationTemplate_builder struct {
 
 	// The communication type.
 	Type *CommunicationType
-	// The list of supprted data link protocols and their application protocols supported by the driver.
+	// The list of supported data link protocols and their application protocols supported by the driver.
 	Datalinks []*DataLinkTemplate
 }
 
@@ -5379,13 +5378,13 @@ type DriverTemplates_builder struct {
 	CommunicationTemplates []*CommunicationTemplate
 	// The supported application protocol templates.
 	AppProtocols []*ApplicationProtocolTemplate
-	// The job action templates all supported action types. Each supported action type must appear onbly once.
+	// The job action templates for all supported action types. Each supported action type must appear only once.
 	ActionAttributes []*JobActionAttributes
 	// The supported access level templates.
 	AccessTemplates []*AccessLevelTemplate
-	// The supported templates of the job actions constraints.
+	// The supported templates of the job action constraints.
 	ActionConstraints *JobActionContraints
-	// The list of descriptors for uknown devices detected by the communication unit.
+	// The list of field descriptors for unknown devices detected by the communication unit.
 	// This applies only to drivers that communicate with devices like data concentrators that can provide information for unknown devices.
 	// The descriptors must cover all data attributes used in the `SetUnknownDevicesRequest` message.
 	UknownDeviceDescriptors []*common.FieldDescriptor
@@ -8498,9 +8497,9 @@ func (x *JobActionAttributes) ClearType() {
 type JobActionAttributes_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The type of action for which this template template is defined.
+	// The type of action for which this template is defined.
 	Type *ActionType
-	// TThe list attribute definitions for the action attributes template.
+	// The list of attribute definitions for the action attributes template.
 	Attributes []*common.FieldDescriptor
 }
 
@@ -8516,7 +8515,7 @@ func (b0 JobActionAttributes_builder) Build() *JobActionAttributes {
 	return m0
 }
 
-// Defines the connection infoformation for a controlled serial line over IP (for example, Moxa).
+// Defines the connection information for a controlled serial line over IP (for example, Moxa).
 type ConnectionTypeControlledSerial struct {
 	state                protoimpl.MessageState                     `protogen:"opaque.v1"`
 	xxx_hidden_Converter isConnectionTypeControlledSerial_Converter `protobuf_oneof:"converter"`
@@ -8700,7 +8699,7 @@ func (x *ConnectionTypeControlledSerial) WhichConverter() case_ConnectionTypeCon
 type ConnectionTypeControlledSerial_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// IP-to-serial converter description.
+	// The IP-to-serial converter description.
 
 	// Fields of oneof xxx_hidden_Converter:
 	Direct  *ConnectionTypeSerialDirect
@@ -8746,11 +8745,11 @@ type connectionTypeControlledSerial_Direct struct {
 }
 
 type connectionTypeControlledSerial_Moxa struct {
-	Moxa *ConnectionTypeSerialMoxa `protobuf:"bytes,2,opt,name=moxa,oneof"` // The Moxa connection type.
+	Moxa *ConnectionTypeSerialMoxa `protobuf:"bytes,2,opt,name=moxa,oneof"` // The Moxa IP-to-serial converter connection type.
 }
 
 type connectionTypeControlledSerial_Rfc2217 struct {
-	Rfc2217 *ConnectionTypeSerialRfc2217 `protobuf:"bytes,3,opt,name=rfc2217,oneof"` // The RFC 2217 connection type.
+	Rfc2217 *ConnectionTypeSerialRfc2217 `protobuf:"bytes,3,opt,name=rfc2217,oneof"` // The RFC 2217 protocol-based connection type.
 }
 
 func (*connectionTypeControlledSerial_Direct) isConnectionTypeControlledSerial_Converter() {}
@@ -8965,7 +8964,7 @@ func (b0 ActionGetPeriodicalProfile_builder) Build() *ActionGetPeriodicalProfile
 	return m0
 }
 
-// Defines the get irregular profile action.
+// Defines the get irregular profile action specification.
 type ActionGetIrregularProfile struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_RangeStart  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=range_start,json=rangeStart"`
