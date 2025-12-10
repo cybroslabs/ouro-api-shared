@@ -439,34 +439,9 @@ func (pd *ProfileValuesDecoder) GetUnit() (u string) {
 	return
 }
 
-func (pd *ProfileValuesDecoder) GetFirstTimeStamp() (ts time.Time, err error) {
+func (pd *ProfileValuesDecoder) GetInfo() (firstTimestamp time.Time, lastTimestamp time.Time, itemcount int, err error) {
 	var tmp [14]byte
-
-	if pd.empty {
-		return
-	}
-	bf := bytes.NewReader(pd.buffer)
-	_, err = bf.Seek(int64(pd.headerlength), io.SeekStart)
-	if err != nil {
-		return
-	}
-
-	_, err = io.ReadFull(bf, tmp[:])
-	if err != nil {
-		return
-	}
-
-	b := binary.BigEndian.Uint32(tmp[8:])
-	if b < 15 {
-		err = fmt.Errorf("data error, invalid block size in bytes")
-		return
-	}
-	ts = time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
-	return
-}
-
-func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, itemcount int, err error) {
-	var tmp [14]byte
+	var ft time.Time
 	var lt time.Time
 
 	if pd.empty {
@@ -492,6 +467,9 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, itemcount int
 		}
 		itemcount += int(tmp[12]) + 1
 		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
+		if ft.IsZero() || ft.After(ts) {
+			ft = ts
+		}
 		if lt.Before(ts) {
 			lt = ts
 		}
@@ -500,7 +478,8 @@ func (pd *ProfileValuesDecoder) GetLastTimeStamp() (ltt time.Time, itemcount int
 			return
 		}
 	}
-	ltt = lt
+	firstTimestamp = ft
+	lastTimestamp = lt
 	return
 }
 
