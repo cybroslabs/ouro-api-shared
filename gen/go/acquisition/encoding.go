@@ -466,10 +466,16 @@ func (pd *ProfileValuesDecoder) GetInfo() (firstTimestamp time.Time, lastTimesta
 			return
 		}
 		itemcount += int(tmp[12]) + 1
-		ts := time.Unix(int64(binary.BigEndian.Uint64(tmp[:]))+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
-		if ft.IsZero() || ft.After(ts) {
+
+		block_first_ts := int64(binary.BigEndian.Uint64(tmp[:]))
+
+		// TODO: validate whether the blocks may overlap?
+		ts := time.Unix(block_first_ts, 0).UTC()
+		if firstTimestamp.IsZero() || ft.After(ts) {
 			ft = ts
 		}
+
+		ts = time.Unix(block_first_ts+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
 		if lt.Before(ts) {
 			lt = ts
 		}
