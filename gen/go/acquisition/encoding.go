@@ -441,9 +441,7 @@ func (pd *ProfileValuesDecoder) GetUnit() (u string) {
 
 func (pd *ProfileValuesDecoder) GetInfo() (firstTimestamp time.Time, lastTimestamp time.Time, itemcount int, err error) {
 	var tmp [14]byte
-	var ft time.Time
 	var ft_set bool
-	var lt time.Time
 
 	if pd.empty {
 		return
@@ -471,21 +469,24 @@ func (pd *ProfileValuesDecoder) GetInfo() (firstTimestamp time.Time, lastTimesta
 		block_first_ts := int64(binary.BigEndian.Uint64(tmp[:]))
 
 		if !ft_set {
-			ft = time.Unix(block_first_ts, 0).UTC()
+			firstTimestamp = time.Unix(block_first_ts, 0).UTC()
 			ft_set = true
+		} else {
+			ts := time.Unix(block_first_ts, 0).UTC()
+			if firstTimestamp.After(ts) {
+				firstTimestamp = ts
+			}
 		}
 
 		ts := time.Unix(block_first_ts+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
-		if lt.Before(ts) {
-			lt = ts
+		if lastTimestamp.Before(ts) {
+			lastTimestamp = ts
 		}
 		_, err = bf.Seek(int64(b-14), io.SeekCurrent)
 		if err != nil {
 			return
 		}
 	}
-	firstTimestamp = ft
-	lastTimestamp = lt
 	return
 }
 
