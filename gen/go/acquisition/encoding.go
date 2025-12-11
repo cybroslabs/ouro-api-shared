@@ -442,6 +442,7 @@ func (pd *ProfileValuesDecoder) GetUnit() (u string) {
 func (pd *ProfileValuesDecoder) GetInfo() (firstTimestamp time.Time, lastTimestamp time.Time, itemcount int, err error) {
 	var tmp [14]byte
 	var ft time.Time
+	var ft_set bool
 	var lt time.Time
 
 	if pd.empty {
@@ -469,13 +470,12 @@ func (pd *ProfileValuesDecoder) GetInfo() (firstTimestamp time.Time, lastTimesta
 
 		block_first_ts := int64(binary.BigEndian.Uint64(tmp[:]))
 
-		// TODO: validate whether the blocks may overlap?
-		ts := time.Unix(block_first_ts, 0).UTC()
-		if firstTimestamp.IsZero() || ft.After(ts) {
-			ft = ts
+		if !ft_set {
+			ft = time.Unix(block_first_ts, 0).UTC()
+			ft_set = true
 		}
 
-		ts = time.Unix(block_first_ts+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
+		ts := time.Unix(block_first_ts+int64(pd.periodseconds)*int64(tmp[12]), 0).UTC()
 		if lt.Before(ts) {
 			lt = ts
 		}
