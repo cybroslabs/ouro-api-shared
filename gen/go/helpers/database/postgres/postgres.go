@@ -74,12 +74,19 @@ func quoteSimpleIdentifier(name string) string {
 // when necessary. Each part is evaluated independently.
 // If a part is already quoted or doesn't need quoting, it's left as-is.
 func QuoteIdentifier(name string) string {
-	parts := strings.Split(name, ".")
+	// handle column type first
+	parts := strings.SplitN(name, "::", 2)
+	var type_suffix string
+	if len(parts) == 2 {
+		type_suffix = "::" + parts[1]
+	}
+	// split name/namespaces
+	parts = strings.Split(parts[0], ".")
 	quoted := make([]string, len(parts))
 	for i, part := range parts {
 		quoted[i] = quoteSimpleIdentifier(part)
 	}
-	return strings.Join(quoted, ".")
+	return strings.Join(quoted, ".") + type_suffix
 }
 
 // PathToDbPathFunc is a function type that maps a object path to its corresponding database column name and or JSONB path within a JSONB column.
