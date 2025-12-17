@@ -393,15 +393,6 @@
     
       
       <p>
-        <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">
-          <span class="tag" style="min-width: 6em">Message</span>
-          <code>ConnectionTypeSerialDirect</code> 
-        </a>
-      </p>
-      
-    
-      
-      <p>
         <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialMoxa">
           <span class="tag" style="min-width: 6em">Message</span>
           <code>ConnectionTypeSerialMoxa</code> 
@@ -4063,26 +4054,6 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
 
         <tr>
           <td>
-            1
-          </td>
-          <td>
-            direct
-          </td>
-          <td>
-            <code title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">
-              
-              <a href="io.clbs.openhes.models.acquisition.html#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect"><span title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect</span>
-    </a>
-            </code>
-          </td>
-          <td class="content"><p>The simple direct serial connection type.</p></td>
-          
-        </tr>
-      
-        
-
-        <tr>
-          <td>
             2
           </td>
           <td>
@@ -4277,86 +4248,6 @@ across hundreds or thousands of devices. Each bulk creates individual jobs per d
         </code>
       </td>
       <td class="content"><p>The modem device assigned to the job. This field is filled only when the connection type is modem. The value is assigned by the Taskmaster at the start of the job, and the driver must use this modem exclusively for this job.</p></td>
-      
-    </tr>
-    
-    
-  </tbody>
-</table>
- 
-      </div>
-      
-    
-      
-      <div class="block">
-        
-
-<h4 class="title is-4 type-heading" id="message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">
-  <span>
-    <a href="#message-io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect" title="io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect">message ConnectionTypeSerialDirect</a>
-  
-  </span>
-  
-</h4>
-
-<div class="block content">
-  <p>Defines the connection information for a direct serial port connection.</p>
-</div>
-
-<table class="table is-fullwidth is-hoverable is-bordered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Field</th>
-      <th>Type</th>
-      <th>Description</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1</td>
-      <td>
-        host
-      </td>
-      <td>
-        <code title="string">
-          
-          <span>string</span>
-        </code>
-      </td>
-      <td class="content"><p>The host name or IP address of the device to connect to.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>
-        port
-      </td>
-      <td>
-        <code title="uint32">
-          
-          <span>uint32</span>
-        </code>
-      </td>
-      <td class="content"><p>The TCP port number of the device to connect to.</p></td>
-      
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>
-        timeout
-      </td>
-      <td>
-        <code title="google.protobuf.Duration">
-          
-          <span>google.protobuf.Duration</span>
-        </code>
-      </td>
-      <td class="content"><p>The timeout for the direct serial port connection.</p></td>
       
     </tr>
     

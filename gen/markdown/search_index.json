@@ -522,264 +522,175 @@
     "tags2": ""
   },
   {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
+    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
+    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
     "tags0": [
-      "SECRET_DATA_PLAIN",
-      "SECRET_DATA_AES256CBC",
-      "SECRET_DATA_UNSPECIFIED",
-      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
+      "CRON_JOB_TYPE_START_BULK",
+      "CRON_JOB_TYPE_UNSPECIFIED",
+      "CRON_JOB_TYPE_START_PROXY_BULK",
+      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
     ],
     "tags1": [
-      "AES256CBC",
-      "DATA",
-      "PLAIN",
-      "SECRET",
-      "SecretDataDecryptionMethod",
+      "BULK",
+      "CRON",
+      "CronJobTypeEnum",
+      "JOB",
+      "PROXY",
+      "START",
+      "TYPE",
       "UNSPECIFIED"
     ],
-    "tags2": "Defines the supported decryption methods for cryptographic secret data These methods are used decrypt device authentication keys and other sensitive credentials Unspecified decryption method invalid should not used Data stored plain text without encryption not recommended for production Data encrypted using AES CBC mode Requires initialization vector"
+    "tags2": "Defines the cron job types that can scheduled for automated recurring operations Cron jobs enable scheduled data collection configuration synchronization and other periodic tasks Unspecified cron job type invalid should not used Schedules recurring acquisition bulks for automated data collection from devices Schedules recurring proxy bulks for data collection operations initiated through the DataProxy"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
-    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
+    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
     "tags0": [
-      "SECRET_SESSION_PLAIN",
-      "SECRET_SESSION_UNSPECIFIED",
-      "SECRET_SESSION_RSA_OAEPM_GF1P",
-      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
+      "spec",
+      "metadata",
+      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
     ],
     "tags1": [
-      "GF1P",
-      "OAEPM",
-      "PLAIN",
-      "RSA",
-      "SECRET",
-      "SESSION",
-      "SecretSessionKeyDecryptionMethod",
-      "UNSPECIFIED"
+      "CreateCronJobRequest"
     ],
-    "tags2": "Defines the supported decryption methods for session keys used key wrapping scenarios Session keys provide additional layer security for protecting cryptographic secrets session key used The secret data encrypted directly with the master key Session key stored plain text used when the session key itself not sensitive Session key encrypted using RSA OAEP with MGF1 and SHA Used for secure key transport"
+    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
-    "tags0": [
-      "data",
-      "keyId",
-      "createdAt",
-      "updatedAt",
-      "accessLevel",
-      "io.clbs.openhes.models.crypto.CryptoSecret"
-    ],
-    "tags1": [
-      "CryptoSecret"
-    ],
-    "tags2": "Defines cryptographic secret containing sensitive credentials for device communication Secrets include authentication keys encryption keys and passwords used establish secure connections with devices The security access level this secret relates Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The timestamp when this secret was initially created the system The timestamp when this secret was last modified rotated The actual secret data encryption key password This field contains the decrypted value ready for use"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
-    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
-    "tags0": [
-      "secrets",
-      "io.clbs.openhes.models.crypto.CryptoSecrets"
-    ],
-    "tags1": [
-      "CryptoSecrets"
-    ],
-    "tags2": "Defines list crypto secrets list crypto secrets"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
-    "tags0": [
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "GetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for retrieving crypto secrets The resource type for which the secret defined The driver type for which the secret requested The crypto identifier the secret retrieve"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
-    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
-    "tags0": [
-      "data",
-      "keyId",
-      "cryptoId",
-      "objectType",
-      "driverType",
-      "sessionKey",
-      "accessLevel",
-      "dataDecryptionIv",
-      "decryptionSecretId",
-      "dataDecryptionMethod",
-      "sessionKeyDecryptionMethod",
-      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
-    ],
-    "tags1": [
-      "SetCryptoSecretRequest"
-    ],
-    "tags2": "Defines specification for creating updating crypto secrets The resource type for which the secret defined The driver type for which the secret created updated The crypto identifier the secret create update The security access level for this secret value Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The unique identifier for the key used decrypt either the session key the data directly The method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
-    "title": "Model: io.clbs.openhes.models.messaging.ListOfMessagingComponent",
-    "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.messaging.ListOfMessagingComponent"
-    ],
-    "tags1": [
-      "ListOfMessagingComponent"
-    ],
-    "tags2": "Defines list messaging components The list messaging components known the system The total number items the list"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponent.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponent",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
     "tags0": [
       "spec",
       "status",
       "metadata",
-      "io.clbs.openhes.models.messaging.MessagingComponent"
+      "io.clbs.openhes.models.cronjobs.CronJob"
     ],
     "tags1": [
-      "MessagingComponent"
+      "CronJob"
     ],
-    "tags2": "Defines specification the messaging component The specification the messaging component The status the messaging component The metadata fields"
+    "tags2": "Defines the cron job model representing scheduled recurring task Cron jobs are persistent scheduled operations that execute automatically according their schedule definition The configuration defining when and what execute The runtime status including last next execution times and errors Metadata including name generation user managed fields and system managed fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentconsumersettings.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
     "tags0": [
-      "subjects",
-      "consumerId",
-      "maxInFlightMessages",
-      "io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"
-    ],
-    "tags1": [
-      "MessagingComponentConsumerSettings"
-    ],
-    "tags2": "Defines configuration settings for specific consumer within messaging component Each consumer represents logical queue handler that processes messages from subscribed subjects The unique UUID identifier for this consumer instance Must unique across all consumers the same component The maximum number unacknowledged messages this consumer can have Values enable concurrent processing but may lose order Value guarantees ordered processing The message subjects this consumer subscribes least one subject required Changes apply all instances the component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentspec.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentSpec",
-    "tags0": [
-      "enabled",
-      "consumers",
-      "io.clbs.openhes.models.messaging.MessagingComponentSpec"
-    ],
-    "tags1": [
-      "MessagingComponentSpec"
-    ],
-    "tags2": "Defines the configuration specification for messaging component Components represent microservices system modules that publish and consume messages When false the component cannot publish consume messages Useful for maintenance debugging The list consumer configurations for this component Each consumer handles specific message subjects"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentstatus.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentStatus",
-    "tags0": [
-      "io.clbs.openhes.models.messaging.MessagingComponentStatus"
-    ],
-    "tags1": [
-      "MessagingComponentStatus"
-    ],
-    "tags2": "Defines the status messaging component FIXME Add status fields needed"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerclient.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerClient",
-    "tags0": [
-      "ack",
-      "nak",
-      "setup",
-      "io.clbs.openhes.models.messaging.MessagingConsumerClient"
-    ],
-    "tags1": [
-      "MessagingConsumerClient"
-    ],
-    "tags2": "Defines messages sent from consumer client the messaging server bidirectional stream Consumers use this establish connection acknowledge processed messages reject failed messages Setup message initialize the consumer connection Must the first message sent Subsequent setup messages are rejected Acknowledgement confirming successful processing message The message removed from the queue Negative acknowledgement indicating processing failure The message requeued for redelivery"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerserver.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerServer",
-    "tags0": [
-      "receive",
-      "io.clbs.openhes.models.messaging.MessagingConsumerServer"
-    ],
-    "tags1": [
-      "MessagingConsumerServer"
-    ],
-    "tags2": "Defines messages sent from the messaging server consumer client bidirectional stream The server delivers messages that match the consumer subscribed subjects Delivers message the consumer for processing The consumer must ack nak this message"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumersetup.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerSetup",
-    "tags0": [
-      "settings",
-      "metadata",
-      "io.clbs.openhes.models.messaging.MessagingConsumerSetup"
-    ],
-    "tags1": [
-      "MessagingConsumerSetup"
-    ],
-    "tags2": "Defines specification for messages initialize consumer The consumer specific message settings The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishmessage.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublishMessage",
-    "tags0": [
+      "type",
       "data",
-      "subject",
-      "io.clbs.openhes.models.messaging.MessagingPublishMessage"
+      "suspend",
+      "schedule",
+      "timezone",
+      "io.clbs.openhes.models.cronjobs.CronJobSpec"
     ],
     "tags1": [
-      "MessagingPublishMessage"
+      "CronJobSpec"
     ],
-    "tags2": "Defines publish action for sending messages The subject the message The subject must start with the events custom prefix The message data"
+    "tags2": "Defines the cron job specification containing scheduling and execution details The type operation execute START BULK START PROXY BULK The cron schedule expression standard format The timezone for schedule interpretation using IANA time zone database names When true the cron job paused and will not execute until resumed Default false The type specific payload passed the operation when executes bulk specification for START BULK type"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingpublisherclient.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherClient",
+    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
     "tags0": [
-      "setup",
-      "publish",
-      "io.clbs.openhes.models.messaging.MessagingPublisherClient"
+      "error",
+      "lastRunAt",
+      "nextRunAt",
+      "io.clbs.openhes.models.cronjobs.CronJobStatus"
     ],
     "tags1": [
-      "MessagingPublisherClient"
+      "CronJobStatus"
     ],
-    "tags2": "Defines messages sent from publisher client the messaging server client stream Publishers use this establish connection and send messages specific subjects Setup message initialize the publisher connection Must the first message sent Subsequent setup messages are rejected Publishes message subject All consumers subscribed this subject will receive"
+    "tags2": "Defines the current runtime status cron job including execution history and schedule validation The timestamp when the cron job last executed successfully attempted execute The calculated timestamp for the next scheduled execution based the cron schedule and timezone error message the cron schedule invalid the last execution failed"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishersetup.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherSetup",
+    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
+    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
     "tags0": [
-      "metadata",
-      "io.clbs.openhes.models.messaging.MessagingPublisherSetup"
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
     ],
     "tags1": [
-      "MessagingPublisherSetup"
+      "ListOfCronJob"
     ],
-    "tags2": "Defines specification for messages initialize publisher The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
+    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
   },
   {
-    "filename": "model-io-clbs-openhes-models-messaging-messagingreceivemessage.md",
-    "title": "Model: io.clbs.openhes.models.messaging.MessagingReceiveMessage",
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
     "tags0": [
-      "data",
-      "subject",
-      "messageId",
-      "io.clbs.openhes.models.messaging.MessagingReceiveMessage"
+      "keys",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.GetTranslationsRequest"
     ],
     "tags1": [
-      "MessagingReceiveMessage"
+      "GetTranslationsRequest"
     ],
-    "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
+    "tags2": "Defines the request for retrieving translations based language and keys The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
+    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "tags0": [
+      "translations",
+      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+    ],
+    "tags1": [
+      "GetTranslationsResponse"
+    ],
+    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-missingtranslationrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
+    "tags0": [
+      "key",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.MissingTranslationRequest"
+    ],
+    "tags1": [
+      "MissingTranslationRequest"
+    ],
+    "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
+    "tags0": [
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.TranslationInfo"
+    ],
+    "tags1": [
+      "TranslationInfo"
+    ],
+    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
+    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
+    "tags0": [
+      "applications",
+      "io.clbs.openhes.models.localization.TranslationList"
+    ],
+    "tags1": [
+      "TranslationList"
+    ],
+    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
+    "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
+    "tags0": [
+      "version",
+      "translations",
+      "applicationId",
+      "ietfLanguageTag",
+      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
+    ],
+    "tags1": [
+      "UpdateTranslationsRequest"
+    ],
+    "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
   },
   {
     "filename": "enum-io-clbs-openhes-models-system-objectflags.md",
@@ -1811,7 +1722,6 @@
     "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial",
     "tags0": [
       "moxa",
-      "direct",
       "config",
       "rfc2217",
       "io.clbs.openhes.models.acquisition.ConnectionTypeControlledSerial"
@@ -1819,7 +1729,7 @@
     "tags1": [
       "ConnectionTypeControlledSerial"
     ],
-    "tags2": "Defines the connection information for controlled serial line over for example Moxa The simple direct serial connection type The Moxa serial converter connection type The RFC protocol based connection type The serial port configuration"
+    "tags2": "Defines the connection information for controlled serial line over for example Moxa The Moxa serial converter connection type The RFC protocol based connection type The serial port configuration"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypedirecttcpip.md",
@@ -1848,20 +1758,6 @@
       "ConnectionTypeModemPool"
     ],
     "tags2": "Defines the connection information for phone line modem connection type The phone number the device connect The unique modem pool identifier modem pool group modems that can used connect devices The final modem selected the Taskmaster job start time The modem device assigned the job This field filled only when the connection type modem The value assigned the Taskmaster the start the job and the driver must use this modem exclusively for this job"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialdirect.md",
-    "title": "Model: io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect",
-    "tags0": [
-      "host",
-      "port",
-      "timeout",
-      "io.clbs.openhes.models.acquisition.ConnectionTypeSerialDirect"
-    ],
-    "tags1": [
-      "ConnectionTypeSerialDirect"
-    ],
-    "tags2": "Defines the connection information for direct serial port connection The host name address the device connect The TCP port number the device connect The timeout for the direct serial port connection"
   },
   {
     "filename": "model-io-clbs-openhes-models-acquisition-connectiontypeserialmoxa.md",
@@ -3400,95 +3296,160 @@
     "tags2": "Defines variable specification The list device configuration register identifiers The data type the variable Only registers the same data type can linked the variable Indicates whether the returned data for this variabe should exclude values from timestamp set true the returned device data returned for this variable dos not include values from timestamp Default value false"
   },
   {
-    "filename": "enum-io-clbs-openhes-models-cronjobs-cronjobtypeenum.md",
-    "title": "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum",
+    "filename": "model-io-clbs-openhes-models-messaging-listofmessagingcomponent.md",
+    "title": "Model: io.clbs.openhes.models.messaging.ListOfMessagingComponent",
     "tags0": [
-      "CRON_JOB_TYPE_START_BULK",
-      "CRON_JOB_TYPE_UNSPECIFIED",
-      "CRON_JOB_TYPE_START_PROXY_BULK",
-      "Enum: io.clbs.openhes.models.cronjobs.CronJobTypeEnum"
+      "items",
+      "totalCount",
+      "io.clbs.openhes.models.messaging.ListOfMessagingComponent"
     ],
     "tags1": [
-      "BULK",
-      "CRON",
-      "CronJobTypeEnum",
-      "JOB",
-      "PROXY",
-      "START",
-      "TYPE",
-      "UNSPECIFIED"
+      "ListOfMessagingComponent"
     ],
-    "tags2": "Defines the cron job types that can scheduled for automated recurring operations Cron jobs enable scheduled data collection configuration synchronization and other periodic tasks Unspecified cron job type invalid should not used Schedules recurring acquisition bulks for automated data collection from devices Schedules recurring proxy bulks for data collection operations initiated through the DataProxy"
+    "tags2": "Defines list messaging components The list messaging components known the system The total number items the list"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-createcronjobrequest.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CreateCronJobRequest",
-    "tags0": [
-      "spec",
-      "metadata",
-      "io.clbs.openhes.models.cronjobs.CreateCronJobRequest"
-    ],
-    "tags1": [
-      "CreateCronJobRequest"
-    ],
-    "tags2": "Defines the specification for creating new cron job The cron job specification The metadata fields"
-  },
-  {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJob",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponent.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponent",
     "tags0": [
       "spec",
       "status",
       "metadata",
-      "io.clbs.openhes.models.cronjobs.CronJob"
+      "io.clbs.openhes.models.messaging.MessagingComponent"
     ],
     "tags1": [
-      "CronJob"
+      "MessagingComponent"
     ],
-    "tags2": "Defines the cron job model representing scheduled recurring task Cron jobs are persistent scheduled operations that execute automatically according their schedule definition The configuration defining when and what execute The runtime status including last next execution times and errors Metadata including name generation user managed fields and system managed fields"
+    "tags2": "Defines specification the messaging component The specification the messaging component The status the messaging component The metadata fields"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobspec.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobSpec",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentconsumersettings.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings",
     "tags0": [
-      "type",
+      "subjects",
+      "consumerId",
+      "maxInFlightMessages",
+      "io.clbs.openhes.models.messaging.MessagingComponentConsumerSettings"
+    ],
+    "tags1": [
+      "MessagingComponentConsumerSettings"
+    ],
+    "tags2": "Defines configuration settings for specific consumer within messaging component Each consumer represents logical queue handler that processes messages from subscribed subjects The unique UUID identifier for this consumer instance Must unique across all consumers the same component The maximum number unacknowledged messages this consumer can have Values enable concurrent processing but may lose order Value guarantees ordered processing The message subjects this consumer subscribes least one subject required Changes apply all instances the component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentspec.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentSpec",
+    "tags0": [
+      "enabled",
+      "consumers",
+      "io.clbs.openhes.models.messaging.MessagingComponentSpec"
+    ],
+    "tags1": [
+      "MessagingComponentSpec"
+    ],
+    "tags2": "Defines the configuration specification for messaging component Components represent microservices system modules that publish and consume messages When false the component cannot publish consume messages Useful for maintenance debugging The list consumer configurations for this component Each consumer handles specific message subjects"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingcomponentstatus.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingComponentStatus",
+    "tags0": [
+      "io.clbs.openhes.models.messaging.MessagingComponentStatus"
+    ],
+    "tags1": [
+      "MessagingComponentStatus"
+    ],
+    "tags2": "Defines the status messaging component FIXME Add status fields needed"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerclient.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerClient",
+    "tags0": [
+      "ack",
+      "nak",
+      "setup",
+      "io.clbs.openhes.models.messaging.MessagingConsumerClient"
+    ],
+    "tags1": [
+      "MessagingConsumerClient"
+    ],
+    "tags2": "Defines messages sent from consumer client the messaging server bidirectional stream Consumers use this establish connection acknowledge processed messages reject failed messages Setup message initialize the consumer connection Must the first message sent Subsequent setup messages are rejected Acknowledgement confirming successful processing message The message removed from the queue Negative acknowledgement indicating processing failure The message requeued for redelivery"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumerserver.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerServer",
+    "tags0": [
+      "receive",
+      "io.clbs.openhes.models.messaging.MessagingConsumerServer"
+    ],
+    "tags1": [
+      "MessagingConsumerServer"
+    ],
+    "tags2": "Defines messages sent from the messaging server consumer client bidirectional stream The server delivers messages that match the consumer subscribed subjects Delivers message the consumer for processing The consumer must ack nak this message"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingconsumersetup.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingConsumerSetup",
+    "tags0": [
+      "settings",
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingConsumerSetup"
+    ],
+    "tags1": [
+      "MessagingConsumerSetup"
+    ],
+    "tags2": "Defines specification for messages initialize consumer The consumer specific message settings The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishmessage.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublishMessage",
+    "tags0": [
       "data",
-      "suspend",
-      "schedule",
-      "timezone",
-      "io.clbs.openhes.models.cronjobs.CronJobSpec"
+      "subject",
+      "io.clbs.openhes.models.messaging.MessagingPublishMessage"
     ],
     "tags1": [
-      "CronJobSpec"
+      "MessagingPublishMessage"
     ],
-    "tags2": "Defines the cron job specification containing scheduling and execution details The type operation execute START BULK START PROXY BULK The cron schedule expression standard format The timezone for schedule interpretation using IANA time zone database names When true the cron job paused and will not execute until resumed Default false The type specific payload passed the operation when executes bulk specification for START BULK type"
+    "tags2": "Defines publish action for sending messages The subject the message The subject must start with the events custom prefix The message data"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-cronjobstatus.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.CronJobStatus",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublisherclient.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherClient",
     "tags0": [
-      "error",
-      "lastRunAt",
-      "nextRunAt",
-      "io.clbs.openhes.models.cronjobs.CronJobStatus"
+      "setup",
+      "publish",
+      "io.clbs.openhes.models.messaging.MessagingPublisherClient"
     ],
     "tags1": [
-      "CronJobStatus"
+      "MessagingPublisherClient"
     ],
-    "tags2": "Defines the current runtime status cron job including execution history and schedule validation The timestamp when the cron job last executed successfully attempted execute The calculated timestamp for the next scheduled execution based the cron schedule and timezone error message the cron schedule invalid the last execution failed"
+    "tags2": "Defines messages sent from publisher client the messaging server client stream Publishers use this establish connection and send messages specific subjects Setup message initialize the publisher connection Must the first message sent Subsequent setup messages are rejected Publishes message subject All consumers subscribed this subject will receive"
   },
   {
-    "filename": "model-io-clbs-openhes-models-cronjobs-listofcronjob.md",
-    "title": "Model: io.clbs.openhes.models.cronjobs.ListOfCronJob",
+    "filename": "model-io-clbs-openhes-models-messaging-messagingpublishersetup.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingPublisherSetup",
     "tags0": [
-      "items",
-      "totalCount",
-      "io.clbs.openhes.models.cronjobs.ListOfCronJob"
+      "metadata",
+      "io.clbs.openhes.models.messaging.MessagingPublisherSetup"
     ],
     "tags1": [
-      "ListOfCronJob"
+      "MessagingPublisherSetup"
     ],
-    "tags2": "Defines list cron jobs The list cron jobs The total number items the list"
+    "tags2": "Defines specification for messages initialize publisher The metadata fields The and name represent the component and name and must match for all publishers and consumers the same component"
+  },
+  {
+    "filename": "model-io-clbs-openhes-models-messaging-messagingreceivemessage.md",
+    "title": "Model: io.clbs.openhes.models.messaging.MessagingReceiveMessage",
+    "tags0": [
+      "data",
+      "subject",
+      "messageId",
+      "io.clbs.openhes.models.messaging.MessagingReceiveMessage"
+    ],
+    "tags1": [
+      "MessagingReceiveMessage"
+    ],
+    "tags2": "Defines specification for messages delivered from server consumer The unique message identifier The subjects the message The message data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-common-fielddatatype.md",
@@ -3917,84 +3878,108 @@
     "tags2": "Defines specification for updating object fields The specification the fields set for the resources"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsRequest",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretdatadecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod",
     "tags0": [
-      "keys",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.GetTranslationsRequest"
+      "SECRET_DATA_PLAIN",
+      "SECRET_DATA_AES256CBC",
+      "SECRET_DATA_UNSPECIFIED",
+      "Enum: io.clbs.openhes.models.crypto.SecretDataDecryptionMethod"
     ],
     "tags1": [
-      "GetTranslationsRequest"
+      "AES256CBC",
+      "DATA",
+      "PLAIN",
+      "SECRET",
+      "SecretDataDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the request for retrieving translations based language and keys The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translations are requested The list keys for which translations are requested empty all translations for the specified language are returned"
+    "tags2": "Defines the supported decryption methods for cryptographic secret data These methods are used decrypt device authentication keys and other sensitive credentials Unspecified decryption method invalid should not used Data stored plain text without encryption not recommended for production Data encrypted using AES CBC mode Requires initialization vector"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-gettranslationsresponse.md",
-    "title": "Model: io.clbs.openhes.models.localization.GetTranslationsResponse",
+    "filename": "enum-io-clbs-openhes-models-crypto-secretsessionkeydecryptionmethod.md",
+    "title": "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod",
     "tags0": [
-      "translations",
-      "io.clbs.openhes.models.localization.GetTranslationsResponse"
+      "SECRET_SESSION_PLAIN",
+      "SECRET_SESSION_UNSPECIFIED",
+      "SECRET_SESSION_RSA_OAEPM_GF1P",
+      "Enum: io.clbs.openhes.models.crypto.SecretSessionKeyDecryptionMethod"
     ],
     "tags1": [
-      "GetTranslationsResponse"
+      "GF1P",
+      "OAEPM",
+      "PLAIN",
+      "RSA",
+      "SECRET",
+      "SESSION",
+      "SecretSessionKeyDecryptionMethod",
+      "UNSPECIFIED"
     ],
-    "tags2": "Defines the response containing translations map keys their corresponding translated strings"
+    "tags2": "Defines the supported decryption methods for session keys used key wrapping scenarios Session keys provide additional layer security for protecting cryptographic secrets session key used The secret data encrypted directly with the master key Session key stored plain text used when the session key itself not sensitive Session key encrypted using RSA OAEP with MGF1 and SHA Used for secure key transport"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-missingtranslationrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.MissingTranslationRequest",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecret.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecret",
     "tags0": [
-      "key",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.MissingTranslationRequest"
+      "data",
+      "keyId",
+      "createdAt",
+      "updatedAt",
+      "accessLevel",
+      "io.clbs.openhes.models.crypto.CryptoSecret"
     ],
     "tags1": [
-      "MissingTranslationRequest"
+      "CryptoSecret"
     ],
-    "tags2": "Indicates that translation missing for the specified language and key The application plugin identifier where the translation missing Can empty for core application The IETF language tag for example for which translation missing The key for which the translation missing"
+    "tags2": "Defines cryptographic secret containing sensitive credentials for device communication Secrets include authentication keys encryption keys and passwords used establish secure connections with devices The security access level this secret relates Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The timestamp when this secret was initially created the system The timestamp when this secret was last modified rotated The actual secret data encryption key password This field contains the decrypted value ready for use"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-translationinfo.md",
-    "title": "Model: io.clbs.openhes.models.localization.TranslationInfo",
+    "filename": "model-io-clbs-openhes-models-crypto-cryptosecrets.md",
+    "title": "Model: io.clbs.openhes.models.crypto.CryptoSecrets",
     "tags0": [
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.TranslationInfo"
+      "secrets",
+      "io.clbs.openhes.models.crypto.CryptoSecrets"
     ],
     "tags1": [
-      "TranslationInfo"
+      "CryptoSecrets"
     ],
-    "tags2": "Defines the information about translations for specific application The application plugin identifier The list IETF language tags for example for which translations are available for the application"
+    "tags2": "Defines list crypto secrets list crypto secrets"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-translationlist.md",
-    "title": "Model: io.clbs.openhes.models.localization.TranslationList",
+    "filename": "model-io-clbs-openhes-models-crypto-getcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.GetCryptoSecretRequest",
     "tags0": [
-      "applications",
-      "io.clbs.openhes.models.localization.TranslationList"
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "io.clbs.openhes.models.crypto.GetCryptoSecretRequest"
     ],
     "tags1": [
-      "TranslationList"
+      "GetCryptoSecretRequest"
     ],
-    "tags2": "Defines the list applications with available translations map application IDs their corresponding translation information"
+    "tags2": "Defines specification for retrieving crypto secrets The resource type for which the secret defined The driver type for which the secret requested The crypto identifier the secret retrieve"
   },
   {
-    "filename": "model-io-clbs-openhes-models-localization-updatetranslationsrequest.md",
-    "title": "Model: io.clbs.openhes.models.localization.UpdateTranslationsRequest",
+    "filename": "model-io-clbs-openhes-models-crypto-setcryptosecretrequest.md",
+    "title": "Model: io.clbs.openhes.models.crypto.SetCryptoSecretRequest",
     "tags0": [
-      "version",
-      "translations",
-      "applicationId",
-      "ietfLanguageTag",
-      "io.clbs.openhes.models.localization.UpdateTranslationsRequest"
+      "data",
+      "keyId",
+      "cryptoId",
+      "objectType",
+      "driverType",
+      "sessionKey",
+      "accessLevel",
+      "dataDecryptionIv",
+      "decryptionSecretId",
+      "dataDecryptionMethod",
+      "sessionKeyDecryptionMethod",
+      "io.clbs.openhes.models.crypto.SetCryptoSecretRequest"
     ],
     "tags1": [
-      "UpdateTranslationsRequest"
+      "SetCryptoSecretRequest"
     ],
-    "tags2": "Defines the request for updating translations The version the translations corresponding the application plugin version The application plugin identifier where the translations are updated Can empty for core application The IETF language tag for example for which translations are updated map keys their corresponding translated strings"
+    "tags2": "Defines specification for creating updating crypto secrets The resource type for which the secret defined The driver type for which the secret created updated The crypto identifier the secret create update The security access level for this secret value Maps DLMS COSEM association levels similar concepts other protocols The unique identifier for this secret value Used distinguish between multiple crypto secrets within the same device The unique identifier for the key used decrypt either the session key the data directly The method used decrypt the session key May unset the session key not set not used The session key usually encrypted used decrypt the data The method used decrypt the secret data May unset the data not encrypted The initialization vector for the decryption method applicable The secret data"
   },
   {
     "filename": "enum-io-clbs-openhes-models-acquisition-timeofuse-relaystate.md",

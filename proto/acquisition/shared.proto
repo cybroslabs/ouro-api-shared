@@ -17,57 +17,57 @@ import "acquisition/timeofuse/timeofuse.proto";
 // Higher priority jobs are executed before lower priority jobs when resources are constrained.
 // Use higher priorities for time-sensitive operations like remote disconnect/connect commands.
 enum JobPriority {
-    JOB_PRIORITY_UNSPECIFIED = 0;  // Unspecified priority (treated as default/medium priority).
-    JOB_PRIORITY_0           = 1;  // Lowest priority - for bulk data collection and non-urgent tasks.
-    JOB_PRIORITY_1           = 2;  // Very low priority.
-    JOB_PRIORITY_2           = 3;  // Low priority.
-    JOB_PRIORITY_3           = 4;  // Below-medium priority.
-    JOB_PRIORITY_4           = 5;  // Medium priority - default for regular data collection.
-    JOB_PRIORITY_5           = 6;  // Above-medium priority.
-    JOB_PRIORITY_6           = 7;  // High priority - for important configuration changes.
-    JOB_PRIORITY_7           = 8;  // Very high priority - for urgent operations.
-    JOB_PRIORITY_8           = 9;  // Highest priority - for critical operations like emergency disconnects.
+    JOB_PRIORITY_UNSPECIFIED = 0; // Unspecified priority (treated as default/medium priority).
+    JOB_PRIORITY_0           = 1; // Lowest priority - for bulk data collection and non-urgent tasks.
+    JOB_PRIORITY_1           = 2; // Very low priority.
+    JOB_PRIORITY_2           = 3; // Low priority.
+    JOB_PRIORITY_3           = 4; // Below-medium priority.
+    JOB_PRIORITY_4           = 5; // Medium priority - default for regular data collection.
+    JOB_PRIORITY_5           = 6; // Above-medium priority.
+    JOB_PRIORITY_6           = 7; // High priority - for important configuration changes.
+    JOB_PRIORITY_7           = 8; // Very high priority - for urgent operations.
+    JOB_PRIORITY_8           = 9; // Highest priority - for critical operations like emergency disconnects.
 }
 
 // Defines the read path policies for retrieving data from devices.
 enum ReadPathPolicy {
-    READ_PATH_POLICY_UNSPECIFIED = 0;  // Keeps the current behavior (typically data-concentrator first).
-    READ_PATH_POLICY_METER_FIRST = 1;  // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
-    READ_PATH_POLICY_DC_FIRST    = 2;  // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
+    READ_PATH_POLICY_UNSPECIFIED = 0; // Keeps the current behavior (typically data-concentrator first).
+    READ_PATH_POLICY_METER_FIRST = 1; // Attempts to read directly from the meter and falls back to the data concentrator if needed and supported.
+    READ_PATH_POLICY_DC_FIRST    = 2; // Attempts to read from the data concentrator first and falls back to the meter if needed and supported.
 }
 
 // Defines the parameters and execution rules that control how a job is processed.
 // These settings apply to individual jobs or entire bulks and determine retry logic, timeouts, and scheduling.
 message JobSettings {
-    google.protobuf.Duration max_duration = 1;  // The maximum real-time duration allowed for a single job attempt before it's terminated.
-    JobPriority priority                  = 2;  // The execution priority determining queue position relative to other jobs.
-    repeated int32 attempts               = 3;  // The maximum number of retry attempts if the job fails. Must be at least 1. Each attempt index can have different settings.
-    google.protobuf.Duration retry_delay  = 4;  // The delay to wait between retry attempts after a failure.
-    google.protobuf.Duration defer_start  = 5;  // The initial delay before the job becomes eligible for execution (useful for scheduling).
-    google.protobuf.Timestamp expires_at  = 6;  // The expiration timestamp after which the job will not be executed, even if still queued.
-    ReadPathPolicy read_path_policy       = 7;  // The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.
+    google.protobuf.Duration max_duration = 1; // The maximum real-time duration allowed for a single job attempt before it's terminated.
+    JobPriority priority                  = 2; // The execution priority determining queue position relative to other jobs.
+    repeated int32 attempts               = 3; // The maximum number of retry attempts if the job fails. Must be at least 1. Each attempt index can have different settings.
+    google.protobuf.Duration retry_delay  = 4; // The delay to wait between retry attempts after a failure.
+    google.protobuf.Duration defer_start  = 5; // The initial delay before the job becomes eligible for execution (useful for scheduling).
+    google.protobuf.Timestamp expires_at  = 6; // The expiration timestamp after which the job will not be executed, even if still queued.
+    ReadPathPolicy read_path_policy       = 7; // The strategy for reading data: directly from meters, via data concentrator, or automatic fallback.
 }
 
 // Defines a single job action specification representing a discrete operation on a device.
 // Each JobAction represents one atomic operation (e.g., reading a specific register, syncing the clock).
 // For bulk operations spanning multiple registers, use JobActionSet instead.
 message JobAction {
-    string action_id                          = 1;  // The unique identifier of the action within the job context.
-    map<string, common.FieldValue> attributes = 2;  // The action-specific attributes. Available attributes depend on the action type and driver capabilities.
+    string action_id                          = 1; // The unique identifier of the action within the job context.
+    map<string, common.FieldValue> attributes = 2; // The action-specific attributes. Available attributes depend on the action type and driver capabilities.
     oneof action {
-        ActionGetRegister get_register                    = 3;   // Defines the GetRegister action.
-        ActionGetPeriodicalProfile get_periodical_profile = 4;   // Defines the GetPeriodicalProfile action.
-        ActionGetIrregularProfile get_irregular_profile   = 5;   // Defines the GetIrregularProfile action.
-        ActionGetEvents get_events                        = 6;   // Defines the GetEvents action.
-        ActionGetDeviceInfo get_device_info               = 7;   // Defines the GetDeviceInfo action.
-        ActionSyncClock sync_clock                        = 8;   // Defines the SyncClock action.
-        ActionSetRelayState set_relay_state               = 10;  // Defines the SetRelayState action.
-        ActionSetDisconnectorState set_disconnector_state = 12;  // Defines the SetDisconnectorState action.
-        ActionGetTou get_tou                              = 13;  // Defines the GetTou action.
-        ActionSetTou set_tou                              = 14;  // Defines the SetTou action..
-        ActionSetLimiter set_limiter                      = 16;  // Defines the SetLimiter action.
-        ActionResetBillingPeriod reset_billing_period     = 17;  // Defines the ResetBillingPeriod action.
-        ActionFirmwareImageTransfer image_transfer        = 18;  // Defines the ActionFirmwareImageTransfer action.
+        ActionGetRegister get_register                    = 3; // Defines the GetRegister action.
+        ActionGetPeriodicalProfile get_periodical_profile = 4; // Defines the GetPeriodicalProfile action.
+        ActionGetIrregularProfile get_irregular_profile   = 5; // Defines the GetIrregularProfile action.
+        ActionGetEvents get_events                        = 6; // Defines the GetEvents action.
+        ActionGetDeviceInfo get_device_info               = 7; // Defines the GetDeviceInfo action.
+        ActionSyncClock sync_clock                        = 8; // Defines the SyncClock action.
+        ActionSetRelayState set_relay_state               = 10; // Defines the SetRelayState action.
+        ActionSetDisconnectorState set_disconnector_state = 12; // Defines the SetDisconnectorState action.
+        ActionGetTou get_tou                              = 13; // Defines the GetTou action.
+        ActionSetTou set_tou                              = 14; // Defines the SetTou action..
+        ActionSetLimiter set_limiter                      = 16; // Defines the SetLimiter action.
+        ActionResetBillingPeriod reset_billing_period     = 17; // Defines the ResetBillingPeriod action.
+        ActionFirmwareImageTransfer image_transfer        = 18; // Defines the ActionFirmwareImageTransfer action.
     }
 }
 
@@ -80,32 +80,32 @@ message JobActionSet {
     // - **Other actions**: Not applicable (ignored).
     repeated string variables = 2;
     oneof action {
-        ActionGetRegister get_register                    = 3;   // Defines the GetRegister action.
-        ActionGetPeriodicalProfile get_periodical_profile = 4;   // Defines the GetPeriodicalProfile action.
-        ActionGetIrregularProfile get_irregular_profile   = 5;   // Defines the GetIrregularProfile action.
-        ActionGetEvents get_events                        = 6;   // Defines the GetEvents action.
-        ActionGetDeviceInfo get_device_info               = 7;   // Defines the GetDeviceInfo action.
-        ActionSyncClock sync_clock                        = 8;   // Defines the SyncClock action.
-        ActionSetRelayState set_relay_state               = 10;  // Defines the SetRelayState action.
-        ActionSetDisconnectorState set_disconnector_state = 12;  // Defines the SetDisconnectorState action.
-        ActionGetTou get_tou                              = 13;  // Defines the GetTou action.
-        ActionSetTou set_tou                              = 14;  // Defines the SetTou action..
-        ActionSetLimiter set_limiter                      = 16;  // Defines the SetLimiter action.
-        ActionResetBillingPeriod reset_billing_period     = 17;  // Defines the ResetBillingPeriod action.
-        ActionFirmwareImageTransfer image_transfer        = 18;  // Defines the ActionFirmwareImageTransfer action.
+        ActionGetRegister get_register                    = 3; // Defines the GetRegister action.
+        ActionGetPeriodicalProfile get_periodical_profile = 4; // Defines the GetPeriodicalProfile action.
+        ActionGetIrregularProfile get_irregular_profile   = 5; // Defines the GetIrregularProfile action.
+        ActionGetEvents get_events                        = 6; // Defines the GetEvents action.
+        ActionGetDeviceInfo get_device_info               = 7; // Defines the GetDeviceInfo action.
+        ActionSyncClock sync_clock                        = 8; // Defines the SyncClock action.
+        ActionSetRelayState set_relay_state               = 10; // Defines the SetRelayState action.
+        ActionSetDisconnectorState set_disconnector_state = 12; // Defines the SetDisconnectorState action.
+        ActionGetTou get_tou                              = 13; // Defines the GetTou action.
+        ActionSetTou set_tou                              = 14; // Defines the SetTou action..
+        ActionSetLimiter set_limiter                      = 16; // Defines the SetLimiter action.
+        ActionResetBillingPeriod reset_billing_period     = 17; // Defines the ResetBillingPeriod action.
+        ActionFirmwareImageTransfer image_transfer        = 18; // Defines the ActionFirmwareImageTransfer action.
     }
 }
 
 // Defines a list of job devices included in a bulk.
 message ListOfJobDevice {
-    repeated JobDevice list = 1;  // The list of devices included in the bulk.
-    int32 total_count       = 2;  // The total number of items in the list.
+    repeated JobDevice list = 1; // The list of devices included in the bulk.
+    int32 total_count       = 2; // The total number of items in the list.
 }
 
 // Defines a list of device identifiers.
 message ListOfJobDeviceId {
-    repeated JobDeviceId list = 1;  // The list of device identifiers in the bulk.
-    int32 total_count         = 2;  // The total number of device identifiers in the list.
+    repeated JobDeviceId list = 1; // The list of device identifiers in the bulk.
+    int32 total_count         = 2; // The total number of device identifiers in the list.
 }
 
 // Defines the association between bulk jobs and individual devices.
@@ -130,9 +130,9 @@ message JobDevice {
     // @example: "METER-12345"
     // @example: "EXT-001"
     string external_id                               = 3;
-    map<string, common.FieldValue> device_attributes = 4;  // The connection attributes for the device. The options depend on the `ApplicationProtocolTemplate` of the given application protocol (see the `app_protocol` property).
-    repeated ConnectionInfo connection_info          = 5;  // The device connection parameters.
-    ApplicationProtocol app_protocol                 = 6;  // The application protocol used to communicate with the device.
+    map<string, common.FieldValue> device_attributes = 4; // The connection attributes for the device. The options depend on the `ApplicationProtocolTemplate` of the given application protocol (see the `app_protocol` property).
+    repeated ConnectionInfo connection_info          = 5; // The device connection parameters.
+    ApplicationProtocol app_protocol                 = 6; // The application protocol used to communicate with the device.
     // The timezone associated with the device.
     // @example: "America/New_York"
     // @example: "Europe/Prague"
@@ -165,48 +165,48 @@ message ModemInfo {
     // The modem escape command.
     // @example: "+++"
     string at_escape                         = 6;
-    google.protobuf.Duration connect_timeout = 7;  // The modem connection timeout, if applicable by the `modem_connection` field.
-    google.protobuf.Duration command_timeout = 8;  // The modem command timeout, if applicable given by the modem_connection field.
+    google.protobuf.Duration connect_timeout = 7; // The modem connection timeout, if applicable by the `modem_connection` field.
+    google.protobuf.Duration command_timeout = 8; // The modem command timeout, if applicable given by the modem_connection field.
     // The modem connection description.
     oneof modem_connection {
-        ConnectionTypeDirectTcpIp tcpip               = 9;   // The TCP connection type. The modem either supports TCP directly, or an IP-to-serial converter is used that handles the serial configuration.
-        ConnectionTypeControlledSerial serial_over_ip = 10;  // The serial-over-IP connection type. Used when the modem is connected via an IP-to-serial converter and requires specific handling.
+        ConnectionTypeDirectTcpIp tcpip               = 9; // The TCP connection type. The modem either supports TCP directly, or an IP-to-serial converter is used that handles the serial configuration.
+        ConnectionTypeControlledSerial serial_over_ip = 10; // The serial-over-IP connection type. Used when the modem is connected via an IP-to-serial converter and requires specific handling.
     }
 }
 
 // Defines the available serial port parity types.
 enum SerialConfigParity {
-    PARITY_UNSPECIFIED = 0;  // Unspecified parity.
-    PARITY_NONE        = 1;  // No parity.
-    PARITY_EVEN        = 2;  // Even parity.
-    PARITY_ODD         = 3;  // Odd parity.
-    PARITY_MARK        = 4;  // Mark parity.
-    PARITY_SPACE       = 5;  // Space parity.
+    PARITY_UNSPECIFIED = 0; // Unspecified parity.
+    PARITY_NONE        = 1; // No parity.
+    PARITY_EVEN        = 2; // Even parity.
+    PARITY_ODD         = 3; // Odd parity.
+    PARITY_MARK        = 4; // Mark parity.
+    PARITY_SPACE       = 5; // Space parity.
 }
 
 // Defines the available serial port data bit types.
 enum SerialConfigDataBits {
-    DATA_BITS_UNSPECIFIED = 0;  // Unspecified data bits.
-    DATA_BITS_5           = 1;  // 5 data bits.
-    DATA_BITS_6           = 2;  // 6 data bits.
-    DATA_BITS_7           = 3;  // 7 data bits.
-    DATA_BITS_8           = 4;  // 8 data bits.
+    DATA_BITS_UNSPECIFIED = 0; // Unspecified data bits.
+    DATA_BITS_5           = 1; // 5 data bits.
+    DATA_BITS_6           = 2; // 6 data bits.
+    DATA_BITS_7           = 3; // 7 data bits.
+    DATA_BITS_8           = 4; // 8 data bits.
 }
 
 // Defines the available serial port stop bit types.
 enum SerialConfigStopBits {
-    STOP_BITS_UNSPECIFIED = 0;  // Unspecified stop bits.
-    STOP_BITS_1           = 1;  // 1 stop bit.
-    STOP_BITS_1_5         = 2;  // 1.5 stop bits.
-    STOP_BITS_2           = 3;  // 2 stop bits.
+    STOP_BITS_UNSPECIFIED = 0; // Unspecified stop bits.
+    STOP_BITS_1           = 1; // 1 stop bit.
+    STOP_BITS_1_5         = 2; // 1.5 stop bits.
+    STOP_BITS_2           = 3; // 2 stop bits.
 }
 
 // Defines the available serial port flow control types.
 enum SerialConfigFLowControler {
-    FLOW_CONTROL_UNSPECIFIED = 0;  // Unspecified flow control.
-    FLOW_CONTROL_NONE        = 1;  // No flow control.
-    FLOW_CONTROL_HARDWARE    = 2;  // Hardware flow control using RTS/CTS signals.
-    FLOW_CONTROL_SOFTWARE    = 3;  // Software flow control using XON/XOFF characters.
+    FLOW_CONTROL_UNSPECIFIED = 0; // Unspecified flow control.
+    FLOW_CONTROL_NONE        = 1; // No flow control.
+    FLOW_CONTROL_HARDWARE    = 2; // Hardware flow control using RTS/CTS signals.
+    FLOW_CONTROL_SOFTWARE    = 3; // Software flow control using XON/XOFF characters.
 }
 
 // Defines the parameters for serial port configuration.
@@ -216,30 +216,30 @@ message SerialConfig {
     // @example: 19200
     // @example: 115200
     int32 baud_rate                        = 1;
-    SerialConfigParity parity              = 2;  // The parity.
-    SerialConfigDataBits data_bits         = 3;  // The data bits.
-    SerialConfigStopBits stop_bits         = 4;  // The stop bits.
-    SerialConfigFLowControler flow_control = 5;  // The flow control.
+    SerialConfigParity parity              = 2; // The parity.
+    SerialConfigDataBits data_bits         = 3; // The data bits.
+    SerialConfigStopBits stop_bits         = 4; // The stop bits.
+    SerialConfigFLowControler flow_control = 5; // The flow control.
 }
 
 // Defines the configuration parameters for device connection.
 message ConnectionInfo {
     // The entry point connection description. The connection can be either direct TCP/IP, a modem from a pool, or a serial line over IP (via an IP-to-serial converter).
     oneof connection {
-        ConnectionTypeDirectTcpIp tcpip               = 1;  // The direct TCP/IP connection type.
-        ConnectionTypeModemPool modem_pool            = 2;  // The phone-based modem pool connection type.
-        ConnectionTypeControlledSerial serial_over_ip = 3;  // The serial-over-IP connection type using an IP-to-serial converter.
+        ConnectionTypeDirectTcpIp tcpip               = 1; // The direct TCP/IP connection type.
+        ConnectionTypeModemPool modem_pool            = 2; // The phone-based modem pool connection type.
+        ConnectionTypeControlledSerial serial_over_ip = 3; // The serial-over-IP connection type using an IP-to-serial converter.
     }
-    DataLinkProtocol link_protocol            = 4;  // The data link protocol used for communication.
-    string communication_bus_id               = 5;  // The communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (for example, multi-master RS-485 with primary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.
-    map<string, common.FieldValue> attributes = 6;  // The connection attributes specific to the data link protocol. See `GetDataLinkFields` in the acquisition package for available attributes.
+    DataLinkProtocol link_protocol            = 4; // The data link protocol used for communication.
+    string communication_bus_id               = 5; // The communication bus identifier. Works as a custom grouping key to link jobs across multiple communication units when multiple entry points share a single communication bus (for example, multi-master RS-485 with primary and backup masters). If not set, jobs are grouped by the default group key based on the connection type.
+    map<string, common.FieldValue> attributes = 6; // The connection attributes specific to the data link protocol. See `GetDataLinkFields` in the acquisition package for available attributes.
 }
 
 // Defines the connection information for direct TCP/IP connection type.
 message ConnectionTypeDirectTcpIp {
-    string host                      = 1;  // The hostname or IP address of the device to connect to.
-    uint32 port                      = 2;  // The TCP port number of the device to connect to.
-    google.protobuf.Duration timeout = 3;  // The timeout for TCP/IP connection.
+    string host                      = 1; // The hostname or IP address of the device to connect to.
+    uint32 port                      = 2; // The TCP port number of the device to connect to.
+    google.protobuf.Duration timeout = 3; // The timeout for TCP/IP connection.
 }
 
 // Defines the connection information for a phone line (modem) connection type.
@@ -252,65 +252,58 @@ message ConnectionTypeModemPool {
     ModemInfo modem = 4;
 }
 
-// Defines the connection information for a direct serial port connection.
-message ConnectionTypeSerialDirect {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 port                      = 2;  // The TCP port number of the device to connect to.
-    google.protobuf.Duration timeout = 3;  // The timeout for the direct serial port connection.
-}
-
 // Defines the connection information for a controlled serial line using the Moxa protocol.
 message ConnectionTypeSerialMoxa {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 data_port                 = 2;  // The TCP data port number of the device to connect to.
-    uint32 command_port              = 3;  // The TCP command port number of the device to connect to.
-    google.protobuf.Duration timeout = 4;  // The timeout for the serial port connection using the Moxa protocol.
-    SerialConfig serial_config       = 5;  // The serial port configuration. Optional. If not set, current Moxa settings are preserved.
+    string host                      = 1; // The host name or IP address of the device to connect to.
+    uint32 data_port                 = 2; // The TCP data port number of the device to connect to.
+    uint32 command_port              = 3; // The TCP command port number of the device to connect to.
+    google.protobuf.Duration timeout = 4; // The timeout for the serial port connection using the Moxa protocol.
+    SerialConfig serial_config       = 5; // The serial port configuration. Optional. If not set, current Moxa settings are preserved.
 }
 
 // Defines the connection information for a controlled serial line using the RFC 2217 protocol.
 message ConnectionTypeSerialRfc2217 {
-    string host                      = 1;  // The host name or IP address of the device to connect to.
-    uint32 port                      = 2;  // The TCP port number of the device to connect to.
-    google.protobuf.Duration timeout = 3;  // The timeout for serial port connection using the RFC 2217 protocol.
-    SerialConfig serial_config       = 4;  // The serial port configuration. Optional. If not set, current Moxa settings are preserved.
+    string host                      = 1; // The host name or IP address of the device to connect to.
+    uint32 port                      = 2; // The TCP port number of the device to connect to.
+    google.protobuf.Duration timeout = 3; // The timeout for serial port connection using the RFC 2217 protocol.
+    SerialConfig serial_config       = 4; // The serial port configuration. Optional. If not set, current Moxa settings are preserved.
 }
 
 // Defines the supported communication types for device connections.
 enum CommunicationType {
-    COMMUNICATION_TYPE_UNSPECIFIED        = 0;   // Unspecified communication type.
-    COMMUNICATION_TYPE_TCPIP              = 1;   // The communication is established via direct TCP/IP.
-    COMMUNICATION_TYPE_MODEM_POOL         = 2;   // The communication is established via a phone line (modem).
-    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 3;   // The communication is established via a direct serial line.
-    COMMUNICATION_TYPE_SERIAL_LINE_MOXA   = 4;   // The communication is established via a controlled  serial line (Moxa).
-    COMMUNICATION_TYPE_LISTENING          = 99;  // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
+    COMMUNICATION_TYPE_UNSPECIFIED        = 0; // Unspecified communication type.
+    COMMUNICATION_TYPE_TCPIP              = 1; // The communication is established via direct TCP/IP.
+    COMMUNICATION_TYPE_MODEM_POOL         = 2; // The communication is established via a phone line (modem).
+    COMMUNICATION_TYPE_SERIAL_LINE_DIRECT = 3; // The communication is established via a direct serial line.
+    COMMUNICATION_TYPE_SERIAL_LINE_MOXA   = 4; // The communication is established via a controlled  serial line (Moxa).
+    COMMUNICATION_TYPE_LISTENING          = 99; // The communication is passive. The driver listens on a port (for example, DLMS devices in push mode) or subscribes to a message queue (for example, MQTT).
 }
 
 // Defines the supported data link protocols.
 enum DataLinkProtocol {
-    LINTPROTO_UNSPECIFIED   = 0;  // Unspecified data link protocol.
-    LINKPROTO_IEC_62056_21  = 1;  // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
-    LINKPROTO_HDLC          = 2;  // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
-    LINKPROTO_COSEM_WRAPPER = 3;  // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
-    LINKPROTO_MODBUS        = 4;  // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
-    LINKPROTO_MBUS          = 5;  // The M-Bus protocol. Used with the M-Bus application protocol.
-    LINKPROTO_VIKTOR        = 6;  // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
+    LINTPROTO_UNSPECIFIED   = 0; // Unspecified data link protocol.
+    LINKPROTO_IEC_62056_21  = 1; // The VDEW (IEC 62056-21, IEC-61107) protocol. When combined with the DLMS protocol, the driver initiates communication via IEC and then switches to the mode E (HDLC+DLMS). Supports multiple devices on the same line.
+    LINKPROTO_HDLC          = 2; // The HDLC (ISO/IEC-3309) framing. Used with various application protocols, such as DLMS or MODBUS. Supports client/server addressing for multiple devices on the same line.
+    LINKPROTO_COSEM_WRAPPER = 3; // The COSEM wrapper. Used with the DLMS application protocol. Supports client/server addressing for multiple devices on the same line.
+    LINKPROTO_MODBUS        = 4; // The Modbus protocol. Used with the Modbus application protocol where no other data link is used.
+    LINKPROTO_MBUS          = 5; // The M-Bus protocol. Used with the M-Bus application protocol.
+    LINKPROTO_VIKTOR        = 6; // The Viktor protocol. A proprietary protocol used by Viktor-based devices, such as DC450 Viktor.
 
-    LINKPROTO_NOT_APPLICABLE = 99;  // No data link protocol is applicable. Used with listening communication types.
+    LINKPROTO_NOT_APPLICABLE = 99; // No data link protocol is applicable. Used with listening communication types.
 }
 
 // Defines the supported application protocols.
 enum ApplicationProtocol {
-    APPPROTO_UNSPECIFIED  = 0;  // Unspecified application protocol.
-    APPPROTO_IEC_62056_21 = 1;  // The IEC 62056-21 (IEC-61107, VDEW) protocol.
-    APPPROTO_DLMS_SN      = 2;  // The DLMS short-name protocol.
-    APPPROTO_DLMS_LN      = 3;  // The DLMS logical-name protocol.
-    APPPROTO_SCTM         = 4;  // The SCTM protocol.
-    APPPROTO_LIS200       = 5;  // The LIS200 protocol.
-    APPPROTO_ANSI_C12     = 6;  // The ANSI C12 protocol.
-    APPPROTO_MQTT         = 7;  // The MQTT protocol.
-    APPPROTO_MODBUS       = 8;  // The MODBUS protocol.
-    APPPROTO_MBUS         = 9;  // The MBUS protocol.
+    APPPROTO_UNSPECIFIED  = 0; // Unspecified application protocol.
+    APPPROTO_IEC_62056_21 = 1; // The IEC 62056-21 (IEC-61107, VDEW) protocol.
+    APPPROTO_DLMS_SN      = 2; // The DLMS short-name protocol.
+    APPPROTO_DLMS_LN      = 3; // The DLMS logical-name protocol.
+    APPPROTO_SCTM         = 4; // The SCTM protocol.
+    APPPROTO_LIS200       = 5; // The LIS200 protocol.
+    APPPROTO_ANSI_C12     = 6; // The ANSI C12 protocol.
+    APPPROTO_MQTT         = 7; // The MQTT protocol.
+    APPPROTO_MODBUS       = 8; // The MODBUS protocol.
+    APPPROTO_MBUS         = 9; // The MBUS protocol.
 }
 
 // Defines the template description for an application protocol, for example DLMS_SN.
@@ -341,8 +334,8 @@ message CommunicationTemplate {
 
 // Defines the access level configuration for a driver.
 message AccessLevelTemplate {
-    string id   = 1;  // The unique identifier of the access level, such as `"1"`, `"G"`, or `"16"`.
-    string name = 2;  // The name of the access level. It must be unique and written in English (for example, `"Management"`, `"Public"`).
+    string id   = 1; // The unique identifier of the access level, such as `"1"`, `"G"`, or `"16"`.
+    string name = 2; // The name of the access level. It must be unique and written in English (for example, `"Management"`, `"Public"`).
 }
 
 // Defines the driver templates exchanged during driver negotiation.
@@ -365,69 +358,69 @@ message DriverTemplates {
 
 // Defines a progress update for an action within a job.
 message ActionProgressUpdate {
-    string job_id                         = 1;  // The unique job identifier.
-    string action_id                      = 2;  // The unique action identifier.
-    ActionResultCode code                 = 3;  // The status code related to the action.
-    ActionProgressData data               = 4;  // The action result data. This field is empty if the code is not OK.
-    common.FormattedMessage error_message = 5;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
+    string job_id                         = 1; // The unique job identifier.
+    string action_id                      = 2; // The unique action identifier.
+    ActionResultCode code                 = 3; // The status code related to the action.
+    ActionProgressData data               = 4; // The action result data. This field is empty if the code is not OK.
+    common.FormattedMessage error_message = 5; // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 
 // Defines a progress update for a job.
 message JobProgressUpdate {
-    string job_id                         = 1;  // The unique job identifier.
-    JobErrorCode code                     = 2;  // The status code related to the job or action update message.
-    google.protobuf.Duration duration     = 3;  // The time spent to handle the job.
-    common.FormattedMessage error_message = 4;  // The user-facing error message for the job as a whole. This message related to the whole job. This message is used especially when no action is executed, to log a non-action related error.
+    string job_id                         = 1; // The unique job identifier.
+    JobErrorCode code                     = 2; // The status code related to the job or action update message.
+    google.protobuf.Duration duration     = 3; // The time spent to handle the job.
+    common.FormattedMessage error_message = 4; // The user-facing error message for the job as a whole. This message related to the whole job. This message is used especially when no action is executed, to log a non-action related error.
 }
 
 // Defines the action-based variant of data values.
 message ActionProgressData {
     oneof data {
-        google.protobuf.Empty nodata             = 1;  // Indicates that no data was returned by the action.
-        RegisterValues registers                 = 2;  // The set of register values.
-        bytes profile                            = 3;  // The set of profile values. For efficiency, the profile values are binary-encoded, see acquisition/encoding.go.
-        IrregularProfileValues irregular_profile = 4;  // The set of irregular (non-periodical) profile values, such as daily profiles.
-        DeviceInfo device_info                   = 5;  // The device information.
-        EventRecords events                      = 6;  // The event records.
-        timeofuse.TimeOfUseTableSpec tou_table   = 7;  // The time-of-use (TOU) table.
+        google.protobuf.Empty nodata             = 1; // Indicates that no data was returned by the action.
+        RegisterValues registers                 = 2; // The set of register values.
+        bytes profile                            = 3; // The set of profile values. For efficiency, the profile values are binary-encoded, see acquisition/encoding.go.
+        IrregularProfileValues irregular_profile = 4; // The set of irregular (non-periodical) profile values, such as daily profiles.
+        DeviceInfo device_info                   = 5; // The device information.
+        EventRecords events                      = 6; // The event records.
+        timeofuse.TimeOfUseTableSpec tou_table   = 7; // The time-of-use (TOU) table.
     }
 }
 
 // Defines the action-based variant of data values.
 message ActionData {
     oneof data {
-        google.protobuf.Empty nodata             = 1;  // Indicates that no data was returned by the action.
-        RegisterValues registers                 = 2;  // The set of register values.
-        ProfileValues profile                    = 3;  // The set of profile values.
-        IrregularProfileValues irregular_profile = 4;  // The set of irregular (non-periodical) profile values, such as daily profiles.
-        DeviceInfo device_info                   = 5;  // The device information.
-        EventRecords events                      = 6;  // The event records.
-        timeofuse.TimeOfUseTableSpec tou_table   = 7;  // The time-of-use (TOU) table.
+        google.protobuf.Empty nodata             = 1; // Indicates that no data was returned by the action.
+        RegisterValues registers                 = 2; // The set of register values.
+        ProfileValues profile                    = 3; // The set of profile values.
+        IrregularProfileValues irregular_profile = 4; // The set of irregular (non-periodical) profile values, such as daily profiles.
+        DeviceInfo device_info                   = 5; // The device information.
+        EventRecords events                      = 6; // The event records.
+        timeofuse.TimeOfUseTableSpec tou_table   = 7; // The time-of-use (TOU) table.
     }
 }
 
 // Defines a list of event records.
 message EventRecords {
-    repeated EventRecord values = 1;  // The list of event records.
+    repeated EventRecord values = 1; // The list of event records.
 }
 
 // Defines a single event reported by a device.
 message EventRecord {
-    google.protobuf.Timestamp timestamp = 1;  // The timestamp of the event.
-    int64 event_id                      = 2;  // The identifier of the event.
-    int64 event_code                    = 3;  // The event code generated by the device.
-    string event_source                 = 5;  // The source of the event.
-    string event_text                   = 4;  // The descriptive text of the event.
+    google.protobuf.Timestamp timestamp = 1; // The timestamp of the event.
+    int64 event_id                      = 2; // The identifier of the event.
+    int64 event_code                    = 3; // The event code generated by the device.
+    string event_source                 = 5; // The source of the event.
+    string event_text                   = 4; // The descriptive text of the event.
 }
 
 // Defines a single event record associated with the specified device.
 message DeviceEventRecord {
-    string device_id                    = 1;  // The unique device identifier.
-    google.protobuf.Timestamp timestamp = 2;  // The timestamp of the event.
-    int64 event_id                      = 3;  // The unique event identifier.
-    int64 event_code                    = 4;  // The event code generated by the device.
-    string event_source                 = 5;  // The source of the event.
-    string event_text                   = 6;  // The descriptive text of the event.
+    string device_id                    = 1; // The unique device identifier.
+    google.protobuf.Timestamp timestamp = 2; // The timestamp of the event.
+    int64 event_id                      = 3; // The unique event identifier.
+    int64 event_code                    = 4; // The event code generated by the device.
+    string event_source                 = 5; // The source of the event.
+    string event_text                   = 6; // The descriptive text of the event.
 }
 
 // Defines a list of device event records.
@@ -438,68 +431,68 @@ message DeviceEvents {
 
 // Defines common device information.
 message DeviceInfo {
-    google.protobuf.Timestamp info_timestamp = 1;  // The timestamp when the values were read.
-    string manufacturer_serial_number        = 2;  // The serial number of the device assigned by the manufacturer. Typical source: `0-0:42.0.0.255`.
-    string device_serial_number              = 3;  // The device serial number.  Typical source: `0-0:96.1.0.255`.
-    string firmware_version                  = 4;  // The device firmware version identifier. Typical source: `0-0:0.2.0.255`.
-    google.protobuf.Duration clock_delta     = 5;  // The time difference (delta) between the device clock and the acquisition server clock (driver). Positive values mean the device clock is ahead, negative values mean the device clock is behind.
-    string device_model                      = 6;  // The device model.
-    uint64 error_register                    = 7;  // The error register (register `0`). Typical source: `0-0:97.97.1.255` (higher 32-bit) + `0-0:97.97.0.255` (lower 32-bit).
-    repeated bool relay_states               = 8;  // The list of relay states. The order of the relays is the same as in the device. The value is `true` if the relay is connected and `false` if the relay is disconnected.
-    bool connection_state                    = 9;  // The connection (disconnector) state. The value is `true` if the customer is connected and `false` if the customer is disconnected.
+    google.protobuf.Timestamp info_timestamp = 1; // The timestamp when the values were read.
+    string manufacturer_serial_number        = 2; // The serial number of the device assigned by the manufacturer. Typical source: `0-0:42.0.0.255`.
+    string device_serial_number              = 3; // The device serial number.  Typical source: `0-0:96.1.0.255`.
+    string firmware_version                  = 4; // The device firmware version identifier. Typical source: `0-0:0.2.0.255`.
+    google.protobuf.Duration clock_delta     = 5; // The time difference (delta) between the device clock and the acquisition server clock (driver). Positive values mean the device clock is ahead, negative values mean the device clock is behind.
+    string device_model                      = 6; // The device model.
+    uint64 error_register                    = 7; // The error register (register `0`). Typical source: `0-0:97.97.1.255` (higher 32-bit) + `0-0:97.97.0.255` (lower 32-bit).
+    repeated bool relay_states               = 8; // The list of relay states. The order of the relays is the same as in the device. The value is `true` if the relay is connected and `false` if the relay is disconnected.
+    bool connection_state                    = 9; // The connection (disconnector) state. The value is `true` if the customer is connected and `false` if the customer is disconnected.
 }
 
 // Defines the profile-type values.
 message ProfileValues {
-    google.protobuf.Duration period = 1;  // The period of the profile values.
-    string unit                     = 2;  // The unit of the profile values.
-    repeated ProfileBlock blocks    = 3;  // The list of continuous profile blocks.
+    google.protobuf.Duration period = 1; // The period of the profile values.
+    string unit                     = 2; // The unit of the profile values.
+    repeated ProfileBlock blocks    = 3; // The list of continuous profile blocks.
 }
 
 // Defines the irregular (non-perioic) profile values.
 message IrregularProfileValues {
-    string unit                    = 1;  // The unit of the profile values.
-    repeated IrregularValue values = 2;  // The list of irregular values.
+    string unit                    = 1; // The unit of the profile values.
+    repeated IrregularValue values = 2; // The list of irregular values.
 }
 
 // Defines a single irregular (non-periodic) value with a timestamp.
 message IrregularValue {
-    google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value.
-    MeasuredValue value                 = 2;  // The value.
+    google.protobuf.Timestamp timestamp = 1; // The timestamp of the value.
+    MeasuredValue value                 = 2; // The value.
 }
 
 // Defines a single profile block containing the measured values.
 message ProfileBlock {
-    google.protobuf.Timestamp start_timestamp = 1;  // The start timestamp of the block.
-    repeated MeasuredValue values             = 2;  // The list of profile values, ordered by the timestamp.
+    google.protobuf.Timestamp start_timestamp = 1; // The start timestamp of the block.
+    repeated MeasuredValue values             = 2; // The list of profile values, ordered by the timestamp.
 }
 
 // Defines the register-type values.
 message RegisterValues {
-    repeated RegisterValue values = 1;  // The list of register values.
+    repeated RegisterValue values = 1; // The list of register values.
 }
 
 // Defines a single register-type value.
 message RegisterValue {
-    google.protobuf.Timestamp timestamp = 1;  // The timestamp of the value.
-    string unit                         = 2;  // The unit of the value.
-    MeasuredValue value                 = 3;  // The value.
+    google.protobuf.Timestamp timestamp = 1; // The timestamp of the value.
+    string unit                         = 2; // The unit of the value.
+    MeasuredValue value                 = 3; // The value.
 }
 
 // Defines a measured value.
 message MeasuredValue {
-    int64 status   = 1;  // The status of the value.
-    int32 exponent = 2;  // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
+    int64 status   = 1; // The status of the value.
+    int32 exponent = 2; // The exponent of the value. Used to calculate the real value as `value * 10^exponent` for double and integer values.
     oneof kind {
-        double double_value                       = 3;  // The double-typed value.
-        int64 integer_value                       = 4;  // The integer-typed value.
-        string string_value                       = 5;  // The string-typed value.
-        google.protobuf.Timestamp timestamp_value = 6;  // The timestamp-typed value.
-        string timestamp_tz_value                 = 7;  // The timestamp with timezone-typed value, stored as an ISO-8601 string.
-        bool bool_value                           = 8;  // The boolean-typed value.
+        double double_value                       = 3; // The double-typed value.
+        int64 integer_value                       = 4; // The integer-typed value.
+        string string_value                       = 5; // The string-typed value.
+        google.protobuf.Timestamp timestamp_value = 6; // The timestamp-typed value.
+        string timestamp_tz_value                 = 7; // The timestamp with timezone-typed value, stored as an ISO-8601 string.
+        bool bool_value                           = 8; // The boolean-typed value.
     }
-    uint64 nstatus                    = 9;   // The normalized status of the value. See `StatusBits` enum for details.
-    google.protobuf.Timestamp peak_ts = 10;  // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
+    uint64 nstatus                    = 9; // The normalized status of the value. See `StatusBits` enum for details.
+    google.protobuf.Timestamp peak_ts = 10; // The timestamp when the value (for example, peak) was recorded. Typically before the capture timestamp.
 }
 
 // Defines the template for job action attributes.
@@ -512,67 +505,68 @@ message JobActionAttributes {
 
 // Defines the connection information for a controlled serial line over IP (for example, Moxa).
 message ConnectionTypeControlledSerial {
+    // 1 used to be ConnectionTypeSerialDirect, obsolete, replaced by ConnectionTypeDirectTcpIp
+    reserved 1;
     // The IP-to-serial converter description.
     oneof converter {
-        ConnectionTypeSerialDirect direct   = 1;  // The simple direct serial connection type.
-        ConnectionTypeSerialMoxa moxa       = 2;  // The Moxa IP-to-serial converter connection type.
-        ConnectionTypeSerialRfc2217 rfc2217 = 3;  // The RFC 2217 protocol-based connection type.
+        ConnectionTypeSerialMoxa moxa       = 2; // The Moxa IP-to-serial converter connection type.
+        ConnectionTypeSerialRfc2217 rfc2217 = 3; // The RFC 2217 protocol-based connection type.
         // TBA: Add Advantech and other IP-to-serial converters.
     }
-    SerialConfig config = 4;  // The serial port configuration.
+    SerialConfig config = 4; // The serial port configuration.
 }
 
 // Defines the supported action types. Each action type corresponds to a specific operation that can be performed on a device.
 enum ActionType {
-    ACTION_TYPE_UNSPECIFIED = 0;  // Unspecified action type.
+    ACTION_TYPE_UNSPECIFIED = 0; // Unspecified action type.
 
-    ACTION_TYPE_GET_REGISTER           = 1;  // Get a register value, for example an instantaneous value. The action covers a specific register.
-    ACTION_TYPE_GET_PERIODICAL_PROFILE = 2;  // Get a periodical profile, for example a load profile. The action covers a specific profile column.
-    ACTION_TYPE_GET_IRREGULAR_PROFILE  = 3;  // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
-    ACTION_TYPE_GET_EVENTS             = 4;  // Get an event log. The action covers a specific event log.
+    ACTION_TYPE_GET_REGISTER           = 1; // Get a register value, for example an instantaneous value. The action covers a specific register.
+    ACTION_TYPE_GET_PERIODICAL_PROFILE = 2; // Get a periodical profile, for example a load profile. The action covers a specific profile column.
+    ACTION_TYPE_GET_IRREGULAR_PROFILE  = 3; // Get a non-periodical profile, for example a daily profile or monthly billing registers. The action covers a specific profile column and/or billing register.
+    ACTION_TYPE_GET_EVENTS             = 4; // Get an event log. The action covers a specific event log.
 
-    ACTION_TYPE_GET_DEVICE_INFO = 10;  // Get device information. The action returns detailed information data about the remote device.
+    ACTION_TYPE_GET_DEVICE_INFO = 10; // Get device information. The action returns detailed information data about the remote device.
 
-    ACTION_TYPE_SYNC_CLOCK = 11;  // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
+    ACTION_TYPE_SYNC_CLOCK = 11; // Synchronize the device clock. The action sets the time and can forcefully update it if `force` attribute is set.
 
-    ACTION_TYPE_SET_RELAY_STATE = 21;  // Set relay state. The action covers a single relay.
+    ACTION_TYPE_SET_RELAY_STATE = 21; // Set relay state. The action covers a single relay.
 
-    ACTION_TYPE_GET_DISCONNECTOR_STATE = 22;  // Get the disconnector state.
-    ACTION_TYPE_SET_DISCONNECTOR_STATE = 23;  // Set the disconnector state.
+    ACTION_TYPE_GET_DISCONNECTOR_STATE = 22; // Get the disconnector state.
+    ACTION_TYPE_SET_DISCONNECTOR_STATE = 23; // Set the disconnector state.
 
-    ACTION_TYPE_GET_TOU = 24;  // Get time-of-use table.
-    ACTION_TYPE_SET_TOU = 25;  // Set time-of-use table.
+    ACTION_TYPE_GET_TOU = 24; // Get time-of-use table.
+    ACTION_TYPE_SET_TOU = 25; // Set time-of-use table.
 
-    ACTION_TYPE_SET_LIMITER = 27;  // Set limiter settings. The action covers single limiter.
+    ACTION_TYPE_SET_LIMITER = 27; // Set limiter settings. The action covers single limiter.
 
-    ACTION_TYPE_RESET_BILLING_PERIOD = 40;  // Reset the billing period.
+    ACTION_TYPE_RESET_BILLING_PERIOD = 40; // Reset the billing period.
 
-    ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER = 50;  // Start a firmware image transfer.
+    ACTION_TYPE_FIRMWARE_IMAGE_TRANSFER = 50; // Start a firmware image transfer.
 }
 
 // Defines the get register action specification.
 message ActionGetRegister {
-    common.FieldDataType data_type = 1;  // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
+    common.FieldDataType data_type = 1; // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
 }
 
 // Defines the get periodical profile action specification.
 message ActionGetPeriodicalProfile {
-    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout.
-    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout (inclusive).
-    common.FieldDataType data_type        = 3;  // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
+    google.protobuf.Timestamp range_start = 1; // The start timestamp of the profile readout.
+    google.protobuf.Timestamp range_end   = 2; // The end timestamp of the profile readout (inclusive).
+    common.FieldDataType data_type        = 3; // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
 }
 
 // Defines the get irregular profile action specification.
 message ActionGetIrregularProfile {
-    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the profile readout (inclusive).
-    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the profile readout (inclusive).
-    common.FieldDataType data_type        = 3;  // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
+    google.protobuf.Timestamp range_start = 1; // The start timestamp of the profile readout (inclusive).
+    google.protobuf.Timestamp range_end   = 2; // The end timestamp of the profile readout (inclusive).
+    common.FieldDataType data_type        = 3; // The data type of the target register, for example `INTEGER`, `DOUBLE`, `TEXT`, `TIMESTAMP`. For proxy bulks, this value can be explicitly specified. For regular bulks, it is automatically taken from the register definition in the system.
 }
 
 // Defines the get events action specification.
 message ActionGetEvents {
-    google.protobuf.Timestamp range_start = 1;  // The start timestamp of the event readout (inclusive).
-    google.protobuf.Timestamp range_end   = 2;  // The end timestamp of the event readout (inclusive).
+    google.protobuf.Timestamp range_start = 1; // The start timestamp of the event readout (inclusive).
+    google.protobuf.Timestamp range_end   = 2; // The end timestamp of the event readout (inclusive).
 }
 
 // Defines the get device info action specification.
@@ -593,13 +587,13 @@ message ActionSetDisconnectorState {
 
 // Defines the get TOU action specification.
 message ActionGetTou {
-    bool passive = 1;  // Specifies whether to read the passive TOU table. By default, it is set to `false`, meaning the active TOU table is read.
+    bool passive = 1; // Specifies whether to read the passive TOU table. By default, it is set to `false`, meaning the active TOU table is read.
 }
 
 // Defines the set TOU action specification.
 message ActionSetTou {
-    string tou_table_id                = 2;  // The unique identifier of the TOU table to be set. Either `tou_table_id` or `table` must be set.
-    timeofuse.TimeOfUseTableSpec table = 1;  // The TOU table to be set. Either `tou_table_id` or `table` must be set.
+    string tou_table_id                = 2; // The unique identifier of the TOU table to be set. Either `tou_table_id` or `table` must be set.
+    timeofuse.TimeOfUseTableSpec table = 1; // The TOU table to be set. Either `tou_table_id` or `table` must be set.
 }
 
 // Defines the set limiter action specification.
@@ -612,26 +606,26 @@ message ActionResetBillingPeriod {
 
 // Defines the image transfer action specification.
 message ActionFirmwareImageTransfer {
-    string firmware_image_id = 1;  // The unique identifier of the image to be used.
+    string firmware_image_id = 1; // The unique identifier of the image to be used.
 }
 
 // Defines the result codes related to job actions.
 enum ActionResultCode {
-    ERROR_CODE_ACTION_UNSPECIFIED = 0;  // Unspecified action result code.
-    ERROR_CODE_ACTION_OK          = 1;  // The action has been completed successfully.
-    ERROR_CODE_ACTION_UNSUPPORTED = 2;  // The action is not supported by the driver or device.
-    ERROR_CODE_ACTION_PENDING     = 3;  // The action is pending.
-    ERROR_CODE_ACTION_ERROR       = 5;  // The action has failed.
+    ERROR_CODE_ACTION_UNSPECIFIED = 0; // Unspecified action result code.
+    ERROR_CODE_ACTION_OK          = 1; // The action has been completed successfully.
+    ERROR_CODE_ACTION_UNSUPPORTED = 2; // The action is not supported by the driver or device.
+    ERROR_CODE_ACTION_PENDING     = 3; // The action is pending.
+    ERROR_CODE_ACTION_ERROR       = 5; // The action has failed.
 }
 
 // Defines the error codes related to jobs.
 enum JobErrorCode {
-    JOB_ERROR_CODE_UNSPECIFIED    = 0;  // Unspecified job error code.
-    JOB_ERROR_CODE_NONE           = 1;  // The job has been completed successfully.
-    JOB_ERROR_CODE_BUSY           = 2;  // There is no free slot in the driver to handle the job; the job shall be sent again later.
-    JOB_ERROR_CODE_ERROR          = 5;  // The job has failed; a retry will be attempted.
-    JOB_ERROR_CODE_ALREADY_EXISTS = 8;  // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times, which would point to a bug.
-    JOB_ERROR_CODE_FATAL          = 9;  // The job failed; no retry will be attempted.
+    JOB_ERROR_CODE_UNSPECIFIED    = 0; // Unspecified job error code.
+    JOB_ERROR_CODE_NONE           = 1; // The job has been completed successfully.
+    JOB_ERROR_CODE_BUSY           = 2; // There is no free slot in the driver to handle the job; the job shall be sent again later.
+    JOB_ERROR_CODE_ERROR          = 5; // The job has failed; a retry will be attempted.
+    JOB_ERROR_CODE_ALREADY_EXISTS = 8; // This should never happen! It indicates that the same job is currently being processed by the driver and was sent multiple times, which would point to a bug.
+    JOB_ERROR_CODE_FATAL          = 9; // The job failed; no retry will be attempted.
 }
 
 // Defines the constraints for job actions.
@@ -649,298 +643,298 @@ message JobActionContraints {
 
 // Defines the status information of an entire bulk.
 enum BulkStatusCode {
-    BULK_STATUS_UNSPECIFIED = 0;  // Unspecified bulk status.
-    BULK_STATUS_PREPARING   = 1;  // The bulk is being prepared.
-    BULK_STATUS_QUEUED      = 2;  // The bulk is waiting in the queue and ready to be started.
-    BULK_STATUS_RUNNING     = 3;  // The bulk is currently running.
-    BULK_STATUS_COMPLETED   = 4;  // The bulk has been completed.
-    BULK_STATUS_EXPIRED     = 5;  // The bulk has expired.
+    BULK_STATUS_UNSPECIFIED = 0; // Unspecified bulk status.
+    BULK_STATUS_PREPARING   = 1; // The bulk is being prepared.
+    BULK_STATUS_QUEUED      = 2; // The bulk is waiting in the queue and ready to be started.
+    BULK_STATUS_RUNNING     = 3; // The bulk is currently running.
+    BULK_STATUS_COMPLETED   = 4; // The bulk has been completed.
+    BULK_STATUS_EXPIRED     = 5; // The bulk has expired.
 }
 
 // Defines the status information of a single job within a bulk.
 message JobStatus {
-    JobStatusCode status                  = 1;  // The current status of the job.
-    JobErrorCode code                     = 2;  // The error code of the job indicating success or failure reason.
-    repeated ActionResult results         = 3;  // The result data for all executed job actions.
-    google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
-    google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
-    int32 attempts_done                   = 6;  // The number of attempts already completed.
-    DeviceInfo device_info                = 7;  // The device information from the `ACTION_TYPE_GET_DEVICE_INFO` action if executed.
-    int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued for processing.
-    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.
+    JobStatusCode status                  = 1; // The current status of the job.
+    JobErrorCode code                     = 2; // The error code of the job indicating success or failure reason.
+    repeated ActionResult results         = 3; // The result data for all executed job actions.
+    google.protobuf.Timestamp started_at  = 4; // The start timestamp of the job.
+    google.protobuf.Timestamp finished_at = 5; // The finish timestamp of the job.
+    int32 attempts_done                   = 6; // The number of attempts already completed.
+    DeviceInfo device_info                = 7; // The device information from the `ACTION_TYPE_GET_DEVICE_INFO` action if executed.
+    int64 queue_id                        = 8; // The internal queue identifier set by the Taskmaster when the job is queued for processing.
+    common.FormattedMessage error_message = 9; // The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.
 }
 
 // Defines the progress status information of a single job within a bulk.
 message JobProgressStatus {
-    JobStatusCode status                  = 1;  // The current status of the job.
-    JobErrorCode code                     = 2;  // The error code of the job indicating success or failure reason.
-    repeated ActionProgressResult results = 3;  // The result data for all executed job actions.
-    google.protobuf.Timestamp started_at  = 4;  // The start timestamp of the job.
-    google.protobuf.Timestamp finished_at = 5;  // The finish timestamp of the job.
-    int32 attempts_done                   = 6;  // The number of attempts already completed.
-    DeviceInfo device_info                = 7;  // The device information from the `ACTION_TYPE_GET_DEVICE_INFO` action if executed.
-    int64 queue_id                        = 8;  // The internal queue identifier set by the Taskmaster when the job is queued for processing.
-    common.FormattedMessage error_message = 9;  // The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.
+    JobStatusCode status                  = 1; // The current status of the job.
+    JobErrorCode code                     = 2; // The error code of the job indicating success or failure reason.
+    repeated ActionProgressResult results = 3; // The result data for all executed job actions.
+    google.protobuf.Timestamp started_at  = 4; // The start timestamp of the job.
+    google.protobuf.Timestamp finished_at = 5; // The finish timestamp of the job.
+    int32 attempts_done                   = 6; // The number of attempts already completed.
+    DeviceInfo device_info                = 7; // The device information from the `ACTION_TYPE_GET_DEVICE_INFO` action if executed.
+    int64 queue_id                        = 8; // The internal queue identifier set by the Taskmaster when the job is queued for processing.
+    common.FormattedMessage error_message = 9; // The user-facing error message related to the whole job. This is especially relevant when no action was executed, allowing non-action-related errors to be logged.
 }
 
 // Defines the job start request for a single device.
 message StartJobData {
-    map<string, common.FieldValue> device_attributes = 1;  // The device attributes required by the driver. For example HDLC address, password, and other driver-specific attributes.
-    string job_id                                    = 2;  // The unique job identifier.
-    JobSettings job_settings                         = 3;  // The job parameters.
-    repeated JobAction job_actions                   = 4;  // The list of actions to be executed.
-    ApplicationProtocol app_protocol                 = 5;  // The application protocol used for communication with the device.
-    string timezone                                  = 6;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+    map<string, common.FieldValue> device_attributes = 1; // The device attributes required by the driver. For example HDLC address, password, and other driver-specific attributes.
+    string job_id                                    = 2; // The unique job identifier.
+    JobSettings job_settings                         = 3; // The job parameters.
+    repeated JobAction job_actions                   = 4; // The list of actions to be executed.
+    ApplicationProtocol app_protocol                 = 5; // The application protocol used for communication with the device.
+    string timezone                                  = 6; // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
 }
 
 // Defines the cancel job request message sent from the Taskmaster to the driver.
 message CancelJobRequest {
-    string job_id = 1;  // The unique job identifier.
+    string job_id = 1; // The unique job identifier.
 }
 
 // Defines the possible register types.
 enum DeviceConfigurationRegisterKind {
-    KIND_UNSPECIFIED        = 0;   // Unspecified register kind.
-    KIND_REGISTER           = 1;   // The object represents a generic register.
-    KIND_PERIODICAL_PROFILE = 2;   // The object represents a periodical profile.
-    KIND_IRREGULAR_PROFILE  = 3;   // The object represents an irregular profile.
-    KIND_SYNTHETIC          = 99;  // The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
+    KIND_UNSPECIFIED        = 0; // Unspecified register kind.
+    KIND_REGISTER           = 1; // The object represents a generic register.
+    KIND_PERIODICAL_PROFILE = 2; // The object represents a periodical profile.
+    KIND_IRREGULAR_PROFILE  = 3; // The object represents an irregular profile.
+    KIND_SYNTHETIC          = 99; // The object represents a synthetic register, not visible to drivers. It can be defined to store derived or external data.
 }
 
 // Defines the configuration of a register for a device.
 message DeviceConfigurationRegisterSpec {
-    string driver_type                            = 1;  // The device (driver) type.
-    DeviceConfigurationRegisterKind register_type = 2;  // The kind of device configuration register.
-    map<string, common.FieldValue> attributes     = 3;  // The field values assigned to the register.
+    string driver_type                            = 1; // The device (driver) type.
+    DeviceConfigurationRegisterKind register_type = 2; // The kind of device configuration register.
+    map<string, common.FieldValue> attributes     = 3; // The field values assigned to the register.
     common.FieldDataType data_type                = 4;  // The data type of the register;
 }
 
 // [ADDON] Defines the device register specification.
 message DeviceRegister {
-    int64 register_id                    = 1;  // The unique register identifier.
-    string public_register_id            = 2;  // The public register identifier.
-    DeviceConfigurationRegisterSpec spec = 3;  // The register specification.
-    repeated string variable_name        = 4;  // The list of variable names if the register is assigned to any.
+    int64 register_id                    = 1; // The unique register identifier.
+    string public_register_id            = 2; // The public register identifier.
+    DeviceConfigurationRegisterSpec spec = 3; // The register specification.
+    repeated string variable_name        = 4; // The list of variable names if the register is assigned to any.
 }
 
 // [ADDON] Defines the device connection information.
 message DeviceConnectionInfo {
-    ConnectionInfo communication_unit                = 1;  // The unique communication unit identifier.
-    ApplicationProtocol app_protocol                 = 2;  // The application protocol to be used for communication over the communication unit.
-    map<string, common.FieldValue> device_attributes = 3;  // The device attributes. For example HDLC address, password, and other driver-specific attributes.
-    string timezone                                  = 4;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
-    string driver_type                               = 5;  // The driver type identifier.
-    string driver_version                            = 7;  // The driver version.
-    repeated DeviceRegister registers                = 8;  // The list of registers defined for device according to its configuration template.
+    ConnectionInfo communication_unit                = 1; // The unique communication unit identifier.
+    ApplicationProtocol app_protocol                 = 2; // The application protocol to be used for communication over the communication unit.
+    map<string, common.FieldValue> device_attributes = 3; // The device attributes. For example HDLC address, password, and other driver-specific attributes.
+    string timezone                                  = 4; // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+    string driver_type                               = 5; // The driver type identifier.
+    string driver_version                            = 7; // The driver version.
+    repeated DeviceRegister registers                = 8; // The list of registers defined for device according to its configuration template.
 }
 
 // [ADDON for DB] Defines a list of modem information.
 message ListOfModemInfo {
-    repeated ModemInfo items = 1;  // The list of modem information records.
-    int32 total_count        = 2;  // The total number of items in the list.
+    repeated ModemInfo items = 1; // The list of modem information records.
+    int32 total_count        = 2; // The total number of items in the list.
 }
 
 // [ADDON for DB] Defines a list of device connection information records.
 message ListOfConnectionInfo {
-    repeated DeviceConnectionInfo items = 1;  // The list of device connection information records.
-    int32 total_count                   = 2;  // The total number of items in the list.
+    repeated DeviceConnectionInfo items = 1; // The list of device connection information records.
+    int32 total_count                   = 2; // The total number of items in the list.
 }
 
 // [ADDON for DB] The list of field values.
 message FieldValuesList {
-    repeated common.FieldValues items = 1;  // The list of field values.
+    repeated common.FieldValues items = 1; // The list of field values.
 }
 
 // Defines a generic attribute selector using field values.
 message AttributeSelector {
-    string field_id = 1;                          // The field identifier
-    common.FilterOperator operator = 2;           // The filter operator.
-    common.FieldDataType data_type          = 3;  // The data type of the field.
-    repeated string text                    = 4;  // The text-typed values used for filtering.
-    repeated sint64 integer                 = 5;  // The integer-typed values used for filtering.
-    repeated double number                  = 6;  // The number-typed values used for filtering.
-    repeated bool boolean                   = 7;  // The boolean-typed values used for filtering.
-    repeated google.protobuf.Timestamp date = 8;  // The date-typed values used for filtering.
+    string field_id = 1; // The field identifier
+    common.FilterOperator operator = 2; // The filter operator.
+    common.FieldDataType data_type          = 3; // The data type of the field.
+    repeated string text                    = 4; // The text-typed values used for filtering.
+    repeated sint64 integer                 = 5; // The integer-typed values used for filtering.
+    repeated double number                  = 6; // The number-typed values used for filtering.
+    repeated bool boolean                   = 7; // The boolean-typed values used for filtering.
+    repeated google.protobuf.Timestamp date = 8; // The date-typed values used for filtering.
 }
 
 // Defines the attribute selector using field values for devices.
 message DeviceAttributeSelector {
-    repeated AttributeSelector attributes = 2;  // The list of field values.
+    repeated AttributeSelector attributes = 2; // The list of field values.
 }
 
 // Defines the attribute selector using field values for communication units.
 message CommunicationUnitAttributeSelector {
-    DataLinkProtocol link_protocol        = 1;  // The data link protocol to be used for communication over the communication unit.
-    repeated AttributeSelector attributes = 2;  // The list of field values.
+    DataLinkProtocol link_protocol        = 1; // The data link protocol to be used for communication over the communication unit.
+    repeated AttributeSelector attributes = 2; // The list of field values.
 }
 
 // Defines the possible statuses of jobs.
 enum JobStatusCode {
-    JOB_STATUS_UNSPECIFIED     = 0;  // Unspecified job status.
-    JOB_STATUS_QUEUED          = 1;  // The job is waiting in the queue for execution.
-    JOB_STATUS_RUNNING         = 2;  // The job is currently running.
-    JOB_STATUS_PROCESSING_DATA = 3;  // The job has finished acquiring data and is now processing it.
-    JOB_STATUS_COMPLETED       = 4;  // The job has been completed.
-    JOB_STATUS_FAILED          = 5;  // The job has failed.
-    JOB_STATUS_CANCELLING      = 6;  // The job is being cancelled. This is a transient state when the parent bulk or the job itself has been requested to be cancelled. When the cancellation is completed, the job status changes to `CANCELLED`.
-    JOB_STATUS_CANCELLED       = 7;  // The job has been cancelled.
-    JOB_STATUS_EXPIRED         = 8;  // The job has expired.
+    JOB_STATUS_UNSPECIFIED     = 0; // Unspecified job status.
+    JOB_STATUS_QUEUED          = 1; // The job is waiting in the queue for execution.
+    JOB_STATUS_RUNNING         = 2; // The job is currently running.
+    JOB_STATUS_PROCESSING_DATA = 3; // The job has finished acquiring data and is now processing it.
+    JOB_STATUS_COMPLETED       = 4; // The job has been completed.
+    JOB_STATUS_FAILED          = 5; // The job has failed.
+    JOB_STATUS_CANCELLING      = 6; // The job is being cancelled. This is a transient state when the parent bulk or the job itself has been requested to be cancelled. When the cancellation is completed, the job status changes to `CANCELLED`.
+    JOB_STATUS_CANCELLED       = 7; // The job has been cancelled.
+    JOB_STATUS_EXPIRED         = 8; // The job has expired.
 }
 
 // Defines the result of a single action.
 message ActionResult {
-    string action_id                      = 1;  // The unique action identifier.
-    ActionResultCode status               = 2;  // The status code of the action indicating success or failure.
-    ActionData data                       = 3;  // The action result data containing the retrieved or processed information.
-    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.
-    repeated string variable_name         = 5;  // The variable names. This is a read-only value and is set only if the action data relates to one or more variables based on device template mapping. Applicable only for results of regular bulks.
-    common.FormattedMessage error_message = 6;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
+    string action_id                      = 1; // The unique action identifier.
+    ActionResultCode status               = 2; // The status code of the action indicating success or failure.
+    ActionData data                       = 3; // The action result data containing the retrieved or processed information.
+    string register_id                    = 4; // The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.
+    repeated string variable_name         = 5; // The variable names. This is a read-only value and is set only if the action data relates to one or more variables based on device template mapping. Applicable only for results of regular bulks.
+    common.FormattedMessage error_message = 6; // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 
 // Defines the progress result of a single action.
 message ActionProgressResult {
-    string action_id                      = 1;  // The unique action identifier.
-    ActionResultCode status               = 2;  // The status code of the action indicating success or failure.
-    ActionProgressData data               = 3;  // The action result data containing progress information.
-    string register_id                    = 4;  // The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.
-    common.FormattedMessage error_message = 5;  // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
+    string action_id                      = 1; // The unique action identifier.
+    ActionResultCode status               = 2; // The status code of the action indicating success or failure.
+    ActionProgressData data               = 3; // The action result data containing progress information.
+    string register_id                    = 4; // The unique register identifier. This is a read-only value and is set only if the action data relates to a register. Applicable only for results of regular bulks.
+    common.FormattedMessage error_message = 5; // The user-facing error message provided when the action ends with `ERROR_CODE_ACTION_ERROR`. The message provides details about the failure, can be multiline, and should be in English.
 }
 
 // Defines the job or action progress update message sent from Taskmaster to Dataproxy.
 message JobEventData {
-    bytes job_id = 1;  // The unique job identifier.
+    bytes job_id = 1; // The unique job identifier.
 }
 
 // Defines the device specification.
 message DeviceSpec {
     // @gqltype: UUID
-    string dct_id                                                             = 1;  // The unique identifier of the device configuration template.
-    string external_id                                                        = 2;  // The external identifier of the device.
-    repeated DeviceCommunicationUnit communication_unit_link                  = 3;  // The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
-    string timezone                                                           = 4;  // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
-    repeated DefaultDeviceCommunicationUnitAttributes default_link_attributes = 5;  // The default communication unit link attributes used when the device is created without a communication unit link. Typically applicable for floating devices that are connected via data concentrators where the related driver dynamically assigns the communication unit. The list must not contain same application protocol more than once.
+    string dct_id                                                             = 1; // The unique identifier of the device configuration template.
+    string external_id                                                        = 2; // The external identifier of the device.
+    repeated DeviceCommunicationUnit communication_unit_link                  = 3; // The ordered list of communication units (with additional info) linked to the device. The first entry is the primary communication unit with the highest priority.
+    string timezone                                                           = 4; // The timezone associated with the device. For example, `"America/New_York"`, `"Europe/Prague"`, `"CET"`, `"GMT"`, `"Etc/GMT+2"`.
+    repeated DefaultDeviceCommunicationUnitAttributes default_link_attributes = 5; // The default communication unit link attributes used when the device is created without a communication unit link. Typically applicable for floating devices that are connected via data concentrators where the related driver dynamically assigns the communication unit. The list must not contain same application protocol more than once.
 }
 
 // Defines the current status of a device.
 message DeviceStatus {
-    DeviceInfo info    = 1;  // The device information.
-    string driver_type = 2;  // The driver type selected according to the device configuration template.
+    DeviceInfo info    = 1; // The device information.
+    string driver_type = 2; // The driver type selected according to the device configuration template.
 }
 
 // Defines the mapping between a device and its communication unit.
 message DeviceCommunicationUnit {
-    string communication_unit_id              = 1;  // The unique identifier of the communication unit.
-    ApplicationProtocol app_protocol          = 2;  // The application protocol used communication over the communication unit.
-    map<string, common.FieldValue> attributes = 3;  // The application protocol related device attributes, represented as a list of attribute definitions.
+    string communication_unit_id              = 1; // The unique identifier of the communication unit.
+    ApplicationProtocol app_protocol          = 2; // The application protocol used communication over the communication unit.
+    map<string, common.FieldValue> attributes = 3; // The application protocol related device attributes, represented as a list of attribute definitions.
 }
 
 // Defines the default attributes for mapping a device to its communication unit for a specific application protocol.
 message DefaultDeviceCommunicationUnitAttributes {
-    ApplicationProtocol app_protocol          = 1;  // The application protocol used.
-    map<string, common.FieldValue> attributes = 2;  // The protocol-specific device attributes, represented as a list of attribute definitions.
+    ApplicationProtocol app_protocol          = 1; // The application protocol used.
+    map<string, common.FieldValue> attributes = 2; // The protocol-specific device attributes, represented as a list of attribute definitions.
 }
 
 // Defines the job specification.
 message JobSpec {
-    JobDevice device                            = 2;  // The device information.
-    acquisition.JobSettings job_settings        = 3;  // The job parameters.
-    string driver_type                          = 4;  // The device (driver) type.
-    repeated acquisition.JobAction job_actions  = 5;  // The list of actions to be executed within the job.
-    repeated JobActionMapRecord job_action_info = 6;  // The mapping data for all job actions.
+    JobDevice device                            = 2; // The device information.
+    acquisition.JobSettings job_settings        = 3; // The job parameters.
+    string driver_type                          = 4; // The device (driver) type.
+    repeated acquisition.JobAction job_actions  = 5; // The list of actions to be executed within the job.
+    repeated JobActionMapRecord job_action_info = 6; // The mapping data for all job actions.
 }
 
 // Defines the mapping information for the specified job action.
 message JobActionMapRecord {
-    int32 action_index            = 1;  // The index of the action in the `job_actions` list.
-    int64 register_id             = 3;  // The internal register identifier.
-    string public_register_id     = 2;  // The public register identifier.
-    repeated string variable_name = 4;  // The names of variables, if the register is assigned to any.
+    int32 action_index            = 1; // The index of the action in the `job_actions` list.
+    int64 register_id             = 3; // The internal register identifier.
+    string public_register_id     = 2; // The public register identifier.
+    repeated string variable_name = 4; // The names of variables, if the register is assigned to any.
 }
 
 // Defines the notification sent by the Taskmaster to Dataproxy that a job has been completed.
 message JobDoneNotification {
-    JobSpec spec             = 1;  // The job specification.
-    JobProgressStatus status = 2;  // The progress status of the job.
+    JobSpec spec             = 1; // The job specification.
+    JobProgressStatus status = 2; // The progress status of the job.
 }
 
 // Defines the driver information.
 message DriverInfo {
-    string driver_type = 1;  // The unique driver identifier.
-    string version     = 2;  // The version of the driver.
+    string driver_type = 1; // The unique driver identifier.
+    string version     = 2; // The version of the driver.
 }
 
 // Defines the communication unit information.
 message CommunicationUnit {
     reserved 2;
-    CommunicationUnitSpec spec     = 1;  // The communication unit specification.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    CommunicationUnitSpec spec     = 1; // The communication unit specification.
+    common.MetadataFields metadata = 3; // The metadata fields.
 }
 
 // Defines the communication unit specification.
 message CommunicationUnitSpec {
-    string external_id             = 1;  // The external identifier of the communication unit.
-    ConnectionInfo connection_info = 2;  // The connection parameters.
+    string external_id             = 1; // The external identifier of the communication unit.
+    ConnectionInfo connection_info = 2; // The connection parameters.
 }
 
 // Defines the the communication bus information.
 message CommunicationBus {
     reserved 1;
-    CommunicationBusStatus status  = 2;  // The communication bus status.
-    common.MetadataFields metadata = 3;  // The metadata fields.
+    CommunicationBusStatus status  = 2; // The communication bus status.
+    common.MetadataFields metadata = 3; // The metadata fields.
 }
 
 // Defines the communication bus status.
 message CommunicationBusStatus {
-    repeated string communication_unit_id = 1;  // The list of communication unit identifiers connected to the communication bus.
+    repeated string communication_unit_id = 1; // The list of communication unit identifiers connected to the communication bus.
 }
 
 // Defines the types of nodes in the network topology.
 enum TopologyNodeType {
-    TOPOLOGY_NODE_UNSPECIFIED        = 0;  // Unspecified node type.
-    TOPOLOGY_NODE_DEVICE             = 1;  // The node is a device, such as an electricity meter.
-    TOPOLOGY_NODE_COMMUNICATION_UNIT = 2;  // The node is a communication unit, such as a modem or a data concentrator.
+    TOPOLOGY_NODE_UNSPECIFIED        = 0; // Unspecified node type.
+    TOPOLOGY_NODE_DEVICE             = 1; // The node is a device, such as an electricity meter.
+    TOPOLOGY_NODE_COMMUNICATION_UNIT = 2; // The node is a communication unit, such as a modem or a data concentrator.
 }
 
 // Defines a node in the network topology.
 message TopologyNode {
-    int64 x_id                    = 1;  // The unique node identifier.
-    TopologyNodeType type         = 2;  // The type of the node, for example "device", "communication_unit".
-    common.FieldValues attributes = 3;  // The node attributes.
+    int64 x_id                    = 1; // The unique node identifier.
+    TopologyNodeType type         = 2; // The type of the node, for example "device", "communication_unit".
+    common.FieldValues attributes = 3; // The node attributes.
 }
 
 // Defines an edge between two nodes in the network topology.
 message TopologyEdge {
-    int64 from_x_id               = 1;  // The unique identifier of source edge.
-    int64 to_x_id                 = 2;  // The unique identifier of the target edge.
-    common.FieldValues attributes = 3;  // The edge attributes.
+    int64 from_x_id               = 1; // The unique identifier of source edge.
+    int64 to_x_id                 = 2; // The unique identifier of the target edge.
+    common.FieldValues attributes = 3; // The edge attributes.
 }
 
 // Defines the network map specification.
 message NetworkMap {
-    repeated TopologyNode nodes = 1;  // The list of topology nodes. Can represent a flat or hierarchical structure.
-    repeated TopologyEdge edges = 2;  // The list of edges between the devices.
+    repeated TopologyNode nodes = 1; // The list of topology nodes. Can represent a flat or hierarchical structure.
+    repeated TopologyEdge edges = 2; // The list of edges between the devices.
 }
 
 // Defines the severity levels for communication unit log records.
 enum LogRecordLevel {
-    LOG_RECORD_LEVEL_DEBUG   = 0;  // Debug log record.
-    LOG_RECORD_LEVEL_INFO    = 1;  // Information log record.
-    LOG_RECORD_LEVEL_WARNING = 2;  // Warning log record.
-    LOG_RECORD_LEVEL_ERROR   = 3;  // Error log record.
-    LOG_RECORD_LEVEL_FATAL   = 4;  // Fatal log record.
+    LOG_RECORD_LEVEL_DEBUG   = 0; // Debug log record.
+    LOG_RECORD_LEVEL_INFO    = 1; // Information log record.
+    LOG_RECORD_LEVEL_WARNING = 2; // Warning log record.
+    LOG_RECORD_LEVEL_ERROR   = 3; // Error log record.
+    LOG_RECORD_LEVEL_FATAL   = 4; // Fatal log record.
 }
 
 // Defines a single log record of a communication unit.
 message CommunicationUnitLogRecord {
-    string id                           = 1;  // The unique identifier of the log record. If not provided, a hash of the log data is auto-generated.
-    string communication_unit_id        = 2;  // The unique identifier of the communication unit to which the log record belongs. May be empty and the relation can be set at a higher object level.
-    google.protobuf.Timestamp timestamp = 3;  // The timestamp of the log record. Must not be empty.
-    LogRecordLevel level                = 4;  // The severity level of the log record.
-    string message                      = 5;  // The log message. Must not be empty.
+    string id                           = 1; // The unique identifier of the log record. If not provided, a hash of the log data is auto-generated.
+    string communication_unit_id        = 2; // The unique identifier of the communication unit to which the log record belongs. May be empty and the relation can be set at a higher object level.
+    google.protobuf.Timestamp timestamp = 3; // The timestamp of the log record. Must not be empty.
+    LogRecordLevel level                = 4; // The severity level of the log record.
+    string message                      = 5; // The log message. Must not be empty.
 }
 
 // Defines a list of communication unit log records.
 message ListOfCommunicationUnitLogRecord {
-    repeated CommunicationUnitLogRecord items = 1;  // The list of communication unit log records.
-    int32 total_count                         = 2;  // The total number of items in the list.
+    repeated CommunicationUnitLogRecord items = 1; // The list of communication unit log records.
+    int32 total_count                         = 2; // The total number of items in the list.
 }
