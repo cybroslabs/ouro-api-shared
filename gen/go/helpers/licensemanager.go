@@ -114,8 +114,15 @@ func NewLicenseManager(opts *LicenseManagerOpts) (LicenseManager, error) {
 // Stop stops the license manager and releases any resources it holds.
 // It cancels the running context and the outer cancel function if provided.
 func (lm *licenseManager) Stop() {
-	lm.runCancel()
-	lm.outterCancel()
+	if lm == nil {
+		return
+	}
+	if lm.runCancel != nil {
+		lm.runCancel()
+	}
+	if lm.outterCancel != nil {
+		lm.outterCancel()
+	}
 }
 
 func getSemVerParts(version string) ([]int, error) {

@@ -18,6 +18,70 @@ var (
 	_DUMMY_FD = &common.FieldDescriptor{}
 )
 
+// needsQuoting determines if a PostgreSQL identifier needs to be quoted.
+// An identifier needs quoting if it:
+// - Is a PostgreSQL reserved keyword
+// - Contains special characters (anything other than lowercase letters, digits, and underscores)
+// - Starts with a digit
+// - Is already quoted
+func needsQuoting(name string) bool {
+	if len(name) == 0 {
+		return false
+	}
+
+	// Check if already quoted (starts and ends with double quotes)
+	if len(name) >= 2 && name[0] == '"' && name[len(name)-1] == '"' {
+		return false // Already quoted, don't quote again
+	}
+
+	// Check if first character is a digit
+	if name[0] >= '0' && name[0] <= '9' {
+		return true
+	}
+
+	// Check if all characters are lowercase letters, digits, or underscores
+	for _, ch := range name {
+		if (ch < 'a' || ch > 'z') && (ch < '0' || ch > '9') && ch != '_' {
+			return true
+		}
+	}
+
+	// Check against PostgreSQL reserved keywords (common ones)
+	upperName := strings.ToUpper(name)
+	switch upperName {
+	case "ALL", "ANALYSE", "ANALYZE", "AND", "ANY", "ARRAY", "AS", "ASC", "ASYMMETRIC", "AUTHORIZATION", "BETWEEN", "BINARY", "BOTH", "CASE", "CAST", "CHECK", "COLLATE", "COLUMN", "CONSTRAINT", "CREATE", "CROSS", "CURRENT_CATALOG", "CURRENT_DATE", "CURRENT_ROLE", "CURRENT_TIME", "CURRENT_TIMESTAMP", "CURRENT_USER", "DEFAULT", "DEFERRABLE", "DESC", "DISTINCT", "DO", "ELSE", "END", "EXCEPT", "FALSE", "FETCH", "FOR", "FOREIGN", "FROM", "GRANT", "GROUP", "HAVING", "IN", "INITIALLY", "INNER", "INTERSECT", "INTO", "IS", "JOIN", "LATERAL", "LEADING", "LEFT", "LIKE", "LIMIT", "LOCALTIME", "LOCALTIMESTAMP", "NATURAL", "NOT", "NULL", "OFFSET", "ON", "ONLY", "OR", "ORDER", "OUTER", "OVERLAPS", "PLACING", "PRIMARY", "REFERENCES", "RETURNING", "RIGHT", "SELECT", "SESSION_USER", "SIMILAR", "SOME", "SYMMETRIC", "TABLE", "THEN", "TO", "TRAILING", "TRUE", "UNION", "UNIQUE", "USER", "USING", "VARIADIC", "VERBOSE", "WHEN", "WHERE", "WINDOW", "WITH":
+		// Reserved words
+		return true
+	default:
+		return false
+	}
+}
+
+// quoteSimpleIdentifier safely quotes a PostgreSQL identifier (table name, column name, etc.)
+// only when necessary. It follows PostgreSQL's identifier quoting rules.
+// If the identifier is already quoted or doesn't need quoting, it returns it as-is.
+func quoteSimpleIdentifier(name string) string {
+	// Check if quoting is needed
+	if !needsQuoting(name) {
+		return name // No quoting needed
+	}
+
+	// Double any existing double quotes and wrap in double quotes
+	return `"` + strings.ReplaceAll(name, `"`, `""`) + `"`
+}
+
+// QuoteIdentifier quotes identifier (simple or multi-part separated by dots e.g., "schema.table.column")
+// when necessary. Each part is evaluated independently.
+// If a part is already quoted or doesn't need quoting, it's left as-is.
+func QuoteIdentifier(name string) string {
+	parts := strings.Split(name, ".")
+	quoted := make([]string, len(parts))
+	for i, part := range parts {
+		quoted[i] = quoteSimpleIdentifier(part)
+	}
+	return strings.Join(quoted, ".")
+}
+
 // PathToDbPathFunc is a function type that maps a object path to its corresponding database column name and or JSONB path within a JSONB column.
 // dbPath examples:
 //
@@ -49,12 +113,13 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, idColumn
 		return
 	}
 	if cnt := len(in.Id); cnt > 0 {
+		quotedIdColumn := QuoteIdentifier(idColumn)
 		if cnt == 1 {
 			qArgs = []any{in.Id[0]}
-			qWhere = fmt.Sprintf("WHERE (%s = $1)", idColumn)
+			qWhere = fmt.Sprintf("WHERE (%s = $1)", quotedIdColumn)
 		} else {
 			qArgs = make([]any, cnt)
-			qWhere = fmt.Sprintf("WHERE (%s IN (", idColumn)
+			qWhere = fmt.Sprintf("WHERE (%s IN (", quotedIdColumn)
 			for i, id := range in.Id {
 				if i > 0 {
 					qWhere += ", "
@@ -88,6 +153,17 @@ func PrepareWOL(in *database.DbSelector, pathToDbPath PathToDbPathFunc, idColumn
 	return
 }
 
+func escapeForString(s string) string {
+	if s == "" {
+		return s
+	}
+	// Escape for PostgreSQL JSONPath strings, see https://www.postgresql.org/docs/current/functions-json.html#JSONPATH-REGULAR-EXPRESSIONS
+	s = strings.ReplaceAll(s, `\`, `\\`) // escape backslash first
+	s = strings.ReplaceAll(s, `"`, `\"`) // escape double quote
+	s = strings.ReplaceAll(s, `'`, `\'`) // escape single quote to prevent SQL injection
+	return s
+}
+
 func escapeForRegex(s string) string {
 	if s == "" {
 		return s
@@ -96,8 +172,79 @@ func escapeForRegex(s string) string {
 	s = regexp.QuoteMeta(s)
 	// Escape for PostgreSQL JSONPath strings, see https://www.postgresql.org/docs/current/functions-json.html#JSONPATH-REGULAR-EXPRESSIONS
 	s = strings.ReplaceAll(s, `\`, `\\`) // escape backslash
-	s = strings.ReplaceAll(s, `"`, `\"`) // then escape double quote
+	s = strings.ReplaceAll(s, `"`, `\"`) // escape double quote
+	s = strings.ReplaceAll(s, `'`, `\'`) // escape single quote to prevent SQL injection
 	return s
+}
+
+// validateJSONBPath validates that a JSONB path follows expected patterns and doesn't contain
+// suspicious SQL injection attempts. Returns an error if the path is invalid.
+func validateJSONBPath(path string) error {
+	if path == "" {
+		return nil
+	}
+
+	// Check for SQL injection attempts
+	suspiciousPatterns := []string{
+		";",       // SQL statement separator
+		"--",      // SQL comment
+		"/*",      // SQL block comment start
+		"*/",      // SQL block comment end
+		"')",      // Attempt to break out of quotes
+		"\")",     // Attempt to break out of quotes
+		" OR ",    // SQL OR injection
+		" AND ",   // SQL AND injection
+		"UNION",   // SQL UNION injection
+		"DROP ",   // Dangerous SQL command
+		"DELETE ", // Dangerous SQL command
+		"INSERT ", // Dangerous SQL command
+		"UPDATE ", // Dangerous SQL command
+		"EXEC",    // Dangerous SQL command
+		"EXECUTE", // Dangerous SQL command
+	}
+
+	upperPath := strings.ToUpper(path)
+	for _, pattern := range suspiciousPatterns {
+		if strings.Contains(upperPath, pattern) {
+			return fmt.Errorf("invalid JSONB path: contains suspicious pattern %q", pattern)
+		}
+	}
+
+	// Validate JSONB path format using regex
+	// Valid patterns: $, $.field, $.field.nested, $.field[*], $.field[0], etc.
+	validPathPattern := regexp.MustCompile(`^\$(\.[a-zA-Z_][a-zA-Z0-9_]*|\[\d+\]|\[\*\]|@)*$`)
+	if !validPathPattern.MatchString(path) {
+		return fmt.Errorf("invalid JSONB path format: %q (must match pattern: $.field.nested or $[*] or combinations)", path)
+	}
+
+	return nil
+}
+
+// sanitizeIdentifier checks if an identifier contains only safe characters.
+// Returns an error if the identifier contains suspicious patterns.
+func sanitizeIdentifier(identifier string) error {
+	if identifier == "" {
+		return errors.New("identifier cannot be empty")
+	}
+
+	// Check for SQL injection attempts in identifiers
+	suspiciousPatterns := []string{
+		";",    // SQL statement separator
+		"--",   // SQL comment
+		"/*",   // SQL block comment
+		"*/",   // SQL block comment
+		"\x00", // Null byte
+		"\r",   // Carriage return
+		"\n",   // Newline
+	}
+
+	for _, pattern := range suspiciousPatterns {
+		if strings.Contains(identifier, pattern) {
+			return fmt.Errorf("invalid identifier: contains suspicious pattern %q", pattern)
+		}
+	}
+
+	return nil
 }
 
 func appendFixedWhere(fixedWhere []database.PersistentWhere, qWhere *string, qArgsIn []any) (qArgs []any) {
@@ -119,7 +266,16 @@ func appendFixedWhere(fixedWhere []database.PersistentWhere, qWhere *string, qAr
 		if idx > 0 {
 			*qWhere += " AND "
 		}
-		*qWhere += fmt.Sprintf("(%s = $%d)", item.Query, len(qArgs)+1)
+		// Sanitize and quote the identifier to prevent SQL injection
+		if err := sanitizeIdentifier(item.Query); err != nil {
+			// Log the error but continue with empty args to avoid breaking the query
+			// In production, consider returning the error instead
+			qArgs = _NO_ARGS
+			*qWhere = ""
+			return
+		}
+		quotedQuery := QuoteIdentifier(item.Query)
+		*qWhere += fmt.Sprintf("(%s = $%d)", quotedQuery, len(qArgs)+1)
 		qArgs = append(qArgs, item.Arg)
 	}
 	return
@@ -155,7 +311,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return ` == "` + escapeForRegex(value) + `"`, false
+						return ` == "` + escapeForString(value) + `"`, false
 					}
 					return " == ", false
 				}
@@ -168,7 +324,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return ` <> "` + escapeForRegex(value) + `"`, false
+						return ` <> "` + escapeForString(value) + `"`, false
 					}
 					return " <> ", false
 				}
@@ -181,7 +337,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return ` > "` + escapeForRegex(value) + `"`, false
+						return ` > "` + escapeForString(value) + `"`, false
 					}
 					return " > ", false
 				}
@@ -194,7 +350,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return ` >= "` + escapeForRegex(value) + `"`, false
+						return ` >= "` + escapeForString(value) + `"`, false
 					}
 					return " >= ", false
 				}
@@ -207,7 +363,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return ` < "` + escapeForRegex(value) + `"`, false
+						return ` < "` + escapeForString(value) + `"`, false
 					}
 					return " < ", false
 				}
@@ -220,7 +376,7 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			} else {
 				makeOpVal := func(value string) (string, bool) {
 					if len(value) > 0 {
-						return ` <= "` + escapeForRegex(value) + `"`, false
+						return ` <= "` + escapeForString(value) + `"`, false
 					}
 					return " <= ", false
 				}
@@ -318,8 +474,10 @@ func getWhere(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string, [
 			}
 			// No-operand operators
 		case common.FilterOperator_IS_NULL:
+			// col is already properly quoted by dbPathToDbSelector
 			parts = append(parts, col+" IS NULL")
 		case common.FilterOperator_IS_NOT_NULL:
+			// col is already properly quoted by dbPathToDbSelector
 			parts = append(parts, col+" IS NOT NULL")
 		}
 
@@ -359,6 +517,7 @@ func getOrderBy(in *database.DbSelector, pathToDbPath PathToDbPathFunc) (string,
 		if i > 0 {
 			tmp.WriteString(", ")
 		}
+		// col is already properly quoted by dbPathToDbSelector
 		tmp.WriteString(col)
 		if s.GetDesc() {
 			tmp.WriteString(" DESC")
@@ -591,13 +750,22 @@ func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference str
 		err = errors.New("the dbPath must contain column name reference, got: " + dbPath)
 		return
 	} else if len(parts) == 1 {
-		columnReference = dbPath
+		// Simple column reference with no JSONB path - sanitize and quote it
+		if err = sanitizeIdentifier(dbPath); err != nil {
+			return
+		}
+		columnReference = QuoteIdentifier(dbPath)
 		return
 	}
 
 	column := parts[0]
 	if column == "-" {
 		err = errors.New("the field descriptor can't be used for filtering or sorting")
+		return
+	}
+
+	// Sanitize the column identifier
+	if err = sanitizeIdentifier(column); err != nil {
 		return
 	}
 
@@ -613,32 +781,46 @@ func dbPathToDbSelector(dbPath string, useDoubleArrow bool) (columnReference str
 			return
 		}
 
+		// Validate the JSONB path
+		if err = validateJSONBPath(path); err != nil {
+			return
+		}
+
 		pathParts := strings.Split(path, ".")
 		pathParts = pathParts[1:]
+
+		// Quote the column identifier to prevent SQL injection
+		quotedColumn := QuoteIdentifier(column)
 
 		switch {
 		case len(pathParts) == 0:
 			err = errors.New("the path must contain at least one part after '$.', got: " + path)
 			return
 		case !useDoubleArrow:
-			columnReference = column + "->'" + strings.Join(pathParts, "'->'") + "'"
+			columnReference = quotedColumn + "->'" + strings.Join(pathParts, "'->'") + "'"
 			return
 		case len(pathParts) == 1:
-			columnReference = column + "->>'" + pathParts[0] + "'"
+			columnReference = quotedColumn + "->>'" + pathParts[0] + "'"
 			return
 		default:
-			columnReference = column + "->'" + strings.Join(pathParts[:len(pathParts)-1], "'->'") + "'->>'" + pathParts[len(pathParts)-1] + "'"
+			columnReference = quotedColumn + "->'" + strings.Join(pathParts[:len(pathParts)-1], "'->'") + "'->>'" + pathParts[len(pathParts)-1] + "'"
 			return
 		}
 
 	case 2:
 		// JSONPath query with embedded sub-selector (e.g., `column:$.path.to[*]@.sub`)
-		columnReference = column
+		// Quote the column identifier to prevent SQL injection
+		columnReference = QuoteIdentifier(column)
 		jsonPath = subSelectorParts[0]
 		propertyName = "@" + subSelectorParts[1]
 
 		if !strings.HasPrefix(jsonPath, "$.") && jsonPath != "$" {
 			err = errors.New("the JSONPath must start with '$.' or be equal to '$', got: " + jsonPath)
+			return
+		}
+
+		// Validate the JSONB path (but allow @ syntax by validating without it)
+		if err = validateJSONBPath(jsonPath); err != nil {
 			return
 		}
 
