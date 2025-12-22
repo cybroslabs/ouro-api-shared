@@ -73,8 +73,8 @@ const (
 	// Bit 23: Value has been read from a concentrator (e.g., a data concentrator or gateway device), not directly from the measurement device.
 	StatusBitsDataQualityConcentrator StatusBits = 1 << 23
 
-	// Bit 24: Reserved for future data quality extensions.
-	StatusBitsDataQualityStatus24 StatusBits = 1 << 24
+	// Bit 24: Calculated value is incomplete (calculation failed or source data unavailable).
+	StatusBitsDataQualityCalculationIncomplete StatusBits = 1 << 24
 
 	// Bit 25: Reserved for future data quality extensions.
 	StatusBitsDataQualityStatus25 StatusBits = 1 << 25
@@ -124,31 +124,31 @@ const (
 )
 
 var StatusBits_name = map[StatusBits]string{
-	StatusBitsCriticalError:           "Critical Error",
-	StatusBitsClockInvalid:            "Clock Invalid",
-	StatusBitsDataNotValid:            "Data Not Valid",
-	StatusBitsDaylightSavingTime:      "Daylight Saving Time",
-	StatusBitsClockAdjusted:           "Clock Adjusted",
-	StatusBitsPowerDown:               "Power Down",
-	StatusBitsBillingPeriodReset:      "Billing Period Reset",
-	StatusBitsParametrizationChanged:  "Parametrization Changed",
-	StatusBitsCounterOverflow:         "Counter Overflow",
-	StatusBitsUserValue:               "User Value",
-	StatusBitsImportedValue:           "Imported Value",
-	StatusBitsEstimatedValue:          "Estimated Value",
-	StatusBitsIntermediateValue:       "Intermediate Value",
-	StatusBitsSubstitutedValue:        "Substituted Value",
-	StatusBitsValidValue:              "Valid Value",
-	StatusBitsInvalidValue:            "Invalid Value",
-	StatusBitsDataQualityConcentrator: "Data Quality Concentrator",
-	StatusBitsDataQualityStatus24:     "Data Quality Status 24",
-	StatusBitsDataQualityStatus25:     "Data Quality Status 25",
-	StatusBitsUserDefined55:           "User Defined 55",
-	StatusBitsUserDefined56:           "User Defined 56",
-	StatusBitsUserDefined57:           "User Defined 57",
-	StatusBitsUserDefined58:           "User Defined 58",
-	StatusBitsUserDefined59:           "User Defined 59",
-	StatusBitsUserDefined60:           "User Defined 60",
-	StatusBitsUserDefined61:           "User Defined 61",
-	StatusBitsUserDefined62:           "User Defined 62",
+	StatusBitsCriticalError:                    "Critical Error",
+	StatusBitsClockInvalid:                     "Clock Invalid",
+	StatusBitsDataNotValid:                     "Data Not Valid",
+	StatusBitsDaylightSavingTime:               "Daylight Saving Time",
+	StatusBitsClockAdjusted:                    "Clock Adjusted",
+	StatusBitsPowerDown:                        "Power Down",
+	StatusBitsBillingPeriodReset:               "Billing Period Reset",
+	StatusBitsParametrizationChanged:           "Parametrization Changed",
+	StatusBitsCounterOverflow:                  "Counter Overflow",
+	StatusBitsUserValue:                        "User Value",
+	StatusBitsImportedValue:                    "Imported Value",
+	StatusBitsEstimatedValue:                   "Estimated Value",
+	StatusBitsIntermediateValue:                "Intermediate Value",
+	StatusBitsSubstitutedValue:                 "Substituted Value",
+	StatusBitsValidValue:                       "Valid Value",
+	StatusBitsInvalidValue:                     "Invalid Value",
+	StatusBitsDataQualityConcentrator:          "Data Quality Concentrator",
+	StatusBitsDataQualityCalculationIncomplete: "Calculation Incomplete",
+	StatusBitsDataQualityStatus25:              "Data Quality Status 25",
+	StatusBitsUserDefined55:                    "User Defined 55",
+	StatusBitsUserDefined56:                    "User Defined 56",
+	StatusBitsUserDefined57:                    "User Defined 57",
+	StatusBitsUserDefined58:                    "User Defined 58",
+	StatusBitsUserDefined59:                    "User Defined 59",
+	StatusBitsUserDefined60:                    "User Defined 60",
+	StatusBitsUserDefined61:                    "User Defined 61",
+	StatusBitsUserDefined62:                    "User Defined 62",
 }
